@@ -1,30 +1,75 @@
 {% extends "base.html" %}
 
-{% load humanize %}
+{% load static humanize %}
 
 {% block content %}
-    <h1>{{ bill.title }}</h1>
+    <nav class="main-nav hide-on-med-and-up">
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#!">Este é um item do menu</a></li>
+            <li><a href="#!">Este é um item do menu</a></li>
+        </ul>
+        <ul id="slide-out" class="side-nav">
+            <li><a href="#!">Este é um item do menu</a></li>
+            <li><a href="#!">Este é um item do menu</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </nav>
 
-    {% for segment in bill.segments.all %}
-        <p><strong>Art. {{ forloop.counter|ordinal }}</strong> {{ segment.content }}</p>
-    {% endfor %}
+    <div class="row main">
+        <div class="col m2 main-menu hide-on-small-only">
+            <img class="logo" src="{% static "img/logo.png" %}" alt="wikilegis" />
+        </div>
+        <div class="col m3 pl-description">
+            <div class="circle"><div class="pl-icon"><i class="medium material-icons">description</i></div></div>
+            <h5 class="pl-title">{{ bill.title }}</h5>
+            <p class="pl-about">{{ bill.description }}</p>
 
-    <h2>Citizen Amendments</h2>
+            <div class="divider"></div>
 
-    <ul>
-        {% for amendment in amendments %}
-            <li>
-                <!-- :D BR HUE -->
-                {{ amendment.author }}
-                <br />
-                <br />
-                {{ amendment.content }}
-                <br />
-                <br />
-                {{ amendment.comment }}
-                <br />
-                <br />
-            </li>
-        {% endfor %}
-    </ul>
+            <div class="pl-author">
+                <div class="avatar" style="background-image: url('{% static "img/user.png" %}')"></div>
+                <div class="info">
+                    <span class="author">Antônio da Silva</span>
+                    <br/>
+                    <span class="bio">Fusce sed metus a augue hendrerit dictum.</span>
+                    <br/>
+                    <span class="party">OP</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="data">
+                Dados:
+                <br/>
+                <i class="material-icons">question_answer</i><span class="comment number">25</span> Comentários
+                <br/>
+                <i class="material-icons">wb_incandescent</i><span class="ideas number">75</span> Ideias de alteração
+            </div>
+        </div>
+        <div class="col m7 pl-full">
+            <blockquote class="pl-head">
+                <h5>LIVRO I</h5>
+                <h6>PARTE GERAL</h6>
+                <h5>TÍTULO I - PRINCÍPIOS E GARANTIAS, NORMAS PROCESSUAIS, JURISDIÇÃO E AÇÃO</h5>
+                <h6>CAPÍTULO I - DOS PRINCÍPIOS E DAS GARANTIAS FUNDAMENTAIS DO PROCESSO CIVIL</h6>
+            </blockquote>
+
+            {% for amendment in amendments %}
+                <a href="TODO">
+                    <div class="article">
+                        <div class="comments-counter">
+                            <div class="cn">42</div>
+                        </div>
+                        <div class="content">
+                            <span class="article-number">Art. {{ forloop.counter|ordinal }}</span>
+                            <span class="article-content">
+                                {{ segment.content }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

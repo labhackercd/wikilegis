@@ -15,6 +15,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Import `default` as the default settings. This can be handy while pushing items into tuples.
+import django.conf.global_settings as default
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -38,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'compressor',
     'wikilegis.core'
 )
 
@@ -102,3 +106,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'public'))
+
+STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)

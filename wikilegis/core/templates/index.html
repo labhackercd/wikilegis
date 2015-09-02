@@ -1,13 +1,35 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
-<ul>
-{% for bill in bills %}
-    <li>
-        <a href="{% url 'show_bill' bill.id %}">{{ bill.title }}</a>
-    </li>
-{% empty %}
-    <li class="empty-notice">Oh, no. There are no bills to show right now. Would you like to <a href="">submit a bill</a>?</li>
-{% endfor %}
-</ul>
+    <div class="row intro">
+        <div class="col s12 m6 about valign-wrapper">
+            <div class="content">
+                <img src="{% static "img/logo.png" %}" alt="wikilegis" />
+                <h4>Sua ferramenta de edição de leis</h4>
+                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec in placerat dui. Nulla facilisi. Vivamus tempor pulvinar congue. Duis sed fringilla.</p>
+                <a class="acces hide-on-med-and-up" href="">Acesse</a>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="pls">
+                {% for bill in bills %}
+                    <a class="hover" href="{% url 'show_bill' bill.id %}">
+                        <div class="pl">
+                            <div class="icon">
+                                <div class="circle"><div class="pl-icon"><i class="small material-icons">description</i></div></div>
+                            </div>
+                            <div class="description">
+                                <h5>{{ bill.title }}</h5>
+                                <p>{{ bill.description }}</p>
+                            </div>
+                            <div class="arrow"><i class="material-icons" data-icon="navigate_next"></i></div>
+                        </div>
+                    </a>
+                    <div class="divider"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

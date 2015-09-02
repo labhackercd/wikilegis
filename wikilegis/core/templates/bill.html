@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block content %}
+    <h1>{{ bill.title }}</h1>
+
+    {% for segment in bill.segments.all %}
+        <p><strong>Art. {{ forloop.counter|ordinal }}</strong> {{ segment.content }}</p>
+    {% endfor %}
+
+    <h2>Citizen Amendments</h2>
+
+    <ul>
+        {% for amendment in amendments %}
+            <li>
+                <!-- :D BR HUE -->
+                {{ amendment.author }}
+                <br />
+                <br />
+                {{ amendment.content }}
+                <br />
+                <br />
+                {{ amendment.comment }}
+                <br />
+                <br />
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

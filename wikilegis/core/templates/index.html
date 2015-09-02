@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+{% for bill in bills %}
+    <li>
+        <a href="{% url 'show_bill' bill.id %}">{{ bill.title }}</a>
+    </li>
+{% empty %}
+    <li class="empty-notice">Oh, no. There are no bills to show right now. Would you like to <a href="">submit a bill</a>?</li>
+{% endfor %}
+</ul>
+{% endblock %}

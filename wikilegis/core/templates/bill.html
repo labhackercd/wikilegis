@@ -19,9 +19,13 @@
         <div class="col m2 main-menu hide-on-small-only">
             {% include "_logo.html" %}
         </div>
+
         <div class="col m3 pl-description">
-            <div class="circle"><div class="pl-icon"><i class="medium material-icons">description</i></div></div>
-            <h5 class="pl-title">{{ bill.title }}</h5>
+            <a href="{% url "show_bill" bill.id %}">
+                <div class="circle"><div class="pl-icon"><i class="medium material-icons">description</i></div></div>
+                <h5 class="pl-title">{{ bill.title }}</h5>
+            </a>
+
             <p class="pl-about">{{ bill.description }}</p>
 
             <div class="divider"></div>

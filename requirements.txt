@@ -1,0 +1,7 @@
+Django==1.8.4
+django-appconf==1.0.1
+django-compressor==1.5
+django-libsass==0.4
+futures==3.0.3
+libsass==0.8.3
+six==1.9.0

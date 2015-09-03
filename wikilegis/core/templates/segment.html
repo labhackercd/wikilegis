@@ -21,7 +21,7 @@
 
     <div class="row main">
         <div class="col m2 main-menu hide-on-small-only">
-            <img class="logo" src="{% static "img/logo.png" %}" alt="wikilegis" />
+            {% include "_logo.html" %}
         </div>
 
         <a href="{% url 'show_bill' segment.bill.id %}">

@@ -256,7 +256,7 @@ body {
       width: 60px;
       .cn {
         text-align: center;
-        background-image: url("../../img/comments.png");
+        background-image: url(static("img/comments.png"));
         background-repeat: no-repeat;
         background-position: center;
         background-position-x: center;
@@ -313,8 +313,7 @@ body {
       .quote-s, .quote-f {
         width: 70px;
         min-height: 27px;
-        background-image: url('../../img/quote.png');
-        background-repeat: no-repeat;
+        background: url(static("img/quote.png")) no-repeat;
         background-position-x: center;
       }
       .quote-f {

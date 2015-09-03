@@ -44,9 +44,11 @@ INSTALLED_APPS = (
     'compressor',
     'wikilegis.core',
     'adminsortable2',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -117,3 +119,6 @@ STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+
+## Debug toolbar
+STATIC_IPS = ('127.0.0.1', '::1', )

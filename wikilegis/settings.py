@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'compressor',
-    'wikilegis.core'
+    'wikilegis.core',
+    'adminsortable2',
 )
 
 MIDDLEWARE_CLASSES = (

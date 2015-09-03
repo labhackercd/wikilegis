@@ -7,11 +7,17 @@ class Bill(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
 
+    def __str__(self):
+        return self.title
+
 
 class BillSegment(models.Model):
     bill = models.ForeignKey('core.Bill', related_name='segments')
-    order = models.PositiveIntegerField(default=0, editable=False, null=False)
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
     content = models.TextField()
+
+    def __str__(self):
+        return '%s: %s' % (self.bill, self.content, )
 
     class Meta:
         ordering = ('order',)
@@ -22,3 +28,6 @@ class CitizenAmendment(models.Model):
     segment = models.ForeignKey(BillSegment)
     content = models.TextField()
     comment = models.TextField()
+
+    def original_content(self,):
+        return self.segment.content

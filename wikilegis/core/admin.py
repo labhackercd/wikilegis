@@ -1,6 +1,24 @@
 from django.contrib import admin
+
+from adminsortable2.admin import SortableInlineAdminMixin
+
 from . import models
 
-admin.site.register(models.Bill)
-admin.site.register(models.BillSegment)
-admin.site.register(models.CitizenAmendment)
+class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):  # or admin.StackedInline
+    model = models.BillSegment
+
+class BillAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description',)
+    inlines = (BillSegmentInline,)
+
+class BillSegmentAdmin(admin.ModelAdmin):
+    list_display = ('content',)
+    list_filter = ('bill',)
+
+class CitizenAmendmentAdmin(admin.ModelAdmin):
+    list_display = ('author', 'segment', 'original_content', 'content', 'comment')
+
+
+admin.site.register(models.Bill, BillAdmin)
+admin.site.register(models.BillSegment, BillSegmentAdmin)
+admin.site.register(models.CitizenAmendment, CitizenAmendmentAdmin)

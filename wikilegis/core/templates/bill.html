@@ -55,11 +55,11 @@
                 <h6>CAPÍTULO I - DOS PRINCÍPIOS E DAS GARANTIAS FUNDAMENTAIS DO PROCESSO CIVIL</h6>
             </blockquote>
 
-            {% for amendment in amendments %}
-                <a href="TODO">
+            {% for segment in bill.segments.all %}
+                <a href="{% url "show_segment" bill.id segment.id %}">
                     <div class="article">
                         <div class="comments-counter">
-                            <div class="cn">42</div>
+                            <div class="cn">{{ segment.amendments.all.count }}</div>
                         </div>
                         <div class="content">
                             <span class="article-number">Art. {{ forloop.counter|ordinal }}</span>

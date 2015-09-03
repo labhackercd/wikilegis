@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% load static humanize %}
+
+{% block content %}
+    <nav class="main-nav hide-on-med-and-up">
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#!">Este é um item do menu</a>
+            </li>
+            <li><a href="#!">Este é um item do menu</a>
+            </li>
+        </ul>
+        <ul id="slide-out" class="side-nav">
+            <li><a href="#!">Este é um item do menu</a>
+            </li>
+            <li><a href="#!">Este é um item do menu</a>
+            </li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </nav>
+
+    <div class="row main">
+        <div class="col m2 main-menu hide-on-small-only">
+            <img class="logo" src="{% static "img/logo.png" %}" alt="wikilegis" />
+        </div>
+
+        <a href="{% url 'show_bill' segment.bill.id %}">
+            <div class="col m2 pl-description back">
+                <div class="circle">
+                    <div class="pl-icon"><i class="medium material-icons">description</i>
+                    </div>
+                </div>
+                <h5 class="pl-title">{{ segment.bill.title }}</h5>
+            </div>
+        </a>
+
+        <div class="col m8 pl-full">
+            <div class="bah">
+                <div class="article-head">
+                    <div class="quote-s"></div>
+                    <div class="article-content flow-text">
+                        <span class="article-number">Art. {{ segment.order|add:"1"|ordinal }}</span>
+                        <span class="article-content">{{ segment.content }}</span>
+                    </div>
+                    <div class="quote-f"></div>
+                </div>
+                <div class="interact">
+                    <ul>
+                        <li><a href="#"><i class="material-icons">done</i> Aprovar</a>
+                        </li>
+                        <li> | </li>
+                        <li><a href="#news"><i class="material-icons">wb_incandescent</i> Propor</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" href="#test1">Todos</a>
+                        </li>
+                        <li class="tab col s3"><a href="#test2">Propostas</a>
+                        </li>
+                        <li class="tab col s3 disabled"><a href="#test3">Comentários</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="test1" class="col s12 tabs-content">
+                    {% for amendment in segment.amendments.all %}
+                    <div class="proposal">
+                        <div class="avatr">
+                            <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                        </div>
+
+                        <div class="content">
+                            <span class="author"><span class="user">{{ amendment.author.display_name }}</span> propôs:</span>
+                            <p class="pp">
+                                {{ amendment.content }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div id="test2" class="col s12 tabs-content">Propostas</div>
+                <div id="test3" class="col s12 tabs-content">Comentários</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -25,7 +25,7 @@ class BillSegment(models.Model):
 
 class CitizenAmendment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
-    segment = models.ForeignKey(BillSegment)
+    segment = models.ForeignKey(BillSegment, related_name='amendments')
     content = models.TextField()
     comment = models.TextField()
 

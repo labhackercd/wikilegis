@@ -18,5 +18,12 @@
     {% block content %}
         I'm sorry. The princess is in another castle.
     {% endblock %}
+
+    {% block bottom_scripts %}
+        {% compress js %}
+            <script type="text/javascript" src="{% static "js/jquery-2.1.4.js" %}"></script>
+            <script type="text/javascript" src="{% static "js/materialize.js" %}"></script>
+        {% endcompress %}
+    {% endblock %}
 </body>
 </html>

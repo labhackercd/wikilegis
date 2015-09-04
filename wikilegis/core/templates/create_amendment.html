@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% load helpers %}
+
+{% comment TODO by dirleyrls %}{#
+    1. Definir o foco inicial pro campo `content`.
+    2. Estilizar os campos.
+    3. Exibir um "campo" que permita ao usuário exibir/esconder o conteúdo original.
+    4. Isolar a parte que é igual nas duas telas (telas: bill e create_amendment;
+    partes: menu, parte superior, etc) num template separado (tipo um include? é possível?).
+#}{% endcomment %}
+
+{% block content %}
+    <nav class="main-nav hide-on-med-and-up">
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#!">Este é um item do menu</a>
+            </li>
+            <li><a href="#!">Este é um item do menu</a>
+            </li>
+        </ul>
+        <ul id="slide-out" class="side-nav">
+            <li><a href="#!">Este é um item do menu</a>
+            </li>
+            <li><a href="#!">Este é um item do menu</a>
+            </li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </nav>
+
+    <div class="row main">
+        <div class="col m2 main-menu hide-on-small-only">
+            {% include "_logo.html" %}
+        </div>
+
+        <a href="{% url 'show_bill' segment.bill.id %}">
+            <div class="col m2 pl-description back">
+                <div class="circle">
+                    <div class="pl-icon"><i class="medium material-icons">description</i>
+                    </div>
+                </div>
+                <h5 class="pl-title">{{ segment.bill.title }}</h5>
+            </div>
+        </a>
+
+        <div class="col m8 pl-full">
+            <div class="row">
+                <h4>Enviar proposta</h4>
+
+                <form class="col s12" action="./" method="POST">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {% call "helpers:render_field" form.content extra_classes="materialize-textarea" %}
+                            {{ form.content.label_tag }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <div class="switch">
+                                <label>
+                                    <strong>Mostrar comparação:</strong> Off
+                                    <input type="checkbox">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {% call "helpers:render_field" form.comment widget="TextInput" extra_classes="materialize-textarea" %}
+                            {{ form.comment.label_tag }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <a href="{% url "show_segment" segment.bill.id segment.id %}">Cancelar</a>
+                            ou &nbsp;
+                            <button class="btn waves-effect waves-light" type="submit" name="action">
+                                Enviar proposta <i class="material-icons">send</i>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

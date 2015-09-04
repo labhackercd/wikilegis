@@ -38,7 +38,7 @@ class CitizenAmendment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     segment = models.ForeignKey('core.BillSegment', related_name='amendments')
     content = models.TextField()
-    comment = models.TextField()
+    comment = models.TextField(null=True, blank=True)
 
     def original_content(self):
         return self.segment.content

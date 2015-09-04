@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Bill, BillSegment
+from .models import Bill, BillSegment, CitizenAmendment
 
 def index(request):
     bills = Bill.objects.all()
@@ -13,8 +13,12 @@ def index(request):
 def show_bill(request, bill_id):
     bill = get_object_or_404(Bill, pk=bill_id)
 
+    # XXX Lambda to make it lazy :D
+    total_amendment_count = lambda: CitizenAmendment.objects.filter(segment__bill__id=bill.id).count()
+
     return render(request, 'bill.html', context=dict(
         bill=bill,
+        total_amendment_count=total_amendment_count,
     ))
 
 

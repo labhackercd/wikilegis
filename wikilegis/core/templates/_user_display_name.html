@@ -1,0 +1,21 @@
+{% comment %}{#
+
+Will render the given `user`'s name. Will try the full name, then the short name then the username if none of the above exists.
+
+Usage:
+
+    <span class="user-name">{% with user=object.author %}{% include "_user_display_name.html" %}{% endwith %}</span>
+
+#}{% endcomment %}
+
+{% spaceless %}
+    {% if user.get_full_name|default:""|length > 0 %}
+        {{ user.get_full_name }}
+    {% else %}
+        {% if user.get_short_name|default:""|length > 0 %}
+            {{ user.get_short_name }}
+        {% else %}
+            {{ user.get_username }}
+        {% endif %}
+    {% endif %}
+{% endspaceless %}

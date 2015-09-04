@@ -58,35 +58,26 @@
             <div class="divider"></div>
 
             <div class="row">
-                <div class="col s12">
-                    <ul class="tabs">
-                        <li class="tab col s3"><a class="active" href="#test1">Todos</a>
-                        </li>
-                        <li class="tab col s3"><a href="#test2">Propostas</a>
-                        </li>
-                        <li class="tab col s3 disabled"><a href="#test3">Comentários</a>
-                        </li>
-                    </ul>
-                </div>
+                <div id="thelist" class="col s12 tabs-content">
+                    <!-- pls fix -->
+                    <h5>Propostas</h5>
+                    <br />
 
-                <div id="test1" class="col s12 tabs-content">
                     {% for amendment in segment.amendments.all %}
-                    <div class="proposal">
-                        <div class="avatr">
-                            <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
-                        </div>
+                        <div class="proposal">
+                            <div class="avatr">
+                                <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                            </div>
 
-                        <div class="content">
-                            <span class="author"><span class="user">{{ amendment.author.display_name }}</span> propôs:</span>
-                            <p class="pp">
-                                {{ amendment.content }}
-                            </p>
+                            <div class="content">
+                                <span class="author"><span class="user">{% with user=amendment.author %}{% include "_user_display_name.html" %}{% endwith %}</span> propôs:</span>
+                                <p class="pp">
+                                    {{ amendment.content }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
                     {% endfor %}
                 </div>
-                <div id="test2" class="col s12 tabs-content">Propostas</div>
-                <div id="test3" class="col s12 tabs-content">Comentários</div>
             </div>
         </div>
     </div>

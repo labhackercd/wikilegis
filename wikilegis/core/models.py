@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 
 class Bill(models.Model):
@@ -16,11 +17,21 @@ class BillSegment(models.Model):
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
     content = models.TextField()
 
-    def __str__(self):
-        return '%s: %s' % (self.bill, self.content, )
+    TYPE_CHOICES = (
+        ('title', _('Title')),
+        ('article', _('Article')),
+    )
+    type = models.CharField(max_length=64, choices=TYPE_CHOICES)
 
     class Meta:
         ordering = ('order',)
+
+    def __str__(self):
+        return '%s: %s' % (self.bill, self.content, )
+
+    def is_editable(self):
+        # Currently, only articles are editable.
+        return self.type == 'article'
 
 
 class CitizenAmendment(models.Model):
@@ -29,5 +40,5 @@ class CitizenAmendment(models.Model):
     content = models.TextField()
     comment = models.TextField()
 
-    def original_content(self,):
+    def original_content(self):
         return self.segment.content

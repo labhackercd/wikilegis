@@ -52,27 +52,8 @@
             </div>
         </div>
         <div class="col m7 pl-full">
-            <blockquote class="pl-head">
-                <h5>LIVRO I</h5>
-                <h6>PARTE GERAL</h6>
-                <h5>TÍTULO I - PRINCÍPIOS E GARANTIAS, NORMAS PROCESSUAIS, JURISDIÇÃO E AÇÃO</h5>
-                <h6>CAPÍTULO I - DOS PRINCÍPIOS E DAS GARANTIAS FUNDAMENTAIS DO PROCESSO CIVIL</h6>
-            </blockquote>
-
             {% for segment in bill.segments.all %}
-                <a href="{% url "show_segment" bill.id segment.id %}">
-                    <div class="article">
-                        <div class="comments-counter">
-                            <div class="cn">{{ segment.amendments.all.count }}</div>
-                        </div>
-                        <div class="content">
-                            <span class="article-number">Art. {{ forloop.counter|ordinal }}</span>
-                            <span class="article-content">
-                                {{ segment.content }}
-                            </span>
-                        </div>
-                    </div>
-                </a>
+                {% include "_segment_item.html" %}
             {% endfor %}
         </div>
     </div>

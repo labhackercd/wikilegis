@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static humanize %}
+{% load static %}
 
 {% block content %}
     <nav class="main-nav hide-on-med-and-up">
@@ -39,7 +39,6 @@
                 <div class="article-head">
                     <div class="quote-s"></div>
                     <div class="article-content flow-text">
-                        <span class="article-number">Art. {{ segment.order|add:"1"|ordinal }}</span>
                         <span class="article-content">{{ segment.content }}</span>
                     </div>
                     <div class="quote-f"></div>

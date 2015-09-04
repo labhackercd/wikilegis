@@ -1,7 +1,5 @@
 from django.contrib import admin
-
 from adminsortable2.admin import SortableInlineAdminMixin
-
 from . import models
 
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):  # or admin.StackedInline
@@ -12,7 +10,7 @@ class BillAdmin(admin.ModelAdmin):
     inlines = (BillSegmentInline,)
 
 class BillSegmentAdmin(admin.ModelAdmin):
-    list_display = ('content',)
+    list_display = ('type', 'content')
     list_filter = ('bill',)
 
 class CitizenAmendmentAdmin(admin.ModelAdmin):

@@ -4,6 +4,6 @@
 $ git clone git@github.com:labhackercd/wikilegis.git
 $ cd wikilegis
 $ pip install -r requirements.txt
-$ ./manage migrate
-$ ./manage runserver
+$ ./manage.py migrate
+$ ./manage.py runserver
 ```

@@ -45,7 +45,8 @@
                 </div>
                 <div class="interact">
                     <ul>
-                        <li><a href="#"><i class="material-icons">done</i> Aprovar</a>
+                        <li>
+                            {% include "_choosing_button_2.html" %}
                         </li>
                         <li> | </li>
                         <li><a href="{% url 'create_amendment' segment.bill.id segment.id %}"><i class="material-icons">wb_incandescent</i> Propor</a>
@@ -73,6 +74,9 @@
                                 <p class="pp">
                                     {{ amendment.content }}
                                 </p>
+                                {% comment TODO colocar o botão de escolher aqui também. é só incluir o template assim: %}
+                                {% include "_choosing_button_2.html" %}
+                                {% endcomment %}
                             </div>
                         </div>
                     {% endfor %}

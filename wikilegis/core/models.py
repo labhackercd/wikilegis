@@ -42,3 +42,17 @@ class CitizenAmendment(models.Model):
 
     def original_content(self):
         return self.segment.content
+
+
+class UserSegmentChoice(models.Model):
+    """
+    Modelo que indica a "escolha" de um usuário por uma "vesrão" de um trecho do projeto de lei.
+
+    1. Se `segment is None`, então o usuário votou no texto original.
+    2. Se `segment` for algum sement, então o usuário votou naquela versão do texto.
+    3. Se não existir um voto tal que `user=user, segment__bill__id=bill.id`, então significa que o usuário não votou ainda.
+    """
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    segment = models.ForeignKey('core.BillSegment', related_name='choices')
+    amendment = models.ForeignKey('core.CitizenAmendment', related_name='choosings', null=True, blank=True)
+

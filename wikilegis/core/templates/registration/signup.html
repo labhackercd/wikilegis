@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load i18n %}
 
 {% block content %}
     <div class="row intro">
         <div class="col s12 m6 about valign-wrapper">
             <div class="content">
                 {% include "_logo.html" %}
-                <h4>Sua ferramenta de edição de leis</h4>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec in placerat dui. Nulla facilisi. Vivamus tempor pulvinar congue. Duis sed fringilla.</p>
-                <a class="acces hide-on-med-and-up" href="">Acesse</a>
+                <h4>{% trans "Sua ferramenta de edição de leis"%}</h4>
+                <p>{% trans "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec in placerat dui. Nulla facilisi. Vivamus tempor pulvinar congue. Duis sed fringilla." %}</p>
+                <a class="acces hide-on-med-and-up" href="">{% trans "Acesse" %}</a>
             </div>
         </div>
         <div class="col s12 m6">
@@ -35,7 +36,7 @@
                         <br />
                         <div class="col s12 center-align">
                             <button class="btn waves-effect waves-light" type="submit" name="action">
-                                Entrar <i class="material-icons">send</i>
+                                {% trans "Entrar" %} <i class="material-icons">send</i>
                             </button>
                         </div>
                     </div>

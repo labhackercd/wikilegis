@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 
 {% load static humanize %}
+{% load i18n %}
 
 {% block content %}
     <nav class="main-nav hide-on-med-and-up">
         <ul class="right hide-on-med-and-down">
-            <li><a href="#!">Este é um item do menu</a></li>
-            <li><a href="#!">Este é um item do menu</a></li>
+            <li><a href="#!">{% trans "Este é um item do menu" %}</a></li>
+            <li><a href="#!">{% trans "Este é um item do menu" %}</a></li>
         </ul>
         <ul id="slide-out" class="side-nav">
-            <li><a href="#!">Este é um item do menu</a></li>
-            <li><a href="#!">Este é um item do menu</a></li>
+            <li><a href="#!">{% trans "Este é um item do menu" %}</a></li>
+            <li><a href="#!">{% trans "Este é um item do menu" %}</a></li>
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </nav>
@@ -26,7 +27,7 @@
                 <h5 class="pl-title">{{ bill.title }}</h5>
             </a>
 
-            <p class="pl-about">{{ bill.description }}</p>
+            <p class="pl-about">{{ bill.description|safe|linebreaks }}</p>
 
             <div class="divider"></div>
 
@@ -44,11 +45,11 @@
             <div class="divider"></div>
 
             <div class="data">
-                Dados:
+                {% trans "Dados:" %}
                 <br/>
-                <i class="material-icons">question_answer</i><span class="comment number">0</span> comentários
+                <i class="material-icons">question_answer</i><span class="comment number">0</span> {% trans "comentários" %}
                 <br/>
-                <i class="material-icons">wb_incandescent</i><span class="ideas number">{{ total_amendment_count }}</span> ideias de alteração
+                <i class="material-icons">wb_incandescent</i><span class="ideas number">{{ total_amendment_count }}</span> {% trans "ideias de alteração" %}
             </div>
         </div>
         <div class="col m7 pl-full">

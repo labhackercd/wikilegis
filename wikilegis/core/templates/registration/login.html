@@ -8,8 +8,8 @@
         <div class="col s12 m6 about valign-wrapper">
             <div class="content">
                 {% include "_logo.html" %}
-                <h4>{% trans "Sua ferramenta de edição de leis" %}</h4>
-                <p>{% trans "O Wikilegis é uma ferramenta colaborativa de edição de projetos legislativos. Participe sugerindo alterações e escolhendo as melhores propostas." %}</p>
+                <h4>{% trans "Your legislative editing tool" %}</h4>
+                <p>{% trans "Wikilegis is a tool for collaboratively editing legislative bills. Take part suggesting changes and choosing the best proposals." %}</p>
                 <a class="acces hide-on-med-and-up" href="">{% trans "Acesse" %}</a>
             </div>
         </div>
@@ -32,13 +32,13 @@
                     <div class="row">
                         <div class="col s12 center-align">
                             <button class="btn waves-effect waves-light" type="submit" name="action">
-                                Entrar <i class="material-icons">send</i>
+                                {% trans "Log in" %} <i class="material-icons">send</i>
                             </button>
 
                             <br />
                             <br />
                             <br />
-                            {% trans "ou" %} <a href="{% url "signup" %}">{% trans "Criar conta" %}</a>
+                            {% trans "ou" %} <a href="{% url "signup" %}">{% trans "Register account" %}</a>
                         </div>
                     </div>
                 </form>

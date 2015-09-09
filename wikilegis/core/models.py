@@ -13,7 +13,7 @@ class Bill(models.Model):
 
 
 class BillSegment(models.Model):
-    bill = models.ForeignKey('core.Bill', related_name='segments')
+    bill = models.ForeignKey('core.Bill', related_name='segments', verbose_name="Bill")
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
     content = models.TextField()
 
@@ -36,7 +36,7 @@ class BillSegment(models.Model):
 
 class CitizenAmendment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
-    segment = models.ForeignKey('core.BillSegment', related_name='amendments')
+    segment = models.ForeignKey('core.BillSegment', related_name='amendments', verbose_name="BillSegment")
     content = models.TextField()
     comment = models.TextField(null=True, blank=True)
 
@@ -53,6 +53,6 @@ class UserSegmentChoice(models.Model):
     3. Se não existir um voto tal que `user=user, segment__bill__id=bill.id`, então significa que o usuário não votou ainda.
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    segment = models.ForeignKey('core.BillSegment', related_name='choices')
-    amendment = models.ForeignKey('core.CitizenAmendment', related_name='choosings', null=True, blank=True)
+    segment = models.ForeignKey('core.BillSegment', related_name='choices', verbose_name="choices")
+    amendment = models.ForeignKey('core.CitizenAmendment', related_name='choosings', null=True, blank=True, verbose_name="choosings")
 

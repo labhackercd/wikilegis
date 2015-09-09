@@ -28,6 +28,7 @@ body {
     height: 100vh;
     background-color: $maingreen;
     text-align: center;
+    position: relative;
     .content {
       height: auto;
       margin-right: auto;
@@ -50,8 +51,19 @@ body {
         color: $maingreen;
         font-weight: 700;
       }
+      }
     }
   }
+
+  .linksDown{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    a:nth-child(1n+2){
+      margin-left: 10px;
+    }
+
   .pls {
     position: relative;
     height: 100vh;

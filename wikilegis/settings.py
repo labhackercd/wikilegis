@@ -133,3 +133,6 @@ COMPRESS_PRECOMPILERS = (
 
 ## Debug toolbar
 STATIC_IPS = ('127.0.0.1', '::1', )
+
+# Login settings
+LOGIN_REDIRECT_URL = '/'

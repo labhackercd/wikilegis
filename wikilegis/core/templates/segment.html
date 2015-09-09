@@ -6,15 +6,15 @@
 {% block content %}
     <nav class="main-nav hide-on-med-and-up">
         <ul class="right hide-on-med-and-down">
-            <li><a href="#!">{% trans "Este é um item do menu" %}</a>
+            <li><a href="#!">{% trans "This is a menu item" %}</a>
             </li>
-            <li><a href="#!">{% trans "Este é um item do menu" %}</a>
+            <li><a href="#!">{% trans "This is a menu item" %}</a>
             </li>
         </ul>
         <ul id="slide-out" class="side-nav">
-            <li><a href="#!">{% trans "Este é um item do menu" %}</a>
+            <li><a href="#!">{% trans "This is a menu item" %}</a>
             </li>
-            <li><a href="#!">{% trans "Este é um item do menu" %}</a>
+            <li><a href="#!">{% trans "This is a menu item" %}</a>
             </li>
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
@@ -50,7 +50,7 @@
                             {% include "_choosing_button_2.html" %}
                         </li>
                         <li> | </li>
-                        <li><a href="{% url 'create_amendment' segment.bill.id segment.id %}"><i class="material-icons">wb_incandescent</i> {% trans "Propor" %}</a>
+                        <li><a href="{% url 'create_amendment' segment.bill.id segment.id %}"><i class="material-icons">wb_incandescent</i> {% trans "Propose" %}</a>
                         </li>
                     </ul>
                 </div>
@@ -61,7 +61,7 @@
             <div class="row">
                 <div id="thelist" class="col s12 tabs-content">
                     <!-- pls fix -->
-                    <h5>{% trans "Propostas" %}</h5>
+                    <h5>{% trans "Proposals" %}</h5>
                     <br />
 
                     {% for amendment in segment.amendments.all %}
@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="content">
-                                <span class="author"><span class="user">{% with user=amendment.author %}{% include "_user_display_name.html" %}{% endwith %}</span> {% trans "propôs:" %}</span>
+                                <span class="author"><span class="user">{% with user=amendment.author %}{% include "_user_display_name.html" %}{% endwith %}</span> {% trans "proposed:" %}</span>
                                 <p class="pp">
                                     {{ amendment.content }}
                                 </p>

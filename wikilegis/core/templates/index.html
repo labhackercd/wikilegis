@@ -8,9 +8,9 @@
         <div class="col s12 m6 about valign-wrapper">
             <div class="content">
                 {% include "_logo.html" %}
-                <h4>{% trans "Sua ferramenta de edição de leis" %}</h4>
-                <p>{% trans "O Wikilegis é uma ferramenta colaborativa de edição de projetos legislativos. Participe sugerindo alterações e escolhendo as melhores propostas." %}</p>
-                <a class="acces hide-on-med-and-up" href="">{% trans "Acesse" %}</a>
+                <h4>{% trans "Your legislative editing tool" %}</h4>
+                <p>{% trans "Wikilegis is a tool for collaboratively editing legislative bills. Take part suggesting changes and choosing the best proposals." %}</p>
+                <a class="acces hide-on-med-and-up" href="">{% trans "Log in" %}</a>
             </div>
         </div>
         <div class="col s12 m6">
@@ -30,7 +30,7 @@
                     </a>
                     <div class="divider"></div>
                 {% empty %}
-                    Nothing to see here, move along.
+                    {% trans "Nothing to show here..." %}
                 {% endfor %}
             </div>
         </div>

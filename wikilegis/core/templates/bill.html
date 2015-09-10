@@ -21,7 +21,7 @@
             {% include "_logo.html" %}
         </div>
 
-        <div class="col m3 pl-description">
+        <div class="col m3 pl-full pl-description nice-scroll">
             <a href="{% url "show_bill" bill.id %}">
                 <div class="circle"><div class="pl-icon"><i class="medium material-icons">description</i></div></div>
                 <h5 class="pl-title">{{ bill.title }}</h5>
@@ -52,7 +52,7 @@
                 <i class="material-icons">wb_incandescent</i><span class="ideas number">{{ total_amendment_count }}</span> {% trans "ideias de alteração" %}
             </div>
         </div>
-        <div class="col m7 pl-full">
+        <div class="col m7 pl-full list-amendment">
             {% for segment in bill.segments.all %}
                 {% include "_segment_item.html" %}
             {% endfor %}

@@ -40,7 +40,7 @@
                 <div class="article-head">
                     <div class="quote-s"></div>
                     <div class="article-content flow-text">
-                        <span class="article-content">{{ segment.content }}</span>
+                        <span class="article-content">{{ segment.content|linebreaks }}</span>
                     </div>
                     <div class="quote-f"></div>
                 </div>
@@ -80,6 +80,8 @@
                                 {% endcomment %}
                             </div>
                         </div>
+                    {% empty %}
+                        <span>Empty</span>
                     {% endfor %}
                 </div>
             </div>

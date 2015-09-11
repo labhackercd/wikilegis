@@ -45,6 +45,15 @@ class CitizenAmendment(models.Model):
         return self.segment.content
 
 
+class CitizenComment(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    segment = models.ForeignKey('core.BillSegment', related_name='comments', verbose_name="Comment")
+    comment = models.TextField()
+
+    def original_content(self):
+        return self.segment.content
+
+
 class UserSegmentChoice(models.Model):
     """
     Modelo que indica a "escolha" de um usuário por uma "vesrão" de um trecho do projeto de lei.

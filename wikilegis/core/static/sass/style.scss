@@ -28,6 +28,7 @@ body {
     height: 100vh;
     background-color: $maingreen;
     text-align: center;
+    position: relative;
     .content {
       height: auto;
       margin-right: auto;
@@ -39,8 +40,9 @@ body {
         font-weight: 700;
       }
       p {
-        opacity: .7;
+        opacity: .9;
         margin-bottom: 20px;
+        color: #a3b7b8;
       }
       .acces {
         margin-top: 50px;
@@ -50,6 +52,18 @@ body {
         color: $maingreen;
         font-weight: 700;
       }
+    }
+  }
+  .linksDown{
+    position: absolute;
+    bottom: 10px;
+    width: 95%;
+    .description{
+      width: 70%;
+      margin: 0 auto 10px auto;
+      font-size: 0.8em;
+      line-height: 1.2em;
+      color: #7fafaf;
     }
   }
   .pls {

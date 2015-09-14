@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=255)),
+                ('short_description', models.TextField(max_length=300, null=True)),
                 ('description', models.TextField()),
-                ('short_description', models.TextField()),
             ],
         ),
         migrations.CreateModel(
@@ -42,6 +42,15 @@ class Migration(migrations.Migration):
                 ('comment', models.TextField(null=True, blank=True)),
                 ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
                 ('segment', models.ForeignKey(related_name='amendments', verbose_name=b'BillSegment', to='core.BillSegment')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='CitizenComment',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('comment', models.TextField()),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('segment', models.ForeignKey(related_name='comments', verbose_name=b'Comment', to='core.BillSegment')),
             ],
         ),
         migrations.CreateModel(

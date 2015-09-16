@@ -116,7 +116,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', 'public'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public'))
 
 STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
     'compressor.finders.CompressorFinder',
@@ -133,3 +133,6 @@ COMPRESS_PRECOMPILERS = (
 
 ## Debug toolbar
 STATIC_IPS = ('127.0.0.1', '::1', )
+
+# Login settings
+LOGIN_REDIRECT_URL = '/'

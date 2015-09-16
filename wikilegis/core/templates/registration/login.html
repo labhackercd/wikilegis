@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load i18n %}
 
 {% block content %}
     <div class="row intro">
         <div class="col s12 m6 about valign-wrapper">
             <div class="content">
                 {% include "_logo.html" %}
-                <h4>Sua ferramenta de edição de leis</h4>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec in placerat dui. Nulla facilisi. Vivamus tempor pulvinar congue. Duis sed fringilla.</p>
-                <a class="acces hide-on-med-and-up" href="">Acesse</a>
+                <h4>{% trans "Your legislative editing tool" %}</h4>
+                <p>{% trans "Wikilegis is a tool for collaboratively editing legislative bills. Take part suggesting changes and choosing the best proposals." %}</p>
+                <a class="acces hide-on-med-and-up" href="">{% trans "Acesse" %}</a>
             </div>
         </div>
         <div class="col s12 m6">
@@ -20,6 +21,8 @@
             <br />
             <div class="row">
                 <form class="col s6 offset-s3" action="./" method="POST">
+                    {% csrf_token %}
+
                     <div class="row">
                         <div class="col s12">
                             {{ form }}
@@ -29,13 +32,13 @@
                     <div class="row">
                         <div class="col s12 center-align">
                             <button class="btn waves-effect waves-light" type="submit" name="action">
-                                Entrar <i class="material-icons">send</i>
+                                {% trans "Log in" %} <i class="material-icons">send</i>
                             </button>
 
                             <br />
                             <br />
                             <br />
-                            ou <a href="{% url "signup" %}">Criar conta</a>
+                            {% trans "ou" %} <a href="{% url "signup" %}">{% trans "Register account" %}</a>
                         </div>
                     </div>
                 </form>

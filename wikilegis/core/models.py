@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class Bill(models.Model):
     title = models.CharField(max_length=255)
+    short_description = models.TextField(max_length=300, null=True)
     description = models.TextField()
 
     def __unicode__(self):
@@ -13,7 +14,7 @@ class Bill(models.Model):
 
 
 class BillSegment(models.Model):
-    bill = models.ForeignKey('core.Bill', related_name='segments')
+    bill = models.ForeignKey('core.Bill', related_name='segments', verbose_name="Bill")
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
     content = models.TextField()
 
@@ -36,9 +37,18 @@ class BillSegment(models.Model):
 
 class CitizenAmendment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
-    segment = models.ForeignKey('core.BillSegment', related_name='amendments')
+    segment = models.ForeignKey('core.BillSegment', related_name='amendments', verbose_name="BillSegment")
     content = models.TextField()
     comment = models.TextField(null=True, blank=True)
+
+    def original_content(self):
+        return self.segment.content
+
+
+class CitizenComment(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    segment = models.ForeignKey('core.BillSegment', related_name='comments', verbose_name="Comment")
+    comment = models.TextField()
 
     def original_content(self):
         return self.segment.content
@@ -53,6 +63,6 @@ class UserSegmentChoice(models.Model):
     3. Se não existir um voto tal que `user=user, segment__bill__id=bill.id`, então significa que o usuário não votou ainda.
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    segment = models.ForeignKey('core.BillSegment', related_name='choices')
-    amendment = models.ForeignKey('core.CitizenAmendment', related_name='choosings', null=True, blank=True)
+    segment = models.ForeignKey('core.BillSegment', related_name='choices', verbose_name="choices")
+    amendment = models.ForeignKey('core.CitizenAmendment', related_name='choosings', null=True, blank=True, verbose_name="choosings")
 

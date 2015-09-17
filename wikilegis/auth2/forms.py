@@ -13,6 +13,6 @@ class UserChangeForm(BaseUserChangeForm):
         model = User
 
 
-class SignUpForm(UserCreationForm):
+class RegistrationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         fields = ('email', 'first_name', 'last_name')

@@ -1,10 +1,8 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render, get_object_or_404
-from django.shortcuts import render_to_response
-from .forms import CitizenAmendmentCreationForm, SignUpForm
+
+from .forms import CitizenAmendmentCreationForm
 from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice
 
 
@@ -133,22 +131,3 @@ def unchoose_amendment(request, bill_id, segment_id):
         .delete()
 
     return redirect('show_segment', bill_id=bill_id, segment_id=segment_id)
-
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            password = form.cleaned_data['password1']
-            user = authenticate(username=user.username, password=password)
-            login(request, user)
-            return redirect('index')
-    else:
-        form = SignUpForm()
-
-    form.fields['username'].help_text = None
-
-    return render(request, 'registration/signup.html', context=dict(
-        form=form,
-    ))

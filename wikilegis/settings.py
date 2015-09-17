@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'compressor',
     'adminsortable2',
     'debug_toolbar',
+    'wikilegis.auth2',
     'wikilegis.core',
     'wikilegis.helpers',
 )
@@ -90,6 +91,11 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+# Authentication and user management
+
+AUTH_USER_MODEL = 'auth2.User'
 
 
 # Internationalization

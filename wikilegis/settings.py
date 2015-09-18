@@ -47,10 +47,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
+    'haystack',
     'compressor',
     'adminsortable2',
     'debug_toolbar',
-    'registration',
+    'wikilegis.core',
+    'wikilegis.helpers',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -149,3 +151,13 @@ STATIC_IPS = ('127.0.0.1', '::1', )
 
 # Login settings
 LOGIN_REDIRECT_URL = '/'
+
+
+# Elasticsearch
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        # 'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        # 'URL': 'http://127.0.0.1:9200/',
+        # 'INDEX_NAME': 'haystack',
+    },
+}

@@ -455,7 +455,6 @@ body {
   }
 }
 
-// Form errors
 .errorlist {
   opacity: 1;
   color: $input-error-color;
@@ -463,4 +462,27 @@ body {
   position: absolute;
   top: 65px;
   transition: .2s opacity ease-out, .2s color ease-out;
+}
+
+.search{
+  margin-left: 20px;
+  h4{
+    padding-left: 20px;
+    color: #4e5d5d;
+  }
+  h5{
+    color: #4e5d5d;
+  }
+  td, th{
+    padding: 0;
+  }
+  tr td:first-child{
+    margin-right: 10px;
+  }
+  .content{
+    padding-left: 20px;
+  }
+  form p a{
+    color: rgba(0, 0, 0, 0.87);
+  }
 }

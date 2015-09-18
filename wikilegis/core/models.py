@@ -4,6 +4,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 
 
 def model_repr(cls, **kwargs):
@@ -54,6 +55,9 @@ class BillSegment(TimestampedMixin):
     def is_editable(self):
         # Currently, only articles are editable.
         return self.type == 'article'
+
+    def get_absolute_url(self):
+        return reverse('show_segment', args=[self.bill.id, self.id])
 
 
 class CitizenAmendment(TimestampedMixin):

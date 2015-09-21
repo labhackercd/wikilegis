@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 
 class Bill(models.Model):
     title = models.CharField(max_length=255)
-    short_description = models.TextField(max_length=300, null=True)
     description = models.TextField()
 
     def __unicode__(self):

@@ -439,7 +439,6 @@ body {
   background-color: #F5F5F5;
 }
 
-
 .authentication{
   .logo{
     width: 150px;
@@ -454,4 +453,14 @@ body {
       height: 1.3rem !important;
     }
   }
+}
+
+// Form errors
+.errorlist {
+  opacity: 1;
+  color: $input-error-color;
+  display: block;
+  position: absolute;
+  top: 65px;
+  transition: .2s opacity ease-out, .2s color ease-out;
 }

@@ -1,9 +1,13 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.forms import widgets
-from . import nocontext
+from . import nocontext, utils
+
 
 @nocontext
 def render_field(field, *args, **kwargs):
     extra_classes = kwargs.pop('extra_classes', [])
+    extra_classes = utils.parse_extra_classes(extra_classes)
 
     widget = kwargs.pop('widget', None)
     if widget is not None:
@@ -14,7 +18,7 @@ def render_field(field, *args, **kwargs):
             widget = widget()
 
     attrs = {
-        'class': extra_classes,
+        'class': ' '.join(extra_classes),
     }
 
     return field.as_widget(widget=widget, attrs=attrs)

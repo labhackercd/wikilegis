@@ -18,8 +18,7 @@ class BillSegmentAdmin(admin.ModelAdmin):
 
 
 class CitizenAmendmentAdmin(admin.ModelAdmin):
-    list_display = ('author', 'segment', 'original_content', 'content', 'comment')
-
+    list_display = ('author', 'segment', 'original_content', 'content')
 
 
 admin.site.register(models.Bill, BillAdmin)

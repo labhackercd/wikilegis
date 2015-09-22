@@ -3,6 +3,8 @@ from wikilegis.core.models import CitizenAmendment
 
 
 class CitizenAmendmentCreationForm(forms.ModelForm):
+    comment = forms.CharField(widget=forms.Textarea())
+
     class Meta:
         model = CitizenAmendment
-        fields = ('content', 'comment')
+        fields = ('content',)

@@ -2,6 +2,7 @@
 
 {% load static humanize %}
 {% load i18n %}
+{% load helpers %}
 
 {% block content %}
     <nav class="main-nav hide-on-med-and-up">
@@ -17,9 +18,7 @@
     </nav>
 
     <div class="row main">
-        <div class="col m2 main-menu hide-on-small-only">
-            {% include "_logo.html" %}
-        </div>
+        {% include "_sidebar_search.html" %}
 
         <div class="col m3 pl-full pl-description nice-scroll">
             <a href="{% url "show_bill" bill.id %}">

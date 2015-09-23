@@ -21,9 +21,7 @@
     </nav>
 
     <div class="row main">
-        <div class="col m2 main-menu hide-on-small-only">
-            {% include "_logo.html" %}
-        </div>
+        {% include "_sidebar_search.html" %}
 
         <a href="{% url 'show_bill' segment.bill.id %}">
             <div class="col m2 pl-description back">

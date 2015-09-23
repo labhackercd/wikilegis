@@ -29,6 +29,17 @@ body {
     background-color: $maingreen;
     text-align: center;
     position: relative;
+    .loginSignup{
+      .loginButton{
+        border-radius: 20px;
+        background: url(static("img/user.png")) 10px 2px no-repeat, #64C069;
+        background-size: auto 24px;
+        padding: 10px 10px 10px 40px;
+        a{
+          color: #fff;
+        }
+      }
+    }
     .content {
       height: auto;
       margin-right: auto;
@@ -54,10 +65,10 @@ body {
       }
     }
   }
-  .linksDown{
-    position: absolute;
-    bottom: 10px;
-    width: 95%;
+  .buttonsShareProjetc{
+    margin-bottom: 0;
+    align-self: flex-end;
+    margin-top: 30px;
     .description{
       width: 70%;
       margin: 0 auto 10px auto;
@@ -439,6 +450,10 @@ body {
   background-color: #F5F5F5;
 }
 
+blockquote{
+  border-color: #4CB96A
+}
+
 .authentication{
   .logo{
     width: 150px;
@@ -464,7 +479,7 @@ body {
   transition: .2s opacity ease-out, .2s color ease-out;
 }
 
-.search{
+.pageSearch{
   margin-left: 20px;
   h4{
     padding-left: 20px;
@@ -473,19 +488,57 @@ body {
   h5{
     color: #4e5d5d;
   }
-  td, th{
-    padding: 0;
-  }
-  tr td:first-child{
-    margin-right: 10px;
-  }
   .content{
-    padding-left: 20px;
+    padding: 20px 0 0 20px;
   }
-  form p a{
-    color: rgba(0, 0, 0, 0.87);
+  .results{
+    margin-top: 40px;
+    p a{
+      color: #3e3e3e;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
   }
-  table{
-    width: 47%;  
+}
+
+.search{
+  nav{
+    padding: 0 !important;
+    background: #fff;;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 2px 2px 0 rgba(0, 0, 0, 0.02) !important;
+    input{
+      color: #444;
+    }
+    label i.material-icons{
+      color: #444;
+    }
+  }
+}
+
+.searchSidebar{
+  nav{
+    margin-top: 20px;
+    height: 35px;
+    padding: 0 !important;
+    background: #fff;;
+    border-radius: 25px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 2px 2px 0 rgba(0, 0, 0, 0.02) !important;
+    input{
+      line-height: 2em !important;
+      color: #444;
+      border-radius: 25px;
+      font-size: 1.1em;
+      padding-top: 2px;
+      padding-left: 2.6em !important;
+    }
+    label {
+      top: -14px;
+      left: 0.6rem !important;
+      i.material-icons{
+      color: #444;
+      font-size: 2em
+      }
+    }
   }
 }

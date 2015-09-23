@@ -34,12 +34,14 @@ if debug.isdigit():
         debug = int(debug)
     except:
         pass
+if debug in ('false', 'no', 'off'):
+    debug = false
 DEBUG = bool(debug)
 
 
 allowed_hosts = os.environ.get('ALLOWED_HOSTS')
 if allowed_hosts:
-    allowed_hosts = map(lambda host: host.strip(), ','.split(allowed_hosts))
+    allowed_hosts = map(lambda host: host.strip(), allowed_hosts.split(','))
 
 ALLOWED_HOSTS = allowed_hosts or []
 
@@ -116,10 +118,7 @@ DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # Authentication and user management
 
-AUTH_USER_MODEL = 'auth2.User'
-
-# If `False` the registration view will not require user activation through e-mail.
-# Useful to disable activation during DEBUG or other situations where mails can't be sent.
+AUTH_USER_MODEL = 'auth2.User' # If `False` the registration view will not require user activation through e-mail.  # Useful to disable activation during DEBUG or other situations where mails can't be sent.
 ACCOUNT_ACTIVATION_REQUIRED = not DEBUG
 
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -181,3 +180,4 @@ STATIC_IPS = ('127.0.0.1', '::1', )
 
 # Login settings
 LOGIN_REDIRECT_URL = '/'
+

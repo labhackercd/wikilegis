@@ -1,15 +1,10 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from wikilegis.core.models import CitizenAmendment
 
 
 class CitizenAmendmentCreationForm(forms.ModelForm):
+    comment = forms.CharField(widget=forms.Textarea())
 
     class Meta:
         model = CitizenAmendment
-        fields = ('content', 'comment')
-
-
-class SignUpForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        fields = ('first_name', 'last_name', 'username')
+        fields = ('content',)

@@ -12,16 +12,9 @@ class BillAdmin(admin.ModelAdmin):
     inlines = (BillSegmentInline,)
 
 
-class BillSegmentAdmin(admin.ModelAdmin):
-    list_display = ('type', 'content')
-    list_filter = ('bill',)
-
-
 class CitizenAmendmentAdmin(admin.ModelAdmin):
-    list_display = ('author', 'segment', 'original_content', 'content', 'comment')
-
+    list_display = ('author', 'segment', 'original_content', 'content')
 
 
 admin.site.register(models.Bill, BillAdmin)
-admin.site.register(models.BillSegment, BillSegmentAdmin)
 admin.site.register(models.CitizenAmendment, CitizenAmendmentAdmin)

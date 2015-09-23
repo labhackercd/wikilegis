@@ -24,6 +24,31 @@
             <script type="text/javascript" src="{% static "js/jquery-2.1.4.js" %}"></script>
             <script type="text/javascript" src="{% static "js/materialize.js" %}"></script>
         {% endcompress %}
+
+        {% if messages %}
+        <script type="text/javascript">
+            {% comment %}
+            FIXME This is a utterly idiotic way to handle messages.
+
+            Here's why:
+
+                * What if there is no JS available?
+
+                * What if the user is browsing another tab and the toasts go away? (3000ms of duration)
+
+                * No color.
+
+                * Toasts in web browsers suck. We are not Google. This isn't Inbox.
+
+                * It isn't even working.
+            {% endcomment %}
+            $.ready(function() {
+                {% for message in messages %}
+                    Materialize.toast("{% if message.tags %}{{ message.tags }}: {% endif %}{{ message }}", 3000);
+                {% endfor %}
+            });
+        </script>
+        {% endif %}
     {% endblock %}
 </body>
 </html>

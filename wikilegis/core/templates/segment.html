@@ -65,6 +65,7 @@
                     <br />
 
                     {% for amendment in segment.amendments.all %}
+                        <br />
                         <div class="proposal">
                             <div class="avatr">
                                 <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
@@ -73,7 +74,7 @@
                             <div class="content">
                                 <span class="author"><span class="user">{% with user=amendment.author %}{% include "_user_display_name.html" %}{% endwith %}</span> {% trans "proposed:" %}</span>
                                 <p class="pp">
-                                    {{ amendment.content }}
+                                    {{ amendment.content|linebreaks }}
                                 </p>
                                 {% comment TODO colocar o botão de escolher aqui também. é só incluir o template assim: %}
                                 {% include "_choosing_button_2.html" %}

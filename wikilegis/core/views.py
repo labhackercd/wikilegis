@@ -1,10 +1,13 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render, get_object_or_404
-from django.shortcuts import render_to_response
-from .forms import CitizenAmendmentCreationForm, SignUpForm
+from django.utils.text import capfirst
+from django.utils.translation import ugettext
+
+from .forms import CitizenAmendmentCreationForm
 from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice
 
 
@@ -73,7 +76,8 @@ def create_amendment(request, bill_id, segment_id):
     segment = _get_segment_or_404(bill_id, segment_id)
 
     if not segment.is_editable():
-        # TODO flash message?
+        messages.error(request, ugettext(
+            "Cannot submit proposals to {object}.").format(object=segment))
         return redirect_to_segment_at_bill_page(segment)
 
     form_factory = CitizenAmendmentCreationForm
@@ -93,7 +97,8 @@ def create_amendment(request, bill_id, segment_id):
 
             amendment.save()
 
-            # TODO flash message?
+            messages.success(request, ugettext("{object_type} submitted.").format(
+                object_type=capfirst(CitizenAmendment._meta.verbose_name)))
 
             redirect_url = reverse('show_segment', kwargs=dict(bill_id=bill_id, segment_id=segment_id))
 
@@ -133,22 +138,3 @@ def unchoose_amendment(request, bill_id, segment_id):
         .delete()
 
     return redirect('show_segment', bill_id=bill_id, segment_id=segment_id)
-
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            password = form.cleaned_data['password1']
-            user = authenticate(username=user.username, password=password)
-            login(request, user)
-            return redirect('index')
-    else:
-        form = SignUpForm()
-
-    form.fields['username'].help_text = None
-
-    return render(request, 'registration/signup.html', context=dict(
-        form=form,
-    ))

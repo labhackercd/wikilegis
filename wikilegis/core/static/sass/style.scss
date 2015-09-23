@@ -438,3 +438,29 @@ body {
   width: 2px;
   background-color: #F5F5F5;
 }
+
+.authentication{
+  .logo{
+    width: 150px;
+    margin: 20px auto 30px auto;
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
+
+    form input[type=text]{
+      height: 1.3rem !important;
+    }
+  }
+}
+
+// Form errors
+.errorlist {
+  opacity: 1;
+  color: $input-error-color;
+  display: block;
+  position: absolute;
+  top: 65px;
+  transition: .2s opacity ease-out, .2s color ease-out;
+}

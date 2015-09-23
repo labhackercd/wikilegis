@@ -34,6 +34,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+
+    'wikilegis.auth2',
+    'wikilegis.core',
+    'wikilegis.helpers',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,11 +46,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
     'compressor',
     'adminsortable2',
     'debug_toolbar',
-    'wikilegis.core',
-    'wikilegis.helpers',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -95,6 +100,24 @@ DATABASES['default']['ENGINE'] = 'django_postgrespool'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+
+# Authentication and user management
+
+AUTH_USER_MODEL = 'auth2.User'
+
+# If `False` the registration view will not require user activation through e-mail.
+# Useful to disable activation during DEBUG or other situations where mails can't be sent.
+ACCOUNT_ACTIVATION_REQUIRED = not DEBUG
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+REGISTRATION_AUTO_LOGIN = True
+
+REGISTRATION_FORM = 'wikilegis.auth2.forms.RegistrationForm'
+
+# XXX Please don't change. The URL is included in `wikilegis.auth2.urls`.
+INCLUDE_REGISTER_URL = False
 
 
 # Internationalization

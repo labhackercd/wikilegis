@@ -5,14 +5,20 @@
 
 {% block content %}
     <div class="row intro">
-        <div class="col s12 m6 about valign-wrapper">
+        <div class="col s12 m6 about valign-wrapper" style="margin: 0 auto">
             <div class="content">
                 {% include "_logo.html" %}
                 <h4>{% trans "Your legislative editing tool" %}</h4>
-                <p>{% trans "Wikilegis is a tool for collaboratively editing legislative bills. Take part suggesting changes and choosing the best proposals." %}</p>
-                <a class="acces hide-on-med-and-up" href="">{% trans "Log in" %}</a>
+                <div class="row">
+                    <p class="col s10 offset-s1">{% trans "Wikilegis is a tool for collaboratively editing legislative bills. Take part suggesting changes and choosing the best proposals." %}</p>
+                    <a class="acces hide-on-med-and-up" href="">{% trans "Log in" %}</a>
+                </div>
 
-                <div class="linksDown">
+                <div class="row loginSignup">
+                    <span class="loginButton"><a href="/accounts/login">Faça login ou cadastre-se</a></span>
+                </div>
+
+                <div class="buttonsShareProjetc">
                     <div class="description">
                         Would you like to take part in the development of Wikilegis? <br>Accesses our github and our trello profiles!
                     </div>

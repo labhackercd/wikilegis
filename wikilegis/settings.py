@@ -34,10 +34,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-
     'wikilegis.auth2',
     'wikilegis.core',
     'wikilegis.helpers',
+    'wikilegis.comments2',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,11 +46,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
 
     'haystack',
     'compressor',
     'adminsortable2',
     'debug_toolbar',
+    'registration',
+    'django_comments',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,6 +116,11 @@ REGISTRATION_FORM = 'wikilegis.auth2.forms.RegistrationForm'
 
 # XXX Please don't change. The URL is included in `wikilegis.auth2.urls`.
 INCLUDE_REGISTER_URL = False
+
+
+# Site-specific settings
+
+SITE_ID = 1
 
 
 # Internationalization

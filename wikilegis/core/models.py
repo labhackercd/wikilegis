@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.conf import settings
+from django.db.models import permalink
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
@@ -75,6 +76,13 @@ class CitizenAmendment(TimestampedMixin):
 
     def original_content(self):
         return self.segment.content
+
+    def html_id(self):
+        return 'amendment-{0}'.format(self.pk)
+
+    @permalink
+    def get_absolute_url(self):
+        return 'show_amendment', [self.pk]
 
 
 class UserSegmentChoice(models.Model):

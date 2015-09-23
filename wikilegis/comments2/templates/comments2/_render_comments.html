@@ -1,0 +1,4 @@
+{% load comments %}
+{% get_comment_form for content_object as form %}
+{% get_comment_list for content_object as comment_list %}
+{% include "comments2/_comment_list.html" %}

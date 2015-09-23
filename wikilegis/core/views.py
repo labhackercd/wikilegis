@@ -9,6 +9,7 @@ from django.utils.translation import ugettext
 
 from .forms import CitizenAmendmentCreationForm
 from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice
+from wikilegis.comments2.utils import create_comment
 
 
 def index(request):
@@ -71,6 +72,13 @@ def show_segment(request, bill_id, segment_id):
     ))
 
 
+def show_amendment(request, amendment_id):
+    amendment = get_object_or_404(CitizenAmendment, pk=amendment_id)
+    url = reverse('show_segment', args=(amendment.segment.bill_id, amendment.segment_id))
+    url += '#' + amendment.html_id()
+    return redirect(url)
+
+
 @login_required
 def create_amendment(request, bill_id, segment_id):
     segment = _get_segment_or_404(bill_id, segment_id)
@@ -97,12 +105,14 @@ def create_amendment(request, bill_id, segment_id):
 
             amendment.save()
 
+            comment = form.cleaned_data.get('comment')
+            if comment:
+                comment = create_comment(request, amendment, request.user, comment)
+
             messages.success(request, ugettext("{object_type} submitted.").format(
                 object_type=capfirst(CitizenAmendment._meta.verbose_name)))
 
-            redirect_url = reverse('show_segment', kwargs=dict(bill_id=bill_id, segment_id=segment_id))
-
-            return redirect(redirect_url)
+            return redirect(amendment.get_absolute_url())
     else:
         form = form_factory(initial=form_initial_data)
 
@@ -128,7 +138,13 @@ def choose_amendment(request, bill_id, segment_id, amendment_id):
         choice.amendment = amendment
         choice.save()
 
-    return redirect('show_segment', bill_id=bill_id, segment_id=segment_id)
+    redirect_url = None
+    if amendment is not None:
+        redirect_url = amendment.get_absolute_url()
+    else:
+        redirect_url = reverse('show_segment', args=[bill_id, segment_id])
+
+    return redirect(redirect_url)
 
 
 @login_required

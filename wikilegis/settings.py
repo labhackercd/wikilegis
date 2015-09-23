@@ -23,10 +23,10 @@ import django.conf.global_settings as default
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -120,12 +120,22 @@ REGISTRATION_FORM = 'wikilegis.auth2.forms.RegistrationForm'
 INCLUDE_REGISTER_URL = False
 
 
+# Use GMail SMTP to send mail.
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = os.environ.get('DJANGO_LANGUAGE_CODE', 'en')
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = os.environ.get('TZ', 'UTC')
 
 USE_I18N = True
 

@@ -28,7 +28,12 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g8#!8*0sr!zsg!q=on=n66dtie69u0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+
+allowed_hosts = os.environ.get('ALLOWED_HOSTS')
+if allowed_hosts:
+    allowed_hosts = map(lambda host: host.strip(), ','.split(allowed_hosts))
+
+ALLOWED_HOSTS = allowed_hosts or []
 
 
 # Application definition

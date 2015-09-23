@@ -26,7 +26,15 @@ import django.conf.global_settings as default
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+debug = os.environ.get('DEBUG')
+if debug:
+    debug = debug.lower().strip()
+if debug.isdigit():
+    try:
+        debug = int(debug)
+    except:
+        pass
+DEBUG = bool(debug)
 
 
 allowed_hosts = os.environ.get('ALLOWED_HOSTS')
@@ -39,7 +47,6 @@ ALLOWED_HOSTS = allowed_hosts or []
 # Application definition
 
 INSTALLED_APPS = (
-
     'wikilegis.auth2',
     'wikilegis.core',
     'wikilegis.helpers',

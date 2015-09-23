@@ -1,1 +1,1 @@
-web: gunicorn wikilegis.wsgi --log-file -
+web: gunicorn wikilegis.wsgi --access-logfile=- --error-logfile=- --log-level=info

@@ -181,3 +181,35 @@ STATIC_IPS = ('127.0.0.1', '::1', )
 # Login settings
 LOGIN_REDIRECT_URL = '/'
 
+
+import sys
+import logging
+
+LOGGING = {  
+    'version': 1,
+    'disable_existing_loggers': True,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        }
+    },
+    'loggers': {
+        'django': {},
+    },
+    'root': {
+        'handlers': ['console', ],
+        'level': 'INFO'
+    },
+}
+
+
+# Get all the existing loggers
+root = logging.root  
+existing = root.manager.loggerDict.keys()
+
+# Set them explicitly to a blank value so that they are overidden
+# and propogate to the root logger
+for logger in existing:  
+    LOGGING['loggers'][logger] = {}

@@ -4,23 +4,25 @@
 
 <div class="current-user">
     {% if user.is_authenticated %}
-        <div class="card-panel grey lighten-2">
-            <div class="card-content black-text">
+        <div class="panel-card">
+            <div class="card-content">
                 <div class="row valign-wrapper">
-                    <div class="col s3">
+                    <!-- <div style="width: 40px">
                         <img src="{% static "img/user.png" %}" alt="" class="circle responsive-img">
-                    </div>
-                    <div class="col s9">
+                    </div> -->
+                    <div class="col s12">
                         <span class="card-title">{% include "auth2/_user_display_name.html" %}</span>
-                        <a href="{% call "auth2:logout_absolute_path" request %}">{% trans "Log out" %}</a>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="card-buttonLogout">
+            <a href="{% call "auth2:logout_absolute_path" request %}">{% trans "Log out" %}</a>
+        </div>
     {% else %}
-        <div class="card-panel grey lighten-2">
-            <div class="card-content black-text">
-                <a href="{% call "auth2:login_absolute_path" request %}">{% trans "Log in" %}</a>
+        <div class="panel-card">
+            <div class="card-content">
+                <a href="{% url "auth_login" %}">{% trans "Log in" %}</a>
                 {% trans "or" %}
                 <a href="{% url "registration_register" %}">{% trans "Sign up" %}</a>
             </div>

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load static humanize %}
+{% load i18n %}
+{% load helpers %}
+
+{% block content %}
+<div class="row main">
+    <div class="col m2 main-menu hide-on-small-only">
+        {% include "_logo.html" %}
+    </div>
+    <div class="col m10 pageSearch">
+        <!-- <h4>Search</h4> -->
+
+        
+        <div class="content">
+            <div class="row search">
+                <nav class="col m6">
+                    <div class="nav-wrapper">
+                        <div class="input-field">
+                        <form method="get" action=".">
+                            {% call "helpers:render_field" form.q type="search" required=True %}
+                            <label for="{{ form.q.id }}"><i class="material-icons">search</i></label>
+                        </form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+
+            <div class="row results">
+                {% if query %}
+
+                    {% for result in page.object_list %}
+                        <p>
+                            <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
+                        </p>
+                    {% empty %}
+                        <p>No results found.</p>
+                    {% endfor %}
+
+                    {% if page.has_previous or page.has_next %}
+                        <div>
+                            {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                            |
+                            {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    {# Show some example queries to run, maybe query syntax, something else? #}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

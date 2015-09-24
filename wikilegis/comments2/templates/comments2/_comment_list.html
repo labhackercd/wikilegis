@@ -1,0 +1,16 @@
+{% load static %}
+<ul class="comments collection">
+    {% for comment in comment_list %}
+        <li class="collection-item avatar" id="c{{ comment.id }}">
+            <img src="{% static "img/user.png" %}" alt="" class="circle">
+            <span class="title">{{ comment.submit_date }} - {{ comment.name }}</span>
+            <div>
+                {{ comment.comment }}
+            </div>
+        </li>
+    {%  endfor %}
+    <li class="collection-item avatar">
+        <img src="{% static "img/user.png" %}" alt="" class="circle">
+        {% include "comments2/_comment_form.html" %}
+    </li>
+</ul>

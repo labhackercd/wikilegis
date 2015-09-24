@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load helpers %}
 
 {% block content %}
     <nav class="main-nav hide-on-med-and-up">
@@ -21,9 +22,7 @@
     </nav>
 
     <div class="row main">
-        <div class="col m2 main-menu hide-on-small-only">
-            {% include "_logo.html" %}
-        </div>
+        {% include "_sidebar_search.html" %}
 
         <a href="{% url 'show_bill' segment.bill.id %}">
             <div class="col m2 pl-description back">
@@ -66,7 +65,7 @@
 
                     {% for amendment in segment.amendments.all %}
                         <br />
-                        <div class="proposal">
+                        <div class="proposal" id="amendment-{{ amendment.pk }}">
                             <div class="avatr">
                                 <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
                             </div>
@@ -81,6 +80,17 @@
                                 {% endcomment %}
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col s10 offset-s2">
+                                {% call "comments2:render_comments" amendment %}
+                            </div>
+                        </div>
+
+                        {% comment %}
+                        {% render_comment_list for amendment %}
+                        {% render_comment_form for amendment %}
+                        {% endcomment %}
                     {% empty %}
                         <span>Empty</span>
                     {% endfor %}

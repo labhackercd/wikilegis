@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'wikilegis.auth2',
     'wikilegis.core',
     'wikilegis.helpers',
+    'wikilegis.comments2',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -60,11 +61,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
 
+    'haystack',
     'compressor',
     'adminsortable2',
     'debug_toolbar',
     'registration',
+    'django_comments',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,6 +120,14 @@ DATABASES['default']['ENGINE'] = 'django_postgrespool'
 # }
 
 
+# django-haystack: http://django-haystack.readthedocs.org/
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
+
+
 # Authentication and user management
 
 AUTH_USER_MODEL = 'auth2.User' # If `False` the registration view will not require user activation through e-mail.  # Useful to disable activation during DEBUG or other situations where mails can't be sent.
@@ -139,6 +151,9 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
+# Site-specific settings
+
+SITE_ID = 1
 
 
 # Internationalization

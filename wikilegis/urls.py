@@ -6,7 +6,9 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('wikilegis.auth2.urls')),
+    url(r'^comments/', include('wikilegis.comments2.urls')),
     url(r'^', include('wikilegis.core.urls')),
+    url(r'^search/', include('haystack.urls')),
 ]
 
 if settings.DEBUG:

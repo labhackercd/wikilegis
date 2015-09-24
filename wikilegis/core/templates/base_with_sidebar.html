@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load static humanize %}
+{% load i18n %}
+{% load helpers %}
+
+{% block content %}
+    <div class="row main">
+        {% include "_sidebar.html" %}
+        {% block content2 %}{% endblock %}
+    </div>
+{% endblock %}

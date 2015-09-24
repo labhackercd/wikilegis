@@ -1,0 +1,19 @@
+{% extends "base_with_sidebar.html" %}
+
+{% load static humanize %}
+{% load i18n %}
+{% load helpers %}
+
+{% block content2 %}
+    <div class="col m2 pl-description back">
+        <a href="{% url 'show_bill' segment.bill.id %}">
+            <div class="circle">
+                <div class="pl-icon"><i class="medium material-icons">description</i>
+                </div>
+            </div>
+            <h5 class="pl-title">{{ segment.bill.title }}</h5>
+        </a>
+    </div>
+
+    {% block content3 %}{% endblock %}
+{% endblock %}

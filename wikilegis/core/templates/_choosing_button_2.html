@@ -1,5 +1,0 @@
-{% if amendment.id|yesno:"true,false,none" == "none" %}
-    {% with amendment_id="original" %}{% include "_choosing_button.html" %}{% endwith %}
-{% else %}
-    {% with amendment_id=amendment.id %}{% include "_choosing_button.html" %}{% endwith %}
-{% endif %}

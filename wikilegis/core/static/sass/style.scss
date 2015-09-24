@@ -542,3 +542,44 @@ blockquote{
     }
   }
 }
+
+.current-user{
+  color: #444;
+  .panel-card{
+    margin: 0 !important;
+    padding: 7px 7px 7px 37px;
+    border-radius: 20px;
+    background: url(static("img/user.png")) 10px 2px no-repeat, #64C069;
+    background-size: auto 24px;
+    }
+    .col.s12{
+      padding: 0;
+    }
+    .row.valign-wrapper{
+      margin-bottom: 0;
+    }
+    .card-title{
+      color: #fff;
+    }
+    .card-content a{
+      color: #fff;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+  .card-buttonLogout {
+    margin-top: -2px;
+    a{
+      color: #fff;
+      text-decoration: underline;
+      font-size: 0.8em;
+      &:hover{
+        text-decoration: none;
+    }
+  }
+}
+.intro .searchSidebar, .intro .searchSidebar nav{
+  margin-top: 0;
+  margin-bottom: 0;
+}

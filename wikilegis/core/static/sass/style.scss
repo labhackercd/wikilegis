@@ -561,13 +561,11 @@ blockquote{
     .card-title{
       color: #fff;
     }
-    .card-buttonLogout{
-    }
-  }
-  a{
-    color: #fff;
-    &:hover{
-      text-decoration: underline;
+    .card-content a{
+      color: #fff;
+      &:hover{
+        text-decoration: underline;
+      }
     }
   }
   .card-buttonLogout {

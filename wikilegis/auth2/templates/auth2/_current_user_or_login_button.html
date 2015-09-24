@@ -12,7 +12,7 @@
                     </div>
                     <div class="col s9">
                         <span class="card-title">{% include "auth2/_user_display_name.html" %}</span>
-                        <a href="{% url "auth_logout" %}">{% trans "Log out" %}</a>
+                        <a href="{% call "auth2:logout_absolute_path" request %}">{% trans "Log out" %}</a>
                     </div>
                 </div>
             </div>

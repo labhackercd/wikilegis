@@ -1,0 +1,71 @@
+{% extends "bill/_base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load helpers %}
+
+{% block content3 %}
+    <div class="col m8 pl-full">
+        <div class="bah">
+            <div class="article-head">
+                <div class="quote-s"></div>
+                <div class="article-content flow-text">
+                    <span class="article-content">{{ segment.content|linebreaks }}</span>
+                </div>
+                <div class="quote-f"></div>
+            </div>
+            <div class="interact">
+                <ul>
+                    <li>
+                        {% include "bill/_choosing_button_2.html" %}
+                    </li>
+                    <li> | </li>
+                    <li><a href="{% url 'create_amendment' segment.bill.id segment.id %}"><i class="material-icons">wb_incandescent</i> {% trans "Propose" %}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="row">
+            <div id="thelist" class="col s12 tabs-content">
+                <!-- pls fix -->
+                <h5>{% trans "Proposals" %}</h5>
+                <br />
+
+                {% for amendment in segment.amendments.all %}
+                    <br />
+                    <div class="proposal" id="amendment-{{ amendment.pk }}">
+                        <div class="avatr">
+                            <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                        </div>
+
+                        <div class="content">
+                            <span class="author"><span class="user">{% with user=amendment.author %}{% include "auth2/_user_display_name.html" %}{% endwith %}</span> {% trans "proposed:" %}</span>
+                            <p class="pp">
+                                {{ amendment.content|linebreaks }}
+                            </p>
+                            {% comment TODO colocar o botão de escolher aqui também. é só incluir o template assim: %}
+                                {% include "_choosing_button_2.html" %}
+                                {% endcomment %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s10 offset-s2">
+                            {% call "comments2:render_comments" amendment %}
+                        </div>
+                    </div>
+
+                    {% comment %}
+                        {% render_comment_list for amendment %}
+                        {% render_comment_form for amendment %}
+                        {% endcomment %}
+                {% empty %}
+                    <span>Empty</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

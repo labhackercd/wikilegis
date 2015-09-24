@@ -1,7 +1,0 @@
-{% load i18n %}
-
-{% if chosen_amendment_id == amendment_id %}
-    <a href="{% url "unchoose_amendment" segment.bill.id segment.id %}" id="choose-button-{{ amendment_id }}"><i class="material-icons">done</i> {% trans "Support" %}</a>
-{% else %}
-    <a href="{% url "choose_amendment" segment.bill.id segment.id amendment_id %}" id="choose-button-{{ amendment_id }}"><i class="material-icons">done</i> {% trans "Edit" %}</a>
-{% endif %}

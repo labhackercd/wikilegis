@@ -2,33 +2,79 @@
 
 {% load static %}
 {% load i18n %}
+{% load helpers %}
 
 {% block content %}
-    <div class="row intro">
-        <div class="col s12 m12 valign-wrapper authentication">
+    <div class="container">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="row">
+
+            <form action="./" method="POST">
+
+                <div class="col s12 m6 offset-m3 l4 offset-l4">
+                    <div class="card grey darken-2">
+                        <div class="card-content white-text">
+                            <br />
+                            <div class="center-align">
+                                {% include "_sidebar_logo.html" %}
+                            </div>
+
+                            <br />
+                            <span class="card-title">
+                                <div>
+                                    {% trans "Sign in" %}
+                                </div>
+                            </span>
+
+                            {% csrf_token %}
+
+                            {% if form.non_field_errors %}
+                                <div>
+                                    {{ form.non_field_errors }}
+                                </div>
+                            {% endif %}
+
+                            <div class="input-field">
+                                {% call "core:render_field" form.username %}
+                            </div>
+
+                            <div class="input-field">
+                                {% call "core:render_field" form.password %}
+                            </div>
+
+                            <input type="hidden" name="next" value="{{ next }}" />
+
+                            <div class="right-align">
+                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                    {% trans "Log in" %} <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-action white-text">
+                            <p>{% trans "Doesn't have an account?" %} <a href="{% url "registration_register" %}">{% trans "Sign up now!" %}</a></p>
+                            <p>{% trans "Forgot your password?" %} <a href="{% url "auth_password_reset" %}">{% trans "Ask for a new one!" %}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col s6 offset-s6">
             <div class="row">
-                <div class="logo">
-                    {% include "_logo.html" %}
+                <div class="col s12 center-align">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+
                 </div>
 
-                <form class="col s6 offset-s3" action="./" method="POST">
-                    {% csrf_token %}
-
-                    <div class="row">
-                        <div class="col s12">
-                            {{ form }}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">
-                                {% trans "Log in" %} <i class="material-icons right">send</i>
-                            </button>
-                            {% trans "ou" %} <a href="{% url "registration_register" %}">{% trans "Register account" %}</a>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

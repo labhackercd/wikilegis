@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'registration',
     'django_comments',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -197,6 +198,8 @@ STATIC_IPS = ('127.0.0.1', '::1', )
 LOGIN_REDIRECT_URL = '/'
 
 
+# Log everything we can to stdout. It's the Heroku way.
+
 import sys
 import logging
 
@@ -228,3 +231,4 @@ existing = root.manager.loggerDict.keys()
 # and propogate to the root logger
 for logger in existing:  
     LOGGING['loggers'][logger] = {}
+

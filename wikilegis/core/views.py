@@ -26,7 +26,7 @@ def show_bill(request, bill_id):
     # XXX Lambda to make it lazy :D
     total_amendment_count = lambda: CitizenAmendment.objects.filter(segment__bill__id=bill.id).count()
 
-    return render(request, 'bill.html', context=dict(
+    return render(request, 'bill/bill.html', context=dict(
         bill=bill,
         total_amendment_count=total_amendment_count,
     ))
@@ -65,7 +65,7 @@ def show_segment(request, bill_id, segment_id):
         if chosen_amendment is not None:
             chosen_amendment_id = chosen_amendment.amendment.id if chosen_amendment.amendment is not None else 'original'
 
-    return render(request, 'segment.html', context=dict(
+    return render(request, 'bill/bill_segment.html', context=dict(
         segment=segment,
         chosen_amendment=chosen_amendment,
         chosen_amendment_id=chosen_amendment_id,
@@ -116,7 +116,7 @@ def create_amendment(request, bill_id, segment_id):
     else:
         form = form_factory(initial=form_initial_data)
 
-    return render(request, 'create_amendment.html', context=dict(
+    return render(request, 'bill/create_amendment.html', context=dict(
         form=form,
         segment=segment,
     ))

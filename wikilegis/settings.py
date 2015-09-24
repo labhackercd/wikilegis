@@ -26,7 +26,7 @@ import django.conf.global_settings as default
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-debug = os.environ.get('DEBUG')
+debug = os.environ.get('DEBUG', '')
 if debug:
     debug = debug.lower().strip()
 if debug.isdigit():
@@ -148,8 +148,8 @@ INCLUDE_REGISTER_URL = False
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_PORT = 587
 
 # Site-specific settings
@@ -203,7 +203,7 @@ LOGIN_REDIRECT_URL = '/'
 import sys
 import logging
 
-LOGGING = {  
+LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
     'handlers': {
@@ -224,11 +224,11 @@ LOGGING = {
 
 
 # Get all the existing loggers
-root = logging.root  
+root = logging.root
 existing = root.manager.loggerDict.keys()
 
 # Set them explicitly to a blank value so that they are overidden
 # and propogate to the root logger
-for logger in existing:  
+for logger in existing:
     LOGGING['loggers'][logger] = {}
 

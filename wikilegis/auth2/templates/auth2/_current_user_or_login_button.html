@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load helpers %}
 
 <div class="current-user">
     {% if user.is_authenticated %}
@@ -19,7 +20,7 @@
     {% else %}
         <div class="card-panel grey lighten-2">
             <div class="card-content black-text">
-                <a href="{% url "auth_login" %}">{% trans "Log in" %}</a>
+                <a href="{% call "auth2:login_absolute_path" request %}">{% trans "Log in" %}</a>
                 {% trans "or" %}
                 <a href="{% url "registration_register" %}">{% trans "Sign up" %}</a>
             </div>

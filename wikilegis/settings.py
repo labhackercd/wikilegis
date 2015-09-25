@@ -22,28 +22,15 @@ import django.conf.global_settings as default
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
+from wikilegis import confutils
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-debug = os.environ.get('DEBUG', '')
-if debug:
-    debug = debug.lower().strip()
-if debug.isdigit():
-    try:
-        debug = int(debug)
-    except:
-        pass
-if debug in ('false', 'no', 'off'):
-    debug = false
-DEBUG = bool(debug)
+DEBUG = confutils.environ_to_boolean(os.environ.get('DEBUG'))
 
-
-allowed_hosts = os.environ.get('ALLOWED_HOSTS')
-if allowed_hosts:
-    allowed_hosts = map(lambda host: host.strip(), allowed_hosts.split(','))
-
-ALLOWED_HOSTS = allowed_hosts or []
+ALLOWED_HOSTS = confutils.environ_to_list_of_strings(os.environ.get('ALLOWED_HOSTS'))
 
 
 # Application definition
@@ -109,16 +96,14 @@ WSGI_APPLICATION = 'wikilegis.wikilegis.wsgi:application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 import dj_database_url
-DATABASES = { }
-DATABASES['default'] =  dj_database_url.config()
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
+DATABASES = dict(default=dj_database_url.config())
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+try:
+    import django_postgrespool
+except ImportError:
+    pass
+else:
+    DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 
 # django-haystack: http://django-haystack.readthedocs.org/
@@ -131,7 +116,10 @@ HAYSTACK_CONNECTIONS = {
 
 # Authentication and user management
 
-AUTH_USER_MODEL = 'auth2.User' # If `False` the registration view will not require user activation through e-mail.  # Useful to disable activation during DEBUG or other situations where mails can't be sent.
+AUTH_USER_MODEL = 'auth2.User'
+
+# If `False` the registration view will not require user activation through e-mail.
+# Useful to disable activation during DEBUG or other situations where mails can't be sent.
 ACCOUNT_ACTIVATION_REQUIRED = not DEBUG
 
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -143,6 +131,8 @@ REGISTRATION_FORM = 'wikilegis.auth2.forms.RegistrationForm'
 # XXX Please don't change. The URL is included in `wikilegis.auth2.urls`.
 INCLUDE_REGISTER_URL = False
 
+LOGIN_REDIRECT_URL = '/'
+
 
 # Use GMail SMTP to send mail.
 
@@ -152,7 +142,7 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_PORT = 587
 
-# Site-specific settings
+# django.contrib.sites: https://docs.djangoproject.com/en/1.8/ref/contrib/sites/
 
 SITE_ID = 1
 
@@ -178,26 +168,32 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public'))
 
-STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
-    'compressor.finders.CompressorFinder',
-)
 
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# django-compressor: http://django-compressor.readthedocs.org/
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-## Debug toolbar
+STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
+    'compressor.finders.CompressorFinder',
+)
+
+# whitenoise: http://whitenoise.evans.io/en/latest/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+# Whether we want to serve static files or not.
+
+SERVE_STATIC_FILES = confutils.environ_to_boolean(os.environ.get('SERVE_STATIC_FILES')) or DEBUG
+
+
+# django-debug-toolbar: http://django-debug-toolbar.readthedocs.org/
 STATIC_IPS = ('127.0.0.1', '::1', )
 
-# Login settings
-LOGIN_REDIRECT_URL = '/'
 
-
+# logging:
 # Log everything we can to stdout. It's the Heroku way.
 
 import sys
@@ -227,8 +223,8 @@ LOGGING = {
 root = logging.root
 existing = root.manager.loggerDict.keys()
 
-# Set them explicitly to a blank value so that they are overidden
-# and propogate to the root logger
+# Set them explicitly to a blank value so that they are overridden
+# and propagate to the root logger
 for logger in existing:
     LOGGING['loggers'][logger] = {}
 

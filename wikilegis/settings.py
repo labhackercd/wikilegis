@@ -186,11 +186,6 @@ STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
-# Whether we want to serve static files or not.
-
-SERVE_STATIC_FILES = confutils.environ_to_boolean(os.environ.get('SERVE_STATIC_FILES')) or DEBUG
-
-
 # django-debug-toolbar: http://django-debug-toolbar.readthedocs.org/
 STATIC_IPS = ('127.0.0.1', '::1', )
 
@@ -220,7 +215,7 @@ LOGGING = {
         },
     },
     'root': {
-        'handlers': ['console', ],
+        'handlers': ['console'],
         'level': 'INFO'
     },
 }

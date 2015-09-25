@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^search/', include('haystack.urls')),
 ]
 
-if getattr(settings, 'SERVE_STATIC_FILES', settings.DEBUG):
+if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

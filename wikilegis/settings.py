@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wikilegis.wikilegis.wsgi:application'
+WSGI_APPLICATION = 'wikilegis.wsgi.application'
 
 
 # Database

@@ -206,13 +206,18 @@ LOGGING = {
     'disable_existing_loggers': True,
     'handlers': {
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'stream': sys.stdout,
         }
     },
     'loggers': {
-        'django': {},
+        'django': {
+            'handlers': ['console'],
+            'filters': [],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
     },
     'root': {
         'handlers': ['console', ],
@@ -220,13 +225,4 @@ LOGGING = {
     },
 }
 
-
-# Get all the existing loggers
-root = logging.root
-existing = root.manager.loggerDict.keys()
-
-# Set them explicitly to a blank value so that they are overridden
-# and propagate to the root logger
-for logger in existing:
-    LOGGING['loggers'][logger] = {}
 

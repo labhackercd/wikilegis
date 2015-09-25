@@ -175,6 +175,8 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
+COMPRESS_OFFLINE = confutils.environ_to_boolean(os.environ.get('COMPRESS_OFFLINE')) or not DEBUG
+
 STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
     'compressor.finders.CompressorFinder',
 )

@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'registration',
     'django_comments',
     'django_extensions',
+    'rules.apps.AutodiscoverRulesConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,6 +113,11 @@ HAYSTACK_CONNECTIONS = {
 # Authentication and user management
 
 AUTH_USER_MODEL = 'auth2.User'
+
+AUTHENTICATION_BACKENDS = (
+    'rules.permissions.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # If `False` the registration view will not require user activation through e-mail.
 # Useful to disable activation during DEBUG or other situations where mails can't be sent.

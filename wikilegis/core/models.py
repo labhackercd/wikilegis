@@ -25,6 +25,11 @@ class Bill(TimestampedMixin):
     title = models.CharField(_('title'), max_length=255)
     description = models.TextField(_('description'))
 
+    editors = models.ManyToManyField(
+        'auth.Group', verbose_name=_('editors'), blank=True,
+        help_text=_('Any users in any of these groups will '
+                    'have permission to change this document.'))
+
     def __unicode__(self):
         return self.title
 

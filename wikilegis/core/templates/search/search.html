@@ -3,6 +3,7 @@
 {% load static humanize %}
 {% load i18n %}
 {% load helpers %}
+{% load highlight %}
 
 {% block content %}
 <div class="row main">
@@ -28,12 +29,13 @@
             </div>
 
 
-            <div class="row results">
+            <div class="col m7 results">
                 {% if query %}
 
                     {% for result in page.object_list %}
                         <p>
-                            <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
+                            <h5><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></h5>
+                            <p>{% highlight result.object.content with query max_length 180 %}</a>
                         </p>
                     {% empty %}
                         <p>No results found.</p>

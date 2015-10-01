@@ -21,7 +21,7 @@ class BillChangeList(ChangeList):
         return queryset
 
 
-class BillSegmentInline(admin.TabularInline, SortableInlineAdminMixin):
+class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
     model = models.BillSegment
 
 

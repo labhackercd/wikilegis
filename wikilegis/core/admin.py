@@ -28,6 +28,15 @@ class BillSegmentInline(admin.TabularInline, SortableInlineAdminMixin):
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillSegmentInline,)
     list_display = ('title', 'description')
+    
+    def get_fields(self, request, obj=None):
+        fields = super(BillAdmin, self).get_fields(request, obj)
+        # XXX This permission can't be granted to anyone but superusers,
+        # but we're naming it right now because it could become useful in
+        # the future.
+        if not request.user.has_perm('core.change_bill_editors', obj):
+            fields.remove('editors')
+        return fields
 
     def get_changelist(self, request, **kwargs):
         # XXX We override the ChangeList so we can override *only* the queryset for the changelist view.

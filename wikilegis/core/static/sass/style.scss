@@ -385,7 +385,6 @@ body {
   
   .proposal {
     padding: 20px;
-    background-color: white;
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -411,6 +410,9 @@ body {
       flex-shrink: 0;
       flex-basis: 300px;
       padding-left: 20px;
+      p {
+        @extend .flow-text;
+      }
     }
     .author {
       font-weight: 600;
@@ -602,5 +604,24 @@ blockquote{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+  }
+}
+.comments.collection {
+  border: none;
+  .collection-item {
+    background-color: transparent;
+  }
+  span.comment-name {
+    color: #92A5F9;
+  }
+  span.comment-submit-date {
+    color: #A5A5A5;
+  }
+}
+
+.choose-button {
+  opacity: .7;
+  &:hover {
+    opacity: 1;
   }
 }

@@ -41,7 +41,7 @@
         <div class="row">
             <div id="thelist" class="col s12 tabs-content">
                 <!-- pls fix -->
-                <h5>{% trans "Proposals" %}</h5>
+                <!--<h5>{% trans "Proposals" %}</h5>-->
                 <br />
 
                 {% for amendment in segment.amendments.all %}
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col s10 offset-s2">
+                        <div class="col s11 offset-s1">
                             {% call "comments2:render_comments" amendment %}
                         </div>
                     </div>

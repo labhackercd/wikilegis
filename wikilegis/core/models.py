@@ -11,10 +11,10 @@ from django.core.urlresolvers import reverse
 
 def model_repr(cls, **kwargs):
     values = kwargs.items()
-    values = ((force_text(k), Truncator(force_text(v)).chars(60)) for (k, v) in values)
+    values = ((force_text(k), Truncator(force_text(v)).chars(50)) for (k, v) in values)
     values = ('='.join(kv) for kv in values)
     values = '; '.join(values)
-    return ''.join(map(force_text, [cls, '{', values, '}']))
+    return ''.join((cls.__name__, '{', values, '}'))
 
 
 class TimestampedMixin(models.Model):

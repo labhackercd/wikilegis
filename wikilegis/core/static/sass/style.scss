@@ -12,6 +12,14 @@ $gray: #3e3e3e;
   font-size: 36px;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow-y: hidden;
+}
+
 html,
 body {
   max-height: 100%;
@@ -624,4 +632,18 @@ blockquote{
   &:hover {
     opacity: 1;
   }
+}
+
+.dark-bg {
+  height: 100%;
+  width: 100%;
+  background-color: $maingreen;
+  margin-top: -15px;
+  .mail-check-info {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+  }  
 }

@@ -583,3 +583,24 @@ blockquote{
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.pl-author {
+  margin-left: 70px;
+  color: #92A5F9;
+}
+
+.avatr {
+  padding-right: 15px;
+  float: left;
+  margin-top: -5px;
+  .pic {
+    width: 30px;
+    height: 30px;        
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}

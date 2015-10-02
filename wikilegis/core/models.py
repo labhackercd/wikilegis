@@ -3,14 +3,18 @@ from __future__ import unicode_literals
 from django.db import models
 from django.conf import settings
 from django.db.models import permalink
+from django.utils.encoding import force_text
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
 
 def model_repr(cls, **kwargs):
-    values = ['='.join([k, Truncator(v).chars(60)]) for (k, v) in kwargs.items()]
-    return ''.join([cls, '{', values, '}'])
+    values = kwargs.items()
+    values = ((force_text(k), Truncator(force_text(v)).chars(60)) for (k, v) in values)
+    values = ('='.join(kv) for kv in values)
+    values = '; '.join(values)
+    return ''.join(map(force_text, [cls, '{', values, '}']))
 
 
 class TimestampedMixin(models.Model):

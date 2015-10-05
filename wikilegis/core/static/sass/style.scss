@@ -2,6 +2,7 @@
 
 $maingreen: #4e5d5d;
 $green: #7baf66;
+$logogreen: #64C069;
 $yellow: rgb(252,
 250,
 96);
@@ -44,7 +45,7 @@ body {
     .loginSignup{
       .loginButton{
         border-radius: 20px;
-        background: url(static("img/user.png")) 10px 2px no-repeat, #64C069;
+        background: url(static("img/user.png")) 10px 2px no-repeat, $logogreen;
         background-size: auto 24px;
         padding: 10px 10px 10px 40px;
         a{
@@ -159,6 +160,7 @@ body {
 }
 
 .main-menu {
+  position: relative;
   background-color: $maingreen;
   height: 100vh;
   text-align: center;
@@ -167,6 +169,16 @@ body {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+  }
+  .admin-acces {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    margin-left: -35px;
+    color: $logogreen;
+    i {
+      vertical-align: middle;  
+    }
   }
 }
 
@@ -566,7 +578,7 @@ blockquote{
     margin: 0 !important;
     padding: 7px 7px 7px 37px;
     border-radius: 20px;
-    background: url(static("img/user.png")) 10px 2px no-repeat, #64C069;
+    background: url(static("img/user.png")) 10px 2px no-repeat, $logogreen;
     background-size: auto 24px;
     }
     .col.s12{

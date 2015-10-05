@@ -54,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         abstract = False
 
     def __unicode__(self):
-        return self.email
+        return self.get_display_name()
 
     def get_full_name(self):
         """
@@ -67,3 +67,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         Returns the short name for the user.
         """
         return self.first_name
+
+    def get_display_name(self):
+        return self.get_full_name() or self.email

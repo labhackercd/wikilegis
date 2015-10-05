@@ -14,31 +14,15 @@
 
         <p class="pl-about">{{ bill.description|safe|linebreaks }}</p>
 
-        {% comment %}
-            TODO: Puxar esses dados do banco
-            <div class="divider"></div>
-
+        {% for author in  authors %}
             <div class="pl-author">
                 <div class="avatar" style="background-image: url('{% static "img/user.png" %}')"></div>
                 <div class="info">
-                    <span class="author">Antônio da Silva</span>
-                    <br/>
-                    <span class="bio">Fusce sed metus a augue hendrerit dictum.</span>
-                    <br/>
-                    <span class="party">OP</span>
+                    <span class="author">{{ author.user }}</span>
                 </div>
             </div>
-            {% endcomment %}
-
-        <div class="divider"></div>
-
-        <div class="data">
-            {% trans "Data:" %}
-            <br/>
-            <i class="material-icons">question_answer</i><span class="comment number">0</span> {% trans "comments" %}
-            <br/>
-            <i class="material-icons">wb_incandescent</i><span class="ideas number">{{ total_amendment_count }}</span> {% trans "amendments" %}
-        </div>
+            {% if not forloop.last %}<hr />{% endif %}
+        {% endfor %}
     </div>
 
     <div class="col m7 pl-full list-amendment">

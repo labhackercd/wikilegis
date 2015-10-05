@@ -19,3 +19,4 @@ rules==0.4
 six==1.9.0
 sqlparse==0.1.16
 whitenoise==2.0.3
+Whoosh==2.7.0

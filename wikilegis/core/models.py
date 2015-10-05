@@ -1,20 +1,23 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
+from operator import attrgetter
 from django.db import models
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.db.models import permalink
 from django.utils.encoding import force_text
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django_extensions.db.fields.json import JSONField
 
 
 def model_repr(cls, **kwargs):
     values = kwargs.items()
-    values = ((force_text(k), Truncator(force_text(v)).chars(60)) for (k, v) in values)
+    values = ((force_text(k), Truncator(force_text(v)).chars(50)) for (k, v) in values)
     values = ('='.join(kv) for kv in values)
     values = '; '.join(values)
-    return ''.join(map(force_text, [cls, '{', values, '}']))
+    return ''.join((cls.__name__, '{', values, '}'))
 
 
 class TimestampedMixin(models.Model):
@@ -23,6 +26,17 @@ class TimestampedMixin(models.Model):
 
     class Meta:
         abstract = True
+
+
+class GenericData(models.Model):
+    """
+    Attach any data to any object. That's the way we do it, baby.
+    """
+    data = JSONField(_('data'))
+    type = models.CharField(_('type'), max_length=100)
+    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey('contenttypes.ContentType')
+    content_object = GenericForeignKey('content_type', 'object_id')
 
 
 class Bill(TimestampedMixin):
@@ -34,12 +48,22 @@ class Bill(TimestampedMixin):
         help_text=_('Any users in any of these groups will '
                     'have permission to change this document.'))
 
+    metadata = GenericRelation('GenericData')
+
     def __unicode__(self):
         return self.title
 
     class Meta:
         verbose_name = _('bill')
         verbose_name_plural = _('bills')
+
+    @permalink
+    def get_absolute_url(self):
+        return 'show_bill', [self.pk], {}
+
+    @property
+    def content(self):
+        return '\n\n'.join(map(attrgetter('content'), self.segments.all()))
 
 
 class BillSegment(TimestampedMixin):

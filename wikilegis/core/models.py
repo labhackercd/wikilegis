@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from operator import attrgetter
 from django.db import models
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.db.models import permalink
 from django.utils.encoding import force_text
 from django.utils.text import Truncator
@@ -55,6 +56,14 @@ class Bill(TimestampedMixin):
     class Meta:
         verbose_name = _('bill')
         verbose_name_plural = _('bills')
+
+    @permalink
+    def get_absolute_url(self):
+        return 'show_bill', [self.pk], {}
+
+    @property
+    def content(self):
+        return '\n\n'.join(map(attrgetter('content'), self.segments.all()))
 
 
 class BillSegment(TimestampedMixin):

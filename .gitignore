@@ -1,3 +1,4 @@
+whoosh_index
 public
 db.sqlite3
 .webassets-cache

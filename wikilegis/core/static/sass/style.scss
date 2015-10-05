@@ -16,8 +16,12 @@ html, body {
   height: 100%;
 }
 
-body {
+html {
   overflow-y: hidden;
+}
+
+body {
+  overflow-y: auto;
 }
 
 html,
@@ -270,7 +274,7 @@ body {
   @media screen and (max-width: 600px) {
     overflow: inherit;
   }
-  a {
+  a:not(.btn) {
     color: inherit;
   }
   padding-left: 30px !important;
@@ -649,4 +653,8 @@ blockquote{
     text-align: center;
     color: white;
   }  
+}
+
+.propose {
+  margin-top: 40px;
 }

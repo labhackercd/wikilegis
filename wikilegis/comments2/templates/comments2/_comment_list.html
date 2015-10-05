@@ -3,10 +3,11 @@
     {% for comment in comment_list %}
         <li class="collection-item avatar" id="c{{ comment.id }}">
             <img src="{% static "img/user.png" %}" alt="" class="circle">
-            <span class="title">{{ comment.submit_date }} - {{ comment.name }}</span>
-            <div>
+            <span>
                 {{ comment.comment }}
-            </div>
+            </span>
+             - 
+          <span class="title"><span class="comment-name">{{ comment.name }}</span><span class="comment-submit-date"> em {{ comment.submit_date }}</span></span>
         </li>
     {%  endfor %}
     <li class="collection-item avatar">

@@ -12,6 +12,14 @@ $gray: #3e3e3e;
   font-size: 36px;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow-y: hidden;
+}
+
 html,
 body {
   max-height: 100%;
@@ -385,7 +393,6 @@ body {
   
   .proposal {
     padding: 20px;
-    background-color: white;
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -411,6 +418,9 @@ body {
       flex-shrink: 0;
       flex-basis: 300px;
       padding-left: 20px;
+      p {
+        @extend .flow-text;
+      }
     }
     .author {
       font-weight: 600;
@@ -582,4 +592,58 @@ blockquote{
 .intro .searchSidebar, .intro .searchSidebar nav{
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.pl-author {
+  margin-left: 70px;
+  color: #92A5F9;
+}
+
+.avatr {
+  padding-right: 15px;
+  float: left;
+  margin-top: -5px;
+  .pic {
+    width: 30px;
+    height: 30px;        
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+.comments.collection {
+  border: none;
+  .collection-item {
+    background-color: transparent;
+  }
+  span.comment-name {
+    color: #92A5F9;
+  }
+  span.comment-submit-date {
+    color: #A5A5A5;
+  }
+}
+
+.choose-button {
+  opacity: .7;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.dark-bg {
+  height: 100%;
+  width: 100%;
+  background-color: $maingreen;
+  margin-top: -15px;
+  .mail-check-info {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+  }  
 }

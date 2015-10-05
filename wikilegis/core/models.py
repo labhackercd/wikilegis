@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.db import models
 from django.conf import settings
 from django.db.models import permalink
@@ -7,6 +8,7 @@ from django.utils.encoding import force_text
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django_extensions.db.fields.json import JSONField
 
 
 def model_repr(cls, **kwargs):
@@ -25,6 +27,17 @@ class TimestampedMixin(models.Model):
         abstract = True
 
 
+class GenericData(models.Model):
+    """
+    Attach any data to any object. That's the way we do it, baby.
+    """
+    data = JSONField(_('data'))
+    type = models.CharField(_('type'), max_length=100)
+    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey('contenttypes.ContentType')
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+
 class Bill(TimestampedMixin):
     title = models.CharField(_('title'), max_length=255)
     description = models.TextField(_('description'))
@@ -33,6 +46,8 @@ class Bill(TimestampedMixin):
         'auth.Group', verbose_name=_('editors'), blank=True,
         help_text=_('Any users in any of these groups will '
                     'have permission to change this document.'))
+
+    metadata = GenericRelation('GenericData')
 
     def __unicode__(self):
         return self.title

@@ -1,11 +1,19 @@
-{% extends "base_with_sidebar.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Activation email sent" %}{% endblock %}
 
-{% block content2 %}
-    <p>{% trans "Please check your email to complete the registration process." %}</p>
-    <p><a class="waves-effect waves-light btn right-align" href="{% url "index" %}"><i class="material-icons left">back</i>{% trans "Back to main page" %}</a></p>
+{% block content %}
+    <div class="dark-bg valign-wrapper">
+      <div class="mail-check-info">
+        {% load static %}
+        <a href="{% url "index" %}">
+           <img class="logo" src="{% static "img/logo.png" %}" alt="Wikilegis" />
+        </a>
+        <h5>{% trans "Please check your email to complete the registration process." %}</h5>
+        <p><a class="waves-effect waves-light btn right-align" href="{% url "index" %}">{% trans "Back to main page" %}</a></p>
+      </div>
+    </div>
 {% endblock %}
 
 

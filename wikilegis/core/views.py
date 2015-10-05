@@ -8,8 +8,9 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext
 
 from .forms import CitizenAmendmentCreationForm
-from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice
+from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice, GenericData
 from wikilegis.comments2.utils import create_comment
+from wikilegis.core.genericdata import BillAuthorData
 
 
 def index(request):
@@ -23,11 +24,15 @@ def index(request):
 def show_bill(request, bill_id):
     bill = get_object_or_404(Bill, pk=bill_id)
 
+    authors = filter(lambda x: x.type == 'AUTHOR', bill.metadata.all())
+    authors = map(BillAuthorData, authors)
+
     # XXX Lambda to make it lazy :D
     total_amendment_count = lambda: CitizenAmendment.objects.filter(segment__bill__id=bill.id).count()
 
     return render(request, 'bill/bill.html', context=dict(
         bill=bill,
+        authors=authors,
         total_amendment_count=total_amendment_count,
     ))
 
@@ -49,9 +54,12 @@ def redirect_to_segment_at_bill_page_2(bill_id, segment_id):
     return redirect(segment_url)
 
 
-
 def show_segment(request, bill_id, segment_id):
     segment = _get_segment_or_404(bill_id, segment_id)
+
+    author = segment.bill.metadata.filter(type='AUTHOR').first()
+    if author:
+        author = BillAuthorData(author)
 
     if not segment.is_editable():
         return redirect_to_segment_at_bill_page(segment)
@@ -66,6 +74,7 @@ def show_segment(request, bill_id, segment_id):
             chosen_amendment_id = chosen_amendment.amendment.id if chosen_amendment.amendment is not None else 'original'
 
     return render(request, 'bill/bill_segment.html', context=dict(
+        author=author,
         segment=segment,
         chosen_amendment=chosen_amendment,
         chosen_amendment_id=chosen_amendment_id,

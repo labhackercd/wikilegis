@@ -3,13 +3,24 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
+from django.contrib.contenttypes.admin import GenericTabularInline
 from adminsortable2.admin import SortableInlineAdminMixin
-from . import models
+from . import models, forms
 
 
 def get_permission(action, opts):
     codename = get_permission_codename(action, opts)
     return '.'.join([opts.app_label, codename])
+
+
+class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
+    model = models.BillSegment
+
+
+class BillAuthorDataInline(GenericTabularInline):
+    form = forms.MetaAuthorForm
+    model = models.GenericData
+    fields = ('user', 'title')
 
 
 class BillChangeList(ChangeList):
@@ -21,12 +32,8 @@ class BillChangeList(ChangeList):
         return queryset
 
 
-class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
-    model = models.BillSegment
-
-
 class BillAdmin(admin.ModelAdmin):
-    inlines = (BillSegmentInline,)
+    inlines = (BillAuthorDataInline, BillSegmentInline)
     list_display = ('title', 'description')
     
     def get_fields(self, request, obj=None):

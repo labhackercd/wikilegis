@@ -10,7 +10,7 @@ from django.utils.translation import ugettext
 from .forms import CitizenAmendmentCreationForm
 from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice, GenericData
 from wikilegis.comments2.utils import create_comment
-from wikilegis.core.genericdata import BillAuthorData
+from wikilegis.core.genericdata import BillVideo, BillAuthorData
 
 
 def index(request):
@@ -24,14 +24,20 @@ def index(request):
 def show_bill(request, bill_id):
     bill = get_object_or_404(Bill, pk=bill_id)
 
-    authors = filter(lambda x: x.type == 'AUTHOR', bill.metadata.all())
+    metadata = bill.metadata.all()
+
+    authors = filter(lambda x: x.type == 'AUTHOR', metadata)
     authors = map(BillAuthorData, authors)
+
+    videos = filter(lambda x: x.type == 'VIDEO', metadata)
+    videos = map(BillVideo, videos)
 
     # XXX Lambda to make it lazy :D
     total_amendment_count = lambda: CitizenAmendment.objects.filter(segment__bill__id=bill.id).count()
 
     return render(request, 'bill/bill.html', context=dict(
         bill=bill,
+        videos=videos,
         authors=authors,
         total_amendment_count=total_amendment_count,
     ))

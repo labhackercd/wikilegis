@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'django_comments',
     'django_extensions',
     'rules.apps.AutodiscoverRulesConfig',
+    'embed_video',
 )
 
 MIDDLEWARE_CLASSES = (

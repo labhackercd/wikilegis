@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
 from django.contrib.contenttypes.admin import GenericTabularInline
+from django.utils.translation import gettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
 
@@ -20,7 +21,21 @@ class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
 class BillAuthorDataInline(GenericTabularInline):
     form = forms.MetaAuthorForm
     model = models.GenericData
-    fields = ('user', 'title')
+    verbose_name = _('author')
+    verbose_name_plural = _('authors')
+
+    def get_queryset(self, request):
+        return super(BillAuthorDataInline, self).get_queryset(request).filter(type=self.form.get_type())
+
+
+class BillVideoInline(GenericTabularInline):
+    form = forms.MetaVideoForm
+    model = models.GenericData
+    verbose_name = _('author')
+    verbose_name_plural = _('videos')
+
+    def get_queryset(self, request):
+        return super(BillVideoInline, self).get_queryset(request).filter(type=self.form.get_type())
 
 
 class BillChangeList(ChangeList):
@@ -33,7 +48,7 @@ class BillChangeList(ChangeList):
 
 
 class BillAdmin(admin.ModelAdmin):
-    inlines = (BillAuthorDataInline, BillSegmentInline)
+    inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
     list_display = ('title', 'description')
     
     def get_fields(self, request, obj=None):
@@ -67,4 +82,5 @@ class CitizenAmendmentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Bill, BillAdmin)
+admin.site.register(models.GenericData)
 admin.site.register(models.CitizenAmendment, CitizenAmendmentAdmin)

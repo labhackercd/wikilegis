@@ -12,3 +12,12 @@ class BillAuthorData(object):
     @property
     def title(self):
         return self.obj.data.get('title')
+
+
+class BillVideo(object):
+    def __init__(self, obj):
+        self.obj = obj
+
+    @property
+    def url(self):
+        return self.obj.data.get('url')

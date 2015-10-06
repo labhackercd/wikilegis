@@ -34,7 +34,7 @@ class MetaAuthorForm(forms.ModelForm):
 
 
 class CitizenAmendmentCreationForm(forms.ModelForm):
-    comment = forms.CharField(label=_("Comment about your proposal."), widget=forms.Textarea(), required=False)
+    comment = forms.CharField(label=_("You can explain your proposal here."), widget=forms.Textarea(), required=False)
     
     def __init__(self, *args, **kwargs):
       super(CitizenAmendmentCreationForm, self).__init__(*args, **kwargs)

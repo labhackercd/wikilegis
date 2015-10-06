@@ -1,0 +1,7 @@
+{% if user.is_staff or user.is_superuser %}
+    <a href="{% url "admin:index" %}">
+        <div class="admin-acces">
+            <i class="material-icons">account_circle</i> admin
+        </div>
+    </a>
+{% endif %}

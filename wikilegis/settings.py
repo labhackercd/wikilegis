@@ -22,13 +22,15 @@ import django.conf.global_settings as default
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
+from wikilegis import confutils
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = confutils.environ_to_boolean(os.environ.get('DEBUG'))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = confutils.environ_to_list_of_strings(os.environ.get('ALLOWED_HOSTS'))
 
 
 # Application definition
@@ -95,12 +97,15 @@ WSGI_APPLICATION = 'wikilegis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+import dj_database_url
+DATABASES = dict(default=dj_database_url.config())
+
+try:
+    import django_postgrespool
+except ImportError:
+    pass
+else:
+    DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 
 # django-haystack: http://django-haystack.readthedocs.org/
@@ -134,8 +139,18 @@ REGISTRATION_FORM = 'wikilegis.auth2.forms.RegistrationForm'
 # XXX Please don't change. The URL is included in `wikilegis.auth2.urls`.
 INCLUDE_REGISTER_URL = False
 
+LOGIN_REDIRECT_URL = '/'
 
-# Site-specific settings
+
+# Use GMail SMTP to send mail.
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_PORT = 587
+
+# django.contrib.sites: https://docs.djangoproject.com/en/1.8/ref/contrib/sites/
 
 SITE_ID = 1
 
@@ -143,9 +158,9 @@ SITE_ID = 1
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = os.environ.get('DJANGO_LANGUAGE_CODE', 'en')
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = os.environ.get('TZ', 'UTC')
 
 USE_I18N = True
 
@@ -161,17 +176,56 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public'))
 
-STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
-    'compressor.finders.CompressorFinder',
-)
+
+# django-compressor: http://django-compressor.readthedocs.org/
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-## Debug toolbar
+COMPRESS_OFFLINE = confutils.environ_to_boolean(os.environ.get('COMPRESS_OFFLINE')) or not DEBUG
+
+STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
+    'compressor.finders.CompressorFinder',
+)
+
+# whitenoise: http://whitenoise.evans.io/en/latest/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+# django-debug-toolbar: http://django-debug-toolbar.readthedocs.org/
 STATIC_IPS = ('127.0.0.1', '::1', )
 
-# Login settings
-LOGIN_REDIRECT_URL = '/'
+
+# logging:
+# Log everything we can to stdout. It's the Heroku way.
+
+import sys
+import logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'filters': [],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO'
+    },
+}
+
 

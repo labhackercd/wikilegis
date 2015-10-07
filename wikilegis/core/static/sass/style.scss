@@ -39,6 +39,11 @@ body {
 	margin-bottom: -22px;
 	.about {
 		height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    @media screen and (max-width: 600px) {
+      height: auto;
+    }
 		background-color: $maingreen;
 		text-align: center;
 		position: relative;

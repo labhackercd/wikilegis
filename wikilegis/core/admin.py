@@ -82,5 +82,4 @@ class CitizenAmendmentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Bill, BillAdmin)
-admin.site.register(models.GenericData)
 admin.site.register(models.CitizenAmendment, CitizenAmendmentAdmin)

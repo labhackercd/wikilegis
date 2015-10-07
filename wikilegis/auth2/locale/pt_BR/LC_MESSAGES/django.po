@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-24 13:58-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2015-10-07 16:36-0300\n"
+"PO-Revision-Date: 2015-10-07 19:42+0000\n"
+"Last-Translator: dirleyrls <dirleyrls@gmail.com>\n"
+"Language-Team: auth (generated) "
+"<http://weblate.labhackercd.net/projects/wikilegis/all/auth/>\n"
+"Language: auth2\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
 
 #: admin.py:11
 msgid "Personal info"
@@ -44,7 +45,7 @@ msgstr "último nome"
 
 #: models.py:41
 msgid "staff status"
-msgstr ""
+msgstr "status de equipe"
 
 #: models.py:42
 msgid "Designates whether the user can log into this admin site."
@@ -66,20 +67,20 @@ msgstr ""
 msgid "date joined"
 msgstr "data de registro"
 
-#: templates/auth2/_current_user_or_login_button.html:15
+#: templates/auth2/_current_user_or_login_button.html:20
 msgid "Log out"
 msgstr "Encerrar sessão"
 
-#: templates/auth2/_current_user_or_login_button.html:23
+#: templates/auth2/_current_user_or_login_button.html:25
 #: templates/registration/login.html:54
 msgid "Log in"
 msgstr "Iniciar sessão"
 
-#: templates/auth2/_current_user_or_login_button.html:24
+#: templates/auth2/_current_user_or_login_button.html:26
 msgid "or"
 msgstr "ou"
 
-#: templates/auth2/_current_user_or_login_button.html:25
+#: templates/auth2/_current_user_or_login_button.html:27
 msgid "Sign up"
 msgstr "Cadastrar-se"
 
@@ -103,6 +104,22 @@ msgstr "Esqueceu sua senha?"
 msgid "Ask for a new one!"
 msgstr "Solicite uma nova!"
 
+#: templates/registration/registration_complete.html:4
+msgid "Activation email sent"
+msgstr "E-mail de ativação enviado"
+
+#: templates/registration/registration_complete.html:13
+msgid "Please check your email to complete the registration process."
+msgstr "Verifique sua caixa de entrada para completar seu cadastro."
+
+#: templates/registration/registration_complete.html:14
+msgid "Back to main page"
+msgstr "Voltar para o início"
+
 #: templates/registration/registration_form.html:25
 msgid "Sign Up"
 msgstr "Cadastrar-se"
+
+#: views.py:16
+msgid "Your account is now activated."
+msgstr "Sua conta foi ativada."

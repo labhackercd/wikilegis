@@ -1,96 +1,135 @@
-#Entrar SOME DESCRIPTIVE TITLE.
+# Entrar SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-24 13:54-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2015-10-07 16:36-0300\n"
+"PO-Revision-Date: 2015-10-07 19:41+0000\n"
+"Last-Translator: dirleyrls <dirleyrls@gmail.com>\n"
+"Language-Team: core (generated) "
+"<http://weblate.labhackercd.net/projects/wikilegis/all/core/>\n"
+"Language: core\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
 
-#: models.py:17
-msgid "created"
-msgstr "criado"
-
-#: models.py:18
-msgid "modified"
-msgstr "modificado"
-
-#: models.py:25
-msgid "title"
-msgstr "título"
-
-#: models.py:26
-msgid "description"
-msgstr "descrição"
-
-#: models.py:32 models.py:37
-msgid "bill"
-msgstr "projeto de lei"
-
-#: models.py:33
-msgid "bills"
-msgstr "projetos de lei"
-
-#: models.py:38
-msgid "order"
-msgstr "ordem"
-
-#: models.py:39 models.py:67
-msgid "content"
-msgstr "conteúdo"
-
-#: models.py:42
-msgid "Title"
-msgstr "Título"
-
-#: models.py:43
-msgid "Article"
-msgstr "Artigo"
-
-#: models.py:45
-msgid "type"
-msgstr "tipo"
-
-#: models.py:49
-msgid "segment"
-msgstr "trecho"
-
-#: models.py:50
-msgid "segments"
-msgstr "trechos"
-
-#: models.py:65
+#: admin.py:24 admin.py:34 models.py:98
 msgid "author"
 msgstr "autor"
 
-#: models.py:66 models.py:104
+#: admin.py:25
+msgid "authors"
+msgstr "autores"
+
+#: admin.py:35
+msgid "videos"
+msgstr "vídeos"
+
+#: forms.py:49
+msgid "User"
+msgstr "Usuários"
+
+#: forms.py:50 models.py:75
+msgid "Title"
+msgstr "Título"
+
+#: forms.py:63
+msgid "video url"
+msgstr "URL do vídeo"
+
+#: forms.py:71
+msgid "You can explain your proposal here."
+msgstr "Você pode explicar sua proposta aqui."
+
+#: forms.py:75
+msgid "Suggest a new proposal! You can begin editing the original one."
+msgstr "Sugira um novo texto! Você pode começar editando o original."
+
+#: models.py:24
+msgid "created"
+msgstr "criado"
+
+#: models.py:25
+msgid "modified"
+msgstr "modificado"
+
+#: models.py:35
+msgid "data"
+msgstr "dados"
+
+#: models.py:36 models.py:78
+msgid "type"
+msgstr "tipo"
+
+#: models.py:43
+msgid "title"
+msgstr "título"
+
+#: models.py:44
+msgid "description"
+msgstr "descrição"
+
+#: models.py:47
+msgid "editors"
+msgstr "editores"
+
+#: models.py:48
+msgid ""
+"Any users in any of these groups will have permission to change this "
+"document."
+msgstr "Usuários nestes grupos terão permissão para alterar este documento."
+
+#: models.py:57 models.py:70
+msgid "bill"
+msgstr "projeto de lei"
+
+#: models.py:58
+msgid "bills"
+msgstr "projetos de lei"
+
+#: models.py:71
+msgid "order"
+msgstr "ordem"
+
+#: models.py:72 models.py:100
+msgid "content"
+msgstr "conteúdo"
+
+#: models.py:76
+msgid "Article"
+msgstr "Artigo"
+
+#: models.py:82
+msgid "segment"
+msgstr "trecho"
+
+#: models.py:83
+msgid "segments"
+msgstr "trechos"
+
+#: models.py:99 models.py:137
 msgid "bill segment"
 msgstr "trecho de lei"
 
-#: models.py:70
+#: models.py:103
 msgid "citizen amendment"
 msgstr "texto alternativo"
 
-#: models.py:71
+#: models.py:104
 msgid "citizen amendments"
 msgstr "textos alternativos"
 
-#: models.py:102
+#: models.py:135
 msgid "user"
 msgstr "usuário"
 
-#: models.py:106
+#: models.py:139
 msgid "amendment"
 msgstr "texto alternativo"
 
@@ -102,36 +141,24 @@ msgstr "Desfazer apoio"
 msgid "Support"
 msgstr "Apoiar"
 
-#: templates/bill/bill.html:38
-msgid "Data:"
-msgstr "Dados:"
+#: templates/bill/bill_segment.html:33
+msgid "Change"
+msgstr "Alterar"
 
-#: templates/bill/bill.html:40
-msgid "comments"
-msgstr "comentários"
-
-#: templates/bill/bill.html:42
-msgid "amendments"
-msgstr "textos alternativos"
-
-#: templates/bill/bill_segment.html:23
-msgid "Propose"
-msgstr "Propor"
-
-#: templates/bill/bill_segment.html:34
+#: templates/bill/bill_segment.html:44
 msgid "Proposals"
 msgstr "Propostas"
 
-#: templates/bill/bill_segment.html:45
+#: templates/bill/bill_segment.html:55
 msgid "proposed:"
 msgstr "propôs:"
 
 #: templates/bill/create_amendment.html:14
-#: templates/bill/create_amendment.html:39
+#: templates/bill/create_amendment.html:40
 msgid "Send proposal"
 msgstr "Enviar proposta"
 
-#: templates/bill/create_amendment.html:37
+#: templates/bill/create_amendment.html:39
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -144,19 +171,32 @@ msgid ""
 "Wikilegis is a tool for collaboratively editing legislative bills. Take part "
 "suggesting changes and choosing the best proposals."
 msgstr ""
-"O Wikilegis é uma ferramenta colaborativa de edição de projetos legislativos.  "
-"Participe sugerindo alterações e escolhendo as melhores propostas."
+"O Wikilegis é uma ferramenta colaborativa de edição de projetos "
+"legislativos.  Participe sugerindo alterações e escolhendo as melhores "
+"propostas."
 
-#: templates/index.html:51
+#: templates/index.html:50
 msgid "Nothing to show here..."
 msgstr "Nada para mostrar aqui..."
 
-#: views.py:88
+#: views.py:103
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para {object}."
 
-#: views.py:112
+#: views.py:127
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
+
+#~ msgid "Data:"
+#~ msgstr "Dados:"
+
+#~ msgid "comments"
+#~ msgstr "comentários"
+
+#~ msgid "amendments"
+#~ msgstr "textos alternativos"
+
+#~ msgid "Propose"
+#~ msgstr "Propor"

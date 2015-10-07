@@ -31,7 +31,7 @@ class BillAuthorDataInline(GenericTabularInline):
 class BillVideoInline(GenericTabularInline):
     form = forms.MetaVideoForm
     model = models.GenericData
-    verbose_name = _('author')
+    verbose_name = _('video')
     verbose_name_plural = _('videos')
 
     def get_queryset(self, request):

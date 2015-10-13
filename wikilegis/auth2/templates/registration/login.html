@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load helpers %}
+{% load social_utils %}
 
 {% block content %}
     <div class="container">
@@ -26,9 +27,7 @@
 
                             <br />
                             <span class="card-title">
-                                <div>
-                                    {% trans "Sign in" %}
-                                </div>
+                                {% trans "Sign in" %}
                             </span>
 
                             {% csrf_token %}
@@ -59,6 +58,16 @@
                             <p>{% trans "Don't have an account?" %} <a href="{% url "registration_register" %}">{% trans "Sign up now!" %}</a></p>
                             <p>{% trans "Forgot your password?" %} <a href="{% url "auth_password_reset" %}">{% trans "Ask for a new one!" %}</a></p>
                         </div>
+
+                        <div class="social">
+                            {% for backend in backends.backends %}
+                                <div class="row">
+                                    <a class="col-md-2 btn btn-default" id="{{ backend }}-button" name="{{ backend }}" href="{% url "social:begin" backend=backend %}">
+                                        <img src="{% static backend|social_icon %}" />
+                                        {% blocktrans with backend_name=backend|social_title %}Sign in with {{ backend_name }}{% endblocktrans %}
+                                    </a>
+                                </div>
+                            {% endfor %}
                     </div>
                 </div>
             </form>

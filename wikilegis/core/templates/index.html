@@ -15,8 +15,9 @@
                 </div>
 
                 <div class="row">
-                    <div class="col s5 offset-s1">{% include "auth2/_current_user_or_login_button.html" %}</div>
-                    <div class="col s5">{% include "_sidebar_search.html" %}</div>
+                    <div class="col s3 offset-s1">{% include "auth2/_current_user_or_login_button.html" %}</div>
+                    <div class="col s3">{% include "_sidebar_search.html" %}</div>
+                    <div class="col s3">{% include "_sidebar_language_selector.html" %}</div>
                 </div>
               
                 <h4>by</h4>
@@ -34,6 +35,7 @@
             </div>
             {% include "_admin_link.html" %}
         </div>
+
         <div class="col s12 m6">
             <div class="pls">
                 {% for bill in bills %}

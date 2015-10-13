@@ -69,6 +69,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'wikilegis.urls'
@@ -135,6 +136,7 @@ REGISTRATION_FORM = 'wikilegis.auth2.forms.RegistrationForm'
 INCLUDE_REGISTER_URL = False
 
 
+
 # Site-specific settings
 
 SITE_ID = 1
@@ -142,6 +144,14 @@ SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
+
+languages = dict(default.LANGUAGES)
+language_tuple = lambda language_code: (language_code, languages[language_code])
+
+LANGUAGES = (
+    language_tuple('en'),
+    language_tuple('pt-br'),
+)
 
 LANGUAGE_CODE = 'pt-br'
 

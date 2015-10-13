@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-13 10:12-0300\n"
+"POT-Creation-Date: 2015-10-13 11:33-0300\n"
 "PO-Revision-Date: 2015-10-07 19:42+0000\n"
 "Last-Translator: dirleyrls <dirleyrls@gmail.com>\n"
 "Language-Team: auth (generated) <http://weblate.labhackercd.net/projects/"
@@ -45,7 +45,7 @@ msgstr "último nome"
 
 #: models.py:41
 msgid "staff status"
-msgstr "status de equipe"
+msgstr "membro da equipe"
 
 #: models.py:42
 msgid "Designates whether the user can log into this admin site."
@@ -103,6 +103,32 @@ msgstr "Esqueceu sua senha?"
 #: templates/registration/login.html:60
 msgid "Ask for a new one!"
 msgstr "Solicite uma nova!"
+
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+"Você está recebendo este email porque solicitou a redefinição da senha da "
+"sua conta em %(site_name)s."
+
+#: templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr "Por favor, acesse a seguinte página e escolha uma nova senha:"
+
+#: templates/registration/password_reset_email.html:8
+msgid "Your username, in case you've forgotten:"
+msgstr "Seu nome de usuário, caso tenha esquecido:"
+
+#: templates/registration/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr "Obrigado por usar nosso site!"
+
+#: templates/registration/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "Equipe %(site_name)s"
 
 #: templates/registration/registration_complete.html:4
 msgid "Activation email sent"

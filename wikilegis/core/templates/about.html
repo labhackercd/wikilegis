@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <div class="dark-bg valign-wrapper">
+      <div class="container about">
+        <div class="row">
+        <div class="col m12">
+        {% load static %}
+        <a href="{% url "index" %}">
+           <img class="logo" src="{% static "img/logo.png" %}" alt="Wikilegis" />
+        </a>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col m6">
+            <h5>{% trans "About Wikilegis" %}</h5>
+        <p>{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills. It is an open source project, developed under license CC BY 4.0. Besides participating in discussions of the bill, you can help us to improve our tool." %}</p>
+          </div>
+          <div class="col m6">
+            <h5>&nbsp</h5>
+        <p>{% trans "Visit us on Trello, Github and in our page to propose new features or to report bugs. If you have programming skills, you can also collaborate to the development of Wikilegis. " %}</p>
+            <div class="buttonsShareProjetc">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=labhackercd&repo=wikilegis&type=star&count=true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>
+                    <a href="https://trello.com/b/b4hyvcH2" target="_blank"><img src="{% static "img/trello-icon.png" %}" height="22" width="77" /></a>
+                    <a href="http://labhackercd.net/" target="_blank"><img width="110" src="{% static "img/labhacker.png" %}" /></a>
+                    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">&nbsp;<img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+                </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col m12">
+        <a class="waves-effect waves-light btn right-align" href="{% url "index" %}">{% trans "Back to main page" %}</a></p>
+        </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

@@ -9,30 +9,21 @@
             <div class="content">
                 {% include "_sidebar_logo.html" %}
                 <h4>{% trans "Your legislative editing tool" %}</h4>
-
+      
+              
                 <div class="row">
-                    <p class="col s10 offset-s1">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills." %}</p>
+                    <p class="col s10 offset-s1">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills" %}</p>
                 </div>
 
                 <div class="row">
                     <div class="col s5 offset-s1">{% include "auth2/_current_user_or_login_button.html" %}</div>
                     <div class="col s5">{% include "_sidebar_search.html" %}</div>
-                </div>
-              
-                <h4>by</h4>
-                <a href="http://labhackercd.net/" target="_blank"><img src="{% static "img/labhacker.png" %}" /></a>
-
-                <div class="buttonsShareProjetc">
-                    <div class="description">
-                        {% trans "Wikilegis is an open source project, developed under license CC BY 4.0. Besides participating in discussions of the bill, you can help us to improve our tool.  Visit us on Trello and on Github to propose new features or to report bugs. If you have programming skills, you can also collaborate to the development of Wikilegis. " %}
-                    </div>
-                    <iframe src="https://ghbtns.com/github-btn.html?user=labhackercd&repo=wikilegis&type=star&count=true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>
-                    <a href="https://trello.com/b/b4hyvcH2" target="_blank"><img src="{% static "img/trello-icon.png" %}" height="22" width="77" /></a>
-                    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">&nbsp;<img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
-                </div>
-
+                </div>          
             </div>
-            {% include "_admin_link.html" %}
+            <div class="bottom-links">
+              {% include "_admin_link.html" %}
+              {% include "_about_link.html" %}
+            </div>            
         </div>
         <div class="col s12 m6">
             <div class="pls">

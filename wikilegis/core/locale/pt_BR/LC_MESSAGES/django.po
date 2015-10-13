@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 17:17-0300\n"
+"POT-Creation-Date: 2015-10-13 10:11-0300\n"
 "PO-Revision-Date: 2015-10-07 19:41+0000\n"
 "Last-Translator: dirleyrls <dirleyrls@gmail.com>\n"
 "Language-Team: core (generated) <http://weblate.labhackercd.net/projects/"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.4\n"
 
-#: admin.py:24 admin.py:34 models.py:98
+#: admin.py:24 models.py:98
 msgid "author"
 msgstr "autor"
 
@@ -27,9 +27,13 @@ msgstr "autor"
 msgid "authors"
 msgstr "autores"
 
+#: admin.py:34
+msgid "video"
+msgstr "URL do vídeo"
+
 #: admin.py:35
 msgid "videos"
-msgstr "vídeos"
+msgstr ""
 
 #: forms.py:49
 msgid "User"
@@ -195,4 +199,3 @@ msgstr "Falha ao enviar proposta para {object}."
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
-

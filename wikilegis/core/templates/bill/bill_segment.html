@@ -54,7 +54,7 @@
                         <div class="content">
                             <span class="author"><span class="user">{% with user=amendment.author %}{% include "auth2/_user_display_name.html" %}{% endwith %}</span> {% trans "proposed:" %}</span>
                             <p class="pp">
-                                {{ amendment.content|linebreaks }}
+                                {{ amendment.content|safe|linebreaks }}
                             </p>
                             <div class="right-align">
                                 {% include "bill/_choosing_button_2.html" %}

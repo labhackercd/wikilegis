@@ -1,7 +1,9 @@
 {% extends "bill/_base.html" %}
 
+{% load static %}
 {% load helpers %}
 {% load i18n %}
+
 
 {% comment TODO by dirleyrls %}{#
     1. Definir o foco inicial pro campo `content`.
@@ -18,10 +20,18 @@
 
                 {{ form.non_field_errors }}
 
+                <textarea hidden="hidden" id="id_content" name="content" onblur="segment_compare()"></textarea>
+
                 <div class="row propose">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                        {% call "core:render_field" form.content extra_classes="materialize-textarea" %}
+                        <textarea class="materialize-textarea" cols="40" id="content-input" name="content-input" onblur="segment_compare()" rows="10" style="height: 22px;">Art. 2º. Esta lei entra em vigor na data de sua publicação.</textarea>
+                    </div>
+                </div>
+
+                <div class="row propose">
+                    <div class="input-field col s12">
+                        <p id="content-output"></p>
                     </div>
                 </div>
 
@@ -49,11 +59,60 @@
 {% endblock %}
 
 {% block partialscript %}
+    <script type="text/javascript" src="{% static "js/jsdiff.js" %}"></script>
+    <script>
+        $(function() {
+          $('textarea#content-input').focus();
+        });
+    </script>
+    <script>
+        function segment_compare()
+        {
+            document.getElementById("content-output").innerHTML="";
+            var str_input="{{ form.initial.content }}";
+            var str_output=document.getElementById("content-input").value;
 
-  <script>
-    $(function() {
-      $('textarea#id_content').focus();
-    });
-  </script>
+            var splitinput = str_input.split("\n");
+            var splitoutput = str_output.split("\n");
 
+            var inlines=splitinput.length;
+            var outlines=splitoutput.length;
+
+            var lines;
+            if (outlines>inlines)
+            {
+                lines=outlines;
+            }
+            else
+            {
+                lines=inlines;
+            }
+
+            var buildoutput="";
+
+            for (i=0;i<lines;i++)
+            {
+                var testundefined=false;
+                if (splitinput[i]==undefined)
+                {
+                    buildoutput=buildoutput+diffString("",splitoutput[i])+"<br/>";
+                    testundefined=true;
+                }
+
+                if (splitoutput[i]==undefined)
+                {
+                    buildoutput=buildoutput+diffString(splitinput[i],"")+"<br/>";
+                    testundefined=true;
+                }
+
+                if (testundefined==false)
+                {
+                    buildoutput=buildoutput+diffString(splitinput[i],splitoutput[i])+"<br/>";
+                }
+            }
+
+            document.getElementById("content-output").innerHTML = buildoutput;
+            $("#id_content").text(buildoutput);
+        }
+    </script>
 {% endblock %}

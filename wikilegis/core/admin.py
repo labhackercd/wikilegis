@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
 from django.contrib.contenttypes.admin import GenericTabularInline
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
 

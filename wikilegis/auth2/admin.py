@@ -26,7 +26,4 @@ class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
-class MyModelAdmin(ImageCroppingMixin, admin.ModelAdmin):
-    pass
-
 admin.site.register(User, UserAdmin)

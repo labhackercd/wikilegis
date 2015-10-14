@@ -42,6 +42,7 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
     @media screen and (max-width: 600px) {
+      min-height: 100vh;
       height: auto;
     }
 		background-color: $maingreen;
@@ -62,6 +63,8 @@ body {
 			height: auto;
 			margin-right: auto;
 			margin-left: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
 			padding-left: 10px;
 			padding-right: 10px;
 			color: white;
@@ -682,6 +685,24 @@ blockquote {
 	}
 }
 
+.bottom-links {
+	position: absolute;
+	left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+	bottom: 10px;
+	a {
+    color: $logogreen;
+  }
+  a:first-child {
+    margin-right: 20px;
+  }
+	i {
+		vertical-align: middle;
+	}
+}
+
 .video-descripition {
     float: none;
     clear: both;
@@ -697,4 +718,40 @@ blockquote {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.about {
+  color: white;
+  p {
+    opacity: .7;
+  }
+}
+
+.language-selector {
+  margin-top: 30px;
+  select {
+    background-image: url(static("img/arrow.png"));
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: right;
+    cursor: pointer;
+    outline:none;
+    background-color: transparent;
+    padding: 5px;
+    font-size: 16px;
+    border: 0;
+    opacity: .7;
+    border-radius: 0;
+    -webkit-appearance: none;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    padding-right: 20px;
+    color: white;
+    option {
+      color: $maingreen;
+      -webkit-appearance: none;    
+    }
+  }
 }

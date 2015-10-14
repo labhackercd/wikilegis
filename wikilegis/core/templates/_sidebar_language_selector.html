@@ -1,7 +1,6 @@
 {% load i18n %}
 
 <div class="language-selector">
-    <br />
     <form action="{% url 'set_language' %}" method="post">
         {% csrf_token %}
         <input name="next" type="hidden" value="{{ redirect_to }}" />
@@ -16,8 +15,6 @@
                     {{ language.name_local }} ({{ language.code }})
                 </option>
             {% endfor %}
-        </select>
-        <br />
-        <input type="submit" value="Go" />
+        </select>       
     </form>
 </div>

@@ -21,3 +21,6 @@ django-flat-theme==1.1.1
 django-object-tools==1.1.0
 django-export==1.0.4
 django-decouple==2.1
+Pillow==3.0.0
+easy-thumbnails==2.2
+django-image-cropping==1.0.2

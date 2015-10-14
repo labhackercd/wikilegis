@@ -3,19 +3,20 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import ugettext_lazy as _
 from wikilegis.auth2.forms import UserChangeForm, UserCreationForm
 from wikilegis.auth2.models import User
+from image_cropping import ImageCroppingMixin
 
 
-class UserAdmin(BaseUserAdmin):
+class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'avatar', 'cropping')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2'),
+            'fields': ('email', 'password1', 'password2', 'avatar'),
         }),
     )
     form = UserChangeForm
@@ -25,5 +26,7 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
+class MyModelAdmin(ImageCroppingMixin, admin.ModelAdmin):
+    pass
 
 admin.site.register(User, UserAdmin)

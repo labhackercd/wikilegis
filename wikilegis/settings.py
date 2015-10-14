@@ -65,6 +65,8 @@ INSTALLED_APPS = (
     'rules.apps.AutodiscoverRulesConfig',
     'embed_video',
     'social.apps.django_app.default',
+    'easy_thumbnails',
+    'image_cropping',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -232,7 +234,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'static'))
 
 STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
     'compressor.finders.CompressorFinder',
@@ -246,6 +248,10 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))
+
 ## Debug toolbar
 STATIC_IPS = ('127.0.0.1', '::1', )
 
@@ -255,6 +261,11 @@ LOGIN_REDIRECT_URL = '/'
 SERIALIZATION_MODULES = {
     'csv': 'export.serializers.csv_serializer'
 }
+
+from easy_thumbnails.conf import Settings as thumbnail_settings
+THUMBNAIL_PROCESSORS = (
+    'image_cropping.thumbnail_processors.crop_corners',
+) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_USER = config('EMAIL_USER')

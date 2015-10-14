@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from image_cropping import ImageRatioField
+from django import forms
 
 
 class UserManager(BaseUserManager):
@@ -33,6 +35,13 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, True, True, **extra_fields)
 
 
+def avatar_validation(image):
+    if image:
+        # max file size in MB
+        max_file_size = 10.0
+        if image.size > max_file_size*1024*1024:
+            raise forms.ValidationError("The max file size is %sMB" % str(max_file_size))
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
 
@@ -45,6 +54,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                                     help_text=_('Designates whether this user should be treated as '
                                                 'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    avatar = models.ImageField(upload_to="avatars/", validators=[avatar_validation],null=True, blank=True)
+    cropping = ImageRatioField('avatar', '70x70')
 
     objects = UserManager()
 

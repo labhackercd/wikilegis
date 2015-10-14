@@ -4,6 +4,7 @@
 {% load i18n %}
 {% load render_comments from comments2 %}
 {% load count_votes %}
+{% load cropping %}
 
 {% block content3 %}
     <div class="col m8 pl-full">
@@ -42,7 +43,7 @@
                     <div class="user col s12 m4">
                         <div class="col m3">
                             <div class="avatr">
-                                <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                                <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
                             </div>
                         </div>
                         <div class="col m9">
@@ -86,7 +87,7 @@
                         <div class="user col s12 m4">
                             <div class="col m3">
                                 <div class="avatr">
-                                    <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                                    <div class="pic" style="background-image: url('{% cropped_thumbnail amendment.author 'cropping' %}')"></div>
                                 </div>
                             </div>
                             <div class="col m9">

@@ -16,3 +16,6 @@ pytz==2015.6
 rules==0.4
 six==1.9.0
 sqlparse==0.1.16
+django-flat-theme==1.1.1
+django-object-tools==1.1.0
+django-export==1.0.4

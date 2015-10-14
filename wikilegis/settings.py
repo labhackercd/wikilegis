@@ -38,6 +38,9 @@ INSTALLED_APPS = (
     'wikilegis.core',
     'wikilegis.helpers',
     'wikilegis.comments2',
+    'flat',
+    'object_tools',
+    'export',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -185,3 +188,6 @@ STATIC_IPS = ('127.0.0.1', '::1', )
 # Login settings
 LOGIN_REDIRECT_URL = '/'
 
+SERIALIZATION_MODULES = {
+    'csv': 'export.serializers.csv_serializer'
+}

@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^accounts/', include('wikilegis.auth2.urls')),
     url(r'^comments/', include('wikilegis.comments2.urls')),
     url(r'^search/', include('haystack.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^', include('wikilegis.core.urls')),
 ]
 

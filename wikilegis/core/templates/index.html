@@ -6,25 +6,34 @@
 {% block content %}
     <div class="row intro">
         <div class="col s12 m6 about valign-wrapper" style="margin: 0 auto">
-            <div class="content">
-                {% include "_sidebar_logo.html" %}
-                <h4>{% trans "Your legislative editing tool" %}</h4>
-      
-              
+            <div class="valign">
                 <div class="row">
-                    <p class="col s10 offset-s1">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills" %}</p>
+                    <div class="content">
+                        {% include "_sidebar_logo.html" %}
+                        <h4>{% trans "Your legislative editing tool" %}</h4>
+
+                        <div class="row">
+                            <p class="col s10 offset-s1">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills" %}</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s5 offset-s1">{% include "auth2/_current_user_or_login_button.html" %}</div>
+                            <div class="col s5">{% include "_sidebar_search.html" %}</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
-                    <div class="col s5 offset-s1">{% include "auth2/_current_user_or_login_button.html" %}</div>
-                    <div class="col s5">{% include "_sidebar_search.html" %}</div>
-                </div>          
+                    {% include "_sidebar_language_selector.html" %}
+                </div>
             </div>
+
             <div class="bottom-links">
               {% include "_admin_link.html" %}
               {% include "_about_link.html" %}
             </div>            
         </div>
+
         <div class="col s12 m6">
             <div class="pls">
                 {% for bill in bills %}

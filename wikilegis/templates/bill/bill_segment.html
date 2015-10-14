@@ -3,6 +3,7 @@
 {% load static %}
 {% load i18n %}
 {% load render_comments from comments2 %}
+{% load cropping %}
 
 {% block content3 %}
     <div class="col m8 pl-full">
@@ -15,14 +16,16 @@
                 <div class="quote-f"></div>
             </div>
 
-            <div class="pl-author">
-                <div class="avatr">
-                    <div class="pic" style="background-image: url('/static/img/user.png')"></div>
+            {% if author %}
+                <div class="pl-author">
+                    <div class="avatr">
+                        <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
+                    </div>
+                    <div class="info">
+                        <span class="author">{{ author.user }}</span>
+                    </div>
                 </div>
-                <div class="info">
-                    <span class="author">{{ author.user }}</span>
-                </div>
-            </div>
+            {% endif %}
           
             <div class="interact">
                 <ul>
@@ -48,7 +51,7 @@
                     <br />
                     <div class="proposal" id="amendment-{{ amendment.pk }}">
                         <div class="avatr">
-                            <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                            <div class="pic" style="background-image: url('{% cropped_thumbnail amendment.author 'cropping' %}')"></div>
                         </div>
 
                         <div class="content" data-raw-content="{{ amendment.content|escape }}">

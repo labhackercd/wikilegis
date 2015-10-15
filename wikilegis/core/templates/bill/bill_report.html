@@ -1,0 +1,23 @@
+{% extends "bill/_base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load helpers %}
+{% load comments %}
+{% block title %}Relatório - {{ object.title }}{% endblock %}
+{% block content %}
+
+    <div class="col m12 pl-full">
+    <h4>{{ object.title }} - {{ object.segments.count }} artigo(s)</h4>
+    {% for segment in object.segments.all %}
+    <h5>{{ segment.content }} - {{ segment.choices.count }} apoiaram</h5>
+        <h5>{{ segment.amendments.count }} sugestões para alteração</h5>
+        {% for amendment in segment.amendments.all %}
+            <p>{{ amendment.content|safe }} - {{ amendment.choosings.count }} apoiaram</p>
+            <b>{% get_comment_count for amendment as comment_count %} {{ comment_count }} Comentários</b>
+            {% render_comment_list for amendment %}
+        <hr>
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endblock %}

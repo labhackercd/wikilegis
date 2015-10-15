@@ -62,8 +62,17 @@ class BillChangeList(ChangeList):
 
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
-    list_display = ('title', 'description')
-    
+    list_display = ('title', 'description', 'get_report')
+
+    def get_report(self, obj):
+        try:
+            return u'<a class="default" href="/bill/%s/report/">Ver</a>' % obj.id
+        except:
+            return ''
+
+    get_report.short_description = 'Relatório'
+    get_report.allow_tags = True
+
     def get_fields(self, request, obj=None):
         fields = super(BillAdmin, self).get_fields(request, obj)
         # XXX This permission can't be granted to anyone but superusers,

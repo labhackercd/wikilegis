@@ -95,19 +95,19 @@
                 var testundefined=false;
                 if (splitinput[i]==undefined)
                 {
-                    buildoutput=buildoutput+diffString("",splitoutput[i])+"<br/>";
+                    buildoutput=buildoutput+diffString("",splitoutput[i]);
                     testundefined=true;
                 }
 
                 if (splitoutput[i]==undefined)
                 {
-                    buildoutput=buildoutput+diffString(splitinput[i],"")+"<br/>";
+                    buildoutput=buildoutput+diffString(splitinput[i],"");
                     testundefined=true;
                 }
 
                 if (testundefined==false)
                 {
-                    buildoutput=buildoutput+diffString(splitinput[i],splitoutput[i])+"<br/>";
+                    buildoutput=buildoutput+diffString(splitinput[i],splitoutput[i]);
                 }
             }
 

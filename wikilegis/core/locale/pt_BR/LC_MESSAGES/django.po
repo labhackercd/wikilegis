@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-13 14:35-0300\n"
+"POT-Creation-Date: 2015-10-15 14:41-0300\n"
 "PO-Revision-Date: 2015-10-07 19:41+0000\n"
 "Last-Translator: dirleyrls <dirleyrls@gmail.com>\n"
 "Language-Team: core (generated) <http://weblate.labhackercd.net/projects/"
@@ -33,7 +33,7 @@ msgstr "URL do vídeo"
 
 #: admin.py:35
 msgid "videos"
-msgstr ""
+msgstr "vídeos"
 
 #: forms.py:49
 msgid "User"
@@ -137,9 +137,41 @@ msgstr "usuário"
 msgid "amendment"
 msgstr "texto alternativo"
 
-#: templates/_sidebar_language_selector.html:8
+#: templates/_about_link.html:3
+msgid "about wikilegis"
+msgstr "sobre o wikilegis"
+
+#: templates/_sidebar_language_selector.html:7
 msgid "Select language"
 msgstr "Selecione um idioma"
+
+#: templates/about.html:19
+msgid "About Wikilegis"
+msgstr "Sobre o Wikilegis"
+
+#: templates/about.html:20
+msgid ""
+"Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+"Hacker Lab, designed to enable citizens to suggest modifications to the "
+"wording of Bills. It is an open source project, developed under license CC "
+"BY 4.0. Besides participating in discussions of the bill, you can help us to "
+"improve our tool."
+msgstr ""
+
+#: templates/about.html:24
+msgid ""
+"Visit us on Trello, Github and in our page to propose new features or to "
+"report bugs. If you have programming skills, you can also collaborate to the "
+"development of Wikilegis. "
+msgstr ""
+
+#: templates/about.html:35
+msgid "Back to main page"
+msgstr "Voltar à página inicial"
+
+#: templates/admin/base_site.html:6
+msgid "Django administration"
+msgstr "Administração do Django"
 
 #: templates/bill/_choosing_button.html:4
 msgid "Undo support"
@@ -161,36 +193,31 @@ msgstr "Propostas"
 msgid "proposed:"
 msgstr "propôs:"
 
-#: templates/bill/create_amendment.html:14
-#: templates/bill/create_amendment.html:40
+#: templates/bill/create_amendment.html:16
+#: templates/bill/create_amendment.html:50
 msgid "Send proposal"
 msgstr "Enviar proposta"
 
-#: templates/bill/create_amendment.html:39
+#: templates/bill/create_amendment.html:49
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: templates/index.html:11
+#: templates/export/export_form.html:10
+msgid "Download"
+msgstr ""
+
+#: templates/index.html:13
 msgid "Your legislative editing tool"
 msgstr "Sua ferramenta de edição legislativa"
 
-#: templates/index.html:14
+#: templates/index.html:16
 msgid ""
 "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
 "Hacker Lab, designed to enable citizens to suggest modifications to the "
-"wording of Bills."
+"wording of Bills"
 msgstr ""
 
-#: templates/index.html:28
-msgid ""
-"Wikilegis is an open source project, developed under license CC BY 4.0. "
-"Besides participating in discussions of the bill, you can help us to improve "
-"our tool.  Visit us on Trello and on Github to propose new features or to "
-"report bugs. If you have programming skills, you can also collaborate to the "
-"development of Wikilegis. "
-msgstr ""
-
-#: templates/index.html:56
+#: templates/index.html:54
 msgid "Nothing to show here..."
 msgstr "Nada para mostrar aqui..."
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-13 11:33-0300\n"
+"POT-Creation-Date: 2015-10-15 14:41-0300\n"
 "PO-Revision-Date: 2015-10-07 19:42+0000\n"
 "Last-Translator: dirleyrls <dirleyrls@gmail.com>\n"
 "Language-Team: auth (generated) <http://weblate.labhackercd.net/projects/"
@@ -72,7 +72,7 @@ msgid "Log out"
 msgstr "Encerrar sessão"
 
 #: templates/auth2/_current_user_or_login_button.html:25
-#: templates/registration/login.html:54
+#: templates/registration/login.html:53
 msgid "Log in"
 msgstr "Iniciar sessão"
 
@@ -88,21 +88,26 @@ msgstr "Cadastrar-se"
 msgid "Sign in"
 msgstr "Iniciar sessão"
 
-#: templates/registration/login.html:59
+#: templates/registration/login.html:58
 msgid "Don't have an account?"
 msgstr "Não possui uma conta?"
 
-#: templates/registration/login.html:59
+#: templates/registration/login.html:58
 msgid "Sign up now!"
 msgstr "Crie uma agora!"
 
-#: templates/registration/login.html:60
+#: templates/registration/login.html:59
 msgid "Forgot your password?"
 msgstr "Esqueceu sua senha?"
 
-#: templates/registration/login.html:60
+#: templates/registration/login.html:59
 msgid "Ask for a new one!"
 msgstr "Solicite uma nova!"
+
+#: templates/registration/login.html:67
+#, python-format
+msgid "Sign in with %(backend_name)s"
+msgstr "Entrar com %(backend_name)s"
 
 #: templates/registration/password_reset_email.html:2
 #, python-format

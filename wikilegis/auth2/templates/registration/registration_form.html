@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load social_utils %}
 
 {% block content %}
     <div class="row intro">
@@ -25,6 +26,18 @@
                                 {% trans "Sign Up" %}
                             </button>
                         </div>
+                    </div>
+
+
+                    <div class="social">
+                        {% for backend in backends.backends %}
+                            <div class="row">
+                                <a class="col-md-2 btn btn-default" id="{{ backend }}-button" name="{{ backend }}" href="{% url "social:begin" backend=backend %}">
+                                    <img src="{% static backend|social_icon %}" />
+                                    {% blocktrans with backend_name=backend|social_title %}Sign in with {{ backend_name }}{% endblocktrans %}
+                                </a>
+                            </div>
+                        {% endfor %}
                     </div>
                 </form>
             </div>

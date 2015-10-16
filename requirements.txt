@@ -20,3 +20,4 @@ sqlparse==0.1.16
 django-flat-theme==1.1.1
 django-object-tools==1.1.0
 django-export==1.0.4
+django-decouple==2.1

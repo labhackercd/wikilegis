@@ -1,0 +1,20 @@
+{% extends "bill/_base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load comments %}
+{% block content %}
+
+    <div class="col m12 pl-full">
+    <h4>{{ segments.0.bill }}</h4>
+    {% for segment in segments %}
+    <h5>{{ segment.content }} - {{ segment.choices.count }} apoiaram</h5>
+        <h5>{{ segment.amendments.count }} sugestões para alteração</h5>
+        {% for amendment in segment.amendments.all %}
+            <p>{{ amendment.content|safe }} - {{ amendment.choosings.count }} apoiaram</p>
+            <b>{% get_comment_count for amendment as comment_count %} {{ comment_count }} Comentários</b>
+        <hr>
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endblock %}

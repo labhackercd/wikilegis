@@ -16,7 +16,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         bills = Bill.objects.all()
         current_site = Site.objects.get_current()
-        import ipdb; ipdb.set_trace()
         for bill in bills:
             segment_amendments = defaultdict(list)
             amendment_comments = defaultdict(list)

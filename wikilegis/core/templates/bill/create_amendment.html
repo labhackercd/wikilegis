@@ -69,7 +69,7 @@
         function segment_compare()
         {
             document.getElementById("content-output").innerHTML="";
-            var str_input="{{ form.initial.content }}";
+            var str_input="{{ form.initial.content|escapejs }}";
             var str_output=document.getElementById("content-input").value;
 
             var splitinput = str_input.split("\n");

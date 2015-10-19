@@ -31,6 +31,8 @@ class TimestampedMixin(models.Model):
 class GenericData(models.Model):
     """
     Attach any data to any object. That's the way we do it, baby.
+
+    TODO We should really come up with a small framework to deal with our generic data stuff.
     """
     data = JSONField(_('data'))
     type = models.CharField(_('type'), max_length=100)

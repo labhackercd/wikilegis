@@ -37,6 +37,19 @@ class BillVideoInline(GenericTabularInline):
     def get_queryset(self, request):
         return super(BillVideoInline, self).get_queryset(request).filter(type=self.form.get_type())
 
+    def has_add_permission(self, request):
+        return (self.has_change_permission(request)
+                or super(BillVideoInline, self).has_add_permission(request))
+
+    def has_change_permission(self, request, obj=None):
+        # If the user can change the bill, it can also change its videos.
+        return (request.user.has_perm('core.change_bill', obj)
+                or super(BillVideoInline, self).has_change_permission(request, obj))
+
+    def has_delete_permission(self, request, obj=None):
+        return (self.has_change_permission(request, obj)
+                or super(BillVideoInline, self).has_delete_permission(request, obj))
+
 
 class BillChangeList(ChangeList):
     def get_queryset(self, request):
@@ -65,7 +78,7 @@ class BillAdmin(admin.ModelAdmin):
         # I don't really remember why we have to do it this way, but I remember this "oh, shit" moment,
         # so I'm pretty sure we're in the right track by trusting myself.
         return BillChangeList
-
+    
     def has_change_permission(self, request, obj=None):
         # XXX We have to override this in order to call `has_perm` with the given object (or None).
         perm = get_permission('change', self.opts)

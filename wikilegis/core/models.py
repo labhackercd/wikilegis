@@ -12,6 +12,13 @@ from django.core.urlresolvers import reverse
 from django_extensions.db.fields.json import JSONField
 
 
+BILL_STATUS_CHOICES = (
+    ('1', 'Draft'),
+    ('2', 'Published'),
+    ('3', 'Closed')
+)
+
+
 def model_repr(cls, **kwargs):
     values = kwargs.items()
     values = ((force_text(k), Truncator(force_text(v)).chars(50)) for (k, v) in values)
@@ -44,6 +51,7 @@ class GenericData(models.Model):
 class Bill(TimestampedMixin):
     title = models.CharField(_('title'), max_length=255)
     description = models.TextField(_('description'))
+    status = models.CharField(_('status'), max_length=2, choices=BILL_STATUS_CHOICES, default='1')
 
     editors = models.ManyToManyField(
         'auth.Group', verbose_name=_('editors'), blank=True,

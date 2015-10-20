@@ -62,7 +62,8 @@ class BillChangeList(ChangeList):
 
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
-    list_display = ('title', 'description')
+    list_display = ('title', 'description', 'status')
+    list_filter = ['status']
     
     def get_fields(self, request, obj=None):
         fields = super(BillAdmin, self).get_fields(request, obj)

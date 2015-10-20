@@ -20,12 +20,10 @@
 
                 {{ form.non_field_errors }}
 
-                <textarea hidden="hidden" id="id_content" name="content" onblur="segment_compare()"></textarea>
-
                 <div class="row propose">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                        <textarea class="materialize-textarea" cols="40" id="content-input" name="content-input" onblur="segment_compare()" rows="10" style="height: 22px;">{{ form.initial.content }}</textarea>
+                        {% render_materialized_field form.content extra_classes="materialize-textarea" data_original_content=form.initial.content|escape %}
                     </div>
                 </div>
 
@@ -61,56 +59,39 @@
 {% block partialscript %}
     <script type="text/javascript" src="{% static "js/jsdiff.js" %}"></script>
     <script type="text/javascript">
-        $(function() {
-          $('textarea#content-input').focus();
-        });
+        function doTheDiff(e) {
+            var $field = $(e.target);
 
-        function segment_compare() {
-            document.getElementById("content-output").innerHTML="";
-            var str_input="{{ form.initial.content|escapejs }}";
-            var str_output=document.getElementById("content-input").value;
+            var splitinput = ($field.attr('data-original-content') || "").split('\n');
+            var splitoutput = ($field.val() || "").split('\n');
 
-            var splitinput = str_input.split("\n");
-            var splitoutput = str_output.split("\n");
+            var lines = Math.max(splitinput.length, splitoutput.length);
 
-            var inlines=splitinput.length;
-            var outlines=splitoutput.length;
-
-            var lines;
-            if (outlines>inlines)
+            var buildoutput = "";
+            for (var i = 0; i < lines; i++)
             {
-                lines=outlines;
-            }
-            else
-            {
-                lines=inlines;
-            }
+                var testundefined = false;
 
-            var buildoutput="";
-
-            for (i=0;i<lines;i++)
-            {
-                var testundefined=false;
-                if (splitinput[i]==undefined)
-                {
+                if (typeof splitinput[i] === 'undefined') {
                     buildoutput=buildoutput+diffString("",splitoutput[i]);
                     testundefined=true;
                 }
 
-                if (splitoutput[i]==undefined)
-                {
+                if (typeof splitoutput[i] === 'undefined') {
                     buildoutput=buildoutput+diffString(splitinput[i],"");
                     testundefined=true;
                 }
 
-                if (testundefined==false)
-                {
+                if (!testundefined) {
                     buildoutput=buildoutput+diffString(splitinput[i],splitoutput[i]);
                 }
             }
 
-            document.getElementById("content-output").innerHTML = buildoutput;
-            $("#id_content").text(buildoutput);
+            $("#content-output").html(buildoutput);
         }
+
+        $(function() {
+          $("#{{ form.content.id_for_label }}").focus().on('change', doTheDiff);
+        });
     </script>
 {% endblock %}

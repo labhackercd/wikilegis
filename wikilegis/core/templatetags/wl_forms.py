@@ -16,16 +16,23 @@ def render_field(field, *args, **kwargs):
     extra_classes = _utils.parse_extra_classes(extra_classes)
 
     widget = kwargs.pop('widget', None)
-    if widget is not None:
-        if isinstance(widget, basestring):
-            widget_name = widget
-            widget = getattr(widgets, widget_name, None)
-            assert widget, NameError("Undefined widget: '{0}'".format(widget_name))
-            widget = widget()
+    if isinstance(widget, basestring):
+        widget_name = widget
+        widget = getattr(widgets, widget_name, None)
+        assert widget, NameError("Undefined widget: '{0}'".format(widget_name))
+        widget = widget()
 
     attrs = {
         'class': ' '.join(extra_classes),
     }
+
+    onblur = kwargs.pop('onblur', None)
+    if onblur is not None:
+        attrs['onblur'] = onblur
+
+    for attr, value in kwargs.items():
+        if attr.startswith('data_'):
+            attrs[attr.replace('_', '-')] = value
 
     return field.as_widget(widget=widget, attrs=attrs)
 

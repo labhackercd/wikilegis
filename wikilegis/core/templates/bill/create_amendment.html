@@ -60,14 +60,12 @@
 
 {% block partialscript %}
     <script type="text/javascript" src="{% static "js/jsdiff.js" %}"></script>
-    <script>
+    <script type="text/javascript">
         $(function() {
           $('textarea#content-input').focus();
         });
-    </script>
-    <script>
-        function segment_compare()
-        {
+
+        function segment_compare() {
             document.getElementById("content-output").innerHTML="";
             var str_input="{{ form.initial.content|escapejs }}";
             var str_output=document.getElementById("content-input").value;

@@ -755,3 +755,12 @@ blockquote {
 	}
   }
 }
+
+.show-more{
+    padding-top: 5px;
+    margin-left: 72px;
+    color: #92A5F9 !important;
+    &:hover{
+        color: #657DE8 !important;
+    }
+}

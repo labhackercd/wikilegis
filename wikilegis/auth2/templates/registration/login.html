@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% load static %}
-{% load i18n %}
-{% load helpers %}
+{% load static i18n %}
 {% load social_utils %}
+{% load render_materialized_field from wl_forms %}
 
 {% block content %}
     <div class="container">
@@ -39,11 +38,11 @@
                             {% endif %}
 
                             <div class="input-field">
-                                {% call "core:render_field" form.username %}
+                                {% render_materialized_field form.username %}
                             </div>
 
                             <div class="input-field">
-                                {% call "core:render_field" form.password %}
+                                {% render_materialized_field form.password %}
                             </div>
 
                             <input type="hidden" name="next" value="{{ next }}" />

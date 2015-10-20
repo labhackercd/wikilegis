@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% load static humanize %}
-{% load i18n %}
-{% load helpers %}
+{% load static humanize i18n %}
 {% load highlight %}
+{% load render_field from wl_forms %}
 
 {% block content %}
 <div class="row main">
@@ -20,7 +19,7 @@
                     <div class="nav-wrapper">
                         <div class="input-field">
                         <form method="get" action=".">
-                            {% call "helpers:render_field" form.q type="search" required=True %}
+                            {% render_field form.q type="search" required=True %}
                             <label for="{{ form.q.id }}"><i class="material-icons">search</i></label>
                         </form>
                         </div>
@@ -31,12 +30,11 @@
 
             <div class="col m7 results">
                 {% if query %}
-
                     {% for result in page.object_list %}
-                        <p>
+                        <div class="result-item">
                             <h5><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></h5>
-                            <p>{% highlight result.object.content with query max_length 180 %}</a>
-                        </p>
+                            <p>{% highlight result.object.content with query max_length 180 %}</p>
+                        </div>
                     {% empty %}
                         <p>No results found.</p>
                     {% endfor %}

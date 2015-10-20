@@ -1,6 +1,6 @@
 {% load static %}
 {% load i18n %}
-{% load helpers %}
+{% load auth2 %}
 
 <div class="current-user">
     {% if user.is_authenticated %}
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="card-buttonLogout">
-            <a href="{% call "auth2:logout_absolute_path" request %}">{% trans "Log out" %}</a>
+            <a href="{% logout_absolute_path request %}">{% trans "Log out" %}</a>
         </div>
     {% else %}
         <div class="panel-card">

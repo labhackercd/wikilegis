@@ -63,7 +63,8 @@ class BillChangeList(ChangeList):
 
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
-    list_display = ('title', 'description', 'get_report')
+    list_filter = ['status']
+    list_display = ('title', 'description', 'status', 'get_report')
 
     def get_report(self, obj):
         return u'<a class="default" href="{url}">{title}</a>'.format(

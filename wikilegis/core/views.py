@@ -15,7 +15,7 @@ from wikilegis.core.genericdata import BillVideo, BillAuthorData
 
 
 def index(request):
-    bills = Bill.objects.all()
+    bills = Bill.objects.exclude(status='1')
 
     return render(request, 'index.html', context=dict(
         bills=bills,

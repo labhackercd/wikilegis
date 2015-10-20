@@ -2,19 +2,30 @@
 
 {% load static %}
 {% load i18n %}
-{% load comments %}
 {% block content %}
 
     <div class="col m12 pl-full">
-    <h4>{{ segments.0.bill }}</h4>
-    {% for segment in segments %}
-    <h5>{{ segment.content }} - {{ segment.choices.count }} apoiaram</h5>
-        <h5>{{ segment.amendments.count }} sugestões para alteração</h5>
-        {% for amendment in segment.amendments.all %}
-            <p>{{ amendment.content|safe }} - {{ amendment.choosings.count }} apoiaram</p>
-            <b>{% get_comment_count for amendment as comment_count %} {{ comment_count }} Comentários</b>
-        <hr>
+    <h4>Bill : {{ bill }}</h4>
+    <hr>
+    {% if amendments %}
+        <h2>Alterações novas</h2>
+        {% for segment, amendment in amendments.items %}
+            <h3>Segment : {{ segment }}</h3>
+            <h5>{{ amendment|length }} sugestões para alteração</h5>
+            {% for obeject in amendment %}
+                <h5>{{ obeject.content|safe }}</h5>
+                <hr>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    {% endif %}
+    {% if comments %}
+        <h2>Comentários novos</h2>
+        {% for key, value_list in comments.items %}
+            <h5>Segment : {{ key|safe }} - {{ value_list|length }} comentários</h5>
+            {% for comment in value_list %}
+                <h4>{{ comment }}</h4>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
     </div>
 {% endblock %}

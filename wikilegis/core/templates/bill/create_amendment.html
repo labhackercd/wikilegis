@@ -1,8 +1,8 @@
 {% extends "bill/_base.html" %}
 
 {% load static %}
-{% load helpers %}
 {% load i18n %}
+{% load render_materialized_field from wl_forms %}
 
 
 {% comment TODO by dirleyrls %}{#
@@ -39,7 +39,7 @@
                   <div class="col s11 offset-s1">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">comment</i>
-                        {% call "core:render_field" form.comment extra_classes="materialize-textarea" %}
+                        {% render_materialized_field form.comment extra_classes="materialize-textarea" %}
                     </div>
                   </div>
                 </div>

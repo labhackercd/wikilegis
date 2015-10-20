@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% load static humanize %}
-{% load i18n %}
-{% load helpers %}
+{% load static humanize i18n %}
 {% load highlight %}
+{% load render_field from wl_forms %}
 
 {% block content %}
 <div class="row main">
@@ -20,7 +19,7 @@
                     <div class="nav-wrapper">
                         <div class="input-field">
                         <form method="get" action=".">
-                            {% call "helpers:render_field" form.q type="search" required=True %}
+                            {% render_field form.q type="search" required=True %}
                             <label for="{{ form.q.id }}"><i class="material-icons">search</i></label>
                         </form>
                         </div>

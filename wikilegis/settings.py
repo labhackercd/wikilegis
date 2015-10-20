@@ -39,7 +39,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'wikilegis.auth2',
     'wikilegis.core',
-    'wikilegis.helpers',
     'wikilegis.comments2',
     'flat',
     'object_tools',

@@ -1,5 +1,5 @@
 {% load comments i18n %}
-{% load helpers %}
+{% load render_materialized_field from wl_forms %}
 
 <form action="{% comment_form_target %}" method="post">{% csrf_token %}
     {% if next %}
@@ -14,7 +14,7 @@
                 {% if field.errors %}{{ field.errors }}{% endif %}
                 <div class="input-field{% if field.errors %} error{% endif %}"
                         {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
-                    {% call "core:render_field" field extra_classes="materialize-textarea" %}
+                    {% render_materialized_field field extra_classes="materialize-textarea" %}
                 </div>
             {% endif %}
         {% endif %}

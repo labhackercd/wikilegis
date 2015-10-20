@@ -6,10 +6,12 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.core.urlresolvers import reverse
 from django.http import QueryDict
 from django.shortcuts import resolve_url
-from wikilegis.helpers import nocontext
+from django.template import Library
+
+register = Library()
 
 
-@nocontext
+@register.simple_tag
 def login_absolute_path(request, login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
     path = request.build_absolute_uri()
     resolved_login_url = resolve_url(login_url or settings.LOGIN_URL)
@@ -29,7 +31,7 @@ def login_absolute_path(request, login_url=None, redirect_field_name=REDIRECT_FI
     return urlunparse(login_url_parts)
 
 
-@nocontext
+@register.simple_tag
 def logout_absolute_path(request, next_page_field_name=REDIRECT_FIELD_NAME):
     path = request.build_absolute_uri()
     resolved_url = reverse('auth_logout')

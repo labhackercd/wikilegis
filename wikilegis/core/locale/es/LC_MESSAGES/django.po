@@ -1,0 +1,231 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-21 16:06-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:24 models.py:100
+msgid "author"
+msgstr ""
+
+#: admin.py:25
+msgid "authors"
+msgstr ""
+
+#: admin.py:34
+msgid "video"
+msgstr ""
+
+#: admin.py:35
+msgid "videos"
+msgstr ""
+
+#: forms.py:49
+msgid "User"
+msgstr ""
+
+#: forms.py:50 models.py:77
+msgid "Title"
+msgstr ""
+
+#: forms.py:63
+msgid "video url"
+msgstr ""
+
+#: forms.py:71
+msgid "You can explain your proposal here."
+msgstr ""
+
+#: forms.py:75
+msgid "Suggest a new proposal! You can begin editing the original one."
+msgstr ""
+
+#: models.py:24
+msgid "created"
+msgstr ""
+
+#: models.py:25
+msgid "modified"
+msgstr ""
+
+#: models.py:37
+msgid "data"
+msgstr ""
+
+#: models.py:38 models.py:80
+msgid "type"
+msgstr ""
+
+#: models.py:45
+msgid "title"
+msgstr ""
+
+#: models.py:46
+msgid "description"
+msgstr ""
+
+#: models.py:49
+msgid "editors"
+msgstr ""
+
+#: models.py:50
+msgid ""
+"Any users in any of these groups will have permission to change this "
+"document."
+msgstr ""
+
+#: models.py:59 models.py:72
+msgid "bill"
+msgstr ""
+
+#: models.py:60
+msgid "bills"
+msgstr ""
+
+#: models.py:73
+msgid "order"
+msgstr ""
+
+#: models.py:74 models.py:102
+msgid "content"
+msgstr ""
+
+#: models.py:78
+msgid "Article"
+msgstr ""
+
+#: models.py:84
+msgid "segment"
+msgstr ""
+
+#: models.py:85
+msgid "segments"
+msgstr ""
+
+#: models.py:101 models.py:139
+msgid "bill segment"
+msgstr ""
+
+#: models.py:105
+msgid "citizen amendment"
+msgstr ""
+
+#: models.py:106
+msgid "citizen amendments"
+msgstr ""
+
+#: models.py:137
+msgid "user"
+msgstr ""
+
+#: models.py:141
+msgid "amendment"
+msgstr ""
+
+#: templates/_about_link.html:3
+msgid "about wikilegis"
+msgstr ""
+
+#: templates/_sidebar_language_selector.html:7
+msgid "Select language"
+msgstr ""
+
+#: templates/about.html:19
+msgid "About Wikilegis"
+msgstr ""
+
+#: templates/about.html:20
+msgid ""
+"Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+"Hacker Lab, designed to enable citizens to suggest modifications to the "
+"wording of Bills. It is an open source project, developed under license CC "
+"BY 4.0. Besides participating in discussions of the bill, you can help us to "
+"improve our tool."
+msgstr ""
+
+#: templates/about.html:24
+msgid ""
+"Visit us on Trello, Github and in our page to propose new features or to "
+"report bugs. If you have programming skills, you can also collaborate to the "
+"development of Wikilegis. "
+msgstr ""
+
+#: templates/about.html:35
+msgid "Back to main page"
+msgstr ""
+
+#: templates/admin/base_site.html:6
+msgid "Django administration"
+msgstr ""
+
+#: templates/bill/_choosing_button.html:4
+msgid "Undo support"
+msgstr ""
+
+#: templates/bill/_choosing_button.html:6
+msgid "Support"
+msgstr ""
+
+#: templates/bill/bill_segment.html:33
+msgid "Change"
+msgstr ""
+
+#: templates/bill/bill_segment.html:44
+msgid "Proposals"
+msgstr ""
+
+#: templates/bill/bill_segment.html:55
+msgid "proposed:"
+msgstr ""
+
+#: templates/bill/create_amendment.html:16
+#: templates/bill/create_amendment.html:48
+msgid "Send proposal"
+msgstr ""
+
+#: templates/bill/create_amendment.html:47
+msgid "Cancel"
+msgstr ""
+
+#: templates/export/export_form.html:10
+msgid "Download"
+msgstr ""
+
+#: templates/index.html:13
+msgid "Your legislative editing tool"
+msgstr ""
+
+#: templates/index.html:16
+msgid ""
+"Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+"Hacker Lab, designed to enable citizens to suggest modifications to the "
+"wording of Bills"
+msgstr ""
+
+#: templates/index.html:54
+msgid "Nothing to show here..."
+msgstr ""
+
+#: views.py:103
+#, python-brace-format
+msgid "Cannot submit proposals to {object}."
+msgstr ""
+
+#: views.py:127
+#, python-brace-format
+msgid "{object_type} submitted."
+msgstr ""

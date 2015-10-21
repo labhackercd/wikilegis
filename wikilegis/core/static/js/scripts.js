@@ -28,4 +28,9 @@ jQuery(document).ready(function($) {
             showMoreComments(comments);
         });
     })
+    
+    //language-selector
+    $( ".language-selector" ).change(function() {
+        $('form', this).submit();
+    });
 });

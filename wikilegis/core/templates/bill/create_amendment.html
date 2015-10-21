@@ -5,11 +5,6 @@
 {% load render_materialized_field from wl_forms %}
 
 
-{% comment TODO by dirleyrls %}{#
-    1. Definir o foco inicial pro campo `content`.
-    3. Exibir um "campo" que permita ao usuário exibir/esconder o conteúdo original.
-#}{% endcomment %}
-
 {% block content3 %}
     <div class="col m8 pl-full">
         <div class="row">
@@ -27,19 +22,21 @@
                     </div>
                 </div>
 
-                <div class="row propose">
-                    <div class="input-field col s12">
-                        <p id="content-output"></p>
+                <div class="row" id="preview">
+                    <div class="input-field col s11 offset-s1">
+                        <p id="preview-content">{{ form.initial.content|linebreaksbr }}</p>
                     </div>
                 </div>
 
+                <br /><p></p>
+
                 <div class="row">
-                  <div class="col s11 offset-s1">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">comment</i>
-                        {% render_materialized_field form.comment extra_classes="materialize-textarea" %}
+                    <div class="col s11 offset-s1">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">comment</i>
+                            {% render_materialized_field form.comment extra_classes="materialize-textarea" %}
+                        </div>
                     </div>
-                  </div>
                 </div>
 
                 <div class="row">
@@ -57,41 +54,23 @@
 {% endblock %}
 
 {% block partialscript %}
-    <script type="text/javascript" src="{% static "js/jsdiff.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/diff.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/lodash.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/wikilegis.js" %}"></script>
     <script type="text/javascript">
-        function doTheDiff(e) {
-            var $field = $(e.target);
-
-            var splitinput = ($field.attr('data-original-content') || "").split('\n');
-            var splitoutput = ($field.val() || "").split('\n');
-
-            var lines = Math.max(splitinput.length, splitoutput.length);
-
-            var buildoutput = "";
-            for (var i = 0; i < lines; i++)
-            {
-                var testundefined = false;
-
-                if (typeof splitinput[i] === 'undefined') {
-                    buildoutput=buildoutput+diffString("",splitoutput[i]);
-                    testundefined=true;
-                }
-
-                if (typeof splitoutput[i] === 'undefined') {
-                    buildoutput=buildoutput+diffString(splitinput[i],"");
-                    testundefined=true;
-                }
-
-                if (!testundefined) {
-                    buildoutput=buildoutput+diffString(splitinput[i],splitoutput[i]);
-                }
+        $(function() {
+            function refreshPreview(e) {
+                var $ta = $(e.target);
+                var current = $ta.val();
+                var original = $ta.attr('data-original-content');
+                var changes = wlDiff(original, current);
+                $('#preview-content').html(changesToMarkup(changes));
             }
 
-            $("#content-output").html(buildoutput);
-        }
-
-        $(function() {
-          $("#{{ form.content.id_for_label }}").focus().on('change', doTheDiff);
+            $("#{{ form.content.id_for_label }}")
+                    // TODO Deal with paste events.
+                    .on('focus change keyup propertychange', _.debounce(refreshPreview, 100))
+                    .focus();
         });
     </script>
 {% endblock %}

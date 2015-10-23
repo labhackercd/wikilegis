@@ -12,6 +12,15 @@ function changeToMarkup(change) {
     return value;
 }
 
+function linebreaks(text) {
+    var linePattern = /(?:\r\n|\r|\n)/g;
+    var paragraphPattern = /(?:\r\n|\r|\n){2}/g;
+    return _.map(text.split(paragraphPattern), function(p) {
+        return '<p>' + p.replace(linePattern, '<br />') + '</p>';
+    }).join('\n\n');
+}
+
 function changesToMarkup(changes) {
-    return _.map(changes, changeToMarkup).join('').replace(/(?:\r\n|\r|\n)/g, '<br />');
+    changes = _.map(changes, changeToMarkup);
+    return linebreaks(changes.join(''));
 }

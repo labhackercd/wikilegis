@@ -284,6 +284,21 @@ body {
   @media screen and (max-width: 600px) {
     overflow: inherit;
   }
+  .original {
+    padding: 20px;
+    svg { 
+      opacity: .5;
+      float: left;
+			margin-right: 20px;
+    }
+    h5 {
+      font-weight: bold;
+			opacity: .6;
+			@media screen and (max-width: 400px) {
+				font-size: 1.8em;
+			}
+    }
+  }
   .bah {
     position: relative;
     .article-head {
@@ -387,9 +402,6 @@ body {
   }
   .pl-description.back {
     width: 100%;
-  }
-  .divider {
-    margin-top: 90px;
   }
   .tabs {
     background-color: transparent;

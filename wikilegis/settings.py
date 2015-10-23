@@ -83,7 +83,7 @@ ROOT_URLCONF = 'wikilegis.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'wikilegis', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -234,6 +234,10 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public'))
 
 STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
     'compressor.finders.CompressorFinder',
+)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'wikilegis', 'static'),
 )
 
 COMPRESS_PRECOMPILERS = (

@@ -1,0 +1,377 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-23 17:11-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: auth2/admin.py:11
+msgid "Personal info"
+msgstr ""
+
+#: auth2/admin.py:12
+msgid "Permissions"
+msgstr ""
+
+#: auth2/admin.py:13
+msgid "Important dates"
+msgstr ""
+
+#: auth2/models.py:37
+msgid "email address"
+msgstr ""
+
+#: auth2/models.py:39
+msgid "first name"
+msgstr ""
+
+#: auth2/models.py:40
+msgid "last name"
+msgstr ""
+
+#: auth2/models.py:41
+msgid "staff status"
+msgstr ""
+
+#: auth2/models.py:42
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: auth2/models.py:44
+msgid "active"
+msgstr ""
+
+#: auth2/models.py:45
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: auth2/models.py:47
+msgid "date joined"
+msgstr ""
+
+#: auth2/views.py:16
+msgid "Your account is now activated."
+msgstr ""
+
+#: core/admin.py:24 core/models.py:100
+msgid "author"
+msgstr ""
+
+#: core/admin.py:25
+msgid "authors"
+msgstr ""
+
+#: core/admin.py:34
+msgid "video"
+msgstr ""
+
+#: core/admin.py:35
+msgid "videos"
+msgstr ""
+
+#: core/forms.py:49
+msgid "User"
+msgstr ""
+
+#: core/forms.py:50 core/models.py:77
+msgid "Title"
+msgstr ""
+
+#: core/forms.py:63
+msgid "video url"
+msgstr ""
+
+#: core/forms.py:71
+msgid "You can explain your proposal here."
+msgstr ""
+
+#: core/forms.py:75
+msgid "Suggest a new proposal! You can begin editing the original one."
+msgstr ""
+
+#: core/models.py:24
+msgid "created"
+msgstr ""
+
+#: core/models.py:25
+msgid "modified"
+msgstr ""
+
+#: core/models.py:37
+msgid "data"
+msgstr ""
+
+#: core/models.py:38 core/models.py:80
+msgid "type"
+msgstr ""
+
+#: core/models.py:45
+msgid "title"
+msgstr ""
+
+#: core/models.py:46
+msgid "description"
+msgstr ""
+
+#: core/models.py:49
+msgid "editors"
+msgstr ""
+
+#: core/models.py:50
+msgid ""
+"Any users in any of these groups will have permission to change this "
+"document."
+msgstr ""
+
+#: core/models.py:59 core/models.py:72
+msgid "bill"
+msgstr ""
+
+#: core/models.py:60
+msgid "bills"
+msgstr ""
+
+#: core/models.py:73
+msgid "order"
+msgstr ""
+
+#: core/models.py:74 core/models.py:102
+msgid "content"
+msgstr ""
+
+#: core/models.py:78
+msgid "Article"
+msgstr ""
+
+#: core/models.py:84
+msgid "segment"
+msgstr ""
+
+#: core/models.py:85
+msgid "segments"
+msgstr ""
+
+#: core/models.py:101 core/models.py:139
+msgid "bill segment"
+msgstr ""
+
+#: core/models.py:105
+msgid "citizen amendment"
+msgstr ""
+
+#: core/models.py:106
+msgid "citizen amendments"
+msgstr ""
+
+#: core/models.py:137
+msgid "user"
+msgstr ""
+
+#: core/models.py:141
+msgid "amendment"
+msgstr ""
+
+#: core/views.py:103
+#, python-brace-format
+msgid "Cannot submit proposals to {object}."
+msgstr ""
+
+#: core/views.py:127
+#, python-brace-format
+msgid "{object_type} submitted."
+msgstr ""
+
+#: settings.py:191
+msgid "Google"
+msgstr ""
+
+#: settings.py:195
+msgid "Facebook"
+msgstr ""
+
+#: templates/_about_link.html:3
+msgid "about wikilegis"
+msgstr ""
+
+#: templates/_sidebar_language_selector.html:7
+msgid "Select language"
+msgstr ""
+
+#: templates/about.html:19
+msgid "About Wikilegis"
+msgstr ""
+
+#: templates/about.html:20
+msgid ""
+"Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+"Hacker Lab, designed to enable citizens to suggest modifications to the "
+"wording of Bills. It is an open source project, developed under license CC "
+"BY 4.0. Besides participating in discussions of the bill, you can help us to "
+"improve our tool."
+msgstr ""
+
+#: templates/about.html:24
+msgid ""
+"Visit us on Trello, Github and in our page to propose new features or to "
+"report bugs. If you have programming skills, you can also collaborate to the "
+"development of Wikilegis. "
+msgstr ""
+
+#: templates/about.html:35
+#: templates/registration/registration_complete.html:14
+msgid "Back to main page"
+msgstr ""
+
+#: templates/admin/base_site.html:6
+msgid "Django administration"
+msgstr ""
+
+#: templates/auth2/_current_user_or_login_button.html:20
+msgid "Log out"
+msgstr ""
+
+#: templates/auth2/_current_user_or_login_button.html:25
+#: templates/registration/login.html:52
+msgid "Log in"
+msgstr ""
+
+#: templates/auth2/_current_user_or_login_button.html:26
+msgid "or"
+msgstr ""
+
+#: templates/auth2/_current_user_or_login_button.html:27
+msgid "Sign up"
+msgstr ""
+
+#: templates/bill/_choosing_button.html:4
+msgid "Undo support"
+msgstr ""
+
+#: templates/bill/_choosing_button.html:6
+msgid "Support"
+msgstr ""
+
+#: templates/bill/bill_segment.html:33
+msgid "Change"
+msgstr ""
+
+#: templates/bill/bill_segment.html:44
+msgid "Proposals"
+msgstr ""
+
+#: templates/bill/bill_segment.html:55
+msgid "proposed:"
+msgstr ""
+
+#: templates/bill/create_amendment.html:11
+#: templates/bill/create_amendment.html:45
+msgid "Send proposal"
+msgstr ""
+
+#: templates/bill/create_amendment.html:44
+msgid "Cancel"
+msgstr ""
+
+#: templates/comments2/_comment_form.html:24
+msgid "Post"
+msgstr ""
+
+#: templates/comments2/_comment_form.html:25
+msgid "Preview"
+msgstr ""
+
+#: templates/export/export_form.html:10
+msgid "Download"
+msgstr ""
+
+#: templates/index.html:13
+msgid "Your legislative editing tool"
+msgstr ""
+
+#: templates/index.html:16
+msgid ""
+"Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+"Hacker Lab, designed to enable citizens to suggest modifications to the "
+"wording of Bills"
+msgstr ""
+
+#: templates/index.html:54
+msgid "Nothing to show here..."
+msgstr ""
+
+#: templates/registration/login.html:29
+msgid "Sign in"
+msgstr ""
+
+#: templates/registration/login.html:57
+msgid "Don't have an account?"
+msgstr ""
+
+#: templates/registration/login.html:57
+msgid "Sign up now!"
+msgstr ""
+
+#: templates/registration/login.html:58
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/registration/login.html:58
+msgid "Ask for a new one!"
+msgstr ""
+
+#: templates/registration/login.html:66
+#: templates/registration/registration_form.html:37
+#, python-format
+msgid "Sign in with %(backend_name)s"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:8
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: templates/registration/registration_complete.html:4
+msgid "Activation email sent"
+msgstr ""
+
+#: templates/registration/registration_complete.html:13
+msgid "Please check your email to complete the registration process."
+msgstr ""
+
+#: templates/registration/registration_form.html:26
+msgid "Sign Up"
+msgstr ""

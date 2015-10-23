@@ -10,7 +10,7 @@
             <div class="article-head">
                 <div class="quote-s"></div>
                 <div class="article-content flow-text">
-                    <span class="article-content">{{ segment.content|linebreaks }}</span>
+                    <span id="original" class="article-content" data-raw-content="{{ segment.content }}">{{ segment.content|linebreaks }}</span>
                 </div>
                 <div class="quote-f"></div>
             </div>
@@ -39,7 +39,7 @@
         <div class="divider"></div>
 
         <div class="row">
-            <div id="thelist" class="col s12 tabs-content">
+            <div class="col s12 tabs-content">
                 <!-- pls fix -->
                 <!--<h5>{% trans "Proposals" %}</h5>-->
                 <br />
@@ -51,11 +51,11 @@
                             <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
                         </div>
 
-                        <div class="content">
+                        <div class="content" data-raw-content="{{ amendment.content|escape }}">
                             <span class="author"><span class="user">{% with user=amendment.author %}{% include "auth2/_user_display_name.html" %}{% endwith %}</span> {% trans "proposed:" %}</span>
-                            <p class="pp">
-                                {{ amendment.content|safe|linebreaks }}
-                            </p>
+                            <div class="pp">
+                                {{ amendment.content|linebreaks }}
+                            </div>
                             <div class="right-align">
                                 {% include "bill/_choosing_button_2.html" %}
                             </div>
@@ -73,4 +73,21 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block partialscript %}
+    <script type="text/javascript" src="{% static "js/diff.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/lodash.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/wikilegis.js" %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            var original = $('#original').attr('data-raw-content');
+            $('.proposal .content').each(function(i, cur) {
+                var $cur = $(cur);
+                var current = $cur.attr('data-raw-content');
+                $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
+            });
+        });
+    </script>
 {% endblock %}

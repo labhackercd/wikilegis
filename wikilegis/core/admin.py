@@ -7,11 +7,30 @@ from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
+import requests
+from wikilegis.core.forms import BillAdminForm, update_proposition
+from wikilegis.core.models import Bill
 
 
 def get_permission(action, opts):
     codename = get_permission_codename(action, opts)
     return '.'.join([opts.app_label, codename])
+
+
+def propositions_update(ModelAdmin, request, queryset):
+    selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+    bills = Bill.objects.filter(id__in=selected)
+    for bill in bills:
+        try:
+            params = {'IdProp': bill.proposition_set.all()[0].id_proposition}
+            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID'
+                                    , params=params)
+            update_proposition(response, bill.proposition_set.all()[0].id_proposition)
+        except:
+            pass
+    ModelAdmin.message_user(request, "Projetos de lei atualizados com sucesso.")
+
+propositions_update.short_description = "Atualizar situação dos projetos de lei selecionados"
 
 
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -62,9 +81,23 @@ class BillChangeList(ChangeList):
 
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
-    list_display = ('title', 'description', 'status')
+    list_display = ('title', 'description', 'status', 'get_situation')
     list_filter = ['status']
-    
+    actions = [propositions_update]
+    form = BillAdminForm
+    fieldsets = [
+        (None, {'fields': ['title', 'description', 'status',  'editors']}),
+        ('Proposição Legislativa', {'fields': ['type', 'number', 'year'],
+                                    'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
+    ]
+
+    def get_situation(self, obj):
+        try:
+            return "%s" % obj.proposition_set.all()[0].situation
+        except:
+            return ''
+    get_situation.short_description = _(u'Situation')
+
     def get_fields(self, request, obj=None):
         fields = super(BillAdmin, self).get_fields(request, obj)
         # XXX This permission can't be granted to anyone but superusers,

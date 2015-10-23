@@ -12,6 +12,8 @@
         </a>
 
         <p class="pl-about">{{ bill.description|safe|linebreaks }}</p>
+        <p>Autor: {{ bill.proposition_set.all.0.author }} ({{ bill.proposition_set.all.0.party_author }}- {{ bill.proposition_set.all.0.uf_author }})</p>
+        <p class="pl-about">{{ bill.proposition_set.all.0.situation }}</p>
 
         {% for author in authors %}
             <div class="pl-author">

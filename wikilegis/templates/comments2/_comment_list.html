@@ -1,15 +1,15 @@
 {% load static %}
-<ul class="comments collection collapsible-comments" data-show="3">
+<ul class="comments collapsible-comments" data-show="3">
     {% for comment in comment_list %}
-        <li class="collection-item avatar" id="c{{ comment.id }}">
+        <li class="avatar collapsible-comments-item" id="c{{ comment.id }}">
             <span>
                 {{ comment.comment }}
             </span>
              - 
-          <span class="title"><span class="comment-name">{{ comment.name }}</span><span class="comment-submit-date"> em {{ comment.submit_date }}</span></span>
+          <span class="title"><span class="comment-name"><a href="#">{{ comment.name }}</a></span><span class="comment-submit-date"> em {{ comment.submit_date }}</span></span>
         </li>
     {%  endfor %}
-    <li class="collection-item avatar">
+<!--    <li class="avatar">
         {% include "comments2/_comment_form.html" %}
-    </li>
+    </li>-->
 </ul>

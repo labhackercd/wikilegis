@@ -292,7 +292,7 @@ body {
   @media screen and (max-width: 600px) {
     overflow: inherit;
   }
-  .original {
+  .articles-header {
     padding: 20px;
     svg { 
       opacity: .5;
@@ -452,9 +452,6 @@ body {
     .author {
       font-weight: 600;
       opacity: .65;
-    }
-    .pp {
-      color: #C3C3C3;
     }
     .added {
       color: #5d9a44;
@@ -774,6 +771,9 @@ $opacity: .4;
 .layarticle {
 	margin-top: 20px;
 	position: relative;
+	.pp {
+		color: #C3C3C3;
+	}
 	.votes {
 		margin-top: 30px;
 		padding-left: 10px;
@@ -830,6 +830,7 @@ $opacity: .4;
 }
 
 .comments {
+	margin-bottom: 20px;
 	li {
 		margin-bottom: 10px;
 	}

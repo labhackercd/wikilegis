@@ -756,6 +756,23 @@ blockquote {
   }
 }
 
+.edit-profile{
+  form{
+	width: 50%;
+  }
+  label{
+	display: block;
+  }
+  input{
+	&[type="text"]{
+	  width: 60%;
+	}
+
+  	&[type="submit"]{
+	  margin-top: 10px;
+  	}
+  }
+}
 .show-more{
     padding-top: 5px;
     margin-left: 72px;

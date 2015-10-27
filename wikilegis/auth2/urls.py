@@ -3,6 +3,7 @@ from django.conf.urls import url, include
 from registration.backends.default.views import RegistrationView
 from registration.backends.simple.views import RegistrationView as SimpleRegistrationView
 from wikilegis.auth2.views import ActivationCompleteView
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     # XXX We want the user to be redirected after successful account activation.
@@ -22,4 +23,5 @@ else:
 
 urlpatterns += [
     url(r'^register/$', registration_view.as_view(), name='registration_register'),
+    url(r'^edit/$', 'wikilegis.auth2.views.edit_profile', name='edit_profile'),
 ]

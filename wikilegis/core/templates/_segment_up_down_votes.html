@@ -1,0 +1,11 @@
+{% load count_votes %}
+<ul>
+    <li>
+        {% if request.user.id in segment.votes_segment.all|up_vote %} * {% endif %}
+        {{ segment.votes_segment.all|up_votes_count }} <button onclick="upDownVote({{ segment.id }}, 'segment', 'up')">Up Vote</button>
+    </li>
+    <li>
+        {% if request.user.id in segment.votes_segment.all|down_vote %} * {% endif %}
+        {{ segment.votes_segment.all|down_votes_count }} <button onclick="upDownVote({{ segment.id }}, 'segment', 'down')">Down Vote</button>
+    </li>
+</ul>

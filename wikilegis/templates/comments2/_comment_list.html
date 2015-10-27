@@ -1,8 +1,7 @@
 {% load static %}
 <ul class="comments collection collapsible-comments" data-show="3">
     {% for comment in comment_list %}
-        <li class="collection-item avatar collapsible-comments-item" id="c{{ comment.id }}">
-            <img src="{% static "img/user.png" %}" alt="" class="circle">
+        <li class="collection-item avatar" id="c{{ comment.id }}">
             <span>
                 {{ comment.comment }}
             </span>
@@ -11,7 +10,6 @@
         </li>
     {%  endfor %}
     <li class="collection-item avatar">
-        <img src="{% static "img/user.png" %}" alt="" class="circle">
         {% include "comments2/_comment_form.html" %}
     </li>
 </ul>

@@ -7,7 +7,11 @@ $yellow: rgb(252,
 96);
 $blue: #889FFC;
 $lightgray: #f5f5f5;
+$fkingrey: #E0E0E0;
 $gray: #3e3e3e;
+$downvote_color: #e24747;
+$upvote_color: #35ae43;
+
 .material-icons.md-36 {
   font-size: 36px;
 }
@@ -28,6 +32,10 @@ body {
 html,
 body {
   max-height: 100%;
+}
+
+a {
+	color: #6775a6;
 }
 
 body {
@@ -627,8 +635,8 @@ blockquote {
   float: left;
   margin-top: -5px;
   .pic {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     border-radius: 150px;
     -webkit-border-radius: 150px;
     -moz-border-radius: 150px;
@@ -638,18 +646,6 @@ blockquote {
   }
 }
 
-.comments.collection {
-  border: none;
-  .collection-item {
-    background-color: transparent;
-  }
-  span.comment-name {
-    color: #92A5F9;
-  }
-  span.comment-submit-date {
-    color: #A5A5A5;
-  }
-}
 
 .choose-button {
   opacity: .7;
@@ -763,11 +759,119 @@ blockquote {
   }
 }
 
-.show-more{
+
+.show-more {
     padding-top: 5px;
     margin-left: 72px;
     color: #657DE8 !important;
     &:hover{
         color: #92A5F9 !important;
     }
+}
+
+$opacity: .4;
+
+.layarticle {
+	margin-top: 20px;
+	position: relative;
+	.votes {
+		margin-top: 30px;
+		padding-left: 10px;
+		text-align: center;
+		p {
+			margin-top: 0px;	
+		}
+		a {
+			color: inherit;
+		}
+		.downvote {
+			opacity: $opacity;
+			p {
+				opacity: $opacity;
+			}
+			svg {
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+				transform: rotate(180deg);
+			}
+			&.active {
+				path {
+					fill: $downvote_color;
+				}
+				p {
+					opacity: 1;
+				}
+				opacity: 1;
+				color: $downvote_color;
+			}
+		}
+		.upvote {
+			opacity: $opacity;
+			p {
+				opacity: $opacity;
+			}
+			&.active {
+				path {
+					fill: $upvote_color;
+				}
+				p {
+					opacity: 1;
+				}
+				opacity: 1;
+				color: $upvote_color;
+			}
+		}
+	}
+	.article {
+		max-width: 840px;	
+		font-size: 1.2em;
+		font-weight: 400;
+	}
+}
+
+.comments {
+	li {
+		margin-bottom: 10px;
+	}
+	span.comment-submit-date {
+    color: #A5A5A5;
+  }
+	.main {
+		text-align: right;
+		max-width: 840px;
+		border-top: 1px solid $fkingrey;
+		padding-left: 30px;
+	}
+}
+
+.after-bar {
+	position: relative;
+	min-height: 50px;
+	.col {
+		padding-left: 0px;
+	}
+	max-width: 840px;
+	.user {
+		.user-name {
+			font-weight: bold;
+			font-size: 1.1em;
+		}
+		.date {
+			margin-top: 0px;
+			opacity: .4;
+		}
+	}
+}
+
+.proposal-button {
+	padding: 13px 30px;
+	font-weight: bold;
+	background-color: #f0cfab;
+	color: #6c5c4b;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	&:hover {
+		background-color: darken(#f0cfab, 5%);
+	}
 }

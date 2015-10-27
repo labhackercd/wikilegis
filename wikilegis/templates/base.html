@@ -23,7 +23,9 @@
         {% compress js %}
             <script type="text/javascript" src="{% static "js/jquery-2.1.4.js" %}"></script>
             <script type="text/javascript" src="{% static "js/materialize.js" %}"></script>
-            <script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
+            <script type="text/javascript" src="{% static "js/diff.min.js" %}"></script>
+            <script type="text/javascript" src="{% static "js/lodash.min.js" %}"></script>
+            <script type="text/javascript" src="{% static "js/wikilegis.js" %}"></script>
         {% endcompress %}
 
         {% if messages %}

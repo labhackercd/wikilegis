@@ -2,14 +2,12 @@
 from __future__ import unicode_literals
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 from django.utils.translation import ugettext
 from django.views.generic import RedirectView
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 
 from .forms import UserForm
-from wikilegis.auth2.models import User
 
 
 class ActivationCompleteView(RedirectView):
@@ -26,15 +24,13 @@ class ActivationCompleteView(RedirectView):
 
 @login_required
 def edit_profile(request):
-    user = User.objects.get(pk=request.user.pk)
-
     if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES, instance=user)
+        form = UserForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return render(request, 'registration/edit.html/', {'form': form})
-        else:
-            return HttpResponse("This is not working...")
+            messages.success(request, ugettext('Profile successfully updated'))
+            return redirect("edit_profile")
     else:
-        form = UserForm(instance=user)
-        return render(request, 'registration/edit.html/', {'form': form})
+        form = UserForm(instance=request.user)
+
+    return render(request, 'registration/edit.html/', {'form': form})

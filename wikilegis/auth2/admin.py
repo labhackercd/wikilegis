@@ -16,7 +16,7 @@ class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'avatar'),
+            'fields': ('email', 'password1', 'password2'),
         }),
     )
     form = UserChangeForm

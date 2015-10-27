@@ -879,55 +879,83 @@ $opacity: .4;
 		}
 	}
 }
+
 .send-proposal {
-	label {
-		padding-top: 10px;
-		padding-left: 15px;
+  label {
+	padding-top: 10px;
+	padding-left: 15px;
+  }
+
+  textarea,
+  #preview-content {
+	max-width: 840px;
+  }
+
+  textarea {
+	margin-top: 10px;
+	height: 1.5em;
+	min-height: 1.5em;
+	padding: 10px 15px !important;
+	background-color: white;
+	border: 1px solid $fkingrey !important;
+	box-shadow: none !important;
+	resize: none;
+	&:focus {
+	  outline: none;
+	  box-shadow: 0px !important;
+	  border-bottom: none;
 	}
-	
-	textarea,
-	#preview-content {
-		max-width: 840px;
+  }
+
+  #preview {
+	.input-field {
+	  margin-top: 0px;
+	  p {
+		margin-top: 0px;
+	  }
 	}
-	
+  }
+
+  #preview-content {
+	color: #868686;
+	margin-left: 50px;
+  }
+
+  .comment-ammend {
+	padding-left: 50px;
 	textarea {
-		margin-top: 10px;
-		height: 1.5em;
-		min-height: 1.5em;
-		padding: 10px 15px !important;
-		background-color: white;
-		border: 1px solid $fkingrey !important;
-		box-shadow: none !important;
-		resize: none;
-		&:focus {
-			outline: none;
-			box-shadow: 0px !important;
-			border-bottom: none;
-		}
+	  max-width: 790px;
 	}
-	
-	#preview {
-		.input-field {
-			margin-top: 0px;
-			p {
-				margin-top: 0px;
-			}
-		}
+  }
+
+  .send {
+	max-width: 640px;
+  }
+}
+
+.edit-profile{
+  form{
+	width: 50%;
+  }
+  label{
+	display: block;
+  }
+  input{
+	&[type="text"]{
+	  width: 60%;
 	}
-	
-	#preview-content {
-		color: #868686;
-		margin-left: 50px;
-	}
-	
-	.comment-ammend {
-		padding-left: 50px;
-		textarea {
-			max-width: 790px;
-		}
-	}
-	
-	.send {
-		max-width: 640px;
-	}
+
+  	&[type="submit"]{
+	  margin-top: 10px;
+  	}
+  }
+}
+
+.show-more{
+    padding-top: 5px;
+    margin-left: 72px;
+    color: #657DE8 !important;
+    &:hover{
+        color: #92A5F9 !important;
+    }
 }

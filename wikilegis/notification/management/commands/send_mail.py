@@ -17,9 +17,9 @@ class Command(BaseCommand):
         bills = Bill.objects.all()
         current_site = Site.objects.get_current()
         for bill in bills:
-            segment_amendments = defaultdict(list)
+            segment_amendments = []
             amendment_comments = defaultdict(list)
-            top_amendments = CitizenAmendment.objects.none()
+            top_amendments = []
             for segment in bill.segments.all():
                 up_votes_segment = UpDownVote.objects.filter(segment=segment, vote='up').count()
                 down_votes_segment = UpDownVote.objects.filter(segment=segment, vote='down').count()
@@ -36,7 +36,7 @@ class Command(BaseCommand):
                             last_email.hour = datetime.now()
                             last_email.save()
                     except HistoryNotification.DoesNotExist:
-                        segment_amendments[segment.content].append(amendment)
+                        segment_amendments.append(amendment.id)
                         comments = Comment.objects.filter(object_pk=amendment.pk,
                                                           content_type=ContentType.objects.get_for_model(CitizenAmendment))
                         history = HistoryNotification()
@@ -50,21 +50,23 @@ class Command(BaseCommand):
                     up_votes_amendment = UpDownVote.objects.filter(amendment=amendment, vote='up').count()
                     down_votes_amendment = UpDownVote.objects.filter(amendment=amendment, vote='down').count()
                     score_amendment = up_votes_amendment - down_votes_amendment
-                    if score_amendment >= score_segment:
-                        top_amendments.add(amendment)
+                    if score_amendment > score_segment:
+                        top_amendments.append(amendment.id)
             if segment_amendments or amendment_comments or top_amendments:
                 html = render_to_string('notification/notification_email.html',
                                         {'current_site': current_site, 'bill': bill.title,
-                                         'segments': bill.segments.values_list('id', flat=True),
-                                         'amendments': dict(segment_amendments), 'comments': dict(amendment_comments),
-                                         'top_amendments': top_amendments})
+                                         # 'segments': bill.segments.values_list('id', flat=True),
+                                         'amendments': CitizenAmendment.objects.filter(id__in=segment_amendments),
+                                         'comments': dict(amendment_comments),
+                                         'top_amendments': CitizenAmendment.objects.filter(id__in=top_amendments)})
                 superusers = User.objects.filter(is_superuser=True)
                 email_list = []
+                subject = u'[Wikilegis] Atualizações ao %s' % bill.title
                 for superuser in superusers:
                     email_list.append(superuser.email)
                 for editor in bill.editors.all():
                     for user in editor.user_set.all():
                         email_list.append(user.email)
-                mail = EmailMultiAlternatives('Notificações - Wikilegis', '', 'erivanio.vasconcelos@gmail.com', email_list)
+                mail = EmailMultiAlternatives(subject, '', '', email_list)
                 mail.attach_alternative(html, 'text/html')
                 mail.send()

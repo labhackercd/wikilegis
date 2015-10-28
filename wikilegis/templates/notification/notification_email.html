@@ -5,26 +5,67 @@
 {% block content %}
 
     <div class="col m12 pl-full">
-    <h4>Bill : {{ bill }}</h4>
-    <hr>
+    <p>Olá!?</p>
+
+    <p>Usuários do Wikilegis fizeram sugestões ao</p>
+
+    <h3>{{ bill }}</h3>
     {% if amendments %}
-        <h2>Alterações novas</h2>
-        {% for segment, amendment in amendments.items %}
-            <h3>Segment : {{ segment }}</h3>
-            <h5>{{ amendment|length }} sugestões para alteração</h5>
-            {% for obeject in amendment %}
-                <h5>{{ obeject.content|safe }}</h5>
-                <hr>
-            {% endfor %}
+    <hr>
+        {% if amendments|length == 1 %}
+        <h3>Nova sugestão de alteração</h3>
+        {% else %}
+        <h3>Novas sugestões de alteração</h3>
+        {% endif %}
+        {% for amendment in amendments %}
+            {% ifchanged amendment.segment %}
+            <h4><b>Trecho original:</b></h4>
+            <blockquote style="color: #1B5E20"><b>{{ amendment.segment.content }}</b>
+                <a href="{{ current_site }}{{ amendment.segment.get_absolute_url }}">Acesse clicando aqui</a></blockquote>
+            <h4><b>Alterações:</b></h4>
+            {% endifchanged %}
+            <blockquote style="color: #00C853">{{ amendment.content|safe }}
+                <span style="color: #666666"> - {{ amendment.author }} </span>
+                <a href="{{ current_site }}{{ amendment.get_absolute_url }}">Acesse clicando aqui</a>
+            </blockquote>
         {% endfor %}
+        <br>
+        <br>
     {% endif %}
     {% if comments %}
-        <h2>Comentários novos</h2>
+    <hr>
+        {% if comments|length == 1 %}
+        <h3>Novo comentário</h3>
+        {% else %}
+        <h3>Novos comentários</h3>
+        {% endif %}
         {% for key, value_list in comments.items %}
-            <h5>Segment : {{ key|safe }} - {{ value_list|length }} comentários</h5>
+            {% if value_list|length == 1 %}
+            <h4>Novo comentário para a sugestão de alteração:</h4>
+            <i style="color: #00C853">{{ key|safe }}</i>
+            {% else %}
+            <h4>Novos comentários para a sugestão de alteração:</h4>
+            <i style="color: #00C853">{{ key|safe }}</i>
+            {% endif %}
             {% for comment in value_list %}
-                <h4>{{ comment }}</h4>
+                <blockquote style="color: #d8730a">{{ comment }}</blockquote>
             {% endfor %}
+        {% endfor %}
+        <br>
+        <br>
+    {% endif %}
+    {% if top_amendments %}
+    <hr>
+        {% if top_amendments|length == 1 %}
+        <h4>Os usuários do wikilegis apoiam esta redação mais do que a original:</h4>
+        {% else %}
+        <h4>Os usuários do wikilegis apoiam estas redações mais do que a original:</h4>
+        {% endif %}
+        {% for top in top_amendments %}
+            <blockquote style="color: #00C853">{{ top.content|safe }}
+                <span style="color: #666666"> - {{ top.author }} </span>
+                <a href="{{ current_site }}{{ top.get_absolute_url }}">Acesse clicando aqui</a>
+            </blockquote>
         {% endfor %}
     {% endif %}
     </div>

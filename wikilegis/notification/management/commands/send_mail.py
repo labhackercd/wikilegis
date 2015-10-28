@@ -8,7 +8,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django_comments.models import Comment
 from wikilegis.auth2.models import User
-from wikilegis.core.models import Bill, CitizenAmendment
+from wikilegis.core.models import Bill, CitizenAmendment, UpDownVote
 from wikilegis.notification.models import HistoryNotification
 
 
@@ -19,7 +19,11 @@ class Command(BaseCommand):
         for bill in bills:
             segment_amendments = defaultdict(list)
             amendment_comments = defaultdict(list)
+            top_amendments = CitizenAmendment.objects.none()
             for segment in bill.segments.all():
+                up_votes_segment = UpDownVote.objects.filter(segment=segment, vote='up').count()
+                down_votes_segment = UpDownVote.objects.filter(segment=segment, vote='down').count()
+                score_segment = up_votes_segment - down_votes_segment
                 for amendment in segment.amendments.all():
                     try:
                         last_email = HistoryNotification.objects.get(amendment=amendment)
@@ -43,11 +47,17 @@ class Command(BaseCommand):
                                 amendment_comments[amendment.content].append(comment.comment)
                                 history.hour = datetime.now()
                         history.save()
-            if segment_amendments or amendment_comments:
+                    up_votes_amendment = UpDownVote.objects.filter(amendment=amendment, vote='up').count()
+                    down_votes_amendment = UpDownVote.objects.filter(amendment=amendment, vote='down').count()
+                    score_amendment = up_votes_amendment - down_votes_amendment
+                    if score_amendment >= score_segment:
+                        top_amendments.add(amendment)
+            if segment_amendments or amendment_comments or top_amendments:
                 html = render_to_string('notification/notification_email.html',
                                         {'current_site': current_site, 'bill': bill.title,
                                          'segments': bill.segments.values_list('id', flat=True),
-                                         'amendments': dict(segment_amendments), 'comments': dict(amendment_comments)})
+                                         'amendments': dict(segment_amendments), 'comments': dict(amendment_comments),
+                                         'top_amendments': top_amendments})
                 superusers = User.objects.filter(is_superuser=True)
                 email_list = []
                 for superuser in superusers:

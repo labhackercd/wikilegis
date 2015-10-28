@@ -55,8 +55,10 @@ class User(AbstractBaseUser, PermissionsMixin):
                                     help_text=_('Designates whether this user should be treated as '
                                                 'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
-    avatar = ImageCropField(upload_to="avatars/", validators=[avatar_validation], null=True, blank=True)
-    cropping = ImageRatioField('avatar', '70x70')
+    avatar = ImageCropField(_('profile picture'), upload_to="avatars/",
+                            validators=[avatar_validation], null=True, blank=True)
+    cropping = ImageRatioField('avatar', '70x70', help_text=_(
+        'Note that the preview above will only be updated after you submit the form.'))
 
     objects = UserManager()
 

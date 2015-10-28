@@ -11,7 +11,7 @@
                         <img src="{% static "img/user.png" %}" alt="" class="circle responsive-img">
                     </div> -->
                     <div class="col s12">
-                        <span class="card-title">{% include "auth2/_user_display_name.html" %}</span>
+                        <span class="card-title"><a href="{% url 'edit_profile' %}">{% include "auth2/_user_display_name.html" %}</a></span>
                     </div>
                 </div>
             </div>

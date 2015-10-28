@@ -757,20 +757,28 @@ blockquote {
 }
 
 .edit-profile{
-  form{
-	width: 50%;
+  h5{
+	color: #3e3e3e;
   }
-  label{
+  span.clearable-file-input{
 	display: block;
   }
-  input{
-	&[type="text"]{
-	  width: 60%;
+  .input-field{
+	margin-top: 2.1rem;
+  }
+  .picture{
+	color: #9e9e9e;
+	margin-left: 1%;
+	label.active{
+	  top: 0.2rem;
+	  left: 0.15rem;
 	}
-
-  	&[type="submit"]{
-	  margin-top: 10px;
-  	}
+	.clearable-file-input label{
+	  left: 0rem;
+	}
+  }
+  button, input[type='text']{
+	margin-left: 1%;
   }
 }
 .show-more{

@@ -33,4 +33,4 @@ def edit_profile(request):
     else:
         form = UserForm(instance=request.user)
 
-    return render(request, 'registration/edit.html/', {'form': form})
+    return render(request, 'auth2/edit.html', {'form': form})

@@ -1,17 +1,24 @@
 {% load static %}
+{% load cropping %}
+
 <ul class="comments collection collapsible-comments" data-show="3">
     {% for comment in comment_list %}
         <li class="collection-item avatar collapsible-comments-item" id="c{{ comment.id }}">
-            <img src="{% static "img/user.png" %}" alt="" class="circle">
+            <img src="{% cropped_thumbnail comment.user 'cropping' %}" alt="" class="circle">
             <span>
                 {{ comment.comment }}
             </span>
              - 
-          <span class="title"><span class="comment-name">{{ comment.name }}</span><span class="comment-submit-date"> em {{ comment.submit_date }}</span></span>
+          <span class="title"><span class="comment-name"><a href="{% url 'users_profile' comment.user.pk %}">{{ comment.name }}</a></span><span class="comment-submit-date"> em {{ comment.submit_date }}</span></span>
         </li>
     {%  endfor %}
     <li class="collection-item avatar">
-        <img src="{% static "img/user.png" %}" alt="" class="circle">
+        {% if user.is_authenticated %}
+            <img src="{% cropped_thumbnail user 'cropping' %}" alt="" class="circle">
+        {% else %}
+            <img src="{% static "img/user.png" %}" alt="" class="circle">
+        {% endif %}
+        
         {% include "comments2/_comment_form.html" %}
     </li>
 </ul>

@@ -49,6 +49,8 @@ def render_materialized_field(field, *args, **kwargs):
 
     field_errors = force_text(field.errors) if field.errors else ''
 
+    # TODO render field's help_text
+
     return '\n'.join([
         render_field(field, *args, **kwargs),
         field.label_tag(),

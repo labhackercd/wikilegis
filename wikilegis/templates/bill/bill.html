@@ -2,6 +2,7 @@
 
 {% load static humanize i18n %}
 {% load video from embed_video_tags %}
+{% load cropping %}
 
 {% block content2 %}
     {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
@@ -15,9 +16,9 @@
 
         {% for author in authors %}
             <div class="pl-author">
-                <div class="avatar" style="background-image: url('{% static "img/user.png" %}')"></div>
+                <div class="avatar" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
                 <div class="info">
-                    <span class="author">{{ author.user }}</span>
+                    <span class="author"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
                 </div>
             </div>
             {% if not forloop.last %}<hr />{% endif %}

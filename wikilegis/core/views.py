@@ -17,7 +17,14 @@ from wikilegis.core.genericdata import BillVideo, BillAuthorData
 
 
 def index(request):
-    bills = Bill.objects.exclude(status='draft')
+    bills = Bill.objects.all().order_by('-modified')
+
+    if request.GET:
+        order = request.GET['order']
+        if order == 'alphabetic':
+            bills = Bill.objects.all().order_by('-title')
+        if order == 'date':
+            bills = Bill.objects.all().order_by('-modified')
 
     return render(request, 'index.html', context=dict(
         bills=bills,

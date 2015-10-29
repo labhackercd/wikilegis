@@ -11,6 +11,7 @@ $fkingrey: #E0E0E0;
 $gray: #3e3e3e;
 $downvote_color: #e24747;
 $upvote_color: #35ae43;
+$a_color: #6775a6; 
 
 .material-icons.md-36 {
   font-size: 36px;
@@ -35,7 +36,7 @@ body {
 }
 
 a {
-	color: #6775a6;
+	color: $a_color;
 }
 
 body {
@@ -306,6 +307,10 @@ body {
 				font-size: 1.8em;
 			}
     }
+		h6 {
+			opacity: .6;	
+			font-weight: bold;
+		}
   }
   .bah {
     position: relative;
@@ -843,6 +848,18 @@ $opacity: .4;
 		border-top: 1px solid $fkingrey;
 		padding-left: 30px;
 	}
+	.submit {
+		margin-top: 0px;
+		font-weight: bold;
+		input[type=submit] {
+			background: none;	
+			border: none;
+			color: $a_color;
+			&:focus {
+				outline: none;	
+			}
+		}
+	}
 }
 
 .after-bar {
@@ -874,5 +891,82 @@ $opacity: .4;
 	bottom: 0px;
 	&:hover {
 		background-color: darken(#f0cfab, 5%);
+	}
+}
+
+// Diff Style
+
+.added {
+	background-color: #d1e1ad; 
+	color: #405a04; 
+	font-weight: bold;
+	opacity: .7;
+}
+
+.removed {
+	background-color: #e5bdb2; 
+	color: #a82400; 
+	text-decoration: line-through; 
+	font-weight: bold;
+	opacity: .7;
+}
+
+.comment-textarea {
+	margin-top: 20px;
+	max-width: 780px;
+	@media screen and (max-width: 600px) {
+    max-width: 400px;;
+  }
+	textarea {
+		height: 1.5em;
+		min-height: 1.5em;
+		padding: 10px 15px !important;
+		background-color: white;
+		border: 1px solid $fkingrey !important;
+		box-shadow: none !important;
+		resize: none;
+		&:focus {
+			outline: none;
+			box-shadow: 0px !important;
+			border-bottom: none;
+		}
+	}
+}
+
+.send-proposal {
+	label {
+		padding-top: 10px;
+    padding-left: 15px;
+	}
+	textarea, #preview-content {
+		max-width: 840px;	
+	}
+	textarea {
+		margin-top: 10px;
+		height: 1.5em;
+		min-height: 1.5em;
+		padding: 10px 15px !important;
+		background-color: white;
+		border: 1px solid $fkingrey !important;
+		box-shadow: none !important;
+		resize: none;
+		&:focus {
+			outline: none;
+			box-shadow: 0px !important;
+			border-bottom: none;
+		}	
+	}
+	#preview-content {
+		color: #868686;
+		margin-left: 50px;
+	}
+	.comment-ammend {
+		padding-left: 50px;
+		textarea {
+			max-width: 790px;	
+		}
+	}
+	.send {
+		max-width: 640px;	
 	}
 }

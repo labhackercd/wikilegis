@@ -12,15 +12,15 @@
                 <div>{{ field }}</div>
             {% else %}
                 {% if field.errors %}{{ field.errors }}{% endif %}
-                <div class="input-field{% if field.errors %} error{% endif %}"
+                <div class="comment-textarea {% if field.errors %} error{% endif %}"
                         {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
-                    {% render_materialized_field field extra_classes="materialize-textarea" %}
+                    {% render_materialized_field field extra_classes="materialize-textarea" placeholder="Escreva um comentário" %}
                 </div>
             {% endif %}
         {% endif %}
     {% endfor %}
     <p class="submit">
-        <input type="submit" name="post" class="submit-post btn" value="{% trans "Post" %}"/>
-        <input type="submit" name="preview" class="submit-preview btn" value="{% trans "Preview" %}"/>
+        <input type="submit" name="post" class="submit-post" value="{% trans "Post" %}"/>
+        <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}"/>
     </p>
 </form>

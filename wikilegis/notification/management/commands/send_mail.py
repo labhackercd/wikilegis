@@ -17,7 +17,7 @@ class Command(BaseCommand):
         bills = Bill.objects.all()
         current_site = Site.objects.get_current()
         for bill in bills:
-            segment_amendments = []
+            segment_amendments = defaultdict(list)
             amendment_comments = defaultdict(list)
             top_amendments = []
             for segment in bill.segments.all():
@@ -32,11 +32,11 @@ class Command(BaseCommand):
                                                           submit_date__gte=last_email.hour)
                         if comments:
                             for comment in comments:
-                                amendment_comments[amendment.content].append(comment.comment)
+                                amendment_comments[amendment].append(comment)
                             last_email.hour = datetime.now()
                             last_email.save()
                     except HistoryNotification.DoesNotExist:
-                        segment_amendments.append(amendment.id)
+                        segment_amendments[segment].append(amendment)
                         comments = Comment.objects.filter(object_pk=amendment.pk,
                                                           content_type=ContentType.objects.get_for_model(CitizenAmendment))
                         history = HistoryNotification()
@@ -44,7 +44,7 @@ class Command(BaseCommand):
                         history.hour = datetime.now()
                         if comments:
                             for comment in comments:
-                                amendment_comments[amendment.content].append(comment.comment)
+                                amendment_comments[amendment].append(comment)
                                 history.hour = datetime.now()
                         history.save()
                     up_votes_amendment = UpDownVote.objects.filter(amendment=amendment, vote='up').count()
@@ -55,8 +55,7 @@ class Command(BaseCommand):
             if segment_amendments or amendment_comments or top_amendments:
                 html = render_to_string('notification/notification_email.html',
                                         {'current_site': current_site, 'bill': bill.title,
-                                         # 'segments': bill.segments.values_list('id', flat=True),
-                                         'amendments': CitizenAmendment.objects.filter(id__in=segment_amendments),
+                                         'amendments': dict(segment_amendments),
                                          'comments': dict(amendment_comments),
                                          'top_amendments': CitizenAmendment.objects.filter(id__in=top_amendments)})
                 superusers = User.objects.filter(is_superuser=True)

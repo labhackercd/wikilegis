@@ -18,7 +18,7 @@
             <div class="pl-author">
                 <div class="avatar" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
                 <div class="info">
-                    <span class="author">{{ author.user }}</span>
+                    <span class="author"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
                 </div>
             </div>
             {% if not forloop.last %}<hr />{% endif %}

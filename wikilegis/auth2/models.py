@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import permalink
 from image_cropping import ImageCropField, ImageRatioField
 from django import forms
 
@@ -84,3 +85,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_display_name(self):
         return self.get_full_name() or self.email
+
+    @permalink
+    def get_absolute_url(self):
+        return 'users_profile', [self.pk], {}

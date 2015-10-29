@@ -22,7 +22,7 @@
                         <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
                     </div>
                     <div class="info">
-                        <span class="author">{{ author.user }}</span>
+                        <span class="author"><a href="{{ author.user.get_absolute_url }}">{{ author.user }}</a></span>
                     </div>
                 </div>
             {% endif %}

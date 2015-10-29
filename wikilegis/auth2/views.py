@@ -3,11 +3,12 @@ from __future__ import unicode_literals
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import ugettext
 from django.views.generic import RedirectView
 
 from .forms import UserForm
+from wikilegis.auth2.models import User
 
 
 class ActivationCompleteView(RedirectView):
@@ -34,3 +35,10 @@ def edit_profile(request):
         form = UserForm(instance=request.user)
 
     return render(request, 'auth2/edit.html', {'form': form})
+
+
+@login_required
+def show_users_profile(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+
+    return render(request, 'auth2/show_users_profile.html', {'user': user})

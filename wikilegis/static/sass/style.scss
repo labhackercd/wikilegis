@@ -35,6 +35,9 @@ body {
   background-color: $lightgray;
 }
 
+strong{
+  font-weight: 600;
+}
 .intro {
   margin-bottom: -22px;
   .about {
@@ -779,6 +782,16 @@ blockquote {
   }
   button, input[type='text']{
 	margin-left: 1%;
+  }
+}
+
+.show-profile{
+  margin-top: 10px;
+  img{
+    float: left;
+  }
+  h3{
+    margin: 10px 0;
   }
 }
 .show-more{

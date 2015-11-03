@@ -3,7 +3,7 @@
         <h5>{{ segment.content }}</h5>
     </blockquote>
 {% else %}
-    <a href="{% url "show_segment" bill.id segment.id %}">
+    <a class="bill-link" href="{% url "show_segment" bill.id segment.id %}">
         <div class="article" id="segment-{{ segment.id }}">
             <div class="comments-counter">
                 <div class="cn">{{ segment.amendments.all.count }}</div>

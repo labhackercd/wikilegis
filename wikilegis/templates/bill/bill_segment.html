@@ -34,7 +34,7 @@
             </div>
 
             <div class="col s11">
-                <div class="article">
+                <div class="article-prop">
                     <p id="original" data-raw-content="{{ segment.content }}">{{ segment.content|linebreaks }}</p>
                 </div>
                 <div class="after-bar">
@@ -70,7 +70,6 @@
 				</svg>
             <h5>Propostas da comunidade</h5>
         </div>
-
         <div class="divider"></div>
         {% for amendment in segment.amendments.all %}
             <div class="row layarticle prop" id="amendment-{{ amendment.pk }}">
@@ -80,7 +79,7 @@
                     </div>
                 </div>
                 <div class="col s11">
-                    <div class="article" data-raw-content="{{ amendment.content|escape }}">
+                    <div class="article-prop" data-raw-content="{{ amendment.content|escape }}">
                         <p class="pp">{{ amendment.content|linebreaks }}</p>
                     </div>
                     <div class="after-bar">
@@ -115,7 +114,7 @@
     <script type="text/javascript">
         $(function() {
             var original = $('#original').attr('data-raw-content');
-            $('.prop .article').each(function(i, cur) {
+            $('.prop .article-prop').each(function(i, cur) {
                 var $cur = $(cur);
                 var current = $cur.attr('data-raw-content');
                 $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));

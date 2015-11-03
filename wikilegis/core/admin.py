@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
 from django.contrib.contenttypes.admin import GenericTabularInline
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
@@ -65,12 +66,10 @@ class BillAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'get_report')
 
     def get_report(self, obj):
-        try:
-            return u'<a class="default" href="/bill/%s/report/">Ver</a>' % obj.id
-        except:
-            return ''
+        return u'<a class="default" href="{url}">{title}</a>'.format(
+            url=reverse('bill_report', args=[obj.pk]), title=_('Show'))
 
-    get_report.short_description = 'Relatório'
+    get_report.short_description = _('Report')
     get_report.allow_tags = True
 
     def get_fields(self, request, obj=None):

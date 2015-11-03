@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-23 17:11-0200\n"
+"POT-Creation-Date: 2015-11-03 15:23-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,21 +70,29 @@ msgstr "data de cadastro"
 msgid "Your account is now activated."
 msgstr "Sua conta agora está ativada."
 
-#: core/admin.py:24 core/models.py:100
+#: core/admin.py:25 core/models.py:100
 msgid "author"
 msgstr "autor"
 
-#: core/admin.py:25
+#: core/admin.py:26
 msgid "authors"
 msgstr "autores"
 
-#: core/admin.py:34
+#: core/admin.py:35
 msgid "video"
 msgstr "vídeo"
 
-#: core/admin.py:35
+#: core/admin.py:36
 msgid "videos"
 msgstr "vídeos"
+
+#: core/admin.py:70
+msgid "Show"
+msgstr "Ver"
+
+#: core/admin.py:72
+msgid "Report"
+msgstr "Relatório"
 
 #: core/forms.py:49
 msgid "User"
@@ -188,12 +196,12 @@ msgstr "usuário"
 msgid "amendment"
 msgstr "proposta"
 
-#: core/views.py:103
+#: core/views.py:104
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:127
+#: core/views.py:128
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."

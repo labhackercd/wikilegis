@@ -65,8 +65,10 @@ docs/_build/
 # PyBuilder
 target/
 
+### Django Decouple ###
+*.ini
 
-### Django ###
+### Pycharm ###
 *.idea
 
 ### Django ###

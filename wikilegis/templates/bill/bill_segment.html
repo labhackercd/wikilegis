@@ -3,11 +3,27 @@
 {% load static %}
 {% load i18n %}
 {% load render_comments from comments2 %}
+{% load helpers %}
+{% load count_votes %}
 
 {% block content3 %}
     <div class="col m8 pl-full">
         <div class="bah">
             <div class="article-head">
+                {% if user.is_authenticated %}
+                <div id="id_segment_up_down_vote">
+                    <ul>
+                        <li>
+                            {% if request.user.id in segment.votes_segment.all|up_vote %} * {% endif %}
+                            {{ segment.votes_segment.all|up_votes_count }} <button onclick="upDownVote({{ segment.id }}, 'segment', 'up')">Up Vote</button>
+                        </li>
+                        <li>
+                            {% if request.user.id in segment.votes_segment.all|down_vote %} * {% endif %}
+                            {{ segment.votes_segment.all|down_votes_count }} <button onclick="upDownVote({{ segment.id }}, 'segment', 'down')">Down Vote</button>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
                 <div class="quote-s"></div>
                 <div class="article-content flow-text">
                     <span id="original" class="article-content" data-raw-content="{{ segment.content }}">{{ segment.content|linebreaks }}</span>
@@ -47,6 +63,20 @@
                 {% for amendment in segment.amendments.all %}
                     <br />
                     <div class="proposal" id="amendment-{{ amendment.pk }}">
+                    {% if user.is_authenticated %}
+                        <div id="id_amendment-{{ amendment.pk }}_up_down_vote">
+                            <ul>
+                                <li>
+                                    {% if request.user.id in amendment.votes_amendment.all|up_vote %} * {% endif %}
+                                    {{ amendment.votes_amendment.all|up_votes_count }} <button onclick="upDownVote({{ amendment.id }}, 'amendment', 'up')">Up Vote</button>
+                                </li>
+                                <li>
+                                    {% if request.user.id in amendment.votes_amendment.all|down_vote %} * {% endif %}
+                                    {{ amendment.votes_amendment.all|down_votes_count }} <button onclick="upDownVote({{ amendment.id }}, 'amendment', 'down')">Down Vote</button>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
                         <div class="avatr">
                             <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
                         </div>
@@ -87,4 +117,27 @@
             });
         });
     </script>
+    {% if user.is_authenticated %}
+    <script type="text/javascript">
+        function upDownVote(object_id, model, vote){
+            var url = '{% url 'up_down_vote' request.user.id 0 'param2' 'param3' %}';
+            url = url.replace('0', object_id).replace('param2', model).replace('param3', vote);
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    if(model=='segment'){
+                        $("#id_segment_up_down_vote").html(data);
+                    }
+                    if(model=='amendment'){
+                        $("#id_amendment-"+object_id+"_up_down_vote").html(data);
+                    }
+                },
+                error: function (data) {
+                    alert("Ocorreu um erro, por favor, tente novamente.");
+                }
+            });
+        }
+    </script>
+    {% endif %}
 {% endblock %}

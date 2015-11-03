@@ -142,3 +142,19 @@ class UserSegmentChoice(models.Model):
 
     class Meta:
         unique_together = ('user', 'segment')
+
+
+class UpDownVote(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
+    segment = models.ForeignKey('core.BillSegment', related_name='votes_segment', null=True, blank=True,
+                                verbose_name=_('bill segment'))
+    amendment = models.ForeignKey('core.CitizenAmendment', related_name='votes_amendment', null=True, blank=True,
+                                  verbose_name=_('amendment'))
+    vote = models.CharField(max_length=10, choices=(('up', _('Up vote')), ('down', _('Down vote'))))
+    created = models.DateTimeField(_('created'), editable=False, blank=True, auto_now_add=True)
+
+    class Meta:
+        unique_together = (('user', 'segment'), ('user', 'amendment'))
+
+    def __unicode__(self):
+        return self.user

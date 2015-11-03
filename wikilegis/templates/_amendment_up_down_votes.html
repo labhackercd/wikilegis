@@ -1,0 +1,11 @@
+{% load count_votes %}
+<ul>
+    <li>
+        {% if request.user.id in amendment.votes_amendment.all|up_vote %} * {% endif %}
+        {{ amendment.votes_amendment.all|up_votes_count }} <button onclick="upDownVote({{ amendment.id }}, 'amendment', 'up')">Up Vote</button>
+    </li>
+    <li>
+        {% if request.user.id in amendment.votes_amendment.all|down_vote %} * {% endif %}
+        {{ amendment.votes_amendment.all|down_votes_count }} <button onclick="upDownVote({{ amendment.id }}, 'amendment', 'down')">Down Vote</button>
+    </li>
+</ul>

@@ -3,13 +3,14 @@ from __future__ import unicode_literals
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404, render_to_response
+from django.template import RequestContext
 from django.utils.text import capfirst
 from django.utils.translation import ugettext
 from django.views.generic import DetailView
 
 from .forms import CitizenAmendmentCreationForm
-from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice, GenericData
+from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice, GenericData, UpDownVote
 from wikilegis.comments2.utils import create_comment
 from wikilegis.core.genericdata import BillVideo, BillAuthorData
 
@@ -176,3 +177,36 @@ class BillReport(DetailView):
     model = Bill
     template_name = 'bill/bill_report.html'
 
+
+@login_required
+def up_down_vote(request, user_id, object_id, model, vote):
+    user_id = int(user_id)
+    object_id = int(object_id)
+    if request.user.id == user_id:
+        if model == 'segment':
+            try:
+                updownvote = UpDownVote.objects.get(user_id=user_id, segment_id=object_id)
+                if updownvote.vote == vote:
+                    updownvote.delete()
+                else:
+                    updownvote.delete()
+                    UpDownVote.objects.create(user_id=user_id, segment_id=object_id, vote=vote)
+            except UpDownVote.DoesNotExist:
+                UpDownVote.objects.create(user_id=user_id, segment_id=object_id, vote=vote)
+            return render_to_response('_segment_up_down_votes.html', {'segment': BillSegment.objects.get(id=object_id)},
+                                      context_instance=RequestContext(request))
+        elif model == 'amendment':
+            try:
+                updownvote = UpDownVote.objects.get(user_id=user_id, amendment_id=object_id)
+                if updownvote.vote == vote:
+                    updownvote.delete()
+                else:
+                    updownvote.delete()
+                    UpDownVote.objects.create(user_id=user_id, amendment_id=object_id, vote=vote)
+            except UpDownVote.DoesNotExist:
+                UpDownVote.objects.create(user_id=user_id, amendment_id=object_id, vote=vote)
+            return render_to_response('_amendment_up_down_votes.html',
+                                      {'amendment': CitizenAmendment.objects.get(id=object_id)},
+                                      context_instance=RequestContext(request))
+    else:
+        return {}

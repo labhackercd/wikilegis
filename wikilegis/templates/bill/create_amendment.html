@@ -6,9 +6,26 @@
 
 
 {% block content3 %}
-    <div class="col m8 pl-full">
+    <div class="col m8 pl-full send-proposal">
         <div class="row">
-            <h4>{% trans "Send proposal" %}</h4>
+            <div class="articles-header">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" viewBox="0 0 494.64 494.64" style="display: block;" xml:space="preserve" class="detail convertSvgInline replaced-svg" width="50px" height="50px" data-id="1351" data-kw="purchase1" fill="#000000">
+								<g>
+									<g>
+										<path style="" d="M491.986,79.216c-2.775-4.641-7.351-7.895-12.631-8.957L199.171,2.712    c-9.234-1.79-18.344,3.311-21.54,12.134L70.833,286.161l35.654,12.993l101.21-257.977L451.144,103.3    c-15.204,47.134-51.383,145.512-86.064,237.112c-30.236,79.921-47.635,107.289-80.705,112.878    c-0.039-0.039-0.075-0.077-0.075-0.135c-67.586,9.474-66.373-76.688-66.373-76.688L2.076,289.276    C-13.263,386.5,61.443,409.884,61.443,409.884l158.033,71.75c0.038,0.02,24.708,11.771,51.521,10.563    c72.323-1.703,97.739-54.218,129.585-138.352c46.008-121.594,92.705-257.838,93.164-259.283    C495.392,89.407,494.742,83.847,491.986,79.216z" fill=""></path>
+										<path style="" d="M364.272,188.63c1.646,0.45,3.35,0.689,5.033,0.689c8.324,0,15.94-5.55,18.274-13.971    c2.774-10.115-3.216-20.564-13.317-23.32l-82.233-25.381c-9.989-2.765-20.555,3.177-23.311,13.282    c-2.757,10.114,3.178,20.564,13.318,23.33L364.272,188.63z" fill=""></path>
+										<path style="" d="M235.784,215.939c-3.296,9.962,2.055,20.69,11.989,24.015l81.802,29.232    c1.986,0.661,3.938,0.958,5.907,0.969c7.979,0.042,15.453-4.991,18.117-12.96c3.305-9.935-2.036-20.679-12.01-24.002    l-81.771-29.213C249.825,200.673,239.119,206.023,235.784,215.939z" fill=""></path>
+										<path style="" d="M228.587,283.185c-9.952-3.33-20.698,2.104-23.952,12.096c-3.272,9.914,2.182,20.67,12.134,23.923    l81.973,29.111c1.975,0.669,3.942,0.956,5.936,0.956c7.961,0,15.387-5.07,18.01-13.033c3.271-9.971-2.163-20.707-12.115-23.961    L228.587,283.185z" fill=""></path>
+										<path style="" d="M225.552,104.517c11.617,0,21.043,9.167,21.043,20.459c0,11.301-9.426,20.458-21.043,20.458    c-11.626,0-21.052-9.158-21.052-20.458C204.501,113.684,213.926,104.517,225.552,104.517z" fill=""></path>
+										<path style="" d="M195.783,180.572c11.627,0,21.043,9.158,21.043,20.449c0,11.282-9.416,20.439-21.043,20.439    c-11.626,0-21.052-9.157-21.052-20.439C174.731,189.731,184.157,180.572,195.783,180.572z" fill=""></path>
+										<path style="" d="M164.033,259.039c11.627,0,21.052,9.168,21.052,20.479c0,11.29-9.425,20.438-21.052,20.438    c-11.626,0-21.052-9.146-21.052-20.438C142.981,268.207,152.407,259.039,164.033,259.039z" fill=""></path>
+									</g>
+								</g>
+							</svg>
+							<h5>{% trans "Send proposal" %}</h5>
+							<h6>Crie sua proposta para esse artigo tomando o original como base</h6>
+						</div>
+						<div class="divider"></div>
 
             <form class="col s12" action="./" method="POST">
                 {% csrf_token %}
@@ -23,7 +40,7 @@
                 </div>
 
                 <div class="row" id="preview">
-                    <div class="input-field col s11 offset-s1">
+                    <div class="input-field col s11">
                         <div id="preview-content">{{ form.initial.content|linebreaksbr }}</div>
                     </div>
                 </div>
@@ -31,7 +48,7 @@
                 <br /><p></p>
 
                 <div class="row">
-                    <div class="col s11 offset-s1">
+                    <div class="col s11 comment-ammend">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">comment</i>
                             {% render_materialized_field form.comment extra_classes="materialize-textarea" %}
@@ -39,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row send">
                     <div class="col s12 right-align">
                         <a class="btn waves-effect waves-light" href="{% url "show_segment" segment.bill.id segment.id %}">{% trans "Cancel" %}</a>
                         <button class="btn waves-effect waves-light" type="submit" name="action">{% trans "Send proposal" %}

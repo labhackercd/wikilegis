@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 15:23-0200\n"
+"POT-Creation-Date: 2015-11-04 16:07-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,7 +176,7 @@ msgstr "trecho"
 msgid "segments"
 msgstr "trechos"
 
-#: core/models.py:101 core/models.py:139
+#: core/models.py:101
 msgid "bill segment"
 msgstr "trecho de lei"
 
@@ -188,20 +188,24 @@ msgstr "proposta"
 msgid "citizen amendments"
 msgstr "propostas"
 
-#: core/models.py:137
+#: core/models.py:124
 msgid "user"
 msgstr "usuário"
 
-#: core/models.py:141
-msgid "amendment"
-msgstr "proposta"
+#: core/models.py:128
+msgid "Up Vote"
+msgstr ""
 
-#: core/views.py:104
+#: core/models.py:128
+msgid "Down Vote"
+msgstr ""
+
+#: core/views.py:95
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:128
+#: core/views.py:119
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
@@ -268,32 +272,24 @@ msgstr "ou"
 msgid "Sign up"
 msgstr "Cadastrar-se"
 
-#: templates/bill/_choosing_button.html:4
-msgid "Undo support"
-msgstr "Desfazer apoio"
+#: templates/bill/bill_segment.html:24
+msgid "Original text"
+msgstr ""
 
-#: templates/bill/_choosing_button.html:6
-msgid "Support"
-msgstr "Apoiar"
+#: templates/bill/bill_segment.html:41
+msgid "Submit proposal"
+msgstr "Enviar proposta"
 
-#: templates/bill/bill_segment.html:33
-msgid "Change"
-msgstr "Alterar"
+#: templates/bill/bill_segment.html:71
+msgid "Submitted proposals"
+msgstr "Enviar proposta"
 
-#: templates/bill/bill_segment.html:44
-msgid "Proposals"
-msgstr "Propostas"
-
-#: templates/bill/bill_segment.html:55
-msgid "proposed:"
-msgstr "propôs:"
-
-#: templates/bill/create_amendment.html:11
-#: templates/bill/create_amendment.html:45
+#: templates/bill/create_amendment.html:25
+#: templates/bill/create_amendment.html:62
 msgid "Send proposal"
 msgstr "Enviar proposta"
 
-#: templates/bill/create_amendment.html:44
+#: templates/bill/create_amendment.html:61
 msgid "Cancel"
 msgstr "Cancelar"
 

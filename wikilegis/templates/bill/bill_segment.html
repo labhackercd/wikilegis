@@ -39,16 +39,6 @@
                 </div>
             </div>
           
-            <div class="interact">
-                <ul>
-                    <li>
-                        {% include "bill/_choosing_button_2.html" %}
-                    </li>
-                    <li> | </li>
-                    <li><a href="{% url 'create_amendment' segment.bill.id segment.id %}"><i class="material-icons">edit</i> {% trans "Change" %}</a>
-                    </li>
-                </ul>
-            </div>
         </div>
 
         <div class="divider"></div>
@@ -84,9 +74,6 @@
                             <span class="author"><span class="user">{% with user=amendment.author %}{% include "auth2/_user_display_name.html" %}{% endwith %}</span> {% trans "proposed:" %}</span>
                             <div class="pp">
                                 {{ amendment.content|linebreaks }}
-                            </div>
-                            <div class="right-align">
-                                {% include "bill/_choosing_button_2.html" %}
                             </div>
                         </div>
                     </div>

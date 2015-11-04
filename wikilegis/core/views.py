@@ -11,7 +11,7 @@ from django.utils.translation import ugettext
 from django.views.generic import DetailView
 
 from .forms import CitizenAmendmentCreationForm
-from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice, GenericData, UpDownVote
+from .models import Bill, BillSegment, CitizenAmendment, GenericData, UpDownVote
 from wikilegis.comments2.utils import create_comment
 from wikilegis.core.genericdata import BillVideo, BillAuthorData
 
@@ -73,20 +73,9 @@ def show_segment(request, bill_id, segment_id):
     if not segment.is_editable():
         return redirect_to_segment_at_bill_page(segment)
 
-    chosen_amendment = None
-    chosen_amendment_id = None
-    if request.user.is_authenticated():
-        chosen_amendment = UserSegmentChoice.objects \
-            .filter(user=request.user, segment__id=segment_id, segment__bill__id=bill_id) \
-            .first()
-        if chosen_amendment is not None:
-            chosen_amendment_id = chosen_amendment.amendment.id if chosen_amendment.amendment is not None else 'original'
-
     return render(request, 'bill/bill_segment.html', context=dict(
         author=author,
         segment=segment,
-        chosen_amendment=chosen_amendment,
-        chosen_amendment_id=chosen_amendment_id,
     ))
 
 
@@ -138,40 +127,6 @@ def create_amendment(request, bill_id, segment_id):
         form=form,
         segment=segment,
     ))
-
-
-@login_required
-def choose_amendment(request, bill_id, segment_id, amendment_id):
-
-    if amendment_id == 'original':
-        amendment = None
-    else:
-        amendment = get_object_or_404(CitizenAmendment, id=amendment_id,
-                                      segment__id=segment_id, segment__bill__id=bill_id)
-
-    choice = UserSegmentChoice.objects.filter(user=request.user, segment__id=segment_id, segment__bill__id=bill_id).first()
-    if choice is None:
-        choice = UserSegmentChoice.objects.create(user=request.user, segment_id=segment_id, amendment=amendment)
-    else:
-        choice.amendment = amendment
-        choice.save()
-
-    redirect_url = None
-    if amendment is not None:
-        redirect_url = amendment.get_absolute_url()
-    else:
-        redirect_url = reverse('show_segment', args=[bill_id, segment_id])
-
-    return redirect(redirect_url)
-
-
-@login_required
-def unchoose_amendment(request, bill_id, segment_id):
-    UserSegmentChoice.objects\
-        .filter(user=request.user, segment__id=segment_id, segment__bill__id=bill_id)\
-        .delete()
-
-    return redirect('show_segment', bill_id=bill_id, segment_id=segment_id)
 
 
 class BillReport(DetailView):

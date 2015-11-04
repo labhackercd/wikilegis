@@ -4,11 +4,14 @@ from django.contrib.contenttypes.models import ContentType
 
 from django.db import models, migrations
 from django.conf import settings
-from wikilegis.core.models import CitizenAmendment, UserSegmentChoice, BillSegment
+from wikilegis.core.models import CitizenAmendment, BillSegment
 
 
 def combine_votes(apps, schema_editor):
     UpDownVote = apps.get_model("core", "UpDownVote")
+    UserSegmentChoice = apps.get_model("core", "UserSegmentChoice")
+    CitizenAmendment = apps.get_model("core", "CitizenAmendment")
+    BillSegment = apps.get_model("core", "BillSegment")
     for segmentChoice in UserSegmentChoice.objects.all():
         if segmentChoice.amendment_id:
             UpDownVote.objects.create(user_id=segmentChoice.user_id, object_id=segmentChoice.amendment_id, vote=1,
@@ -27,6 +30,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+
+        # Create Table
+
         migrations.CreateModel(
             name='UpDownVote',
             fields=[
@@ -43,5 +49,30 @@ class Migration(migrations.Migration):
             name='updownvote',
             unique_together=set([('user', 'object_id', 'content_type')]),
         ),
+
+        # migrate data
+
         migrations.RunPython(combine_votes),
+
+        # delete table old model
+
+        migrations.AlterUniqueTogether(
+            name='usersegmentchoice',
+            unique_together=set([]),
+        ),
+        migrations.RemoveField(
+            model_name='usersegmentchoice',
+            name='amendment',
+        ),
+        migrations.RemoveField(
+            model_name='usersegmentchoice',
+            name='segment',
+        ),
+        migrations.RemoveField(
+            model_name='usersegmentchoice',
+            name='user',
+        ),
+        migrations.DeleteModel(
+            name='UserSegmentChoice',
+        ),
     ]

@@ -120,25 +120,15 @@ class CitizenAmendment(TimestampedMixin):
         return 'show_amendment', [self.pk]
 
 
-class UserSegmentChoice(models.Model):
-    """
-    Each instance of this model indicates a choice of a user for a version of a bill segment.
-
-    Users can choose either a submitted CitizenAmendment or they can choose the original segment text.
-
-    Thus, there should be only one instance of this model for each pair of (user, segment).
-
-    If there is none, the user hasn't voted for that particular segment yet.
-
-    If there is one, but it's amendment if None, it means the user has voted for the original segment text.
-
-    Otherwise, the user has voted for the selected amendment.
-    """
+class UpDownVote(TimestampedMixin):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
-    segment = models.ForeignKey('core.BillSegment', related_name='choices',
-                                verbose_name=_('bill segment'))
-    amendment = models.ForeignKey('core.CitizenAmendment', related_name='choosings',
-                                  null=True, blank=True, verbose_name=_('amendment'))
+    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey('contenttypes.ContentType')
+    content_object = GenericForeignKey('content_type', 'object_id')
+    vote = models.BooleanField(choices=((True, _('Up Vote')), (False, _('Down Vote'))))
 
     class Meta:
-        unique_together = ('user', 'segment')
+        unique_together = ('user', 'object_id', 'content_type')
+
+    def __unicode__(self):
+        return self.user

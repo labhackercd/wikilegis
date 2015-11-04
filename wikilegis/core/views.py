@@ -2,14 +2,16 @@
 from __future__ import unicode_literals
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404, render_to_response
+from django.template import RequestContext
 from django.utils.text import capfirst
 from django.utils.translation import ugettext
 from django.views.generic import DetailView
 
 from .forms import CitizenAmendmentCreationForm
-from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice, GenericData
+from .models import Bill, BillSegment, CitizenAmendment, GenericData, UpDownVote
 from wikilegis.comments2.utils import create_comment
 from wikilegis.core.genericdata import BillVideo, BillAuthorData
 
@@ -71,20 +73,9 @@ def show_segment(request, bill_id, segment_id):
     if not segment.is_editable():
         return redirect_to_segment_at_bill_page(segment)
 
-    chosen_amendment = None
-    chosen_amendment_id = None
-    if request.user.is_authenticated():
-        chosen_amendment = UserSegmentChoice.objects \
-            .filter(user=request.user, segment__id=segment_id, segment__bill__id=bill_id) \
-            .first()
-        if chosen_amendment is not None:
-            chosen_amendment_id = chosen_amendment.amendment.id if chosen_amendment.amendment is not None else 'original'
-
     return render(request, 'bill/bill_segment.html', context=dict(
         author=author,
         segment=segment,
-        chosen_amendment=chosen_amendment,
-        chosen_amendment_id=chosen_amendment_id,
     ))
 
 
@@ -138,41 +129,45 @@ def create_amendment(request, bill_id, segment_id):
     ))
 
 
-@login_required
-def choose_amendment(request, bill_id, segment_id, amendment_id):
-
-    if amendment_id == 'original':
-        amendment = None
-    else:
-        amendment = get_object_or_404(CitizenAmendment, id=amendment_id,
-                                      segment__id=segment_id, segment__bill__id=bill_id)
-
-    choice = UserSegmentChoice.objects.filter(user=request.user, segment__id=segment_id, segment__bill__id=bill_id).first()
-    if choice is None:
-        choice = UserSegmentChoice.objects.create(user=request.user, segment_id=segment_id, amendment=amendment)
-    else:
-        choice.amendment = amendment
-        choice.save()
-
-    redirect_url = None
-    if amendment is not None:
-        redirect_url = amendment.get_absolute_url()
-    else:
-        redirect_url = reverse('show_segment', args=[bill_id, segment_id])
-
-    return redirect(redirect_url)
-
-
-@login_required
-def unchoose_amendment(request, bill_id, segment_id):
-    UserSegmentChoice.objects\
-        .filter(user=request.user, segment__id=segment_id, segment__bill__id=bill_id)\
-        .delete()
-
-    return redirect('show_segment', bill_id=bill_id, segment_id=segment_id)
-
-
 class BillReport(DetailView):
     model = Bill
     template_name = 'bill/bill_report.html'
+
+
+@login_required
+def up_down_vote(request, object_id, model, vote):
+    user_id = request.user.id
+    object_id = int(object_id)
+    vote = int(vote)
+    if model == 'segment':
+        try:
+            updownvote = UpDownVote.objects.get(user_id=user_id, object_id=object_id,
+                                                content_type=ContentType.objects.get_for_model(BillSegment))
+            if updownvote.vote == vote:
+                updownvote.delete()
+            else:
+                updownvote.delete()
+                UpDownVote.objects.create(user_id=user_id, object_id=object_id, vote=vote,
+                                          content_type=ContentType.objects.get_for_model(BillSegment))
+        except UpDownVote.DoesNotExist:
+            UpDownVote.objects.create(user_id=user_id, object_id=object_id, vote=vote,
+                                      content_type=ContentType.objects.get_for_model(BillSegment))
+        return render_to_response('_segment_up_down_votes.html', {'segment': BillSegment.objects.get(id=object_id)},
+                                  context_instance=RequestContext(request))
+    elif model == 'amendment':
+        try:
+            updownvote = UpDownVote.objects.get(user_id=user_id, object_id=object_id,
+                                                content_type=ContentType.objects.get_for_model(CitizenAmendment))
+            if updownvote.vote == vote:
+                updownvote.delete()
+            else:
+                updownvote.delete()
+                UpDownVote.objects.create(user_id=user_id, object_id=object_id, vote=vote,
+                                          content_type=ContentType.objects.get_for_model(CitizenAmendment))
+        except UpDownVote.DoesNotExist:
+            UpDownVote.objects.create(user_id=user_id, object_id=object_id, vote=vote,
+                                      content_type=ContentType.objects.get_for_model(CitizenAmendment))
+        return render_to_response('_amendment_up_down_votes.html',
+                                  {'amendment': CitizenAmendment.objects.get(id=object_id)},
+                                  context_instance=RequestContext(request))
 

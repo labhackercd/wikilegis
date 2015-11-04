@@ -6,7 +6,7 @@
                 {{ comment.comment }}
             </span>
              - 
-          <span class="title"><span class="comment-name"><a href="#">{{ comment.name }}</a></span><span class="comment-submit-date"> em {{ comment.submit_date }}</span></span>
+          <span class="title"><span class="comment-name"><a href="#">{{ comment.name }}</a></span><span class="comment-submit-date"> em {{ comment.submit_date|date:"SHORT_DATETIME_FORMAT" }}</span></span>
         </li>
     {%  endfor %}
     <li class="avatar">

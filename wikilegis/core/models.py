@@ -142,3 +142,17 @@ class UserSegmentChoice(models.Model):
 
     class Meta:
         unique_together = ('user', 'segment')
+
+
+class UpDownVote(TimestampedMixin):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
+    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey('contenttypes.ContentType')
+    content_object = GenericForeignKey('content_type', 'object_id')
+    vote = models.BooleanField(choices=((True, _('Up Vote')), (False, _('Down Vote'))))
+
+    class Meta:
+        unique_together = ('user', 'object_id', 'content_type')
+
+    def __unicode__(self):
+        return self.user

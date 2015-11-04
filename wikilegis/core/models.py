@@ -13,9 +13,9 @@ from django_extensions.db.fields.json import JSONField
 
 
 BILL_STATUS_CHOICES = (
-    ('1', 'Draft'),
-    ('2', 'Published'),
-    ('3', 'Closed')
+    ('draft', _('Draft')),
+    ('published', _('Published')),
+    ('closed', _('Closed'))
 )
 
 

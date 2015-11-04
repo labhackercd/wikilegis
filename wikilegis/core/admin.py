@@ -28,9 +28,9 @@ def propositions_update(ModelAdmin, request, queryset):
             update_proposition(response, bill.proposition_set.all()[0].id_proposition)
         except:
             pass
-    ModelAdmin.message_user(request, "Projetos de lei atualizados com sucesso.")
+    ModelAdmin.message_user(request, _("Bills updated successfully."))
 
-propositions_update.short_description = "Atualizar situação dos projetos de lei selecionados"
+propositions_update.short_description = _("Update status of selected bills")
 
 
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -87,8 +87,12 @@ class BillAdmin(admin.ModelAdmin):
     form = BillAdminForm
     fieldsets = [
         (None, {'fields': ['title', 'description', 'status',  'editors']}),
-        ('Proposição Legislativa', {'fields': ['type', 'number', 'year'],
-                                    'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
+        (_('Legislative proposal'), {'fields': ['type', 'number', 'year'],
+                                     'description': _("This data will be used to assign the project to a legislative "
+                                                      "proposal pending before the House of Representatives. You only "
+                                                      "need to inform them if your procedure has been initiated. To "
+                                                      "delete , leave the fields blank.")})
+                                    # 'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
     ]
 
     def get_situation(self, obj):

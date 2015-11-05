@@ -4,8 +4,10 @@ from __future__ import unicode_literals
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models.functions import Lower
+from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.text import capfirst
@@ -164,39 +166,44 @@ class BillReport(DetailView):
     template_name = 'bill/bill_report.html'
 
 
+def get_votable_object_or_404(user, content_type, object_id):
+    content_type = get_object_or_404(ContentType, pk=content_type)
+    try:
+        content_object = content_type.get_object_for_this_type(pk=object_id)
+    except ObjectDoesNotExist:
+        raise Http404()
+    return content_type, content_object
+
+
 @login_required
-def up_down_vote(request, object_id, model, vote):
-    user_id = request.user.id
-    object_id = int(object_id)
-    vote = int(vote)
-    if model == 'segment':
-        try:
-            updownvote = UpDownVote.objects.get(user_id=user_id, object_id=object_id,
-                                                content_type=ContentType.objects.get_for_model(BillSegment))
-            if updownvote.vote == vote:
-                updownvote.delete()
-            else:
-                updownvote.delete()
-                UpDownVote.objects.create(user_id=user_id, object_id=object_id, vote=vote,
-                                          content_type=ContentType.objects.get_for_model(BillSegment))
-        except UpDownVote.DoesNotExist:
-            UpDownVote.objects.create(user_id=user_id, object_id=object_id, vote=vote,
-                                      content_type=ContentType.objects.get_for_model(BillSegment))
-        return render_to_response('_segment_up_down_votes.html', {'segment': BillSegment.objects.get(id=object_id)},
-                                  context_instance=RequestContext(request))
-    elif model == 'amendment':
-        try:
-            updownvote = UpDownVote.objects.get(user_id=user_id, object_id=object_id,
-                                                content_type=ContentType.objects.get_for_model(CitizenAmendment))
-            if updownvote.vote == vote:
-                updownvote.delete()
-            else:
-                updownvote.delete()
-                UpDownVote.objects.create(user_id=user_id, object_id=object_id, vote=vote,
-                                          content_type=ContentType.objects.get_for_model(CitizenAmendment))
-        except UpDownVote.DoesNotExist:
-            UpDownVote.objects.create(user_id=user_id, object_id=object_id, vote=vote,
-                                      content_type=ContentType.objects.get_for_model(CitizenAmendment))
-        return render_to_response('_amendment_up_down_votes.html',
-                                  {'amendment': CitizenAmendment.objects.get(id=object_id)},
-                                  context_instance=RequestContext(request))
+def upvote(request, content_type, object_id):
+    return _handle_votes(request, content_type, object_id, True)
+
+
+@login_required
+def downvote(request, content_type, object_id):
+    return _handle_votes(request, content_type, object_id, False)
+
+
+def _handle_votes(request, ctype, object_id, new_vote):
+    ctype, obj = get_votable_object_or_404(request.user, ctype, object_id)
+
+    vote, created = UpDownVote.objects\
+        .get_or_create(defaults=dict(user_id=request.user.pk, vote=new_vote),
+                       user__pk=request.user.pk,
+                       object_id=obj.pk,
+                       content_type=ctype)
+    if not created:
+        if vote.vote == new_vote:
+            vote.delete()
+        else:
+            vote.vote = new_vote
+            vote.save()
+
+    if not request.is_ajax():
+        # TODO FIXME This won't always work. Make sure all votable objects have `get_absolute_url`.
+        return redirect(obj.get_absolute_url())
+    else:
+        return render_to_response('_vote_buttons.html', {
+            'content_object': obj,
+        }, context_instance=RequestContext(request))

@@ -3,7 +3,6 @@
 {% load static %}
 {% load i18n %}
 {% load render_comments from comments2 %}
-{% load count_votes %}
 {% load cropping %}
 
 {% block content3 %}
@@ -29,8 +28,8 @@
 
         <div class="row layarticle">
             <div class="col s1">
-                <div class="votes" id="segment-votes">
-                    {% include "_segment_up_down_votes.html" %}
+                <div class="votes">
+                    {% with segment as content_object %}{% include "_vote_buttons.html" %}{% endwith %}
                 </div>
             </div>
 
@@ -51,9 +50,13 @@
                             </div>
                         </div>
                         <div class="col m9">
-                            {% if author %}
-                                <span class="user-name"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
-                            {% endif %}
+                            <span class="user-name">
+                                {% if author.user and author.user.pk %}
+                                    <a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a>
+                                {% else %}
+                                    {{ author.user }}
+                                {% endif %}
+                            </span>
                             <p class="date">{{ segment.created|date }}</p>
                         </div>
                     </div>
@@ -81,8 +84,8 @@
         {% for amendment in segment.amendments.all %}
             <div class="row layarticle prop" id="amendment-{{ amendment.pk }}">
                 <div class="col s1">
-                    <div class="votes" id="amendment-{{ amendment.pk }}-votes">
-                        {% include "_amendment_up_down_votes.html" %}
+                    <div class="votes">
+                        {% with amendment as content_object %}{% include "_vote_buttons.html" %}{% endwith %}
                     </div>
                 </div>
                 <div class="col s11">
@@ -131,26 +134,35 @@
                 $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
             });
         });
+
         {% if user.is_authenticated %}
-            function upDownVote(object_id, model, vote) {
-                var url = '{% url 'up_down_vote' 0 'param2' 'param3' %}';
-                url = url.replace('0', object_id).replace('param2', model).replace('param3', vote);
-                $.ajax({
-                    type: "GET",
-                    url: url,
-                    success: function (data) {
-                        if(model=='segment'){
-                            $("#segment-votes").html(data);
-                        }
-                        if(model=='amendment'){
-                            $("#amendment-"+object_id+"-votes").html(data);
-                        }
-                    },
-                    error: function (data) {
-                        alert("Ocorreu um erro, por favor, tente novamente.");
+            $(function() {
+                $('.votes').on('click', 'a.upvote,a.downvote', function(e) {
+                    e.preventDefault();
+                    var $target = $(this);
+                    var $container = $target.closest('.votes');
+
+                    if ($container.hasClass('disabled')) {
+                        // Do nothing.
+                        return;
                     }
+
+                    var url = $target.attr('href');
+                    $container.addClass('disabled');
+                    $.ajax({
+                        type: 'GET',
+                        url: url,
+                        success: function(html) {
+                            $container.html(html);
+                            $container.removeClass('disabled');
+                        },
+                        error: function() {
+                            $container.removeClass('disabled');
+                            alert("Oh, no, something went wrong :(");
+                        }
+                    });
                 });
-            }
+            });
         {% endif %}
     </script>
 {% endblock %}

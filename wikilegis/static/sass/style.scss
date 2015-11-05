@@ -776,6 +776,12 @@ $opacity: .4;
 			}
 		}
 	}
+	.votes.disabled {
+		opacity: 0.5;
+		a {
+			cursor: default;
+		}
+	}
 
 	.article-prop {
 		max-width: 840px;

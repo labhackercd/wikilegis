@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.text import capfirst
 from django.utils.translation import ugettext
+from django.views.generic import DetailView
 
 from .forms import CitizenAmendmentCreationForm
 from .models import Bill, BillSegment, CitizenAmendment, UserSegmentChoice, GenericData
@@ -169,3 +170,9 @@ def unchoose_amendment(request, bill_id, segment_id):
         .delete()
 
     return redirect('show_segment', bill_id=bill_id, segment_id=segment_id)
+
+
+class BillReport(DetailView):
+    model = Bill
+    template_name = 'bill/bill_report.html'
+

@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
 from django.contrib.contenttypes.admin import GenericTabularInline
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
@@ -81,8 +82,8 @@ class BillChangeList(ChangeList):
 
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
-    list_display = ('title', 'description', 'status', 'get_situation')
     list_filter = ['status']
+    list_display = ('title', 'description', 'status', 'get_situation', 'get_report')
     actions = [propositions_update]
     form = BillAdminForm
     fieldsets = [
@@ -101,6 +102,13 @@ class BillAdmin(admin.ModelAdmin):
         except:
             return ''
     get_situation.short_description = _(u'Situation')
+
+    def get_report(self, obj):
+        return u'<a class="default" href="{url}">{title}</a>'.format(
+            url=reverse('bill_report', args=[obj.pk]), title=_('Show'))
+
+    get_report.short_description = _('Report')
+    get_report.allow_tags = True
 
     def get_fields(self, request, obj=None):
         fields = super(BillAdmin, self).get_fields(request, obj)

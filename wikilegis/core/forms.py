@@ -88,7 +88,7 @@ class CitizenAmendmentCreationForm(forms.ModelForm):
 
 class BillAdminForm(forms.ModelForm):
     PROPOSITION_TYPE_CHOICES = (
-        ('', 'Selecione um tipo'),
+        ('', _('Select a type')),
         ('PEC', 'PEC - Proposta de Emenda à Constituição'),
         ('PLP', 'PLP - Projeto de Lei Complementar'),
         ('PL', 'PL - Projeto de Lei'),
@@ -119,7 +119,8 @@ class BillAdminForm(forms.ModelForm):
                 self.add_error('type', msg)
                 self.add_error('number', msg)
                 self.add_error('year', msg)
-                raise ValidationError('Ao adicionar um campo em proposição legislativa, os três campos passam a ser obrigatórios')
+                raise ValidationError(_('When adding a field in the legislative proposal, '
+                                        'the three fields are now required'))
         return self.cleaned_data
 
     def save(self, commit=True):

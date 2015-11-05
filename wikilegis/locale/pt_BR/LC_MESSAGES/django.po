@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-04 16:07-0200\n"
+"POT-Creation-Date: 2015-11-05 12:00-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,134 +70,283 @@ msgstr "data de cadastro"
 msgid "Your account is now activated."
 msgstr "Sua conta agora está ativada."
 
-#: core/admin.py:25 core/models.py:100
+#: core/admin.py:32
+msgid "Bills updated successfully."
+msgstr ""
+
+#: core/admin.py:34
+msgid "Update status of selected bills"
+msgstr ""
+
+#: core/admin.py:44 core/models.py:108 core/models.py:157
 msgid "author"
 msgstr "autor"
 
-#: core/admin.py:26
+#: core/admin.py:45
 msgid "authors"
 msgstr "autores"
 
-#: core/admin.py:35
+#: core/admin.py:54
 msgid "video"
 msgstr "vídeo"
 
-#: core/admin.py:36
+#: core/admin.py:55
 msgid "videos"
 msgstr "vídeos"
 
-#: core/admin.py:70
+#: core/admin.py:92
+msgid "Legislative proposal"
+msgstr ""
+
+#: core/admin.py:93
+msgid ""
+"This data will be used to assign the project to a legislative proposal "
+"pending before the House of Representatives. You only need to inform them if "
+"your procedure has been initiated. To delete , leave the fields blank."
+msgstr ""
+
+#: core/admin.py:105
+msgid "Situation"
+msgstr ""
+
+#: core/admin.py:109
 msgid "Show"
 msgstr "Ver"
 
-#: core/admin.py:72
+#: core/admin.py:111
 msgid "Report"
 msgstr "Relatório"
 
-#: core/forms.py:49
+#: core/forms.py:56
 msgid "User"
 msgstr "Usuário"
 
-#: core/forms.py:50 core/models.py:77
+#: core/forms.py:57 core/models.py:85
 msgid "Title"
 msgstr "Título"
 
-#: core/forms.py:63
+#: core/forms.py:70
 msgid "video url"
 msgstr "url do vídeo"
 
-#: core/forms.py:71
+#: core/forms.py:78
 msgid "You can explain your proposal here."
 msgstr "Você pode explicar sua proposta aqui."
 
-#: core/forms.py:75
+#: core/forms.py:82
 msgid "Suggest a new proposal! You can begin editing the original one."
 msgstr "Sugira uma nova redação! Você pode começar editando a original."
 
-#: core/models.py:24
+#: core/forms.py:91
+msgid "Select a type"
+msgstr ""
+
+#: core/forms.py:97
+msgid "Type"
+msgstr ""
+
+#: core/forms.py:98
+msgid "Number"
+msgstr ""
+
+#: core/forms.py:99
+msgid "Year"
+msgstr ""
+
+#: core/forms.py:122
+msgid ""
+"When adding a field in the legislative proposal, the three fields are now "
+"required"
+msgstr ""
+
+#: core/models.py:16
+msgid "Draft"
+msgstr ""
+
+#: core/models.py:17
+msgid "Published"
+msgstr ""
+
+#: core/models.py:18
+msgid "Closed"
+msgstr ""
+
+#: core/models.py:31
 msgid "created"
 msgstr "criado"
 
-#: core/models.py:25
+#: core/models.py:32
 msgid "modified"
 msgstr "modificado"
 
-#: core/models.py:37
+#: core/models.py:44
 msgid "data"
 msgstr "dados"
 
-#: core/models.py:38 core/models.py:80
+#: core/models.py:45 core/models.py:88 core/models.py:147
 msgid "type"
 msgstr "tipo"
 
-#: core/models.py:45
+#: core/models.py:52
 msgid "title"
 msgstr "título"
 
-#: core/models.py:46
+#: core/models.py:53
 msgid "description"
 msgstr "descrição"
 
-#: core/models.py:49
+#: core/models.py:54
+msgid "status"
+msgstr ""
+
+#: core/models.py:57
 msgid "editors"
 msgstr "editores"
 
-#: core/models.py:50
+#: core/models.py:58
 msgid ""
 "Any users in any of these groups will have permission to change this "
 "document."
 msgstr "Usuários nestes grupos terão permissão para alterar este documento."
 
-#: core/models.py:59 core/models.py:72
+#: core/models.py:67 core/models.py:80 core/models.py:146
 msgid "bill"
 msgstr "projeto de lei"
 
-#: core/models.py:60
+#: core/models.py:68
 msgid "bills"
 msgstr "projetos de lei"
 
-#: core/models.py:73
+#: core/models.py:81
 msgid "order"
 msgstr "ordem"
 
-#: core/models.py:74 core/models.py:102
+#: core/models.py:82 core/models.py:110
 msgid "content"
 msgstr "conteúdo"
 
-#: core/models.py:78
+#: core/models.py:86
 msgid "Article"
 msgstr "Artigo"
 
-#: core/models.py:84
+#: core/models.py:92
 msgid "segment"
 msgstr "trecho"
 
-#: core/models.py:85
+#: core/models.py:93
 msgid "segments"
 msgstr "trechos"
 
-#: core/models.py:101
+#: core/models.py:109
 msgid "bill segment"
 msgstr "trecho de lei"
 
-#: core/models.py:105
+#: core/models.py:113
 msgid "citizen amendment"
 msgstr "proposta"
 
-#: core/models.py:106
+#: core/models.py:114
 msgid "citizen amendments"
 msgstr "propostas"
 
-#: core/models.py:124
+#: core/models.py:132
 msgid "user"
 msgstr "usuário"
 
-#: core/models.py:128
+#: core/models.py:136
 msgid "Up Vote"
 msgstr ""
 
-#: core/models.py:128
+#: core/models.py:136
 msgid "Down Vote"
+msgstr ""
+
+#: core/models.py:148
+msgid "number"
+msgstr ""
+
+#: core/models.py:149
+msgid "year"
+msgstr ""
+
+#: core/models.py:150
+msgid "name proposition"
+msgstr ""
+
+#: core/models.py:151
+msgid "id proposition"
+msgstr ""
+
+#: core/models.py:152
+msgid "id main proposition"
+msgstr ""
+
+#: core/models.py:153
+msgid "name origin proposition"
+msgstr ""
+
+#: core/models.py:154
+msgid "theme"
+msgstr ""
+
+#: core/models.py:155
+msgid "menu"
+msgstr ""
+
+#: core/models.py:156
+msgid "menu_explanation"
+msgstr ""
+
+#: core/models.py:158
+msgid "id register"
+msgstr ""
+
+#: core/models.py:159
+msgid "uf author"
+msgstr ""
+
+#: core/models.py:160
+msgid "party author"
+msgstr ""
+
+#: core/models.py:161
+msgid "apresentation date"
+msgstr ""
+
+#: core/models.py:162
+msgid "processing_regime"
+msgstr ""
+
+#: core/models.py:163
+msgid "last dispatch date"
+msgstr ""
+
+#: core/models.py:164
+msgid "last dispatch"
+msgstr ""
+
+#: core/models.py:165
+msgid "appraisal"
+msgstr ""
+
+#: core/models.py:166
+msgid "indexing"
+msgstr ""
+
+#: core/models.py:167
+msgid "situation"
+msgstr ""
+
+#: core/models.py:168
+msgid "content link"
+msgstr ""
+
+#: core/models.py:171
+msgid "proposition"
+msgstr ""
+
+#: core/models.py:172
+msgid "propositions"
 msgstr ""
 
 #: core/views.py:95

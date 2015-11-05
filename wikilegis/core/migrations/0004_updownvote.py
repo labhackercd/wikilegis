@@ -4,7 +4,6 @@ from django.contrib.contenttypes.models import ContentType
 
 from django.db import models, migrations
 from django.conf import settings
-from wikilegis.core.models import CitizenAmendment, BillSegment
 
 
 def combine_votes(apps, schema_editor):

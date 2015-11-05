@@ -15,6 +15,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from decouple import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
     'wikilegis.auth2',
     'wikilegis.core',
     'wikilegis.comments2',
+    'wikilegis.notification',
     'flat',
     'object_tools',
     'export',
@@ -253,3 +255,10 @@ LOGIN_REDIRECT_URL = '/'
 SERIALIZATION_MODULES = {
     'csv': 'export.serializers.csv_serializer'
 }
+
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_PWD')
+EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX')
+EMAIL_USE_TLS = config('EMAIL_TLS', cast=bool)
+EMAIL_PORT = config('EMAIL_PORT', cast=int)

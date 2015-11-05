@@ -142,27 +142,4 @@
             }
         {% endif %}
     </script>
-    {% if user.is_authenticated %}
-    <script type="text/javascript">
-        function upDownVote(object_id, model, vote){
-            var url = '{% url 'up_down_vote' request.user.id 0 'param2' 'param3' %}';
-            url = url.replace('0', object_id).replace('param2', model).replace('param3', vote);
-            $.ajax({
-                type: "GET",
-                url: url,
-                success: function (data) {
-                    if(model=='segment'){
-                        $("#id_segment_up_down_vote").html(data);
-                    }
-                    if(model=='amendment'){
-                        $("#id_amendment-"+object_id+"_up_down_vote").html(data);
-                    }
-                },
-                error: function (data) {
-                    alert("Ocorreu um erro, por favor, tente novamente.");
-                }
-            });
-        }
-    </script>
-    {% endif %}
 {% endblock %}

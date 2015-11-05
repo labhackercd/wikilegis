@@ -8,7 +8,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django_comments.models import Comment
 from wikilegis.auth2.models import User
-from wikilegis.core.models import Bill, CitizenAmendment, UpDownVote
+from wikilegis.core.models import Bill, CitizenAmendment, UpDownVote, BillSegment
 from wikilegis.notification.models import HistoryNotification
 
 
@@ -21,14 +21,18 @@ class Command(BaseCommand):
             amendment_comments = defaultdict(list)
             top_amendments = []
             for segment in bill.segments.all():
-                up_votes_segment = UpDownVote.objects.filter(segment=segment, vote='up').count()
-                down_votes_segment = UpDownVote.objects.filter(segment=segment, vote='down').count()
+                segment_ctype = ContentType.objects.get_for_model(BillSegment)
+                up_votes_segment = UpDownVote.objects.filter(content_type=segment_ctype, object_id=segment.id,
+                                                             vote=True).count()
+                down_votes_segment = UpDownVote.objects.filter(content_type=segment_ctype, object_id=segment.id,
+                                                               vote=False).count()
                 score_segment = up_votes_segment - down_votes_segment
                 for amendment in segment.amendments.all():
+                    amendment_ctype = ContentType.objects.get_for_model(CitizenAmendment)
                     try:
                         last_email = HistoryNotification.objects.get(amendment=amendment)
                         comments = Comment.objects.filter(object_pk=amendment.pk,
-                                                          content_type=ContentType.objects.get_for_model(CitizenAmendment),
+                                                          content_type=amendment_ctype,
                                                           submit_date__gte=last_email.hour)
                         if comments:
                             for comment in comments:
@@ -38,7 +42,7 @@ class Command(BaseCommand):
                     except HistoryNotification.DoesNotExist:
                         segment_amendments[segment].append(amendment)
                         comments = Comment.objects.filter(object_pk=amendment.pk,
-                                                          content_type=ContentType.objects.get_for_model(CitizenAmendment))
+                                                          content_type=amendment_ctype)
                         history = HistoryNotification()
                         history.amendment = amendment
                         history.hour = datetime.now()
@@ -47,8 +51,10 @@ class Command(BaseCommand):
                                 amendment_comments[amendment].append(comment)
                                 history.hour = datetime.now()
                         history.save()
-                    up_votes_amendment = UpDownVote.objects.filter(amendment=amendment, vote='up').count()
-                    down_votes_amendment = UpDownVote.objects.filter(amendment=amendment, vote='down').count()
+                    up_votes_amendment = UpDownVote.objects.filter(content_type=amendment_ctype,
+                                                                   object_id=amendment.pk, vote=True).count()
+                    down_votes_amendment = UpDownVote.objects.filter(content_type=amendment_ctype,
+                                                                     object_id=amendment.pk, vote=False).count()
                     score_amendment = up_votes_amendment - down_votes_amendment
                     if score_amendment > score_segment:
                         top_amendments.append(amendment.id)

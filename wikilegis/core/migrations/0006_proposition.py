@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0004_bill_status'),
+        ('core', '0005_bill_status'),
     ]
 
     operations = [
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('id_main_proposition', models.IntegerField(null=True, verbose_name='id main proposition', blank=True)),
                 ('name_origin_proposition', models.CharField(max_length=200, null=True, verbose_name='name origin proposition', blank=True)),
                 ('theme', models.CharField(max_length=200, null=True, verbose_name='theme', blank=True)),
-                ('menu', models.CharField(max_length=200, null=True, verbose_name='menu', blank=True)),
+                ('menu', models.TextField(null=True, verbose_name='menu', blank=True)),
                 ('menu_explanation', models.TextField(null=True, verbose_name='menu_explanation', blank=True)),
                 ('author', models.CharField(max_length=200, null=True, verbose_name='author', blank=True)),
                 ('id_register', models.CharField(max_length=200, null=True, verbose_name='id register', blank=True)),

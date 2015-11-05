@@ -8,11 +8,30 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
+import requests
+from wikilegis.core.forms import BillAdminForm, update_proposition
+from wikilegis.core.models import Bill
 
 
 def get_permission(action, opts):
     codename = get_permission_codename(action, opts)
     return '.'.join([opts.app_label, codename])
+
+
+def propositions_update(ModelAdmin, request, queryset):
+    selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+    bills = Bill.objects.filter(id__in=selected)
+    for bill in bills:
+        try:
+            params = {'IdProp': bill.proposition_set.all()[0].id_proposition}
+            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID'
+                                    , params=params)
+            update_proposition(response, bill.proposition_set.all()[0].id_proposition)
+        except:
+            pass
+    ModelAdmin.message_user(request, _("Bills updated successfully."))
+
+propositions_update.short_description = _("Update status of selected bills")
 
 
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -63,7 +82,27 @@ class BillChangeList(ChangeList):
 
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
-    list_display = ('title', 'description', 'get_report')
+
+    list_filter = ['status']
+    list_display = ('title', 'description', 'status', 'get_situation', 'get_report')
+    actions = [propositions_update]
+    form = BillAdminForm
+    fieldsets = [
+        (None, {'fields': ['title', 'description', 'status',  'editors']}),
+        (_('Legislative proposal'), {'fields': ['type', 'number', 'year'],
+                                     'description': _("This data will be used to assign the project to a legislative "
+                                                      "proposal pending before the House of Representatives. You only "
+                                                      "need to inform them if your procedure has been initiated. To "
+                                                      "delete , leave the fields blank.")})
+                                    # 'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
+    ]
+
+    def get_situation(self, obj):
+        try:
+            return "%s" % obj.proposition_set.all()[0].situation
+        except:
+            return ''
+    get_situation.short_description = _(u'Situation')
 
     def get_report(self, obj):
         return u'<a class="default" href="{url}">{title}</a>'.format(

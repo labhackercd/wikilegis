@@ -3,12 +3,19 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from operator import attrgetter
 from django import forms
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from wikilegis.auth2.models import User
 from . import models
+from datetime import datetime
+import requests
+from xml.etree import ElementTree
 
 
 # TODO FIXME Meta*Form, really? C'mon, we can do better naming than this.
+# from wikilegis.core.views import add_proposition
+from wikilegis.core.models import Proposition
+
 
 class GenericDataAdminForm(forms.ModelForm):
 
@@ -77,3 +84,127 @@ class CitizenAmendmentCreationForm(forms.ModelForm):
     class Meta:
         model = models.CitizenAmendment
         fields = ('content',)
+
+
+class BillAdminForm(forms.ModelForm):
+    PROPOSITION_TYPE_CHOICES = (
+        ('', _('Select a type')),
+        ('PEC', 'PEC - Proposta de Emenda à Constituição'),
+        ('PLP', 'PLP - Projeto de Lei Complementar'),
+        ('PL', 'PL - Projeto de Lei'),
+        ('MPV', 'MPV - Medida Provisória')
+    )
+    type = forms.ChoiceField(label=_('Type'), choices=PROPOSITION_TYPE_CHOICES, required=False)
+    number = forms.IntegerField(label=_('Number'), required=False)
+    year = forms.IntegerField(label=_('Year'), required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(BillAdminForm, self).__init__(*args, **kwargs)
+        try:
+            proposition = kwargs['instance'].proposition_set.all()[0]
+            self.fields['type'].initial = proposition.type.strip()
+            self.fields['number'].initial = proposition.number
+            self.fields['year'].initial = proposition.year
+        except:
+            pass
+
+    class Meta:
+        model = models.Bill
+        fields = ('title', 'description', 'status',  'editors', 'type', 'number', 'year')
+
+    def clean(self):
+        if self.data['type'] or self.data['number'] or self.data['year']:
+            if not self.data['type'] or not self.data['number'] or not self.data['year']:
+                msg = ""
+                self.add_error('type', msg)
+                self.add_error('number', msg)
+                self.add_error('year', msg)
+                raise ValidationError(_('When adding a field in the legislative proposal, '
+                                        'the three fields are now required'))
+        return self.cleaned_data
+
+    def save(self, commit=True):
+        instance = super(BillAdminForm, self).save(commit=False)
+        instance.save()
+        self.save_m2m()
+        if self.cleaned_data['type'] and self.cleaned_data['number'] and self.cleaned_data['year']:
+            if instance.proposition_set.all():
+                delete_proposition(instance.proposition_set.all()[0].id_proposition)
+            params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data['number'], 'ano': self.cleaned_data['year']}
+            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
+                                    params=params)
+            create_proposition(response, instance.id)
+        else:
+            try:
+                delete_proposition(instance.proposition_set.all()[0].id_proposition)
+            except:
+                pass
+        return instance
+
+
+def delete_proposition(proposition_id):
+    proposition = Proposition.objects.get(id_proposition=proposition_id)
+    proposition.delete()
+
+
+def create_proposition(response, bill_id):
+    tree = ElementTree.fromstring(response.content)
+    proposition = Proposition()
+    proposition.bill_id = bill_id
+    proposition.type = tree.attrib['tipo']
+    proposition.number = tree.attrib['numero']
+    proposition.year = tree.attrib['ano']
+    proposition.name_proposition = tree.find('nomeProposicao').text
+    if tree.find('idProposicao').text.isdigit():
+        proposition.id_proposition = int(tree.find('idProposicao').text)
+    if tree.find('idProposicaoPrincipal').text.isdigit():
+        proposition.id_main_proposition = int(tree.find('idProposicaoPrincipal').text)
+    proposition.name_origin_proposition = tree.find('idProposicaoPrincipal').text
+    proposition.theme = tree.find('tema').text
+    proposition.menu = tree.find('Ementa').text
+    proposition.menu_explanation = tree.find('ExplicacaoEmenta').text
+    proposition.author = tree.find('Autor').text
+    proposition.id_register = tree.find('ideCadastro').text
+    proposition.uf_author = tree.find('ufAutor').text
+    proposition.party_author = tree.find('partidoAutor').text
+    proposition.apresentation_date = datetime.strptime(tree.find('DataApresentacao').text, '%d/%m/%Y').date()
+    proposition.processing_regime = tree.find('RegimeTramitacao').text
+    proposition.last_dispatch_date = datetime.strptime(tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
+    proposition.last_dispatch = tree.find('UltimoDespacho').text
+    proposition.appraisal = tree.find('Apreciacao').text
+    proposition.indexing = tree.find('Indexacao').text
+    proposition.situation = tree.find('Situacao').text
+    proposition.content_link = tree.find('LinkInteiroTeor').text
+
+    proposition.save()
+
+
+def update_proposition(response, proposition_id):
+    tree = ElementTree.fromstring(response.content)
+    proposition = Proposition.objects.get(id_proposition=proposition_id)
+    proposition.type = tree.attrib['tipo']
+    proposition.number = tree.attrib['numero']
+    proposition.year = tree.attrib['ano']
+    proposition.name_proposition = tree.find('nomeProposicao').text
+    if tree.find('idProposicao').text.isdigit():
+        proposition.id_proposition = int(tree.find('idProposicao').text)
+    if tree.find('idProposicaoPrincipal').text.isdigit():
+        proposition.id_main_proposition = int(tree.find('idProposicaoPrincipal').text)
+    proposition.name_origin_proposition = tree.find('idProposicaoPrincipal').text
+    proposition.theme = tree.find('tema').text
+    proposition.menu = tree.find('Ementa').text
+    proposition.menu_explanation = tree.find('ExplicacaoEmenta').text
+    proposition.author = tree.find('Autor').text
+    proposition.id_register = tree.find('ideCadastro').text
+    proposition.uf_author = tree.find('ufAutor').text
+    proposition.party_author = tree.find('partidoAutor').text
+    proposition.apresentation_date = datetime.strptime(tree.find('DataApresentacao').text, '%d/%m/%Y').date()
+    proposition.processing_regime = tree.find('RegimeTramitacao').text
+    proposition.last_dispatch_date = datetime.strptime(tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
+    proposition.last_dispatch = tree.find('UltimoDespacho').text
+    proposition.appraisal = tree.find('Apreciacao').text
+    proposition.indexing = tree.find('Indexacao').text
+    proposition.situation = tree.find('Situacao').text
+    proposition.content_link = tree.find('LinkInteiroTeor').text
+
+    proposition.save()

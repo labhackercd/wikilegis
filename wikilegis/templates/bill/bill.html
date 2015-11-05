@@ -11,7 +11,29 @@
             <h5 class="pl-title">{{ bill.title }}</h5>
         </a>
 
-        <p class="pl-about">{{ bill.description|safe|linebreaks }}</p>
+        <p class="pl-about">
+            {% if bill.proposition_set.all.0.id_proposition  %}
+            <a target="_blank" href="http://www2.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">{{ bill.description|safe|linebreaks }}</a>
+            {% else %}
+            {{ bill.description|safe|linebreaks }}
+            {% endif %}
+        </p>
+        {% if bill.proposition_set.all.0.situation %}
+        <p class="pl-about">Situação: {{ bill.proposition_set.all.0.situation }}</p>
+        {% endif %}
+        {% if bill.proposition_set.all.0.id_register %}
+            <p>Autor:</p>
+            <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">
+            <div class="pl-author" style="margin-left: 0">
+                <div class="avatar" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.proposition_set.all.0.id_register }}.jpg')"></div>
+                <div class="info">
+                    <span class="author">
+                    {{ bill.proposition_set.all.0.author }} ({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})
+                    </span>
+                </div>
+            </div>
+            </a>
+        {% endif %}
 
         {% for author in authors %}
             <div class="pl-author">

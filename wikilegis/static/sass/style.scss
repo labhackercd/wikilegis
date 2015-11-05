@@ -290,7 +290,7 @@ strong{
 
 .pl-full {
 	a.bill-link {
-		color: inherit;	
+		color: inherit;
 	}
 	position: relative;
 	min-height: 100vh;
@@ -330,7 +330,7 @@ strong{
 		align-content: center;
 		align-items: center;
 		.content {
-			max-width: 840px;	
+			max-width: 840px;
 		}
 		.comments-counter {
 			height: auto;
@@ -432,12 +432,12 @@ strong{
 		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 		background-color: #F5F5F5;
 	}
-	
+
 	&::-webkit-scrollbar {
 		width: 2px;
 		background-color: #F5F5F5;
 	}
-	
+
 	&::-webkit-scrollbar-thumb {
 		background-color: #555;
 	}
@@ -481,11 +481,11 @@ blockquote {
 			text-decoration: underline;
 		}
 	}
-	
+
 	.content {
 		padding: 20px 0 0 20px;
 	}
-	
+
 	.results {
 		margin-top: 40px;
 		p {
@@ -547,19 +547,19 @@ blockquote {
 		background: url(static("img/user.png")) 10px 2px no-repeat, $logogreen;
 		background-size: auto 24px;
 	}
-	
+
 	.col.s12 {
 		padding: 0;
 	}
-	
+
 	.row.valign-wrapper {
 		margin-bottom: 0;
 	}
-	
+
 	.card-title {
 		color: #fff;
 	}
-	
+
 	.card-content a {
 		color: #fff;
 		&:hover {
@@ -629,7 +629,7 @@ blockquote {
 		left: 90%;
 		bottom: 2px;
 	}
-	
+
 	position: absolute;
 	left: 50%;
 	bottom: 20px;
@@ -649,11 +649,11 @@ blockquote {
 	a {
 		color: $logogreen;
 	}
-	
+
 	a:first-child {
 		margin-right: 20px;
 	}
-	
+
 	i {
 		vertical-align: middle;
 	}
@@ -723,7 +723,7 @@ $opacity: .4;
 	.pp {
 		color: #C3C3C3;
 	}
-	
+
 	.votes {
 		margin-top: 30px;
 		padding-left: 10px;
@@ -742,10 +742,10 @@ $opacity: .4;
 			svg {
 				-ms-transform: rotate(180deg);
 				/* IE 9 */
-				
+
 				-webkit-transform: rotate(180deg);
 				/* Chrome, Safari, Opera */
-				
+
 				transform: rotate(180deg);
 			}
 			&.active {
@@ -776,7 +776,7 @@ $opacity: .4;
 			}
 		}
 	}
-	
+
 	.article-prop {
 		max-width: 840px;
 		font-size: 1.1em;
@@ -788,18 +788,18 @@ $opacity: .4;
 	li {
 		margin-bottom: 10px;
 	}
-	
+
 	span.comment-submit-date {
 		color: #A5A5A5;
 	}
-	
+
 	.main {
 		text-align: right;
 		max-width: 840px;
 		border-top: 1px solid $fkingrey;
 		padding-left: 30px;
 	}
-	
+
 	.submit {
 		margin-top: 0px;
 		font-weight: bold;
@@ -820,7 +820,7 @@ $opacity: .4;
 	.col {
 		padding-left: 0px;
 	}
-	
+
 	max-width: 840px;
 	.user {
 		.user-name {
@@ -866,7 +866,7 @@ $opacity: .4;
 		max-width: 400px;
 		;
 	}
-	
+
 	textarea {
 		height: 1.5em;
 		min-height: 1.5em;
@@ -979,4 +979,78 @@ $opacity: .4;
     &:hover{
         color: #92A5F9 !important;
     }
+	label {
+		padding-top: 10px;
+		padding-left: 15px;
+	}
+
+	textarea,
+	#preview-content {
+		max-width: 840px;
+	}
+
+	textarea {
+		margin-top: 10px;
+		height: 1.5em;
+		min-height: 1.5em;
+		padding: 10px 15px !important;
+		background-color: white;
+		border: 1px solid $fkingrey !important;
+		box-shadow: none !important;
+		resize: none;
+		&:focus {
+			outline: none;
+			box-shadow: 0px !important;
+			border-bottom: none;
+		}
+	}
+
+	#preview {
+		.input-field {
+			margin-top: 0px;
+			p {
+				margin-top: 0px;
+			}
+		}
+	}
+
+	#preview-content {
+		color: #868686;
+		margin-left: 50px;
+	}
+
+	.comment-ammend {
+		padding-left: 50px;
+		textarea {
+			max-width: 790px;
+		}
+	}
+
+	.send {
+		max-width: 640px;
+	}
+}
+
+.filter-bills{
+  margin: 10px 0 20px 0;
+  select{
+	width: 40%;
+  }
+  .dropdown-button{
+	color: #fff !important;
+  }
+}
+
+.dropdown-content {
+  background-color: #FFFFFF;
+  margin: 0;
+  display: none;
+  min-width: 300px; /* Changed this to accomodate content width */
+  max-height: auto;
+  overflow: hidden; /* Changed this from overflow-y:auto; to overflow:hidden; */
+  opacity: 0;
+  position: absolute;
+  white-space: nowrap;
+  z-index: 1;
+  will-change: width, height;
 }

@@ -60,4 +60,8 @@ jQuery(document).ready(function($) {
     $( ".language-selector" ).change(function() {
         $('form', this).submit();
     });
+
+    // Dropdown Orderer
+    $(".dropdown-button").dropdown();
+
 });

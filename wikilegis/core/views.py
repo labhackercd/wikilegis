@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -7,27 +8,47 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render, get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.text import capfirst
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic import DetailView
 
 from .forms import CitizenAmendmentCreationForm
-from .models import Bill, BillSegment, CitizenAmendment, GenericData, UpDownVote
+from .models import Bill, BillSegment, CitizenAmendment, UpDownVote
 from wikilegis.comments2.utils import create_comment
 from wikilegis.core.genericdata import BillVideo, BillAuthorData
+from wikilegis.core.orderers import SimpleOrderer
+
+
+class BillOrderer(SimpleOrderer):
+    title = _('Order by')
+    parameter_name = 'order'
+
+    def lookups(self, request):
+        return (
+            ('date', ugettext('Date')),
+            ('title', ugettext('Title')),
+        )
+
+    def queryset(self, request, queryset):
+        value = self.value()
+
+        if value == 'date':
+            queryset = queryset.order_by('-modified')
+        elif value == 'title':
+            queryset = queryset.order_by('-title')
+
+        return queryset
 
 
 def index(request):
     bills = Bill.objects.all().order_by('-modified')
 
-    if request.GET:
-        order = request.GET['order']
-        if order == 'alphabetic':
-            bills = Bill.objects.all().order_by('-title')
-        if order == 'date':
-            bills = Bill.objects.all().order_by('-modified')
+    orderer = BillOrderer(request, dict(request.GET.items()))
+    # Apply the orderer
+    bills = orderer.queryset(request, bills)
 
     return render(request, 'index.html', context=dict(
         bills=bills,
+        orderer=orderer,
     ))
 
 
@@ -177,4 +198,3 @@ def up_down_vote(request, object_id, model, vote):
         return render_to_response('_amendment_up_down_votes.html',
                                   {'amendment': CitizenAmendment.objects.get(id=object_id)},
                                   context_instance=RequestContext(request))
-

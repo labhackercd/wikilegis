@@ -38,7 +38,13 @@
 
         {% for author in authors %}
             <div class="pl-author">
-                <div class="avatar" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
+            
+                {% if author.user.avatar %}
+                    <div class="avatar" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
+                {% else %}
+                    <div class="avatar" style="background-image: url('{% static "img/user.png" %}')"></div>
+                {% endif %}
+
                 <div class="info">
                     <span class="author"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
                 </div>

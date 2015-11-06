@@ -12,8 +12,8 @@
             </div>
             <div class="row">
                 <h3>{{ user.get_display_name }}</h3>
-                <div><strong>Email: </strong>{{ user.email }}</div>
-                <div><strong>Começou em: </strong>{{ user.date_joined }}</div>
+                <div><strong>{% trans 'Email' %}: </strong>{{ user.email }}</div>
+                <div><strong>{% trans 'Joined on' %}: </strong>{{ user.date_joined }}</div>
             </div>
         </ul>
     </div>

@@ -51,7 +51,7 @@ class GenericData(models.Model):
 class Bill(TimestampedMixin):
     title = models.CharField(_('title'), max_length=255)
     description = models.TextField(_('description'))
-    status = models.CharField(_('status'), max_length=2, choices=BILL_STATUS_CHOICES, default='1')
+    status = models.CharField(_('status'), max_length=20, choices=BILL_STATUS_CHOICES, default='1')
 
     editors = models.ManyToManyField(
         'auth.Group', verbose_name=_('editors'), blank=True,

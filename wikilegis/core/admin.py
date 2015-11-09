@@ -129,7 +129,7 @@ class BillAdmin(admin.ModelAdmin):
     def get_excluded_fields(self, request, obj=None):
         exclude = []
         if not request.user.has_perm('core.change_bill_secret_fields', obj):
-            exclude.extend(['editors'])
+            exclude.extend(['editors', 'status'])
         return exclude
 
     def get_changelist(self, request, **kwargs):

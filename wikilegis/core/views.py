@@ -20,6 +20,7 @@ from wikilegis.core.orderers import SimpleOrderer
 
 class BillOrderer(SimpleOrderer):
     title = _('Order by')
+    default = 'date'
     parameter_name = 'order'
 
     def lookups(self, request):
@@ -40,7 +41,7 @@ class BillOrderer(SimpleOrderer):
 
 
 def index(request):
-    bills = Bill.objects.all().order_by('-modified')
+    bills = Bill.objects.all()
 
     orderer = BillOrderer(request, dict(request.GET.items()))
     # Apply the orderer

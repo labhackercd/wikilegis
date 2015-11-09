@@ -46,7 +46,10 @@ class SimpleOrderer(Orderer):
     # The parameter that should be used in the query string for that filter.
     parameter_name = None
 
-    def __init__(self, request, params):
+    # If default is `None`, the "All" option will appear. Otherwise it'll not.
+    default = None
+
+    def __init__(self, request, params, default=None):
         super(SimpleOrderer, self).__init__(request, params)
         if self.parameter_name is None:
             raise ImproperlyConfigured(
@@ -60,6 +63,10 @@ class SimpleOrderer(Orderer):
             lookup_choices = ()
         self.lookup_choices = list(lookup_choices)
 
+        if default is None:
+            default = self.default
+        self.default = default
+
         # For now.
         self.params = params.copy()
 
@@ -72,7 +79,7 @@ class SimpleOrderer(Orderer):
         query string for this filter, if any. If the value wasn't provided then
         returns None.
         """
-        return self.used_parameters.get(self.parameter_name, None)
+        return self.used_parameters.get(self.parameter_name, self.default)
 
     def lookups(self, request):
         """
@@ -86,11 +93,12 @@ class SimpleOrderer(Orderer):
         return [self.parameter_name]
 
     def choices(self):
-        yield {
-            'selected': self.value() is None,
-            'query_string': self.get_query_string({}, [self.parameter_name]),
-            'display': _('All'),
-        }
+        if self.default is None:
+            yield {
+                'selected': self.value() is None,
+                'query_string': self.get_query_string({}, [self.parameter_name]),
+                'display': _('None'),
+            }
         for lookup, title in self.lookup_choices:
             yield {
                 'selected': self.value() == force_text(lookup),

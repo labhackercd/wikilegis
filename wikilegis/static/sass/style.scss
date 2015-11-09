@@ -43,6 +43,9 @@ body {
 	background-color: $lightgray;
 }
 
+strong{
+  font-weight: 600;
+}
 .intro {
 	margin-bottom: -22px;
 	.about {
@@ -879,55 +882,101 @@ $opacity: .4;
 		}
 	}
 }
+
 .send-proposal {
-	label {
-		padding-top: 10px;
-		padding-left: 15px;
+  label {
+	padding-top: 10px;
+	padding-left: 15px;
+  }
+
+  textarea,
+  #preview-content {
+	max-width: 840px;
+  }
+
+  textarea {
+	margin-top: 10px;
+	height: 1.5em;
+	min-height: 1.5em;
+	padding: 10px 15px !important;
+	background-color: white;
+	border: 1px solid $fkingrey !important;
+	box-shadow: none !important;
+	resize: none;
+	&:focus {
+	  outline: none;
+	  box-shadow: 0px !important;
+	  border-bottom: none;
 	}
-	
-	textarea,
-	#preview-content {
-		max-width: 840px;
+  }
+
+  #preview {
+	.input-field {
+	  margin-top: 0px;
+	  p {
+		margin-top: 0px;
+	  }
 	}
-	
+  }
+
+  #preview-content {
+	color: #868686;
+	margin-left: 50px;
+  }
+
+  .comment-ammend {
+	padding-left: 50px;
 	textarea {
-		margin-top: 10px;
-		height: 1.5em;
-		min-height: 1.5em;
-		padding: 10px 15px !important;
-		background-color: white;
-		border: 1px solid $fkingrey !important;
-		box-shadow: none !important;
-		resize: none;
-		&:focus {
-			outline: none;
-			box-shadow: 0px !important;
-			border-bottom: none;
-		}
+	  max-width: 790px;
 	}
-	
-	#preview {
-		.input-field {
-			margin-top: 0px;
-			p {
-				margin-top: 0px;
-			}
-		}
+  }
+
+  .send {
+	max-width: 640px;
+  }
+}
+
+.edit-profile{
+  h5{
+	color: #3e3e3e;
+  }
+  span.clearable-file-input{
+	display: block;
+  }
+  .input-field{
+	margin-top: 2.1rem;
+  }
+  .picture{
+	color: #9e9e9e;
+	margin-left: 1%;
+	label.active{
+	  top: 0.2rem;
+	  left: 0.15rem;
 	}
-	
-	#preview-content {
-		color: #868686;
-		margin-left: 50px;
+	.clearable-file-input label{
+	  left: 0rem;
 	}
-	
-	.comment-ammend {
-		padding-left: 50px;
-		textarea {
-			max-width: 790px;
-		}
-	}
-	
-	.send {
-		max-width: 640px;
-	}
+  }
+  button, input[type='text']{
+	margin-left: 1%;
+  }
+}
+
+.show-profile{
+  margin-top: 10px;
+  img{
+    float: left;
+  }
+  h3{
+    margin: 10px 0;
+  }
+}
+
+.show-more{
+    padding-top: 5px;
+    margin-left: 72px;
+    color: #657DE8 !important;
+    &:hover{
+        color: #92A5F9 !important;
+    }
 }

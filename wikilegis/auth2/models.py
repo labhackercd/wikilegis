@@ -3,7 +3,10 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
+from django.db.models import permalink
+from image_cropping import ImageCropField, ImageRatioField
+from django import forms
 
 
 class UserManager(BaseUserManager):
@@ -33,6 +36,31 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, True, True, **extra_fields)
 
 
+def sizeof_fmt(num, suffix='B'):
+    """
+    Shamelessly copied from StackOverflow:
+    http://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
+
+    :param num:
+    :param suffix:
+    :return:
+    """
+    for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+        if abs(num) < 1024.0:
+            return "%3.1f%s%s" % (num, unit, suffix)
+        num /= 1024.0
+    return "%.1f%s%s" % (num, 'Yi', suffix)
+
+
+def avatar_validation(image):
+    if image:
+        # 10 MB
+        max_file_size = 10 * 1024 * 1024
+        if image.size > max_file_size:
+            raise forms.ValidationError(
+                ugettext('The maximum file size is {0}').format(sizeof_fmt(max_file_size)))
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
 
@@ -45,6 +73,10 @@ class User(AbstractBaseUser, PermissionsMixin):
                                     help_text=_('Designates whether this user should be treated as '
                                                 'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    avatar = ImageCropField(_('profile picture'), upload_to="avatars/",
+                            validators=[avatar_validation], null=True, blank=True)
+    cropping = ImageRatioField('avatar', '70x70', help_text=_(
+        'Note that the preview above will only be updated after you submit the form.'))
 
     objects = UserManager()
 
@@ -70,3 +102,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_display_name(self):
         return self.get_full_name() or self.email
+
+    @permalink
+    def get_absolute_url(self):
+        return 'users_profile', [self.pk], {}

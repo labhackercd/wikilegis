@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import ugettext
 from django.views.generic import RedirectView
+
+from .forms import UserForm
+from wikilegis.auth2.models import User
 
 
 class ActivationCompleteView(RedirectView):
@@ -15,3 +21,24 @@ class ActivationCompleteView(RedirectView):
     def get(self, request, *args, **kwargs):
         messages.info(request, ugettext("Your account is now activated."))
         return super(ActivationCompleteView, self).get(request, *args, **kwargs)
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, ugettext('Profile successfully updated'))
+            return redirect("edit_profile")
+    else:
+        form = UserForm(instance=request.user)
+
+    return render(request, 'auth2/edit.html', {'form': form})
+
+
+@login_required
+def show_users_profile(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+
+    return render(request, 'auth2/show_users_profile.html', {'user': user})

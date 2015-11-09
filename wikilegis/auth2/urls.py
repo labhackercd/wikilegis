@@ -22,4 +22,6 @@ else:
 
 urlpatterns += [
     url(r'^register/$', registration_view.as_view(), name='registration_register'),
+    url(r'^edit/$', 'wikilegis.auth2.views.edit_profile', name='edit_profile'),
+    url(r'^users/(?P<user_id>\d+)/$', 'wikilegis.auth2.views.show_users_profile', name='users_profile'),
 ]

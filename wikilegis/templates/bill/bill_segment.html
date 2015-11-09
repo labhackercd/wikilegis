@@ -4,6 +4,7 @@
 {% load i18n %}
 {% load render_comments from comments2 %}
 {% load count_votes %}
+{% load cropping %}
 
 {% block content3 %}
     <div class="col m8 pl-full">
@@ -42,11 +43,15 @@
                     <div class="user col s12 m4">
                         <div class="col m3">
                             <div class="avatr">
-                                <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                                {% if author.user.avatar %}
+                                    <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
+                                {% else %}
+                                    <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col m9">
-                            <span class="user-name"><a href="#">{{ author.user }}</a></span>
+                            <span class="user-name"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
                             <p class="date">{{ segment.created|date }}</p>
                         </div>
                     </div>
@@ -86,11 +91,15 @@
                         <div class="user col s12 m4">
                             <div class="col m3">
                                 <div class="avatr">
-                                    <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                                    {% if amendment.author.avatar %}
+                                        <div class="pic" style="background-image: url('{% cropped_thumbnail amendment.author 'cropping' %}')"></div>
+                                    {% else %}
+                                        <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col m9">
-                                <span class="user-name"><a href="#">{{ author.user }}</a></span>
+                                <span class="user-name"><a href="{% url 'users_profile' amendment.author.pk %}">{% with user=amendment.author %}{% include "auth2/_user_display_name.html" %}{% endwith %}</a></span>
                                 <p class="date">{{ segment.created|date }}</p>
                             </div>
                         </div>

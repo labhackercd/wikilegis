@@ -36,6 +36,22 @@
 
         <div class="col s12 m6">
             <div class="pls">
+                <div class="col s12 filter-bills">
+                    <!-- Dropdown Trigger -->
+                    {% for item in orderer.choices %}
+                        {% if item.selected %}
+                            <a class='dropdown-button btn' href='#' data-activates='dropdown1'>{% trans "Order by" %}: {{ item.display }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        {% for item in orderer.choices %}
+                            <li class="divider"></li>
+                            <li><a href="{{ item.query_string }}">{{ item.display }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
                 {% for bill in bills %}
                     <a class="hover" href="{% url 'show_bill' bill.id %}">
                         <div class="pl">

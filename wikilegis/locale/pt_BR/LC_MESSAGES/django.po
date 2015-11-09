@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 12:00-0200\n"
+"POT-Creation-Date: 2015-11-05 19:42-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,7 +121,7 @@ msgstr "Relatório"
 msgid "User"
 msgstr "Usuário"
 
-#: core/forms.py:57 core/models.py:85
+#: core/forms.py:50 core/models.py:77 core/views.py:28
 msgid "Title"
 msgstr "Título"
 
@@ -261,100 +261,26 @@ msgstr ""
 msgid "Down Vote"
 msgstr ""
 
-#: core/models.py:148
-msgid "number"
-msgstr ""
+#: core/orderers.py:92
+msgid "All"
+msgstr "Todos"
 
-#: core/models.py:149
-msgid "year"
-msgstr ""
+#: core/views.py:22 templates/index.html:43
+#, fuzzy
+#| msgid "order"
+msgid "Order by"
+msgstr "ordem"
 
-#: core/models.py:150
-msgid "name proposition"
-msgstr ""
+#: core/views.py:27
+msgid "Date"
+msgstr "Data"
 
-#: core/models.py:151
-msgid "id proposition"
-msgstr ""
-
-#: core/models.py:152
-msgid "id main proposition"
-msgstr ""
-
-#: core/models.py:153
-msgid "name origin proposition"
-msgstr ""
-
-#: core/models.py:154
-msgid "theme"
-msgstr ""
-
-#: core/models.py:155
-msgid "menu"
-msgstr ""
-
-#: core/models.py:156
-msgid "menu_explanation"
-msgstr ""
-
-#: core/models.py:158
-msgid "id register"
-msgstr ""
-
-#: core/models.py:159
-msgid "uf author"
-msgstr ""
-
-#: core/models.py:160
-msgid "party author"
-msgstr ""
-
-#: core/models.py:161
-msgid "apresentation date"
-msgstr ""
-
-#: core/models.py:162
-msgid "processing_regime"
-msgstr ""
-
-#: core/models.py:163
-msgid "last dispatch date"
-msgstr ""
-
-#: core/models.py:164
-msgid "last dispatch"
-msgstr ""
-
-#: core/models.py:165
-msgid "appraisal"
-msgstr ""
-
-#: core/models.py:166
-msgid "indexing"
-msgstr ""
-
-#: core/models.py:167
-msgid "situation"
-msgstr ""
-
-#: core/models.py:168
-msgid "content link"
-msgstr ""
-
-#: core/models.py:171
-msgid "proposition"
-msgstr ""
-
-#: core/models.py:172
-msgid "propositions"
-msgstr ""
-
-#: core/views.py:95
+#: core/views.py:123
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:119
+#: core/views.py:147
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
@@ -465,7 +391,7 @@ msgid ""
 "wording of Bills"
 msgstr ""
 
-#: templates/index.html:54
+#: templates/index.html:70
 msgid "Nothing to show here..."
 msgstr "Nada para mostrar aqui..."
 

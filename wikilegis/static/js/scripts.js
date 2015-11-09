@@ -26,7 +26,7 @@ function changesToMarkup(changes) {
 }
 
 jQuery(document).ready(function($) {
-    //Collapsable-comments
+    // Collapsable-comments
     $('.collapsible-comments').attr('data-show', function(event, qtd_to_show){
         var comments = $(this).find('.collapsible-comments-item');
 
@@ -56,8 +56,12 @@ jQuery(document).ready(function($) {
         });
     });
 
-    //language-selector
+    // language-selector
     $( ".language-selector" ).change(function() {
         $('form', this).submit();
     });
+
+    // Dropdown Orderer
+    $(".dropdown-button").dropdown();
+
 });

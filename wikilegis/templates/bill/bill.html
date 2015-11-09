@@ -7,6 +7,7 @@
 {% block content2 %}
     {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
     <div class="col m3 pl-full pl-description nice-scroll">
+
         <a href="{% url "show_bill" bill.id %}">
             <div class="circle"><div class="pl-icon"><i class="medium material-icons">description</i></div></div>
             <h5 class="pl-title">{{ bill.title }}</h5>

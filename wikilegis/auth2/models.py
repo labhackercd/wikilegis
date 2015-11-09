@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 from django.db.models import permalink
 from image_cropping import ImageCropField, ImageRatioField
 from django import forms
@@ -36,12 +36,29 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, True, True, **extra_fields)
 
 
+def sizeof_fmt(num, suffix='B'):
+    """
+    Shamelessly copied from StackOverflow:
+    http://stackoverflow.com/questions/1094841/reusable-library-to-get-human-readable-version-of-file-size
+
+    :param num:
+    :param suffix:
+    :return:
+    """
+    for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+        if abs(num) < 1024.0:
+            return "%3.1f%s%s" % (num, unit, suffix)
+        num /= 1024.0
+    return "%.1f%s%s" % (num, 'Yi', suffix)
+
+
 def avatar_validation(image):
     if image:
-        # max file size in MB
-        max_file_size = 10.0
-        if image.size > max_file_size*1024*1024:
-            raise forms.ValidationError("The max file size is %sMB" % str(max_file_size))
+        # 10 MB
+        max_file_size = 10 * 1024 * 1024
+        if image.size > max_file_size:
+            raise forms.ValidationError(
+                ugettext('The maximum file size is {0}').format(sizeof_fmt(max_file_size)))
 
 
 class User(AbstractBaseUser, PermissionsMixin):

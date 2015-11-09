@@ -51,7 +51,9 @@
                             </div>
                         </div>
                         <div class="col m9">
-                            <span class="user-name"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
+                            {% if author %}
+                                <span class="user-name"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
+                            {% endif %}
                             <p class="date">{{ segment.created|date }}</p>
                         </div>
                     </div>

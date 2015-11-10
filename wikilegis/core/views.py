@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
+from django.db.models.functions import Lower
 from django.shortcuts import redirect, render, get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.text import capfirst
@@ -35,7 +36,7 @@ class BillOrderer(SimpleOrderer):
         if value == 'date':
             queryset = queryset.order_by('-modified')
         elif value == 'title':
-            queryset = queryset.order_by('-title')
+            queryset = queryset.order_by(Lower('title').asc())
 
         return queryset
 

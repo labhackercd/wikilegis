@@ -9,7 +9,7 @@
 
     <p>Usuários do Wikilegis fizeram sugestões ao</p>
 
-    <h3>{{ bill }}</h3>
+    <h3>{{ bill }}{% if proposition %} - {{ proposition }}{% endif %}</h3>
     {% if amendments %}
     <hr>
         {% if amendments|length == 1 %}

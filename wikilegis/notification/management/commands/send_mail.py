@@ -59,14 +59,19 @@ class Command(BaseCommand):
                     if score_amendment > score_segment:
                         top_amendments.append(amendment.id)
             if segment_amendments or amendment_comments or top_amendments:
+                try:
+                    proposition = bill.proposition_set.all()[0].name_proposition
+                except:
+                    proposition = ''
                 html = render_to_string('notification/notification_email.html',
                                         {'current_site': current_site, 'bill': bill.title,
                                          'amendments': dict(segment_amendments),
                                          'comments': dict(amendment_comments),
+                                         'proposition': proposition,
                                          'top_amendments': CitizenAmendment.objects.filter(id__in=top_amendments)})
                 superusers = User.objects.filter(is_superuser=True)
                 email_list = []
-                subject = u'[Wikilegis] Atualizações ao %s' % bill.title
+                subject = u'[Wikilegis] Atualizações ao %s %s' % (bill.title, proposition)
                 for superuser in superusers:
                     email_list.append(superuser.email)
                 for editor in bill.editors.all():

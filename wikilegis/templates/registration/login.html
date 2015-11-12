@@ -48,6 +48,11 @@
                             <input type="hidden" name="next" value="{{ next }}" />
 
                             <div class="right-align">
+                                {% if 'inactive' in form.errors.as_json %}
+                                <a href="{% url 'resend_activation' %}" class="btn waves-effect waves-light" name="action">
+                                    {% trans "Activate Account" %}
+                                </a>
+                                {% endif %}
                                 <button class="btn waves-effect waves-light" type="submit" name="action">
                                     {% trans "Log in" %} <i class="material-icons right">send</i>
                                 </button>

@@ -11,6 +11,7 @@ urlpatterns = [
     # and should always come before its inclusion or else little cutie puppies will cry.
     url(r'^activate/complete/$', ActivationCompleteView.as_view(),
         name='registration_activation_complete'),
+    url(r'^activate/resend/$', 'wikilegis.auth2.views.resend_activation', name='resend_activation'),
     url(r'^', include('registration.backends.default.urls')),
 ]
 

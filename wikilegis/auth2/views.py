@@ -3,12 +3,23 @@ from __future__ import unicode_literals
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.models import Site
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import ugettext
 from django.views.generic import RedirectView
+from registration.models import RegistrationProfile
 
 from .forms import UserForm
 from wikilegis.auth2.models import User
+
+
+def resend_activation(request):
+    if request.method == 'POST':
+        user = RegistrationProfile.objects.get(user__email=request.POST['email'])
+        user.send_activation_email(Site.objects.get_current(), request)
+        return redirect("registration_complete")
+
+    return render(request, 'registration/resend_activation_form.html')
 
 
 class ActivationCompleteView(RedirectView):

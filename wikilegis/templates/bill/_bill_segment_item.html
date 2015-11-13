@@ -1,18 +1,18 @@
 {% if segment.type == 'title' %}
-    <blockquote class="pl-head" id="segment-{{ segment.id }}">
-        <h5>{{ segment.content }}</h5>
-    </blockquote>
+<blockquote class="pl-head" id="segment-{{ segment.id }}">
+    <h5>{{ segment.content }}</h5>
+</blockquote>
 {% else %}
-    <a class="bill-link" href="{% url "show_segment" bill.id segment.id %}">
-        <div class="article" id="segment-{{ segment.id }}">
-            <div class="comments-counter">
-                <div class="cn">{{ segment.amendments.all.count }}</div>
-            </div>
-            <div class="content">
-                    <span class="article-content">
-                        {{ segment.content|linebreaks }}
-                    </span>
-            </div>
+<a class="bill-link" href="{% url " show_segment " bill.id segment.id %}">
+    <div class="article" id="segment-{{ segment.id }}">
+        <div class="comments-counter">
+            <div class="cn">{{ segment.amendments.all.count }}</div>
         </div>
-    </a>
+        <div class="content">
+            <span class="article-content">
+                {{ segment.content|linebreaks }}
+            </span>
+        </div>
+    </div>
+</a>
 {% endif %}

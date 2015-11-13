@@ -26,6 +26,23 @@ function changesToMarkup(changes) {
 }
 
 jQuery(document).ready(function($) {
+	
+		//navbar	
+	
+		if ($(window).scrollTop() > $(window).height())
+			$('.wiki-navbar').show();	 	
+	
+		$(window).scroll(function () {				
+			console.log($(this).scrollTop());
+			if ($(this).scrollTop() > $(window).height()) {
+				$('.wiki-navbar').fadeIn(200);
+			} else {
+				$('.wiki-navbar').fadeOut(200);
+			}
+		});
+
+	
+	
     // Collapsable-comments
     $('.collapsible-comments').attr('data-show', function(event, qtd_to_show){
         var comments = $(this).find('.collapsible-comments-item');

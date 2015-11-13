@@ -1,10 +1,23 @@
-<div class="col m2 main-menu hide-on-small-only">
-    {% include "_sidebar_logo.html" %}
-    {% include "_sidebar_search.html" %}
-    {% include "_sidebar_user_status.html" %}
-    {% include "_sidebar_language_selector.html" %}
-    <div class="bottom-links">
-      {% include "_admin_link.html" %}
-      {% include "_about_link.html" %}
-    </div> 
-</div>
+<nav class="wiki-navbar valign-wrapper">
+    <div class="row">
+        <div class="logo col s4">
+            <h5>Wikilegis</h5>
+        </div>
+        <div class="col s2">
+            {% include "_sidebar_search.html" %}
+        </div>
+        <div class="col s2">
+            {% include "_sidebar_language_selector.html" %}
+        </div>
+        <div class="col s2">
+            {% include "_sidebar_user_status.html" %}
+        </div>
+        <div class="col s2">
+            <div class="bottom-links">
+                {% include "_admin_link.html" %}
+                {% include "_about_link.html" %}
+            </div>
+        </div>
+        
+    </div>
+</nav>

@@ -1,75 +1,70 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %} {% load i18n %} {% block content %} {% include "_sidebar.html" %}
+<div class="row intro">
+    <div class="col s12 m6 about valign-wrapper" style="margin: 0 auto">
+        <div class="valign">
+            <div class="row">
+                <div class="content">
+                    {% include "_sidebar_logo.html" %}
+                    <h4>{% trans "Your legislative editing tool" %}</h4>
 
-{% load static %}
-{% load i18n %}
+                    <div class="row">
+                        <p class="col s10 offset-s1">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills" %}</p>
+                    </div>
 
-{% block content %}
-    <div class="row intro">
-        <div class="col s12 m6 about valign-wrapper" style="margin: 0 auto">
-            <div class="valign">
-                <div class="row">
-                    <div class="content">
-                        {% include "_sidebar_logo.html" %}
-                        <h4>{% trans "Your legislative editing tool" %}</h4>
-
-                        <div class="row">
-                            <p class="col s10 offset-s1">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills" %}</p>
-                        </div>
-
-                        <div class="row">
-                            <div class="col s5 offset-s1">{% include "auth2/_current_user_or_login_button.html" %}</div>
-                            <div class="col s5">{% include "_sidebar_search.html" %}</div>
-                        </div>
+                    <div class="row">
+                        <div class="col s5 offset-s1">{% include "auth2/_current_user_or_login_button.html" %}</div>
+                        <div class="col s5">{% include "_sidebar_search.html" %}</div>
                     </div>
                 </div>
-
-                <div class="row">
-                    {% include "_sidebar_language_selector.html" %}
-                </div>
             </div>
 
-            <div class="bottom-links">
-              {% include "_admin_link.html" %}
-              {% include "_about_link.html" %}
+            <div class="row">
+                {% include "_sidebar_language_selector.html" %}
             </div>
         </div>
 
-        <div class="col s12 m6">
-            <div class="pls">
-                <div class="col s12 filter-bills">
-                    <!-- Dropdown Trigger -->
-                    {% for item in orderer.choices %}
-                        {% if item.selected %}
-                            <a class='dropdown-button btn' href='#' data-activates='dropdown1'>{% trans "Order by" %}: {{ item.display }}</a>
-                        {% endif %}
-                    {% endfor %}
-
-                    <!-- Dropdown Structure -->
-                    <ul id='dropdown1' class='dropdown-content'>
-                        {% for item in orderer.choices %}
-                            <li class="divider"></li>
-                            <li><a href="{{ item.query_string }}">{{ item.display }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% for bill in bills %}
-                    <a class="hover" href="{% url 'show_bill' bill.id %}">
-                        <div class="pl">
-                            <div class="icon">
-                                <div class="circle"><div class="pl-icon"><i class="small material-icons">description</i></div></div>
-                            </div>
-                            <div class="description">
-                                <h5>{{ bill.title }}</h5>
-                                <p>{{ bill.description|linebreaks|truncatechars:205 }}</p>
-                            </div>
-                            <div class="arrow"><i class="material-icons" data-icon="navigate_next"></i></div>
-                        </div>
-                    </a>
-                    <div class="divider"></div>
-                {% empty %}
-                    {% trans "Nothing to show here..." %}
-                {% endfor %}
-            </div>
+        <div class="bottom-links">
+            {% include "_admin_link.html" %} {% include "_about_link.html" %}
         </div>
     </div>
+</div>
+<div class="row projects">
+    <div class="col s12 m6">
+        <div class="pls">
+            <div class="col s12 filter-bills">
+                <!-- Dropdown Trigger -->
+                {% for item in orderer.choices %} {% if item.selected %}
+                <a class='dropdown-button btn' href='#' data-activates='dropdown1'>{% trans "Order by" %}: {{ item.display }}</a> {% endif %} {% endfor %}
+
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content'>
+                    {% for item in orderer.choices %}
+                    <li class="divider"></li>
+                    <li><a href="{{ item.query_string }}">{{ item.display }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% for bill in bills %}
+            <a class="hover" href="{% url 'show_bill' bill.id %}">
+                <div class="pl">
+                    <div class="icon">
+                        <div class="circle">
+                            <div class="pl-icon"><i class="small material-icons">description</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h5>{{ bill.title }}</h5>
+                        <p>{{ bill.description|linebreaks|truncatechars:205 }}</p>
+                    </div>
+                    <div class="arrow"><i class="material-icons" data-icon="navigate_next"></i>
+                    </div>
+                </div>
+            </a>
+            <div class="divider"></div>
+            {% empty %} {% trans "Nothing to show here..." %} {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

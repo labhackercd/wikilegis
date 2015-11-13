@@ -78,6 +78,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     cropping = ImageRatioField('avatar', '70x70', help_text=_(
         'Note that the preview above will only be updated after you submit the form.'))
 
+    id_congressman = models.CharField(_('Congressman ID'), max_length=30, null=True, blank=True)
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
@@ -102,6 +104,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_display_name(self):
         return self.get_full_name() or self.email
+
+    def is_congressman(self):
+        if len(self.id_congressman) is not 0:
+            return True
+        else:
+            return False
 
     @permalink
     def get_absolute_url(self):

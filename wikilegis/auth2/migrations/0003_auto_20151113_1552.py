@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='id_congressman',
-            field=models.CharField(max_length=30, null=True, verbose_name='Congressman ID', blank=True),
+            field=models.CharField(help_text='The id of each congressman may be found in the url parameters in thecongressman profile from the site: http://www2.camara.leg.br/', max_length=30, null=True, verbose_name='Congressman ID', blank=True),
         ),
         migrations.AlterField(
             model_name='user',

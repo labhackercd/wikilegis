@@ -78,7 +78,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     cropping = ImageRatioField('avatar', '70x70', help_text=_(
         'Note that the preview above will only be updated after you submit the form.'))
 
-    id_congressman = models.CharField(_('Congressman ID'), max_length=30, null=True, blank=True)
+    id_congressman = models.CharField(_('Congressman ID'), max_length=30, null=True, blank=True,
+                                      help_text=_("The id of each congressman may be found in the url parameters in the"
+                                                  "congressman profile from the site: http://www2.camara.leg.br/"))
 
     objects = UserManager()
 

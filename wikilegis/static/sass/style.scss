@@ -1767,3 +1767,16 @@ $opacity: .4;
     opacity: .5;
     z-index: 9998;
 }
+
+// XXX: wtf is happening here? (dirleyrls)
+.edit-profile {
+	& input[name="id_congressman"]{
+		margin-bottom: 0;
+	}
+	.help{
+		margin-top: 3px;
+		margin-left: 1%;
+		font-size: 12px;
+		opacity: 0.8;
+	}
+}

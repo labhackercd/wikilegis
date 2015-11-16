@@ -38,7 +38,7 @@ class UserForm(UserChangeForm):
 
     class Meta(UserChangeForm.Meta):
         model = User
-        fields = ('first_name', 'last_name', 'avatar', 'cropping')
+        fields = ('first_name', 'last_name', 'id_congressman', 'avatar', 'cropping')
         widgets = {
             'avatar': CustomImageCropWidget(),
             'cropping': CropWidget(),

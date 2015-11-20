@@ -1,7 +1,8 @@
 @import "materialize";
-$maingreen: #4e5d5d;
+@import "animations";
+$maingreen: #324545;
 $green: #7baf66;
-$logogreen: #64C069;
+$logogreen: #7AD07E;
 $yellow: rgb(252,
 250,
 96);
@@ -40,20 +41,21 @@ body {
 }
 
 .wiki-navbar {
-    display: none;
-    position: fixed;
+    position: absolute;
+    display: block;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
     width: 100%;
     height: $nav-height;
-    background-color: white;
     padding: 5px;
-    color: $gray;
+    color: white;
     line-height: 47px;
+    background: transparent;
+    box-shadow: 0px 0px 0px;
     i.signout {
-        opacity: .4;
+        opacity: .7;
         font-size: 1.3em;
     }
     i {
@@ -63,8 +65,118 @@ body {
     }
     .logo {
         margin-left: 10px;
+        line-height: 68px;
+        visibility: hidden;
+        img {
+            width: 200px;
+        }
+    }
+    &.fixed-top {
+        position: fixed;
+        display: fixed;
+        background-color: $maingreen;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        .logo {
+            visibility: visible;
+        }
+    }
+    .searchSidebar {
+        margin-top: 5px;
+        nav {
+            height: 35px;
+            padding: 0 !important;
+            background: transparent;
+            box-shadow: 0px 0px 0px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+            input {
+                line-height: 2em !important;
+                color: white;
+                border-radius: 25px;
+                font-size: 1.1em;
+                padding-top: 2px;
+                padding-left: 2.6em !important;
+            }
+            label {
+                top: -14px;
+                left: 0.6rem !important;
+                i.material-icons {
+                    color: white;
+                    font-size: 2em
+                }
+            }
+            .input-field {
+                input[type=search]:focus {
+                    background-color: transparent;
+                    border: 0;
+                    box-shadow: none;
+                    color: white;
+                }
+            }
+        }
     }
 }
+
+.cover {
+    position: relative;
+    padding-top: 150px;
+    height: 100%;
+    min-height: 93vh;
+    img.logo {
+       width: 100%; 
+    }  
+    .cover-info {
+        border-left: 3px solid rgba(255, 255, 255, 0.7);
+        margin-left: 50px;
+        padding-left: 50px;
+        h1 {
+            color: white;
+            font-weight: bold;
+            font-size: 4rem;
+        }
+        .desc {
+            font-size: 1.5rem;
+            color: white;
+            opacity: .5;
+        }
+    }
+    .login-or-signup {
+        margin-top: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        background-color: transparent;
+        border-radius: 40px;
+        width: 350px;
+        height: 55px;
+        padding: 10px;
+        color: white;
+        text-align: center;
+        font-size: 1.4em;
+        font-weight: 600;
+        a {
+            color: inherit;
+            opacity: .6;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    .see-projects {
+        position: absolute;
+        width: 100%;        
+        bottom: 20px;
+        text-align: center;
+        font-size: 1.3em;
+        color: white;   
+        svg {
+            path {
+                fill: $logogreen;
+            }
+        }
+    }
+}
+
+
 
 strong {
     font-weight: 600;
@@ -77,56 +189,7 @@ strong {
     margin-bottom: -20px;
 }
 
-.intro {
-    margin-bottom: -22px;
-    .about {
-        height: 100vh;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        @media screen and (max-width: 600px) {
-            min-height: 100vh;
-            height: auto;
-        }
-        text-align: center;
-        position: relative;
-        .loginSignup {
-            .loginButton {
-                border-radius: 20px;
-                background: url(static("img/user.png")) 10px 2px no-repeat, $logogreen;
-                background-size: auto 24px;
-                padding: 10px 10px 10px 40px;
-                a {
-                    color: #fff;
-                }
-            }
-        }
-        .content {
-            height: auto;
-            margin-right: auto;
-            margin-left: auto;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding-left: 10px;
-            padding-right: 10px;
-            color: white;
-            h4 {
-                font-weight: 700;
-            }
-            p {
-                opacity: .9;
-                margin-bottom: 20px;
-                color: #a3b7b8;
-            }
-            .acces {
-                margin-top: 50px;
-                padding: 10px 50px;
-                border-radius: 5px;
-                background-color: $yellow;
-                color: $maingreen;
-                font-weight: 700;
-            }
-        }
-    }
+
     .buttonsShareProjetc {
         margin-bottom: 0;
         align-self: flex-end;
@@ -206,24 +269,6 @@ strong {
             }
         }
     }
-}
-
-.main-menu {
-    position: relative;
-    background-color: $maingreen;
-    height: 100vh;
-    text-align: center;
-    .logo {
-        margin-top: 30px;
-        width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-.main {
-    margin-bottom: -22px;
-}
 
 .pl-description {
     background-color: white;
@@ -532,7 +577,7 @@ blockquote {
 .search {
     nav {
         padding: 0 !important;
-        background: #fff;
+        background: white;
         ;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 2px 2px 0 rgba(0, 0, 0, 0.02) !important;
         input {
@@ -544,45 +589,20 @@ blockquote {
     }
 }
 
-.searchSidebar {
-    margin-top: 5px;
-    nav {
-        height: 35px;
-        padding: 0 !important;
-        background: #fff;
-        border-radius: 25px;
-        box-shadow: 0px 0px 0px;
-        input {
-            line-height: 2em !important;
-            color: #444;
-            border-radius: 25px;
-            font-size: 1.1em;
-            padding-top: 2px;
-            padding-left: 2.6em !important;
-        }
-        label {
-            top: -14px;
-            left: 0.6rem !important;
-            i.material-icons {
-                color: #444;
-                font-size: 2em
-            }
-        }
-    }
-}
-
 .current-user {
     float: right;
     a {
-        color: #444;
+        opacity: .7;
+        &:hover {
+            opacity: 1;
+        }
     }
-    color: #444;
 }
 
 .card-buttonLogout {
     margin-top: -2px;
     a {
-        color: #fff;
+        color: white;
         text-decoration: underline;
         font-size: 0.8em;
         &:hover {
@@ -658,9 +678,13 @@ blockquote {
     }
 }
 
-.bottom-links {
+.more-links {
     a {
         color: inherit;
+        opacity: .7;
+        &:hover {
+            opacity: 1;
+        }
     }
     a:first-child {
         margin-right: 20px;
@@ -698,11 +722,11 @@ blockquote {
 .language-selector {
     float: right;
     select {
-        /*		background-image: url(static("img/arrow.png"));
-		background-repeat: no-repeat;
-		background-position-y: center;
-		background-position-x: right;*/
-        
+        background-image: url(static("img/arrow.png"));
+        background-repeat: no-repeat;
+        background-position-y: center;
+        background-position-x: right;
+        background-size: 10px 8px;
         font-size: 1em;
         cursor: pointer;
         outline: none;
@@ -711,6 +735,9 @@ blockquote {
         opacity: .7;
         border-radius: 0;
         width: auto;
+        -webkit-appearance: none;
+        padding-right: 15px;
+        line-height: 20px;
         option {
             color: $maingreen;
             -webkit-appearance: none;
@@ -1036,12 +1063,12 @@ $opacity: .4;
         width: 40%;
     }
     .dropdown-button {
-        color: #fff !important;
+        color: white !important;
     }
 }
 
 .dropdown-content {
-    background-color: #FFFFFF;
+    background-color: white;
     margin: 0;
     display: none;
     min-width: 300px;

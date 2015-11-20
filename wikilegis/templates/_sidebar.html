@@ -1,7 +1,9 @@
+{% load static %}
+
 <nav class="wiki-navbar valign-wrapper">
     <div class="row">
         <div class="logo col s4">
-            <h5>Wikilegis</h5>
+            <img src='{% static "img/nav-logo.png" %}' alt="Wikilegis" />
         </div>
         <div class="col s2">
             {% include "_sidebar_search.html" %}
@@ -13,7 +15,7 @@
             {% include "_sidebar_user_status.html" %}
         </div>
         <div class="col s2">
-            <div class="bottom-links">
+            <div class="more-links">
                 {% include "_admin_link.html" %}
                 {% include "_about_link.html" %}
             </div>

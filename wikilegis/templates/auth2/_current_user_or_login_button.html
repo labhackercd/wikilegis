@@ -3,12 +3,11 @@
 {% load auth2 %}
 
 <div class="current-user">
-    <i class="material-icons">account_circle</i>
     {% if user.is_authenticated %}
-        <span class="card-title"><a href="{% url 'edit_profile' %}">{% include "auth2/_user_display_name.html" %}</a></span>
+        <span class="card-title"><a href="{% url 'edit_profile' %}"><i class="material-icons">account_circle</i>{% include "auth2/_user_display_name.html" %}</a></span>
         <a href="{% logout_absolute_path request %}"><i class="material-icons signout">clear</i></a>
     {% else %}
-        <a href="{% url "auth_login" %}">{% trans "Log in" %}</a>
+        <a href="{% url "auth_login" %}"><i class="material-icons">account_circle</i>{% trans "Log in" %}</a>
         {% trans "or" %}
         <a href="{% url "registration_register" %}">{% trans "Sign up" %}</a>
     {% endif %}

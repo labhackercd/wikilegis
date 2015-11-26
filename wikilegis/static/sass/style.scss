@@ -17,6 +17,10 @@ $a_color: #6775a6;
     font-size: 36px;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 html,
 body {
     height: 100%;
@@ -122,8 +126,8 @@ body {
     height: 100%;
     min-height: 93vh;
     img.logo {
-       width: 100%; 
-    }  
+        width: 100%;
+    }
     .cover-info {
         border-left: 3px solid rgba(255, 255, 255, 0.7);
         margin-left: 50px;
@@ -163,11 +167,12 @@ body {
     }
     .see-projects {
         position: absolute;
-        width: 100%;        
+        cursor: pointer;
+        width: 100%;
         bottom: 20px;
         text-align: center;
         font-size: 1.3em;
-        color: white;   
+        color: white;
         svg {
             path {
                 fill: $logogreen;
@@ -176,99 +181,154 @@ body {
     }
 }
 
-
-
 strong {
     font-weight: 600;
 }
 
 .projects {
+    h2.title {
+        font-weight: bold;
+        color: lighten(black, 25%);
+    }
+    ul.filter {
+        float: right;
+        font-size: 1.5em;
+        font-weight: 600;
+        .divider {
+            color: lighten(black, 70%);
+            background: transparent;
+            &:last-child {
+                display: none;                
+            }
+        }
+        a {
+            display: block;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: lighten(black, 40%);
+            &:hover {
+                color: lighten(black, 25%);
+            }
+            &.active {
+                color: $logogreen;
+            }
+        }
+        li {
+            display:inline-block
+        }
+    }
     background-color: $lightgray;
     background-image: url(static("img/etpat.png"));
     height: 1000px;
     margin-bottom: -20px;
+    padding-top: $nav-height;
+    .container {
+        margin-top: 50px;
+    }
 }
 
+.buttonsShareProjetc {
+    margin-bottom: 0;
+    align-self: flex-end;
+    margin-top: 30px;
+    .description {
+        width: 70%;
+        margin: 0 auto 10px auto;
+        font-size: 0.8em;
+        line-height: 1.2em;
+        color: #7fafaf;
+    }
+}
 
-    .buttonsShareProjetc {
-        margin-bottom: 0;
-        align-self: flex-end;
-        margin-top: 30px;
+.pls {
+    position: relative;
+    height: 100vh;
+    overflow: auto;
+    a {
+        color: inherit;
+    }
+    .pl {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 20px;
+        background-color: white;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: center;
+        .circle {
+            text-align: center;
+            border: 5px solid #28D27A;
+            height: 100px;
+            width: 100px;
+            padding: 1.3em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .icon {
+            width: 90px;
+            .circle {
+                width: 90%;
+                height: 0;
+                padding-bottom: 90%;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                background-color: #9F9F9F;
+                background-size: cover;
+                div {
+                    text-transform: uppercase;
+                    float: left;
+                    width: 100%;
+                    padding-top: 50%;
+                    line-height: 1em;
+                    margin-top: -0.5em;
+                    text-align: center;
+                    font-size: 2em;
+                    color: white;
+                }
+            }
+        }
         .description {
-            width: 70%;
-            margin: 0 auto 10px auto;
-            font-size: 0.8em;
-            line-height: 1.2em;
-            color: #7fafaf;
-        }
-    }
-    .pls {
-        position: relative;
-        height: 100vh;
-        overflow: auto;
-        a {
-            color: inherit;
-        }
-        .pl {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            padding-left: 15px;
-            padding-right: 15px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-content: center;
-            align-items: center;
-            .icon {
-                width: 90px;
-                .circle {
-                    width: 90%;
-                    height: 0;
-                    padding-bottom: 90%;
-                    -moz-border-radius: 50%;
-                    -webkit-border-radius: 50%;
-                    border-radius: 50%;
-                    background-color: #9F9F9F;
-                    background-size: cover;
-                    div {
-                        text-transform: uppercase;
-                        float: left;
-                        width: 100%;
-                        padding-top: 50%;
-                        line-height: 1em;
-                        margin-top: -0.5em;
-                        text-align: center;
-                        font-size: 2em;
-                        color: white;
-                    }
-                }
+            padding-left: 10px;
+            padding-right: 10px;
+            font-weight: 600;
+            p {
+                color: lighten(black, 30%);
+                max-width: 840px;
             }
-            .description {
-                padding-left: 10px;
-                padding-right: 10px;
-                flex-grow: 1;
-                flex-shrink: 0;
-                flex-basis: 80px;
+            h5 {
+                font-weight: 700;
+                max-width: 840px;                    
+            }
+            .status {
+                color: lighten(black, 50%);
+                font-weight: normal;
+                padding: 3px 10px 3px 10px;
+                border-left: 3px solid #28D17A;
+                .title {
+                    font-weight: bold;
+                }                
+            }
+        }
+        .prop-count {
+            text-align: center;
+            h4 {
+                font-weight: bold;
+                color: rgb(185, 102, 53);
+                margin: 0 0 .4rem 0;
+            }
+            span {
                 font-weight: 600;
-                p {
-                    opacity: .8;
-                }
-                h5 {
-                    font-weight: 700;
-                }
-            }
-            .arrow {
-                width: 20px;
-            }
-            &:hover {
-                background-color: white;
-                -webkit-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
-                -moz-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
-                box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
             }
         }
+        &:hover {
+            background-color: white;
+            -webkit-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
+        }
     }
+}
 
 .pl-description {
     background-color: white;

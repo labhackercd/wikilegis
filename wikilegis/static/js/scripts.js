@@ -29,11 +29,11 @@ jQuery(document).ready(function ($) {
 
     //navbar	
 
-    if ($(window).scrollTop() > $(window).height())
+    if ($(window).scrollTop() >= $(window).height())
         $('.wiki-navbar').addClass('fixed-top');
 
     $(window).scroll(function () {
-        if ($(this).scrollTop() > $(window).height()) {
+        if ($(this).scrollTop() >= $(window).height()) {
             if (!$('.wiki-navbar').hasClass('fixed-top'))
                 $('.wiki-navbar').hide().addClass('fixed-top').fadeIn(200);
         } else {
@@ -41,6 +41,14 @@ jQuery(document).ready(function ($) {
                 $('.wiki-navbar').removeClass('fixed-top');
         }
     });
+    
+    //See projects
+    
+    $(".see-projects").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#projects").offset().top
+        }, 1000, 'easeOutCirc');
+    });    
     
     
 

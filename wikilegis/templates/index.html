@@ -61,9 +61,19 @@
                         </div>
                     </div>
                     <div class="col m8 description">
-                        <h5 class="title">{{ bill.title }}</h5>
-                        <p class="d">{{ bill.description|linebreaks|truncatechars:205 }}</p>
-                        <p class="status"><span class="title">Status da PL: </span>String contendo status do projeto de lei</p>
+                        <div class="row">
+                            <h5 class="title">{{ bill.title }}</h5>
+                            <p class="d">{{ bill.description|linebreaks|truncatechars:205 }}</p>
+                        </div>                        
+                        <div class="row valign-wrapper">
+                            <div class="col m6 status">
+                                <span class="title">Status da PL: </span><span class="status-content">String contendo status do projeto de lei</span>
+                            </div>
+                            <div class="col m6 users">
+                                <!-- User relevance here? -->
+                                <span class="dep">Dep. Eduardo Cunha</span>, Bruna Oliveira e outras <span class="users-count">18 pessoas</span>
+                            </div>                            
+                        </div>
                     </div>
                     <div class="col m2 prop-count">
                         <h4>17</h4>

@@ -43,6 +43,9 @@ body {
     padding-top: $nav-height;
     background-attachment: fixed;
 }
+.row.main {
+    background-color: $lightgray;
+}
 
 .wiki-navbar {
     position: absolute;
@@ -308,6 +311,19 @@ strong {
                 .title {
                     font-weight: bold;
                 }                
+            }
+            .row {
+                margin-bottom: 0px;
+            }
+            .users {
+                text-align: right;
+                font-size: .8em;
+                font-weight: normal;
+                opacity: .8;
+                .dep {
+                    font-weight: bold;
+                    color: $a_color;
+                }
             }
         }
         .prop-count {

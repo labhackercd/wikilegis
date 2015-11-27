@@ -28,19 +28,27 @@ function changesToMarkup(changes) {
 jQuery(document).ready(function ($) {
 
     //navbar	
+    
+    var is_root = location.pathname == "/";
+    
+    if (is_root) {
 
-    if ($(window).scrollTop() >= $(window).height())
-        $('.wiki-navbar').addClass('fixed-top');
+        if ($(window).scrollTop() >= $(window).height())
+            $('.wiki-navbar').addClass('fixed-top');
 
-    $(window).scroll(function () {
-        if ($(this).scrollTop() >= $(window).height()) {
-            if (!$('.wiki-navbar').hasClass('fixed-top'))
-                $('.wiki-navbar').hide().addClass('fixed-top').fadeIn(200);
-        } else {
-            if ($('.wiki-navbar').hasClass('fixed-top')) 
-                $('.wiki-navbar').removeClass('fixed-top');
-        }
-    });
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= $(window).height()) {
+                if (!$('.wiki-navbar').hasClass('fixed-top'))
+                    $('.wiki-navbar').hide().addClass('fixed-top').fadeIn(200);
+            } else {
+                if ($('.wiki-navbar').hasClass('fixed-top')) 
+                    $('.wiki-navbar').removeClass('fixed-top');
+            }
+        });
+        
+    } else {
+        $('.wiki-navbar').addClass('fixed-top')
+    }
     
     //See projects
     

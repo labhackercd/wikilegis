@@ -13,11 +13,13 @@
             </div>
         </div>
     </div>
+    {% if not user.is_authenticated %}
     <div class="row">
         <div class="login-or-signup animated fadeInDown" data-id='3'>
-            Faça <a href="#">login</a> ou <a href="#">cadastre-se</a>
+            Faça <a href="{% url "auth_login" %}">login</a> ou <a href="{% url "registration_register" %}">cadastre-se</a>
         </div>
     </div>
+    {% endif %}
     <div class="see-projects animated fadeInUpShort" data-id='4'>
         <div>
             <p>Veja os projetos de lei que você pode opinar</p>

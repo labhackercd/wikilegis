@@ -5,29 +5,20 @@
 {% load render_materialized_field from wl_forms %}
 
 {% block content %}
-    <div class="container">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+    <div class="row">
 
-        <div class="row">
+        <div class="container">
+            
+            <div class="login">
 
             <form action="./" method="POST">
 
-                <div class="col s12 m6 offset-m3 l4 offset-l4">
-                    <div class="card grey darken-2">
-                        <div class="card-content white-text">
-                            <br />
+                
+                        <div class="white-text">
                             <div class="center-align">
                                 {% include "_sidebar_logo.html" %}
                             </div>
 
-                            <br />
-                            <span class="card-title">
-                                {% trans "Sign in" %}
-                            </span>
 
                             {% csrf_token %}
 
@@ -36,14 +27,13 @@
                                     {{ form.non_field_errors }}
                                 </div>
                             {% endif %}
-
-                            <div class="input-field">
-                                {% render_materialized_field form.username %}
-                            </div>
-
-                            <div class="input-field">
-                                {% render_materialized_field form.password %}
-                            </div>
+                            
+                                <div class="w-input">
+                                    {% render_materialized_field form.username %}
+                                </div>
+                                <div class="w-input">
+                                    {% render_materialized_field form.password %}
+                                </div>                                
 
                             <input type="hidden" name="next" value="{{ next }}" />
 
@@ -53,29 +43,26 @@
                                     {% trans "Activate Account" %}
                                 </a>
                                 {% endif %}
-                                <button class="btn waves-effect waves-light" type="submit" name="action">
-                                    {% trans "Log in" %} <i class="material-icons right">send</i>
+                                <button class="btn wbtn waves-effect waves-light" type="submit" name="action">
+                                    {% trans "Log in" %}
                                 </button>
                             </div>
+                        </div>
+                        <div class="social">
+                            {% for backend in backends.backends %}
+                                    <a class="col-md-2 wbtn btn btn-default" id="{{ backend }}-button" name="{{ backend }}" href="{% url "social:begin" backend=backend %}">
+                                        <img src="{% static backend|social_icon %}" />
+                                        {% blocktrans with backend_name=backend|social_title %}Sign in with {{ backend_name }}{% endblocktrans %}
+                                    </a>
+                            {% endfor %}
                         </div>
                         <div class="card-action white-text">
                             <p>{% trans "Don't have an account?" %} <a href="{% url "registration_register" %}">{% trans "Sign up now!" %}</a></p>
                             <p>{% trans "Forgot your password?" %} <a href="{% url "auth_password_reset" %}">{% trans "Ask for a new one!" %}</a></p>
                         </div>
-
-                        <div class="social">
-                            {% for backend in backends.backends %}
-                                <div class="row">
-                                    <a class="col-md-2 btn btn-default" id="{{ backend }}-button" name="{{ backend }}" href="{% url "social:begin" backend=backend %}">
-                                        <img src="{% static backend|social_icon %}" />
-                                        {% blocktrans with backend_name=backend|social_title %}Sign in with {{ backend_name }}{% endblocktrans %}
-                                    </a>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
+            
         </div>
 
         <div class="col s6 offset-s6">
@@ -92,4 +79,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}

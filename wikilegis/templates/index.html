@@ -1,75 +1,93 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %} {% load i18n %} {% load proposals %} {% block content %} {% include "_sidebar.html" %}
 
-{% load static %}
-{% load i18n %}
 
-{% block content %}
-    <div class="row intro">
-        <div class="col s12 m6 about valign-wrapper" style="margin: 0 auto">
-            <div class="valign">
-                <div class="row">
-                    <div class="content">
-                        {% include "_sidebar_logo.html" %}
-                        <h4>{% trans "Your legislative editing tool" %}</h4>
-
-                        <div class="row">
-                            <p class="col s10 offset-s1">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills" %}</p>
-                        </div>
-
-                        <div class="row">
-                            <div class="col s5 offset-s1">{% include "auth2/_current_user_or_login_button.html" %}</div>
-                            <div class="col s5">{% include "_sidebar_search.html" %}</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    {% include "_sidebar_language_selector.html" %}
-                </div>
-            </div>
-
-            <div class="bottom-links">
-              {% include "_admin_link.html" %}
-              {% include "_about_link.html" %}
-            </div>
+<div class="container cover animatedParent animateOnce" data-sequence='300'>
+    <div class="row valign-wrapper">
+        <div class="col m3 s12 animated fadeInLeftShort" data-id='1'>
+            {% include "_sidebar_logo.html" %}
         </div>
-
-        <div class="col s12 m6">
-            <div class="pls">
-                <div class="col s12 filter-bills">
-                    <!-- Dropdown Trigger -->
-                    {% for item in orderer.choices %}
-                        {% if item.selected %}
-                            <a class='dropdown-button btn' href='#' data-activates='dropdown1'>{% trans "Order by" %}: {{ item.display }}</a>
-                        {% endif %}
-                    {% endfor %}
-
-                    <!-- Dropdown Structure -->
-                    <ul id='dropdown1' class='dropdown-content'>
-                        {% for item in orderer.choices %}
-                            <li class="divider"></li>
-                            <li><a href="{{ item.query_string }}">{{ item.display }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% for bill in bills %}
-                    <a class="hover" href="{% url 'show_bill' bill.id %}">
-                        <div class="pl">
-                            <div class="icon">
-                                <div class="circle"><div class="pl-icon"><i class="small material-icons">description</i></div></div>
-                            </div>
-                            <div class="description">
-                                <h5>{{ bill.title }}</h5>
-                                <p>{{ bill.description|linebreaks|truncatechars:205 }}</p>
-                            </div>
-                            <div class="arrow"><i class="material-icons" data-icon="navigate_next"></i></div>
-                        </div>
-                    </a>
-                    <div class="divider"></div>
-                {% empty %}
-                    {% trans "Nothing to show here..." %}
-                {% endfor %}
+        <div class="col m9 s12">
+            <div class="cover-info animated fadeInRightShort" data-id='2'>
+                <h1>{% trans "Your legislative editing tool" %}</h1>
+                <p class="desc">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills" %}</p>
             </div>
         </div>
     </div>
+    {% if not user.is_authenticated %}
+    <div class="row">
+        <div class="login-or-signup animated fadeInDown" data-id='3'>
+            Faça <a href="{% url "auth_login" %}">login</a> ou <a href="{% url "registration_register" %}">cadastre-se</a>
+        </div>
+    </div>
+    {% endif %}
+    <div class="see-projects animated fadeInUpShort" data-id='4'>
+        <div>
+            <p>Veja os projetos de lei que você pode opinar</p>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" viewBox="0 0 453.834 453.834" style="enable-background:new 0 0 453.834 453.834;" xml:space="preserve" class="detail convertSvgInline replaced-svg" width="50px" height="50px" data-id="7584" data-kw="down139">
+                <g>
+                    <path d="M226.932,0C101.625,0,0.03,101.595,0.03,226.902C0,352.269,101.595,453.834,226.932,453.834      c125.307,0,226.871-101.595,226.871-226.902C453.834,101.595,352.239,0,226.932,0z M226.932,423.465      c-108.344,0-196.502-88.158-196.502-196.502S118.588,30.46,226.932,30.46c108.344-0.03,196.472,88.128,196.472,196.502      C423.434,335.276,335.276,423.465,226.932,423.465z"></path>
+                    <path d="M313.723,177.199l-87.885,87.915l-87.885-87.915c-5.928-5.928-15.565-5.928-21.492,0      s-5.928,15.565,0,21.492l98.585,98.585c2.979,3.04,6.901,4.438,10.792,4.438c3.922,0,7.813-1.49,10.792-4.438l98.555-98.585      c5.928-5.928,5.928-15.565,0-21.492S319.65,171.271,313.723,177.199z"></path>
+                </g>
+            </svg>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row projects" id="projects">
+    <div class="container">
+        <div class="row valign-wrapper">
+            <div class="col s4">
+                <h2 class="title">{% trans "Law Projects" %}</h2>
+            </div>
+            <div class="col s8">
+                <ul class="filter">
+                    {% for item in orderer.choices %}
+                    <li><a {% if item.selected %} class="active" {% endif %} href="{{ item.query_string }}#projects">{{ item.display }}</a>
+                    </li><span class="divider">|</span> {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="pls">
+            {% for bill in bills %}
+            <a class="hover" href="{% url 'show_bill' bill.id %}">
+                <div class="pl row valign-wrapper">
+                    <div class="col m2">
+                        <div class="circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 470.586 470.586" style="enable-background:new 0 0 470.586 470.586;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="32329" data-kw="text70">
+                                <g>
+                                    <path d="M327.081,0H90.234C74.331,0,61.381,12.959,61.381,28.859v412.863c0,15.924,12.95,28.863,28.853,28.863H380.35   c15.917,0,28.855-12.939,28.855-28.863V89.234L327.081,0z M333.891,43.184l35.996,39.121h-35.996V43.184z M384.972,441.723   c0,2.542-2.081,4.629-4.635,4.629H90.234c-2.55,0-4.619-2.087-4.619-4.629V28.859c0-2.548,2.069-4.613,4.619-4.613h219.411v70.181   c0,6.682,5.443,12.099,12.129,12.099h63.198V441.723z M128.364,128.89H334.15c5.013,0,9.079,4.066,9.079,9.079   c0,5.013-4.066,9.079-9.079,9.079H128.364c-5.012,0-9.079-4.066-9.079-9.079C119.285,132.957,123.352,128.89,128.364,128.89z    M343.229,198.98c0,5.012-4.066,9.079-9.079,9.079H128.364c-5.012,0-9.079-4.066-9.079-9.079s4.067-9.079,9.079-9.079H334.15   C339.163,189.901,343.229,193.968,343.229,198.98z M343.229,257.993c0,5.013-4.066,9.079-9.079,9.079H128.364   c-5.012,0-9.079-4.066-9.079-9.079s4.067-9.079,9.079-9.079H334.15C339.163,248.914,343.229,252.98,343.229,257.993z    M343.229,318.011c0,5.013-4.066,9.079-9.079,9.079H128.364c-5.012,0-9.079-4.066-9.079-9.079s4.067-9.079,9.079-9.079H334.15   C339.163,308.932,343.229,312.998,343.229,318.011z"></path>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="col m8 description">
+                        <div class="row">
+                            <h5 class="title">{{ bill.title }}</h5>
+                            <p class="d">{{ bill.description|linebreaks|truncatechars:205 }}</p>
+                        </div>                        
+                        <div class="row valign-wrapper">
+                            <div class="col m6 status">
+                                {% if bill.proposition_set.all.0.situation %}
+                                    <span class="title">Status da PL: </span><span class="status-content">{{ bill.proposition_set.all.0.situation }}</span>
+                                {% endif %}                                
+                            </div>
+                            <div class="col m6 users">
+                                <!-- User relevance here? -->
+                                <!--<span class="dep">Dep. Eduardo Cunha</span>, Bruna Oliveira e outras <span class="users-count">18 pessoas</span>-->
+                                <span class="users-count">{{ bill|attendees_count }} {% if bill|attendees_count > 1 %}participantes{% else %}participante{% endif %} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col m2 prop-count">
+                        <h4>{{ bill|proposals_count }}</h4>
+                        <span>{% if bill|proposals_count > 1 %}propostas{% else %}proposta{% endif %}</span>
+                    </div>
+                </div>
+            </a>
+            {% empty %} {% trans "Nothing to show here..." %} {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

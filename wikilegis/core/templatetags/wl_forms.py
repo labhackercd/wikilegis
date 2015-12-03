@@ -52,7 +52,7 @@ def render_materialized_field(field, *args, **kwargs):
     # TODO render field's help_text
 
     return '\n'.join([
-        render_field(field, *args, **kwargs),
         field.label_tag(),
+        render_field(field, *args, **kwargs),
         field_errors,
     ])

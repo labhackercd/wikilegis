@@ -4,28 +4,11 @@
 
 <div class="current-user">
     {% if user.is_authenticated %}
-        <div class="panel-card">
-            <div class="card-content">
-                <div class="row valign-wrapper">
-                    <!-- <div style="width: 40px">
-                        <img src="{% static "img/user.png" %}" alt="" class="circle responsive-img">
-                    </div> -->
-                    <div class="col s12">
-                        <span class="card-title"><a href="{% url 'edit_profile' %}">{% include "auth2/_user_display_name.html" %}</a></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card-buttonLogout">
-            <a href="{% logout_absolute_path request %}">{% trans "Log out" %}</a>
-        </div>
+        <span class="card-title"><a href="{% url 'edit_profile' %}"><i class="material-icons">account_circle</i>{% include "auth2/_user_display_name.html" %}</a></span>
+        <a href="{% logout_absolute_path request %}"><i class="material-icons signout">clear</i></a>
     {% else %}
-        <div class="panel-card">
-            <div class="card-content">
-                <a href="{% url "auth_login" %}">{% trans "Log in" %}</a>
-                {% trans "or" %}
-                <a href="{% url "registration_register" %}">{% trans "Sign up" %}</a>
-            </div>
-        </div>
+        <a href="{% url "auth_login" %}"><i class="material-icons">account_circle</i>{% trans "Log in" %}</a>
+        {% trans "or" %}
+        <a href="{% url "registration_register" %}">{% trans "Sign up" %}</a>
     {% endif %}
 </div>

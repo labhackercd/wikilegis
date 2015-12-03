@@ -7,11 +7,9 @@
     <div class="dark-bg valign-wrapper">
       <div class="container about">
         <div class="row">
-        <div class="col m12">
+        <div class="col m3 s12">
         {% load static %}
-        <a href="{% url "index" %}">
-           <img class="logo" src="{% static "img/logo.png" %}" alt="Wikilegis" />
-        </a>
+        {% include "_sidebar_logo.html" %}
         </div>
         </div>
         <div class="row">

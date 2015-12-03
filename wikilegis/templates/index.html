@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %} {% load i18n %} {% block content %} {% include "_sidebar.html" %}
+{% extends "base.html" %} {% load static %} {% load i18n %} {% load proposals %} {% block content %} {% include "_sidebar.html" %}
 
 
 <div class="container cover animatedParent animateOnce" data-sequence='300'>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="col m2 prop-count">
-                        <h4>17</h4>
+                        <h4>{% proposals_count bill %}</h4>
                         <span>propostas</span>
                     </div>
                 </div>

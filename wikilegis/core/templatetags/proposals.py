@@ -9,14 +9,14 @@ from wikilegis.core.models import BillSegment, CitizenAmendment, UpDownVote
 
 register = Library()
 
-@register.simple_tag
+@register.filter
 def proposals_count(bill):
     total_proposals = 0
     for segment in bill.segments.all():
         total_proposals += segment.amendments.all().count()
     return total_proposals
 
-@register.simple_tag
+@register.filter
 def attendees_count(bill):
     attendees = []
     segment_ctype = ContentType.objects.get_for_model(BillSegment)

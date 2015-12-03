@@ -76,13 +76,13 @@
                             <div class="col m6 users">
                                 <!-- User relevance here? -->
                                 <!--<span class="dep">Dep. Eduardo Cunha</span>, Bruna Oliveira e outras <span class="users-count">18 pessoas</span>-->
-                                <span class="users-count">{% attendees_count bill %} participantes</span>
+                                <span class="users-count">{{ bill|attendees_count }} {% if bill|attendees_count > 1 %}participantes{% else %}participante{% endif %} </span>
                             </div>
                         </div>
                     </div>
                     <div class="col m2 prop-count">
-                        <h4>{% proposals_count bill %}</h4>
-                        <span>propostas</span>
+                        <h4>{{ bill|proposals_count }}</h4>
+                        <span>{% if bill|proposals_count > 1 %}propostas{% else %}proposta{% endif %}</span>
                     </div>
                 </div>
             </a>

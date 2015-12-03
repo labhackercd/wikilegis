@@ -69,7 +69,9 @@
                         </div>                        
                         <div class="row valign-wrapper">
                             <div class="col m6 status">
-                                <span class="title">Status da PL: </span><span class="status-content">String contendo status do projeto de lei</span>
+                                {% if bill.proposition_set.all.0.situation %}
+                                    <span class="title">Status da PL: </span><span class="status-content">{{ bill.proposition_set.all.0.situation }}</span>
+                                {% endif %}                                
                             </div>
                             <div class="col m6 users">
                                 <!-- User relevance here? -->

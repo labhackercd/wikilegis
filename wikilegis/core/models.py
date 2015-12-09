@@ -162,8 +162,8 @@ class Proposition(models.Model):
     processing_regime = models.CharField(_('processing_regime'), max_length=200, null=True, blank=True)
     last_dispatch_date = models.DateField(_('last dispatch date'), null=True, blank=True)
     last_dispatch = models.TextField(_('last dispatch'), null=True, blank=True)
-    appraisal = models.CharField(_('appraisal'), max_length=200, null=True, blank=True)
-    indexing = models.CharField(_('indexing'), max_length=200, null=True, blank=True)
+    appraisal = models.TextField(_('appraisal'), null=True, blank=True)
+    indexing = models.TextField(_('indexing'), null=True, blank=True)
     situation = models.CharField(_('situation'), max_length=200, null=True, blank=True)
     content_link = models.URLField(_('content link'), null=True, blank=True)
 

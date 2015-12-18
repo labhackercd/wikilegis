@@ -3,8 +3,8 @@
 {% load static humanize i18n %}
 
 {% block content %}
-    <div class="row main">
-        {% include "_sidebar.html" %}
+{% include "_sidebar.html" %}
+    <div class="row main">        
         {% block content2 %}{% endblock %}
     </div>
 {% endblock %}

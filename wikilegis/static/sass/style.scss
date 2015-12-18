@@ -46,6 +46,7 @@ body {
 .row.main {
     background-color: $lightgray;
     min-height: 100vh;
+    padding-top: 20px;
 }
 
 .wiki-navbar {
@@ -62,6 +63,26 @@ body {
     line-height: 47px;
     background: transparent;
     box-shadow: 0px 0px 0px;
+    .menu-trigger {
+        text-align: right;
+        i {
+            font-size: 2.3em;
+        }
+    }
+    .opened-menu {
+        margin-top: -20px;
+        .language-selector, .current-user {
+            float: none;
+        }
+        #language {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .col {
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
     i.signout {
         opacity: .7;
         font-size: 1.3em;
@@ -76,7 +97,7 @@ body {
         line-height: 68px;
         visibility: hidden;
         img {
-            width: 200px;
+            height: 35px;
         }
     }
     &.fixed-top {
@@ -105,11 +126,11 @@ body {
                 padding-left: 2.6em !important;
             }
             label {
-                top: -14px;
                 left: 0.6rem !important;
                 i.material-icons {
                     color: white;
-                    font-size: 2em
+                    font-size: 2em;
+                    line-height: 1.3em;
                 }
             }
             .input-field {
@@ -126,15 +147,39 @@ body {
 
 img.logo {
     width: 100%;
+    max-width: 300px;
 }
 
 .cover {
     position: relative;
+    @media screen and (max-width: 992px) {
+        padding-top: 30px;
+    }
     padding-top: 150px;
     height: 100%;
+    @media screen and (max-width: 992px) {
+        height: auto;
+    }
     min-height: 93vh;
-    
+    .cover-content {
+        @media screen and (max-width: 992px) {
+            height: auto;
+        }
+        height: 300px;
+        .col {
+            height: 100%;
+            @media screen and (max-width: 992px) {
+                width: 100%;
+            }
+        }
+    }
     .cover-info {
+        @media screen and (max-width: 992px) {
+            border-left: 0px;
+            margin-left: 0px;
+            padding-left: 0px;
+            text-align: center;
+        }
         border-left: 3px solid rgba(255, 255, 255, 0.7);
         margin-left: 50px;
         padding-left: 50px;
@@ -150,6 +195,9 @@ img.logo {
         }
     }
     .login-or-signup {
+        @media screen and (max-width: 992px) {
+            margin-top: 50px;
+        }
         margin-top: 100px;
         margin-left: auto;
         margin-right: auto;
@@ -172,6 +220,11 @@ img.logo {
         }
     }
     .see-projects {
+        @media screen and (max-width: 992px) {
+            position: relative;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
         position: absolute;
         cursor: pointer;
         width: 100%;
@@ -254,6 +307,10 @@ strong {
         color: inherit;
     }
     .pl {
+        @media screen and (max-width: 992px) {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
         margin-top: 10px;
         margin-bottom: 10px;
         padding: 20px;
@@ -350,8 +407,6 @@ strong {
 }
 
 .pl-description {
-    background-color: white;
-    height: 100vh;
     font-size: 1.2em;
     @media screen and (max-width: 600px) {
         height: auto;
@@ -447,7 +502,6 @@ strong {
         color: inherit;
     }
     position: relative;
-    min-height: 100vh;
     overflow: auto;
     padding-left: 30px !important;
     padding-right: 30px !important;
@@ -469,6 +523,7 @@ strong {
             }
         }
         h6 {
+            padding-left: 70px;
             opacity: .6;
             font-weight: bold;
         }
@@ -937,6 +992,7 @@ $opacity: .4;
     max-width: 840px;
     .user {
         .user-name {
+            word-break: break-all;
             font-weight: bold;
             font-size: 1.1em;
         }
@@ -945,18 +1001,26 @@ $opacity: .4;
             opacity: .4;
         }
     }
+    .prop-btn {
+        @media screen and (max-width: 900px) {
+            margin-top: 20px;
+        }
+    }
 }
 
 .proposal-button {
-    padding: 13px 30px;
-    font-weight: bold;
-    background-color: #f0cfab;
-    color: #6c5c4b;
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    &:hover {
-        background-color: darken(#f0cfab, 5%);
+    margin-top: 20px;
+    div {
+        text-align: center;
+        line-height: 50px;
+        width: 100%;
+        height: 50px;
+        font-weight: bold;
+        background-color: #f0cfab;
+        color: #6c5c4b;
+        &:hover {
+            background-color: darken(#f0cfab, 5%);
+        }
     }
 }
 
@@ -1000,6 +1064,12 @@ $opacity: .4;
 }
 
 .send-proposal {
+    @media screen and (max-width: 600px) {
+        .btn {
+            width: 100%;
+            margin-top: 5px;
+        }
+    }
     label {
         padding-top: 10px;
         padding-left: 15px;
@@ -1036,12 +1106,12 @@ $opacity: .4;
         margin-left: 50px;
     }
     .comment-ammend {
-        padding-left: 50px;
         textarea {
             max-width: 790px;
         }
     }
     .send {
+        padding-left: 55px;
         max-width: 640px;
     }
 }
@@ -1202,4 +1272,11 @@ $opacity: .4;
             border: 1px solid rgba(255, 255, 255, 1);
         }
     }
+}
+
+//helpers
+
+.center-align {
+    margin-left: auto;
+    margin-right: auto;
 }

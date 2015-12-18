@@ -3,15 +3,16 @@
 {% load static humanize i18n %}
 
 {% block content2 %}
-    <div class="col m2 pl-description back">
-        <a href="{% url 'show_bill' segment.bill.id %}">
-            <div class="circle">
-                <div class="pl-icon"><i class="medium material-icons">description</i>
+    <div class="row pl-description back">
+        <div class="container">
+            <a href="{% url 'show_bill' segment.bill.id %}">
+                <div class="circle">
+                    <div class="pl-icon"><i class="medium material-icons">description</i>
+                    </div>
                 </div>
-            </div>
-            <h5 class="pl-title">{{ segment.bill.title }}</h5>
-        </a>
+                <h5 class="pl-title">{{ segment.bill.title }}</h5>
+            </a>
+        </div>
     </div>
-
     {% block content3 %}{% endblock %}
 {% endblock %}

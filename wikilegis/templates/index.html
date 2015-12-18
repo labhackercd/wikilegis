@@ -2,11 +2,11 @@
 
 
 <div class="container cover animatedParent animateOnce" data-sequence='300'>
-    <div class="row valign-wrapper">
-        <div class="col m3 s12 animated fadeInLeftShort" data-id='1'>
+    <div class="row cover-content">
+        <div class="col l3 m12 valign-wrapper animated fadeInLeftShort" data-id='1'>
             {% include "_sidebar_logo.html" %}
         </div>
-        <div class="col m9 s12">
+        <div class="col l9 m12 valign-wrapper">
             <div class="cover-info animated fadeInRightShort" data-id='2'>
                 <h1>{% trans "Your legislative editing tool" %}</h1>
                 <p class="desc">{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills" %}</p>
@@ -53,7 +53,7 @@
             {% for bill in bills %}
             <a class="hover" href="{% url 'show_bill' bill.id %}">
                 <div class="pl row valign-wrapper">
-                    <div class="col m2">
+                    <div class="col m2 hide-on-med-and-down">
                         <div class="circle">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 470.586 470.586" style="enable-background:new 0 0 470.586 470.586;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="32329" data-kw="text70">
                                 <g>
@@ -62,7 +62,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="col m8 description">
+                    <div class="col m10 description">
                         <div class="row">
                             <h5 class="title">{{ bill.title }}</h5>
                             <p class="d">{{ bill.description|linebreaks|truncatechars:205 }}</p>

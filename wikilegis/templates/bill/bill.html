@@ -6,10 +6,11 @@
 
 {% block content2 %}
     {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
-    <div class="col m3 pl-full pl-description nice-scroll">
+    <div class="container">
+    
+    <div class="row pl-full pl-description">
 
         <a href="{% url "show_bill" bill.id %}">
-            <div class="circle"><div class="pl-icon"><i class="medium material-icons">description</i></div></div>
             <h5 class="pl-title">{{ bill.title }}</h5>
         </a>
 
@@ -61,9 +62,10 @@
         {% endfor %}
     </div>
 
-    <div class="col m7 pl-full list-amendment">
+    <div class="row pl-full list-amendment">
         {% for segment in bill.segments.all %}
             {% include "bill/_bill_segment_item.html" %}
         {% endfor %}
+    </div>
     </div>
 {% endblock %}

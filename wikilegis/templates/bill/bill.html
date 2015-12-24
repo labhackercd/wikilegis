@@ -1,44 +1,53 @@
-{% extends "base_with_sidebar.html" %}
+{% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
+<div class="container">
 
-{% load static humanize i18n %}
-{% load video from embed_video_tags %}
-{% load cropping %}
-
-{% block content2 %}
-    {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
-    <div class="container">
-    
-    <div class="row pl-full pl-description">
-
-        <a href="{% url "show_bill" bill.id %}">
-            <h5 class="pl-title">{{ bill.title }}</h5>
-        </a>
-
-        <p class="pl-about">
-            {% if bill.proposition_set.all.0.id_proposition  %}
-            <a target="_blank" href="http://www2.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">{{ bill.description|safe|linebreaks }}</a>
-            {% else %}
-            {{ bill.description|safe|linebreaks }}
-            {% endif %}
-        </p>
-        {% if bill.proposition_set.all.0.situation %}
-        <p class="pl-about">Situação: {{ bill.proposition_set.all.0.situation }}</p>
-        {% endif %}
-        {% if bill.proposition_set.all.0.id_register %}
-            <p>Autor:</p>
-            <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">
-            <div class="pl-author" style="margin-left: 0">
-                <div class="avatar" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.proposition_set.all.0.id_register }}.jpg')"></div>
-                <div class="info">
-                    <span class="author">
-                    {{ bill.proposition_set.all.0.author }} ({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})
-                    </span>
+    <div class="pl-full pl-description">
+        <div class="cont">
+        <div class="row valign-wrapper">
+            <div class="col s3 m2 l1">
+                <div class="circle valign-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 470.586 470.586" style="enable-background:new 0 0 470.586 470.586;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="32329" data-kw="text70">
+                        <g>
+                            <path d="M327.081,0H90.234C74.331,0,61.381,12.959,61.381,28.859v412.863c0,15.924,12.95,28.863,28.853,28.863H380.35   c15.917,0,28.855-12.939,28.855-28.863V89.234L327.081,0z M333.891,43.184l35.996,39.121h-35.996V43.184z M384.972,441.723   c0,2.542-2.081,4.629-4.635,4.629H90.234c-2.55,0-4.619-2.087-4.619-4.629V28.859c0-2.548,2.069-4.613,4.619-4.613h219.411v70.181   c0,6.682,5.443,12.099,12.129,12.099h63.198V441.723z M128.364,128.89H334.15c5.013,0,9.079,4.066,9.079,9.079   c0,5.013-4.066,9.079-9.079,9.079H128.364c-5.012,0-9.079-4.066-9.079-9.079C119.285,132.957,123.352,128.89,128.364,128.89z    M343.229,198.98c0,5.012-4.066,9.079-9.079,9.079H128.364c-5.012,0-9.079-4.066-9.079-9.079s4.067-9.079,9.079-9.079H334.15   C339.163,189.901,343.229,193.968,343.229,198.98z M343.229,257.993c0,5.013-4.066,9.079-9.079,9.079H128.364   c-5.012,0-9.079-4.066-9.079-9.079s4.067-9.079,9.079-9.079H334.15C339.163,248.914,343.229,252.98,343.229,257.993z    M343.229,318.011c0,5.013-4.066,9.079-9.079,9.079H128.364c-5.012,0-9.079-4.066-9.079-9.079s4.067-9.079,9.079-9.079H334.15   C339.163,308.932,343.229,312.998,343.229,318.011z"></path>
+                        </g>
+                    </svg>
                 </div>
             </div>
-            </a>
-        {% endif %}
+            <div class="col s9 m10">
+                <h4 class="pl-title">{{ bill.title }}</h4>
+            </div>
 
-        {% for author in authors %}
+        </div>
+        <div class="pl-info">
+            {% if bill.proposition_set.all.0.situation %}
+            <span class="item">Status da pl: <span class="pl-status">{{ bill.proposition_set.all.0.situation }}</span></span>
+            {% endif %}
+            <span class="item">Participantes: <span class="users-count">{{ bill|attendees_count }}</span></span> <span class="item"> Propostas: <span class="prop-count">{{ bill|proposals_count }}</span></span>
+        </div>
+
+        <div class="pl-about">
+            {% if bill.proposition_set.all.0.id_proposition %}
+            <a target="_blank" href="http://www2.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">{{ bill.description|safe|linebreaks }}</a> {% else %} {{ bill.description|safe|linebreaks }} {% endif %}
+        </div>
+
+        <div class="row">
+            {% if bill.proposition_set.all.0.id_register %}
+            <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">
+                <div class="pl-author right" style="margin-left: 0">
+                    <div class="avatar" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.proposition_set.all.0.id_register }}.jpg')"></div>
+                    <div class="info">
+                        <span class="author">
+                            
+                    {{ bill.proposition_set.all.0.author }} ({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})
+                    </span>
+                    </div>
+                </div>
+            </a>
+            {% endif %}
+        </div>
+
+
+        <!--        {% for author in authors %}
             <div class="pl-author">
             
                 {% if author.user.avatar %}
@@ -52,20 +61,22 @@
                 </div>
             </div>
             {% if not forloop.last %}<hr />{% endif %}
-        {% endfor %}
+        {% endfor %}-->
 
-        {% for item in  videos %}
-            <div class="pl-about video-descripition">
-                {% video item.url %}
-            </div>
-            {% if not forloop.last %}<hr />{% endif %}
-        {% endfor %}
+        {% for item in videos %}
+        <div class="pl-about video-descripition">
+            {% video item.url %}
+        </div>
+        {% if not forloop.last %}
+        <hr />{% endif %} {% endfor %}
+            
+        <div class="divider"></div>
+    </div>
     </div>
 
     <div class="row pl-full list-amendment">
-        {% for segment in bill.segments.all %}
-            {% include "bill/_bill_segment_item.html" %}
-        {% endfor %}
+        
+        {% for segment in bill.segments.all %} {% include "bill/_bill_segment_item.html" %} {% endfor %}
     </div>
-    </div>
+</div>
 {% endblock %}

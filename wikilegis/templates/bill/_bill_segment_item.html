@@ -1,7 +1,17 @@
 {% if segment.type == 'title' %}
-<blockquote class="pl-head" id="segment-{{ segment.id }}">
-    <h5>{{ segment.content }}</h5>
-</blockquote>
+<div class="cont">
+    <h4>Título 1</h4>
+    <h5 class="sub">{{ segment.content }}</h5>
+
+    <div class="row">
+        <div class="col s12 m6 offset-m6 syllabus">
+            Like you, I used to think the world was this great place where everybody lived by the same standards I did, then some kid with a nail showed me I was living in his world, a world where chaos rules not order, a world where righteousness is not rewarded.
+        </div>
+    </div>
+
+</div>
+<h5>Outro título</h5>
+<h6 class="sub">Outro subtítulo</h6>
 {% else %}
 <a class="bill-link" href="{% url 'show_segment' bill.id segment.id %}">
     <div class="article" id="segment-{{ segment.id }}">

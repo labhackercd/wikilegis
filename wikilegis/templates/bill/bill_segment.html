@@ -1,5 +1,5 @@
 {% extends "bill/_base.html" %} {% load static %} {% load i18n %} {% load render_comments from comments2 %} {% load cropping %} {% block content3 %}
-<div class="row pl-full">
+<div class="pl-full">
     <div class="container">
         <div class="articles-header">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" viewBox="0 0 494.64 494.64" style="display: block;" xml:space="preserve" class="detail convertSvgInline replaced-svg" width="50px" height="50px" data-id="1351" data-kw="purchase1" fill="#000000">
@@ -39,7 +39,7 @@
                                     {% if author.user.avatar %}
                                         <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
                                     {% else %}
-                                        <div class="pic" style="background-image: url('{% static "img/user.png " %}')"></div>
+                                        <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                 {% if amendment.author.avatar %}
                                 <div class="pic" style="background-image: url('{% cropped_thumbnail amendment.author 'cropping' %}')"></div>
                                 {% else %}
-                                <div class="pic" style="background-image: url('{% static " img/user.png " %}')"></div>
+                                <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
                                 {% endif %}
                             </div>
                         </div>
@@ -125,45 +125,41 @@
 </div>
 {% endblock %} {% block partialscript %}
 <script type="text/javascript">
-    $(function () {
-        var original = $('#original').attr('data-raw-content');
-        $('.prop .article-prop').each(function (i, cur) {
-            var $cur = $(cur);
-            var current = $cur.attr('data-raw-content');
-            $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
-        });
-    });
-
-    { %
-        if user.is_authenticated %
-    }
-    $(function () {
-        $('.votes').on('click', 'a.upvote,a.downvote', function (e) {
-            e.preventDefault();
-            var $target = $(this);
-            var $container = $target.closest('.votes');
-
-            if ($container.hasClass('disabled')) {
-                // Do nothing.
-                return;
-            }
-
-            var url = $target.attr('href');
-            $container.addClass('disabled');
-            $.ajax({
-                type: 'GET',
-                url: url,
-                success: function (html) {
-                    $container.html(html);
-                    $container.removeClass('disabled');
-                },
-                error: function () {
-                    $container.removeClass('disabled');
-                    alert("Oh, no, something went wrong :(");
-                }
+        $(function() {
+            var original = $('#original').attr('data-raw-content');
+            $('.prop .article-prop').each(function(i, cur) {
+                var $cur = $(cur);
+                var current = $cur.attr('data-raw-content');
+                $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
             });
+            $('.pp').next('p').remove();
         });
-    }); { % endif %
-    }
-</script>
+        {% if user.is_authenticated %}
+            $(function() {
+                $('.votes').on('click', 'a.upvote,a.downvote', function(e) {
+                    e.preventDefault();
+                    var $target = $(this);
+                    var $container = $target.closest('.votes');
+                    if ($container.hasClass('disabled')) {
+                        // Do nothing.
+                        return;
+                    }
+                    var url = $target.attr('href');
+                    $container.addClass('disabled');
+                    $.ajax({
+                        type: 'GET',
+                        url: url,
+                        success: function(html) {
+                            $container.html(html);
+                            $container.removeClass('disabled');
+                        },
+                        error: function() {
+                            $container.removeClass('disabled');
+                            alert("Oh, no, something went wrong :(");
+                        }
+                    });
+                });
+            });
+        {% endif %}
+    </script>
 {% endblock %}

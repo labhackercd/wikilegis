@@ -33,11 +33,11 @@ jQuery(document).ready(function ($) {
 
     if (is_root) {
 
-        if ($(window).scrollTop() >= $(window).height())
+        if ($(window).scrollTop() >= ($(window).height() - $('.wiki-navbar').height()))
             $('.wiki-navbar').addClass('fixed-top');
 
         $(window).scroll(function () {
-            if ($(this).scrollTop() >= $(window).height()) {
+            if ($(this).scrollTop() >= ($(window).height() - $('.wiki-navbar').height())) {
                 if (!$('.wiki-navbar').hasClass('fixed-top'))
                     $('.wiki-navbar').hide().addClass('fixed-top').fadeIn(200);
             } else {

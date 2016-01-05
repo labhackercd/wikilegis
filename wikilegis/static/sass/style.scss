@@ -15,7 +15,9 @@ $medgrey: #767873;
 $downvote_color: #e24747;
 $upvote_color: #35ae43;
 $a_color: #6775a6;
-$countcolor: rgb(185, 102, 53);
+$countcolor: rgb(185,
+102,
+53);
 .material-icons.md-36 {
     font-size: 36px;
 }
@@ -430,9 +432,8 @@ strong {
         a {
             color: inherit;
             p {
-               font-weight: normal;
+                font-weight: normal;
             }
-            
         }
     }
     .pl-info {
@@ -446,7 +447,8 @@ strong {
             color: $rbcolor;
             font-weight: 600;
         }
-        .users-count, .prop-count {
+        .users-count,
+        .prop-count {
             color: $countcolor;
             font-weight: 600;
         }
@@ -474,7 +476,7 @@ strong {
     .pl-author {
         margin-top: 20px;
         margin-bottom: 20px;
-        margin-right: 10px;
+        margin-right: 20px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -530,6 +532,9 @@ strong {
     .sub {
         color: $medgrey;
     }
+    @media screen and (max-width: 992px) {
+        padding-right: 20px;
+    }
     margin-top: 50px !important;
     .syllabus {
         opacity: .85;
@@ -550,7 +555,7 @@ strong {
     
     @media screen and (max-width: 600px) {
         overflow: inherit;
-    }    
+    }
     .articles-header {
         padding: 20px;
         svg {
@@ -1084,6 +1089,7 @@ $opacity: .4;
 }
 
 .comment-textarea {
+    text-align: left;
     margin-top: 20px;
     max-width: 780px;
     @media screen and (max-width: 600px) {
@@ -1303,6 +1309,9 @@ $opacity: .4;
         max-width: 300px;
         margin-bottom: 50px;
     }
+    .wbtn {
+        width: 100%;
+    }
     .w-input {
         position: relative;
         margin-bottom: 10px;
@@ -1322,6 +1331,10 @@ $opacity: .4;
     }
 }
 
+.submitted-proposals {
+    margin-top: 50px;
+}
+
 .wbtn {
     background: transparent;
     box-shadow: 0px 0px 0px;
@@ -1329,12 +1342,20 @@ $opacity: .4;
     border: 1px solid rgba(255, 255, 255, 0.3);
     height: 40px;
     margin-top: 10px;
-    width: 100%;
+    &:focus {
+        background: none;
+    }
     &:hover {
         border: 1px solid rgba(255, 255, 255, 1);
+        background: transparent;
+        box-shadow: 0px 0px 0px;
     }
     &.dark {
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        color: inherit;
+        &:hover {
+            border: 1px solid rgba(0, 0, 0, 1);
+        }
     }
 }
 

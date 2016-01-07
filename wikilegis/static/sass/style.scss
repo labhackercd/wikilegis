@@ -18,6 +18,9 @@ $a_color: #6775a6;
 $countcolor: rgb(185,
 102,
 53);
+
+$unnamedcolor: #28D27A;
+
 .material-icons.md-36 {
     font-size: 36px;
 }
@@ -317,13 +320,34 @@ strong {
 
 .circle {
     text-align: center;
-    border: 5px solid #28D27A;
+    border: 5px solid $unnamedcolor;
     height: 100px;
     width: 100px;
     padding: .7em;
     svg {
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+.add-prop-cta {
+    width: 100%;
+    border-radius: 3px;
+    background-color: rgba(40, 210, 122, 0.15);
+    text-align: center;
+    padding: 10px;
+    color: $unnamedcolor;
+    font-weight: 600;
+    span { font-size: .9em; }
+    div { 
+        font-weight: bold; 
+        font-size: 1.5em;
+        @media screen and (max-width: 992px) {
+            font-size: 1em;
+        }
+        @media screen and (max-width: 600px) {
+            font-size: 1.5em;
+        }
     }
 }
 
@@ -440,7 +464,7 @@ strong {
         .item {
             margin-right: 20px;
         }
-        margin-top: 20px;
+        margin-top: 50px;
         margin-bottom: 20px;
         color: $medgrey;
         .pl-status {
@@ -888,6 +912,7 @@ blockquote {
     padding-bottom: 56.25%;
     padding-top: 25px;
     height: 0;
+    margin-bottom: 50px;
 }
 
 .video-descripition iframe {
@@ -1363,4 +1388,14 @@ $opacity: .4;
 .center-align {
     margin-left: auto;
     margin-right: auto;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .5;
+    z-index: 9998;
 }

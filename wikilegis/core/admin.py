@@ -37,6 +37,8 @@ propositions_update.short_description = _("Update status of selected bills")
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
     model = models.BillSegment
 
+    def has_add_permission(self, request):
+        return False
 
 class BillAuthorDataInline(GenericTabularInline):
     form = forms.MetaAuthorForm
@@ -151,7 +153,6 @@ class BillAdmin(admin.ModelAdmin):
 
 class CitizenAmendmentAdmin(admin.ModelAdmin):
     list_display = ('author', 'segment', 'original_content', 'content')
-
 
 
 class TypeSegmentAdmin(admin.ModelAdmin):

@@ -1,4 +1,4 @@
-{% if segment.type == 'title' %}
+{% if segment.type.editable == False %}
 <div class="cont">
     <!--Article header template, uncomment subs and titles later-->
     <h4>{{ bill.title }}</h4>
@@ -18,6 +18,9 @@
     <div class="article" id="segment-{{ segment.id }}">
         <div class="comments-counter">
             <div class="cn">{{ segment.amendments.all.count }}</div>
+        </div>
+        <div>
+            {{ segment.type.abbreviation }} {{ segment.number}}
         </div>
         <div class="content">
             <span class="article-content">

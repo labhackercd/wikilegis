@@ -130,10 +130,13 @@ class BillAdminForm(forms.ModelForm):
         if self.cleaned_data['type'] and self.cleaned_data['number'] and self.cleaned_data['year']:
             if instance.proposition_set.all():
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)
-            params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data['number'], 'ano': self.cleaned_data['year']}
-            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
-                                    params=params)
-            create_proposition(response, instance.id)
+            try:
+                params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data['number'], 'ano': self.cleaned_data['year']}
+                response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
+                                        params=params)
+                create_proposition(response, instance.id)
+            except:
+                pass
         else:
             try:
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)

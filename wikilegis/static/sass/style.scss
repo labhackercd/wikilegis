@@ -330,8 +330,7 @@ strong {
     }
 }
 
-.add-prop-cta {
-    width: 100%;
+.add-prop-cta {   
     border-radius: 3px;
     background-color: rgba(40, 210, 122, 0.15);
     text-align: center;
@@ -339,6 +338,13 @@ strong {
     color: $unnamedcolor;
     font-weight: 600;
     span { font-size: .9em; }
+    &.bill {
+        margin-top: 20px;
+        text-align: left;
+        i {
+            font-size: 2em;
+        }
+    }
     div { 
         font-weight: bold; 
         font-size: 1.5em;
@@ -350,6 +356,7 @@ strong {
         }
     }
 }
+
 
 .pls {
     position: relative;

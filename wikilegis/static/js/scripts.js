@@ -57,34 +57,36 @@ jQuery(document).ready(function ($) {
         var is_opened = $('.wiki-navbar').hasClass('opened');
 
         if (!is_opened) {
-            $(document.body).append('<div id="overlay"></div>');
-            $('.wiki-navbar').addClass('opened');
-            $('.wiki-navbar').css('background-color', '#324545');
-            $('.wiki-navbar').css('box-shadow', '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)');                   
-            $('i', this).html('close');
-            $('.wiki-navbar').css('height', 'auto');
-            $('.opened-menu').removeClass('hide');
+            open();
         } else {
-            $('#overlay').remove();
-            $('.wiki-navbar').removeClass('opened');
-            $('.wiki-navbar').css('box-shadow','');
-            $('.wiki-navbar').css('background-color', '');
-            $('i', this).html('menu');
-            $('.wiki-navbar').css('height', '');
-            $('.opened-menu').addClass('hide');            
+            close();             
         }
         
         $('#overlay').click(function() {
-            $('#overlay').remove();
-            $('.wiki-navbar').removeClass('opened');
-            $('.wiki-navbar').css('box-shadow','');
-            $('.wiki-navbar').css('background-color', '');
-            $('i', this).html('menu');
-            $('.wiki-navbar').css('height', '');
-            $('.opened-menu').addClass('hide');  
+            close(); 
         });
         
     });
+    
+    function open() {
+        $(document.body).append('<div id="overlay"></div>');
+        $('.wiki-navbar').addClass('opened');
+        $('.wiki-navbar').css('background-color', '#324545');
+        $('.wiki-navbar').css('box-shadow', '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)');                   
+        $('#menu-button').html('close');
+        $('.wiki-navbar').css('height', 'auto');
+        $('.opened-menu').removeClass('hide');
+    }
+    
+    function close() {
+        $('#overlay').remove();
+        $('.wiki-navbar').removeClass('opened');
+        $('.wiki-navbar').css('box-shadow','');
+        $('.wiki-navbar').css('background-color', '');
+        $('#menu-button').html('menu');
+        $('.wiki-navbar').css('height', '');
+        $('.opened-menu').addClass('hide');
+    }
     
     
 

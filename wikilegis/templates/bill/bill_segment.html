@@ -57,7 +57,7 @@
                         
                     </div>
                     <div class="prop-btn col s12 m12 l4">
-                        <a class="proposal-button" href="{% url 'create_amendment' segment.bill.id segment.id %}">
+                        <a class="proposal-button" href="">
                             <div>{% trans "Submit proposal" %}</div>
                         </a>
                     </div>
@@ -82,6 +82,7 @@
             <h5>{% trans "Submitted proposals" %}</h5>
         </div>
         <div class="divider"></div>
+        
         {% for amendment in segment.amendments.all %}
         <div class="row layarticle prop" id="amendment-{{ amendment.pk }}">
             <div class="col s2 m2 l1">
@@ -119,7 +120,18 @@
                 </div>
             </div>
         </div>
-
+        
+        {% empty %} 
+        <a href="{% url 'create_amendment' segment.bill.id segment.id %}">
+            <div class="row add-prop-cta bill valign-wrapper">
+                <div class="col s2 m1 valign-wrapper">
+                    <i class="material-icons">lightbulb_outline</i>
+                </div>
+                <div class="col s10 m11">
+                    <h5>Não há propostas ainda, você pode sugerir uma!</h5>
+                </div>
+            </div>
+        </a>
         {% endfor %}
     </div>
 </div>

@@ -5,6 +5,7 @@ from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.core.urlresolvers import reverse
+from django.forms import BaseInlineFormSet
 from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
@@ -34,11 +35,22 @@ def propositions_update(ModelAdmin, request, queryset):
 propositions_update.short_description = _("Update status of selected bills")
 
 
+class BillSegmentFormSet(BaseInlineFormSet):
+    def get_queryset(self):
+        if not hasattr(self, '_queryset'):
+            qs = super(BillSegmentFormSet, self).get_queryset().filter(original=True)
+            self._queryset = qs
+        return self._queryset
+
+
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
     model = models.BillSegment
+    formset = BillSegmentFormSet
+    exclude = ['order', 'original', 'replaced', 'author']
 
     def has_add_permission(self, request):
         return False
+
 
 class BillAuthorDataInline(GenericTabularInline):
     form = forms.MetaAuthorForm

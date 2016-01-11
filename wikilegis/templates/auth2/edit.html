@@ -6,8 +6,9 @@
 
 {% block content2 %}
     <div class="container">
-        <div class="col s9 edit-profile">
-            <h3>{% trans 'Edit profile' %}</h3>
+        <div class="col s11 edit-profile">
+            
+            <h4>{% trans 'Edit profile' %}</h4>
 
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -25,14 +26,12 @@
 
                 <div class="input-field">
                     {% render_materialized_field form.last_name %}
-                </div>
+                </div>                
 
-                <div class="row">
-                    <div class="input-field">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
+                <div class="input-field">
+                    <button class="btn wbtn dark waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
             </form>
         </div>

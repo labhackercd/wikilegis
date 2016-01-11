@@ -17,7 +17,7 @@
 <a class="bill-link" href="{% url 'show_segment' bill.id segment.id %}">
     <div class="article" id="segment-{{ segment.id }}">
         <div class="comments-counter">
-            <div class="cn">{{ segment.amendments.all.count }}</div>
+            <div class="cn">{{ segment.substitutes.all.count }}</div>
         </div>
         <div>
             {{ segment.type.abbreviation }} {{ segment.number}}

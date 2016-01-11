@@ -82,7 +82,7 @@ class CitizenAmendmentCreationForm(forms.ModelForm):
         self.fields['content'].label = _("Suggest a new proposal! You can begin editing the original one.")
 
     class Meta:
-        model = models.CitizenAmendment
+        model = models.BillSegment
         fields = ('content',)
 
 

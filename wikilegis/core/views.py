@@ -140,8 +140,14 @@ def create_amendment(request, bill_id, segment_id):
 
         if form.is_valid():
             amendment = form.save(commit=False)
+            amendment.bill = segment.bill
+            amendment.order = segment.order
+            amendment.type = segment.type
+            amendment.number = segment.number
+            amendment.parent = segment.parent
+            amendment.replaced = segment
             amendment.author = request.user
-            amendment.segment = segment
+            amendment.original = False
 
             # TODO what if the content is empty? or exactly like the original? i suggest flash + ignore
 
@@ -152,7 +158,7 @@ def create_amendment(request, bill_id, segment_id):
                 comment = create_comment(request, amendment, request.user, comment)
 
             messages.success(request, ugettext("{object_type} submitted.").format(
-                object_type=capfirst(CitizenAmendment._meta.verbose_name)))
+                object_type=capfirst(BillSegment._meta.verbose_name)))
 
             return redirect(amendment.get_absolute_url())
     else:

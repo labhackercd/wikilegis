@@ -57,7 +57,7 @@
                         
                     </div>
                     <div class="prop-btn col s12 m12 l4">
-                        <a class="proposal-button" href="">
+                        <a class="proposal-button" href="{% url 'create_amendment' segment.bill.id segment.id %}">
                             <div>{% trans "Submit proposal" %}</div>
                         </a>
                     </div>

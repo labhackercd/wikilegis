@@ -96,8 +96,9 @@
     </div>
 
     <div class="row pl-full list-amendment">
-        
-        {% for segment in bill.segments.all %} {% include "bill/_bill_segment_item.html" %} {% endfor %}
+        {% for segment in original_segments %}
+            {% include "bill/_bill_segment_item.html" %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

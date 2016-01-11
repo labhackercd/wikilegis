@@ -61,7 +61,7 @@ def index(request):
 
 def show_bill(request, bill_id):
     bill = get_object_or_404(Bill, pk=bill_id)
-
+    original_segments = bill.segments.filter(original=True)
     metadata = bill.metadata.all()
 
     authors = filter(lambda x: x.type == 'AUTHOR', metadata)
@@ -75,6 +75,7 @@ def show_bill(request, bill_id):
 
     return render(request, 'bill/bill.html', context=dict(
         bill=bill,
+        original_segments=original_segments,
         videos=videos,
         authors=authors,
         total_amendment_count=total_amendment_count,

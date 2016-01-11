@@ -50,7 +50,6 @@ def index(request):
         bills = Bill.objects.filter(status='published')
 
     orderer = BillOrderer(request, dict(request.GET.items()))
-    # Apply the orderer
     bills = orderer.queryset(request, bills)
 
     return render(request, 'index.html', context=dict(
@@ -70,15 +69,11 @@ def show_bill(request, bill_id):
     videos = filter(lambda x: x.type == 'VIDEO', metadata)
     videos = map(BillVideo, videos)
 
-    # XXX Lambda to make it lazy :D
-    total_amendment_count = lambda: CitizenAmendment.objects.filter(segment__bill__id=bill.id).count()
-
     return render(request, 'bill/bill.html', context=dict(
         bill=bill,
         original_segments=original_segments,
         videos=videos,
-        authors=authors,
-        total_amendment_count=total_amendment_count,
+        authors=authors
     ))
 
 
@@ -116,8 +111,8 @@ def show_segment(request, bill_id, segment_id):
 
 
 def show_amendment(request, amendment_id):
-    amendment = get_object_or_404(CitizenAmendment, pk=amendment_id)
-    url = reverse('show_segment', args=(amendment.segment.bill_id, amendment.segment_id))
+    amendment = get_object_or_404(BillSegment, pk=amendment_id)
+    url = reverse('show_segment', args=(amendment.bill_id, amendment.replaced_id))
     url += '#' + amendment.html_id()
     return redirect(url)
 

@@ -12,8 +12,8 @@ register = Library()
 @register.filter
 def proposals_count(bill):
     total_proposals = 0
-    for segment in bill.segments.all():
-        total_proposals += segment.amendments.all().count()
+    for segment in bill.segments.filter(original=True):
+        total_proposals += segment.substitutes.all().count()
     return total_proposals
 
 @register.filter

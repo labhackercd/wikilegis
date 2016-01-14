@@ -399,12 +399,20 @@ strong {
             p {
                 color: lighten(black, 30%);
                 max-width: 840px;
+                margin-bottom: 10px;
+
+            }
+            .pl-created-date {
+                color: gray;
+                font-weight: normal;
+                opacity: .7;
             }
             h5 {
                 font-weight: 700;
                 max-width: 840px;
             }
             .status {
+                margin-top: 10px;
                 color: lighten(black, 50%);
                 font-weight: normal;
                 padding: 3px 10px 3px 10px;
@@ -459,6 +467,11 @@ strong {
     font-size: 1.2em;
     @media screen and (max-width: 600px) {
         height: auto;
+    }
+    .p-uf {
+        font-size: .8em;
+        margin: 0px;
+        opacity: .4;
     }
     .pl-about {
         a {

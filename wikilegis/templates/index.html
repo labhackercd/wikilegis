@@ -66,6 +66,7 @@
                         <div class="row">
                             <h5 class="title">{{ bill.title }}</h5>
                             <p class="d">{{ bill.description|linebreaks|truncatechars:205 }}</p>
+                            <span class="pl-created-date">Criado em {{ bill.created|date }}</span>
                         </div>                        
                         <div class="row valign-wrapper">
                             <div class="col s12 m6 status">

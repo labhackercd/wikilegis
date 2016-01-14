@@ -10,11 +10,11 @@ from django.db.models.functions import Lower
 from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.utils.decorators import method_decorator
 from django.utils.text import capfirst
 from django.utils.translation import ugettext, ugettext_lazy as _
-from django.views.generic import DetailView
-
-from .forms import CitizenAmendmentCreationForm
+from django.views.generic import DetailView, CreateView
+from .forms import CitizenAmendmentCreationForm, AddProposalForm
 from .models import Bill, BillSegment, UpDownVote
 from wikilegis.comments2.utils import create_comment
 from wikilegis.core.genericdata import BillVideo, BillAuthorData
@@ -61,6 +61,7 @@ def index(request):
 def show_bill(request, bill_id):
     bill = get_object_or_404(Bill, pk=bill_id)
     original_segments = bill.segments.filter(original=True)
+    new_proposals = bill.segments.filter(original=False, replaced__isnull=True)
     metadata = bill.metadata.all()
 
     authors = filter(lambda x: x.type == 'AUTHOR', metadata)
@@ -69,9 +70,13 @@ def show_bill(request, bill_id):
     videos = filter(lambda x: x.type == 'VIDEO', metadata)
     videos = map(BillVideo, videos)
 
+    form = AddProposalForm(bill_id=bill_id)
+
     return render(request, 'bill/bill.html', context=dict(
         bill=bill,
+        form=form,
         original_segments=original_segments,
+        new_proposals=new_proposals,
         videos=videos,
         authors=authors
     ))
@@ -105,6 +110,22 @@ def show_segment(request, bill_id, segment_id):
         return redirect_to_segment_at_bill_page(segment)
 
     return render(request, 'bill/bill_segment.html', context=dict(
+        author=author,
+        segment=segment,
+    ))
+
+
+def show_proposal(request, bill_id, segment_id):
+    segment = _get_segment_or_404(bill_id, segment_id)
+
+    author = segment.bill.metadata.filter(type='AUTHOR').first()
+    if author:
+        author = BillAuthorData(author)
+
+    if not segment.is_editable():
+        return redirect_to_segment_at_bill_page(segment)
+
+    return render(request, 'bill/proposal.html', context=dict(
         author=author,
         segment=segment,
     ))
@@ -164,6 +185,44 @@ def create_amendment(request, bill_id, segment_id):
         form=form,
         segment=segment,
     ))
+
+
+class CreateProposal(CreateView):
+    model = BillSegment
+    form_class = AddProposalForm
+    template_name = 'bill/create_proposal.html'
+
+    @method_decorator(login_required(login_url='/'))
+    def dispatch(self, *args, **kwargs):
+        return super(CreateProposal, self).dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self, **kwargs):
+        form_kwargs = super(CreateProposal, self).get_form_kwargs(**kwargs)
+        form_kwargs["bill_id"] = self.kwargs['bill_id']
+        return form_kwargs
+
+    def form_valid(self, form):
+        import ipdb;ipdb.set_trace()
+        amendment = BillSegment()
+        amendment.bill_id = self.kwargs['bill_id']
+        amendment.type = form.cleaned_data['type']
+        amendment.parent = form.cleaned_data['parent']
+        amendment.author = self.request.user
+        amendment.original = False
+        amendment.content = form.cleaned_data['content']
+        amendment.save()
+
+        comment = form.cleaned_data.get('comment')
+        if comment:
+            comment = create_comment(self.request, amendment, self.request.user, comment)
+
+        messages.success(self.request, ugettext("{object_type} submitted.").format(
+            object_type=capfirst(BillSegment._meta.verbose_name)))
+
+        return redirect('show_bill', self.kwargs['bill_id'])
+
+    def form_invalid(self, form):
+        return redirect('show_bill', self.kwargs['bill_id'])
 
 
 class BillReport(DetailView):

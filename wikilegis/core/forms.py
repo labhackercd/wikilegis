@@ -14,7 +14,7 @@ from xml.etree import ElementTree
 
 # TODO FIXME Meta*Form, really? C'mon, we can do better naming than this.
 # from wikilegis.core.views import add_proposition
-from wikilegis.core.models import Proposition
+from wikilegis.core.models import Proposition, TypeSegment, BillSegment
 
 
 class GenericDataAdminForm(forms.ModelForm):
@@ -211,3 +211,17 @@ def update_proposition(response, proposition_id):
     proposition.content_link = tree.find('LinkInteiroTeor').text
 
     proposition.save()
+
+
+class AddProposalForm(forms.ModelForm):
+    comment = forms.CharField(label=_("You can explain your proposal here."), widget=forms.Textarea(), required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.bill_id = kwargs.pop('bill_id')
+        super(AddProposalForm, self).__init__(*args, **kwargs)
+        self.fields['type'].queryset = TypeSegment.objects.filter(editable=True)
+        self.fields['parent'].queryset = BillSegment.objects.filter(bill__id=self.bill_id, original=True)
+
+    class Meta:
+        model = BillSegment
+        fields = ('parent', 'type', 'content')

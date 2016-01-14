@@ -1,4 +1,7 @@
 {% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
+<style>
+    select {display:block;}
+</style>
 <div class="container">
 
     <div class="pl-full pl-description">
@@ -99,6 +102,31 @@
         {% for segment in original_segments %}
             {% include "bill/_bill_segment_item.html" %}
         {% endfor %}
+        <form method="get" action="{% url 'create_proposal' bill.id %}">
+            {{ form.parent.label }}
+            {{ form.parent }}
+            {{ form.type.label }}
+            {{ form.type }}
+            <button type="submit">{% trans 'Add Proposal' %}</button>
+        </form>
+
+        {% for proposal in new_proposals %}
+            <p>Pai: {{ proposal.parent }}</p>
+            <p>Tipo: {{ proposal.type }}</p>
+            <a class="bill-link" href="{% url 'show_proposal' bill.id proposal.id %}">
+                <div class="article" id="proposal-{{ proposal.id }}">
+                    <div class="comments-counter">
+                        <div class="cn">{{ proposal.substitutes.all.count }}</div>
+                    </div>
+                    <div class="content">
+                        <span class="article-content">
+                            {{ proposal.content|linebreaks }}
+                        </span>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+
     </div>
-</div>
+
 {% endblock %}

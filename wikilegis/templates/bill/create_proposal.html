@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h5>Enviar Proposta</h5>
+    <h6>Crie sua proposta para esse artigo tomando o original como base</h6>
+    <form action="./" method="POST">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <p>{{ form.parent.label }} <select id="id_parent" name="parent">
+        {% for x,y in form.fields.parent.choices %}
+            <option value="{{ x }}"{% ifequal x|slugify request.GET.parent %} selected{% endifequal %}>{{ y }}</option>
+        {% endfor %}
+        </select></p>
+        <p><label for="id_type">Type:</label> <select id="id_type" name="type">
+        {% for x,y in form.fields.type.choices %}
+            <option value="{{ x }}"{% ifequal x|slugify request.GET.type %} selected{% endifequal %}>{{ y }}</option>
+        {% endfor %}
+        </select></p>
+        <p>{{ form.content.label }}</p>
+        <p>{{ form.content }}</p>
+        <p>{{ form.comment.label }}</p>
+        <p>{{ form.comment }}</p>
+
+
+        <a class="btn waves-effect waves-light" href="{% url 'show_bill' 1 %}">Cancel</a>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Send proposal
+            <i class="material-icons right">send</i>
+        </button>
+
+    </form>
+
+</body>
+</html>

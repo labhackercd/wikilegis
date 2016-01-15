@@ -35,24 +35,12 @@
 
         <div class="row">
             {% if bill.proposition_set.all.0.id_register %}
-<!--            <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">
-                <div class="pl-author right" style="margin-left: 0">
-                    <div class="avatar" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.proposition_set.all.0.id_register }}.jpg')"></div>
-                    <div class="info">
-                        <span class="author">
-                            
-                    {{ bill.proposition_set.all.0.author }} ({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})
-                    </span>
-                    </div>
-                </div>
-            </a>-->
-            
-            
+
             <div class="after-bar">
                     <div class="user col s12 m4">
                         <div class="col m3 s2">
                             <div class="avatr">
-                                {% if amendment.author.avatar %}
+                                {% if bill.proposition_set.all.0.id_register %}
                                 <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.proposition_set.all.0.id_register }}.jpg')"></div>
                                 {% else %}
                                 <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
@@ -66,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-            
+
             {% endif %}
         </div>
 
@@ -99,6 +87,18 @@
     </div>
 
     <div class="row pl-full list-amendment">
+        <div class="cont">
+            <!--Article header template, uncomment subs and titles later-->
+            <h4>{{ bill.title }}</h4>
+            <!--<h5 class="sub">{{ segment.content }}</h5>-->
+
+            <div class="row">
+                <div class="col s12 m6 offset-m6 syllabus">
+                    {{ bill.description }}
+                </div>
+            </div>
+
+        </div>
         {% for segment in original_segments %}
             {% include "bill/_bill_segment_item.html" %}
         {% endfor %}

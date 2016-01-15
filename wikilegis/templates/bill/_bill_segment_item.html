@@ -1,18 +1,5 @@
 {% if segment.type.editable == False %}
-<div class="cont">
-    <!--Article header template, uncomment subs and titles later-->
-    <h4>{{ bill.title }}</h4>
-    <!--<h5 class="sub">{{ segment.content }}</h5>-->
-
-    <div class="row">
-        <div class="col s12 m6 offset-m6 syllabus">
-            {{ bill.description }}
-        </div>
-    </div>
-
-</div>
 <h5>{{ segment.content }}</h5>
-<!--<h6 class="sub">Outro subtítulo</h6>-->
 {% else %}
 <a class="bill-link" href="{% url 'show_segment' bill.id segment.id %}">
     <div class="article" id="segment-{{ segment.id }}">

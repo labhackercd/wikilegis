@@ -35,21 +35,21 @@ def propositions_update(ModelAdmin, request, queryset):
 propositions_update.short_description = _("Update status of selected bills")
 
 
-class BillSegmentFormSet(BaseInlineFormSet):
-    def get_queryset(self):
-        if not hasattr(self, '_queryset'):
-            qs = super(BillSegmentFormSet, self).get_queryset().filter(original=True)
-            self._queryset = qs
-        return self._queryset
-
-
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
     model = models.BillSegment
-    formset = BillSegmentFormSet
-    exclude = ['order', 'original', 'replaced', 'author']
+    exclude = ['original', 'replaced', 'author']
 
-    def has_add_permission(self, request):
-        return False
+    def get_queryset(self, request):
+        return super(BillSegmentInline, self).get_queryset(request).filter(original=True)
+
+    def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+
+        field = super(BillSegmentInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+        if db_field.name == 'parent':
+            field.queryset = field.queryset.filter(original=True)
+
+        return field
 
 
 class BillAuthorDataInline(GenericTabularInline):

@@ -158,7 +158,7 @@ def create_amendment(request, bill_id, segment_id):
         if form.is_valid():
             amendment = form.save(commit=False)
             amendment.bill = segment.bill
-            amendment.order = segment.order
+            amendment.order = 0
             amendment.type = segment.type
             amendment.number = segment.number
             amendment.parent = segment.parent

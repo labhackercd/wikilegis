@@ -26,19 +26,20 @@ class CustomImageCropWidget(ImageCropWidget):
     We use this trick, and place it right under the CropWidget so that
     it looks like the user is seeing the image and clearing the image.
     """
+
     template_with_initial = (
         # '%(initial_text)s: <a href="%(initial_url)s">%(initial)s</a> '
         '%(clear_template)s<br />%(input_text)s: %(input)s'
     )
 
 
-class UserForm(UserChangeForm):
+class UserProfileEditionForm(UserChangeForm):
     # We don't have a password field
     password = None
 
     class Meta(UserChangeForm.Meta):
         model = User
-        fields = ('first_name', 'last_name', 'id_congressman', 'avatar', 'cropping')
+        fields = ('first_name', 'last_name', 'avatar', 'cropping')
         widgets = {
             'avatar': CustomImageCropWidget(),
             'cropping': CropWidget(),

@@ -76,16 +76,28 @@ class Bill(TimestampedMixin):
         return '\n\n'.join(map(attrgetter('content'), self.segments.all()))
 
 
+class TypeSegment(models.Model):
+    name = models.CharField(_('name'), max_length=200)
+    editable = models.BooleanField(_('editable'), default='True')
+
+    class Meta:
+        verbose_name = _('type segment')
+        verbose_name_plural = _('types segment')
+
+    def __unicode__(self):
+        return self.name
+
+
 class BillSegment(TimestampedMixin):
     bill = models.ForeignKey('core.Bill', related_name='segments', verbose_name=_('bill'))
     order = models.PositiveIntegerField(_('order'), default=0)
+    type = models.ForeignKey(TypeSegment, verbose_name=_('type'))
+    number = models.PositiveIntegerField(_('number'), null=True, blank=True)
+    parent = models.ForeignKey('self', related_name='children', verbose_name=_('segment parent'), null=True, blank=True)
+    replaced = models.ForeignKey('self', related_name='substitutes', verbose_name=_('segment replaced'), null=True, blank=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'), null=True)
+    original = models.BooleanField(_('original'), default=True)
     content = models.TextField(_('content'))
-
-    TYPE_CHOICES = (
-        ('title', _('Title')),
-        ('article', _('Article')),
-    )
-    type = models.CharField(_('type'), max_length=64, choices=TYPE_CHOICES)
 
     class Meta:
         ordering = ('order',)
@@ -93,15 +105,23 @@ class BillSegment(TimestampedMixin):
         verbose_name_plural = _('segments')
 
     def __unicode__(self):
-        return '{bill}: {content}'.format(
-            bill=self.bill, content=Truncator(self.content).chars(100))
+        return '{kind} {number}'.format(
+            kind=self.type, number=self.number)
 
     def is_editable(self):
-        # Currently, only articles are editable.
-        return self.type == 'article'
+        return self.type.editable is True
+
+    def html_id(self):
+        return 'amendment-{0}'.format(self.pk)
 
     def get_absolute_url(self):
-        return reverse('show_segment', args=[self.bill.id, self.id])
+        if self.original:
+            return reverse('show_segment', args=[self.bill.id, self.id])
+        else:
+            if self.replaced:
+                return reverse('show_amendment', args=[self.pk])
+            else:
+                return reverse('show_proposal', args=[self.bill.id, self.id])
 
 
 class CitizenAmendment(TimestampedMixin):

@@ -5,34 +5,6 @@ from django.db import models, migrations
 from django.conf import settings
 
 
-def create_types_default(apps, schema_editor):
-    TypeSegment = apps.get_model("core", "TypeSegment")
-
-    article = TypeSegment()
-    article.id = 1
-    article.name = 'Artigo'
-    article.editable = True
-    article.save()
-
-    title = TypeSegment()
-    title.name = 2
-    title.name = 'Título'
-    title.editable = False
-    title.save()
-
-
-def migrate_types(apps, schema_editor):
-    BillSegment = apps.get_model("core", "BillSegment")
-
-    for segment in BillSegment.objects.all():
-        if segment.type == 'article':
-            segment.new_type_id = 1
-            segment.save()
-        elif segment.type == 'title':
-            segment.new_type_id = 2
-            segment.save()
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -52,10 +24,6 @@ class Migration(migrations.Migration):
                 'verbose_name': 'type segment',
                 'verbose_name_plural': 'types segment',
             },
-        ),
-        # create two types default
-        migrations.RunPython(
-            create_types_default
         ),
         migrations.AddField(
             model_name='billsegment',
@@ -86,23 +54,5 @@ class Migration(migrations.Migration):
             model_name='billsegment',
             name='new_type',
             field=models.ForeignKey(verbose_name='type', to='core.TypeSegment', blank=True, null=True),
-        ),
-        # migrate type to fk
-        migrations.RunPython(
-            migrate_types
-        ),
-        migrations.RemoveField(
-            model_name='billsegment',
-            name='type'
-        ),
-        migrations.AlterField(
-            model_name='billsegment',
-            name='new_type',
-            field=models.ForeignKey(verbose_name='type', to='core.TypeSegment'),
-        ),
-        migrations.RenameField(
-            model_name='billsegment',
-            old_name='new_type',
-            new_name='type',
         ),
     ]

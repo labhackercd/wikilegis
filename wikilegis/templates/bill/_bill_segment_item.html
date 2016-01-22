@@ -2,7 +2,7 @@
 <h5>{{ segment.content }}</h5>
 {% else %}
 <a class="bill-link" href="{% url 'show_segment' bill.id segment.id %}">
-    <div class="article" id="segment-{{ segment.id }}">
+    <div class="article {{ segment.type|slugify }}" id="segment-{{ segment.id }}">
         <div class="comments-counter">
             <div class="cn">
                 <div class="cc-holder">
@@ -13,13 +13,11 @@
                 </div>                
             </div>
         </div>        
-        <div>
-            {{ segment.type.abbreviation }} {{ segment.number}}
-        </div>
+
         <div class="content">
-            <span class="article-content">
-                {{ segment.content|linebreaks }}
-            </span>
+            <div class="article-content">
+                {{ segment.content }}
+            </div>
         </div>
     </div>
 </a>

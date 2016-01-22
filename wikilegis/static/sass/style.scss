@@ -633,6 +633,32 @@ strong {
         .content {
             max-width: 840px;
         }
+        &.paragrafo {
+            margin-left: 30px;
+        }
+        &.inciso {
+            margin-left: 60px;
+        }
+        &.alinea {
+            margin-left: 90px;
+        }
+        &.item {
+            margin-left: 120px;
+        }
+        @media screen and (max-width: 992px) {
+            &.paragrafo {
+                margin-left: 10px;
+            }
+            &.inciso {
+                margin-left: 20px;
+            }
+            &.alinea {
+                margin-left: 30px;
+            }
+            &.item {
+                margin-left: 40px;
+            }
+        }
         .comments-counter {
             height: auto;
             width: 50px;
@@ -646,6 +672,7 @@ strong {
                     z-index: 1;
                 }
                 .n {
+                    color: gray;
                     position: relative;
                     margin-top: -37px;
                     @media screen and (max-width: 992px) {
@@ -665,14 +692,18 @@ strong {
         flex-grow: 1;
         flex-shrink: 0;
         flex-basis: 200px;
-        padding: 10px;
         font-size: 1.1em;
-        &:hover {
-            background-color: white;
-            -webkit-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
-            -moz-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
-            box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
+        .article-content {
+            padding: 10px;
+            float: left;
+             &:hover {
+                background-color: white;
+                -webkit-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
+                -moz-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
+                box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
+            }
         }
+       
     }
 }
 

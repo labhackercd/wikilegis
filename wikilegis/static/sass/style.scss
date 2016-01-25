@@ -571,6 +571,7 @@ strong {
 
 .list-amendment {
     .amendment-thead {
+        min-height: 100px;
         margin-bottom: 40px;
         background-image: url(static("img/brasao.png"));
         @media screen and (max-width: 600px) {
@@ -579,7 +580,7 @@ strong {
         background-repeat: no-repeat;
         background-position-y: center;
         background-position-x: 20px;
-        background-size: contain;
+        background-size: 100px;;
     }
     .amendment-title {
         text-align: center;

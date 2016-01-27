@@ -18,6 +18,7 @@ import os
 from decouple import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 # Import `default` as the default settings. This can be handy while pushing items into tuples.
 import django.conf.global_settings as default
@@ -123,6 +124,11 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
     },
 }
+
+
+LOCALE_PATHS = [
+    os.path.join(HERE, 'locale'),
+]
 
 
 # Authentication and user management

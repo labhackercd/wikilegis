@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:42-0200\n"
+"POT-Creation-Date: 2016-01-27 10:16-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,54 +18,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: auth2/admin.py:11
+#: auth2/admin.py:12
 msgid "Personal info"
 msgstr ""
 
-#: auth2/admin.py:12
+#: auth2/admin.py:13
 msgid "Permissions"
 msgstr ""
 
-#: auth2/admin.py:13
+#: auth2/admin.py:14
 msgid "Important dates"
 msgstr ""
 
-#: auth2/models.py:37
+#: auth2/models.py:61
+#, python-brace-format
+msgid "The maximum file size is {0}"
+msgstr ""
+
+#: auth2/models.py:65
 msgid "email address"
 msgstr ""
 
-#: auth2/models.py:39
+#: auth2/models.py:67
 msgid "first name"
 msgstr ""
 
-#: auth2/models.py:40
+#: auth2/models.py:68
 msgid "last name"
 msgstr ""
 
-#: auth2/models.py:41
+#: auth2/models.py:69
 msgid "staff status"
 msgstr ""
 
-#: auth2/models.py:42
+#: auth2/models.py:70
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: auth2/models.py:44
+#: auth2/models.py:72
 msgid "active"
 msgstr ""
 
-#: auth2/models.py:45
+#: auth2/models.py:73
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: auth2/models.py:47
+#: auth2/models.py:75
 msgid "date joined"
 msgstr ""
 
-#: auth2/views.py:16
+#: auth2/models.py:76
+msgid "profile picture"
+msgstr ""
+
+#: auth2/models.py:79
+msgid ""
+"Note that the preview above will only be updated after you submit the form."
+msgstr ""
+
+#: auth2/views.py:33
 msgid "Your account is now activated."
+msgstr ""
+
+#: auth2/views.py:43
+msgid "Profile successfully updated"
 msgstr ""
 
 #: core/admin.py:32
@@ -76,7 +94,7 @@ msgstr ""
 msgid "Update status of selected bills"
 msgstr ""
 
-#: core/admin.py:44 core/models.py:108 core/models.py:157
+#: core/admin.py:44 core/models.py:98 core/models.py:128 core/models.py:177
 msgid "author"
 msgstr ""
 
@@ -119,7 +137,7 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: core/forms.py:50 core/models.py:77 core/views.py:28
+#: core/forms.py:57 core/views.py:32
 msgid "Title"
 msgstr ""
 
@@ -181,7 +199,7 @@ msgstr ""
 msgid "data"
 msgstr ""
 
-#: core/models.py:45 core/models.py:88 core/models.py:147
+#: core/models.py:45 core/models.py:94 core/models.py:167
 msgid "type"
 msgstr ""
 
@@ -207,7 +225,7 @@ msgid ""
 "document."
 msgstr ""
 
-#: core/models.py:67 core/models.py:80 core/models.py:146
+#: core/models.py:67 core/models.py:92 core/models.py:166
 msgid "bill"
 msgstr ""
 
@@ -215,77 +233,205 @@ msgstr ""
 msgid "bills"
 msgstr ""
 
+#: core/models.py:80
+msgid "name"
+msgstr ""
+
 #: core/models.py:81
-msgid "order"
+msgid "editable"
 msgstr ""
 
-#: core/models.py:82 core/models.py:110
-msgid "content"
+#: core/models.py:84
+msgid "type segment"
 msgstr ""
 
-#: core/models.py:86
-msgid "Article"
-msgstr ""
-
-#: core/models.py:92
-msgid "segment"
+#: core/models.py:85
+msgid "types segment"
 msgstr ""
 
 #: core/models.py:93
+msgid "order"
+msgstr ""
+
+#: core/models.py:95 core/models.py:168
+msgid "number"
+msgstr ""
+
+#: core/models.py:96
+msgid "segment parent"
+msgstr ""
+
+#: core/models.py:97
+msgid "segment replaced"
+msgstr ""
+
+#: core/models.py:99
+msgid "original"
+msgstr ""
+
+#: core/models.py:100 core/models.py:130
+msgid "content"
+msgstr ""
+
+#: core/models.py:104
+msgid "segment"
+msgstr ""
+
+#: core/models.py:105
 msgid "segments"
 msgstr ""
 
-#: core/models.py:109
+#: core/models.py:129
 msgid "bill segment"
 msgstr ""
 
-#: core/models.py:113
+#: core/models.py:133
 msgid "citizen amendment"
 msgstr ""
 
-#: core/models.py:114
+#: core/models.py:134
 msgid "citizen amendments"
 msgstr ""
 
-#: core/models.py:132
+#: core/models.py:152
 msgid "user"
 msgstr ""
 
-#: core/models.py:136
+#: core/models.py:156
 msgid "Up Vote"
 msgstr ""
 
-#: core/models.py:136
+#: core/models.py:156
 msgid "Down Vote"
 msgstr ""
 
-#: core/orderers.py:92
-msgid "All"
+#: core/models.py:169
+msgid "year"
 msgstr ""
 
-#: core/views.py:22 templates/index.html:43
+#: core/models.py:170
+msgid "name proposition"
+msgstr ""
+
+#: core/models.py:171
+msgid "id proposition"
+msgstr ""
+
+#: core/models.py:172
+msgid "id main proposition"
+msgstr ""
+
+#: core/models.py:173
+msgid "name origin proposition"
+msgstr ""
+
+#: core/models.py:174
+msgid "theme"
+msgstr ""
+
+#: core/models.py:175
+msgid "menu"
+msgstr ""
+
+#: core/models.py:176
+msgid "menu_explanation"
+msgstr ""
+
+#: core/models.py:178
+msgid "id register"
+msgstr ""
+
+#: core/models.py:179
+msgid "uf author"
+msgstr ""
+
+#: core/models.py:180
+msgid "party author"
+msgstr ""
+
+#: core/models.py:181
+msgid "apresentation date"
+msgstr ""
+
+#: core/models.py:182
+msgid "processing_regime"
+msgstr ""
+
+#: core/models.py:183
+msgid "last dispatch date"
+msgstr ""
+
+#: core/models.py:184
+msgid "last dispatch"
+msgstr ""
+
+#: core/models.py:185
+msgid "appraisal"
+msgstr ""
+
+#: core/models.py:186
+msgid "indexing"
+msgstr ""
+
+#: core/models.py:187
+msgid "situation"
+msgstr ""
+
+#: core/models.py:188
+msgid "content link"
+msgstr ""
+
+#: core/models.py:191
+msgid "proposition"
+msgstr ""
+
+#: core/models.py:192
+msgid "propositions"
+msgstr ""
+
+#: core/orderers.py:100
+msgid "None"
+msgstr ""
+
+#: core/views.py:25
 msgid "Order by"
 msgstr ""
 
-#: core/views.py:27
+#: core/views.py:31
 msgid "Date"
 msgstr ""
 
-#: core/views.py:123
+#: core/views.py:127
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr ""
 
-#: core/views.py:147
+#: core/views.py:151
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr ""
 
-#: settings.py:191
-msgid "Google"
+#: notification/models.py:7
+msgid "amendment"
+msgstr ""
+
+#: notification/models.py:8
+msgid "hour"
+msgstr ""
+
+#: notification/models.py:12
+msgid "history notification"
+msgstr ""
+
+#: notification/models.py:13
+msgid "history notifications"
 msgstr ""
 
 #: settings.py:195
+msgid "Google"
+msgstr ""
+
+#: settings.py:199
 msgid "Facebook"
 msgstr ""
 
@@ -297,11 +443,11 @@ msgstr ""
 msgid "Select language"
 msgstr ""
 
-#: templates/about.html:19
+#: templates/about.html:17
 msgid "About Wikilegis"
 msgstr ""
 
-#: templates/about.html:20
+#: templates/about.html:18
 msgid ""
 "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
 "Hacker Lab, designed to enable citizens to suggest modifications to the "
@@ -310,15 +456,14 @@ msgid ""
 "improve our tool."
 msgstr ""
 
-#: templates/about.html:24
+#: templates/about.html:22
 msgid ""
 "Visit us on Trello, Github and in our page to propose new features or to "
 "report bugs. If you have programming skills, you can also collaborate to the "
 "development of Wikilegis. "
 msgstr ""
 
-#: templates/about.html:35
-#: templates/registration/registration_complete.html:14
+#: templates/about.html:33 templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr ""
 
@@ -326,41 +471,45 @@ msgstr ""
 msgid "Django administration"
 msgstr ""
 
-#: templates/auth2/_current_user_or_login_button.html:20
-msgid "Log out"
-msgstr ""
-
-#: templates/auth2/_current_user_or_login_button.html:25
-#: templates/registration/login.html:52
+#: templates/auth2/_current_user_or_login_button.html:10
+#: templates/registration/login.html:47
 msgid "Log in"
 msgstr ""
 
-#: templates/auth2/_current_user_or_login_button.html:26
+#: templates/auth2/_current_user_or_login_button.html:11
 msgid "or"
 msgstr ""
 
-#: templates/auth2/_current_user_or_login_button.html:27
+#: templates/auth2/_current_user_or_login_button.html:12
 msgid "Sign up"
 msgstr ""
 
-#: templates/bill/bill_segment.html:24
+#: templates/auth2/edit.html:11
+msgid "Edit profile"
+msgstr ""
+
+#: templates/auth2/show_users_profile.html:15
+msgid "Joined on"
+msgstr ""
+
+#: templates/bill/bill_segment.html:18
 msgid "Original text"
 msgstr ""
 
-#: templates/bill/bill_segment.html:41
+#: templates/bill/bill_segment.html:61
 msgid "Submit proposal"
 msgstr ""
 
-#: templates/bill/bill_segment.html:71
+#: templates/bill/bill_segment.html:82
 msgid "Submitted proposals"
 msgstr ""
 
-#: templates/bill/create_amendment.html:25
-#: templates/bill/create_amendment.html:62
+#: templates/bill/create_amendment.html:26
+#: templates/bill/create_amendment.html:61
 msgid "Send proposal"
 msgstr ""
 
-#: templates/bill/create_amendment.html:61
+#: templates/bill/create_amendment.html:60
 msgid "Cancel"
 msgstr ""
 
@@ -376,45 +525,45 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: templates/index.html:13
+#: templates/index.html:11
 msgid "Your legislative editing tool"
 msgstr ""
 
-#: templates/index.html:16
+#: templates/index.html:12
 msgid ""
 "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
 "Hacker Lab, designed to enable citizens to suggest modifications to the "
 "wording of Bills"
 msgstr ""
 
-#: templates/index.html:70
-msgid "Nothing to show here..."
+#: templates/index.html:42
+msgid "Law Projects"
 msgstr ""
 
-#: templates/registration/login.html:29
-msgid "Sign in"
+#: templates/registration/login.html:43
+msgid "Activate Account"
 msgstr ""
 
-#: templates/registration/login.html:57
+#: templates/registration/login.html:55
+#: templates/registration/registration_form.html:34
+#, python-format
+msgid "Sign in with %(backend_name)s"
+msgstr ""
+
+#: templates/registration/login.html:60
 msgid "Don't have an account?"
 msgstr ""
 
-#: templates/registration/login.html:57
+#: templates/registration/login.html:60
 msgid "Sign up now!"
 msgstr ""
 
-#: templates/registration/login.html:58
+#: templates/registration/login.html:61
 msgid "Forgot your password?"
 msgstr ""
 
-#: templates/registration/login.html:58
+#: templates/registration/login.html:61
 msgid "Ask for a new one!"
-msgstr ""
-
-#: templates/registration/login.html:66
-#: templates/registration/registration_form.html:37
-#, python-format
-msgid "Sign in with %(backend_name)s"
 msgstr ""
 
 #: templates/registration/password_reset_email.html:2
@@ -451,4 +600,12 @@ msgstr ""
 
 #: templates/registration/registration_form.html:26
 msgid "Sign Up"
+msgstr ""
+
+#: templates/registration/resend_activation_form.html:18
+msgid "Type your email to resend your account activation link"
+msgstr ""
+
+#: templates/registration/resend_activation_form.html:27
+msgid "Resend"
 msgstr ""

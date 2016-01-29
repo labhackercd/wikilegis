@@ -101,7 +101,10 @@ jQuery(document).ready(function ($) {
     
     //Show more segments
     
-    
+    $('.show-more-segments').click(function() {
+        $(this).parent().find('.bill-link').nextAll('.bill-link').show();
+        $(this).remove();
+    });
 
 
     // Collapsable-comments

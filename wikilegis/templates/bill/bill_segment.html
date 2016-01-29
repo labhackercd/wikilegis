@@ -219,42 +219,41 @@
 </div>
 {% endblock %} {% block partialscript %}
 <script type="text/javascript">
-    $(function () {
-        var original = $('#original').attr('data-raw-content');
-        $('.prop .article-prop').each(function (i, cur) {
-            var $cur = $(cur);
-            var current = $cur.attr('data-raw-content');
-            $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
-        });
-        $('.pp').next('p').remove();
-    }); { %
-        if user.is_authenticated %
-    }
-    $(function () {
-        $('.votes').on('click', 'a.upvote,a.downvote', function (e) {
-            e.preventDefault();
-            var $target = $(this);
-            var $container = $target.closest('.votes');
-            if ($container.hasClass('disabled')) {
-                // Do nothing.
-                return;
-            }
-            var url = $target.attr('href');
-            $container.addClass('disabled');
-            $.ajax({
-                type: 'GET',
-                url: url,
-                success: function (html) {
-                    $container.html(html);
-                    $container.removeClass('disabled');
-                },
-                error: function () {
-                    $container.removeClass('disabled');
-                    alert("Oh, no, something went wrong :(");
-                }
+        $(function() {
+            var original = $('#original').attr('data-raw-content');
+            $('.prop .article-prop').each(function(i, cur) {
+                var $cur = $(cur);
+                var current = $cur.attr('data-raw-content');
+                $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
             });
+            $('.pp').next('p').remove();
         });
-    }); { % endif %
-    }
-</script>
+        {% if user.is_authenticated %}
+            $(function() {
+                $('.votes').on('click', 'a.upvote,a.downvote', function(e) {
+                    e.preventDefault();
+                    var $target = $(this);
+                    var $container = $target.closest('.votes');
+                    if ($container.hasClass('disabled')) {
+                        // Do nothing.
+                        return;
+                    }
+                    var url = $target.attr('href');
+                    $container.addClass('disabled');
+                    $.ajax({
+                        type: 'GET',
+                        url: url,
+                        success: function(html) {
+                            $container.html(html);
+                            $container.removeClass('disabled');
+                        },
+                        error: function() {
+                            $container.removeClass('disabled');
+                            alert("Oh, no, something went wrong :(");
+                        }
+                    });
+                });
+            });
+        {% endif %}
+    </script>
 {% endblock %}

@@ -98,6 +98,10 @@ jQuery(document).ready(function ($) {
         }, 1000, 'easeOutCirc');
     });
 
+    
+    //Show more segments
+    
+    
 
 
     // Collapsable-comments

@@ -8,12 +8,11 @@ import string
 register = Library()
 
 
-@register.simple_tag
 def int_to_letter(number):
     num2alpha = dict(zip(range(1, 27), string.ascii_lowercase))
     return num2alpha[number]
 
-@register.simple_tag
+
 def int_to_roman(num):
 
     roman = OrderedDict()
@@ -42,3 +41,25 @@ def int_to_roman(num):
                 break
 
     return "".join([a for a in roman_num(num)])
+
+
+@register.simple_tag
+def segment_numbering(number, type_segment):
+    if type_segment.name == 'Artigo':
+        if number <= 9:
+            return "Art. %sº " % number
+        else:
+            return "Art. %s " % number
+    elif type_segment.name == 'Parágrafo':
+        if number <= 9:
+            return "§ %sº " % number
+        else:
+            return "§ %s " % number
+    elif type_segment.name == 'Inciso':
+        return "%s - " % int_to_roman(number)
+    elif type_segment.name == 'Alínea':
+        return "%s) " % int_to_letter(number)
+    elif type_segment.name == 'Item':
+        return "%s. " % number
+    else:
+        return ''

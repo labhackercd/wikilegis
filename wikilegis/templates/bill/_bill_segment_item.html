@@ -1,3 +1,5 @@
+{% load convert_numbers %}
+
 {% if segment.type.editable == False %}
 <h5>{{ segment.content }}</h5>
 {% else %}
@@ -10,13 +12,13 @@
                     <div class="n">
                         {{ segment.substitutes.all.count }}
                     </div>
-                </div>                
+                </div>
             </div>
-        </div>        
+        </div>
 
         <div class="content">
             <div class="article-content">
-                <span>{{ segment.number }}</span>
+                <span>{% segment_numbering segment %}</span>
                 {{ segment.content }}
             </div>
         </div>

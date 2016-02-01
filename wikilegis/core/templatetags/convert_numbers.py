@@ -4,6 +4,7 @@ from django.template import Library
 from collections import OrderedDict
 import string
 
+from wikilegis.core.models import BillSegment
 
 register = Library()
 
@@ -44,22 +45,25 @@ def int_to_roman(num):
 
 
 @register.simple_tag
-def segment_numbering(number, type_segment):
-    if type_segment.name == 'Artigo':
-        if number <= 9:
-            return "Art. %sº " % number
+def segment_numbering(segment):
+    if segment.type.name == 'Artigo':
+        if int(segment.number) <= 9:
+            return "Art. %sº " % segment.number
         else:
-            return "Art. %s " % number
-    elif type_segment.name == 'Parágrafo':
-        if number <= 9:
-            return "§ %sº " % number
+            return "Art. %s " % segment.number
+    elif segment.type.name == 'Parágrafo':
+        if int(segment.number) <= 9:
+            if BillSegment.objects.filter(type=segment.type, parent=segment.parent).count() == 1:
+                return "Parágrafo único. "
+            else:
+                return "§ %sº " % segment.number
         else:
-            return "§ %s " % number
-    elif type_segment.name == 'Inciso':
-        return "%s - " % int_to_roman(number)
-    elif type_segment.name == 'Alínea':
-        return "%s) " % int_to_letter(number)
-    elif type_segment.name == 'Item':
-        return "%s. " % number
+            return "§ %s " % segment.number
+    elif segment.type.name == 'Inciso':
+        return "%s - " % int_to_roman(int(segment.number))
+    elif segment.type.name == 'Alínea':
+        return "%s) " % int_to_letter(int(segment.number))
+    elif segment.type.name == 'Item':
+        return "%s. " % segment.number
     else:
         return ''

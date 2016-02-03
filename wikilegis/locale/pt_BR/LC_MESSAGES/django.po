@@ -516,7 +516,7 @@ msgstr "Enviar proposta"
 
 #: templates/bill/bill_segment.html:82
 msgid "Submitted proposals"
-msgstr "Enviar proposta"
+msgstr "Propostas"
 
 #: templates/bill/create_amendment.html:26
 #: templates/bill/create_amendment.html:61

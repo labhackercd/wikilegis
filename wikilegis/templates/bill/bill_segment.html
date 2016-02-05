@@ -1,4 +1,4 @@
-{% extends "bill/_base.html" %} {% load static %} {% load i18n %} {% load render_comments from comments2 %} {% load cropping %} {% block content3 %}
+{% extends "bill/_base.html" %} {% load static %} {% load i18n %} {% load render_comments from comments2 %} {% load cropping %} {% block content3 %} {% load convert_numbers %}
 <div class="pl-full">
     <div class="container">
         <div class="articles-header valign-wrapper">
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="content">
-                        <div class="article-content-segments-before">
+                        <div class="article-content">
                             <span>1</span> Art.1º That how you wanna play this? Huh, Your call, your funeral Jack. Hey, do not mess with me I will bury you cause I'm crazy. You know, yeah... mucho loco. Do not... test me.
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="content">
-                        <div class="article-content-segments-before">
+                        <div class="article-content">
                             <span>1</span> § 1º What business? The business you put me on, asshole! What, you already forgot? THIS business. Huh? That uh jog your memory, son of a bitch? Hey, you said...
                         </div>
                     </div>
@@ -78,14 +78,14 @@
                     </div>
 
                     <div class="content">
-                        <div class="article-content-segments-before">
+                        <div class="article-content">
                             <span>1</span> I – Four pounds... foooour pounds as if two pounds wasn't bad enough.
                         </div>
                     </div>
                 </div>
             </a>
 
-            
+
             <div class="show-more-segments">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" fill="#A2A2A2" x="0px" y="0px" width="50" height="25" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="54175" data-kw="more10">
                     <g>
@@ -111,7 +111,7 @@
 
             <div class="col s10 m10 l11">
                 <div class="article-prop">
-                    <p id="original" data-raw-content="{{ segment.content }}">{{ segment.content|linebreaks }}</p>
+                    <p id="original" data-raw-content="{{ segment.content }}"><span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
                 </div>
                 <div class="after-bar">
                     <div class="col s12 m12 l8">
@@ -144,6 +144,23 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 offset-m1 add-segment-item">
+                <span class="asi-link"><i class="material-icons">add</i> Adicionar item</span>
+                <form class="add-segment-form hide">
+                    <select class="segment-type-option">
+                        <option value="1">Item</option>
+                        <option value="2">Alínea</option>
+                        <option value="3">Parágrafo</option>
+                    </select>
+                    <textarea class="segment-content materialize-textarea" name="comment" form="usrform"></textarea>
+                    <div class="cancel valign-wrapper" title="cancelar">
+                        <i class="material-icons">clear</i><span class="hide-on-med-and-up">Cancelar</span>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -215,45 +232,196 @@
             </div>
         </a>
         {% endfor %}
+
+
+
+        <!-- Propostas de adição -->
+
+        <div class="articles-header valign-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="60745" data-kw="rounded54">
+                <g>
+                    <g id="add-circle-outline">
+                        <path d="M280.5,127.5h-51v102h-102v51h102v102h51v-102h102v-51h-102V127.5z M255,0C114.75,0,0,114.75,0,255s114.75,255,255,255    s255-114.75,255-255S395.25,0,255,0z M255,459c-112.2,0-204-91.8-204-204S142.8,51,255,51s204,91.8,204,204S367.2,459,255,459z"></path>
+                    </g>
+                </g>
+            </svg>
+            <h5>{% trans "Adding proposals" %}</h5>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="segments-before">
+
+            <a class="bill-link parent" href="/bill/7/segments/16/">
+                <div class="article artigo" id="segment-16">
+                    <div class="comments-counter">
+                        <div class="cn">
+                            <div class="cc-holder">
+                                <i class="material-icons">mode_comment</i>
+                                <div class="n">
+                                    1
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="article-content">
+                            <span>1</span> Art.1º That how you wanna play this? Huh, Your call, your funeral Jack. Hey, do not mess with me I will bury you cause I'm crazy. You know, yeah... mucho loco. Do not... test me.
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a class="bill-link" href="/bill/7/segments/17/">
+                <div class="article paragrafo" id="segment-17">
+                    <div class="comments-counter">
+                        <div class="cn">
+                            <div class="cc-holder">
+                                <i class="material-icons">mode_comment</i>
+                                <div class="n">
+                                    0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="article-content">
+                            <span>1</span> § 1º What business? The business you put me on, asshole! What, you already forgot? THIS business. Huh? That uh jog your memory, son of a bitch? Hey, you said...
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a class="bill-link" href="/bill/7/segments/18/">
+                <div class="article inciso" id="segment-18">
+                    <div class="comments-counter">
+                        <div class="cn">
+                            <div class="cc-holder">
+                                <i class="material-icons">mode_comment</i>
+                                <div class="n">
+                                    0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="article-content">
+                            <span>1</span> I – Four pounds... foooour pounds as if two pounds wasn't bad enough.
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+
+            <div class="show-more-segments">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" fill="#A2A2A2" x="0px" y="0px" width="50" height="25" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="54175" data-kw="more10">
+                    <g>
+                        <g>
+                            <circle cx="69.545" cy="306" r="69.545"></circle>
+                            <circle cx="306" cy="306" r="69.545"></circle>
+                            <circle cx="542.455" cy="306" r="69.545"></circle>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
+        </div>
+
+
+
+        <div class="row layarticle">
+            <div class="col s2 m2 l1">
+                <div class="votes">
+                    {% with segment as content_object %}{% include "_vote_buttons.html" %}{% endwith %}
+                </div>
+            </div>
+
+            <div class="col s10 m10 l11">
+                <div class="article-prop">
+                    <p id="original" data-raw-content="{{ segment.content }}"><span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
+                </div>
+                <div class="after-bar">
+                    <div class="col s12 m12 l8">
+                        <div class="user col s12 m6">
+                            <div class="col m3 s3">
+                                <div class="avatr">
+                                    {% if author.user.avatar %}
+                                    <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
+                                    {% else %}
+                                    <div class="pic" style="background-image: url('{% static " img/user.png " %}')"></div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col m9 s9">
+                                <span class="user-name">
+                                {% if author.user and author.user.pk %}
+                                    <a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a>
+                                {% else %}
+                                    {{ author.user }}
+                                {% endif %}
+                            </span>
+                                <p class="date">{{ segment.created|date }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row comments">
+            <div class="col s11 offset-m1">
+                <div class="main">
+                    {% render_comments segment %}
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 </div>
 {% endblock %} {% block partialscript %}
 <script type="text/javascript">
-        $(function() {
-            var original = $('#original').attr('data-raw-content');
-            $('.prop .article-prop').each(function(i, cur) {
-                var $cur = $(cur);
-                var current = $cur.attr('data-raw-content');
-                $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
-            });
-            $('.pp').next('p').remove();
+    $(function () {
+        var original = $('#original').attr('data-raw-content');
+        $('.prop .article-prop').each(function (i, cur) {
+            var $cur = $(cur);
+            var current = $cur.attr('data-raw-content');
+            $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
         });
-        {% if user.is_authenticated %}
-            $(function() {
-                $('.votes').on('click', 'a.upvote,a.downvote', function(e) {
-                    e.preventDefault();
-                    var $target = $(this);
-                    var $container = $target.closest('.votes');
-                    if ($container.hasClass('disabled')) {
-                        // Do nothing.
-                        return;
-                    }
-                    var url = $target.attr('href');
-                    $container.addClass('disabled');
-                    $.ajax({
-                        type: 'GET',
-                        url: url,
-                        success: function(html) {
-                            $container.html(html);
-                            $container.removeClass('disabled');
-                        },
-                        error: function() {
-                            $container.removeClass('disabled');
-                            alert("Oh, no, something went wrong :(");
-                        }
-                    });
-                });
+        $('.pp').next('p').remove();
+    }); { %
+        if user.is_authenticated %
+    }
+    $(function () {
+        $('.votes').on('click', 'a.upvote,a.downvote', function (e) {
+            e.preventDefault();
+            var $target = $(this);
+            var $container = $target.closest('.votes');
+            if ($container.hasClass('disabled')) {
+                // Do nothing.
+                return;
+            }
+            var url = $target.attr('href');
+            $container.addClass('disabled');
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (html) {
+                    $container.html(html);
+                    $container.removeClass('disabled');
+                },
+                error: function () {
+                    $container.removeClass('disabled');
+                    alert("Oh, no, something went wrong :(");
+                }
             });
-        {% endif %}
-    </script>
+        });
+    }); { % endif %
+    }
+</script>
 {% endblock %}

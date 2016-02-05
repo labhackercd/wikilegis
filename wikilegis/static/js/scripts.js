@@ -105,6 +105,22 @@ jQuery(document).ready(function ($) {
         $(this).parent().find('.bill-link').nextAll('.bill-link').show();
         $(this).remove();
     });
+    
+    
+    //Add segment item
+    
+    $('.asi-link').click(function() {
+        $(this).hide();
+        $('.add-segment-form').removeClass('hide');
+        $('.segment-content').focus();
+    });
+    
+    var cancel = $('.add-segment-form').find('.cancel');
+    
+    cancel.click(function() {
+        $('.add-segment-form').addClass('hide');
+        $('.asi-link').show();
+    });
 
 
     // Collapsable-comments

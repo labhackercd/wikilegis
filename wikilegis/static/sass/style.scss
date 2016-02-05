@@ -685,6 +685,18 @@ strong {
         justify-content: flex-start;
         align-content: flex-start;
         align-items: flex-start;
+        .segment-submit {
+            width: 100px;
+            height: 39px;
+            margin-top: 3px;
+            margin-left: -103px;
+            border: none;
+            background-color: #E0E0E0;
+            color: gray;
+            font-weight: 600;
+            &:focus { outline:0; }
+            &:hover { background-color: darken(#E0E0E0, 3%); }
+        }
         textarea {
             height: 100%;
             max-width: 840px;
@@ -698,7 +710,7 @@ strong {
             @media screen and (max-width: 600px) {
                 margin-left: 0px;
             }
-            padding: 10px 15px !important;
+            padding: 10px 105px 10px 15px !important;
             background-color: white;
             border: 1px solid $fkingrey !important;
             box-shadow: none !important;

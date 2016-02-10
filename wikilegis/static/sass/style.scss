@@ -690,6 +690,11 @@ strong {
             height: 39px;
             margin-top: 3px;
             margin-left: -103px;
+            @media screen and (max-width: 600px) {
+                width: 100%;
+                margin-bottom: 20px;
+                margin-left: 0px;
+            } 
             border: none;
             background-color: #E0E0E0;
             color: gray;
@@ -709,8 +714,9 @@ strong {
             min-height: 1.5em;
             @media screen and (max-width: 600px) {
                 margin-left: 0px;
+                padding: 10px 15px 10px 15px !important;
             }
-            padding: 10px 105px 10px 15px !important;
+            padding: 10px 115px 10px 15px !important;
             background-color: white;
             border: 1px solid $fkingrey !important;
             box-shadow: none !important;

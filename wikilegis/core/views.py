@@ -44,7 +44,10 @@ class BillOrderer(SimpleOrderer):
 
 
 def index(request):
-    bills = Bill.objects.filter(status='published')
+    if request.GET.get('status') == 'closed':
+        bills = Bill.objects.filter(status='closed')
+    else:
+        bills = Bill.objects.filter(status='published')
 
     orderer = BillOrderer(request, dict(request.GET.items()))
     # Apply the orderer

@@ -43,6 +43,11 @@
             </div>
             <div class="col s12 m6">
                 <ul class="filter">
+                    <li><a {% if request.GET.status != 'closed' %} class="active" {% endif %} href="{% url 'index' %}?status=published#projects">{% trans "Published" %}</a>
+                    </li><span class="divider">|</span>
+                    <li><a {% if request.GET.status = 'closed' %} class="active" {% endif %} href="{% url 'index' %}?status=closed#projects">{% trans "Closed" %}</a>
+                </ul>
+                <ul class="filter">
                     {% for item in orderer.choices %}
                     <li><a {% if item.selected %} class="active" {% endif %} href="{{ item.query_string }}#projects">{{ item.display }}</a>
                     </li><span class="divider">|</span> {% endfor %}

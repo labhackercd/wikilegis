@@ -121,6 +121,15 @@ jQuery(document).ready(function ($) {
         $('.add-segment-form').addClass('hide');
         $('.asi-link').show();
     });
+    
+    //View comments
+    
+    $('.view-comments').click(function(e) {
+        e.preventDefault();
+        //$(this).hide();
+        console.log($(this).closest('.main').find('.holder').removeClass('hide'));
+        /*$('.segment-content').focus();*/
+    });
 
 
     // Collapsable-comments

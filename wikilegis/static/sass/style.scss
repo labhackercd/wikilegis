@@ -177,6 +177,11 @@ img.logo {
     @media screen and (max-width: 992px) {
         height: auto;
     }
+    
+    @media screen and (max-height: 790px) {
+        height: auto;
+    }
+    
     min-height: 93vh;
     .cover-content {
         @media screen and (max-width: 992px) {
@@ -244,6 +249,11 @@ img.logo {
     }
     .see-projects {
         @media screen and (max-width: 992px) {
+            position: relative;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+        @media screen and ( max-height: 790px ){
             position: relative;
             margin-top: 50px;
             margin-bottom: 20px;
@@ -659,6 +669,16 @@ strong {
 
 .article-type {
     font-weight: bold;
+}
+
+.view-comments {
+    opacity: .7;
+    i {
+       vertical-align:middle; 
+    }
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .add-segment-item {
@@ -1211,10 +1231,6 @@ blockquote {
 .show-more {
     padding-top: 5px;
     margin-left: 72px;
-    color: #657DE8 !important;
-    &:hover {
-        color: #92A5F9 !important;
-    }
 }
 
 $opacity: .4;
@@ -1291,7 +1307,8 @@ $opacity: .4;
     .main {
         text-align: right;
         max-width: 840px;
-        border-top: 1px solid $fkingrey;
+        border-bottom: 1px solid $fkingrey;
+        padding-bottom: 10px;
         padding-left: 30px;
     }
     .submit {
@@ -1504,10 +1521,6 @@ $opacity: .4;
 .show-more {
     padding-top: 5px;
     margin-left: 72px;
-    color: #657DE8 !important;
-    &:hover {
-        color: #92A5F9 !important;
-    }
     label {
         padding-top: 10px;
         padding-left: 15px;

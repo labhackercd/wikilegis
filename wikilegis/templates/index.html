@@ -39,18 +39,18 @@
     <div class="container">
         <div class="row">
             <div class="col s12 m6">
-                <h2 class="title">{% trans "Law Projects" %}</h2>
+                <h2 class="title">{% if request.GET.status = 'closed' %}{% trans "Closed Law Projects" %}{% else %}{% trans "Law Projects" %}{% endif %}</h2>
             </div>
             <div class="col s12 m6">
-                <ul class="filter">
-                    <li><a {% if request.GET.status != 'closed' %} class="active" {% endif %} href="{% url 'index' %}?status=published#projects">{% trans "Published" %}</a>
-                    </li><span class="divider">|</span>
-                    <li><a {% if request.GET.status = 'closed' %} class="active" {% endif %} href="{% url 'index' %}?status=closed#projects">{% trans "Closed" %}</a>
-                </ul>
                 <ul class="filter">
                     {% for item in orderer.choices %}
                     <li><a {% if item.selected %} class="active" {% endif %} href="{{ item.query_string }}#projects">{{ item.display }}</a>
                     </li><span class="divider">|</span> {% endfor %}
+                </ul>
+                <ul class="filter">
+                    <li><a {% if request.GET.status != 'closed' %} class="active" {% endif %} href="{% url 'index' %}?status=published#projects">{% trans "Open" %}</a>
+                    </li><span class="divider">|</span>
+                    <li><a {% if request.GET.status = 'closed' %} class="active" {% endif %} href="{% url 'index' %}?status=closed#projects">{% trans "Closed" %}</a>
                 </ul>
             </div>
         </div>

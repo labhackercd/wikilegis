@@ -10,7 +10,9 @@
           <span class="title"><span class="comment-name"><a href="{% url 'users_profile' comment.user.pk %}">{{ comment.name }}</a></span><span class="comment-submit-date"> em {{ comment.submit_date }}</span></span>
         </li>
     {%  endfor %}
+    {% if not readonly %}
     <li class="avatar">
         {% include "comments2/_comment_form.html" %}
     </li>
+    {% endif %}
 </ul>

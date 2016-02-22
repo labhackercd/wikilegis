@@ -66,7 +66,13 @@
         <div class="row layarticle">
             <div class="col s2 m2 l1">
                 <div class="votes">
-                    {% with segment as content_object %}{% include "_vote_buttons.html" %}{% endwith %}
+                    {% with segment as content_object %}
+                        {% if segment.bill.status = 'published' %}
+                            {% include "_vote_buttons.html" %}
+                        {% else %}
+                            {% include "_vote_buttons_read_only.html" %}
+                        {% endif%}
+                    {% endwith %}
                 </div>
             </div>
 
@@ -114,12 +120,16 @@
                         </div>
                     </a>
                     <div class="holder hide">
-                        {% render_comments segment %}
+                        {% if segment.bill.status = 'published' %}
+                        {% render_comments segment readonly|default:False %}
+                        {% else %}
+                        {% render_comments segment readonly|default:True %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-
+        {% if segment.substitutes.all %}
         <div class="articles-header submitted-proposals">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 79.536 79.536" style="enable-background:new 0 0 79.536 79.536;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="27546" data-kw="leader">
                 <g>
@@ -129,12 +139,18 @@
             <h5>{% trans "Submitted proposals" %}</h5>
         </div>
         <div class="divider"></div>
-
+        {% endif %}
         {% for amendment in segment.substitutes.all %}
         <div class="row layarticle prop" id="amendment-{{ amendment.pk }}">
             <div class="col s2 m2 l1">
                 <div class="votes">
-                    {% with amendment as content_object %}{% include "_vote_buttons.html" %}{% endwith %}
+                    {% with amendment as content_object %}
+                        {% if amendment.bill.status = 'published' %}
+                            {% include "_vote_buttons.html" %}
+                        {% else %}
+                            {% include "_vote_buttons_read_only.html" %}
+                        {% endif%}
+                    {% endwith %}
                 </div>
             </div>
             <div class="col s10 m10 l11">
@@ -171,14 +187,18 @@
                         </div>
                     </a>
                     <div class="holder hide">
-                        {% render_comments amendment %}
+                        {% if amendment.bill.status = 'published' %}
+                        {% render_comments amendment readonly|default:False %}
+                        {% else %}
+                        {% render_comments amendment readonly|default:True %}
+                        {% endif %}
                     </div>                    
                 </div>
             </div>
         </div>
            
         {% endfor %}
-
+        {% if segment.bill.status = 'published' %}
         <a href="{% url 'create_amendment' segment.bill.id segment.id %}">
             <div class="row add-prop-cta bill valign-wrapper">
                 <div class="col s2 m1 valign-wrapper">
@@ -189,7 +209,7 @@
                 </div>
             </div>
         </a>
-
+        {% endif %}
     </div>
 </div>
 {% endblock %} {% block partialscript %}

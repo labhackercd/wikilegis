@@ -74,11 +74,13 @@
                             <span class="pl-created-date">Criado em {{ bill.created|date }}</span>
                         </div>                        
                         <div class="row valign-wrapper">
+                            {% if bill.proposition_set.all.0.situation %}
                             <div class="col s12 m6 status">
-                                {% if bill.proposition_set.all.0.situation %}
-                                    <span class="title">Status da PL: </span><span class="status-content">{{ bill.proposition_set.all.0.situation }}</span>
-                                {% endif %}                                
+                                <span class="title">Status da PL: </span><span class="status-content">{{ bill.proposition_set.all.0.situation }}</span>
                             </div>
+                            {% else %}
+                            <div class="col s12 m6"></div>
+                            {% endif %}
                             <div class="col s12 m6 users">
                                 <!-- User relevance here? -->
                                 <!--<span class="dep">Dep. Eduardo Cunha</span>, Bruna Oliveira e outras <span class="users-count">18 pessoas</span>-->

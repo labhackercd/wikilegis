@@ -1,4 +1,4 @@
-{% extends "bill/_base.html" %} {% load previous_segments %}  {% load static %} {% load i18n %} {% load render_comments from comments2 %} {% load cropping %} {% block content3 %} {% load convert_numbers %}
+{% extends "bill/_base.html" %} {% load comments %} {% load previous_segments %}  {% load static %} {% load i18n %} {% load render_comments from comments2 %} {% load cropping %} {% block content3 %} {% load convert_numbers %}
 <div class="pl-full">
     <div class="container">
         <div class="articles-header valign-wrapper">
@@ -103,31 +103,14 @@
             </div>
         </div>
 
-        <!--<div class="row">
-            <div class="col s12 offset-m1 add-segment-item">
-                <span class="asi-link"><i class="material-icons">add</i> Adicionar item</span>
-                <form class="add-segment-form hide">
-                    <select class="segment-type-option">
-                        <option value="1">Item</option>
-                        <option value="2">Alínea</option>
-                        <option value="3">Parágrafo</option>
-                    </select>
-                    <textarea class="segment-content materialize-textarea" name="comment" form="usrform"></textarea>
-                    <input type="submit" class="segment-submit" value="Enviar">
-                    <div class="cancel valign-wrapper" title="cancelar">
-                        <i class="material-icons">clear</i><span class="hide-on-med-and-up">Cancelar</span>
-                    </div>
-                </form>
-            </div>
-        </div>-->
-
         <div class="row comments">
             <div class="col s11 offset-m1">
                 <div class="main">
                     <a href="#">
                         <div class="view-comments">
                             <i class="material-icons">question_answer</i>
-                            Comentarios (<span class="comments-counter">10</span>)
+                            {% get_comment_count for segment as comment_segment_count %}
+                            Comentarios (<span class="comments-counter">{{ comment_segment_count }}</span>)
                         </div>
                     </a>
                     <div class="holder hide">
@@ -183,7 +166,8 @@
                     <a href="#">
                         <div class="view-comments">
                             <i class="material-icons">question_answer</i>
-                            Comentar (<span class="comments-counter">10</span>)
+                            {% get_comment_count for amendment as comment_amendmentt_count %}
+                            Comentar (<span class="comments-counter">{{ comment_amendmentt_count }}</span>)
                         </div>
                     </a>
                     <div class="holder hide">
@@ -194,7 +178,7 @@
         </div>
            
         {% endfor %}
-        
+
         <a href="{% url 'create_amendment' segment.bill.id segment.id %}">
             <div class="row add-prop-cta bill valign-wrapper">
                 <div class="col s2 m1 valign-wrapper">

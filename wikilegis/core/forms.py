@@ -14,7 +14,7 @@ from xml.etree import ElementTree
 
 # TODO FIXME Meta*Form, really? C'mon, we can do better naming than this.
 # from wikilegis.core.views import add_proposition
-from wikilegis.core.models import Proposition
+from wikilegis.core.models import Proposition, TypeSegment, BillSegment
 
 
 class GenericDataAdminForm(forms.ModelForm):
@@ -82,7 +82,7 @@ class CitizenAmendmentCreationForm(forms.ModelForm):
         self.fields['content'].label = _("Suggest a new proposal! You can begin editing the original one.")
 
     class Meta:
-        model = models.CitizenAmendment
+        model = models.BillSegment
         fields = ('content',)
 
 
@@ -130,10 +130,13 @@ class BillAdminForm(forms.ModelForm):
         if self.cleaned_data['type'] and self.cleaned_data['number'] and self.cleaned_data['year']:
             if instance.proposition_set.all():
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)
-            params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data['number'], 'ano': self.cleaned_data['year']}
-            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
-                                    params=params)
-            create_proposition(response, instance.id)
+            try:
+                params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data['number'], 'ano': self.cleaned_data['year']}
+                response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
+                                        params=params)
+                create_proposition(response, instance.id)
+            except:
+                pass
         else:
             try:
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)
@@ -208,3 +211,17 @@ def update_proposition(response, proposition_id):
     proposition.content_link = tree.find('LinkInteiroTeor').text
 
     proposition.save()
+
+
+class AddProposalForm(forms.ModelForm):
+    comment = forms.CharField(label=_("You can explain your proposal here."), widget=forms.Textarea(), required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.bill_id = kwargs.pop('bill_id')
+        super(AddProposalForm, self).__init__(*args, **kwargs)
+        self.fields['type'].queryset = TypeSegment.objects.filter(editable=True)
+        self.fields['parent'].queryset = BillSegment.objects.filter(bill__id=self.bill_id, original=True)
+
+    class Meta:
+        model = BillSegment
+        fields = ('parent', 'type', 'content')

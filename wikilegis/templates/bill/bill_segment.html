@@ -1,4 +1,4 @@
-{% extends "bill/_base.html" %} {% load static %} {% load i18n %} {% load render_comments from comments2 %} {% load cropping %} {% block content3 %}
+{% extends "bill/_base.html" %} {% load comments %} {% load previous_segments %}  {% load static %} {% load i18n %} {% load render_comments from comments2 %} {% load cropping %} {% block content3 %} {% load convert_numbers %}
 <div class="pl-full">
     <div class="container">
         <div class="articles-header valign-wrapper">
@@ -19,17 +19,66 @@
         </div>
 
         <div class="divider"></div>
+        {% if segment.type.name != 'Artigo' %}
+        <div class="segments-before">
+            {% for dispositive in segment|previous %}
+
+            <a class="bill-link parent" href="{% url 'show_segment' dispositive.bill.id dispositive.id %}">
+                <div class="article {{ dispositive.type|slugify }}" id="segment-{{ dispositive.id }}">
+                    <div class="comments-counter">
+                        <div class="cn">
+                            <div class="cc-holder">
+                                <i class="material-icons">mode_comment</i>
+                                <div class="n">
+                                    {{ dispositive.substitutes.all.count }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <div class="article-content">
+                            <span>{% segment_numbering dispositive %}</span> {{ dispositive.content }}
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            {% endfor %}
+
+            {% if segment|previous|length > 1 %}
+            <div class="show-more-segments">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" fill="#A2A2A2" x="0px" y="0px" width="50" height="25" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="54175" data-kw="more10">
+                    <g>
+                        <g>
+                            <circle cx="69.545" cy="306" r="69.545"></circle>
+                            <circle cx="306" cy="306" r="69.545"></circle>
+                            <circle cx="542.455" cy="306" r="69.545"></circle>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            {% endif %}
+        </div>
+
+        {% endif %}
 
         <div class="row layarticle">
             <div class="col s2 m2 l1">
                 <div class="votes">
-                    {% with segment as content_object %}{% include "_vote_buttons.html" %}{% endwith %}
+                    {% with segment as content_object %}
+                        {% if segment.bill.status = 'published' %}
+                            {% include "_vote_buttons.html" %}
+                        {% else %}
+                            {% include "_vote_buttons_read_only.html" %}
+                        {% endif%}
+                    {% endwith %}
                 </div>
             </div>
 
             <div class="col s10 m10 l11">
                 <div class="article-prop">
-                    <p id="original" data-raw-content="{{ segment.content }}">{{ segment.content|linebreaks }}</p>
+                    <p id="original" data-raw-content="{{ segment.content }}"><span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
                 </div>
                 <div class="after-bar">
                     <div class="col s12 m12 l8">
@@ -37,9 +86,9 @@
                             <div class="col m3 s3">
                                 <div class="avatr">
                                     {% if author.user.avatar %}
-                                        <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
+                                    <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
                                     {% else %}
-                                        <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                                    <div class="pic" style="background-image: url('{% static "img/user.png " %}')"></div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -54,12 +103,7 @@
                                 <p class="date">{{ segment.created|date }}</p>
                             </div>
                         </div>
-                        
-                    </div>
-                    <div class="prop-btn col s12 m12 l4">
-                        <a class="proposal-button" href="{% url 'create_amendment' segment.bill.id segment.id %}">
-                            <div>{% trans "Submit proposal" %}</div>
-                        </a>
+
                     </div>
                 </div>
             </div>
@@ -68,11 +112,24 @@
         <div class="row comments">
             <div class="col s11 offset-m1">
                 <div class="main">
-
+                    <a href="#">
+                        <div class="view-comments">
+                            <i class="material-icons">question_answer</i>
+                            {% get_comment_count for segment as comment_segment_count %}
+                            Comentarios (<span class="comments-counter">{{ comment_segment_count }}</span>)
+                        </div>
+                    </a>
+                    <div class="holder hide">
+                        {% if segment.bill.status = 'published' %}
+                        {% render_comments segment readonly|default:False %}
+                        {% else %}
+                        {% render_comments segment readonly|default:True %}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-
+        {% if segment.substitutes.all %}
         <div class="articles-header submitted-proposals">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 79.536 79.536" style="enable-background:new 0 0 79.536 79.536;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="27546" data-kw="leader">
                 <g>
@@ -82,12 +139,18 @@
             <h5>{% trans "Submitted proposals" %}</h5>
         </div>
         <div class="divider"></div>
-        
-        {% for amendment in segment.amendments.all %}
+        {% endif %}
+        {% for amendment in segment.substitutes.all %}
         <div class="row layarticle prop" id="amendment-{{ amendment.pk }}">
             <div class="col s2 m2 l1">
                 <div class="votes">
-                    {% with amendment as content_object %}{% include "_vote_buttons.html" %}{% endwith %}
+                    {% with amendment as content_object %}
+                        {% if amendment.bill.status = 'published' %}
+                            {% include "_vote_buttons.html" %}
+                        {% else %}
+                            {% include "_vote_buttons_read_only.html" %}
+                        {% endif%}
+                    {% endwith %}
                 </div>
             </div>
             <div class="col s10 m10 l11">
@@ -101,7 +164,7 @@
                                 {% if amendment.author.avatar %}
                                 <div class="pic" style="background-image: url('{% cropped_thumbnail amendment.author 'cropping' %}')"></div>
                                 {% else %}
-                                <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
+                                <div class="pic" style="background-image: url('{% static "img/user.png " %}')"></div>
                                 {% endif %}
                             </div>
                         </div>
@@ -116,23 +179,37 @@
         <div class="row comments">
             <div class="col s11 offset-m1">
                 <div class="main">
-                    {% render_comments amendment %}
+                    <a href="#">
+                        <div class="view-comments">
+                            <i class="material-icons">question_answer</i>
+                            {% get_comment_count for amendment as comment_amendmentt_count %}
+                            Comentar (<span class="comments-counter">{{ comment_amendmentt_count }}</span>)
+                        </div>
+                    </a>
+                    <div class="holder hide">
+                        {% if amendment.bill.status = 'published' %}
+                        {% render_comments amendment readonly|default:False %}
+                        {% else %}
+                        {% render_comments amendment readonly|default:True %}
+                        {% endif %}
+                    </div>                    
                 </div>
             </div>
         </div>
-        
-        {% empty %} 
+           
+        {% endfor %}
+        {% if segment.bill.status = 'published' %}
         <a href="{% url 'create_amendment' segment.bill.id segment.id %}">
             <div class="row add-prop-cta bill valign-wrapper">
                 <div class="col s2 m1 valign-wrapper">
                     <i class="material-icons">lightbulb_outline</i>
                 </div>
                 <div class="col s10 m11">
-                    <h5>Não há propostas ainda, você pode sugerir uma!</h5>
+                    <h5>Clique aqui para sugerir uma proposta!</h5>
                 </div>
             </div>
         </a>
-        {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock %} {% block partialscript %}

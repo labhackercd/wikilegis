@@ -98,6 +98,38 @@ jQuery(document).ready(function ($) {
         }, 1000, 'easeOutCirc');
     });
 
+    
+    //Show more segments
+    
+    $('.show-more-segments').click(function() {
+        $(this).parent().find('.bill-link').nextAll('.bill-link').show();
+        $(this).remove();
+    });
+    
+    
+    //Add segment item
+    
+    $('.asi-link').click(function() {
+        $(this).hide();
+        $('.add-segment-form').removeClass('hide');
+        $('.segment-content').focus();
+    });
+    
+    var cancel = $('.add-segment-form').find('.cancel');
+    
+    cancel.click(function() {
+        $('.add-segment-form').addClass('hide');
+        $('.asi-link').show();
+    });
+    
+    //View comments
+    
+    $('.view-comments').click(function(e) {
+        e.preventDefault();
+        //$(this).hide();
+        console.log($(this).closest('.main').find('.holder').removeClass('hide'));
+        /*$('.segment-content').focus();*/
+    });
 
 
     // Collapsable-comments

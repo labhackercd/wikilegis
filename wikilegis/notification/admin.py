@@ -3,12 +3,15 @@ from wikilegis.notification.models import HistoryNotification
 
 
 class HistoryNotificationAdmin(admin.ModelAdmin):
-    list_display = ('related_segment', 'hour')
-    list_filter = ['amendment__segment__bill', 'amendment__segment', 'hour']
-    search_fields = ['amendment__segment', 'amendment__segment__bill']
+    list_display = ('related_bill', 'related_segment', 'hour')
+    list_filter = ['hour']
 
     def related_segment(self, obj):
-        return obj.amendment.segment
+        return obj.amendment.replaced
     related_segment.short_description = 'Segment'
+
+    def related_bill(self, obj):
+        return obj.amendment.bill
+    related_bill.short_description = 'Bill'
 
 admin.site.register(HistoryNotification, HistoryNotificationAdmin)

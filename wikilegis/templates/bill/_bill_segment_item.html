@@ -1,28 +1,26 @@
-{% if segment.type == 'title' %}
-<div class="cont">
-    <!--Article header template, uncomment subs and titles later-->
-    <h4>{{ bill.title }}</h4>
-    <!--<h5 class="sub">{{ segment.content }}</h5>-->
+{% load convert_numbers %}
 
-    <div class="row">
-        <div class="col s12 m6 offset-m6 syllabus">
-            {{ bill.description }}
-        </div>
-    </div>
-
-</div>
+{% if segment.type.editable == False %}
 <h5>{{ segment.content }}</h5>
-<!--<h6 class="sub">Outro subtítulo</h6>-->
 {% else %}
 <a class="bill-link" href="{% url 'show_segment' bill.id segment.id %}">
-    <div class="article" id="segment-{{ segment.id }}">
+    <div class="article {{ segment.type|slugify }}" id="segment-{{ segment.id }}">
         <div class="comments-counter">
-            <div class="cn">{{ segment.amendments.all.count }}</div>
+            <div class="cn">
+                <div class="cc-holder">
+                    <i class="material-icons">mode_comment</i>
+                    <div class="n">
+                        {{ segment.substitutes.all.count }}
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="content">
-            <span class="article-content">
-                {{ segment.content|linebreaks }}
-            </span>
+            <div class="article-content">
+                <span class="article-type">{% segment_numbering segment %}</span>
+                {{ segment.content }}
+            </div>
         </div>
     </div>
 </a>

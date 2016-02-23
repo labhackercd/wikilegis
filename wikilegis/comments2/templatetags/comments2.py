@@ -7,12 +7,13 @@ register = Library()
 
 
 @register.simple_tag(takes_context=True)
-def render_comments(context, content_object):
+def render_comments(context, content_object, readonly=False):
     context_dict = {}
     for d in context.dicts:
         context_dict.update(d)
 
     context_dict['content_object'] = content_object
+    context_dict['readonly'] = readonly
 
     if hasattr(content_object, 'get_absolute_url'):
         context_dict['next'] = content_object.get_absolute_url()

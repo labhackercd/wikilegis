@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib import admin
+from django.contrib.admin.utils import quote
 from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.core.urlresolvers import reverse
+from django.db.models import Max
+from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
 import requests
 from wikilegis.core.forms import BillAdminForm, update_proposition
-from wikilegis.core.models import Bill, TypeSegment
+from wikilegis.core.models import Bill, TypeSegment, BillSegment
+from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
 
 
 def get_permission(action, opts):
@@ -36,6 +40,23 @@ propositions_update.short_description = _("Update status of selected bills")
 
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
     model = models.BillSegment
+    extra = 1
+    exclude = ['original', 'replaced', 'author', 'number']
+
+    def get_queryset(self, request):
+        return super(BillSegmentInline, self).get_queryset(request).filter(original=True)
+
+    def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+
+        field = super(BillSegmentInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+        if db_field.name == 'parent':
+            if request._obj_ is not None:
+                field.queryset = field.queryset.filter(original=True, bill__exact=request._obj_)
+            else:
+                field.queryset = field.queryset.none()
+
+        return field
 
 
 class BillAuthorDataInline(GenericTabularInline):
@@ -82,7 +103,6 @@ class BillChangeList(ChangeList):
 
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
-
     list_filter = ['status']
     list_display = ('title', 'description', 'status', 'get_situation', 'get_report')
     actions = [propositions_update]
@@ -96,6 +116,71 @@ class BillAdmin(admin.ModelAdmin):
                                                       "delete , leave the fields blank.")})
                                     # 'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
     ]
+
+    class Media:
+        js = ('js/adminfix.js', )
+
+    def response_add(self, request, obj, post_url_continue=None):
+        opts = obj._meta
+        pk_value = obj._get_pk_val()
+        preserved_filters = self.get_preserved_filters(request)
+        if "_newsegment" in request.POST:
+            if post_url_continue is None:
+                post_url_continue = reverse('admin:%s_%s_change' %
+                                            (opts.app_label, opts.model_name),
+                                            args=(quote(pk_value),),
+                                            current_app=self.admin_site.name)
+            post_url_continue = add_preserved_filters(
+                {'preserved_filters': preserved_filters, 'opts': opts},
+                post_url_continue
+            )
+            return HttpResponseRedirect(post_url_continue+'#add_segment')
+        return super(BillAdmin, self).response_add(request, obj, post_url_continue)
+
+    def response_change(self, request, obj):
+        opts = self.model._meta
+        preserved_filters = self.get_preserved_filters(request)
+        if "_newsegment" in request.POST:
+            redirect_url = request.path
+            redirect_url = add_preserved_filters({'preserved_filters': preserved_filters, 'opts': opts}, redirect_url)
+            return HttpResponseRedirect(redirect_url+'#add_segment')
+        return super(BillAdmin, self).response_change(request, obj)
+
+    def save_formset(self, request, form, formset, change):
+        formset.save()
+        if formset.model == BillSegment:
+            index_parent = 1
+            types = TypeSegment.objects.filter(editable=True)
+            for type_segment in types:
+                segments_parent = formset.queryset.filter(type=type_segment, type__editable=True, parent__isnull=True).order_by('order')
+                for segment in segments_parent:
+                    if segment.order == 0:
+                        segment.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
+                        if len(segments_parent) > 1:
+                            segment.number = segments_parent.aggregate(Max('number'))['number__max'] + 1
+                        else:
+                            segment.number = index_parent
+                    else:
+                        segment.number = index_parent
+                        index_parent += 1
+                    segment.save()
+            segments_child = formset.queryset.filter(parent__isnull=False).order_by('order')
+            parents = segments_child.values_list('parent_id', flat=True)
+            for parent in list(set(parents)):
+                index_child = 1
+                segments_child_same_parent = segments_child.filter(parent_id=parent).order_by('order')
+                for child in segments_child_same_parent:
+                    if child.order == 0:
+                        child.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
+                        if len(segments_child_same_parent) > 1:
+                            child.number = segments_child_same_parent.aggregate(Max('number'))['number__max'] + 1
+                        else:
+                            child.number = index_child
+                    else:
+                        child.number = index_child
+                        index_child += 1
+                    child.save()
+
 
     def get_situation(self, obj):
         try:
@@ -124,6 +209,7 @@ class BillAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         exclude = self.get_excluded_fields(request, obj=obj)
         exclude.extend(kwargs.pop('exclude', []))
+        request._obj_ = obj
         return super(BillAdmin, self).get_form(request, obj, exclude=exclude, **kwargs)
 
     def get_excluded_fields(self, request, obj=None):
@@ -151,7 +237,6 @@ class BillAdmin(admin.ModelAdmin):
 
 class CitizenAmendmentAdmin(admin.ModelAdmin):
     list_display = ('author', 'segment', 'original_content', 'content')
-
 
 
 class TypeSegmentAdmin(admin.ModelAdmin):

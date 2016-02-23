@@ -81,11 +81,13 @@
                             {% else %}
                             <div class="col s12 m6"></div>
                             {% endif %}
+                            {% if bill|proposals_count > 0 %}
                             <div class="col s12 m6 users">
                                 <!-- User relevance here? -->
                                 <!--<span class="dep">Dep. Eduardo Cunha</span>, Bruna Oliveira e outras <span class="users-count">18 pessoas</span>-->
                                 <span class="users-count">{{ bill|attendees_count }} {% if bill|attendees_count > 1 %}participantes{% else %}participante{% endif %} </span>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col s12 m2 prop-count">

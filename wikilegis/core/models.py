@@ -21,6 +21,31 @@ BILL_STATUS_CHOICES = (
     ('closed', _('Closed'))
 )
 
+BILL_THEMES_CHOICES = (
+    ('documento', _('Others')),
+    ('adm-publica', _('Public Administration')),
+    ('agropecuaria', _('Farming')),
+    ('assistencia-social', _('Social Assistance')),
+    ('cidades', _('Cities')),
+    ('ciencia', _('Science')),
+    ('comunicacao', _('Communication')),
+    ('consumidor', _('Consumer')),
+    ('direito-e-justica', _('Law and Justice')),
+    ('direitos-humanos', _('Human Rights')),
+    ('economia', _('Economy')),
+    ('educacao', _('Education')),
+    ('esportes', _('Sports')),
+    ('industria', _('Industry')),
+    ('meio-ambiente', _('Environment')),
+    ('politica', _('Policy')),
+    ('relacoes-exteriores', _('Foreign Affairs')),
+    ('saude', _('Health')),
+    ('seguranca', _('Security')),
+    ('trabalho-e-previdencia', _('Work and Pensions')),
+    ('transporte-e-transito', _('Transportation and Transit')),
+    ('turismo', _('Tourism'))
+)
+
 
 def model_repr(cls, **kwargs):
     values = kwargs.items()
@@ -55,7 +80,7 @@ class Bill(TimestampedMixin):
     title = models.CharField(_('title'), max_length=255)
     description = models.TextField(_('description'))
     status = models.CharField(_('status'), max_length=20, choices=BILL_STATUS_CHOICES, default='1')
-
+    theme = models.CharField(_('theme'), max_length=255, choices=BILL_THEMES_CHOICES, default='others')
     editors = models.ManyToManyField(
         'auth.Group', verbose_name=_('editors'), blank=True,
         help_text=_('Any users in any of these groups will '

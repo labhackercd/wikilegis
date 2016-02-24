@@ -104,11 +104,11 @@ class BillChangeList(ChangeList):
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
     list_filter = ['status']
-    list_display = ('title', 'description', 'status', 'get_situation', 'get_report')
+    list_display = ('title', 'description', 'theme', 'status', 'get_situation', 'get_report')
     actions = [propositions_update]
     form = BillAdminForm
     fieldsets = [
-        (None, {'fields': ['title', 'description', 'status',  'editors']}),
+        (None, {'fields': ['title', 'description', 'theme', 'status',  'editors']}),
         (_('Legislative proposal'), {'fields': ['type', 'number', 'year'],
                                      'description': _("This data will be used to assign the project to a legislative "
                                                       "proposal pending before the House of Representatives. You only "

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
+from django.db.models import Count, Sum
 from django.db.models.functions import Lower
 from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404, render_to_response
@@ -23,13 +24,13 @@ from wikilegis.core.orderers import SimpleOrderer
 
 class BillOrderer(SimpleOrderer):
     title = _('Order by')
-    default = 'date'
+    default = 'hot'
     parameter_name = 'order'
 
     def lookups(self, request):
         return (
+            ('hot', ugettext('Hot')),
             ('date', ugettext('Date')),
-            ('title', ugettext('Title')),
         )
 
     def queryset(self, request, queryset):
@@ -37,8 +38,15 @@ class BillOrderer(SimpleOrderer):
 
         if value == 'date':
             queryset = queryset.order_by('-modified')
-        elif value == 'title':
-            queryset = queryset.order_by(Lower('title').asc())
+        elif value == 'hot':
+            queryset = queryset.annotate(
+                score=Count(
+                    'segments__votes')+Count(
+                    'segments__substitutes__votes')+Count(
+                    'segments__substitutes')+Count(
+                    'segments__comments')+Count(
+                    'segments__substitutes__comments')
+            ).order_by('-score')
 
         return queryset
 

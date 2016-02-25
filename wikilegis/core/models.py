@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 from operator import attrgetter
+
+from django.contrib.contenttypes import generic
 from django.db import models
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
@@ -9,6 +11,7 @@ from django.utils.encoding import force_text
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django_comments.models import Comment
 from django_extensions.db.fields.json import JSONField
 
 
@@ -98,6 +101,8 @@ class BillSegment(TimestampedMixin):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'), null=True)
     original = models.BooleanField(_('original'), default=True)
     content = models.TextField(_('content'))
+    comments = generic.GenericRelation(Comment, object_id_field="object_pk")
+    votes = generic.GenericRelation('core.UpDownVote', object_id_field="object_id")
 
     class Meta:
         ordering = ('order',)

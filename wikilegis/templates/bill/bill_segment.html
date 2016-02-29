@@ -83,25 +83,25 @@
                 <div class="after-bar">
                     <div class="col s12 m12 l8">
                         <div class="user col s12 m6">
-                            <div class="col m3 s3">
-                                <div class="avatr">
-                                    {% if author.user.avatar %}
-                                    <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
-                                    {% else %}
-                                    <div class="pic" style="background-image: url('{% static "img/user.png " %}')"></div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col m9 s9">
-                                <span class="user-name">
-                                {% if author.user and author.user.pk %}
-                                    <a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a>
-                                {% else %}
-                                    {{ author.user }}
-                                {% endif %}
-                            </span>
-                                <p class="date">{{ segment.created|date }}</p>
-                            </div>
+                            <!--<div class="col m3 s3">-->
+                                <!--<div class="avatr">-->
+                                    <!--{% if author.user.avatar %}-->
+                                    <!--<div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>-->
+                                    <!--{% else %}-->
+                                    <!--<div class="pic" style="background-image: url('{% static "img/user.png " %}')"></div>-->
+                                    <!--{% endif %}-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col m9 s9">-->
+                                <!--<span class="user-name">-->
+                                <!--{% if author.user and author.user.pk %}-->
+                                    <!--<a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a>-->
+                                <!--{% else %}-->
+                                    <!--{{ author.user }}-->
+                                <!--{% endif %}-->
+                            <!--</span>-->
+                                <!--<p class="date">{{ segment.created|date }}</p>-->
+                            <!--</div>-->
                         </div>
 
                     </div>

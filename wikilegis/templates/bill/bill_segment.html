@@ -169,7 +169,7 @@
                             </div>
                         </div>
                         <div class="col m9 s9">
-                            <span class="user-name"><a href="{% url 'users_profile' amendment.author.pk %}">{% with user=amendment.author %}{% include "auth2/_user_display_name.html" %}{% endwith %}</a></span>
+                            <span class="user-name">{% with user=amendment.author %}{% include "auth2/_user_display_name.html" %}{% endwith %}</span>
                             <p class="date">{{ segment.created|date }}</p>
                         </div>
                     </div>

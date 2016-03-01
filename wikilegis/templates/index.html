@@ -77,27 +77,27 @@
                             {% else %}
                             <div class="col s12 m6"></div>
                             {% endif %}
-                            {% if bill|proposals_count > 0 %}
-                            <div class="col s12 m6 users">
-                                <!-- User relevance here? -->
-                                <!--<span class="dep">Dep. Eduardo Cunha</span>, Bruna Oliveira e outras <span class="users-count">18 pessoas</span>-->
-                                <span class="users-count">{{ bill|attendees_count }} {% if bill|attendees_count > 1 %}participantes{% else %}participante{% endif %} </span>
-                            </div>
-                            {% endif %}
+                            <!--{% if bill|proposals_count > 0 %}-->
+                            <!--<div class="col s12 m6 users">-->
+                                <!--&lt;!&ndash; User relevance here? &ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="dep">Dep. Eduardo Cunha</span>, Bruna Oliveira e outras <span class="users-count">18 pessoas</span>&ndash;&gt;-->
+                                <!--<span class="users-count">{{ bill|attendees_count }} {% if bill|attendees_count > 1 %}participantes{% else %}participante{% endif %} </span>-->
+                            <!--</div>-->
+                            <!--{% endif %}-->
                         </div>
                     </div>
                     <div class="col s12 m2 prop-count">
-                        {% if bill|proposals_count > 0 %}
-                            <h4>{{ bill|proposals_count }}</h4>
-                            <span>{% if bill|proposals_count > 1 %}propostas{% else %}proposta{% endif %}</span>
-                            {% else %}
+                        {% if bill|contribution_count > 0 %}
+                            <h4>{{ bill|contribution_count }}</h4>
+                            <span>{% if bill|contribution_count > 1 %}contribuições{% else %}contribuição{% endif %}</span>
+                        {% else %}
                             {% if bill.status = 'closed' %}
                             <div class="add-prop-cta">
-                                <span>Não há propostas</span>
+                                <span>Não há contribuição</span>
                             </div>
                             {% else %}
                             <div class="add-prop-cta">
-                                <span>Não há propostas</span>
+                                <span>Não há contribuição</span>
                                 <div>Participe!</div>
                             </div>
                             {% endif %}

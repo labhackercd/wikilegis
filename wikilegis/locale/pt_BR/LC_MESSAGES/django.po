@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-22 16:13-0300\n"
+"POT-Creation-Date: 2016-03-01 10:02-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgstr "Projetos atualizados com sucesso"
 msgid "Update status of selected bills"
 msgstr "Atualizar o status dos projetos selecionados"
 
-#: core/admin.py:65 core/models.py:98 core/models.py:131 core/models.py:180
+#: core/admin.py:65 core/models.py:130 core/models.py:165 core/models.py:214
 msgid "author"
 msgstr "autor"
 
@@ -145,7 +145,7 @@ msgstr "Relatório"
 msgid "User"
 msgstr "Usuário"
 
-#: core/forms.py:57 core/views.py:32
+#: core/forms.py:57
 msgid "Title"
 msgstr "Título"
 
@@ -183,217 +183,321 @@ msgid ""
 "required"
 msgstr ""
 
-#: core/models.py:16
+#: core/models.py:19
 msgid "Draft"
 msgstr "Rascunho"
 
-#: core/models.py:17
+#: core/models.py:20
 msgid "Published"
 msgstr "Publicado"
 
-#: core/models.py:18 templates/index.html:53
+#: core/models.py:21 templates/index.html:53
 msgid "Closed"
 msgstr "Fechado"
 
+#: core/models.py:25
+msgid "Others"
+msgstr "Outros"
+
+#: core/models.py:26
+msgid "Public Administration"
+msgstr "Adminsitração Pública"
+
+#: core/models.py:27
+msgid "Farming"
+msgstr "Agropecuária"
+
+#: core/models.py:28
+msgid "Social Assistance"
+msgstr "Assistência Social"
+
+#: core/models.py:29
+msgid "Cities"
+msgstr "Cidades"
+
+#: core/models.py:30
+msgid "Science"
+msgstr "Ciência"
+
 #: core/models.py:31
+msgid "Communication"
+msgstr "Comunicação"
+
+#: core/models.py:32
+msgid "Consumer"
+msgstr "Consumidor"
+
+#: core/models.py:33
+msgid "Culture"
+msgstr "Cultura"
+
+#: core/models.py:34
+msgid "Law and Justice"
+msgstr "Direito e Justiça"
+
+#: core/models.py:35
+msgid "Human Rights"
+msgstr "Direitos Humanos"
+
+#: core/models.py:36
+msgid "Economy"
+msgstr "Economia"
+
+#: core/models.py:37
+msgid "Education"
+msgstr "Educação"
+
+#: core/models.py:38
+msgid "Sports"
+msgstr "Esportes"
+
+#: core/models.py:39
+msgid "Family"
+msgstr "Família"
+
+#: core/models.py:40
+msgid "Industry"
+msgstr "Indústria"
+
+#: core/models.py:41
+msgid "Institutional"
+msgstr "Institucional"
+
+#: core/models.py:42
+msgid "Environment"
+msgstr "Meio Ambiente"
+
+#: core/models.py:43
+msgid "Policy"
+msgstr "Política"
+
+#: core/models.py:44
+msgid "Foresight"
+msgstr "Previdência"
+
+#: core/models.py:45
+msgid "Foreign Affairs"
+msgstr "Relações Exteriores"
+
+#: core/models.py:46
+msgid "Health"
+msgstr "Saúde"
+
+#: core/models.py:47
+msgid "Security"
+msgstr "Segurança"
+
+#: core/models.py:48
+msgid "Work"
+msgstr "Trabalho"
+
+#: core/models.py:49
+msgid "Transportation and Transit"
+msgstr "Transporte e Trânsito"
+
+#: core/models.py:50
+msgid "Tourism"
+msgstr "Turismo"
+
+#: core/models.py:63
 msgid "created"
 msgstr "data de criação"
 
-#: core/models.py:32
+#: core/models.py:64
 msgid "modified"
 msgstr "data de modificação"
 
-#: core/models.py:44
+#: core/models.py:76
 msgid "data"
 msgstr "dados"
 
-#: core/models.py:45 core/models.py:94 core/models.py:170
+#: core/models.py:77 core/models.py:126 core/models.py:204
 msgid "type"
 msgstr "tipo"
 
-#: core/models.py:52
+#: core/models.py:84
 msgid "title"
 msgstr "título"
 
-#: core/models.py:53
+#: core/models.py:85
 msgid "description"
 msgstr "descrição"
 
-#: core/models.py:54
+#: core/models.py:86
 msgid "status"
 msgstr "estado"
 
-#: core/models.py:57
+#: core/models.py:87 core/models.py:211
+msgid "theme"
+msgstr "tema"
+
+#: core/models.py:89
 msgid "editors"
 msgstr "editores"
 
-#: core/models.py:58
+#: core/models.py:90
 msgid ""
 "Any users in any of these groups will have permission to change this "
 "document."
 msgstr "Usuários nestes grupos terão permissão para alterar este documento."
 
-#: core/models.py:67 core/models.py:92 core/models.py:169
+#: core/models.py:99 core/models.py:124 core/models.py:203
 msgid "bill"
 msgstr "projeto de lei"
 
-#: core/models.py:68
+#: core/models.py:100
 msgid "bills"
 msgstr "projetos de lei"
 
-#: core/models.py:80
+#: core/models.py:112
 msgid "name"
 msgstr "nome"
 
-#: core/models.py:81
+#: core/models.py:113
 msgid "editable"
 msgstr "editável"
 
-#: core/models.py:84
+#: core/models.py:116
 msgid "type segment"
 msgstr "tipo de segmento"
 
-#: core/models.py:85
+#: core/models.py:117
 msgid "types segment"
 msgstr "tipos de segmento"
 
-#: core/models.py:93
+#: core/models.py:125
 msgid "order"
 msgstr "ordem"
 
-#: core/models.py:95 core/models.py:171
+#: core/models.py:127 core/models.py:205
 msgid "number"
 msgstr "número"
 
-#: core/models.py:96
+#: core/models.py:128
 msgid "segment parent"
 msgstr "trecho ancestral"
 
-#: core/models.py:97
+#: core/models.py:129
 msgid "segment replaced"
 msgstr "trecho substituído"
 
-#: core/models.py:99
+#: core/models.py:131
 msgid "original"
 msgstr "original"
 
-#: core/models.py:100 core/models.py:133
+#: core/models.py:132 core/models.py:167
 msgid "content"
 msgstr "conteúdo"
 
-#: core/models.py:104
+#: core/models.py:138
 msgid "segment"
 msgstr "trecho"
 
-#: core/models.py:105
+#: core/models.py:139
 msgid "segments"
 msgstr "trechos"
 
-#: core/models.py:132
+#: core/models.py:166
 msgid "bill segment"
 msgstr "trecho de lei"
 
-#: core/models.py:136
+#: core/models.py:170
 msgid "citizen amendment"
 msgstr "proposta"
 
-#: core/models.py:137
+#: core/models.py:171
 msgid "citizen amendments"
 msgstr "propostas"
 
-#: core/models.py:155
+#: core/models.py:189
 msgid "user"
 msgstr "usuário"
 
-#: core/models.py:159
+#: core/models.py:193
 msgid "Up Vote"
 msgstr "Voto a favor"
 
-#: core/models.py:159
+#: core/models.py:193
 msgid "Down Vote"
 msgstr "Voto contra"
 
-#: core/models.py:172
+#: core/models.py:206
 msgid "year"
 msgstr "ano"
 
-#: core/models.py:173
+#: core/models.py:207
 msgid "name proposition"
 msgstr ""
 
-#: core/models.py:174
+#: core/models.py:208
 msgid "id proposition"
 msgstr ""
 
-#: core/models.py:175
+#: core/models.py:209
 msgid "id main proposition"
 msgstr ""
 
-#: core/models.py:176
+#: core/models.py:210
 msgid "name origin proposition"
 msgstr ""
 
-#: core/models.py:177
-msgid "theme"
-msgstr "tema"
-
-#: core/models.py:178
+#: core/models.py:212
 msgid "menu"
 msgstr "menu"
 
-#: core/models.py:179
+#: core/models.py:213
 msgid "menu_explanation"
 msgstr ""
 
-#: core/models.py:181
+#: core/models.py:215
 msgid "id register"
 msgstr ""
 
-#: core/models.py:182
+#: core/models.py:216
 msgid "uf author"
 msgstr ""
 
-#: core/models.py:183
+#: core/models.py:217
 msgid "party author"
 msgstr ""
 
-#: core/models.py:184
+#: core/models.py:218
 msgid "apresentation date"
 msgstr ""
 
-#: core/models.py:185
+#: core/models.py:219
 msgid "processing_regime"
 msgstr ""
 
-#: core/models.py:186
+#: core/models.py:220
 msgid "last dispatch date"
 msgstr ""
 
-#: core/models.py:187
+#: core/models.py:221
 msgid "last dispatch"
 msgstr ""
 
-#: core/models.py:188
+#: core/models.py:222
 msgid "appraisal"
 msgstr ""
 
-#: core/models.py:189
+#: core/models.py:223
 msgid "indexing"
 msgstr ""
 
-#: core/models.py:190
+#: core/models.py:224
 msgid "situation"
 msgstr "situação"
 
-#: core/models.py:191
+#: core/models.py:225
 msgid "content link"
 msgstr "link do conteúdo"
 
-#: core/models.py:194
+#: core/models.py:228
 msgid "proposition"
 msgstr "proposição"
 
-#: core/models.py:195
+#: core/models.py:229
 msgid "propositions"
 msgstr "proposições"
 
@@ -401,20 +505,24 @@ msgstr "proposições"
 msgid "None"
 msgstr "Nenhum"
 
-#: core/views.py:25
+#: core/views.py:26
 msgid "Order by"
 msgstr "Ordem"
 
-#: core/views.py:31
+#: core/views.py:32
+msgid "Hot"
+msgstr "Relevantes"
+
+#: core/views.py:33
 msgid "Date"
 msgstr "Data"
 
-#: core/views.py:147
+#: core/views.py:155
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:177 core/views.py:219
+#: core/views.py:185 core/views.py:227
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."

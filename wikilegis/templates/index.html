@@ -77,19 +77,12 @@
                             {% else %}
                             <div class="col s12 m6"></div>
                             {% endif %}
-                            <!--{% if bill|proposals_count > 0 %}-->
-                            <!--<div class="col s12 m6 users">-->
-                                <!--&lt;!&ndash; User relevance here? &ndash;&gt;-->
-                                <!--&lt;!&ndash;<span class="dep">Dep. Eduardo Cunha</span>, Bruna Oliveira e outras <span class="users-count">18 pessoas</span>&ndash;&gt;-->
-                                <!--<span class="users-count">{{ bill|attendees_count }} {% if bill|attendees_count > 1 %}participantes{% else %}participante{% endif %} </span>-->
-                            <!--</div>-->
-                            <!--{% endif %}-->
                         </div>
                     </div>
                     <div class="col s12 m2 prop-count">
-                        {% if bill|contribution_count > 0 %}
-                            <h4>{{ bill|contribution_count }}</h4>
-                            <span>{% if bill|contribution_count > 1 %}contribuições{% else %}contribuição{% endif %}</span>
+                        {% if bill.score > 0 %}
+                            <h4>{{ bill.score }}</h4>
+                            <span>{% if bill.score > 1 %}contribuições{% else %}contribuição{% endif %}</span>
                         {% else %}
                             {% if bill.status = 'closed' %}
                             <div class="add-prop-cta">

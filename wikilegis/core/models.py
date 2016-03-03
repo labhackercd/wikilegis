@@ -124,7 +124,7 @@ class BillSegment(TimestampedMixin):
     bill = models.ForeignKey('core.Bill', related_name='segments', verbose_name=_('bill'))
     order = models.PositiveIntegerField(_('order'), default=0)
     type = models.ForeignKey(TypeSegment, verbose_name=_('type'))
-    number = models.PositiveIntegerField(_('number'), null=True, blank=True)
+    number = models.PositiveIntegerField(_('number'), null=True, blank=True, default=0)
     parent = models.ForeignKey('self', related_name='children', verbose_name=_('segment parent'), null=True, blank=True)
     replaced = models.ForeignKey('self', related_name='substitutes', verbose_name=_('segment replaced'), null=True, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'), null=True)
@@ -140,8 +140,11 @@ class BillSegment(TimestampedMixin):
 
     def __unicode__(self):
         if self.number:
-            return '{kind} {number}'.format(
-                kind=self.type, number=self.number)
+            if self.number == '0':
+                return self.type.name
+            else:
+                return '{kind} {number}'.format(
+                    kind=self.type, number=self.number)
         else:
             return self.type.name
 

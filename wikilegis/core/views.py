@@ -35,19 +35,13 @@ class BillOrderer(SimpleOrderer):
 
     def queryset(self, request, queryset):
         value = self.value()
-
+        queryset = queryset.annotate(
+                score=Count('segments__substitutes')
+            )
         if value == 'date':
-            queryset = queryset.annotate(
-                score=Count(
-                    'segments__votes')+Count(
-                    'segments__comments')
-            ).order_by('-modified')
+            queryset = queryset.order_by('-modified')
         elif value == 'hot':
-            queryset = queryset.annotate(
-                score=Count(
-                    'segments__votes')+Count(
-                    'segments__comments')
-            ).order_by('-score')
+            queryset = queryset.order_by('-score')
 
         return queryset
 

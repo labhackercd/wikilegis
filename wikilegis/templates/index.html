@@ -82,15 +82,15 @@
                     <div class="col s12 m2 prop-count">
                         {% if bill.score > 0 %}
                             <h4>{{ bill.score }}</h4>
-                            <span>{% if bill.score > 1 %}contribuições{% else %}contribuição{% endif %}</span>
+                            <span>{% if bill.score > 1 %}propostas{% else %}proposta{% endif %}</span>
                         {% else %}
                             {% if bill.status = 'closed' %}
                             <div class="add-prop-cta">
-                                <span>Não há contribuição</span>
+                                <span>Não há propostas</span>
                             </div>
                             {% else %}
                             <div class="add-prop-cta">
-                                <span>Não há contribuição</span>
+                                <span>Não há proposta</span>
                                 <div>Participe!</div>
                             </div>
                             {% endif %}

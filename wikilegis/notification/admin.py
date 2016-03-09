@@ -1,5 +1,5 @@
 from django.contrib import admin
-from wikilegis.notification.models import HistoryNotification
+from wikilegis.notification.models import HistoryNotification, Newsletter
 
 
 class HistoryNotificationAdmin(admin.ModelAdmin):
@@ -15,3 +15,4 @@ class HistoryNotificationAdmin(admin.ModelAdmin):
     related_bill.short_description = 'Bill'
 
 admin.site.register(HistoryNotification, HistoryNotificationAdmin)
+admin.site.register(Newsletter)

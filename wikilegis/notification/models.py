@@ -2,6 +2,13 @@ from datetime import datetime
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from wikilegis.core.models import TimestampedMixin
+
+PERIODICITY_CHOICES = (
+    ('daily', _('Daily')),
+    ('weekly', _('Weekly'))
+)
+
 
 class HistoryNotification(models.Model):
     amendment = models.ForeignKey('core.BillSegment', verbose_name=_('amendment'))
@@ -14,3 +21,17 @@ class HistoryNotification(models.Model):
 
     def __unicode__(self):
         return self.amendment.bill.title
+
+
+class Newsletter(TimestampedMixin):
+    bill = models.ForeignKey('core.Bill', verbose_name=_('bill'))
+    user = models.ForeignKey('auth2.User', verbose_name=_('user'))
+    periodicity = models.CharField(_('periodicity'), max_length=20, choices=PERIODICITY_CHOICES, default='daily')
+    status = models.BooleanField()
+
+    class Meta:
+        verbose_name = _('Newsletter')
+        verbose_name_plural = _('Newsletters')
+
+    def __unicode__(self):
+        return self.user

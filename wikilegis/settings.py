@@ -254,6 +254,8 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
+LIBSASS_SOURCEMAPS = DEBUG
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))

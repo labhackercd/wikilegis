@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='billsegment',
             name='number',
-            field=models.PositiveIntegerField(null=True, verbose_name='number', blank=True),
+            field=models.PositiveIntegerField(default=0, null=True, verbose_name='number', blank=True),
         ),
         migrations.AddField(
             model_name='billsegment',

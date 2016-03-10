@@ -162,19 +162,19 @@ body {
 img.logo {
     width: 100%;
     max-width: 300px;
-    @media screen and (max-width: 992px) {
+    @media #{$medium-and-down} {
         max-width: 200px;
     }
 }
 
 .cover {
     position: relative;
-    @media screen and (max-width: 992px) {
+    @media #{$medium-and-down} {
         padding-top: 50px;
     }
     padding-top: 150px;
     height: 100%;
-    @media screen and (max-width: 992px) {
+    @media #{$medium-and-down} {
         height: auto;
     }
     
@@ -184,19 +184,19 @@ img.logo {
     
     min-height: 93vh;
     .cover-content {
-        @media screen and (max-width: 992px) {
+        @media #{$medium-and-down} {
             height: auto;
         }
         height: 300px;
         .col {
             height: 100%;
-            @media screen and (max-width: 992px) {
+            @media #{$medium-and-down} {
                 width: 100%;
             }
         }
     }
     .cover-info {
-        @media screen and (max-width: 992px) {
+        @media #{$medium-and-down} {
             border-left: 0px;
             margin-left: 0px;
             padding-left: 0px;
@@ -220,7 +220,7 @@ img.logo {
         }
     }
     .login-or-signup {
-        @media screen and (max-width: 992px) {
+        @media #{$medium-and-down} {
             margin-top: 50px;
         }
         margin-top: 100px;
@@ -248,7 +248,7 @@ img.logo {
         }
     }
     .see-projects {
-        @media screen and (max-width: 992px) {
+        @media #{$medium-and-down} {
             position: relative;
             margin-top: 50px;
             margin-bottom: 20px;
@@ -368,10 +368,10 @@ strong {
     div { 
         font-weight: bold; 
         font-size: 1.5em;
-        @media screen and (max-width: 992px) {
+        @media #{$medium-and-down} {
             font-size: 1em;
         }
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             font-size: 1.5em;
         }
     }
@@ -384,11 +384,11 @@ strong {
         color: inherit;
     }
     .pl {
-        @media screen and (max-width: 992px) {
+        @media #{$medium-and-down} {
             padding-left: 40px;
             padding-right: 40px;
         }
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             display: block !important;
             .valign-wrapper {
                 display: block !important;
@@ -455,7 +455,7 @@ strong {
             }
         }
         .prop-count {
-            @media screen and (max-width: 600px) {
+            @media #{$small-and-down} {
                 margin-top: 20px;
             }
             text-align: center;
@@ -484,7 +484,7 @@ strong {
 .pl-description {
     margin-top: 20px;
     font-size: 1.2em;
-    @media screen and (max-width: 600px) {
+    @media #{$small-and-down} {
         height: auto;
     }
     .p-uf {
@@ -593,7 +593,7 @@ strong {
         min-height: 100px;
         margin-bottom: 40px;
         background-image: url(static("img/brasao.png"));
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             background-image: none;
         }
         background-repeat: no-repeat;
@@ -611,14 +611,14 @@ strong {
     .sub {
         color: $medgrey;
     }
-    @media screen and (max-width: 992px) {
+    @media #{$medium-and-down} {
         padding-right: 20px;
     }
     margin-top: 50px !important;
     .syllabus {
         opacity: .85;
         margin-top: 20px;
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             padding-left: 73px;
         }
     }
@@ -686,7 +686,7 @@ strong {
 }
 
 .add-segment-item {
-    @media screen and (max-width: 600px) {
+    @media #{$small-and-down} {
         margin-top: 20px;
     }    
     .asi-link {        
@@ -714,7 +714,7 @@ strong {
             height: 39px;
             margin-top: 3px;
             margin-left: -103px;
-            @media screen and (max-width: 600px) {
+            @media #{$small-and-down} {
                 width: 100%;
                 margin-bottom: 20px;
                 margin-left: 0px;
@@ -729,14 +729,14 @@ strong {
         textarea {
             height: 100%;
             max-width: 840px;
-            @media screen and (max-width: 600px) {
+            @media #{$small-and-down} {
                 margin-left: 0px !important;
             }
         }
         textarea, input[type=text] {
             height: 1.5em;
             min-height: 1.5em;
-            @media screen and (max-width: 600px) {
+            @media #{$small-and-down} {
                 margin-left: 0px;
                 padding: 10px 15px 10px 15px !important;
             }
@@ -754,7 +754,7 @@ strong {
         .segment-type-option {
             cursor: pointer;
             width: 110px;
-            @media screen and (max-width: 600px) {
+            @media #{$small-and-down} {
                 width: 100%;
                 margin-bottom: 10px;
             }
@@ -773,7 +773,7 @@ strong {
             }
             width: 50px;
             height: 45px;
-            @media screen and (max-width: 600px) {
+            @media #{$small-and-down} {
                 height: auto;
                 width: 100%;
                 i {
@@ -806,7 +806,7 @@ strong {
     /*    padding-left: 30px !important;
     padding-right: 30px !important;*/
     
-    @media screen and (max-width: 600px) {
+    @media #{$small-and-down} {
         overflow: inherit;
     }
     .articles-header {
@@ -853,7 +853,7 @@ strong {
         &.item {
             margin-left: 120px;
         }
-        @media screen and (max-width: 992px) {
+        @media #{$medium-and-down} {
             &.paragrafo {
                 margin-left: 10px;
             }
@@ -883,7 +883,7 @@ strong {
                     color: gray;
                     position: relative;
                     margin-top: -37px;
-                    @media screen and (max-width: 992px) {
+                    @media #{$medium-and-down} {
                         margin-top: -34px;
                     }
                     z-index: 2;
@@ -1058,7 +1058,7 @@ blockquote {
 }
 
 .search {
-    @media screen and (max-width: 600px) {
+    @media #{$small-and-down} {
         i {
             margin-top: 15px;
         }
@@ -1150,7 +1150,7 @@ blockquote {
 }
 
 .admin-acces {
-    @media screen and (max-width: 600px) {
+    @media #{$small-and-down} {
         left: 90%;
         bottom: 2px;
     }
@@ -1349,7 +1349,7 @@ $opacity: .4;
         }
     }
     .prop-btn {
-        @media screen and (max-width: 992px) {
+        @media #{$medium-and-down} {
             margin-top: 20px;
         }
     }
@@ -1390,7 +1390,7 @@ $opacity: .4;
     text-align: left;
     margin-top: 20px;
     max-width: 780px;
-    @media screen and (max-width: 600px) {
+    @media #{$small-and-down} {
         max-width: 400px;
         label {
             margin-left: 0px;
@@ -1399,7 +1399,7 @@ $opacity: .4;
     textarea {
         height: 1.5em;
         min-height: 1.5em;
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             padding: 10px 0px 10px 10px !important;
         }
         padding: 10px 15px !important;
@@ -1416,7 +1416,7 @@ $opacity: .4;
 }
 
 .send-proposal, .edit-profile {
-    @media screen and (max-width: 600px) {
+    @media #{$small-and-down} {
         .btn {
             width: 100%;
             margin-top: 5px;
@@ -1425,14 +1425,14 @@ $opacity: .4;
     label {
         padding-top: 10px;
         padding-left: 15px;
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             margin-left: 0px !important;
         }
     }
     textarea,
     #preview-content {
         max-width: 840px;
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             margin-left: 0px !important;
         }
     }
@@ -1440,7 +1440,7 @@ $opacity: .4;
         margin-top: 10px;
         height: 1.5em;
         min-height: 1.5em;
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             margin-left: 0px;
         }
         padding: 10px 15px !important;
@@ -1472,7 +1472,7 @@ $opacity: .4;
         }
     }
     .send {
-        @media screen and (max-width: 600px) {
+        @media #{$small-and-down} {
             padding-left: 0px !important;
         }
         padding-left: 55px;

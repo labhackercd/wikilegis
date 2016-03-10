@@ -199,16 +199,12 @@
            
         {% endfor %}
         {% if segment.bill.status = 'published' %}
-        <a href="{% url 'create_amendment' segment.bill.id segment.id %}">
-            <div class="row add-prop-cta bill valign-wrapper">
-                <div class="col s2 m1 valign-wrapper">
-                    <i class="material-icons">lightbulb_outline</i>
-                </div>
-                <div class="col s10 m11">
-                    <h5>Clique aqui para sugerir uma proposta!</h5>
-                </div>
-            </div>
-        </a>
+        <div class="row center">
+          <a class="add-prop-cta bill btn-large waves-effect waves-light" href="{% url 'create_amendment' segment.bill.id segment.id %}">
+            <i class="material-icons left">lightbulb_outline</i>
+            Sugira uma proposta!
+          </a>
+        </div>
         {% endif %}
     </div>
 </div>

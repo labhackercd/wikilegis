@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='created')),
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='modified')),
                 ('periodicity', models.CharField(default=b'daily', max_length=20, verbose_name='periodicity', choices=[(b'daily', 'Daily'), (b'weekly', 'Weekly')])),
-                ('status', models.BooleanField()),
+                ('status', models.BooleanField(default=True)),
                 ('bill', models.ForeignKey(verbose_name='bill', to='core.Bill')),
                 ('user', models.ForeignKey(verbose_name='user', to=settings.AUTH_USER_MODEL)),
             ],
@@ -30,4 +30,9 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Newsletters',
             },
         ),
+        migrations.AlterUniqueTogether(
+            name='newsletter',
+            unique_together=set([('user', 'bill')]),
+        ),
     ]
+

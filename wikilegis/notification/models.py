@@ -27,11 +27,12 @@ class Newsletter(TimestampedMixin):
     bill = models.ForeignKey('core.Bill', verbose_name=_('bill'))
     user = models.ForeignKey('auth2.User', verbose_name=_('user'))
     periodicity = models.CharField(_('periodicity'), max_length=20, choices=PERIODICITY_CHOICES, default='daily')
-    status = models.BooleanField()
+    status = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = _('Newsletter')
         verbose_name_plural = _('Newsletters')
+        unique_together = ('user', 'bill')
 
     def __unicode__(self):
         return self.user

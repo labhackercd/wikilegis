@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^search/', include('haystack.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^', include('wikilegis.core.urls')),
+    url(r'^newsletter/', include('wikilegis.notification.urls')),
     url(r'^object-tools/', include('object_tools.tests.urls')),
 ]
 

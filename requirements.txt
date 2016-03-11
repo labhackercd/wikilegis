@@ -14,6 +14,7 @@ django-libsass==0.6
 django-object-tools==1.1.0
 django-registration-redux==1.2
 django-templatetag-sugar==1.0
+django-annoying==0.9.0
 easy-thumbnails==2.2
 futures==3.0.3
 libsass==0.10.1

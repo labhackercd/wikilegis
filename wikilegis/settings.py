@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'easy_thumbnails',
     'image_cropping',
+    'annoying',
 )
 
 MIDDLEWARE_CLASSES = (

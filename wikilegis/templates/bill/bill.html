@@ -94,30 +94,52 @@
     </div>
 
     <div class="col s12 l9 pull-l3">
-
       <div class="row pl-full list-amendment">
-        <div class="col l11">
-          <!--Article header template, uncomment subs and titles later-->
-          <h4 class="amendment-title">{{ bill.title }}</h4>
-          <!--<h5 class="sub">{{ segment.content }}</h5>-->
-        
-          <div class="row">
-            <div class="amendment-thead col s6 offset-s4 m5 offset-m1">
-              
-            </div>
-            <div class="syllabus col s12 m6">
-              {{ bill.description }}
-            </div>
-          </div>
-        
-        
-          {% for segment in original_segments %}
-            {% include "bill/_bill_segment_item.html" %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
 
+          {% if user.is_authenticated %}
+          <select id="id_periodicity" name="periodicity">
+              <option value="daily">Diariamente</option>
+              <option value="weekly">Semenalmente</option>
+          </select>
+          <button id="id_btn_newsletter" onclick="verify_newsletter()">Assinar</button>
+          {% endif %}
+
+          <div class="col l11">
+            <!--Article header template, uncomment subs and titles later-->
+            <h4 class="amendment-title">{{ bill.title }}</h4>
+            <!--<h5 class="sub">{{ segment.content }}</h5>-->
+          
+            <div class="row">
+              <div class="amendment-thead col s6 offset-s4 m5 offset-m1">
+                
+              </div>
+              <div class="syllabus col s12 m6">
+                {{ bill.description }}
+              </div>
+            </div>
+          
+          
+            {% for segment in original_segments %}
+              {% include "bill/_bill_segment_item.html" %}
+            {% endfor %}
+          </div>
+          
+        </div>
+    </div>
   </div>
 
+{% endblock %}
+
+{% block partialscript %}
+<script type="text/javascript">
+    function verify_newsletter() {
+        $.ajax({
+            type: "GET",
+            url: "/newsletter/verify/" + {{ bill.id }} + "/" + $('#id_periodicity').val() + "/",
+            error: function (data) {
+                alert("Ocorreu um erro, por favor, tente novamente.");
+            }
+        });
+    }
+</script>
 {% endblock %}

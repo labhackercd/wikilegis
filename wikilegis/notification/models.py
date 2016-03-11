@@ -35,4 +35,4 @@ class Newsletter(TimestampedMixin):
         unique_together = ('user', 'bill')
 
     def __unicode__(self):
-        return self.user
+        return '%s - %s' % (unicode(self.user), unicode(self.bill.title))

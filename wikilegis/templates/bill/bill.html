@@ -1,4 +1,4 @@
-{% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
+{% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% load subscribers %} {% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
 <style>
     select {display:block;}
 </style>
@@ -66,7 +66,6 @@
       
         <!--        {% for author in authors %}
             <div class="pl-author">
-            
                 {% if author.user.avatar %}
                     <div class="avatar" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
                 {% else %}
@@ -96,35 +95,50 @@
     <div class="col s12 l9 pull-l3">
       <div class="row pl-full list-amendment">
 
-          {% if user.is_authenticated %}
-          <select id="id_periodicity" name="periodicity">
+        {% if user.is_authenticated %}
+          <div id="btn_newsletter" class="col s6 m6">
+              {% subscriber bill.id request.user.id as newsletter_status %}
+              <form action="{% url 'verify_newsletter' bill.id %}#btn_newsletter" method="get">
+              {% if newsletter_status %}
+            <button class="btn-large waves-effect waves-ligh" type="submit">Cancelar assinatura</button>
+            {% else %}
+            <div class="col s3 m3">
+                <select id="id_periodicity" name="periodicity">
               <option value="daily">Diariamente</option>
               <option value="weekly">Semenalmente</option>
-          </select>
-          <button id="id_btn_newsletter" onclick="verify_newsletter()">Assinar</button>
-          {% endif %}
-
-          <div class="col l11">
-            <!--Article header template, uncomment subs and titles later-->
-            <h4 class="amendment-title">{{ bill.title }}</h4>
-            <!--<h5 class="sub">{{ segment.content }}</h5>-->
-          
-            <div class="row">
-              <div class="amendment-thead col s6 offset-s4 m5 offset-m1">
-                
-              </div>
-              <div class="syllabus col s12 m6">
-                {{ bill.description }}
-              </div>
+                </select>
             </div>
-          
-          
-            {% for segment in original_segments %}
-              {% include "bill/_bill_segment_item.html" %}
-            {% endfor %}
+            <div class="col s3 m3">
+                <button class="btn-large waves-effect waves-ligh" type="submit">Assinar</button>
+            </div>
+              {% endif %}
+              </form>
           </div>
-          
-        </div>
+          <br>
+
+        {% endif %}
+
+        <div class="col l11">
+          <!--Article header template, uncomment subs and titles later-->
+          <h4 class="amendment-title">{{ bill.title }}</h4>
+          <!--<h5 class="sub">{{ segment.content }}</h5>-->
+        
+          <div class="row">
+            <div class="amendment-thead col s6 offset-s4 m5 offset-m1">
+              
+            </div>
+            <div class="syllabus col s12 m6">
+              {{ bill.description }}
+            </div>
+          </div>
+        
+        
+          {% for segment in original_segments %}
+            {% include "bill/_bill_segment_item.html" %}
+          {% endfor %}
+        </div>  
+      </div>
+  
     </div>
   </div>
 

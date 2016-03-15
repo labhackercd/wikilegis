@@ -479,6 +479,22 @@ strong {
     max-width: 960px;
 }
 
+.pl-title {
+    font-weight: 700;
+    color: $gray;
+}
+
+.circle {
+        width: 70px;
+        height: 70px;
+        @media #{$medium-and-down} {
+            width: 40px;
+            height: 40px;
+            padding: 0.4em;
+            border-width: 2px;
+        }
+    }
+
 .pl-description {
     margin-top: 20px;
     font-size: 1.2em;
@@ -502,7 +518,6 @@ strong {
         .item {
             margin-right: 20px;
         }
-        margin-top: 50px;
         margin-bottom: 20px;
         color: $medgrey;
         .pl-status {
@@ -587,13 +602,11 @@ strong {
 }
 
 .list-amendment {
+    margin-bottom: 100px;
+    
     .amendment-thead {
         min-height: 100px;
-        margin-bottom: 40px;
         background-image: url(static("img/brasao.png"));
-        @media #{$small-and-down} {
-            background-image: none;
-        }
         background-repeat: no-repeat;
         background-position-y: center;
         background-position-x: 20px;
@@ -601,6 +614,7 @@ strong {
     }
     .amendment-title {
         text-align: center;
+        margin-left: 0;
     }
     h1, h2, h3, h4, h5, h6 {
         margin-left: 60px;
@@ -612,10 +626,11 @@ strong {
     @media #{$medium-and-down} {
         padding-right: 20px;
     }
-    margin-top: 50px !important;
+    
     .syllabus {
         opacity: .85;
         margin-top: 20px;
+        margin-bottom: 20px;
         @media #{$small-and-down} {
             padding-left: 73px;
         }
@@ -800,7 +815,7 @@ strong {
         color: inherit;
     }
     
-    position: relative;
+    position: relative; 
     /*    padding-left: 30px !important;
     padding-right: 30px !important;*/
     
@@ -836,9 +851,6 @@ strong {
         justify-content: flex-start;
         align-content: center;
         align-items: center;
-        .content {
-            max-width: 840px;
-        }
         &.paragrafo {
             margin-left: 30px;
         }

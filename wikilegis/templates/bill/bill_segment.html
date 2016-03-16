@@ -1,4 +1,14 @@
-{% extends "bill/_base.html" %} {% load comments %} {% load previous_segments %}  {% load static %} {% load i18n %} {% load render_comments from comments2 %} {% load cropping %} {% block content3 %} {% load convert_numbers %}
+{% extends "bill/_base.html" %}
+
+{% load comments %}
+{% load previous_segments %}
+{% load static %}
+{% load i18n %}
+{% load render_comments from comments2 %}
+{% load cropping %}
+
+{% block content3 %}
+{% load convert_numbers %}
 <div class="pl-full">
     <div class="container">
         <div class="articles-header valign-wrapper">
@@ -202,13 +212,15 @@
         <div class="row center">
           <a class="add-prop-cta bill btn-large waves-effect waves-light" href="{% url 'create_amendment' segment.bill.id segment.id %}">
             <i class="material-icons left">lightbulb_outline</i>
-            Sugira uma proposta!
+                {% trans "Make a proposal!" %}
           </a>
         </div>
         {% endif %}
     </div>
 </div>
-{% endblock %} {% block partialscript %}
+{% endblock %}
+
+{% block partialscript %}
 <script type="text/javascript">
         $(function() {
             var original = $('#original').attr('data-raw-content');

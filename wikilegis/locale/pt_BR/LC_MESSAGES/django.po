@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-01 10:02-0300\n"
+"POT-Creation-Date: 2016-03-16 11:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgstr "Projetos atualizados com sucesso"
 msgid "Update status of selected bills"
 msgstr "Atualizar o status dos projetos selecionados"
 
-#: core/admin.py:65 core/models.py:130 core/models.py:165 core/models.py:214
+#: core/admin.py:65 core/models.py:130 core/models.py:168 core/models.py:217
 msgid "author"
 msgstr "autor"
 
@@ -311,7 +311,7 @@ msgstr "data de modificação"
 msgid "data"
 msgstr "dados"
 
-#: core/models.py:77 core/models.py:126 core/models.py:204
+#: core/models.py:77 core/models.py:126 core/models.py:207
 msgid "type"
 msgstr "tipo"
 
@@ -327,7 +327,7 @@ msgstr "descrição"
 msgid "status"
 msgstr "estado"
 
-#: core/models.py:87 core/models.py:211
+#: core/models.py:87 core/models.py:214
 msgid "theme"
 msgstr "tema"
 
@@ -341,7 +341,7 @@ msgid ""
 "document."
 msgstr "Usuários nestes grupos terão permissão para alterar este documento."
 
-#: core/models.py:99 core/models.py:124 core/models.py:203
+#: core/models.py:99 core/models.py:124 core/models.py:206
 msgid "bill"
 msgstr "projeto de lei"
 
@@ -369,7 +369,7 @@ msgstr "tipos de segmento"
 msgid "order"
 msgstr "ordem"
 
-#: core/models.py:127 core/models.py:205
+#: core/models.py:127 core/models.py:208
 msgid "number"
 msgstr "número"
 
@@ -385,7 +385,7 @@ msgstr "trecho substituído"
 msgid "original"
 msgstr "original"
 
-#: core/models.py:132 core/models.py:167
+#: core/models.py:132 core/models.py:170
 msgid "content"
 msgstr "conteúdo"
 
@@ -397,107 +397,107 @@ msgstr "trecho"
 msgid "segments"
 msgstr "trechos"
 
-#: core/models.py:166
+#: core/models.py:169
 msgid "bill segment"
 msgstr "trecho de lei"
 
-#: core/models.py:170
+#: core/models.py:173
 msgid "citizen amendment"
 msgstr "proposta"
 
-#: core/models.py:171
+#: core/models.py:174
 msgid "citizen amendments"
 msgstr "propostas"
 
-#: core/models.py:189
+#: core/models.py:192
 msgid "user"
 msgstr "usuário"
 
-#: core/models.py:193
+#: core/models.py:196
 msgid "Up Vote"
 msgstr "Voto a favor"
 
-#: core/models.py:193
+#: core/models.py:196
 msgid "Down Vote"
 msgstr "Voto contra"
 
-#: core/models.py:206
+#: core/models.py:209
 msgid "year"
 msgstr "ano"
 
-#: core/models.py:207
+#: core/models.py:210
 msgid "name proposition"
 msgstr ""
 
-#: core/models.py:208
+#: core/models.py:211
 msgid "id proposition"
 msgstr ""
 
-#: core/models.py:209
+#: core/models.py:212
 msgid "id main proposition"
 msgstr ""
 
-#: core/models.py:210
+#: core/models.py:213
 msgid "name origin proposition"
 msgstr ""
 
-#: core/models.py:212
+#: core/models.py:215
 msgid "menu"
 msgstr "menu"
 
-#: core/models.py:213
+#: core/models.py:216
 msgid "menu_explanation"
 msgstr ""
 
-#: core/models.py:215
+#: core/models.py:218
 msgid "id register"
 msgstr ""
 
-#: core/models.py:216
+#: core/models.py:219
 msgid "uf author"
 msgstr ""
 
-#: core/models.py:217
+#: core/models.py:220
 msgid "party author"
 msgstr ""
 
-#: core/models.py:218
+#: core/models.py:221
 msgid "apresentation date"
 msgstr ""
 
-#: core/models.py:219
+#: core/models.py:222
 msgid "processing_regime"
 msgstr ""
 
-#: core/models.py:220
+#: core/models.py:223
 msgid "last dispatch date"
 msgstr ""
 
-#: core/models.py:221
+#: core/models.py:224
 msgid "last dispatch"
 msgstr ""
 
-#: core/models.py:222
+#: core/models.py:225
 msgid "appraisal"
 msgstr ""
 
-#: core/models.py:223
+#: core/models.py:226
 msgid "indexing"
 msgstr ""
 
-#: core/models.py:224
+#: core/models.py:227
 msgid "situation"
 msgstr "situação"
 
-#: core/models.py:225
+#: core/models.py:228
 msgid "content link"
 msgstr "link do conteúdo"
 
-#: core/models.py:228
+#: core/models.py:231
 msgid "proposition"
 msgstr "proposição"
 
-#: core/models.py:229
+#: core/models.py:232
 msgid "propositions"
 msgstr "proposições"
 
@@ -517,12 +517,12 @@ msgstr "Relevantes"
 msgid "Date"
 msgstr "Data"
 
-#: core/views.py:155
+#: core/views.py:150
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:185 core/views.py:227
+#: core/views.py:180 core/views.py:222
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
@@ -593,8 +593,7 @@ msgstr ""
 "reportar bugs. Se você tiver habilidades de programação, pode também "
 "contribuir para o desenvolvimento do Wikilegis."
 
-#: templates/about.html:33
-#: templates/registration/registration_complete.html:14
+#: templates/about.html:33 templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr "Voltar à página inicial"
 
@@ -632,13 +631,17 @@ msgstr "Alterar perfil"
 msgid "Joined on"
 msgstr "Data de cadastro"
 
-#: templates/bill/bill_segment.html:18 templates/bill/proposal.html:24
+#: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
 msgid "Original text"
 msgstr "Texto original"
 
-#: templates/bill/bill_segment.html:139
+#: templates/bill/bill_segment.html:149
 msgid "Submitted proposals"
 msgstr "Propostas"
+
+#: templates/bill/bill_segment.html:215
+msgid "Make a proposal!"
+msgstr "Sugerir uma proposta!"
 
 #: templates/bill/create_amendment.html:26
 #: templates/bill/create_amendment.html:61
@@ -759,12 +762,3 @@ msgstr ""
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
 msgstr "Reenviar"
-
-#~ msgid "or"
-#~ msgstr "ou"
-
-#~ msgid "Sign up"
-#~ msgstr "Cadastrar-se"
-
-#~ msgid "Submit proposal"
-#~ msgstr "Enviar proposta"

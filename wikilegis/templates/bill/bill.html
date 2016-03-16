@@ -19,6 +19,46 @@
     
     <div class="col s12 l3 push-l9">
       <div class="pl-full pl-description">
+
+        {% if user.is_authenticated %}
+          {% subscriber bill.id request.user.id as newsletter_status %}
+          <form action="{% url 'verify_newsletter' bill.id %}#btn_newsletter" method="get">
+          {% if newsletter_status %}
+            <button class="subscribe-cancel btn-flat waves-effect waves-light valign-wrapper" type="submit">
+              <i class="material-icons valign left">backspace</i>
+              <span class="header-text valign">Cancelar assinatura</span>
+            </button>
+          {% else %}
+            <ul class="subscribe-button collapsible">
+              <li>
+                <div class="subscribe-header collapsible-header waves-effect waves-light valign-wrapper">
+                  <i class="material-icons valign">email</i>
+                  <span class="header-text valign">Assinar newsletter</span>
+                </div>
+                <div class="subscribe-body collapsible-body">
+
+                  <p>Caso deseje, você pode ser notificado via email a respeito de alterações neste projeto ao assinar sua newsletter.</p>
+
+                  <div class="subscribe-options">
+                    <div>
+                      <input class="with-gap" value="weekly" name="periodicity" type="radio" id="periodicity_weekly" checked>
+                      <label for="periodicity_weekly">Semanalmente</label>
+                    </div>
+                    
+                    <div>
+                      <input class="with-gap" value="daily" name="periodicity" type="radio" id="periodicity_daily">
+                      <label for="periodicity_daily">Diariamente</label>
+                    </div>
+                  </div>
+
+                  <button class="subscribe-submit btn-flat waves-effect waves-light" type="submit">Assinar</button>
+
+                </div>
+              </li>
+            </ul>
+          {% endif %}
+          </form>
+        {% endif %}
       
         <div class="pl-info">
           {% if bill.proposition_set.all.0.situation %}
@@ -94,30 +134,6 @@
 
     <div class="col s12 l9 pull-l3">
       <div class="row pl-full list-amendment">
-
-        {% if user.is_authenticated %}
-          <div id="btn_newsletter" class="col s6 m6">
-              {% subscriber bill.id request.user.id as newsletter_status %}
-              <form action="{% url 'verify_newsletter' bill.id %}#btn_newsletter" method="get">
-              {% if newsletter_status %}
-            <button class="btn-large waves-effect waves-ligh" type="submit">Cancelar assinatura</button>
-            {% else %}
-            <div class="col s3 m3">
-                <select id="id_periodicity" name="periodicity">
-              <option value="daily">Diariamente</option>
-              <option value="weekly">Semenalmente</option>
-                </select>
-            </div>
-            <div class="col s3 m3">
-                <button class="btn-large waves-effect waves-ligh" type="submit">Assinar</button>
-            </div>
-              {% endif %}
-              </form>
-          </div>
-          <br>
-
-        {% endif %}
-
         <div class="col l11">
           <!--Article header template, uncomment subs and titles later-->
           <h4 class="amendment-title">{{ bill.title }}</h4>

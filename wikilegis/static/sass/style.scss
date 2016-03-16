@@ -599,6 +599,61 @@ strong {
             margin-right: 10px;
         }
     }
+
+    .subscribe-header {
+        background-color: $maingreen;
+        color: white;
+        border: none;
+        height: auto;
+        display: flex;
+        > .header-text {
+            padding: 0.45rem 0;
+            line-height: 1.5rem;
+        }
+    }
+
+    .subscribe-button {
+        border: none;
+    }
+
+    .subscribe-body {
+        background-color: #fff;
+    }
+
+    .subscribe-options {
+        padding: 0 2rem 2rem;
+    }
+
+    .subscribe-body {
+        font-size: 1rem;
+        border: none;
+    }
+
+    .subscribe-submit {
+        background-color: $unnamedcolor;
+        color: white;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .subscribe-cancel {
+        background-color: #748CA0;
+        height: auto;
+        border-radius: 0;
+        line-height: 1.5rem;
+        min-height: 3rem;
+        display: flex;
+        width: 100%;
+        padding: 0.45rem 1rem;
+        margin: 0.5rem 0 1rem 0;
+        text-align: left;
+        text-transform: none;
+        color: white;
+        > i {
+            font-size: 1.6rem;
+        }
+    }
+
 }
 
 .list-amendment {

@@ -3,9 +3,7 @@
 $maingreen: #324545;
 $green: #7baf66;
 $logogreen: #7AD07E;
-$yellow: rgb(252,
-250,
-96);
+$yellow: rgb(252,250,96);
 $blue: #889FFC;
 $rbcolor: #748CA0;
 $lightgray: #F7FDF1;
@@ -15,9 +13,7 @@ $medgrey: #767873;
 $downvote_color: #e24747;
 $upvote_color: #35ae43;
 $a_color: #6775a6;
-$countcolor: rgb(185,
-102,
-53);
+$countcolor: rgb(185,102,53);
 
 $unnamedcolor: #28D27A;
 
@@ -359,10 +355,12 @@ strong {
     font-weight: 600;
     span { font-size: .9em; }
     &.bill {
-        margin-top: 20px;
-        text-align: left;
+        background-color: $unnamedcolor;
+        color:#fff;
+        padding: 0 2rem;
+        font-size: 1.3rem;
         i {
-            font-size: 2em;
+            font-size: 2rem;
         }
     }
     div { 

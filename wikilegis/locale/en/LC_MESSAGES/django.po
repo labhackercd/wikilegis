@@ -16,107 +16,102 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: auth2/admin.py:12
 msgid "Personal info"
-msgstr "Informações pessoais"
+msgstr ""
 
 #: auth2/admin.py:13
 msgid "Permissions"
-msgstr "Permissões"
+msgstr ""
 
 #: auth2/admin.py:14
 msgid "Important dates"
-msgstr "Datas importantes"
+msgstr ""
 
 #: auth2/models.py:61
 #, python-brace-format
 msgid "The maximum file size is {0}"
-msgstr "O tamanho de arquivo máximo é {0}"
+msgstr ""
 
 #: auth2/models.py:65
 msgid "email address"
-msgstr "endereço de e-mail"
+msgstr ""
 
 #: auth2/models.py:67
 msgid "first name"
-msgstr "primeiro nome"
+msgstr ""
 
 #: auth2/models.py:68
 msgid "last name"
-msgstr "último nome"
+msgstr ""
 
 #: auth2/models.py:69
 msgid "staff status"
-msgstr "membro da equipe"
+msgstr ""
 
 #: auth2/models.py:70
 msgid "Designates whether the user can log into this admin site."
-msgstr "Define se um usuário pode acessar este site administrativo."
+msgstr ""
 
 #: auth2/models.py:72
 msgid "active"
-msgstr "ativo"
+msgstr ""
 
 #: auth2/models.py:73
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
-"Indica que este usuário tem todas as permissões sem atribuí-las "
-"explicitamente."
 
 #: auth2/models.py:75
 msgid "date joined"
-msgstr "data de cadastro"
+msgstr ""
 
 #: auth2/models.py:76
 msgid "profile picture"
-msgstr "foto de perfil"
+msgstr ""
 
 #: auth2/models.py:79
 msgid ""
 "Note that the preview above will only be updated after you submit the form."
 msgstr ""
-"Note que a pré-visualização acima só será atulizada depois que você enviar o "
-"formulário."
 
 #: auth2/views.py:33
 msgid "Your account is now activated."
-msgstr "Sua conta agora está ativada."
+msgstr ""
 
 #: auth2/views.py:43
 msgid "Profile successfully updated"
-msgstr "Perfil atualizado com sucesso"
+msgstr ""
 
 #: core/admin.py:36
 msgid "Bills updated successfully."
-msgstr "Projetos atualizados com sucesso"
+msgstr ""
 
 #: core/admin.py:38
 msgid "Update status of selected bills"
-msgstr "Atualizar o status dos projetos selecionados"
+msgstr ""
 
 #: core/admin.py:65 core/models.py:130 core/models.py:168 core/models.py:217
 msgid "author"
-msgstr "autor"
+msgstr ""
 
 #: core/admin.py:66
 msgid "authors"
-msgstr "autores"
+msgstr ""
 
 #: core/admin.py:75
 msgid "video"
-msgstr "vídeo"
+msgstr ""
 
 #: core/admin.py:76
 msgid "videos"
-msgstr "vídeos"
+msgstr ""
 
 #: core/admin.py:112
 msgid "Legislative proposal"
-msgstr "Proposta"
+msgstr ""
 
 #: core/admin.py:113
 msgid ""
@@ -124,58 +119,54 @@ msgid ""
 "pending before the House of Representatives. You only need to inform them if "
 "your procedure has been initiated. To delete , leave the fields blank."
 msgstr ""
-"Estes dados serão utilizados para definir um projeto de lei a uma proposta "
-"legislativa em tramitação na Câmara dos Deputados. Você só precisa informá-"
-"los se o trâmite já foi iniciado. Para apagar os dados, submita os campos em "
-"branco."
 
 #: core/admin.py:190
 msgid "Situation"
-msgstr "Situação"
+msgstr ""
 
 #: core/admin.py:194
 msgid "Show"
-msgstr "Ver"
+msgstr ""
 
 #: core/admin.py:196
 msgid "Report"
-msgstr "Relatório"
+msgstr ""
 
 #: core/forms.py:56
 msgid "User"
-msgstr "Usuário"
+msgstr ""
 
 #: core/forms.py:57
 msgid "Title"
-msgstr "Título"
+msgstr ""
 
 #: core/forms.py:70
 msgid "video url"
-msgstr "url do vídeo"
+msgstr ""
 
 #: core/forms.py:78 core/forms.py:217
 msgid "You can explain your proposal here."
-msgstr "Você pode explicar sua proposta aqui."
+msgstr ""
 
 #: core/forms.py:82
 msgid "Suggest a new proposal! You can begin editing the original one."
-msgstr "Sugira uma nova redação! Você pode começar editando a original."
+msgstr ""
 
 #: core/forms.py:91
 msgid "Select a type"
-msgstr "Selecione um tipo"
+msgstr ""
 
 #: core/forms.py:97
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #: core/forms.py:98
 msgid "Number"
-msgstr "Número"
+msgstr ""
 
 #: core/forms.py:99
 msgid "Year"
-msgstr "Ano"
+msgstr ""
 
 #: core/forms.py:122
 msgid ""
@@ -185,245 +176,245 @@ msgstr ""
 
 #: core/models.py:19
 msgid "Draft"
-msgstr "Rascunho"
+msgstr ""
 
 #: core/models.py:20
 msgid "Published"
-msgstr "Publicado"
+msgstr ""
 
 #: core/models.py:21 templates/index.html:53
 msgid "Closed"
-msgstr "Fechado"
+msgstr ""
 
 #: core/models.py:25
 msgid "Others"
-msgstr "Outros"
+msgstr ""
 
 #: core/models.py:26
 msgid "Public Administration"
-msgstr "Adminsitração Pública"
+msgstr ""
 
 #: core/models.py:27
 msgid "Farming"
-msgstr "Agropecuária"
+msgstr ""
 
 #: core/models.py:28
 msgid "Social Assistance"
-msgstr "Assistência Social"
+msgstr ""
 
 #: core/models.py:29
 msgid "Cities"
-msgstr "Cidades"
+msgstr ""
 
 #: core/models.py:30
 msgid "Science"
-msgstr "Ciência"
+msgstr ""
 
 #: core/models.py:31
 msgid "Communication"
-msgstr "Comunicação"
+msgstr ""
 
 #: core/models.py:32
 msgid "Consumer"
-msgstr "Consumidor"
+msgstr ""
 
 #: core/models.py:33
 msgid "Culture"
-msgstr "Cultura"
+msgstr ""
 
 #: core/models.py:34
 msgid "Law and Justice"
-msgstr "Direito e Justiça"
+msgstr ""
 
 #: core/models.py:35
 msgid "Human Rights"
-msgstr "Direitos Humanos"
+msgstr ""
 
 #: core/models.py:36
 msgid "Economy"
-msgstr "Economia"
+msgstr ""
 
 #: core/models.py:37
 msgid "Education"
-msgstr "Educação"
+msgstr ""
 
 #: core/models.py:38
 msgid "Sports"
-msgstr "Esportes"
+msgstr ""
 
 #: core/models.py:39
 msgid "Family"
-msgstr "Família"
+msgstr ""
 
 #: core/models.py:40
 msgid "Industry"
-msgstr "Indústria"
+msgstr ""
 
 #: core/models.py:41
 msgid "Institutional"
-msgstr "Institucional"
+msgstr ""
 
 #: core/models.py:42
 msgid "Environment"
-msgstr "Meio Ambiente"
+msgstr ""
 
 #: core/models.py:43
 msgid "Policy"
-msgstr "Política"
+msgstr ""
 
 #: core/models.py:44
 msgid "Foresight"
-msgstr "Previdência"
+msgstr ""
 
 #: core/models.py:45
 msgid "Foreign Affairs"
-msgstr "Relações Exteriores"
+msgstr ""
 
 #: core/models.py:46
 msgid "Health"
-msgstr "Saúde"
+msgstr ""
 
 #: core/models.py:47
 msgid "Security"
-msgstr "Segurança"
+msgstr ""
 
 #: core/models.py:48
 msgid "Work"
-msgstr "Trabalho"
+msgstr ""
 
 #: core/models.py:49
 msgid "Transportation and Transit"
-msgstr "Transporte e Trânsito"
+msgstr ""
 
 #: core/models.py:50
 msgid "Tourism"
-msgstr "Turismo"
+msgstr ""
 
 #: core/models.py:63
 msgid "created"
-msgstr "data de criação"
+msgstr ""
 
 #: core/models.py:64
 msgid "modified"
-msgstr "data de modificação"
+msgstr ""
 
 #: core/models.py:76
 msgid "data"
-msgstr "dados"
+msgstr ""
 
 #: core/models.py:77 core/models.py:126 core/models.py:207
 msgid "type"
-msgstr "tipo"
+msgstr ""
 
 #: core/models.py:84
 msgid "title"
-msgstr "título"
+msgstr ""
 
 #: core/models.py:85
 msgid "description"
-msgstr "descrição"
+msgstr ""
 
 #: core/models.py:86
 msgid "status"
-msgstr "estado"
+msgstr ""
 
 #: core/models.py:87 core/models.py:214
 msgid "theme"
-msgstr "tema"
+msgstr ""
 
 #: core/models.py:89
 msgid "editors"
-msgstr "editores"
+msgstr ""
 
 #: core/models.py:90
 msgid ""
 "Any users in any of these groups will have permission to change this "
 "document."
-msgstr "Usuários nestes grupos terão permissão para alterar este documento."
+msgstr ""
 
 #: core/models.py:99 core/models.py:124 core/models.py:206
 msgid "bill"
-msgstr "projeto de lei"
+msgstr ""
 
 #: core/models.py:100
 msgid "bills"
-msgstr "projetos de lei"
+msgstr ""
 
 #: core/models.py:112
 msgid "name"
-msgstr "nome"
+msgstr ""
 
 #: core/models.py:113
 msgid "editable"
-msgstr "editável"
+msgstr ""
 
 #: core/models.py:116
 msgid "type segment"
-msgstr "tipo de segmento"
+msgstr ""
 
 #: core/models.py:117
 msgid "types segment"
-msgstr "tipos de segmento"
+msgstr ""
 
 #: core/models.py:125
 msgid "order"
-msgstr "ordem"
+msgstr ""
 
 #: core/models.py:127 core/models.py:208
 msgid "number"
-msgstr "número"
+msgstr ""
 
 #: core/models.py:128
 msgid "segment parent"
-msgstr "trecho ancestral"
+msgstr ""
 
 #: core/models.py:129
 msgid "segment replaced"
-msgstr "trecho substituído"
+msgstr ""
 
 #: core/models.py:131
 msgid "original"
-msgstr "original"
+msgstr ""
 
 #: core/models.py:132 core/models.py:170
 msgid "content"
-msgstr "conteúdo"
+msgstr ""
 
 #: core/models.py:138
 msgid "segment"
-msgstr "trecho"
+msgstr ""
 
 #: core/models.py:139
 msgid "segments"
-msgstr "trechos"
+msgstr ""
 
 #: core/models.py:169
 msgid "bill segment"
-msgstr "trecho de lei"
+msgstr ""
 
 #: core/models.py:173
 msgid "citizen amendment"
-msgstr "proposta"
+msgstr ""
 
 #: core/models.py:174
 msgid "citizen amendments"
-msgstr "propostas"
+msgstr ""
 
 #: core/models.py:192
 msgid "user"
-msgstr "usuário"
+msgstr ""
 
 #: core/models.py:196
 msgid "Up Vote"
-msgstr "Voto a favor"
+msgstr ""
 
 #: core/models.py:196
 msgid "Down Vote"
-msgstr "Voto contra"
+msgstr ""
 
 #: core/models.py:209
 msgid "year"
-msgstr "ano"
+msgstr ""
 
 #: core/models.py:210
 msgid "name proposition"
@@ -443,7 +434,7 @@ msgstr ""
 
 #: core/models.py:215
 msgid "menu"
-msgstr "menu"
+msgstr ""
 
 #: core/models.py:216
 msgid "menu_explanation"
@@ -487,53 +478,53 @@ msgstr ""
 
 #: core/models.py:227
 msgid "situation"
-msgstr "situação"
+msgstr ""
 
 #: core/models.py:228
 msgid "content link"
-msgstr "link do conteúdo"
+msgstr ""
 
 #: core/models.py:231
 msgid "proposition"
-msgstr "proposição"
+msgstr ""
 
 #: core/models.py:232
 msgid "propositions"
-msgstr "proposições"
+msgstr ""
 
 #: core/orderers.py:100
 msgid "None"
-msgstr "Nenhum"
+msgstr ""
 
 #: core/views.py:26
 msgid "Order by"
-msgstr "Ordem"
+msgstr ""
 
 #: core/views.py:32
 msgid "Hot"
-msgstr "Relevantes"
+msgstr ""
 
 #: core/views.py:33
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #: core/views.py:150
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
-msgstr "Falha ao enviar proposta para o objeto {object}."
+msgstr ""
 
 #: core/views.py:180 core/views.py:222
 #, python-brace-format
 msgid "{object_type} submitted."
-msgstr "{object_type} enviado."
+msgstr ""
 
 #: notification/models.py:7
 msgid "amendment"
-msgstr "proposta"
+msgstr ""
 
 #: notification/models.py:8
 msgid "hour"
-msgstr "hora"
+msgstr ""
 
 #: notification/models.py:12
 msgid "history notification"
@@ -553,20 +544,20 @@ msgstr ""
 
 #: templates/_about_link.html:3
 msgid "about wikilegis"
-msgstr "sobre o wikilegis"
+msgstr ""
 
 #: templates/_sidebar_language_selector.html:7
 msgid "Select language"
-msgstr "Selecione um idioma"
+msgstr ""
 
 #: templates/_vote_buttons_read_only.html:5
 #: templates/_vote_buttons_read_only.html:13
 msgid "This bill is closed, you can not vote or comment."
-msgstr "Este projeto de lei está fechado, você não poderá votar ou comentar"
+msgstr ""
 
 #: templates/about.html:17
 msgid "About Wikilegis"
-msgstr "Sobre o Wikilegis"
+msgstr ""
 
 #: templates/about.html:18
 msgid ""
@@ -576,12 +567,6 @@ msgid ""
 "BY 4.0. Besides participating in discussions of the bill, you can help us to "
 "improve our tool."
 msgstr ""
-"O Wikilegis é um projeto desenvolvido pelo Laboratório Hacker da Câmara dos "
-"Deputados, com o objetivo de permitir ao(à) cidadão(ã) a propor alterações à "
-"redação de projetos de lei. O projeto é desenvolvido em código aberto e todo "
-"conteúdo do site é colocado sob a licença CC BY SA 4.0. Além de participar "
-"da discussão dos projetos de lei, você pode auxiliar no melhoramento da "
-"ferramenta."
 
 #: templates/about.html:22
 msgid ""
@@ -589,84 +574,81 @@ msgid ""
 "report bugs. If you have programming skills, you can also collaborate to the "
 "development of Wikilegis. "
 msgstr ""
-"Acesse o nosso Trello e nosso Github para sugerir novas funcionalidades ou "
-"reportar bugs. Se você tiver habilidades de programação, pode também "
-"contribuir para o desenvolvimento do Wikilegis."
 
 #: templates/about.html:33 templates/registration/registration_complete.html:14
 msgid "Back to main page"
-msgstr "Voltar à página inicial"
+msgstr ""
 
 #: templates/admin/base_site.html:6
 msgid "Django administration"
-msgstr "Adminsitração do Django"
+msgstr ""
 
 #: templates/adminsortable2/tabular-1.6.html:9
 msgid "Sort"
-msgstr "Ordenar"
+msgstr ""
 
 #: templates/adminsortable2/tabular-1.6.html:17
 msgid "Delete?"
-msgstr "Deletar?"
+msgstr ""
 
 #: templates/adminsortable2/tabular-1.6.html:70
 #, python-format
 msgid "Add another %(verbose_name)s"
-msgstr "Adicionar outro(a) %(verbose_name)s"
+msgstr ""
 
 #: templates/adminsortable2/tabular-1.6.html:71
 msgid "Remove"
-msgstr "Remover"
+msgstr ""
 
 #: templates/auth2/_current_user_or_login_button.html:10
 #: templates/registration/login.html:47
 msgid "Log in"
-msgstr "Iniciar sessão"
+msgstr ""
 
 #: templates/auth2/edit.html:11
 msgid "Edit profile"
-msgstr "Alterar perfil"
+msgstr ""
 
 #: templates/auth2/show_users_profile.html:15
 msgid "Joined on"
-msgstr "Data de cadastro"
+msgstr ""
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
 msgid "Original text"
-msgstr "Texto original"
+msgstr ""
 
 #: templates/bill/bill_segment.html:149
 msgid "Submitted proposals"
-msgstr "Propostas"
+msgstr ""
 
 #: templates/bill/bill_segment.html:215
 msgid "Make a proposal!"
-msgstr "Sugerir uma proposta!"
+msgstr ""
 
 #: templates/bill/create_amendment.html:26
 #: templates/bill/create_amendment.html:61
 msgid "Send proposal"
-msgstr "Enviar proposta"
+msgstr ""
 
 #: templates/bill/create_amendment.html:60
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #: templates/comments2/_comment_form.html:24
 msgid "Post"
-msgstr "Enviar"
+msgstr ""
 
 #: templates/comments2/_comment_form.html:25
 msgid "Preview"
-msgstr "Pré-visualizar"
+msgstr ""
 
 #: templates/export/export_form.html:10
 msgid "Download"
-msgstr "Baixar"
+msgstr ""
 
 #: templates/index.html:11
 msgid "Your legislative editing tool"
-msgstr "Sua ferramenta de edição legislativa"
+msgstr ""
 
 #: templates/index.html:12
 msgid ""
@@ -674,47 +656,44 @@ msgid ""
 "Hacker Lab, designed to enable citizens to suggest modifications to the "
 "wording of Bills"
 msgstr ""
-"O Wikilegis é um projeto desenvolvido pelo Laboratório Hacker da Câmara dos "
-"Deputados, com o objetivo de permitir ao(à) cidadão(ã) a propor alterações à "
-"redação de projetos de lei."
 
 #: templates/index.html:42
 msgid "Closed Law Projects"
-msgstr "Projetos de Lei fechados"
+msgstr ""
 
 #: templates/index.html:42
 msgid "Law Projects"
-msgstr "Projetos de lei"
+msgstr ""
 
 #: templates/index.html:51
 msgid "Open"
-msgstr "Abertas"
+msgstr ""
 
 #: templates/registration/login.html:43
 msgid "Activate Account"
-msgstr "Ativar conta"
+msgstr ""
 
 #: templates/registration/login.html:55
 #: templates/registration/registration_form.html:34
 #, python-format
 msgid "Sign in with %(backend_name)s"
-msgstr "Iniciar sessão com %(backend_name)s"
+msgstr ""
 
 #: templates/registration/login.html:60
 msgid "Don't have an account?"
-msgstr "Não tem uma conta?"
+msgstr ""
 
 #: templates/registration/login.html:60
 msgid "Sign up now!"
-msgstr "Cadastre-se agora!"
+msgstr ""
 
 #: templates/registration/login.html:61
 msgid "Forgot your password?"
-msgstr "Esqueceu sua senha?"
+msgstr ""
 
 #: templates/registration/login.html:61
 msgid "Ask for a new one!"
-msgstr "Solicite uma nova!"
+msgstr ""
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -722,16 +701,14 @@ msgid ""
 "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
-"Você está recebendo este email porque solicitou a redefinição da senha da "
-"sua conta em %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr "Por favor, acesse a seguinte página e escolha uma nova senha:"
+msgstr ""
 
 #: templates/registration/password_reset_email.html:8
 msgid "Your username, in case you've forgotten:"
-msgstr "Seu nome de usuário, caso tenha esquecido:"
+msgstr ""
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thanks for using our site!"
@@ -740,25 +717,24 @@ msgstr ""
 #: templates/registration/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
-msgstr "A equipe do %(site_name)s"
+msgstr ""
 
 #: templates/registration/registration_complete.html:4
 msgid "Activation email sent"
-msgstr "E-mail de ativação enviado"
+msgstr ""
 
 #: templates/registration/registration_complete.html:13
 msgid "Please check your email to complete the registration process."
-msgstr "Por favor verifique seu e-mail para prosseguir com seu cadastro."
+msgstr ""
 
 #: templates/registration/registration_form.html:26
 msgid "Sign Up"
-msgstr "Cadastrar-se"
+msgstr ""
 
 #: templates/registration/resend_activation_form.html:18
 msgid "Type your email to resend your account activation link"
 msgstr ""
-"Informe seu endereço de e-mail para que possamos reenviar o link de ativação"
 
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
-msgstr "Reenviar"
+msgstr ""

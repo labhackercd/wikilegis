@@ -26,32 +26,32 @@
           {% if newsletter_status %}
             <button class="subscribe-cancel btn-flat waves-effect waves-light valign-wrapper" type="submit">
               <i class="material-icons valign left">backspace</i>
-              <span class="header-text valign">Cancelar assinatura</span>
+              <span class="header-text valign">{% trans "Unsubscribe" %}</span>
             </button>
           {% else %}
             <ul class="subscribe-button collapsible">
               <li>
                 <div class="subscribe-header collapsible-header waves-effect waves-light valign-wrapper">
                   <i class="material-icons valign">email</i>
-                  <span class="header-text valign">Assinar newsletter</span>
+                  <span class="header-text valign">{% trans "Subscribe to this bill" %}</span>
                 </div>
                 <div class="subscribe-body collapsible-body">
 
-                  <p>Caso deseje, você pode ser notificado via email a respeito de alterações neste projeto ao assinar sua newsletter.</p>
+                  <p>{% trans "You can be notified of changes in this bill via e-mail by subscribing to it." %}</p>
 
                   <div class="subscribe-options">
                     <div>
                       <input class="with-gap" value="weekly" name="periodicity" type="radio" id="periodicity_weekly" checked>
-                      <label for="periodicity_weekly">Semanalmente</label>
+                      <label for="periodicity_weekly">{% trans "Weekly" %}</label>
                     </div>
                     
                     <div>
                       <input class="with-gap" value="daily" name="periodicity" type="radio" id="periodicity_daily">
-                      <label for="periodicity_daily">Diariamente</label>
+                      <label for="periodicity_daily">{% trans "Daily" %}</label>
                     </div>
                   </div>
 
-                  <button class="subscribe-submit btn-flat waves-effect waves-light" type="submit">Assinar</button>
+                  <button class="subscribe-submit btn-flat waves-effect waves-light" type="submit">{% trans "Subscribe" %}</button>
 
                 </div>
               </li>
@@ -62,10 +62,10 @@
       
         <div class="pl-info">
           {% if bill.proposition_set.all.0.situation %}
-            <span class="item">Status da pl: <span class="pl-status">{{ bill.proposition_set.all.0.situation }}</span></span>
+            <span class="item">{% trans "Bill status:" %} <span class="pl-status">{{ bill.proposition_set.all.0.situation }}</span></span>
           {% endif %}
-          <span class="item">Participantes: <span class="users-count">{{ bill|attendees_count }}</span></span> 
-          <span class="item"> Propostas: <span class="prop-count">{{ bill|proposals_count }}</span></span>
+          <span class="item">{% trans "Attendees:" %} <span class="users-count">{{ bill|attendees_count }}</span></span> 
+          <span class="item"> {% trans "Proposals:" %} <span class="prop-count">{{ bill|proposals_count }}</span></span>
         </div>
       
         <div class="pl-about">
@@ -103,8 +103,8 @@
           {% endif %}
         </div>
       
-      
-        <!--        {% for author in authors %}
+        <!--
+        {% for author in authors %}
             <div class="pl-author">
                 {% if author.user.avatar %}
                     <div class="avatar" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
@@ -117,7 +117,8 @@
                 </div>
             </div>
             {% if not forloop.last %}<hr />{% endif %}
-        {% endfor %}-->
+        {% endfor %}
+        -->
       
         {% for item in videos %}
           <div class="pl-about video-descripition">
@@ -167,7 +168,7 @@
             type: "GET",
             url: "/newsletter/verify/" + {{ bill.id }} + "/" + $('#id_periodicity').val() + "/",
             error: function (data) {
-                alert("Ocorreu um erro, por favor, tente novamente.");
+                alert("An error occurred, please try again."); // TODO: How do we internationalize strings inside JS?
             }
         });
     }

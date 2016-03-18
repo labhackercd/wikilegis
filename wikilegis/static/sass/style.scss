@@ -479,6 +479,22 @@ strong {
     max-width: 960px;
 }
 
+.pl-title {
+    font-weight: 700;
+    color: $gray;
+}
+
+.circle {
+        width: 70px;
+        height: 70px;
+        @media #{$medium-and-down} {
+            width: 40px;
+            height: 40px;
+            padding: 0.4em;
+            border-width: 2px;
+        }
+    }
+
 .pl-description {
     margin-top: 20px;
     font-size: 1.2em;
@@ -502,7 +518,6 @@ strong {
         .item {
             margin-right: 20px;
         }
-        margin-top: 50px;
         margin-bottom: 20px;
         color: $medgrey;
         .pl-status {
@@ -584,16 +599,69 @@ strong {
             margin-right: 10px;
         }
     }
+
+    .subscribe-header {
+        background-color: $maingreen;
+        color: white;
+        border: none;
+        height: auto;
+        display: flex;
+        > .header-text {
+            padding: 0.45rem 0;
+            line-height: 1.5rem;
+        }
+    }
+
+    .subscribe-button {
+        border: none;
+    }
+
+    .subscribe-body {
+        background-color: #fff;
+    }
+
+    .subscribe-options {
+        padding: 0 2rem 2rem;
+    }
+
+    .subscribe-body {
+        font-size: 1rem;
+        border: none;
+    }
+
+    .subscribe-submit {
+        background-color: $unnamedcolor;
+        color: white;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .subscribe-cancel {
+        background-color: #748CA0;
+        height: auto;
+        border-radius: 0;
+        line-height: 1.5rem;
+        min-height: 3rem;
+        display: flex;
+        width: 100%;
+        padding: 0.45rem 1rem;
+        margin: 0.5rem 0 1rem 0;
+        text-align: left;
+        text-transform: none;
+        color: white;
+        > i {
+            font-size: 1.6rem;
+        }
+    }
+
 }
 
 .list-amendment {
+    margin-bottom: 100px;
+    
     .amendment-thead {
         min-height: 100px;
-        margin-bottom: 40px;
         background-image: url(static("img/brasao.png"));
-        @media #{$small-and-down} {
-            background-image: none;
-        }
         background-repeat: no-repeat;
         background-position-y: center;
         background-position-x: 20px;
@@ -601,6 +669,7 @@ strong {
     }
     .amendment-title {
         text-align: center;
+        margin-left: 0;
     }
     h1, h2, h3, h4, h5, h6 {
         margin-left: 60px;
@@ -612,10 +681,11 @@ strong {
     @media #{$medium-and-down} {
         padding-right: 20px;
     }
-    margin-top: 50px !important;
+    
     .syllabus {
         opacity: .85;
         margin-top: 20px;
+        margin-bottom: 20px;
         @media #{$small-and-down} {
             padding-left: 73px;
         }
@@ -800,7 +870,7 @@ strong {
         color: inherit;
     }
     
-    position: relative;
+    position: relative; 
     /*    padding-left: 30px !important;
     padding-right: 30px !important;*/
     
@@ -836,9 +906,6 @@ strong {
         justify-content: flex-start;
         align-content: center;
         align-items: center;
-        .content {
-            max-width: 840px;
-        }
         &.paragrafo {
             margin-left: 30px;
         }

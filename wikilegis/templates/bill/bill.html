@@ -1,104 +1,176 @@
-{% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
+{% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% load subscribers %} {% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
 <style>
     select {display:block;}
 </style>
 <div class="container">
+  
+  <div class="row valign-wrapper">
+    <div class="col s2 l1 valign">
+      <div class="circle {% if bill.status = 'closed' %}border-red{% endif %} valign-wrapper">
+        <img class="logo" src="{% static 'img/icons/' %}{{ bill.theme }}{% if bill.status = 'closed' %}-2{% endif %}.png" alt="{{ bill.get_theme_display }}" title="{{ bill.get_theme_display }}"/>
+      </div>
+    </div>
+    <div class="col s10 l11 valign">
+      <h4 class="pl-title">{{ bill.title }}</h4>
+    </div>
+  </div>
 
-    <div class="pl-full pl-description">
-        <div class="cont">
-        <div class="row valign-wrapper">
-            <div class="col s3 m2 l1">
-                <div class="circle {% if bill.status = 'closed' %}border-red{% endif %} valign-wrapper">
-                    <img class="logo" src="{% static 'img/icons/' %}{{ bill.theme }}{% if bill.status = 'closed' %}-2{% endif %}.png" alt="{{ bill.get_theme_display }}" title="{{ bill.get_theme_display }}"/>
+  <div class="row">
+    
+    <div class="col s12 l3 push-l9">
+      <div class="pl-full pl-description">
+
+        {% if user.is_authenticated %}
+          {% subscriber bill.id request.user.id as newsletter_status %}
+          <form action="{% url 'verify_newsletter' bill.id %}#btn_newsletter" method="get">
+          {% if newsletter_status %}
+            <button class="subscribe-cancel btn-flat waves-effect waves-light valign-wrapper" type="submit">
+              <i class="material-icons valign left">backspace</i>
+              <span class="header-text valign">{% trans "Unsubscribe" %}</span>
+            </button>
+          {% else %}
+            <ul class="subscribe-button collapsible">
+              <li>
+                <div class="subscribe-header collapsible-header waves-effect waves-light valign-wrapper">
+                  <i class="material-icons valign">email</i>
+                  <span class="header-text valign">{% trans "Subscribe to this bill" %}</span>
                 </div>
-            </div>
-            <div class="col s9 m10">
-                <h4 class="pl-title">{{ bill.title }}</h4>
-            </div>
+                <div class="subscribe-body collapsible-body">
 
-        </div>
-        <div class="pl-info">
-            {% if bill.proposition_set.all.0.situation %}
-            <span class="item">Status da pl: <span class="pl-status">{{ bill.proposition_set.all.0.situation }}</span></span>
-            {% endif %}
-            <span class="item">Participantes: <span class="users-count">{{ bill|attendees_count }}</span></span> <span class="item"> Propostas: <span class="prop-count">{{ bill|proposals_count }}</span></span>
-        </div>
+                  <p>{% trans "You can be notified of changes in this bill via e-mail by subscribing to it." %}</p>
 
-        <div class="pl-about">
-            {% if bill.proposition_set.all.0.id_proposition %}
-            <a target="_blank" href="http://www2.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">{{ bill.description|safe|linebreaks }}</a> {% else %} {{ bill.description|safe|linebreaks }} {% endif %}
-        </div>
-
-        <div class="row">
-            {% if bill.proposition_set.all.0.id_register %}
-
-            <div class="after-bar">
-                    <div class="user col s12 m4 valign-wrapper">
-                        <div class="col m3 s2">
-                            <div class="avatr">
-                                {% if bill.proposition_set.all.0.id_register %}
-                                <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.proposition_set.all.0.id_register }}.jpg')"></div>
-                                {% else %}
-                                <div class="pic" style="background-image: url('{% static "img/user.png" %}')"></div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="col m9 s9">
-                            <span class="user-name"><a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">{{ bill.proposition_set.all.0.author }} </a></span>
-                            <p class="p-uf">({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})</p>
-                            <p class="date">{{ bill.created|date }}</p>
-                        </div>
+                  <div class="subscribe-options">
+                    <div>
+                      <input class="with-gap" value="weekly" name="periodicity" type="radio" id="periodicity_weekly" checked>
+                      <label for="periodicity_weekly">{% trans "Weekly" %}</label>
                     </div>
+                    
+                    <div>
+                      <input class="with-gap" value="daily" name="periodicity" type="radio" id="periodicity_daily">
+                      <label for="periodicity_daily">{% trans "Daily" %}</label>
+                    </div>
+                  </div>
+
+                  <button class="subscribe-submit btn-flat waves-effect waves-light" type="submit">{% trans "Subscribe" %}</button>
+
                 </div>
-
-            {% endif %}
+              </li>
+            </ul>
+          {% endif %}
+          </form>
+        {% endif %}
+      
+        <div class="pl-info">
+          {% if bill.proposition_set.all.0.situation %}
+            <span class="item">{% trans "Bill status:" %} <span class="pl-status">{{ bill.proposition_set.all.0.situation }}</span></span>
+          {% endif %}
+          <span class="item">{% trans "Attendees:" %} <span class="users-count">{{ bill|attendees_count }}</span></span> 
+          <span class="item"> {% trans "Proposals:" %} <span class="prop-count">{{ bill|proposals_count }}</span></span>
         </div>
-
-
-        <!--        {% for author in authors %}
+      
+        <div class="pl-about">
+          {% if bill.proposition_set.all.0.id_proposition %}
+            <a target="_blank" href="http://www2.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">
+            {{ bill.description|safe|linebreaks }}
+            </a> 
+            {% else %} 
+            {{ bill.description|safe|linebreaks }} 
+          {% endif %}
+        </div>
+      
+        <div class="row">
+          {% if bill.proposition_set.all.0.id_register %}
+            <div class="after-bar">
+              <div class="user col s12 valign-wrapper">
+                <div class="col m3 s2">
+                  <div class="avatr">
+                    {% if bill.proposition_set.all.0.id_register %}
+                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.proposition_set.all.0.id_register }}.jpg')"></div>
+                    {% else %}
+                    <div class="pic" style="background-image: url('{% static 'img/user.png' %}')"></div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="col m9 s9">
+                  <span class="user-name">
+                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">{{ bill.proposition_set.all.0.author }} </a>
+                  </span>
+                  <p class="p-uf">({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})</p>
+                  <p class="date">{{ bill.created|date }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      
+        <!--
+        {% for author in authors %}
             <div class="pl-author">
-            
                 {% if author.user.avatar %}
                     <div class="avatar" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
                 {% else %}
                     <div class="avatar" style="background-image: url('{% static "img/user.png" %}')"></div>
                 {% endif %}
-
+      
                 <div class="info">
                     <span class="author"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
                 </div>
             </div>
             {% if not forloop.last %}<hr />{% endif %}
-        {% endfor %}-->
-
-        {% for item in videos %}
-        <div class="pl-about video-descripition">
-            {% video item.url %}
-        </div>
-        {% if not forloop.last %}
-        <hr />{% endif %} {% endfor %}
-            
-        <div class="divider"></div>
-    </div>
-    </div>
-
-    <div class="row pl-full list-amendment">
-        <div class="cont">
-            <!--Article header template, uncomment subs and titles later-->
-            <h4 class="amendment-title">{{ bill.title }}</h4>
-            <!--<h5 class="sub">{{ segment.content }}</h5>-->
-
-            <div class="row amendment-thead">
-                <div class="col s12 m6 offset-m6 syllabus">
-                    {{ bill.description }}
-                </div>
-            </div>
-
-        </div>
-        {% for segment in original_segments %}
-            {% include "bill/_bill_segment_item.html" %}
         {% endfor %}
-
+        -->
+      
+        {% for item in videos %}
+          <div class="pl-about video-descripition">
+            {% video item.url %}
+          </div>
+          {% if not forloop.last %}
+            <hr />
+          {% endif %} 
+        {% endfor %}
+          
+        <div class="divider"></div>
+      </div>
     </div>
 
+    <div class="col s12 l9 pull-l3">
+      <div class="row pl-full list-amendment">
+        <div class="col l11">
+          <!--Article header template, uncomment subs and titles later-->
+          <h4 class="amendment-title">{{ bill.title }}</h4>
+          <!--<h5 class="sub">{{ segment.content }}</h5>-->
+        
+          <div class="row">
+            <div class="amendment-thead col s6 offset-s4 m5 offset-m1">
+              
+            </div>
+            <div class="syllabus col s12 m6">
+              {{ bill.description }}
+            </div>
+          </div>
+        
+        
+          {% for segment in original_segments %}
+            {% include "bill/_bill_segment_item.html" %}
+          {% endfor %}
+        </div>  
+      </div>
+  
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block partialscript %}
+<script type="text/javascript">
+    function verify_newsletter() {
+        $.ajax({
+            type: "GET",
+            url: "/newsletter/verify/" + {{ bill.id }} + "/" + $('#id_periodicity').val() + "/",
+            error: function (data) {
+                alert("An error occurred, please try again."); // TODO: How do we internationalize strings inside JS?
+            }
+        });
+    }
+</script>
 {% endblock %}

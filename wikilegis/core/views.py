@@ -205,7 +205,6 @@ class CreateProposal(CreateView):
         return form_kwargs
 
     def form_valid(self, form):
-        import ipdb;ipdb.set_trace()
         amendment = BillSegment()
         amendment.bill_id = self.kwargs['bill_id']
         amendment.type = form.cleaned_data['type']

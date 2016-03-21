@@ -69,13 +69,13 @@
                             <p class="d">{{ bill.description|linebreaks|truncatechars:205 }}</p>
                             <span class="pl-created-date">Criado em {{ bill.created|date }}</span>
                         </div>                        
-                        <div class="row valign-wrapper">
+                        <div class="row">
                             {% if bill.proposition_set.all.0.situation %}
-                            <div class="col s12 m6 status">
+                            <div class="col s12 status">
                                 <span class="title">Status da PL: </span><span class="status-content">{{ bill.proposition_set.all.0.situation }}</span>
                             </div>
                             {% else %}
-                            <div class="col s12 m6"></div>
+                            <div class="col s12"></div>
                             {% endif %}
                         </div>
                     </div>

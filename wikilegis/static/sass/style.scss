@@ -969,6 +969,7 @@ strong {
         .article-content {
             padding: 10px;
             float: left;
+            word-break: break-word;
              &:hover {
                 background-color: white;
                 -webkit-box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
@@ -1404,7 +1405,7 @@ $opacity: .4;
     max-width: 840px;
     .user {
         .user-name {
-            word-break: break-all;
+            word-break: break-word;
             font-weight: bold;
             font-size: 1.1em;
         }

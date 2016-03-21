@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 13:38-0300\n"
+"POT-Creation-Date: 2016-03-21 14:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -342,6 +342,7 @@ msgid ""
 msgstr "Usuários nestes grupos terão permissão para alterar este documento."
 
 #: core/models.py:99 core/models.py:124 core/models.py:206
+#: notification/models.py:29
 msgid "bill"
 msgstr "projeto de lei"
 
@@ -409,7 +410,7 @@ msgstr "proposta"
 msgid "citizen amendments"
 msgstr "propostas"
 
-#: core/models.py:192
+#: core/models.py:192 notification/models.py:30
 msgid "user"
 msgstr "usuário"
 
@@ -515,33 +516,53 @@ msgstr "Relevantes"
 
 #: core/views.py:33
 msgid "Date"
-msgstr "Data"
+msgstr "Recentes"
 
 #: core/views.py:150
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:180 core/views.py:222
+#: core/views.py:180 core/views.py:221
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
 
-#: notification/models.py:7
+#: notification/models.py:11
 msgid "amendment"
 msgstr "proposta"
 
-#: notification/models.py:8
+#: notification/models.py:12
 msgid "hour"
 msgstr "hora"
 
-#: notification/models.py:12
+#: notification/models.py:16
 msgid "history notification"
 msgstr ""
 
-#: notification/models.py:13
+#: notification/models.py:17
 msgid "history notifications"
 msgstr ""
+
+#: notification/models.py:25 templates/bill/bill.html:51
+msgid "Daily"
+msgstr "Diariamente"
+
+#: notification/models.py:26 templates/bill/bill.html:46
+msgid "Weekly"
+msgstr "Semanalmente"
+
+#: notification/models.py:31
+msgid "periodicity"
+msgstr "periodicidade"
+
+#: notification/models.py:35
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: notification/models.py:36
+msgid "Newsletters"
+msgstr "Newsletters"
 
 #: settings.py:201
 msgid "Google"
@@ -593,7 +614,8 @@ msgstr ""
 "reportar bugs. Se você tiver habilidades de programação, pode também "
 "contribuir para o desenvolvimento do Wikilegis."
 
-#: templates/about.html:33 templates/registration/registration_complete.html:14
+#: templates/about.html:33
+#: templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr "Voltar à página inicial"
 
@@ -630,6 +652,37 @@ msgstr "Alterar perfil"
 #: templates/auth2/show_users_profile.html:15
 msgid "Joined on"
 msgstr "Data de cadastro"
+
+#: templates/bill/bill.html:30
+msgid "Unsubscribe"
+msgstr "Cancelar assinatura"
+
+#: templates/bill/bill.html:37
+msgid "Subscribe to this bill"
+msgstr "Receber notificações"
+
+#: templates/bill/bill.html:41
+msgid ""
+"You can be notified of changes in this bill via e-mail by subscribing to it."
+msgstr ""
+"Você pode ser notificado de mudanças neste projeto via e-mail ao fazer sua "
+"assinatura."
+
+#: templates/bill/bill.html:55
+msgid "Subscribe"
+msgstr "Assinar"
+
+#: templates/bill/bill.html:65
+msgid "Bill status:"
+msgstr "Status da proposta"
+
+#: templates/bill/bill.html:67
+msgid "Attendees:"
+msgstr "Participantes"
+
+#: templates/bill/bill.html:68
+msgid "Proposals:"
+msgstr "Propostas"
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
 msgid "Original text"

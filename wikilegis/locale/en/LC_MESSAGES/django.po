@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 13:38-0300\n"
+"POT-Creation-Date: 2016-03-21 14:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -333,6 +333,7 @@ msgid ""
 msgstr ""
 
 #: core/models.py:99 core/models.py:124 core/models.py:206
+#: notification/models.py:29
 msgid "bill"
 msgstr ""
 
@@ -400,7 +401,7 @@ msgstr ""
 msgid "citizen amendments"
 msgstr ""
 
-#: core/models.py:192
+#: core/models.py:192 notification/models.py:30
 msgid "user"
 msgstr ""
 
@@ -513,25 +514,45 @@ msgstr ""
 msgid "Cannot submit proposals to {object}."
 msgstr ""
 
-#: core/views.py:180 core/views.py:222
+#: core/views.py:180 core/views.py:221
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr ""
 
-#: notification/models.py:7
+#: notification/models.py:11
 msgid "amendment"
 msgstr ""
 
-#: notification/models.py:8
+#: notification/models.py:12
 msgid "hour"
 msgstr ""
 
-#: notification/models.py:12
+#: notification/models.py:16
 msgid "history notification"
 msgstr ""
 
-#: notification/models.py:13
+#: notification/models.py:17
 msgid "history notifications"
+msgstr ""
+
+#: notification/models.py:25 templates/bill/bill.html:51
+msgid "Daily"
+msgstr ""
+
+#: notification/models.py:26 templates/bill/bill.html:46
+msgid "Weekly"
+msgstr ""
+
+#: notification/models.py:31
+msgid "periodicity"
+msgstr ""
+
+#: notification/models.py:35
+msgid "Newsletter"
+msgstr ""
+
+#: notification/models.py:36
+msgid "Newsletters"
 msgstr ""
 
 #: settings.py:201
@@ -575,7 +596,8 @@ msgid ""
 "development of Wikilegis. "
 msgstr ""
 
-#: templates/about.html:33 templates/registration/registration_complete.html:14
+#: templates/about.html:33
+#: templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr ""
 
@@ -611,6 +633,35 @@ msgstr ""
 
 #: templates/auth2/show_users_profile.html:15
 msgid "Joined on"
+msgstr ""
+
+#: templates/bill/bill.html:30
+msgid "Unsubscribe"
+msgstr ""
+
+#: templates/bill/bill.html:37
+msgid "Subscribe to this bill"
+msgstr ""
+
+#: templates/bill/bill.html:41
+msgid ""
+"You can be notified of changes in this bill via e-mail by subscribing to it."
+msgstr ""
+
+#: templates/bill/bill.html:55
+msgid "Subscribe"
+msgstr ""
+
+#: templates/bill/bill.html:65
+msgid "Bill status:"
+msgstr ""
+
+#: templates/bill/bill.html:67
+msgid "Attendees:"
+msgstr ""
+
+#: templates/bill/bill.html:68
+msgid "Proposals:"
 msgstr ""
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24

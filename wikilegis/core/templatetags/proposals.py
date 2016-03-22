@@ -19,6 +19,22 @@ def proposals_count(bill):
 
 
 @register.filter
+def comments_count(bill):
+    total_comments = 0
+    for segment in bill.segments.all():
+        total_comments += segment.comments.count()
+    return total_comments
+
+
+@register.filter
+def votes_count(bill):
+    total_votes = 0
+    for segment in bill.segments.all():
+        total_votes += segment.votes.count()
+    return total_votes
+
+
+@register.filter
 def contribution_count(bill):
     total_comments = 0
     total_votes = 0

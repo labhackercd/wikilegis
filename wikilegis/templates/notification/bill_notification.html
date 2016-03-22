@@ -1,0 +1,36 @@
+{% extends "bill/_base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load proposals %}
+{% load convert_numbers %}
+{% block content %}
+
+    <div class="col m12 pl-full">
+    {% for bill, proposal_list in proposals.items %}
+    {% if not forloop.first %}
+    <hr>
+    {% endif %}
+    <h3>Projeto de lei: {{ bill }}</h3>
+    <h5>Votos: {{ bill|votes_count }} | Comentários: {{ bill|comments_count }} | Propostas: {{ bill|proposals_count }}</h5>
+
+    {% for proposal in proposal_list %}
+        <h4><b>Trecho original:</b></h4>
+        <div class="article-prop">
+            <p id="original">
+                <span class="article-type">{% segment_numbering proposal.replaced %}</span>
+                {{ proposal.replaced.content }}
+                <a href="http://{{ current_site.domain }}{{ proposal.get_absolute_url }}">Acesse clicando aqui</a>
+            </p>
+        </div>
+        <h4><b>Novas Propostas</b></h4>
+        <div class="article-prop">
+            <blockquote style="color: #228B22">{{ proposal.content|safe }}
+                <span style="color: #666666"> - {{ proposal.author }} </span>
+                <a href="http://{{ current_site.domain }}{{ proposal.get_absolute_url }}">Acesse clicando aqui</a>
+            </blockquote>
+        </div>
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endblock %}

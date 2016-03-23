@@ -58,15 +58,7 @@
           {% endif %}
           </form>
         {% endif %}
-      
-        <div class="pl-info">
-          {% if bill.proposition_set.all.0.situation %}
-            <span class="item">{% trans "Bill status:" %} <span class="pl-status">{{ bill.proposition_set.all.0.situation }}</span></span>
-          {% endif %}
-          <span class="item">{% trans "Attendees:" %} <span class="users-count">{{ bill|attendees_count }}</span></span> 
-          <span class="item"> {% trans "Proposals:" %} <span class="prop-count">{{ bill|proposals_count }}</span></span>
-        </div>
-      
+
         <div class="pl-about">
           {% if bill.proposition_set.all.0.id_proposition %}
             <a target="_blank" href="http://www2.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">
@@ -76,7 +68,7 @@
             {{ bill.description|safe|linebreaks }} 
           {% endif %}
         </div>
-      
+
         <div class="row">
           {% if bill.proposition_set.all.0.id_register %}
             <div class="after-bar">
@@ -101,7 +93,17 @@
             </div>
           {% endif %}
         </div>
+
+        <div class="divider"></div>
       
+        <div class="pl-info">
+          {% if bill.proposition_set.all.0.situation %}
+            <span class="item"><span class="pl-subheading">{% trans "Bill status:" %}</span> <span class="pl-status">{{ bill.proposition_set.all.0.situation }}</span></span>
+          {% endif %}
+          <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ bill|attendees_count }}</span></span> 
+          <span class="item"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count">{{ bill|proposals_count }}</span></span>
+        </div>
+            
         <!--
         {% for author in authors %}
             <div class="pl-author">
@@ -128,7 +130,6 @@
           {% endif %} 
         {% endfor %}
           
-        <div class="divider"></div>
       </div>
     </div>
 

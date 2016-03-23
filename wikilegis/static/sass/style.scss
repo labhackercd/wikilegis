@@ -516,11 +516,16 @@ strong {
     }
     .pl-info {
         .item {
-            margin-right: 20px;
+            margin: 10px 0;
+            display: block;
         }
         margin-bottom: 20px;
         color: $medgrey;
+        .pl-subheading {
+            font-weight: 600;
+        }
         .pl-status {
+            display: block;
             color: $rbcolor;
             font-weight: 600;
         }

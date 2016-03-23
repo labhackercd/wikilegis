@@ -674,15 +674,15 @@ msgstr "Assinar"
 
 #: templates/bill/bill.html:65
 msgid "Bill status:"
-msgstr "Status da proposta"
+msgstr "Status da proposta:"
 
 #: templates/bill/bill.html:67
 msgid "Attendees:"
-msgstr "Participantes"
+msgstr "Participantes:"
 
 #: templates/bill/bill.html:68
 msgid "Proposals:"
-msgstr "Propostas"
+msgstr "Propostas:"
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
 msgid "Original text"

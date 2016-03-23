@@ -27,7 +27,7 @@ class Newsletter(TimestampedMixin):
     )
 
     bill = models.ForeignKey('core.Bill', verbose_name=_('bill'))
-    user = models.ForeignKey('auth2.User', verbose_name=_('user'))
+    user = models.ForeignKey('auth2.User', related_name='newsletters', verbose_name=_('user'))
     periodicity = models.CharField(_('periodicity'), max_length=20, choices=PERIODICITY_CHOICES, default='daily')
     status = models.BooleanField(default=True)
 

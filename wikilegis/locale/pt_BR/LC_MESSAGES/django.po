@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-21 14:38-0300\n"
+"POT-Creation-Date: 2016-03-23 14:45-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -731,6 +731,22 @@ msgstr ""
 "Deputados, com o objetivo de permitir ao(à) cidadão(ã) a propor alterações à "
 "redação de projetos de lei."
 
+#: templates/index.html:19
+msgid "Login"
+msgstr "Iniciar sessão"
+
+#: templates/index.html:19
+msgid "or"
+msgstr "ou"
+
+#: templates/index.html:19
+msgid "sign in"
+msgstr "cadastre-se"
+
+#: templates/index.html:25
+msgid "See the bills you can opine"
+msgstr "Veja os projetos de lei que você pode opinar"
+
 #: templates/index.html:42
 msgid "Closed Law Projects"
 msgstr "Projetos de Lei fechados"
@@ -742,6 +758,34 @@ msgstr "Projetos de lei"
 #: templates/index.html:51
 msgid "Open"
 msgstr "Abertas"
+
+#: templates/index.html:70
+msgid "Created at"
+msgstr "Criado em"
+
+#: templates/index.html:75
+msgid "Status"
+msgstr "Estado"
+
+#: templates/index.html:85
+msgid "Proposals"
+msgstr "Propostas"
+
+#: templates/index.html:85
+msgid "Proposal"
+msgstr "Proposta"
+
+#: templates/index.html:89 templates/index.html.py:93
+msgid "No proposals"
+msgstr "Não há propostas"
+
+#: templates/index.html:94
+msgid "Participate"
+msgstr "Participe"
+
+#: templates/index.html:105
+msgid "No bills"
+msgstr "Não há projetos de lei"
 
 #: templates/registration/login.html:43
 msgid "Activate Account"

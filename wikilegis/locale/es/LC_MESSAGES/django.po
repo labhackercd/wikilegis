@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-21 14:38-0300\n"
+"POT-Creation-Date: 2016-03-23 14:45-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -709,6 +709,22 @@ msgid ""
 "wording of Bills"
 msgstr ""
 
+#: templates/index.html:19
+msgid "Login"
+msgstr ""
+
+#: templates/index.html:19
+msgid "or"
+msgstr ""
+
+#: templates/index.html:19
+msgid "sign in"
+msgstr ""
+
+#: templates/index.html:25
+msgid "See the bills you can opine"
+msgstr ""
+
 #: templates/index.html:42
 msgid "Closed Law Projects"
 msgstr ""
@@ -719,6 +735,34 @@ msgstr ""
 
 #: templates/index.html:51
 msgid "Open"
+msgstr ""
+
+#: templates/index.html:70
+msgid "Created at"
+msgstr ""
+
+#: templates/index.html:75
+msgid "Status"
+msgstr ""
+
+#: templates/index.html:85
+msgid "Proposals"
+msgstr ""
+
+#: templates/index.html:85
+msgid "Proposal"
+msgstr ""
+
+#: templates/index.html:89 templates/index.html.py:93
+msgid "No proposals"
+msgstr ""
+
+#: templates/index.html:94
+msgid "Participate"
+msgstr ""
+
+#: templates/index.html:105
+msgid "No bills"
 msgstr ""
 
 #: templates/registration/login.html:43

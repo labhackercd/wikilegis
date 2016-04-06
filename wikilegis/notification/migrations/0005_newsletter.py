@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('periodicity', models.CharField(default=b'daily', max_length=20, verbose_name='periodicity', choices=[(b'daily', 'Daily'), (b'weekly', 'Weekly')])),
                 ('status', models.BooleanField(default=True)),
                 ('bill', models.ForeignKey(verbose_name='bill', to='core.Bill')),
-                ('user', models.ForeignKey(verbose_name='user', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(related_name='newsletters', verbose_name='user', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Newsletter',

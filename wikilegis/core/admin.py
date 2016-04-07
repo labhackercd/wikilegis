@@ -167,19 +167,35 @@ class BillAdmin(admin.ModelAdmin):
             segments_child = formset.queryset.filter(parent__isnull=False).order_by('order')
             parents = segments_child.values_list('parent_id', flat=True)
             for parent in list(set(parents)):
-                index_child = 1
                 segments_child_same_parent = segments_child.filter(parent_id=parent).order_by('order')
-                for child in segments_child_same_parent:
-                    if child.order == 0:
-                        child.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
-                        if len(segments_child_same_parent) > 1:
-                            child.number = segments_child_same_parent.aggregate(Max('number'))['number__max'] + 1
+                types_child = list(set(segments_child_same_parent.values_list('type', flat=True)))
+                if types_child > 1:
+                    for each_type in types_child:
+                        index_child = 1
+                        for child in segments_child_same_parent.filter(type__id=each_type):
+                            if child.order == 0:
+                                child.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
+                                if len(segments_child_same_parent) > 1:
+                                    child.number = segments_child_same_parent.aggregate(Max('number'))['number__max'] + 1
+                                else:
+                                    child.number = index_child
+                            else:
+                                child.number = index_child
+                                index_child += 1
+                            child.save()
+                else:
+                    index_child = 1
+                    for child in segments_child_same_parent:
+                        if child.order == 0:
+                            child.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
+                            if len(segments_child_same_parent) > 1:
+                                child.number = segments_child_same_parent.aggregate(Max('number'))['number__max'] + 1
+                            else:
+                                child.number = index_child
                         else:
                             child.number = index_child
-                    else:
-                        child.number = index_child
-                        index_child += 1
-                    child.save()
+                            index_child += 1
+                        child.save()
 
 
     def get_situation(self, obj):

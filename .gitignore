@@ -78,3 +78,5 @@ target/
 __pycache__/
 local_settings.py
 
+### Virtual Environment ###
+venv/

@@ -1,4 +1,4 @@
-[![Travis-ci Build Status](https://travis-ci.org/wikimedia/mediawiki.svg?branch=master)](https://travis-ci.org/mbonaci/mbo-storm)
+Travis Status: [![Travis-ci Build Status](https://travis-ci.org/wikimedia/mediawiki.svg?branch=master)](https://travis-ci.org/mbonaci/mbo-storm)
 
 # Wikilegis
 

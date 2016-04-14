@@ -1,5 +1,5 @@
 # Wikilegis
-===========
+
 [![Build Status](https://travis-ci.org/Themakew/wikilegis.svg?branch=master)](https://travis-ci.org/Themakew/wikilegis/builds)
 [![Coverage Status](https://coveralls.io/repos/github/Themakew/wikilegis/badge.svg?branch=master)](https://coveralls.io/github/Themakew/wikilegis?branch=master)
 

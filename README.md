@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/Themakew/wikilegis.svg?branch=master)](https://travis-ci.org/Themakew/wikilegis/builds)
-
 # Wikilegis
+
+[![Build Status](https://travis-ci.org/Themakew/wikilegis.svg?branch=master)](https://travis-ci.org/Themakew/wikilegis/builds)
+[![Coverage Status](https://coveralls.io/repos/github/Themakew/wikilegis/badge.svg?branch=master)](https://coveralls.io/github/Themakew/wikilegis?branch=master)
 
 Wikilegis is a project developed in Python by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills.
 

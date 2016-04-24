@@ -15,7 +15,7 @@ install:
 
 # command to run tests
 script:
-  - coverage run --source=auth2,core,notification manage.py test auth2 core notification
+  - coverage run --source=wikilegis/ manage.py test
 
 after_success:
   - coveralls

@@ -15,7 +15,7 @@ install:
 
 # command to run tests
 script:
-  - coverage run --source=wikilegis/ manage.py test
+  - coverage run manage.py test wikilegis/ -v 2
 
 after_success:
   - coveralls

@@ -9,8 +9,12 @@ from image_cropping import ImageCroppingMixin
 class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'avatar', 'cropping')}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        (_('Personal info'), {'fields': (
+                                        'first_name', 'last_name',
+                                        'avatar', 'cropping')}),
+        (_('Permissions'), {'fields': (
+                                    'is_active', 'is_staff', 'is_superuser',
+                                    'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (

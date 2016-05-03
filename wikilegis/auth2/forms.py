@@ -1,4 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm, UserChangeForm as BaseUserChangeForm
+from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm
+from django.contrib.auth.forms import UserChangeForm as BaseUserChangeForm
 from image_cropping import ImageCropWidget
 from image_cropping.widgets import CropWidget
 from wikilegis.auth2.models import User

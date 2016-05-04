@@ -14,11 +14,15 @@ from wikilegis.auth2.models import User
 class Command(BaseCommand):
     def handle(self, *args, **options):
         current_site = Site.objects.get_current()
-        users = User.objects.filter(newsletters__isnull=False, newsletters__periodicity='daily').distinct()
+        users = User.objects.filter(newsletters__isnull=
+                                    False, newsletters__periodicity=
+                                    'daily').distinct()
         bill_proposals = defaultdict(list)
         for user in users:
             for newsletter in user.newsletters.all():
-                for segment in newsletter.bill.segments.filter(modified__gte=datetime.now()-timedelta(days=1), original=False):
+                for segment in newsletter.bill.segments.filter(modified__gte=
+                                                               datetime.now()-timedelta(days=1),
+                                                               original=False):
                     bill_proposals[newsletter.bill].append(segment)
             if bill_proposals:
                 html = render_to_string('notification/bill_notification.html',

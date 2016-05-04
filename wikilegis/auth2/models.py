@@ -15,7 +15,7 @@ class UserManager(BaseUserManager):
     use_in_migrations = True
 
     def _create_user(
-                self, email, password, is_staff, is_superuser, **extra_fields):
+            self, email, password, is_staff, is_superuser, **extra_fields):
         """
         Creates and saves a User with the given username, email and password.
         """
@@ -62,7 +62,7 @@ def avatar_validation(image):
         if image.size > max_file_size:
             raise forms.ValidationError(
                 ugettext('The maximum file size is {0}').format(
-                                                    sizeof_fmt(max_file_size)))
+                    sizeof_fmt(max_file_size)))
 
 
 class User(AbstractBaseUser, PermissionsMixin):

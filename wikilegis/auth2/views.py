@@ -16,7 +16,7 @@ from wikilegis.auth2.models import User
 def resend_activation(request):
     if request.method == 'POST':
         user = RegistrationProfile.objects.get(
-                                            user__email=request.POST['email'])
+            user__email=request.POST['email'])
         user.send_activation_email(Site.objects.get_current(), request)
         return redirect("registration_complete")
 
@@ -33,7 +33,7 @@ class ActivationCompleteView(RedirectView):
     def get(self, request, *args, **kwargs):
         messages.info(request, ugettext("Your account is now activated."))
         return super(
-                    ActivationCompleteView, self).get(request, *args, **kwargs)
+            ActivationCompleteView, self).get(request, *args, **kwargs)
 
 
 @login_required

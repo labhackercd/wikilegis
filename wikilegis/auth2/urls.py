@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import url, include
 from registration.backends.default.views import RegistrationView
 from registration.backends.simple.views import (
-                                    RegistrationView as SimpleRegistrationView)
+    RegistrationView as SimpleRegistrationView)
 from wikilegis.auth2.views import ActivationCompleteView
 
 urlpatterns = [

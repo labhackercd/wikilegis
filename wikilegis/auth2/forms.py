@@ -23,10 +23,13 @@ class RegistrationForm(UserCreationForm):
 
 class CustomImageCropWidget(ImageCropWidget):
     """
+
     Custom ImageCropWidget that doesn't show the initial value of the field.
     We use this trick, and place it right under the CropWidget so that
     it looks like the user is seeing the image and clearing the image.
+
     """
+
     template_with_initial = (
         # '%(initial_text)s: <a href="%(initial_url)s">%(initial)s</a> '
         '%(clear_template)s<br />%(input_text)s: %(input)s'

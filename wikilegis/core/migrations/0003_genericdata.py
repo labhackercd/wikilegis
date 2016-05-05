@@ -16,7 +16,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='GenericData',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
                 ('data', django_extensions.db.fields.json.JSONField(verbose_name='data')),
                 ('type', models.CharField(max_length=100, verbose_name='type')),
                 ('object_id', models.PositiveIntegerField()),

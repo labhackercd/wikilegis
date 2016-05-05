@@ -36,8 +36,7 @@ class BillOrderer(SimpleOrderer):
     def queryset(self, request, queryset):
         value = self.value()
         queryset = queryset.annotate(
-                score=Count('segments__substitutes')
-            )
+            score=Count('segments__substitutes'))
         if value == 'date':
             queryset = queryset.order_by('-modified')
         elif value == 'hot':
@@ -169,7 +168,8 @@ def create_amendment(request, bill_id, segment_id):
             amendment.author = request.user
             amendment.original = False
 
-            # TODO what if the content is empty? or exactly like the original? i suggest flash + ignore
+            # TODO what if the content is empty? or exactly like the original?
+            # i suggest flash + ignore
 
             amendment.save()
 

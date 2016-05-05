@@ -50,8 +50,9 @@ def attendees_count(bill):
     attendees = []
     segment_ctype = ContentType.objects.get_for_model(BillSegment)
     for segment in bill.segments.all():
-        for vote_segment in UpDownVote.objects.filter(content_type=segment_ctype, object_id=segment.id):
-            attendees.append(vote_segment.user.id)
+        # vote_sgt refers to vote segment
+        for vote_sgt in UpDownVote.objects.filter(content_type=segment_ctype, object_id=segment.id):
+            attendees.append(vote_sgt.user.id)
         for comment in Comment.objects.filter(object_pk=segment.pk, content_type=segment_ctype):
             attendees.append(comment.user.id)
     total_attendees = len(list(set(attendees)))

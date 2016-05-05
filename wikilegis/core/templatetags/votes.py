@@ -21,13 +21,19 @@ def content_type(obj):
 @register.simple_tag
 def get_upvote_count(content_object):
     ctype = ContentType.objects.get_for_model(content_object)
-    return UpDownVote.objects.filter(content_type=ctype, object_id=content_object.id, vote=True).count()
+    return UpDownVote.objects.filter(
+        content_type=ctype,
+        object_id=content_object.id,
+        vote=True).count()
 
 
 @register.simple_tag
 def get_downvote_count(content_object):
     ctype = ContentType.objects.get_for_model(content_object)
-    return UpDownVote.objects.filter(content_type=ctype, object_id=content_object.id, vote=False).count()
+    return UpDownVote.objects.filter(
+        content_type=ctype,
+        object_id=content_object.id,
+        vote=False).count()
 
 
 @tag(register, [Variable(), Variable(), Optional([Constant("as"), Name()])])
@@ -35,7 +41,10 @@ def get_user_vote_for(context, user, content_object, name=None):
     if not user.is_anonymous():
         try:
             ctype = ContentType.objects.get_for_model(content_object)
-            vote = UpDownVote.objects.get(user__pk=user.pk, content_type=ctype, object_id=content_object.id).vote
+            vote = UpDownVote.objects.get(
+                user__pk=user.pk,
+                content_type=ctype,
+                object_id=content_object.id).vote
         except UpDownVote.DoesNotExist:
             vote = None
     else:

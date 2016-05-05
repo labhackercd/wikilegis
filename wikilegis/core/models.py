@@ -84,7 +84,11 @@ class Bill(TimestampedMixin):
     title = models.CharField(_('title'), max_length=255)
     description = models.TextField(_('description'))
     status = models.CharField(_('status'), max_length=20, choices=BILL_STATUS_CHOICES, default='1')
-    theme = models.CharField(_('theme'), max_length=255, choices=BILL_THEMES_CHOICES, default='documento')
+    theme = models.CharField(
+        _('theme'),
+        max_length=255,
+        choices=BILL_THEMES_CHOICES,
+        default='documento')
     editors = models.ManyToManyField(
         'auth.Group', verbose_name=_('editors'), blank=True,
         help_text=_('Any users in any of these groups will '
@@ -125,8 +129,18 @@ class BillSegment(TimestampedMixin):
     order = models.PositiveIntegerField(_('order'), default=0)
     type = models.ForeignKey(TypeSegment, verbose_name=_('type'))
     number = models.PositiveIntegerField(_('number'), null=True, blank=True, default=0)
-    parent = models.ForeignKey('self', related_name='children', verbose_name=_('segment parent'), null=True, blank=True)
-    replaced = models.ForeignKey('self', related_name='substitutes', verbose_name=_('segment replaced'), null=True, blank=True)
+    parent = models.ForeignKey(
+        'self',
+        related_name='children',
+        verbose_name=_('segment parent'),
+        null=True,
+        blank=True)
+    replaced = models.ForeignKey(
+        'self',
+        related_name='substitutes',
+        verbose_name=_('segment replaced'),
+        null=True,
+        blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'), null=True)
     original = models.BooleanField(_('original'), default=True)
     content = models.TextField(_('content'))
@@ -166,7 +180,10 @@ class BillSegment(TimestampedMixin):
 
 class CitizenAmendment(TimestampedMixin):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'))
-    segment = models.ForeignKey('core.BillSegment', related_name='amendments', verbose_name=_('bill segment'))
+    segment = models.ForeignKey(
+        'core.BillSegment',
+        related_name='amendments',
+        verbose_name=_('bill segment'))
     content = models.TextField(_('content'))
 
     class Meta:
@@ -207,10 +224,18 @@ class Proposition(models.Model):
     type = models.CharField(_('type'), max_length=200, null=True, blank=True)
     number = models.CharField(_('number'), max_length=50, null=True, blank=True)
     year = models.CharField(_('year'), max_length=4, null=True, blank=True)
-    name_proposition = models.CharField(_('name proposition'), max_length=200, null=True, blank=True)
+    name_proposition = models.CharField(
+        _('name proposition'),
+        max_length=200,
+        null=True,
+        blank=True)
     id_proposition = models.IntegerField(_('id proposition'), null=True, blank=True)
     id_main_proposition = models.IntegerField(_('id main proposition'), null=True, blank=True)
-    name_origin_proposition = models.CharField(_('name origin proposition'), max_length=200, null=True, blank=True)
+    name_origin_proposition = models.CharField(
+        _('name origin proposition'),
+        max_length=200,
+        null=True,
+        blank=True)
     theme = models.CharField(_('theme'), max_length=200, null=True, blank=True)
     menu = models.TextField(_('menu'), null=True, blank=True)
     menu_explanation = models.TextField(_('menu_explanation'), null=True, blank=True)
@@ -219,7 +244,11 @@ class Proposition(models.Model):
     uf_author = models.CharField(_('uf author'), max_length=200, null=True, blank=True)
     party_author = models.CharField(_('party author'), max_length=200, null=True, blank=True)
     apresentation_date = models.DateField(_('apresentation date'), null=True, blank=True)
-    processing_regime = models.CharField(_('processing_regime'), max_length=200, null=True, blank=True)
+    processing_regime = models.CharField(
+        _('processing_regime'),
+        max_length=200,
+        null=True,
+        blank=True)
     last_dispatch_date = models.DateField(_('last dispatch date'), null=True, blank=True)
     last_dispatch = models.TextField(_('last dispatch'), null=True, blank=True)
     appraisal = models.TextField(_('appraisal'), null=True, blank=True)

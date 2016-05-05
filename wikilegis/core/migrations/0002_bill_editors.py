@@ -15,6 +15,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='bill',
             name='editors',
-            field=models.ManyToManyField(help_text='Any users in any of these groups will have permission to change this document.', to='auth.Group', verbose_name='editors', blank=True),
+            field=models.ManyToManyField(help_text='Any users in any of these groups will'
+                                         + 'have permission to change this document.',
+                                         to='auth.Group', verbose_name='editors', blank=True),
         ),
     ]

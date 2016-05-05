@@ -4,7 +4,8 @@ import models
 from django.test.client import Client
 
 
-class TestUserLogin(TestCase):
+class TestLogin(TestCase):
+    
     def test_is_account_login_page(self):
         client = Client()
         response = client.get('/accounts/login/')

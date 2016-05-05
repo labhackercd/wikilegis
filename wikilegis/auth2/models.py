@@ -103,6 +103,5 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_display_name(self):
         return self.get_full_name() or self.email
 
-    @permalink
     def get_absolute_url(self):
-        return 'users_profile', [self.pk], {}
+        return reverse('users_profile', args=[self.pk])

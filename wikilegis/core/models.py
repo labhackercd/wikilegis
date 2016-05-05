@@ -99,9 +99,8 @@ class Bill(TimestampedMixin):
         verbose_name = _('bill')
         verbose_name_plural = _('bills')
 
-    @permalink
     def get_absolute_url(self):
-        return 'show_bill', [self.pk], {}
+        return reverse('show_bill', args=[self.pk])
 
     @property
     def content(self):
@@ -183,9 +182,8 @@ class CitizenAmendment(TimestampedMixin):
     def html_id(self):
         return 'amendment-{0}'.format(self.pk)
 
-    @permalink
     def get_absolute_url(self):
-        return 'show_amendment', [self.pk]
+        return reverse('show_amendment', args=[self.pk])
 
 
 class UpDownVote(TimestampedMixin):

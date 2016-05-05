@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='HistoryNotification',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID',
+                                        serialize=False, auto_created=True, primary_key=True)),
                 ('hour', models.DateTimeField(default=datetime.datetime.now, verbose_name='hour')),
                 ('bill', models.ForeignKey(verbose_name='bill', to='core.Bill')),
             ],

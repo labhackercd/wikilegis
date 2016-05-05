@@ -23,7 +23,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='historynotification',
             name='amendment',
-            field=models.ForeignKey(default=None, verbose_name='amendment', to='core.CitizenAmendment'),
+            field=models.ForeignKey(default=None, verbose_name='amendment',
+                                    to='core.CitizenAmendment'),
             preserve_default=False,
         ),
     ]

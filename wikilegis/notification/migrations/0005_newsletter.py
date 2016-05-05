@@ -17,13 +17,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Newsletter',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='created')),
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='modified')),
-                ('periodicity', models.CharField(default=b'daily', max_length=20, verbose_name='periodicity', choices=[(b'daily', 'Daily'), (b'weekly', 'Weekly')])),
+                ('periodicity', models.CharField(default=b'daily', max_length=20, verbose_name=
+                                                 'periodicity', choices=[(b'daily', 'Daily'),
+                                                                         (b'weekly', 'Weekly')])),
                 ('status', models.BooleanField(default=True)),
                 ('bill', models.ForeignKey(verbose_name='bill', to='core.Bill')),
-                ('user', models.ForeignKey(related_name='newsletters', verbose_name='user', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(related_name='newsletters', verbose_name='user',
+                                           to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Newsletter',
@@ -35,4 +39,3 @@ class Migration(migrations.Migration):
             unique_together=set([('user', 'bill')]),
         ),
     ]
-

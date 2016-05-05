@@ -20,8 +20,8 @@ class Migration(migrations.Migration):
             model_name='bill',
             name='status',
             field=models.CharField(default='draft', max_length=20, verbose_name='status',
-                                   choices=[('draft', 'Draft'), ('published', 'Published'), ('closed', 'Closed')]),
+                                   choices=[('draft', 'Draft'),
+                                            ('published', 'Published'), ('closed', 'Closed')]),
         ),
         migrations.RunPython(publish_previous_bills),
     ]
-

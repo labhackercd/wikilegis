@@ -9,7 +9,6 @@ class Command(BaseCommand):
         propositions = Proposition.objects.all()
         for proposition in propositions:
             params = {'IdProp': proposition.id_proposition}
-            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID'
-                                    , params=params)
+            site = 'http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID'
+            response = requests.get(site, params=params)
             update_proposition(response, proposition.id_proposition)
-

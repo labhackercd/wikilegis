@@ -14,6 +14,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='bill',
             name='status',
-            field=models.CharField(default='1', max_length=20, verbose_name='status', choices=[('draft', 'Draft'), ('published', 'Published'), ('closed', 'Closed')]),
+            field=models.CharField(default='1', max_length=20, verbose_name=
+                                   'status', choices=[('draft', 'Draft'),
+                                                      ('published', 'Published'),
+                                                      ('closed', 'Closed')]),
         ),
     ]

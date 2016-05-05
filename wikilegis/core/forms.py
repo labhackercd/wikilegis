@@ -75,11 +75,14 @@ class MetaVideoForm(GenericDataAdminForm):
 
 
 class CitizenAmendmentCreationForm(forms.ModelForm):
-    comment = forms.CharField(label=_("You can explain your proposal here."), widget=forms.Textarea(), required=False)
+    comment = forms.CharField(
+        label=_("You can explain your proposal here."),
+        widget=forms.Textarea(), required=False)
 
     def __init__(self, *args, **kwargs):
         super(CitizenAmendmentCreationForm, self).__init__(*args, **kwargs)
-        self.fields['content'].label = _("Suggest a new proposal! You can begin editing the original one.")
+        self.fields['content'].label = _(
+            "Suggest a new proposal! You can begin editing the original one.")
 
     class Meta:
         model = models.BillSegment
@@ -110,7 +113,7 @@ class BillAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Bill
-        fields = ('title', 'description', 'status',  'editors', 'type', 'number', 'year')
+        fields = ('title', 'description', 'status', 'editors', 'type', 'number', 'year')
 
     def clean(self):
         if self.data['type'] or self.data['number'] or self.data['year']:
@@ -131,9 +134,14 @@ class BillAdminForm(forms.ModelForm):
             if instance.proposition_set.all():
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)
             try:
-                params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data['number'], 'ano': self.cleaned_data['year']}
-                response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
-                                        params=params)
+                params = {
+                    'tipo':
+                    self.cleaned_data['type'],
+                    'numero': self.cleaned_data['number'],
+                    'ano': self.cleaned_data['year']}
+                response = requests.get(
+                    'http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
+                    params=params)
                 create_proposition(response, instance.id)
             except:
                 pass
@@ -170,9 +178,11 @@ def create_proposition(response, bill_id):
     proposition.id_register = tree.find('ideCadastro').text
     proposition.uf_author = tree.find('ufAutor').text
     proposition.party_author = tree.find('partidoAutor').text
-    proposition.apresentation_date = datetime.strptime(tree.find('DataApresentacao').text, '%d/%m/%Y').date()
+    proposition.apresentation_date = datetime.strptime(
+        tree.find('DataApresentacao').text, '%d/%m/%Y').date()
     proposition.processing_regime = tree.find('RegimeTramitacao').text
-    proposition.last_dispatch_date = datetime.strptime(tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
+    proposition.last_dispatch_date = datetime.strptime(
+        tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
     proposition.last_dispatch = tree.find('UltimoDespacho').text
     proposition.appraisal = tree.find('Apreciacao').text
     proposition.indexing = tree.find('Indexacao').text
@@ -201,9 +211,11 @@ def update_proposition(response, proposition_id):
     proposition.id_register = tree.find('ideCadastro').text
     proposition.uf_author = tree.find('ufAutor').text
     proposition.party_author = tree.find('partidoAutor').text
-    proposition.apresentation_date = datetime.strptime(tree.find('DataApresentacao').text, '%d/%m/%Y').date()
+    proposition.apresentation_date = datetime.strptime(
+        tree.find('DataApresentacao').text, '%d/%m/%Y').date()
     proposition.processing_regime = tree.find('RegimeTramitacao').text
-    proposition.last_dispatch_date = datetime.strptime(tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
+    proposition.last_dispatch_date = datetime.strptime(
+        tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
     proposition.last_dispatch = tree.find('UltimoDespacho').text
     proposition.appraisal = tree.find('Apreciacao').text
     proposition.indexing = tree.find('Indexacao').text
@@ -214,13 +226,17 @@ def update_proposition(response, proposition_id):
 
 
 class AddProposalForm(forms.ModelForm):
-    comment = forms.CharField(label=_("You can explain your proposal here."), widget=forms.Textarea(), required=False)
+    comment = forms.CharField(
+        label=_("You can explain your proposal here."),
+        widget=forms.Textarea(),
+        required=False)
 
     def __init__(self, *args, **kwargs):
         self.bill_id = kwargs.pop('bill_id')
         super(AddProposalForm, self).__init__(*args, **kwargs)
         self.fields['type'].queryset = TypeSegment.objects.filter(editable=True)
-        self.fields['parent'].queryset = BillSegment.objects.filter(bill__id=self.bill_id, original=True)
+        self.fields['parent'].queryset = BillSegment.objects.filter(
+            bill__id=self.bill_id, original=True)
 
     class Meta:
         model = BillSegment

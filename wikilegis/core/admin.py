@@ -41,7 +41,7 @@ propositions_update.short_description = _("Update status of selected bills")
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
     model = models.BillSegment
     extra = 1
-    exclude = ['original', 'replaced', 'author', 'number']
+    exclude = ['original', 'replaced', 'author']
 
     def get_queryset(self, request):
         return super(BillSegmentInline, self).get_queryset(request).filter(original=True)
@@ -145,57 +145,6 @@ class BillAdmin(admin.ModelAdmin):
             redirect_url = add_preserved_filters({'preserved_filters': preserved_filters, 'opts': opts}, redirect_url)
             return HttpResponseRedirect(redirect_url+'#add_segment')
         return super(BillAdmin, self).response_change(request, obj)
-
-    def save_formset(self, request, form, formset, change):
-        formset.save()
-        if formset.model == BillSegment:
-            index_parent = 1
-            types = TypeSegment.objects.filter(editable=True)
-            for type_segment in types:
-                segments_parent = formset.queryset.filter(type=type_segment, type__editable=True, parent__isnull=True).order_by('order')
-                for segment in segments_parent:
-                    if segment.order == 0:
-                        segment.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
-                        if len(segments_parent) > 1:
-                            segment.number = segments_parent.aggregate(Max('number'))['number__max'] + 1
-                        else:
-                            segment.number = index_parent
-                    else:
-                        segment.number = index_parent
-                        index_parent += 1
-                    segment.save()
-            segments_child = formset.queryset.filter(parent__isnull=False).order_by('order')
-            parents = segments_child.values_list('parent_id', flat=True)
-            for parent in list(set(parents)):
-                segments_child_same_parent = segments_child.filter(parent_id=parent).order_by('order')
-                types_child = list(set(segments_child_same_parent.values_list('type', flat=True)))
-                if types_child > 1:
-                    for each_type in types_child:
-                        index_child = 1
-                        for child in segments_child_same_parent.filter(type__id=each_type):
-                            if child.order == 0:
-                                child.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
-                                if len(segments_child_same_parent) > 1:
-                                    child.number = segments_child_same_parent.aggregate(Max('number'))['number__max'] + 1
-                                else:
-                                    child.number = index_child
-                            else:
-                                child.number = index_child
-                                index_child += 1
-                            child.save()
-                else:
-                    index_child = 1
-                    for child in segments_child_same_parent:
-                        if child.order == 0:
-                            child.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
-                            if len(segments_child_same_parent) > 1:
-                                child.number = segments_child_same_parent.aggregate(Max('number'))['number__max'] + 1
-                            else:
-                                child.number = index_child
-                        else:
-                            child.number = index_child
-                            index_child += 1
-                        child.save()
 
 
     def get_situation(self, obj):

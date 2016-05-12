@@ -81,8 +81,9 @@ class GenericData(models.Model):
 
 
 class Bill(TimestampedMixin):
-    title = models.CharField(_('title'), max_length=255)
-    description = models.TextField(_('description'))
+    title = models.CharField(_('subject'), max_length=255)
+    epigraph = models.CharField(_('epigraph'), max_length=255, null=True)
+    description = models.TextField(_('digest'))
     status = models.CharField(_('status'), max_length=20, choices=BILL_STATUS_CHOICES, default='1')
     theme = models.CharField(_('theme'), max_length=255, choices=BILL_THEMES_CHOICES, default='documento')
     editors = models.ManyToManyField(

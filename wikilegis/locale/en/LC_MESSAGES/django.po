@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-23 14:45-0300\n"
+"POT-Creation-Date: 2016-05-12 17:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,42 +93,42 @@ msgstr ""
 msgid "Update status of selected bills"
 msgstr ""
 
-#: core/admin.py:65 core/models.py:130 core/models.py:168 core/models.py:217
+#: core/admin.py:64 core/models.py:131 core/models.py:169 core/models.py:218
 msgid "author"
 msgstr ""
 
-#: core/admin.py:66
+#: core/admin.py:65
 msgid "authors"
 msgstr ""
 
-#: core/admin.py:75
+#: core/admin.py:74
 msgid "video"
 msgstr ""
 
-#: core/admin.py:76
+#: core/admin.py:75
 msgid "videos"
 msgstr ""
 
-#: core/admin.py:112
+#: core/admin.py:111
 msgid "Legislative proposal"
 msgstr ""
 
-#: core/admin.py:113
+#: core/admin.py:112
 msgid ""
 "This data will be used to assign the project to a legislative proposal "
 "pending before the House of Representatives. You only need to inform them if "
 "your procedure has been initiated. To delete , leave the fields blank."
 msgstr ""
 
-#: core/admin.py:190
+#: core/admin.py:161
 msgid "Situation"
 msgstr ""
 
-#: core/admin.py:194
+#: core/admin.py:165
 msgid "Show"
 msgstr ""
 
-#: core/admin.py:196
+#: core/admin.py:167
 msgid "Report"
 msgstr ""
 
@@ -302,194 +302,198 @@ msgstr ""
 msgid "data"
 msgstr ""
 
-#: core/models.py:77 core/models.py:126 core/models.py:207
+#: core/models.py:77 core/models.py:127 core/models.py:208
 msgid "type"
 msgstr ""
 
 #: core/models.py:84
-msgid "title"
+msgid "subject"
 msgstr ""
 
 #: core/models.py:85
-msgid "description"
+msgid "epigraph"
 msgstr ""
 
 #: core/models.py:86
+msgid "digest"
+msgstr ""
+
+#: core/models.py:87
 msgid "status"
 msgstr ""
 
-#: core/models.py:87 core/models.py:214
+#: core/models.py:88 core/models.py:215
 msgid "theme"
 msgstr ""
 
-#: core/models.py:89
+#: core/models.py:90
 msgid "editors"
 msgstr ""
 
-#: core/models.py:90
+#: core/models.py:91
 msgid ""
 "Any users in any of these groups will have permission to change this "
 "document."
 msgstr ""
 
-#: core/models.py:99 core/models.py:124 core/models.py:206
+#: core/models.py:100 core/models.py:125 core/models.py:207
 #: notification/models.py:29
 msgid "bill"
 msgstr ""
 
-#: core/models.py:100
+#: core/models.py:101
 msgid "bills"
 msgstr ""
 
-#: core/models.py:112
+#: core/models.py:113
 msgid "name"
 msgstr ""
 
-#: core/models.py:113
+#: core/models.py:114
 msgid "editable"
 msgstr ""
 
-#: core/models.py:116
+#: core/models.py:117
 msgid "type segment"
 msgstr ""
 
-#: core/models.py:117
+#: core/models.py:118
 msgid "types segment"
 msgstr ""
 
-#: core/models.py:125
+#: core/models.py:126
 msgid "order"
 msgstr ""
 
-#: core/models.py:127 core/models.py:208
+#: core/models.py:128 core/models.py:209
 msgid "number"
 msgstr ""
 
-#: core/models.py:128
+#: core/models.py:129
 msgid "segment parent"
 msgstr ""
 
-#: core/models.py:129
+#: core/models.py:130
 msgid "segment replaced"
 msgstr ""
 
-#: core/models.py:131
+#: core/models.py:132
 msgid "original"
 msgstr ""
 
-#: core/models.py:132 core/models.py:170
+#: core/models.py:133 core/models.py:171
 msgid "content"
 msgstr ""
 
-#: core/models.py:138
+#: core/models.py:139
 msgid "segment"
 msgstr ""
 
-#: core/models.py:139
+#: core/models.py:140
 msgid "segments"
 msgstr ""
 
-#: core/models.py:169
+#: core/models.py:170
 msgid "bill segment"
 msgstr ""
 
-#: core/models.py:173
+#: core/models.py:174
 msgid "citizen amendment"
 msgstr ""
 
-#: core/models.py:174
+#: core/models.py:175
 msgid "citizen amendments"
 msgstr ""
 
-#: core/models.py:192 notification/models.py:30
+#: core/models.py:193 notification/models.py:30
 msgid "user"
 msgstr ""
 
-#: core/models.py:196
+#: core/models.py:197
 msgid "Up Vote"
 msgstr ""
 
-#: core/models.py:196
+#: core/models.py:197
 msgid "Down Vote"
 msgstr ""
 
-#: core/models.py:209
+#: core/models.py:210
 msgid "year"
 msgstr ""
 
-#: core/models.py:210
+#: core/models.py:211
 msgid "name proposition"
 msgstr ""
 
-#: core/models.py:211
+#: core/models.py:212
 msgid "id proposition"
 msgstr ""
 
-#: core/models.py:212
+#: core/models.py:213
 msgid "id main proposition"
 msgstr ""
 
-#: core/models.py:213
+#: core/models.py:214
 msgid "name origin proposition"
 msgstr ""
 
-#: core/models.py:215
+#: core/models.py:216
 msgid "menu"
 msgstr ""
 
-#: core/models.py:216
+#: core/models.py:217
 msgid "menu_explanation"
 msgstr ""
 
-#: core/models.py:218
+#: core/models.py:219
 msgid "id register"
 msgstr ""
 
-#: core/models.py:219
+#: core/models.py:220
 msgid "uf author"
 msgstr ""
 
-#: core/models.py:220
+#: core/models.py:221
 msgid "party author"
 msgstr ""
 
-#: core/models.py:221
+#: core/models.py:222
 msgid "apresentation date"
 msgstr ""
 
-#: core/models.py:222
+#: core/models.py:223
 msgid "processing_regime"
 msgstr ""
 
-#: core/models.py:223
+#: core/models.py:224
 msgid "last dispatch date"
 msgstr ""
 
-#: core/models.py:224
+#: core/models.py:225
 msgid "last dispatch"
 msgstr ""
 
-#: core/models.py:225
+#: core/models.py:226
 msgid "appraisal"
 msgstr ""
 
-#: core/models.py:226
+#: core/models.py:227
 msgid "indexing"
 msgstr ""
 
-#: core/models.py:227
+#: core/models.py:228
 msgid "situation"
 msgstr ""
 
-#: core/models.py:228
+#: core/models.py:229
 msgid "content link"
 msgstr ""
 
-#: core/models.py:231
+#: core/models.py:232
 msgid "proposition"
 msgstr ""
 
-#: core/models.py:232
+#: core/models.py:233
 msgid "propositions"
 msgstr ""
 
@@ -555,11 +559,11 @@ msgstr ""
 msgid "Newsletters"
 msgstr ""
 
-#: settings.py:201
+#: settings.py:211
 msgid "Google"
 msgstr ""
 
-#: settings.py:205
+#: settings.py:215
 msgid "Facebook"
 msgstr ""
 
@@ -652,15 +656,15 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-#: templates/bill/bill.html:65
+#: templates/bill/bill.html:102
 msgid "Bill status:"
 msgstr ""
 
-#: templates/bill/bill.html:67
+#: templates/bill/bill.html:104
 msgid "Attendees:"
 msgstr ""
 
-#: templates/bill/bill.html:68
+#: templates/bill/bill.html:105
 msgid "Proposals:"
 msgstr ""
 

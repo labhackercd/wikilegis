@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
 import requests
-from wikilegis.core.forms import BillAdminForm, update_proposition
+from wikilegis.core.forms import BillAdminForm, update_proposition, BillSegmentAdminForm
 from wikilegis.core.models import Bill, TypeSegment, BillSegment
 from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
 
@@ -220,6 +220,16 @@ class TypeSegmentAdmin(admin.ModelAdmin):
         return request.user.has_perm(perm, obj)
 
 
+class BillSegmentAdmin(admin.ModelAdmin):
+    list_filter = ['original', 'type', 'bill']
+    list_display = ('bill', 'order', 'type', 'number', 'author', 'parent', 'original')
+    form = BillSegmentAdminForm
+    fieldsets = [
+        (None, {'fields': ['bill', 'order', 'parent', 'type', 'number', 'content']})
+    ]
+
+
+admin.site.register(BillSegment, BillSegmentAdmin)
 admin.site.register(models.Bill, BillAdmin)
 admin.site.register(models.CitizenAmendment, CitizenAmendmentAdmin)
 admin.site.register(TypeSegment, TypeSegmentAdmin)

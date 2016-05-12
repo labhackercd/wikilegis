@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from operator import attrgetter
 from django import forms
 from django.core.exceptions import ValidationError
+from django.db.models import Max
 from django.utils.translation import ugettext_lazy as _
 from wikilegis.auth2.models import User
 from . import models
@@ -14,7 +15,7 @@ from xml.etree import ElementTree
 
 # TODO FIXME Meta*Form, really? C'mon, we can do better naming than this.
 # from wikilegis.core.views import add_proposition
-from wikilegis.core.models import Proposition, TypeSegment, BillSegment
+from wikilegis.core.models import Proposition, TypeSegment, BillSegment, Bill
 
 
 class GenericDataAdminForm(forms.ModelForm):
@@ -225,3 +226,16 @@ class AddProposalForm(forms.ModelForm):
     class Meta:
         model = BillSegment
         fields = ('parent', 'type', 'content')
+
+
+class BillSegmentAdminForm(forms.ModelForm):
+    bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(), initial=Bill.objects.latest('id').id)
+    parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
+    try:
+        order = forms.CharField(label=_('order'), initial=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id).aggregate(Max('order'))['order__max'] + 1)
+    except:
+        order = forms.CharField(label=_('order'), initial=1)
+
+    class Meta:
+        model = BillSegment
+        fields = ('bill', 'order', 'parent', 'type', 'number', 'content')

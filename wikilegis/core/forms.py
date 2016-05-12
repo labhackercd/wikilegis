@@ -231,10 +231,6 @@ class AddProposalForm(forms.ModelForm):
 class BillSegmentAdminForm(forms.ModelForm):
     bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(), initial=Bill.objects.latest('id').id)
     parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
-    try:
-        order = forms.CharField(label=_('order'), initial=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id).aggregate(Max('order'))['order__max'] + 1)
-    except:
-        order = forms.CharField(label=_('order'), initial=1)
 
     class Meta:
         model = BillSegment

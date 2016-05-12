@@ -228,6 +228,16 @@ class BillSegmentAdmin(admin.ModelAdmin):
         (None, {'fields': ['bill', 'order', 'parent', 'type', 'number', 'content']})
     ]
 
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        field = super(BillSegmentAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'order':
+            try:
+                field.initial = BillSegment.objects.filter(bill_id=Bill.objects.all().last().id).aggregate(Max('order'))['order__max'] + 1
+            except:
+                field.initial = 1
+        return field
+
+
 
 admin.site.register(BillSegment, BillSegmentAdmin)
 admin.site.register(models.Bill, BillAdmin)

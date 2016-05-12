@@ -39,7 +39,7 @@ propositions_update.short_description = _("Update status of selected bills")
 
 
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
-    model = models.BillSegment
+    model = BillSegment
     extra = 1
     exclude = ['original', 'replaced', 'author']
 
@@ -47,7 +47,6 @@ class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
         return super(BillSegmentInline, self).get_queryset(request).filter(original=True)
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
-
         field = super(BillSegmentInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
         if db_field.name == 'parent':
@@ -119,6 +118,13 @@ class BillAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('js/adminfix.js', )
+
+    def save_formset(self, request, form, formset, change):
+        formset.save()
+        if formset.model == BillSegment:
+            for segment in formset.queryset.filter(order=0):
+                segment.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
+                segment.save()
 
     def response_add(self, request, obj, post_url_continue=None):
         opts = obj._meta

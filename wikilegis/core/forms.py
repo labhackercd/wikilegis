@@ -229,8 +229,11 @@ class AddProposalForm(forms.ModelForm):
 
 
 class BillSegmentAdminForm(forms.ModelForm):
-    bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(), initial=Bill.objects.latest('id').id)
-    parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
+    try:
+        bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(), initial=Bill.objects.latest('id').id)
+        parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
+    except:
+        bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all())
 
     class Meta:
         model = BillSegment

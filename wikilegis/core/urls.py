@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
+
+from wikilegis.core.api import BillListAPI, SegmentsListAPI, CommentListAPI
 from wikilegis.core.views import BillReport, CreateProposal
 
 urlpatterns = [
@@ -14,4 +16,10 @@ urlpatterns = [
     url(r'^bill/(?P<pk>\d+)/report/$', BillReport.as_view(), name='bill_report'),
     url(r'^upvote/(?P<content_type>\d+)/(?P<object_id>\d+)/$', 'wikilegis.core.views.upvote', name='upvote'),
     url(r'^downvote/(?P<content_type>\d+)/(?P<object_id>\d+)/$', 'wikilegis.core.views.downvote', name='downvote'),
+]
+
+urlpatterns += [
+    url(r'^api/bills/$', BillListAPI.as_view(), name='bill_list_api'),
+    url(r'^api/segments/$', SegmentsListAPI.as_view(), name='segments_list_api'),
+    url(r'^api/comments/$', CommentListAPI.as_view(), name='comment_list_api'),
 ]

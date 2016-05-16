@@ -695,6 +695,29 @@ strong {
             padding-left: 73px;
         }
     }
+    .heading {
+
+        &.secao, &.subsecao {
+            text-transform: initial;
+            font-weight: 700;
+        }
+
+        .heading-title {
+            display: block;
+            margin-top: 2rem;
+        }
+    }
+
+    h5.heading {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
+        text-transform: uppercase;
+        font-weight: 100;
+    }
+
 }
 
 .segments-before {

@@ -1,26 +1,28 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from __future__ import absolute_import
-from operator import attrgetter
-from django import forms
-from django.core.exceptions import ValidationError
-from django.db.models import Max
-from django.utils.translation import ugettext_lazy as _
-from wikilegis.auth2.models import User
-from . import models
 from datetime import datetime
+from django.core.exceptions import ValidationError
+from django import forms
+from django.utils.translation import ugettext_lazy as _
+from . import models
+from operator import attrgetter
 import requests
+from wikilegis.auth2.models import User
 from xml.etree import ElementTree
 
 
-# TODO FIXME Meta*Form, really? C'mon, we can do better naming than this.
+# TODO(NAME) FIXME Meta*Form, really? C'mon, we can do better naming than this.
 # from wikilegis.core.views import add_proposition
-from wikilegis.core.models import Proposition, TypeSegment, BillSegment, Bill
+from wikilegis.core.models import Bill
+from wikilegis.core.models import BillSegment
+from wikilegis.core.models import Proposition
+from wikilegis.core.models import TypeSegment
 
 
 class GenericDataAdminForm(forms.ModelForm):
 
-    class Meta:
+    class Meta(object):
         model = models.GenericData
         exclude = ('type', 'data')
 
@@ -85,7 +87,7 @@ class CitizenAmendmentCreationForm(forms.ModelForm):
         self.fields['content'].label = _(
             "Suggest a new proposal! You can begin editing the original one.")
 
-    class Meta:
+    class Meta(object):
         model = models.BillSegment
         fields = ('content',)
 
@@ -109,10 +111,10 @@ class BillAdminForm(forms.ModelForm):
             self.fields['type'].initial = proposition.type.strip()
             self.fields['number'].initial = proposition.number
             self.fields['year'].initial = proposition.year
-        except:
+        except Exception:
             pass
 
-    class Meta:
+    class Meta(object):
         model = models.Bill
         fields = ('title', 'description', 'status', 'editors', 'type', 'number', 'year')
 
@@ -144,12 +146,12 @@ class BillAdminForm(forms.ModelForm):
                     'http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
                     params=params)
                 create_proposition(response, instance.id)
-            except:
+            except Exception:
                 pass
         else:
             try:
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)
-            except:
+            except Exception:
                 pass
         return instance
 
@@ -239,18 +241,24 @@ class AddProposalForm(forms.ModelForm):
         self.fields['parent'].queryset = BillSegment.objects.filter(
             bill__id=self.bill_id, original=True)
 
-    class Meta:
+    class Meta(object):
         model = BillSegment
         fields = ('parent', 'type', 'content')
 
 
 class BillSegmentAdminForm(forms.ModelForm):
     try:
-        bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(), initial=Bill.objects.latest('id').id)
-        parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
-    except:
+        bill = forms.ModelChoiceField(label=_('bill'),
+                                      queryset=Bill.objects.all(),
+                                      initial=Bill.objects.latest('id').id)
+        parent = forms.ModelChoiceField(label=_('segment parent'),
+                                        queryset=BillSegment.objects.filter(
+                                            bill_id=Bill.objects.latest('id').id,
+                                            original=True).order_by('-id'),
+                                        required=False)
+    except Exception:
         bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all())
 
-    class Meta:
+    class Meta(object):
         model = BillSegment
         fields = ('bill', 'order', 'parent', 'type', 'number', 'content')

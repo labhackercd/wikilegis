@@ -5,7 +5,8 @@ from __future__ import absolute_import
 from django.contrib.contenttypes.models import ContentType
 from django.template import Library
 from django_comments.models import Comment
-from wikilegis.core.models import BillSegment, UpDownVote
+from wikilegis.core.models import BillSegment
+from wikilegis.core.models import UpDownVote
 
 register = Library()
 

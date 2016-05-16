@@ -1,8 +1,12 @@
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
 
-from wikilegis.core.api import BillListAPI, SegmentsListAPI, CommentListAPI, api_root
-from wikilegis.core.views import BillReport, CreateProposal
+from wikilegis.core.api import api_root
+from wikilegis.core.api import BillListAPI
+from wikilegis.core.api import CommentListAPI
+from wikilegis.core.api import SegmentsListAPI
+from wikilegis.core.views import BillReport
+from wikilegis.core.views import CreateProposal
 
 urlpatterns = [
     url(r'^$', 'wikilegis.core.views.index', name='index'),

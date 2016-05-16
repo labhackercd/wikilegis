@@ -3,12 +3,14 @@ from collections import defaultdict
 from datetime import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
-from django.core.management.base import BaseCommand
 from django.core.mail import EmailMultiAlternatives
+from django.core.management.base import BaseCommand
 from django.template.loader import render_to_string
 from django_comments.models import Comment
 from wikilegis.auth2.models import User
-from wikilegis.core.models import Bill, UpDownVote, BillSegment
+from wikilegis.core.models import Bill
+from wikilegis.core.models import BillSegment
+from wikilegis.core.models import UpDownVote
 from wikilegis.notification.models import HistoryNotification
 
 
@@ -24,42 +26,29 @@ class Command(BaseCommand):
             for segment in bill.segments.filter(original=True):
                 import ipdb
                 ipdb.set_trace()
-                up_votes_segment = UpDownVote.objects.filter(content_type=
-                                                             segment_ctype,
-                                                             object_id=
-                                                             segment.id,
+                up_votes_segment = UpDownVote.objects.filter(content_type=segment_ctype,
+                                                             object_id=segment.id,
                                                              vote=True).count()
-                down_votes_segment = UpDownVote.objects.filter(content_type=
-                                                               segment_ctype,
-                                                               object_id=
-                                                               segment.id,
-                                                               vote=
-                                                               False).count()
+                down_votes_segment = UpDownVote.objects.filter(content_type=segment_ctype,
+                                                               object_id=segment.id,
+                                                               vote=False).count()
                 score_segment = up_votes_segment - down_votes_segment
                 for amendment in segment.substitutes.all():
-                    votes_amendment = UpDownVote.objects.filter(content_type=
-                                                                segment_ctype,
-                                                                object_id=
-                                                                amendment.pk)
+                    votes_amendment = UpDownVote.objects.filter(content_type=segment_ctype,
+                                                                object_id=amendment.pk)
                     try:
-                        last_email = HistoryNotification.objects.get(amendment=
-                                                                     amendment)
+                        last_email = HistoryNotification.objects.get(amendment=amendment)
                         if votes_amendment:
-                            up_votes_amendment = votes_amendment.filter(
-                                vote=True).count()
-                            down_votes_amendment = votes_amendment.filter(
-                                vote=False).count()
+                            up_votes_amendment = votes_amendment.filter(vote=True).count()
+                            down_votes_amendment = votes_amendment.filter(vote=False).count()
                             score_amendment = up_votes_amendment - down_votes_amendment
                             last_vote = votes_amendment.latest('modified')
                             if last_email.hour < last_vote.modified:
                                 if score_amendment > score_segment:
                                     top_amendments.append(amendment.id)
-                        comments = Comment.objects.filter(object_pk=
-                                                          amendment.pk,
-                                                          content_type=
-                                                          segment_ctype,
-                                                          submit_date__gte=
-                                                          last_email.hour)
+                        comments = Comment.objects.filter(object_pk=amendment.pk,
+                                                          content_type=segment_ctype,
+                                                          submit_date__gte=last_email.hour)
                         if comments:
                             for comment in comments:
                                 amendment_comments[amendment].append(comment)
@@ -67,10 +56,8 @@ class Command(BaseCommand):
                             last_email.save()
                     except HistoryNotification.DoesNotExist:
                         segment_amendments[segment].append(amendment)
-                        comments = Comment.objects.filter(object_pk=
-                                                          amendment.pk,
-                                                          content_type=
-                                                          segment_ctype)
+                        comments = Comment.objects.filter(object_pk=amendment.pk,
+                                                          content_type=segment_ctype)
                         history = HistoryNotification()
                         history.amendment = amendment
                         history.hour = datetime.now()
@@ -90,7 +77,7 @@ class Command(BaseCommand):
             if segment_amendments or amendment_comments or top_amendments:
                 try:
                     proposition = bill.proposition_set.all()[0].name_proposition
-                except:
+                except Exception:
                     proposition = ''
                 html = render_to_string('notification/notification_email.html',
                                         {'current_site': current_site, 'bill': bill.title,

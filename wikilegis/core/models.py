@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-from operator import attrgetter
-
-from django.contrib.contenttypes import generic
-from django.db import models
 from django.conf import settings
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.contenttypes import generic
+from django.core.urlresolvers import reverse
+from django.db import models
 from django.db.models import permalink
 from django.utils.encoding import force_text
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
 from django_comments.models import Comment
 from django_extensions.db.fields.json import JSONField
+from operator import attrgetter
 
 
 BILL_STATUS_CHOICES = (
@@ -63,7 +63,7 @@ class TimestampedMixin(models.Model):
     created = models.DateTimeField(_('created'), editable=False, blank=True, auto_now_add=True)
     modified = models.DateTimeField(_('modified'), editable=False, blank=True, auto_now=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
 
 
@@ -100,7 +100,7 @@ class Bill(TimestampedMixin):
     def __unicode__(self):
         return self.title
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('bill')
         verbose_name_plural = _('bills')
 
@@ -117,7 +117,7 @@ class TypeSegment(models.Model):
     name = models.CharField(_('name'), max_length=200)
     editable = models.BooleanField(_('editable'), default='True')
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('type segment')
         verbose_name_plural = _('types segment')
 
@@ -148,7 +148,7 @@ class BillSegment(TimestampedMixin):
     comments = generic.GenericRelation(Comment, object_id_field="object_pk")
     votes = generic.GenericRelation('core.UpDownVote', object_id_field="object_id")
 
-    class Meta:
+    class Meta(object):
         ordering = ('order',)
         verbose_name = _('segment')
         verbose_name_plural = _('segments')
@@ -187,7 +187,7 @@ class CitizenAmendment(TimestampedMixin):
         verbose_name=_('bill segment'))
     content = models.TextField(_('content'))
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('citizen amendment')
         verbose_name_plural = _('citizen amendments')
 
@@ -213,7 +213,7 @@ class UpDownVote(TimestampedMixin):
     content_object = GenericForeignKey('content_type', 'object_id')
     vote = models.BooleanField(choices=((True, _('Up Vote')), (False, _('Down Vote'))))
 
-    class Meta:
+    class Meta(object):
         unique_together = ('user', 'object_id', 'content_type')
 
     def __unicode__(self):
@@ -257,7 +257,7 @@ class Proposition(models.Model):
     situation = models.CharField(_('situation'), max_length=200, null=True, blank=True)
     content_link = models.URLField(_('content link'), null=True, blank=True)
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('proposition')
         verbose_name_plural = _('propositions')
 

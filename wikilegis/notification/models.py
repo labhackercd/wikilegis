@@ -12,7 +12,7 @@ class HistoryNotification(models.Model):
         'core.BillSegment', verbose_name=_('amendment'))
     hour = models.DateTimeField(_('hour'), default=datetime.now)
 
-    class Meta:
+    class Meta(object):
         ordering = ('-hour',)
         verbose_name = _('history notification')
         verbose_name_plural = _('history notifications')
@@ -35,7 +35,7 @@ class Newsletter(TimestampedMixin):
         default='daily')
     status = models.BooleanField(default=True)
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('Newsletter')
         verbose_name_plural = _('Newsletters')
         unique_together = ('user', 'bill')

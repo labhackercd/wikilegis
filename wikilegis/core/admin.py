@@ -11,8 +11,8 @@ from django.core.urlresolvers import reverse
 from django.db.models import Max
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-import forms
-import models
+from . import forms
+from . import models
 import requests
 from wikilegis.core.forms import BillAdminForm
 from wikilegis.core.forms import BillSegmentAdminForm

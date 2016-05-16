@@ -20,5 +20,5 @@ def previous(segment):
             order__lt=segment.order,
             order__gte=article.order)
         return previous_segment
-    except:
+    except Exception:
         return {}

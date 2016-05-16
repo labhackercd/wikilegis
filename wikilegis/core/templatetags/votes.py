@@ -2,10 +2,12 @@
 from __future__ import unicode_literals
 from django.contrib.contenttypes.models import ContentType
 from django.template import Library
-from wikilegis.core.models import UpDownVote
-
+from templatetag_sugar.parser import Constant
+from templatetag_sugar.parser import Name
+from templatetag_sugar.parser import Optional
+from templatetag_sugar.parser import Variable
 from templatetag_sugar.register import tag
-from templatetag_sugar.parser import Name, Variable, Constant, Optional
+from wikilegis.core.models import UpDownVote
 
 
 register = Library()

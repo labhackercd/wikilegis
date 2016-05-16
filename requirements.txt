@@ -33,3 +33,6 @@ rules==0.4
 six==1.10.0
 sqlparse==0.1.16
 Whoosh==2.7.0
+djangorestframework==3.3.3
+Markdown==2.6.6
+django-filter==0.13.0

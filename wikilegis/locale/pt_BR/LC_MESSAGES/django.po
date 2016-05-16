@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 17:57+0000\n"
+"POT-Creation-Date: 2016-05-16 13:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,47 +141,56 @@ msgstr "Ver"
 msgid "Report"
 msgstr "Relatório"
 
-#: core/forms.py:56
+#: core/forms.py:57
 msgid "User"
 msgstr "Usuário"
 
-#: core/forms.py:57
+#: core/forms.py:58
 msgid "Title"
 msgstr "Título"
 
-#: core/forms.py:70
+#: core/forms.py:71
 msgid "video url"
 msgstr "url do vídeo"
 
-#: core/forms.py:78 core/forms.py:217
+#: core/forms.py:79 core/forms.py:218
 msgid "You can explain your proposal here."
 msgstr "Você pode explicar sua proposta aqui."
 
-#: core/forms.py:82
+#: core/forms.py:83
 msgid "Suggest a new proposal! You can begin editing the original one."
 msgstr "Sugira uma nova redação! Você pode começar editando a original."
 
-#: core/forms.py:91
+#: core/forms.py:92
 msgid "Select a type"
 msgstr "Selecione um tipo"
 
-#: core/forms.py:97
+#: core/forms.py:98
 msgid "Type"
 msgstr "Tipo"
 
-#: core/forms.py:98
+#: core/forms.py:99
 msgid "Number"
 msgstr "Número"
 
-#: core/forms.py:99
+#: core/forms.py:100
 msgid "Year"
 msgstr "Ano"
 
-#: core/forms.py:122
+#: core/forms.py:123
 msgid ""
 "When adding a field in the legislative proposal, the three fields are now "
 "required"
 msgstr ""
+
+#: core/forms.py:233 core/forms.py:236 core/models.py:100 core/models.py:125
+#: core/models.py:207 notification/models.py:29
+msgid "bill"
+msgstr "projeto de lei"
+
+#: core/forms.py:234 core/models.py:129
+msgid "segment parent"
+msgstr "trecho ancestral"
 
 #: core/models.py:19
 msgid "Draft"
@@ -345,11 +354,6 @@ msgid ""
 "document."
 msgstr "Usuários nestes grupos terão permissão para alterar este documento."
 
-#: core/models.py:100 core/models.py:125 core/models.py:207
-#: notification/models.py:29
-msgid "bill"
-msgstr "projeto de lei"
-
 #: core/models.py:101
 msgid "bills"
 msgstr "projetos de lei"
@@ -377,10 +381,6 @@ msgstr "ordem"
 #: core/models.py:128 core/models.py:209
 msgid "number"
 msgstr "número"
-
-#: core/models.py:129
-msgid "segment parent"
-msgstr "trecho ancestral"
 
 #: core/models.py:130
 msgid "segment replaced"
@@ -510,6 +510,10 @@ msgstr "proposições"
 msgid "None"
 msgstr "Nenhum"
 
+#: core/templatetags/convert_numbers.py:59
+msgid "Sole paragraph"
+msgstr "Parágrafo único"
+
 #: core/views.py:26
 msgid "Order by"
 msgstr "Ordem"
@@ -568,11 +572,11 @@ msgstr "Newsletter"
 msgid "Newsletters"
 msgstr "Newsletters"
 
-#: settings.py:211
+#: settings.py:201
 msgid "Google"
 msgstr ""
 
-#: settings.py:215
+#: settings.py:205
 msgid "Facebook"
 msgstr ""
 
@@ -656,6 +660,26 @@ msgstr "Alterar perfil"
 #: templates/auth2/show_users_profile.html:15
 msgid "Joined on"
 msgstr "Data de cadastro"
+
+#: templates/bill/_bill_segment_item.html:4
+msgid "TITLE"
+msgstr "TÍTULO"
+
+#: templates/bill/_bill_segment_item.html:6
+msgid "BOOK"
+msgstr "LIVRO"
+
+#: templates/bill/_bill_segment_item.html:8
+msgid "CHAPTER"
+msgstr "CAPÍTULO"
+
+#: templates/bill/_bill_segment_item.html:10
+msgid "Section"
+msgstr "Seção"
+
+#: templates/bill/_bill_segment_item.html:12
+msgid "Subsection"
+msgstr "Subseção"
 
 #: templates/bill/bill.html:30
 msgid "Unsubscribe"
@@ -866,6 +890,3 @@ msgstr "Reenviar"
 
 #~ msgid "title"
 #~ msgstr "título"
-
-#~ msgid "description"
-#~ msgstr "descrição"

@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.sites.models import Site
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.utils.translation import ugettext
 from django.views.generic import RedirectView
 from registration.models import RegistrationProfile
 
-from .forms import UserForm
+from forms import UserForm
 from wikilegis.auth2.models import User
 
 

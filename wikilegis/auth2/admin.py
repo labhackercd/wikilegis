@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import ugettext_lazy as _
-from wikilegis.auth2.forms import UserChangeForm, UserCreationForm
-from wikilegis.auth2.models import User
 from image_cropping import ImageCroppingMixin
+from wikilegis.auth2.forms import UserChangeForm
+from wikilegis.auth2.forms import UserCreationForm
+from wikilegis.auth2.models import User
 
 
 class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):

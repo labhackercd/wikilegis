@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from adminsortable2.admin import SortableInlineAdminMixin
 from django.contrib import admin
+from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
 from django.contrib.admin.utils import quote
 from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
@@ -9,12 +11,15 @@ from django.core.urlresolvers import reverse
 from django.db.models import Max
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-from adminsortable2.admin import SortableInlineAdminMixin
-from . import models, forms
+import forms
+import models
 import requests
-from wikilegis.core.forms import BillAdminForm, update_proposition, BillSegmentAdminForm
-from wikilegis.core.models import Bill, TypeSegment, BillSegment
-from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
+from wikilegis.core.forms import BillAdminForm
+from wikilegis.core.forms import BillSegmentAdminForm
+from wikilegis.core.forms import update_proposition
+from wikilegis.core.models import Bill
+from wikilegis.core.models import BillSegment
+from wikilegis.core.models import TypeSegment
 
 
 def get_permission(action, opts):
@@ -33,7 +38,7 @@ def propositions_update(ModelAdmin, request, queryset):
                 params=params)
             update_proposition(
                 response, bill.proposition_set.all()[0].id_proposition)
-        except:
+        except Exception:
             pass
     ModelAdmin.message_user(request, _("Bills updated successfully."))
 
@@ -86,18 +91,18 @@ class BillVideoInline(GenericTabularInline):
                 request).filter(type=self.form.get_type())
 
     def has_add_permission(self, request):
-        return (self.has_change_permission(request)
-                or super(BillVideoInline, self).has_add_permission(request))
+        return (self.has_change_permission(request) or
+                super(BillVideoInline, self).has_add_permission(request))
 
     def has_change_permission(self, request, obj=None):
         # If the user can change the bill, it can also change its videos.
-        return (request.user.has_perm('core.change_bill', obj)
-                or super(
+        return (request.user.has_perm('core.change_bill', obj) or
+                super(
                     BillVideoInline, self).has_change_permission(request, obj))
 
     def has_delete_permission(self, request, obj=None):
-        return (self.has_change_permission(request, obj)
-                or super(
+        return (self.has_change_permission(request, obj) or
+                super(
                     BillVideoInline, self).has_delete_permission(request, obj))
 
 
@@ -124,13 +129,15 @@ class BillAdmin(admin.ModelAdmin):
     actions = [propositions_update]
     form = BillAdminForm
     fieldsets = [
-        (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'status',  'editors']}),
+        (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'status', 'editors']}),
         (_('Legislative proposal'), {'fields': ['type', 'number', 'year'],
-                                     'description': _("This data will be used to assign the project to a legislative "
-                                                      "proposal pending before the House of Representatives. You only "
-                                                      "need to inform them if your procedure has been initiated. To "
+                                     'description': _("This data will be used to assign the project \
+                                                        to a legislative "
+                                                      "proposal pending before the House of \
+                                                        Representatives. You only "
+                                                      "need to inform them if your procedure \
+                                                        has been initiated. To "
                                                       "delete , leave the fields blank.")})
-                                    # 'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
     ]
     # 'description': "Esses dados serão usados para associar o
     # projeto a uma proposição legislativa em tramitação na Câmara
@@ -138,15 +145,8 @@ class BillAdmin(admin.ModelAdmin):
     # tramitação tiver sido iniciada. Para excluir, deixe os campos
     # em branco."})
 
-    class Media:
+    class Media(object):
         js = ('js/adminfix.js', )
-
-    def save_formset(self, request, form, formset, change):
-        formset.save()
-        if formset.model == BillSegment:
-            for segment in formset.queryset.filter(order=0):
-                segment.order = formset.queryset.all().aggregate(Max('order'))['order__max'] + 1
-                segment.save()
 
     def response_add(self, request, obj, post_url_continue=None):
         opts = obj._meta
@@ -242,7 +242,7 @@ class BillAdmin(admin.ModelAdmin):
     def get_situation(self, obj):
         try:
             return "%s" % obj.proposition_set.all()[0].situation
-        except:
+        except Exception:
             return ''
     get_situation.short_description = _(u'Situation')
 
@@ -323,12 +323,11 @@ class BillSegmentAdmin(admin.ModelAdmin):
         field = super(BillSegmentAdmin, self).formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == 'order':
             try:
-                field.initial = BillSegment.objects.filter(bill_id=Bill.objects.all().last().id).aggregate(Max('order'))['order__max'] + 1
-            except:
+                field.initial = BillSegment.objects.filter(
+                    bill_id=Bill.objects.all().last().id).aggregate(Max('order'))['order__max'] + 1
+            except Exception:
                 field.initial = 1
         return field
-
-
 
 admin.site.register(BillSegment, BillSegmentAdmin)
 admin.site.register(models.Bill, BillAdmin)

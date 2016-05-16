@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
-from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _, ugettext
+from django.contrib.auth.models import PermissionsMixin
+from django.db import models
 from django.db.models import permalink
-from image_cropping import ImageCropField, ImageRatioField
 from django import forms
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as ugettext
+from django.utils.translation import ugettext_lazy as _
+from image_cropping import ImageCropField
+from image_cropping import ImageRatioField
 
 
 class UserManager(BaseUserManager):

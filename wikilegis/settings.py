@@ -13,15 +13,17 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
 
+# Import `default` as the default settings. This can be handy while pushing items into tuples.
+import django.conf.global_settings as default
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 from decouple import config
+import os
+
+from easy_thumbnails.conf import Settings as thumbnail_settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.dirname(os.path.abspath(__file__))
-
-# Import `default` as the default settings. This can be handy while pushing items into tuples.
-import django.conf.global_settings as default
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,8 +31,6 @@ import django.conf.global_settings as default
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%'
-
-API_KEY = config('API_KEY', default='9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,9 +75,7 @@ INSTALLED_APPS = (
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-         'rest_framework.permissions.AllowAny',
-    ],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny', ],
     'PAGE_SIZE': 10
 }
 
@@ -228,7 +226,10 @@ SITE_ID = 1
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 languages = dict(default.LANGUAGES)
-language_tuple = lambda language_code: (language_code, languages[language_code])
+
+
+def language_tuple(language_code):
+    return (language_code, languages[language_code])
 
 LANGUAGES = (
     language_tuple('en'),
@@ -271,7 +272,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))
 
-## Debug toolbar
+# Debug toolbar
 STATIC_IPS = ('127.0.0.1', '::1', )
 
 # Login settings
@@ -281,7 +282,6 @@ SERIALIZATION_MODULES = {
     'csv': 'export.serializers.csv_serializer'
 }
 
-from easy_thumbnails.conf import Settings as thumbnail_settings
 THUMBNAIL_PROCESSORS = (
     'image_cropping.thumbnail_processors.crop_corners',
 ) + thumbnail_settings.THUMBNAIL_PROCESSORS

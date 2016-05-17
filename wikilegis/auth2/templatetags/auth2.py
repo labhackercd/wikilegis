@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from urlparse import urlparse, urlunparse
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.core.urlresolvers import reverse
 from django.http import QueryDict
 from django.shortcuts import resolve_url
 from django.template import Library
+from urlparse import urlparse
+from urlparse import urlunparse
 
 register = Library()
 
 
 @register.simple_tag
-def login_absolute_path(request, login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
+def login_absolute_path(request,
+                        login_url=None,
+                        redirect_field_name=REDIRECT_FIELD_NAME):
     path = request.build_absolute_uri()
     resolved_login_url = resolve_url(login_url or settings.LOGIN_URL)
     # If the login url is the same scheme and net location then just
@@ -32,7 +35,8 @@ def login_absolute_path(request, login_url=None, redirect_field_name=REDIRECT_FI
 
 
 @register.simple_tag
-def logout_absolute_path(request, next_page_field_name=REDIRECT_FIELD_NAME):
+def logout_absolute_path(request,
+                         next_page_field_name=REDIRECT_FIELD_NAME):
     path = request.build_absolute_uri()
     resolved_url = reverse('auth_logout')
     scheme, netloc = urlparse(resolved_url)[:2]

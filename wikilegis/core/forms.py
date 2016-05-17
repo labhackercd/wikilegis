@@ -1,26 +1,28 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from __future__ import absolute_import
-from operator import attrgetter
-from django import forms
-from django.core.exceptions import ValidationError
-from django.db.models import Max
-from django.utils.translation import ugettext_lazy as _
-from wikilegis.auth2.models import User
-from . import models
 from datetime import datetime
+from django.core.exceptions import ValidationError
+from django import forms
+from django.utils.translation import ugettext_lazy as _
+from . import models
+from operator import attrgetter
 import requests
+from wikilegis.auth2.models import User
 from xml.etree import ElementTree
 
 
-# TODO FIXME Meta*Form, really? C'mon, we can do better naming than this.
+# TODO(NAME) FIXME Meta*Form, really? C'mon, we can do better naming than this.
 # from wikilegis.core.views import add_proposition
-from wikilegis.core.models import Proposition, TypeSegment, BillSegment, Bill
+from wikilegis.core.models import Bill
+from wikilegis.core.models import BillSegment
+from wikilegis.core.models import Proposition
+from wikilegis.core.models import TypeSegment
 
 
 class GenericDataAdminForm(forms.ModelForm):
 
-    class Meta:
+    class Meta(object):
         model = models.GenericData
         exclude = ('type', 'data')
 
@@ -76,13 +78,16 @@ class MetaVideoForm(GenericDataAdminForm):
 
 
 class CitizenAmendmentCreationForm(forms.ModelForm):
-    comment = forms.CharField(label=_("You can explain your proposal here."), widget=forms.Textarea(), required=False)
+    comment = forms.CharField(
+        label=_("You can explain your proposal here."),
+        widget=forms.Textarea(), required=False)
 
     def __init__(self, *args, **kwargs):
         super(CitizenAmendmentCreationForm, self).__init__(*args, **kwargs)
-        self.fields['content'].label = _("Suggest a new proposal! You can begin editing the original one.")
+        self.fields['content'].label = _(
+            "Suggest a new proposal! You can begin editing the original one.")
 
-    class Meta:
+    class Meta(object):
         model = models.BillSegment
         fields = ('content',)
 
@@ -106,12 +111,12 @@ class BillAdminForm(forms.ModelForm):
             self.fields['type'].initial = proposition.type.strip()
             self.fields['number'].initial = proposition.number
             self.fields['year'].initial = proposition.year
-        except:
+        except Exception:
             pass
 
-    class Meta:
+    class Meta(object):
         model = models.Bill
-        fields = ('title', 'description', 'status',  'editors', 'type', 'number', 'year')
+        fields = ('title', 'description', 'status', 'editors', 'type', 'number', 'year')
 
     def clean(self):
         if self.data['type'] or self.data['number'] or self.data['year']:
@@ -132,16 +137,21 @@ class BillAdminForm(forms.ModelForm):
             if instance.proposition_set.all():
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)
             try:
-                params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data['number'], 'ano': self.cleaned_data['year']}
-                response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
-                                        params=params)
+                params = {
+                    'tipo':
+                    self.cleaned_data['type'],
+                    'numero': self.cleaned_data['number'],
+                    'ano': self.cleaned_data['year']}
+                response = requests.get(
+                    'http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
+                    params=params)
                 create_proposition(response, instance.id)
-            except:
+            except Exception:
                 pass
         else:
             try:
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)
-            except:
+            except Exception:
                 pass
         return instance
 
@@ -171,9 +181,11 @@ def create_proposition(response, bill_id):
     proposition.id_register = tree.find('ideCadastro').text
     proposition.uf_author = tree.find('ufAutor').text
     proposition.party_author = tree.find('partidoAutor').text
-    proposition.apresentation_date = datetime.strptime(tree.find('DataApresentacao').text, '%d/%m/%Y').date()
+    proposition.apresentation_date = datetime.strptime(
+        tree.find('DataApresentacao').text, '%d/%m/%Y').date()
     proposition.processing_regime = tree.find('RegimeTramitacao').text
-    proposition.last_dispatch_date = datetime.strptime(tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
+    proposition.last_dispatch_date = datetime.strptime(
+        tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
     proposition.last_dispatch = tree.find('UltimoDespacho').text
     proposition.appraisal = tree.find('Apreciacao').text
     proposition.indexing = tree.find('Indexacao').text
@@ -202,9 +214,11 @@ def update_proposition(response, proposition_id):
     proposition.id_register = tree.find('ideCadastro').text
     proposition.uf_author = tree.find('ufAutor').text
     proposition.party_author = tree.find('partidoAutor').text
-    proposition.apresentation_date = datetime.strptime(tree.find('DataApresentacao').text, '%d/%m/%Y').date()
+    proposition.apresentation_date = datetime.strptime(
+        tree.find('DataApresentacao').text, '%d/%m/%Y').date()
     proposition.processing_regime = tree.find('RegimeTramitacao').text
-    proposition.last_dispatch_date = datetime.strptime(tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
+    proposition.last_dispatch_date = datetime.strptime(
+        tree.find('UltimoDespacho').attrib['Data'], '%d/%m/%Y').date()
     proposition.last_dispatch = tree.find('UltimoDespacho').text
     proposition.appraisal = tree.find('Apreciacao').text
     proposition.indexing = tree.find('Indexacao').text
@@ -215,26 +229,36 @@ def update_proposition(response, proposition_id):
 
 
 class AddProposalForm(forms.ModelForm):
-    comment = forms.CharField(label=_("You can explain your proposal here."), widget=forms.Textarea(), required=False)
+    comment = forms.CharField(
+        label=_("You can explain your proposal here."),
+        widget=forms.Textarea(),
+        required=False)
 
     def __init__(self, *args, **kwargs):
         self.bill_id = kwargs.pop('bill_id')
         super(AddProposalForm, self).__init__(*args, **kwargs)
         self.fields['type'].queryset = TypeSegment.objects.filter(editable=True)
-        self.fields['parent'].queryset = BillSegment.objects.filter(bill__id=self.bill_id, original=True)
+        self.fields['parent'].queryset = BillSegment.objects.filter(
+            bill__id=self.bill_id, original=True)
 
-    class Meta:
+    class Meta(object):
         model = BillSegment
         fields = ('parent', 'type', 'content')
 
 
 class BillSegmentAdminForm(forms.ModelForm):
     try:
-        bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(), initial=Bill.objects.latest('id').id)
-        parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
-    except:
+        bill = forms.ModelChoiceField(label=_('bill'),
+                                      queryset=Bill.objects.all(),
+                                      initial=Bill.objects.latest('id').id)
+        parent = forms.ModelChoiceField(label=_('segment parent'),
+                                        queryset=BillSegment.objects.filter(
+                                            bill_id=Bill.objects.latest('id').id,
+                                            original=True).order_by('-id'),
+                                        required=False)
+    except Exception:
         bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all())
 
-    class Meta:
+    class Meta(object):
         model = BillSegment
         fields = ('bill', 'order', 'parent', 'type', 'number', 'content')

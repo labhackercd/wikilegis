@@ -5,7 +5,8 @@ from __future__ import absolute_import
 from django.contrib.contenttypes.models import ContentType
 from django.template import Library
 from django_comments.models import Comment
-from wikilegis.core.models import BillSegment, UpDownVote
+from wikilegis.core.models import BillSegment
+from wikilegis.core.models import UpDownVote
 
 register = Library()
 
@@ -50,8 +51,9 @@ def attendees_count(bill):
     attendees = []
     segment_ctype = ContentType.objects.get_for_model(BillSegment)
     for segment in bill.segments.all():
-        for vote_segment in UpDownVote.objects.filter(content_type=segment_ctype, object_id=segment.id):
-            attendees.append(vote_segment.user.id)
+        # vote_sgt refers to vote segment
+        for vote_sgt in UpDownVote.objects.filter(content_type=segment_ctype, object_id=segment.id):
+            attendees.append(vote_sgt.user.id)
         for comment in Comment.objects.filter(object_pk=segment.pk, content_type=segment_ctype):
             attendees.append(comment.user.id)
     total_attendees = len(list(set(attendees)))

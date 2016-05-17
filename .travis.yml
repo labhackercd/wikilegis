@@ -1,0 +1,21 @@
+language: python
+python:
+  - "2.7"
+
+env:
+  - DJANGO=1.8.4 MIGRATE='./manage.py migrate'
+
+script:
+  - python manage.py migrate
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+
+# command to run tests
+script:
+  - coverage run manage.py test wikilegis/ -v 2
+
+after_success:
+  - coveralls

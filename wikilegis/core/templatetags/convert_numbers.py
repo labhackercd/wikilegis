@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.template import Library
 from collections import OrderedDict
 from django.template.defaultfilters import slugify
+from django.template import Library
 from django.utils.translation import ugettext_lazy as _
 import string
 
@@ -48,33 +48,33 @@ def int_to_roman(num):
 
 @register.simple_tag
 def segment_numbering(segment):
-    if segment.number:
-        if slugify(segment.type.name) == 'artigo':
-            if int(segment.number) <= 9:
-                return "Art. %sº " % segment.number
+    if slugify(segment.type.name) == 'artigo':
+        if int(segment.number) <= 9:
+            return "Art. %sº " % segment.number
+        else:
+            return "Art. %s " % segment.number
+    elif slugify(segment.type.name) == 'paragrafo':
+        if int(segment.number) <= 9:
+            if BillSegment.objects.filter(type=segment.type, parent=segment.parent).count() == 1:
+                return "%s. " % _("Sole paragraph")
             else:
-                return "Art. %s " % segment.number
-        elif slugify(segment.type.name) == 'paragrafo':
-            if int(segment.number) <= 9:
-                if BillSegment.objects.filter(type=segment.type, parent=segment.parent).count() == 1:
-                    return "%s. " % _("Sole paragraph")
-                else:
-                    return "§ %sº " % segment.number
-            else:
-                return "§ %s " % segment.number
-        elif slugify(segment.type.name) == 'inciso':
-            return "%s - " % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'alinea':
-            return "%s) " % int_to_letter(int(segment.number))
-        elif slugify(segment.type.name) == 'titulo':
-            return "%s" % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'livro':
-            return "%s" % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'capitulo':
-            return "%s" % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'secao':
-            return "%s" % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'subsecao':
-            return "%s" % int_to_roman(int(segment.number))
+                return "§ %sº " % segment.number
+        else:
+            return "§ %s " % segment.number
+    elif slugify(segment.type.name) == 'inciso':
+        return "%s - " % int_to_roman(int(segment.number))
+    elif slugify(segment.type.name) == 'alinea':
+        return "%s) " % int_to_letter(int(segment.number))
+    elif slugify(segment.type.name) == 'titulo':
+        return "%s" % int_to_roman(int(segment.number))
+    elif slugify(segment.type.name) == 'livro':
+        return "%s" % int_to_roman(int(segment.number))
+    elif slugify(segment.type.name) == 'capitulo':
+        return "%s" % int_to_roman(int(segment.number))
+    elif slugify(segment.type.name) == 'secao':
+        return "%s" % int_to_roman(int(segment.number))
+    elif slugify(segment.type.name) == 'subsecao':
+        return "%s" % int_to_roman(int(segment.number))
+
     else:
         return ''

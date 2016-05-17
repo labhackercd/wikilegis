@@ -1,30 +1,51 @@
+# Wikilegis
+
+[![Build Status](https://travis-ci.org/Themakew/wikilegis.svg?branch=master)](https://travis-ci.org/Themakew/wikilegis/builds)
+[![Coverage Status](https://coveralls.io/repos/github/Themakew/wikilegis/badge.svg?branch=master)](https://coveralls.io/github/Themakew/wikilegis?branch=master)
+
+Wikilegis is a project developed in Python by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills.
+
+Visit our website [Wikilegis](http://wikilegis.labhackercd.net).
+
 # Requirements
 
 * Python 2.7.x
-* Probably a working C compiler and `make` (to build libsass)
-* Pillow install dependencies [1]
+* Probably a working C compiler and `make` (to build libsass).
+* Pillow install dependencies. Install [here](https://pillow.readthedocs.org/en/latest/installation.html).
+* Virtualenv (Recommended for OS X users). Install [here](http://sourabhbajaj.com/mac-setup/Python/virtualenv.html).
 
 # Installation
 
+Clone the repository:
 ```bash
-$ git clone git@github.com:labhackercd/wikilegis.git
-$ cd wikilegis
-$ pip install -r requirements.txt
+  $ git clone https://github.com/labhackercd/wikilegis.git
+```
+
+Enter in the project directory:
+```bash
+  $ cd wikilegis
+```
+
+Install all the project dependencies:
+```bash
+  $ pip install -r requirements.txt
 ```
 
 
 # Database and superuser setup
 
 ```bash
-$ ./manage.py migrate
-$ ./manage.py createsuperuser
+  $ ./manage.py migrate
+```
+```bash
+  $ ./manage.py createsuperuser
 ```
 
 
 # Running the development server
 
 ```bash
-$ ./manage.py runserver
+  $ ./manage.py runserver
 ```
 
 
@@ -36,7 +57,3 @@ If everything went right, the admin interface is now available at: http://127.0.
 # Translating
 
 TODO: Instructions to use Transifex to translate this.
-
-
-
-[1]: https://pillow.readthedocs.org/en/latest/installation.html

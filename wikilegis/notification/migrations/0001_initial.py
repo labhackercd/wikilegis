@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-from django.db import models, migrations
 import datetime
+from django.db import migrations
+from django.db import models
 
 
 class Migration(migrations.Migration):
@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='HistoryNotification',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID',
+                                        serialize=False, auto_created=True, primary_key=True)),
                 ('hour', models.DateTimeField(default=datetime.datetime.now, verbose_name='hour')),
                 ('bill', models.ForeignKey(verbose_name='bill', to='core.Bill')),
             ],

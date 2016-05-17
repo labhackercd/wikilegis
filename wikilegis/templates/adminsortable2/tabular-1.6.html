@@ -1,5 +1,4 @@
-{% load i18n admin_static admin_list admin_modify %}{% load cycle from future %}
-<link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}" />
+{% load i18n admin_static admin_modify %}{% load cycle from future %}
 <div class="inline-group sortable" id="{{ inline_admin_formset.formset.prefix }}-group">
   <div class="tabular inline-related {% if forloop.last %}last-related{% endif %}">
 {{ inline_admin_formset.formset.management_form }}
@@ -59,25 +58,6 @@
      {% endfor %}
      </tbody>
    </table>
-    <div class="suit-tab suit-tab-relations">
-         {% with inline_admin_formset.formset.cl as cl %}
-            {% if cl.paginator %}
-                {% pagination cl %}
-            {% endif %}
-        {% endwith %}
-    </div>
-    <!-- Following javaScript is required if you have tabs,
-         otherwise you can remove this JS code -->
-    <script type="text/javascript">
-        (function ($) {
-            $('.pagination li a').on('click', function () {
-                if (document.location.hash) {
-                    $(this).attr('href', $(this).attr('href') +
-                        '#' + document.location.hash.substr(1));
-                }
-            });
-        }(django.jQuery));
-    </script>
 </fieldset>
   </div>
 </div>

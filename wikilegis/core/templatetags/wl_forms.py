@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from __future__ import absolute_import
+from . import _utils
+from django.forms import widgets
 from django.template import Library
 from django.utils.text import force_text
-from django.forms import widgets
-from . import _utils
 
 
 register = Library()
@@ -49,7 +49,7 @@ def render_materialized_field(field, *args, **kwargs):
 
     field_errors = force_text(field.errors) if field.errors else ''
 
-    # TODO render field's help_text
+    # TODO(NAME) render field's help_text
 
     return '\n'.join([
         field.label_tag(),

@@ -1,18 +1,23 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _, ugettext
 from django.db.models import permalink
-from image_cropping import ImageCropField, ImageRatioField
 from django import forms
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as ugettext
+from django.utils.translation import ugettext_lazy as _
+from image_cropping import ImageCropField
+from image_cropping import ImageRatioField
 
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
+    def _create_user(
+            self, email, password, is_staff, is_superuser, **extra_fields):
         """
         Creates and saves a User with the given username, email and password.
         """
@@ -45,7 +50,7 @@ def sizeof_fmt(num, suffix='B'):
     :param suffix:
     :return:
     """
-    for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+    for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
         if abs(num) < 1024.0:
             return "%3.1f%s%s" % (num, unit, suffix)
         num /= 1024.0
@@ -58,7 +63,8 @@ def avatar_validation(image):
         max_file_size = 10 * 1024 * 1024
         if image.size > max_file_size:
             raise forms.ValidationError(
-                ugettext('The maximum file size is {0}').format(sizeof_fmt(max_file_size)))
+                ugettext('The maximum file size is {0}').format(
+                    sizeof_fmt(max_file_size)))
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -67,16 +73,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     is_staff = models.BooleanField(_('staff status'), default=False,
-                                   help_text=_('Designates whether the user can log into this admin '
+                                   help_text=_('Designates whether the user '
+                                               'can log into this admin '
                                                'site.'))
     is_active = models.BooleanField(_('active'), default=True,
-                                    help_text=_('Designates whether this user should be treated as '
-                                                'active. Unselect this instead of deleting accounts.'))
+                                    help_text=_('Designates whether this user'
+                                                ' should be treated as '
+                                                'active. Unselect this instead'
+                                                ' of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
-    avatar = ImageCropField(_('profile picture'), upload_to="avatars/",
-                            validators=[avatar_validation], null=True, blank=True)
+    avatar = ImageCropField(_('profile picture'),
+                            upload_to="avatars/",
+                            validators=[avatar_validation],
+                            null=True,
+                            blank=True)
     cropping = ImageRatioField('avatar', '70x70', help_text=_(
-        'Note that the preview above will only be updated after you submit the form.'))
+        'Note that the preview above will only be updated after you submit the'
+        ' form.'))
 
     objects = UserManager()
 
@@ -103,6 +116,5 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_display_name(self):
         return self.get_full_name() or self.email
 
-    @permalink
     def get_absolute_url(self):
-        return 'users_profile', [self.pk], {}
+        return reverse('users_profile', args=[self.pk])

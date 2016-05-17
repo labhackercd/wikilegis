@@ -5,6 +5,7 @@ from django.contrib.admin.utils import quote
 from django.contrib.admin.views.main import ChangeList
 from django.contrib.auth import get_permission_codename
 from django.contrib.contenttypes.admin import GenericTabularInline
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.core.urlresolvers import reverse
 from django.db.models import Max
 from django.http import HttpResponseRedirect
@@ -38,10 +39,54 @@ def propositions_update(ModelAdmin, request, queryset):
 propositions_update.short_description = _("Update status of selected bills")
 
 
+class InlineChangeList(object):
+    can_show_all = True
+    multi_page = True
+    get_query_string = ChangeList.__dict__['get_query_string']
+
+    def __init__(self, request, page_num, paginator):
+        self.show_all = 'all' in request.GET
+        self.page_num = page_num
+        self.paginator = paginator
+        self.result_count = paginator.count
+        self.opts = {'verbose_name': _('segment'), 'verbose_name_plural': _('segments')}
+        self.params = dict(request.GET.items())
+
+
 class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
     model = BillSegment
     extra = 1
     exclude = ['original', 'replaced', 'author']
+    per_page = 20
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset_class = super(BillSegmentInline, self).get_formset(request, obj, **kwargs)
+        class PaginationFormSet(formset_class):
+            def __init__(self, *args, **kwargs):
+                super(PaginationFormSet, self).__init__(*args, **kwargs)
+
+                qs = self.queryset
+                paginator = Paginator(qs, self.per_page)
+                try:
+                    page_num = int(request.GET.get('p', '0'))
+                except ValueError:
+                    page_num = 0
+
+                try:
+                    page = paginator.page(page_num + 1)
+                except (EmptyPage, InvalidPage):
+                    page = paginator.page(paginator.num_pages)
+
+                self.cl = InlineChangeList(request, page_num, paginator)
+                self.paginator = paginator
+
+                if self.cl.show_all:
+                    self._queryset = qs
+                else:
+                    self._queryset = page.object_list
+
+        PaginationFormSet.per_page = self.per_page
+        return PaginationFormSet
 
     def get_queryset(self, request):
         return super(BillSegmentInline, self).get_queryset(request).filter(original=True)

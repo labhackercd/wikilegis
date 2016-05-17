@@ -1,24 +1,31 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Count
 from django.http import Http404
-from django.shortcuts import redirect, render, get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.shortcuts import render
+from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.utils.text import capfirst
-from django.utils.translation import ugettext, ugettext_lazy as _
-from django.views.generic import DetailView, CreateView
-
-from .forms import CitizenAmendmentCreationForm, AddProposalForm
-from .models import Bill, BillSegment, UpDownVote
+from django.utils.translation import ugettext as _
+from django.views.generic import CreateView
+from django.views.generic import DetailView
+from forms import AddProposalForm
+from forms import CitizenAmendmentCreationForm
+from models import Bill
+from models import BillSegment
+from models import UpDownVote
 from wikilegis.comments2.utils import create_comment
-from wikilegis.core.genericdata import BillVideo, BillAuthorData
+from wikilegis.core.genericdata import BillAuthorData
+from wikilegis.core.genericdata import BillVideo
 from wikilegis.core.orderers import SimpleOrderer
 
 
@@ -36,8 +43,7 @@ class BillOrderer(SimpleOrderer):
     def queryset(self, request, queryset):
         value = self.value()
         queryset = queryset.annotate(
-                score=Count('segments__substitutes')
-            )
+            score=Count('segments__substitutes'))
         if value == 'date':
             queryset = queryset.order_by('-modified')
         elif value == 'hot':
@@ -169,7 +175,8 @@ def create_amendment(request, bill_id, segment_id):
             amendment.author = request.user
             amendment.original = False
 
-            # TODO what if the content is empty? or exactly like the original? i suggest flash + ignore
+            # TODO(NAME) what if the content is empty? or exactly like the original?
+            # i suggest flash + ignore
 
             amendment.save()
 
@@ -267,7 +274,8 @@ def _handle_votes(request, ctype, object_id, new_vote):
             vote.save()
 
     if not request.is_ajax():
-        # TODO FIXME This won't always work. Make sure all votable objects have `get_absolute_url`.
+        # TODO(NAME) FIXME This won't always work.
+        # Make sure all votable objects have `get_absolute_url`.
         return redirect(obj.get_absolute_url())
     else:
         return render_to_response('_vote_buttons.html', {

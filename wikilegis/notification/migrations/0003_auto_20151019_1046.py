@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
+from django.db import migrations
+from django.db import models
 
 
 class Migration(migrations.Migration):
@@ -23,7 +24,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='historynotification',
             name='amendment',
-            field=models.ForeignKey(default=None, verbose_name='amendment', to='core.CitizenAmendment'),
+            field=models.ForeignKey(default=None, verbose_name='amendment',
+                                    to='core.CitizenAmendment'),
             preserve_default=False,
         ),
     ]

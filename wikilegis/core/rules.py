@@ -2,7 +2,8 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 import rules
-from rules.predicates import is_superuser, is_staff
+from rules.predicates import is_staff
+from rules.predicates import is_superuser
 from wikilegis.core.models import Bill
 
 

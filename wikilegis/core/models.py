@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-from operator import attrgetter
-
-from django.contrib.contenttypes import generic
-from django.db import models
 from django.conf import settings
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.contenttypes import generic
+from django.core.urlresolvers import reverse
+from django.db import models
 from django.db.models import permalink
 from django.utils.encoding import force_text
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
 from django_comments.models import Comment
 from django_extensions.db.fields.json import JSONField
+from operator import attrgetter
 
 
 BILL_STATUS_CHOICES = (
@@ -63,7 +63,7 @@ class TimestampedMixin(models.Model):
     created = models.DateTimeField(_('created'), editable=False, blank=True, auto_now_add=True)
     modified = models.DateTimeField(_('modified'), editable=False, blank=True, auto_now=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
 
 
@@ -85,7 +85,11 @@ class Bill(TimestampedMixin):
     epigraph = models.CharField(_('epigraph'), max_length=255, null=True)
     description = models.TextField(_('digest'))
     status = models.CharField(_('status'), max_length=20, choices=BILL_STATUS_CHOICES, default='1')
-    theme = models.CharField(_('theme'), max_length=255, choices=BILL_THEMES_CHOICES, default='documento')
+    theme = models.CharField(
+        _('theme'),
+        max_length=255,
+        choices=BILL_THEMES_CHOICES,
+        default='documento')
     editors = models.ManyToManyField(
         'auth.Group', verbose_name=_('editors'), blank=True,
         help_text=_('Any users in any of these groups will '
@@ -96,13 +100,12 @@ class Bill(TimestampedMixin):
     def __unicode__(self):
         return self.title
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('bill')
         verbose_name_plural = _('bills')
 
-    @permalink
     def get_absolute_url(self):
-        return 'show_bill', [self.pk], {}
+        return reverse('show_bill', args=[self.pk])
 
     @property
     def content(self):
@@ -113,7 +116,7 @@ class TypeSegment(models.Model):
     name = models.CharField(_('name'), max_length=200)
     editable = models.BooleanField(_('editable'), default='True')
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('type segment')
         verbose_name_plural = _('types segment')
 
@@ -126,15 +129,25 @@ class BillSegment(TimestampedMixin):
     order = models.PositiveIntegerField(_('order'), default=0)
     type = models.ForeignKey(TypeSegment, verbose_name=_('type'))
     number = models.PositiveIntegerField(_('number'), null=True, blank=True, default=0)
-    parent = models.ForeignKey('self', related_name='children', verbose_name=_('segment parent'), null=True, blank=True)
-    replaced = models.ForeignKey('self', related_name='substitutes', verbose_name=_('segment replaced'), null=True, blank=True)
+    parent = models.ForeignKey(
+        'self',
+        related_name='children',
+        verbose_name=_('segment parent'),
+        null=True,
+        blank=True)
+    replaced = models.ForeignKey(
+        'self',
+        related_name='substitutes',
+        verbose_name=_('segment replaced'),
+        null=True,
+        blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'), null=True)
     original = models.BooleanField(_('original'), default=True)
     content = models.TextField(_('content'))
     comments = generic.GenericRelation(Comment, object_id_field="object_pk")
     votes = generic.GenericRelation('core.UpDownVote', object_id_field="object_id")
 
-    class Meta:
+    class Meta(object):
         ordering = ('order',)
         verbose_name = _('segment')
         verbose_name_plural = _('segments')
@@ -167,10 +180,13 @@ class BillSegment(TimestampedMixin):
 
 class CitizenAmendment(TimestampedMixin):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'))
-    segment = models.ForeignKey('core.BillSegment', related_name='amendments', verbose_name=_('bill segment'))
+    segment = models.ForeignKey(
+        'core.BillSegment',
+        related_name='amendments',
+        verbose_name=_('bill segment'))
     content = models.TextField(_('content'))
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('citizen amendment')
         verbose_name_plural = _('citizen amendments')
 
@@ -184,9 +200,8 @@ class CitizenAmendment(TimestampedMixin):
     def html_id(self):
         return 'amendment-{0}'.format(self.pk)
 
-    @permalink
     def get_absolute_url(self):
-        return 'show_amendment', [self.pk]
+        return reverse('show_amendment', args=[self.pk])
 
 
 class UpDownVote(TimestampedMixin):
@@ -196,7 +211,7 @@ class UpDownVote(TimestampedMixin):
     content_object = GenericForeignKey('content_type', 'object_id')
     vote = models.BooleanField(choices=((True, _('Up Vote')), (False, _('Down Vote'))))
 
-    class Meta:
+    class Meta(object):
         unique_together = ('user', 'object_id', 'content_type')
 
     def __unicode__(self):
@@ -208,10 +223,18 @@ class Proposition(models.Model):
     type = models.CharField(_('type'), max_length=200, null=True, blank=True)
     number = models.CharField(_('number'), max_length=50, null=True, blank=True)
     year = models.CharField(_('year'), max_length=4, null=True, blank=True)
-    name_proposition = models.CharField(_('name proposition'), max_length=200, null=True, blank=True)
+    name_proposition = models.CharField(
+        _('name proposition'),
+        max_length=200,
+        null=True,
+        blank=True)
     id_proposition = models.IntegerField(_('id proposition'), null=True, blank=True)
     id_main_proposition = models.IntegerField(_('id main proposition'), null=True, blank=True)
-    name_origin_proposition = models.CharField(_('name origin proposition'), max_length=200, null=True, blank=True)
+    name_origin_proposition = models.CharField(
+        _('name origin proposition'),
+        max_length=200,
+        null=True,
+        blank=True)
     theme = models.CharField(_('theme'), max_length=200, null=True, blank=True)
     menu = models.TextField(_('menu'), null=True, blank=True)
     menu_explanation = models.TextField(_('menu_explanation'), null=True, blank=True)
@@ -220,7 +243,11 @@ class Proposition(models.Model):
     uf_author = models.CharField(_('uf author'), max_length=200, null=True, blank=True)
     party_author = models.CharField(_('party author'), max_length=200, null=True, blank=True)
     apresentation_date = models.DateField(_('apresentation date'), null=True, blank=True)
-    processing_regime = models.CharField(_('processing_regime'), max_length=200, null=True, blank=True)
+    processing_regime = models.CharField(
+        _('processing_regime'),
+        max_length=200,
+        null=True,
+        blank=True)
     last_dispatch_date = models.DateField(_('last dispatch date'), null=True, blank=True)
     last_dispatch = models.TextField(_('last dispatch'), null=True, blank=True)
     appraisal = models.TextField(_('appraisal'), null=True, blank=True)
@@ -228,7 +255,7 @@ class Proposition(models.Model):
     situation = models.CharField(_('situation'), max_length=200, null=True, blank=True)
     content_link = models.URLField(_('content link'), null=True, blank=True)
 
-    class Meta:
+    class Meta(object):
         verbose_name = _('proposition')
         verbose_name_plural = _('propositions')
 

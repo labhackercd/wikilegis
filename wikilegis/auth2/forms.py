@@ -1,4 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm, UserChangeForm as BaseUserChangeForm
+from django.contrib.auth.forms import UserChangeForm as BaseUserChangeForm
+from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm
 from image_cropping import ImageCropWidget
 from image_cropping.widgets import CropWidget
 from wikilegis.auth2.models import User
@@ -21,11 +22,12 @@ class RegistrationForm(UserCreationForm):
 
 
 class CustomImageCropWidget(ImageCropWidget):
-    """
-    Custom ImageCropWidget that doesn't show the initial value of the field.
+    """Custom ImageCropWidget that doesn't show the initial value of the field.
+
     We use this trick, and place it right under the CropWidget so that
     it looks like the user is seeing the image and clearing the image.
     """
+
     template_with_initial = (
         # '%(initial_text)s: <a href="%(initial_url)s">%(initial)s</a> '
         '%(clear_template)s<br />%(input_text)s: %(input)s'

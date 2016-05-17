@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
+from django.db import migrations
+from django.db import models
 
 
 class Migration(migrations.Migration):
@@ -15,6 +16,10 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='bill',
             name='editors',
-            field=models.ManyToManyField(help_text='Any users in any of these groups will have permission to change this document.', to='auth.Group', verbose_name='editors', blank=True),
+            field=models.ManyToManyField(help_text='Any users in any of these groups will' +
+                                                   'have permission to change this document.',
+                                         to='auth.Group',
+                                         verbose_name='editors',
+                                         blank=True),
         ),
     ]

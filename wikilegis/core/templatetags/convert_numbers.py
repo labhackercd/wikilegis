@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.template import Library
 from collections import OrderedDict
 from django.template.defaultfilters import slugify
+from django.template import Library
 from django.utils.translation import ugettext_lazy as _
 import string
 

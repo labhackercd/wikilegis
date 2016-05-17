@@ -1,5 +1,6 @@
 from django.contrib import admin
-from wikilegis.notification.models import HistoryNotification, Newsletter
+from wikilegis.notification.models import HistoryNotification
+from wikilegis.notification.models import Newsletter
 
 
 class HistoryNotificationAdmin(admin.ModelAdmin):

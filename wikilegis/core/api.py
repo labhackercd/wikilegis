@@ -1,11 +1,14 @@
 from django_comments.models import Comment
 from rest_framework.decorators import api_view
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-from wikilegis.core.models import Bill, BillSegment
-from wikilegis.core.serializers import BillSerializer, SegmentSerializer, CommentsSerializer
-from rest_framework import generics
+from wikilegis.core.models import Bill
+from wikilegis.core.models import BillSegment
+from wikilegis.core.serializers import BillSerializer
+from wikilegis.core.serializers import CommentsSerializer
+from wikilegis.core.serializers import SegmentSerializer
 
 
 class BillListAPI(generics.ListAPIView):
@@ -21,6 +24,7 @@ class SegmentsListAPI(generics.ListAPIView):
 class CommentListAPI(generics.ListAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
+
 
 @api_view(['GET'])
 def api_root(request, format=None):

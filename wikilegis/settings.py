@@ -30,6 +30,8 @@ import django.conf.global_settings as default
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'g8#!8*0sr!zsg!q=on=n66dtie69u0z1qhfk-&c8bc_%t#&g@%'
 
+API_KEY = config('API_KEY', default='9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

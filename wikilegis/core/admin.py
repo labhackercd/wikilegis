@@ -314,6 +314,7 @@ class TypeSegmentAdmin(admin.ModelAdmin):
 class BillSegmentAdmin(admin.ModelAdmin):
     list_filter = ['original', 'type', 'bill']
     list_display = ('bill', 'order', 'type', 'number', 'author', 'parent', 'original')
+    search_fields = ['content']
     form = BillSegmentAdminForm
     fieldsets = [
         (None, {'fields': ['bill', 'order', 'parent', 'type', 'number', 'content']})
@@ -328,6 +329,7 @@ class BillSegmentAdmin(admin.ModelAdmin):
             except Exception:
                 field.initial = 1
         return field
+
 
 admin.site.register(BillSegment, BillSegmentAdmin)
 admin.site.register(models.Bill, BillAdmin)

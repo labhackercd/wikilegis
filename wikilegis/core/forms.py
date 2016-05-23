@@ -244,7 +244,6 @@ class BillSegmentAdminForm(forms.ModelForm):
         obj = super(BillSegmentAdminForm, self).save(commit=False)
         original_segments = BillSegment.objects.filter(bill_id=obj.bill_id, original=True)
         if obj.order in original_segments.values_list('order', flat=True):
-            import ipdb;ipdb.set_trace()
             original_segments.filter(order__gte=obj.order).update(order=F('order')+1)
         obj.save()
 

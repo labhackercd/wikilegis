@@ -22,7 +22,6 @@ class Command(BaseCommand):
             top_amendments = []
             segment_ctype = ContentType.objects.get_for_model(BillSegment)
             for segment in bill.segments.filter(original=True):
-                import ipdb; ipdb.set_trace()
                 up_votes_segment = UpDownVote.objects.filter(content_type=segment_ctype, object_id=segment.id,
                                                              vote=True).count()
                 down_votes_segment = UpDownVote.objects.filter(content_type=segment_ctype, object_id=segment.id,

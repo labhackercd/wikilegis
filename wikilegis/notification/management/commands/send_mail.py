@@ -77,7 +77,7 @@ class Command(BaseCommand):
                                          'proposition': proposition,
                                          'top_amendments': BillSegment.objects.filter(id__in=top_amendments)})
                 superusers = User.objects.filter(is_superuser=True)
-                email_list = []
+                email_list = ['wikilegis@camara.leg.br']
                 subject = u'[Wikilegis] Atualizações ao %s %s' % (bill.title, proposition)
                 for superuser in superusers:
                     email_list.append(superuser.email)

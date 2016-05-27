@@ -6,7 +6,6 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes import generic
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import permalink
 from django.utils.encoding import force_text
 from django.utils.text import Truncator
 from django.utils.translation import ugettext_lazy as _
@@ -105,7 +104,7 @@ class Bill(TimestampedMixin):
         verbose_name_plural = _('bills')
 
     def get_absolute_url(self):
-        return reverse('show_bill', args=[self.pk])
+        return reverse('show_bill', args=[str(self.pk)])
 
     @property
     def content(self):
@@ -170,12 +169,12 @@ class BillSegment(TimestampedMixin):
 
     def get_absolute_url(self):
         if self.original:
-            return reverse('show_segment', args=[self.bill.id, self.id])
+            return reverse('show_segment', args=[str(self.bill.id), str(self.id)])
         else:
             if self.replaced:
-                return reverse('show_amendment', args=[self.pk])
+                return reverse('show_amendment', args=[str(self.pk)])
             else:
-                return reverse('show_proposal', args=[self.bill.id, self.id])
+                return reverse('show_proposal', args=[str(self.bill.id), str(self.id)])
 
 
 class CitizenAmendment(TimestampedMixin):
@@ -201,7 +200,7 @@ class CitizenAmendment(TimestampedMixin):
         return 'amendment-{0}'.format(self.pk)
 
     def get_absolute_url(self):
-        return reverse('show_amendment', args=[self.pk])
+        return reverse('show_amendment', args=[str(self.pk)])
 
 
 class UpDownVote(TimestampedMixin):

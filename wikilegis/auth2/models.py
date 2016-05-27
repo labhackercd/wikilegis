@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import permalink
 from django import forms
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as ugettext
@@ -117,4 +117,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.get_full_name() or self.email
 
     def get_absolute_url(self):
-        return reverse('users_profile', args=[self.pk])
+        return reverse('users_profile', args=[str(self.pk)])

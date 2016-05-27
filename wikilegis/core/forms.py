@@ -4,7 +4,6 @@ from __future__ import absolute_import
 from datetime import datetime
 from django.core.exceptions import ValidationError
 from django import forms
-from django.db.models import Max
 from django.db.models.expressions import F
 from django.utils.translation import ugettext_lazy as _
 from . import models
@@ -269,8 +268,7 @@ class BillSegmentAdminForm(forms.ModelForm):
         obj = super(BillSegmentAdminForm, self).save(commit=False)
         original_segments = BillSegment.objects.filter(bill_id=obj.bill_id, original=True)
         if obj.order in original_segments.values_list('order', flat=True):
-            import ipdb;ipdb.set_trace()
-            original_segments.filter(order__gte=obj.order).update(order=F('order')+1)
+            original_segments.filter(order__gte=obj.order).update(order=F('order') + 1)
         obj.save()
 
         return obj

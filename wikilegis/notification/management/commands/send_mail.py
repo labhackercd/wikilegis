@@ -24,8 +24,6 @@ class Command(BaseCommand):
             top_amendments = []
             segment_ctype = ContentType.objects.get_for_model(BillSegment)
             for segment in bill.segments.filter(original=True):
-                import ipdb
-                ipdb.set_trace()
                 up_votes_segment = UpDownVote.objects.filter(content_type=segment_ctype,
                                                              object_id=segment.id,
                                                              vote=True).count()
@@ -87,9 +85,8 @@ class Command(BaseCommand):
                                          'top_amendments':
                                          BillSegment.objects.filter(id__in=top_amendments)})
                 superusers = User.objects.filter(is_superuser=True)
-                email_list = []
-                subject = u'[Wikilegis] Atualizações ao %s %s' % (
-                    bill.title, proposition)
+                email_list = ['wikilegis@camara.leg.br']
+                subject = u'[Wikilegis] Atualizações ao %s %s' % (bill.title, proposition)
                 for superuser in superusers:
                     email_list.append(superuser.email)
                 for editor in bill.editors.all():

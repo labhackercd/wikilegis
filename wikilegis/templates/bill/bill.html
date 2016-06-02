@@ -98,7 +98,15 @@
       
         <div class="pl-info">
           {% if bill.proposition_set.all.0.situation %}
-            <span class="item"><span class="pl-subheading">{% trans "Bill status:" %}</span> <span class="pl-status">{{ bill.proposition_set.all.0.situation }}</span></span>
+            <span class="item">
+              <span class="pl-subheading">{% trans "Bill status:" %}</span>
+              <span class="pl-status">
+                <a target="_blank" href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">
+                  {{ bill.proposition_set.all.0.situation }}
+                </a>
+              </span>
+            </span>
+
           {% endif %}
           <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ bill|attendees_count }}</span></span> 
           <span class="item"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count">{{ bill|proposals_count }}</span></span>

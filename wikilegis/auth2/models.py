@@ -78,6 +78,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     cropping = ImageRatioField('avatar', '70x70', help_text=_(
         'Note that the preview above will only be updated after you submit the form.'))
 
+    # XXX This was not supposed to be here.
+    # This field and all the logic and subsystems associated with it
+    # should belong to a plugin or something. It should be a separate,
+    # optional component.
+    id_congressman = models.CharField(
+        _('Congressman ID'), max_length=30, null=True, blank=True,
+        help_text=_("The id of each congressman may be found in the url parameters in the"
+                    "congressman profile from the site: http://www2.camara.leg.br/"))
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'

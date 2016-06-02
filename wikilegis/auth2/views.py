@@ -9,7 +9,7 @@ from django.utils.translation import ugettext
 from django.views.generic import RedirectView
 from registration.models import RegistrationProfile
 
-from .forms import UserForm
+from .forms import UserProfileEditionForm
 from wikilegis.auth2.models import User
 
 
@@ -35,21 +35,20 @@ class ActivationCompleteView(RedirectView):
 
 
 @login_required
-def edit_profile(request):
+def your_profile(request):
     if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES, instance=request.user)
+        form = UserProfileEditionForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, ugettext('Profile successfully updated'))
             return redirect("edit_profile")
     else:
-        form = UserForm(instance=request.user)
+        form = UserProfileEditionForm(instance=request.user)
 
-    return render(request, 'auth2/edit.html', {'form': form})
+    return render(request, 'auth2/your_profile.html', {'form': form})
 
 
 @login_required
 def show_users_profile(request, user_id):
     user = get_object_or_404(User, pk=user_id)
-
     return render(request, 'auth2/show_users_profile.html', {'user': user})

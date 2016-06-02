@@ -1,14 +1,21 @@
 {% extends "base_with_sidebar.html" %}
+
 {% load thumbnail %}
 {% load static %}
 {% load i18n %}
 {% load render_materialized_field from wl_forms %}
 
+{% comment %}
+    TODO following list:
+    * fix space between cropping and avatar
+    * add a 'cancel' button or something
+{% endcomment %}
+
 {% block content2 %}
     <div class="container">
         <div class="col s11 m6 edit-profile">
             
-            <h4>{% trans 'Edit profile' %}</h4>
+            <h4>{% trans "Your profile" %}</h4>
 
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -20,16 +27,17 @@
                         {% render_materialized_field form.avatar %}
                 </div>
 
-                <div class="input-field">
-                    {% render_materialized_field form.first_name %}
-                </div>
+                {% for field in form %}
+                    {% if field.name != "cropping" and field.name != "avatar" %}
+                        <div class="input-field">
+                            {% render_materialized_field field %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
 
                 <div class="input-field">
-                    {% render_materialized_field form.last_name %}
-                </div>                
-
-                <div class="input-field">
-                    <button class="btn wbtn dark waves-effect waves-light" type="submit" name="action">Submit
+                    <button class="btn wbtn dark waves-effect waves-light" type="submit" name="action">
+                        {% trans "Update my profile" %}
                         <i class="material-icons right">send</i>
                     </button>
                 </div>

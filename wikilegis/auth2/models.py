@@ -115,3 +115,17 @@ class User(AbstractBaseUser, PermissionsMixin):
     @permalink
     def get_absolute_url(self):
         return 'users_profile', [self.pk], {}
+
+
+class Congressman(models.Model):
+    user = models.ForeignKey(User, verbose_name=_("user"))
+    uf = models.CharField(_('uf'), max_length=200, null=True, blank=True)
+    party = models.CharField(_('party'), max_length=200, null=True, blank=True)
+    parliamentary_name = models.CharField(verbose_name=_("parliamentary name"), max_length=200, null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('congressman')
+        verbose_name_plural = _('congressmen')
+
+    def __unicode__(self):
+        return self.user

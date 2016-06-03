@@ -99,6 +99,9 @@ class BillAdminForm(forms.ModelForm):
     type = forms.ChoiceField(label=_('Type'), choices=PROPOSITION_TYPE_CHOICES, required=False)
     number = forms.IntegerField(label=_('Number'), required=False)
     year = forms.IntegerField(label=_('Year'), required=False)
+    reporting_member = forms.ModelChoiceField(label=_('Reporting member'), required=False,
+                                              queryset=User.objects.filter(id_congressman__isnull=False,
+                                                                           is_active=True))
 
     def __init__(self, *args, **kwargs):
         super(BillAdminForm, self).__init__(*args, **kwargs)
@@ -112,7 +115,7 @@ class BillAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Bill
-        fields = ('title', 'description', 'status',  'editors', 'type', 'number', 'year')
+        fields = ('title', 'description', 'status',  'editors', 'reporting_member', 'type', 'number', 'year')
 
     def clean(self):
         if self.data['type'] or self.data['number'] or self.data['year']:

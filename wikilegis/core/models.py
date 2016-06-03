@@ -90,6 +90,7 @@ class Bill(TimestampedMixin):
         'auth.Group', verbose_name=_('editors'), blank=True,
         help_text=_('Any users in any of these groups will '
                     'have permission to change this document.'))
+    reporting_member = models.ForeignKey('auth2.User', verbose_name=_('reporting member'), null=True, blank=True)
 
     metadata = GenericRelation('GenericData')
 

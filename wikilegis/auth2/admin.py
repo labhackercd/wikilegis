@@ -32,7 +32,6 @@ class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         instance = form.save(commit=False)
         instance.save()
-        import ipdb;ipdb.set_trace()
         if instance.id_congressman:
             if instance.congressman_set.all():
                 Congressman.objects.get(id=instance.congressman_set.all()[0].id).delete()

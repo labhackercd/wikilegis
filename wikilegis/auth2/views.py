@@ -57,7 +57,6 @@ def show_users_profile(request, user_id):
 
 def create_congressman(response, user_id):
     tree = ElementTree.fromstring(response.content)
-    import ipdb;ipdb.set_trace()
     congressman = Congressman()
     congressman.user_id = user_id
     congressman.uf = tree[-1].find('ufRepresentacaoAtual').text

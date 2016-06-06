@@ -128,4 +128,4 @@ class Congressman(models.Model):
         verbose_name_plural = _('congressmen')
 
     def __unicode__(self):
-        return self.user
+        return self.user.get_full_name() or self.user.email

@@ -17,15 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: auth2/admin.py:15
+#: auth2/admin.py:23
+msgid "Congressmen updated successfully."
+msgstr ""
+
+#: auth2/admin.py:25
+msgid "Update selected congressmen"
+msgstr ""
+
+#: auth2/admin.py:31
 msgid "Personal info"
 msgstr ""
 
-#: auth2/admin.py:16
+#: auth2/admin.py:32
 msgid "Permissions"
 msgstr ""
 
-#: auth2/admin.py:17
+#: auth2/admin.py:33
 msgid "Important dates"
 msgstr ""
 
@@ -723,15 +731,15 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-#: templates/bill/bill.html:122
+#: templates/bill/bill.html:126
 msgid "Bill status:"
 msgstr ""
 
-#: templates/bill/bill.html:131
+#: templates/bill/bill.html:135
 msgid "Attendees:"
 msgstr ""
 
-#: templates/bill/bill.html:132
+#: templates/bill/bill.html:136
 msgid "Proposals:"
 msgstr ""
 

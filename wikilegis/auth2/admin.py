@@ -60,7 +60,7 @@ class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
 
 
 class CongressmanAdmin(admin.ModelAdmin):
-    list_display = ('user', 'party,' 'uf', 'parliamentary_name')
+    list_display = ('user', 'party', 'uf', 'parliamentary_name')
     actions = [congressman_update]
 
 

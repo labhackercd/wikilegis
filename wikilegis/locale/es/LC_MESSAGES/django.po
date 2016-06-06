@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-06 11:08-0300\n"
+"POT-Creation-Date: 2016-06-06 15:34-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: auth2/admin.py:15
+#: auth2/admin.py:23
+msgid "Congressmen updated successfully."
+msgstr ""
+
+#: auth2/admin.py:25
+msgid "Update selected congressmen"
+msgstr ""
+
+#: auth2/admin.py:31
 msgid "Personal info"
 msgstr ""
 
-#: auth2/admin.py:16
+#: auth2/admin.py:32
 msgid "Permissions"
 msgstr ""
 
-#: auth2/admin.py:17
+#: auth2/admin.py:33
 msgid "Important dates"
 msgstr ""
 
@@ -723,15 +731,15 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-#: templates/bill/bill.html:122
+#: templates/bill/bill.html:126
 msgid "Bill status:"
 msgstr ""
 
-#: templates/bill/bill.html:131
+#: templates/bill/bill.html:135
 msgid "Attendees:"
 msgstr ""
 
-#: templates/bill/bill.html:132
+#: templates/bill/bill.html:136
 msgid "Proposals:"
 msgstr ""
 

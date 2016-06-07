@@ -1,4 +1,11 @@
-{% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% load subscribers %} {% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
+{% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% load subscribers %}
+
+{% block extrameta %}
+<meta property="og:title" content="{{ bill.epigraph }}" />
+<meta property="og:description" content="{{ bill.description }}" />
+{% endblock %}
+
+{% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
 <style>
     select {display:block;}
 </style>

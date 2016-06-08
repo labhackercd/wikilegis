@@ -72,7 +72,7 @@
         <div class="row">
           {% if bill.proposition_set.all.0.id_register %}
             <div class="after-bar">
-              <div class="user col s12 valign-wrapper">
+              <div class="user col s12">
                 <div class="col m3 s2">
                   <div class="avatr">
                     {% if bill.proposition_set.all.0.id_register %}
@@ -84,6 +84,7 @@
                 </div>
                 <div class="col m9 s9">
                   <span class="user-name">
+                    <div class="user-type">{% trans "AUTOR" %}</div>
                     <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">{{ bill.proposition_set.all.0.author }} </a>
                   </span>
                   <p class="p-uf">({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})</p>
@@ -97,7 +98,7 @@
         <div class="row">
           {% if bill.reporting_member and bill.reporting_member.congressman_set.all %}
             <div class="after-bar">
-              <div class="user col s12 valign-wrapper">
+              <div class="user col s12">
                 <div class="col m3 s2">
                   <div class="avatr">
                     <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.reporting_member.id_congressman }}.jpg')"></div>
@@ -105,6 +106,7 @@
                 </div>
                 <div class="col m9 s9">
                   <span class="user-name">
+                    <div class="user-type">{% trans "RELATOR" %}</div>
                     <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.reporting_member.id_congressman }}">
                       {{ bill.reporting_member.congressman_set.all.0.parliamentary_name }}
                     </a>

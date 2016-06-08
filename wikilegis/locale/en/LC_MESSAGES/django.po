@@ -731,15 +731,23 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-#: templates/bill/bill.html:126
+#: templates/bill/bill.html:88
+msgid "AUTOR"
+msgstr ""
+
+#: templates/bill/bill.html:110
+msgid "RELATOR"
+msgstr ""
+
+#: templates/bill/bill.html:128
 msgid "Bill status:"
 msgstr ""
 
-#: templates/bill/bill.html:135
+#: templates/bill/bill.html:137
 msgid "Attendees:"
 msgstr ""
 
-#: templates/bill/bill.html:136
+#: templates/bill/bill.html:138
 msgid "Proposals:"
 msgstr ""
 

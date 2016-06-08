@@ -97,10 +97,10 @@ msgstr "ID do Deputado"
 #: auth2/models.py:87
 msgid ""
 "The id of each congressman may be found in the url parameters in "
-"the congressman profile from the site: http://www2.camara.leg.br/"
+"thecongressman profile from the site: http://www2.camara.leg.br/"
 msgstr ""
-"O id pode ser encontrado no parâmetro do endereço da página do deputado no "
-"site: http://www2.camara.leg.br/"
+"O id de cada deputado pode ser encontrado dentro da URL de seu "
+"perfil no site da câmara: http://www2.camara.leg.br/"
 
 #: auth2/models.py:121 core/models.py:194 notification/models.py:30
 msgid "user"
@@ -752,15 +752,23 @@ msgstr ""
 msgid "Subscribe"
 msgstr "Assinar"
 
-#: templates/bill/bill.html:126
+#: templates/bill/bill.html:88
+msgid "AUTOR"
+msgstr "AUTHOR"
+
+#: templates/bill/bill.html:110
+msgid "RELATOR"
+msgstr "RAPPORTEUR"
+
+#: templates/bill/bill.html:128
 msgid "Bill status:"
 msgstr "Status da proposta:"
 
-#: templates/bill/bill.html:135
+#: templates/bill/bill.html:137
 msgid "Attendees:"
 msgstr "Participantes:"
 
-#: templates/bill/bill.html:136
+#: templates/bill/bill.html:138
 msgid "Proposals:"
 msgstr "Propostas:"
 

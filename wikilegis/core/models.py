@@ -200,7 +200,7 @@ class UpDownVote(TimestampedMixin):
         unique_together = ('user', 'object_id', 'content_type')
 
     def __unicode__(self):
-        return self.user
+        return self.user.get_full_name() or self.user.email
 
 
 class Proposition(models.Model):

@@ -1,8 +1,11 @@
 {% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% load subscribers %}
 
 {% block extrameta %}
+<meta property="og:type"   content="article" />
 <meta property="og:title" content="{{ bill.epigraph }}" />
 <meta property="og:description" content="{{ bill.description }}" />
+<meta property="og:image:url"  content="http://wikilegis.labhackercd.net/static/img/logo-full.png" /> 
+<meta property="og:image:type" content="image/png" />
 {% endblock %}
 
 {% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}

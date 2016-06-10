@@ -69,16 +69,6 @@
           </form>
         {% endif %}
 
-        <div class="pl-about">
-          {% if bill.proposition_set.all.0.id_proposition %}
-            <a target="_blank" href="http://www2.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">
-            {{ bill.description|safe|linebreaks }}
-            </a> 
-            {% else %} 
-            {{ bill.description|safe|linebreaks }} 
-          {% endif %}
-        </div>
-
         <div class="row">
           {% if bill.proposition_set.all.0.id_register %}
             <div class="after-bar">

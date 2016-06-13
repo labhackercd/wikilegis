@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-16 13:31-0300\n"
+"POT-Creation-Date: 2016-06-13 15:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,6 +78,16 @@ msgid ""
 "Note that the preview above will only be updated after you submit the form."
 msgstr ""
 
+#: auth2/models.py:86
+msgid "Congressman ID"
+msgstr ""
+
+#: auth2/models.py:87
+msgid ""
+"The id of each congressman may be found in the url parameters in "
+"thecongressman profile from the site: http://www2.camara.leg.br/"
+msgstr ""
+
 #: auth2/views.py:33
 msgid "Your account is now activated."
 msgstr ""
@@ -86,101 +96,109 @@ msgstr ""
 msgid "Profile successfully updated"
 msgstr ""
 
-#: core/admin.py:36
+#: core/admin.py:37
 msgid "Bills updated successfully."
 msgstr ""
 
-#: core/admin.py:38
+#: core/admin.py:39
 msgid "Update status of selected bills"
 msgstr ""
 
-#: core/admin.py:64 core/models.py:131 core/models.py:169 core/models.py:218
+#: core/admin.py:52 core/models.py:139
+msgid "segment"
+msgstr ""
+
+#: core/admin.py:52 core/models.py:140
+msgid "segments"
+msgstr ""
+
+#: core/admin.py:109 core/models.py:131 core/models.py:169 core/models.py:218
 msgid "author"
 msgstr ""
 
-#: core/admin.py:65
+#: core/admin.py:110
 msgid "authors"
 msgstr ""
 
-#: core/admin.py:74
+#: core/admin.py:119
 msgid "video"
 msgstr ""
 
-#: core/admin.py:75
+#: core/admin.py:120
 msgid "videos"
 msgstr ""
 
-#: core/admin.py:111
+#: core/admin.py:156
 msgid "Legislative proposal"
 msgstr ""
 
-#: core/admin.py:112
+#: core/admin.py:157
 msgid ""
 "This data will be used to assign the project to a legislative proposal "
 "pending before the House of Representatives. You only need to inform them if "
 "your procedure has been initiated. To delete , leave the fields blank."
 msgstr ""
 
-#: core/admin.py:161
+#: core/admin.py:206
 msgid "Situation"
 msgstr ""
 
-#: core/admin.py:165
+#: core/admin.py:210
 msgid "Show"
 msgstr ""
 
-#: core/admin.py:167
+#: core/admin.py:212
 msgid "Report"
 msgstr ""
 
-#: core/forms.py:57
+#: core/forms.py:58
 msgid "User"
 msgstr ""
 
-#: core/forms.py:58
+#: core/forms.py:59
 msgid "Title"
 msgstr ""
 
-#: core/forms.py:71
+#: core/forms.py:72
 msgid "video url"
 msgstr ""
 
-#: core/forms.py:79 core/forms.py:218
+#: core/forms.py:80 core/forms.py:219
 msgid "You can explain your proposal here."
 msgstr ""
 
-#: core/forms.py:83
+#: core/forms.py:84
 msgid "Suggest a new proposal! You can begin editing the original one."
 msgstr ""
 
-#: core/forms.py:92
+#: core/forms.py:93
 msgid "Select a type"
 msgstr ""
 
-#: core/forms.py:98
+#: core/forms.py:99
 msgid "Type"
 msgstr ""
 
-#: core/forms.py:99
+#: core/forms.py:100
 msgid "Number"
 msgstr ""
 
-#: core/forms.py:100
+#: core/forms.py:101
 msgid "Year"
 msgstr ""
 
-#: core/forms.py:123
+#: core/forms.py:124
 msgid ""
 "When adding a field in the legislative proposal, the three fields are now "
 "required"
 msgstr ""
 
-#: core/forms.py:233 core/forms.py:236 core/models.py:100 core/models.py:125
+#: core/forms.py:234 core/forms.py:237 core/models.py:100 core/models.py:125
 #: core/models.py:207 notification/models.py:29
 msgid "bill"
 msgstr ""
 
-#: core/forms.py:234 core/models.py:129
+#: core/forms.py:235 core/models.py:129
 msgid "segment parent"
 msgstr ""
 
@@ -386,14 +404,6 @@ msgstr ""
 msgid "content"
 msgstr ""
 
-#: core/models.py:139
-msgid "segment"
-msgstr ""
-
-#: core/models.py:140
-msgid "segments"
-msgstr ""
-
 #: core/models.py:170
 msgid "bill segment"
 msgstr ""
@@ -502,7 +512,7 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: core/templatetags/convert_numbers.py:59
+#: core/templatetags/convert_numbers.py:60
 msgid "Sole paragraph"
 msgstr ""
 
@@ -544,11 +554,11 @@ msgstr ""
 msgid "history notifications"
 msgstr ""
 
-#: notification/models.py:25 templates/bill/bill.html:51
+#: notification/models.py:25 templates/bill/bill.html:61
 msgid "Daily"
 msgstr ""
 
-#: notification/models.py:26 templates/bill/bill.html:46
+#: notification/models.py:26 templates/bill/bill.html:56
 msgid "Weekly"
 msgstr ""
 
@@ -564,11 +574,11 @@ msgstr ""
 msgid "Newsletters"
 msgstr ""
 
-#: settings.py:201
+#: settings.py:212
 msgid "Google"
 msgstr ""
 
-#: settings.py:205
+#: settings.py:216
 msgid "Facebook"
 msgstr ""
 
@@ -614,20 +624,20 @@ msgstr ""
 msgid "Django administration"
 msgstr ""
 
-#: templates/adminsortable2/tabular-1.6.html:9
+#: templates/adminsortable2/tabular-1.6.html:10
 msgid "Sort"
 msgstr ""
 
-#: templates/adminsortable2/tabular-1.6.html:17
+#: templates/adminsortable2/tabular-1.6.html:18
 msgid "Delete?"
 msgstr ""
 
-#: templates/adminsortable2/tabular-1.6.html:70
+#: templates/adminsortable2/tabular-1.6.html:90
 #, python-format
 msgid "Add another %(verbose_name)s"
 msgstr ""
 
-#: templates/adminsortable2/tabular-1.6.html:71
+#: templates/adminsortable2/tabular-1.6.html:91
 msgid "Remove"
 msgstr ""
 
@@ -636,12 +646,16 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: templates/auth2/edit.html:11
-msgid "Edit profile"
-msgstr ""
-
 #: templates/auth2/show_users_profile.html:15
 msgid "Joined on"
+msgstr ""
+
+#: templates/auth2/your_profile.html:18
+msgid "Your profile"
+msgstr ""
+
+#: templates/auth2/your_profile.html:40
+msgid "Update my profile"
 msgstr ""
 
 #: templates/bill/_bill_segment_item.html:4
@@ -664,32 +678,32 @@ msgstr ""
 msgid "Subsection"
 msgstr ""
 
-#: templates/bill/bill.html:30
+#: templates/bill/bill.html:40
 msgid "Unsubscribe"
 msgstr ""
 
-#: templates/bill/bill.html:37
+#: templates/bill/bill.html:47
 msgid "Subscribe to this bill"
 msgstr ""
 
-#: templates/bill/bill.html:41
+#: templates/bill/bill.html:51
 msgid ""
 "You can be notified of changes in this bill via e-mail by subscribing to it."
 msgstr ""
 
-#: templates/bill/bill.html:55
+#: templates/bill/bill.html:65
 msgid "Subscribe"
 msgstr ""
 
-#: templates/bill/bill.html:102
+#: templates/bill/bill.html:103
 msgid "Bill status:"
 msgstr ""
 
-#: templates/bill/bill.html:104
+#: templates/bill/bill.html:112
 msgid "Attendees:"
 msgstr ""
 
-#: templates/bill/bill.html:105
+#: templates/bill/bill.html:113
 msgid "Proposals:"
 msgstr ""
 
@@ -754,11 +768,11 @@ msgid "See the bills you can opine"
 msgstr ""
 
 #: templates/index.html:42
-msgid "Closed Law Projects"
+msgid "Closed Bills"
 msgstr ""
 
 #: templates/index.html:42
-msgid "Law Projects"
+msgid "Bills"
 msgstr ""
 
 #: templates/index.html:51

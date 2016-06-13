@@ -16,6 +16,7 @@ import requests
 from wikilegis.core.forms import BillAdminForm, update_proposition, BillSegmentAdminForm
 from wikilegis.core.models import Bill, TypeSegment, BillSegment
 from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
+from wikilegis.core.views import import_file
 
 
 def get_permission(action, opts):
@@ -29,8 +30,8 @@ def propositions_update(ModelAdmin, request, queryset):
     for bill in bills:
         try:
             params = {'IdProp': bill.proposition_set.all()[0].id_proposition}
-            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID'
-                                    , params=params)
+            response = requests.get(
+                'http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID', params=params)
             update_proposition(response, bill.proposition_set.all()[0].id_proposition)
         except:
             pass
@@ -62,6 +63,7 @@ class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
 
     def get_formset(self, request, obj=None, **kwargs):
         formset_class = super(BillSegmentInline, self).get_formset(request, obj, **kwargs)
+
         class PaginationFormSet(formset_class):
             def __init__(self, *args, **kwargs):
                 super(PaginationFormSet, self).__init__(*args, **kwargs)
@@ -158,12 +160,20 @@ class BillAdmin(admin.ModelAdmin):
                                      'description': _("This data will be used to assign the project to a legislative "
                                                       "proposal pending before the House of Representatives. You only "
                                                       "need to inform them if your procedure has been initiated. To "
-                                                      "delete , leave the fields blank.")})
-                                    # 'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
+                                                      "delete , leave the fields blank.")}),
+        # 'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
+        (_('File to import'), {'fields': ['file_txt'], 'description': _(
+            "This data wifile_txtll be used to import a txt file.")}),
     ]
 
     class Media:
         js = ('js/adminfix.js', )
+
+    def save_form(self, request, form, change):
+        bill = form.save(commit=False)
+        if form.files:
+            import_file(form.files['file_txt'], bill.pk)
+        return form.save(commit=False)
 
     def save_formset(self, request, form, formset, change):
         formset.save()
@@ -186,7 +196,7 @@ class BillAdmin(admin.ModelAdmin):
                 {'preserved_filters': preserved_filters, 'opts': opts},
                 post_url_continue
             )
-            return HttpResponseRedirect(post_url_continue+'#add_segment')
+            return HttpResponseRedirect(post_url_continue + '#add_segment')
         return super(BillAdmin, self).response_add(request, obj, post_url_continue)
 
     def response_change(self, request, obj):
@@ -195,9 +205,8 @@ class BillAdmin(admin.ModelAdmin):
         if "_newsegment" in request.POST:
             redirect_url = request.path
             redirect_url = add_preserved_filters({'preserved_filters': preserved_filters, 'opts': opts}, redirect_url)
-            return HttpResponseRedirect(redirect_url+'#add_segment')
+            return HttpResponseRedirect(redirect_url + '#add_segment')
         return super(BillAdmin, self).response_change(request, obj)
-
 
     def get_situation(self, obj):
         try:
@@ -222,7 +231,7 @@ class BillAdmin(admin.ModelAdmin):
                 if e in fields:
                     fields.remove(e)
         return fieldsets
-    
+
     def get_form(self, request, obj=None, **kwargs):
         exclude = self.get_excluded_fields(request, obj=obj)
         exclude.extend(kwargs.pop('exclude', []))
@@ -240,12 +249,12 @@ class BillAdmin(admin.ModelAdmin):
         # I don't really remember why we have to do it this way, but I remember this "oh, shit" moment,
         # so I'm pretty sure we're in the right track by trusting myself.
         return BillChangeList
-    
+
     def has_change_permission(self, request, obj=None):
         # XXX We have to override this in order to call `has_perm` with the given object (or None).
         perm = get_permission('change', self.opts)
         return request.user.has_perm(perm, obj)
-    
+
     def has_module_permission(self, request):
         # XXX Again, we override this to rely on our custom permission checking rules.
         # If the user has any `change` permission in this app, it should view this app.
@@ -279,7 +288,8 @@ class BillSegmentAdmin(admin.ModelAdmin):
         field = super(BillSegmentAdmin, self).formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == 'order':
             try:
-                field.initial = BillSegment.objects.filter(bill_id=Bill.objects.all().last().id).aggregate(Max('order'))['order__max'] + 1
+                field.initial = BillSegment.objects.filter(
+                    bill_id=Bill.objects.all().last().id).aggregate(Max('order'))['order__max'] + 1
             except:
                 field.initial = 1
         return field

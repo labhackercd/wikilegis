@@ -36,8 +36,8 @@ class BillOrderer(SimpleOrderer):
     def queryset(self, request, queryset):
         value = self.value()
         queryset = queryset.annotate(
-                score=Count('segments__substitutes')
-            )
+            score=Count('segments__substitutes')
+        )
         if value == 'date':
             queryset = queryset.order_by('-modified')
         elif value == 'hot':
@@ -273,3 +273,15 @@ def _handle_votes(request, ctype, object_id, new_vote):
         return render_to_response('_vote_buttons.html', {
             'content_object': obj,
         }, context_instance=RequestContext(request))
+
+
+def import_file(bill_txt, bill_pk):
+    response = bill_txt.read()
+    lines = response.splitlines()
+    for line in lines:
+        if not line.decode('utf-8').startswith('Livro') and not line.decode('utf-8').startswith('Título') and not line.decode('utf-8').startswith('Capítulo') and not line.decode('utf-8').startswith('Seção'):
+            segment = BillSegment()
+            segment.bill_id = bill_pk
+            segment.type_id = 1
+            segment.content = line
+            segment.save()

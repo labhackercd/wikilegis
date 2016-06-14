@@ -836,16 +836,12 @@ msgid "See the bills you can opine"
 msgstr "Veja os projetos de lei que você pode opinar"
 
 #: templates/index.html:42
-#, fuzzy
-#| msgid "Closed"
 msgid "Closed Bills"
 msgstr "Fechado"
 
 #: templates/index.html:42
-#, fuzzy
-#| msgid "bills"
 msgid "Bills"
-msgstr "projetos de lei"
+msgstr "Projetos de lei"
 
 #: templates/index.html:51
 msgid "Open"

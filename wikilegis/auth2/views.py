@@ -10,7 +10,8 @@ from django.views.generic import RedirectView
 from registration.models import RegistrationProfile
 
 from .forms import UserProfileEditionForm
-from wikilegis.auth2.models import User
+from wikilegis.auth2.models import User, Congressman
+from xml.etree import ElementTree
 
 
 def resend_activation(request):
@@ -52,3 +53,22 @@ def your_profile(request):
 def show_users_profile(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     return render(request, 'auth2/show_users_profile.html', {'user': user})
+
+
+def create_congressman(response, user_id):
+    tree = ElementTree.fromstring(response.content)
+    congressman = Congressman()
+    congressman.user_id = user_id
+    congressman.uf = tree[-1].find('ufRepresentacaoAtual').text
+    congressman.party = tree[-1].find('partidoAtual').find('sigla').text
+    congressman.parliamentary_name = tree[-1].find('nomeParlamentarAtual').text
+    congressman.save()
+
+
+def update_congressman(response, congresman_id):
+    tree = ElementTree.fromstring(response.content)
+    congressman = Congressman.objects.get(id=congresman_id)
+    congressman.uf = tree[-1].find('ufRepresentacaoAtual').text
+    congressman.party = tree[-1].find('partidoAtual').find('sigla').text
+    congressman.parliamentary_name = tree[-1].find('nomeParlamentarAtual').text
+    congressman.save()

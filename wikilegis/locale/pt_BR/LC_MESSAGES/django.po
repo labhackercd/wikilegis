@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-13 15:47-0300\n"
+"POT-Creation-Date: 2016-06-16 13:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,8 +99,8 @@ msgid ""
 "The id of each congressman may be found in the url parameters in "
 "thecongressman profile from the site: http://www2.camara.leg.br/"
 msgstr ""
-"O id de cada deputado pode ser encontrado dentro da URL de seu "
-"perfil no site da câmara: http://www2.camara.leg.br/"
+"O id de cada deputado pode ser encontrado dentro da URL de seu perfil no "
+"site da câmara: http://www2.camara.leg.br/"
 
 #: auth2/models.py:121 core/models.py:194 notification/models.py:30
 msgid "user"
@@ -150,27 +150,27 @@ msgstr "trecho"
 msgid "segments"
 msgstr "trechos"
 
-#: core/admin.py:109 core/models.py:132 core/models.py:170 core/models.py:219
+#: core/admin.py:110 core/models.py:132 core/models.py:170 core/models.py:219
 msgid "author"
 msgstr "autor"
 
-#: core/admin.py:110
+#: core/admin.py:111
 msgid "authors"
 msgstr "autores"
 
-#: core/admin.py:119
+#: core/admin.py:120
 msgid "video"
 msgstr "vídeo"
 
-#: core/admin.py:120
+#: core/admin.py:121
 msgid "videos"
 msgstr "vídeos"
 
-#: core/admin.py:156
+#: core/admin.py:157
 msgid "Legislative proposal"
 msgstr "Proposta"
 
-#: core/admin.py:157
+#: core/admin.py:158
 msgid ""
 "This data will be used to assign the project to a legislative proposal "
 "pending before the House of Representatives. You only need to inform them if "
@@ -181,15 +181,15 @@ msgstr ""
 "los se o trâmite já foi iniciado. Para apagar os dados, submita os campos em "
 "branco."
 
-#: core/admin.py:206
+#: core/admin.py:207
 msgid "Situation"
 msgstr "Situação"
 
-#: core/admin.py:210
+#: core/admin.py:211
 msgid "Show"
 msgstr "Ver"
 
-#: core/admin.py:212
+#: core/admin.py:213
 msgid "Report"
 msgstr "Relatório"
 
@@ -231,7 +231,7 @@ msgstr "Ano"
 
 #: core/forms.py:102
 msgid "Reporting member"
-msgstr ""
+msgstr "Relator"
 
 #: core/forms.py:127
 msgid ""
@@ -412,7 +412,7 @@ msgstr "Usuários nestes grupos terão permissão para alterar este documento."
 
 #: core/models.py:93
 msgid "reporting member"
-msgstr ""
+msgstr "relator"
 
 #: core/models.py:102
 msgid "bills"
@@ -811,37 +811,43 @@ msgstr "Sua ferramenta de edição legislativa"
 
 #: templates/index.html:12
 msgid ""
-"Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
-"Hacker Lab, designed to enable citizens to suggest modifications to the "
-"wording of Bills"
+"Check the bills and contribute suggestions of new wordings to articles or "
+"paragraphs. The rapporteurs of the bills track the participation and can "
+"take up your idea!"
 msgstr ""
-"O Wikilegis é um projeto desenvolvido pelo Laboratório Hacker da Câmara dos "
-"Deputados, com o objetivo de permitir ao(à) cidadão(ã) a propor alterações à "
-"redação de projetos de lei."
+"Analise os projetos de lei e contribua com sugestões de nova redação a "
+"artigos ou parágrafos. Os deputados relatores das proposições acompanham as "
+"participações e podem adotar a sua ideia!"
 
-#: templates/index.html:19
+#: templates/index.html:13
+msgid ""
+"With this interaction, society profits by participating more actively in the "
+"legislative process, and the Parliament profits by approving improved laws "
+"that are better attuned to citizens’ needs."
+msgstr ""
+"Nessa interação, ganha a sociedade, que participa mais ativamente do "
+"processo legislativo, e ganha o Parlamento, que aprova leis mais aprimoradas "
+"e conectadas às necessidades dos cidadãos."
+
+#: templates/index.html:20
 msgid "Login"
 msgstr "Iniciar sessão"
 
-#: templates/index.html:19
+#: templates/index.html:20
 msgid "or"
 msgstr "ou"
 
-#: templates/index.html:19
+#: templates/index.html:20
 msgid "sign in"
 msgstr "cadastre-se"
 
-#: templates/index.html:25
-msgid "See the bills you can opine"
-msgstr "Veja os projetos de lei que você pode opinar"
-
 #: templates/index.html:42
 msgid "Closed Bills"
-msgstr "Fechado"
+msgstr "Projetos de Lei fechados"
 
 #: templates/index.html:42
 msgid "Bills"
-msgstr "Projetos de lei"
+msgstr "Projetos de Lei"
 
 #: templates/index.html:51
 msgid "Open"
@@ -947,6 +953,18 @@ msgstr ""
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
 msgstr "Reenviar"
+
+#~ msgid "See the bills you can opine"
+#~ msgstr "Veja os projetos de lei que você pode opinar"
+
+#~ msgid ""
+#~ "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+#~ "Hacker Lab, designed to enable citizens to suggest modifications to the "
+#~ "wording of Bills"
+#~ msgstr ""
+#~ "O Wikilegis é um projeto desenvolvido pelo Laboratório Hacker da Câmara "
+#~ "dos Deputados, com o objetivo de permitir ao(à) cidadão(ã) a propor "
+#~ "alterações à redação de projetos de lei."
 
 #~ msgid "Closed Law Projects"
 #~ msgstr "Projetos de Lei fechados"

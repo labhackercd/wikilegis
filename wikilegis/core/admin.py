@@ -58,7 +58,7 @@ class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
     extra = 1
     exclude = ['original', 'replaced', 'author']
     per_page = 20
-    raw_id_fields = ("parent",)
+    # raw_id_fields = ("parent",)
 
     def get_formset(self, request, obj=None, **kwargs):
         formset_class = super(BillSegmentInline, self).get_formset(request, obj, **kwargs)

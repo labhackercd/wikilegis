@@ -48,33 +48,69 @@ def int_to_roman(num):
 
 @register.simple_tag
 def segment_numbering(segment):
-    if segment.number:
-        if slugify(segment.type.name) == 'artigo':
-            if int(segment.number) <= 9:
-                return "Art. %sº " % segment.number
-            else:
-                return "Art. %s " % segment.number
-        elif slugify(segment.type.name) == 'paragrafo':
-            if int(segment.number) <= 9:
-                if BillSegment.objects.filter(type=segment.type, parent=segment.parent).count() == 1:
-                    return "%s. " % _("Sole paragraph")
+    try:
+        if segment['number']:
+            type_name = slugify(segment['type__name'])
+            int_number = int(segment['number'])
+            if type_name == 'artigo':
+                if int_number <= 9:
+                    return "Art. %dº " % int_number
                 else:
-                    return "§ %sº " % segment.number
-            else:
-                return "§ %s " % segment.number
-        elif slugify(segment.type.name) == 'inciso':
-            return "%s - " % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'alinea':
-            return "%s) " % int_to_letter(int(segment.number))
-        elif slugify(segment.type.name) == 'titulo':
-            return "%s" % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'livro':
-            return "%s" % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'capitulo':
-            return "%s" % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'secao':
-            return "%s" % int_to_roman(int(segment.number))
-        elif slugify(segment.type.name) == 'subsecao':
-            return "%s" % int_to_roman(int(segment.number))
-    else:
-        return ''
+                    return "Art. %d " % int_number
+            elif type_name == 'paragrafo':
+                if int_number <= 9:
+                    if int_number == 1 and BillSegment.objects.filter(type__name=segment['type__name'], parent_id=segment['parent']).count() == 1:
+                            return "%s. " % _("Sole paragraph")
+                    else:
+                        return "§ %dº " % int_number
+                else:
+                    return "§ %d " % int_number
+            elif type_name == 'inciso':
+                return "%s - " % int_to_roman(int_number)
+            elif type_name == 'alinea':
+                return "%s) " % int_to_letter(int_number)
+            elif type_name == 'titulo':
+                return "%s" % int_to_roman(int_number)
+            elif type_name == 'livro':
+                return "%s" % int_to_roman(int_number)
+            elif type_name == 'capitulo':
+                return "%s" % int_to_roman(int_number)
+            elif type_name == 'secao':
+                return "%s" % int_to_roman(int_number)
+            elif type_name == 'subsecao':
+                return "%s" % int_to_roman(int_number)
+        else:
+            return ''
+    except:
+        if segment.number:
+            type_name = slugify(segment.type.name)
+            int_number = int(segment.number)
+            if type_name == 'artigo':
+                if int_number <= 9:
+                    return "Art. %dº " % int_number
+                else:
+                    return "Art. %d " % int_number
+            elif type_name == 'paragrafo':
+                if int_number <= 9:
+                    if int_number == 1 and BillSegment.objects.filter(type__name=segment['type__name'], parent_id=segment['parent']).count() == 1:
+                            return "%s. " % _("Sole paragraph")
+                    else:
+                        return "§ %dº " % int_number
+                else:
+                    return "§ %d " % int_number
+            elif type_name == 'inciso':
+                return "%s - " % int_to_roman(int_number)
+            elif type_name == 'alinea':
+                return "%s) " % int_to_letter(int_number)
+            elif type_name == 'titulo':
+                return "%s" % int_to_roman(int_number)
+            elif type_name == 'livro':
+                return "%s" % int_to_roman(int_number)
+            elif type_name == 'capitulo':
+                return "%s" % int_to_roman(int_number)
+            elif type_name == 'secao':
+                return "%s" % int_to_roman(int_number)
+            elif type_name == 'subsecao':
+                return "%s" % int_to_roman(int_number)
+        else:
+            return ''

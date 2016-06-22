@@ -1,24 +1,24 @@
 {% load convert_numbers i18n %}
 
-{% if segment.type|slugify == 'titulo' %}
+{% if segment.type__name|slugify == 'titulo' %}
     <h5 class="heading livro" id="title-{{segment.id}}">{% trans "TITLE" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
-{% elif segment.type|slugify == 'livro' %}
+{% elif segment.type__name|slugify == 'livro' %}
     <h5 class="heading livro" id="book-{{segment.id}}">{% trans "BOOK" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
-{% elif segment.type|slugify == 'capitulo' %}
+{% elif segment.type__name|slugify == 'capitulo' %}
     <h5 class="heading capitulo" id="chapter-{{segment.id}}">{% trans "CHAPTER" %}  <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
-{% elif segment.type|slugify == 'secao' %}
+{% elif segment.type__name|slugify == 'secao' %}
     <h5 class="heading secao" id="section-{{segment.id}}">{% trans "Section" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
-{% elif segment.type|slugify == 'subsecao' %}
+{% elif segment.type__name|slugify == 'subsecao' %}
     <h5 class="heading subsecao" id="subsection-{{segment.id}}">{% trans "Subsection" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
 {% else %}
 <a class="bill-link col s12" href="{% url 'show_segment' bill.id segment.id %}">
-    <div class="article {{ segment.type|slugify }}" id="segment-{{ segment.id }}">
+    <div class="article {{ segment.type__name|slugify }}" id="segment-{{ segment.id }}">
         <div class="comments-counter">
             <div class="cn">
                 <div class="cc-holder">
                     <i class="material-icons">mode_comment</i>
                     <div class="n">
-                        {{ segment.substitutes.all.count }}
+                        {{ segment.proposals_count }}
                     </div>
                 </div>
             </div>

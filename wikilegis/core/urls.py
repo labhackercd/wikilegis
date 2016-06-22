@@ -4,11 +4,11 @@ from django.views.generic.base import TemplateView
 from wikilegis.core.api import (BillListAPI, SegmentsListAPI, CommentListAPI,
                                 api_root, UserUpdateAPI, UserAPI,
                                 TypeSegmentAPI)
-from wikilegis.core.views import BillReport, CreateProposal
+from wikilegis.core.views import BillReport, CreateProposal, BillDetailView
 
 urlpatterns = [
     url(r'^$', 'wikilegis.core.views.index', name='index'),
-    url(r'^bill/(?P<bill_id>\d+)/$', 'wikilegis.core.views.show_bill',
+    url(r'^bill/(?P<pk>\d+)/$', BillDetailView.as_view(),
         name='show_bill'),
     url(r'^bill/(?P<bill_id>\d+)/proposal/$', CreateProposal.as_view(),
         name='create_proposal'),

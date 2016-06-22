@@ -84,7 +84,7 @@
                 </div>
                 <div class="col m9 s9">
                   <span class="user-name">
-                    <div class="user-type">{% trans "AUTOR" %}</div>
+                    <div class="user-type">{% trans "AUTHOR" %}</div>
                     <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">{{ bill.proposition_set.all.0.author }} </a>
                   </span>
                   <p class="p-uf">({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})</p>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="col m9 s9">
                   <span class="user-name">
-                    <div class="user-type">{% trans "RELATOR" %}</div>
+                    <div class="user-type">{% trans "RAPPORTEUR" %}</div>
                     <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.reporting_member.id_congressman }}">
                       {{ bill.reporting_member.congressman_set.all.0.parliamentary_name|title }}
                     </a>

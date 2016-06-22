@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-16 13:58-0300\n"
+"POT-Creation-Date: 2016-06-22 13:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -256,7 +256,7 @@ msgstr "Rascunho"
 msgid "Published"
 msgstr "Publicado"
 
-#: core/models.py:21 templates/index.html:53
+#: core/models.py:21 templates/index.html:48
 msgid "Closed"
 msgstr "Fechado"
 
@@ -753,12 +753,12 @@ msgid "Subscribe"
 msgstr "Assinar"
 
 #: templates/bill/bill.html:88
-msgid "AUTOR"
-msgstr "AUTHOR"
+msgid "AUTHOR"
+msgstr ""
 
 #: templates/bill/bill.html:110
-msgid "RELATOR"
-msgstr "RAPPORTEUR"
+msgid "RAPPORTEUR"
+msgstr ""
 
 #: templates/bill/bill.html:128
 msgid "Bill status:"
@@ -841,43 +841,43 @@ msgstr "ou"
 msgid "sign in"
 msgstr "cadastre-se"
 
-#: templates/index.html:42
+#: templates/index.html:37
 msgid "Closed Bills"
 msgstr "Projetos de Lei fechados"
 
-#: templates/index.html:42
+#: templates/index.html:37
 msgid "Bills"
 msgstr "Projetos de Lei"
 
-#: templates/index.html:51
+#: templates/index.html:46
 msgid "Open"
 msgstr "Abertas"
 
-#: templates/index.html:70
+#: templates/index.html:65
 msgid "Created at"
 msgstr "Criado em"
 
-#: templates/index.html:75
+#: templates/index.html:70
 msgid "Status"
 msgstr "Estado"
 
-#: templates/index.html:85
+#: templates/index.html:80
 msgid "Proposals"
 msgstr "Propostas"
 
-#: templates/index.html:85
+#: templates/index.html:80
 msgid "Proposal"
 msgstr "Proposta"
 
-#: templates/index.html:89 templates/index.html.py:93
+#: templates/index.html:84 templates/index.html.py:88
 msgid "No proposals"
 msgstr "Não há propostas"
 
-#: templates/index.html:94
+#: templates/index.html:89
 msgid "Participate"
 msgstr "Participe"
 
-#: templates/index.html:105
+#: templates/index.html:100
 msgid "No bills"
 msgstr "Não há projetos de lei"
 
@@ -953,6 +953,12 @@ msgstr ""
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
 msgstr "Reenviar"
+
+#~ msgid "AUTOR"
+#~ msgstr "AUTHOR"
+
+#~ msgid "RELATOR"
+#~ msgstr "RAPPORTEUR"
 
 #~ msgid "See the bills you can opine"
 #~ msgstr "Veja os projetos de lei que você pode opinar"

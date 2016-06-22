@@ -758,11 +758,11 @@ msgstr "Assinar"
 
 #: templates/bill/bill.html:88
 msgid "AUTHOR"
-msgstr ""
+msgstr "AUTOR"
 
 #: templates/bill/bill.html:110
 msgid "RAPPORTEUR"
-msgstr ""
+msgstr "RELATOR"
 
 #: templates/bill/bill.html:128
 msgid "Bill status:"

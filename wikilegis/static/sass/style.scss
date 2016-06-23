@@ -157,7 +157,7 @@ body {
 
 img.logo {
     width: 100%;
-    max-width: 300px;
+    max-width: 275px;
     @media #{$medium-and-down} {
         max-width: 200px;
     }
@@ -210,7 +210,7 @@ img.logo {
             font-size: 4rem;
         }
         .desc {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             color: white;
             opacity: .5;
         }
@@ -245,11 +245,6 @@ img.logo {
     }
     .see-projects {
         @media #{$medium-and-down} {
-            position: relative;
-            margin-top: 50px;
-            margin-bottom: 20px;
-        }
-        @media screen and ( max-height: 790px ){
             position: relative;
             margin-top: 50px;
             margin-bottom: 20px;
@@ -1287,12 +1282,10 @@ blockquote {
     a {
         color: inherit;
         opacity: .7;
+        margin-left: 20px;
         &:hover {
             opacity: 1;
         }
-    }
-    a:first-child {
-        margin-right: 20px;
     }
     i {
         vertical-align: middle;

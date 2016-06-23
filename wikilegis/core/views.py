@@ -282,106 +282,116 @@ def _handle_votes(request, ctype, object_id, new_vote):
 def import_file(bill_txt, bill_pk):
     response = bill_txt.read()
     lines = response.splitlines()
-    order = 0
+    order = 1
     is_quote = False
     for line in lines:
-        if order > 1:
-            if line.decode('utf-8').startswith('Livro') and not is_quote:
-                segment_type_id = TypeSegment.objects.get(name="Livro").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = roman.fromRoman(re.sub(r"^Livro ", '', line))
-                segment.content = lines[order + 1].decode('utf-8')
-                segment.save()
-            elif line.decode('utf-8').startswith('Título') and not is_quote:
-                segment_type_id = TypeSegment.objects.get(name="Título").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = roman.fromRoman(re.sub(r"^T\xc3\xadtulo ", '', line))
-                segment.content = lines[order + 1].decode('utf-8')
-                segment.save()
-            elif line.decode('utf-8').startswith('CAPÍTULO') and not is_quote:
-                segment_type_id = TypeSegment.objects.get(name="Capítulo").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = roman.fromRoman(re.sub(r"^CAP\xc3\x8dTULO ", '', line))
-                segment.content = lines[order + 1].decode('utf-8')
-                segment.save()
-            elif line.decode('utf-8').startswith('Seção') and not is_quote:
-                segment_type_id = TypeSegment.objects.get(name="Seção").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = roman.fromRoman(re.sub(r"^Se\xc3\xa7\xc3\xa3o ", '', line))
-                segment.content = lines[order + 1].decode('utf-8')
-                segment.save()
-            elif line.decode('utf-8').startswith('Subseção') and not is_quote:
-                segment_type_id = TypeSegment.objects.get(name="Subseção").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = roman.fromRoman(re.sub(r"^Subse\xc3\xa7\xc3\xa3o ", '', line))
-                segment.content = lines[order + 1].decode('utf-8')
-                segment.save()
-            elif re.match(r"^Art. \d+ \W+", line) or re.match(r"^Art. \d+\.", line) and not is_quote:
-                try:
-                    label = re.match(r"^Art. \d+ \W+", line).group(0)
-                except:
-                    label = re.match(r"^Art. \d+\.", line).group(0)
-                segment_type_id = TypeSegment.objects.get(name="Artigo").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = re.search(r'\d+', label).group(0)
-                segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
-                segment.save()
-            elif re.match(r"^\W+ \d+\W+", line) and not is_quote:
-                label = re.match(r"^\W+ \d+\W+", line).group(0)
-                segment_type_id = TypeSegment.objects.get(name="Parágrafo").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = re.search(r'\d+', label).group(0)
-                segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
-                segment.save()
-            elif line.decode('utf-8').startswith('Parágrafo único. ') and not is_quote:
-                segment_type_id = TypeSegment.objects.get(name="Parágrafo").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = 1
-                segment.content = line.decode('utf-8').replace('Parágrafo único. ', '')
-                segment.save()
-            elif re.match(r"^[A-Z\d]+ \W+ ", line) and not is_quote:
-                label = re.match(r"^[A-Z\d]+ \W+ ", line).group(0)
-                segment_type_id = TypeSegment.objects.get(name="Inciso").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = roman.fromRoman(re.search(r"^[A-Z\d]+", line).group(0))
-                segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
-                segment.save()
-            elif re.match(r"^[a-z]\W ", line) and not is_quote:
-                label = re.match(r"^[a-z]\W ", line).group(0)
-                segment_type_id = TypeSegment.objects.get(name="Alínea").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.number = string.lowercase.index(re.search(r"^[a-z]", line).group(0)) + 1
-                segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
-                segment.save()
-            elif re.match(r"^\"", line) or line.decode('utf-8').startswith('Pena') or is_quote:
-                segment_type_id = TypeSegment.objects.get(name="Citação").id
-                segment = BillSegment()
-                segment.bill_id = bill_pk
-                segment.type_id = segment_type_id
-                segment.content = line.decode('utf-8')
-                segment.save()
-                if re.search(r"\(NR\)$", line) or re.search(r"\"$", line):
-                    is_quote = False
-                else:
-                    is_quote = True
+        if line.decode('utf-8').startswith('Livro') and not is_quote:
+            segment_type_id = TypeSegment.objects.get(name="Livro").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = roman.fromRoman(re.sub(r"^Livro ", '', line))
+            segment.content = lines[order + 1].decode('utf-8')
+            segment.save()
+        elif line.decode('utf-8').startswith('Título') and not is_quote:
+            segment_type_id = TypeSegment.objects.get(name="Título").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = roman.fromRoman(re.sub(r"^T\xc3\xadtulo ", '', line))
+            segment.content = lines[order + 1].decode('utf-8')
+            segment.save()
+        elif line.decode('utf-8').startswith('CAPÍTULO') and not is_quote:
+            segment_type_id = TypeSegment.objects.get(name="Capítulo").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = roman.fromRoman(re.sub(r"^CAP\xc3\x8dTULO ", '', line))
+            segment.content = lines[order + 1].decode('utf-8')
+            segment.save()
+        elif line.decode('utf-8').startswith('Seção') and not is_quote:
+            segment_type_id = TypeSegment.objects.get(name="Seção").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = roman.fromRoman(re.sub(r"^Se\xc3\xa7\xc3\xa3o ", '', line))
+            segment.content = lines[order + 1].decode('utf-8')
+            segment.save()
+        elif line.decode('utf-8').startswith('Subseção') and not is_quote:
+            segment_type_id = TypeSegment.objects.get(name="Subseção").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = roman.fromRoman(re.sub(r"^Subse\xc3\xa7\xc3\xa3o ", '', line))
+            segment.content = lines[order + 1].decode('utf-8')
+            segment.save()
+        elif re.match(r"^Art. \d+ \W+", line) or re.match(r"^Art. \d+\.", line) and not is_quote:
+            try:
+                label = re.match(r"^Art. \d+ \W+", line).group(0)
+            except:
+                label = re.match(r"^Art. \d+\.", line).group(0)
+            segment_type_id = TypeSegment.objects.get(name="Artigo").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = re.search(r'\d+', label).group(0)
+            segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
+            segment.save()
+        elif re.match(r"^\W+ \d+\W+", line) and not is_quote:
+            label = re.match(r"^\W+ \d+\W+", line).group(0)
+            segment_type_id = TypeSegment.objects.get(name="Parágrafo").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = re.search(r'\d+', label).group(0)
+            segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
+            segment.save()
+        elif line.decode('utf-8').startswith('Parágrafo único. ') and not is_quote:
+            segment_type_id = TypeSegment.objects.get(name="Parágrafo").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = 1
+            segment.content = line.decode('utf-8').replace('Parágrafo único. ', '')
+            segment.save()
+        elif re.match(r"^[A-Z\d]+ \W+ ", line) and not is_quote:
+            label = re.match(r"^[A-Z\d]+ \W+ ", line).group(0)
+            segment_type_id = TypeSegment.objects.get(name="Inciso").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = roman.fromRoman(re.search(r"^[A-Z\d]+", line).group(0))
+            segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
+            segment.save()
+        elif re.match(r"^[a-z]\W ", line) and not is_quote:
+            label = re.match(r"^[a-z]\W ", line).group(0)
+            segment_type_id = TypeSegment.objects.get(name="Alínea").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = string.lowercase.index(re.search(r"^[a-z]", line).group(0)) + 1
+            segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
+            segment.save()
+        elif re.match(r"^\"", line) or line.decode('utf-8').startswith('Pena') or is_quote:
+            segment_type_id = TypeSegment.objects.get(name="Citação").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.content = line.decode('utf-8')
+            segment.save()
+            if re.search(r"\(NR\)$", line) or re.search(r"\"$", line):
+                is_quote = False
+            else:
+                is_quote = True
         order += 1

@@ -302,12 +302,12 @@ def import_file(bill_txt, bill_pk):
                 segment.number = roman.fromRoman(re.sub(r"^T\xc3\xadtulo ", '', line))
                 segment.content = lines[order + 1].decode('utf-8')
                 segment.save()
-            elif line.decode('utf-8').startswith('Capítulo') and not is_quote:
+            elif line.decode('utf-8').startswith('CAPÍTULO') and not is_quote:
                 segment_type_id = TypeSegment.objects.get(name="Capítulo").id
                 segment = BillSegment()
                 segment.bill_id = bill_pk
                 segment.type_id = segment_type_id
-                segment.number = roman.fromRoman(re.sub(r"^Cap\xc3\xadtulo ", '', line))
+                segment.number = roman.fromRoman(re.sub(r"^CAP\xc3\x8dTULO ", '', line))
                 segment.content = lines[order + 1].decode('utf-8')
                 segment.save()
             elif line.decode('utf-8').startswith('Seção') and not is_quote:

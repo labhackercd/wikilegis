@@ -292,7 +292,7 @@ def import_file(bill_txt, bill_pk):
             segment.bill_id = bill_pk
             segment.type_id = segment_type_id
             segment.number = roman.fromRoman(re.sub(r"^Livro ", '', line))
-            segment.content = lines[order + 1].decode('utf-8')
+            segment.content = lines[order].decode('utf-8')
             segment.save()
         elif line.decode('utf-8').startswith('Título') and not is_quote:
             segment_type_id = TypeSegment.objects.get(name="Título").id
@@ -301,7 +301,7 @@ def import_file(bill_txt, bill_pk):
             segment.bill_id = bill_pk
             segment.type_id = segment_type_id
             segment.number = roman.fromRoman(re.sub(r"^T\xc3\xadtulo ", '', line))
-            segment.content = lines[order + 1].decode('utf-8')
+            segment.content = lines[order].decode('utf-8')
             segment.save()
         elif line.decode('utf-8').startswith('CAPÍTULO') and not is_quote:
             segment_type_id = TypeSegment.objects.get(name="Capítulo").id
@@ -310,7 +310,7 @@ def import_file(bill_txt, bill_pk):
             segment.bill_id = bill_pk
             segment.type_id = segment_type_id
             segment.number = roman.fromRoman(re.sub(r"^CAP\xc3\x8dTULO ", '', line))
-            segment.content = lines[order + 1].decode('utf-8')
+            segment.content = lines[order].decode('utf-8')
             segment.save()
         elif line.decode('utf-8').startswith('Seção') and not is_quote:
             segment_type_id = TypeSegment.objects.get(name="Seção").id
@@ -319,7 +319,7 @@ def import_file(bill_txt, bill_pk):
             segment.bill_id = bill_pk
             segment.type_id = segment_type_id
             segment.number = roman.fromRoman(re.sub(r"^Se\xc3\xa7\xc3\xa3o ", '', line))
-            segment.content = lines[order + 1].decode('utf-8')
+            segment.content = lines[order].decode('utf-8')
             segment.save()
         elif line.decode('utf-8').startswith('Subseção') and not is_quote:
             segment_type_id = TypeSegment.objects.get(name="Subseção").id
@@ -328,7 +328,7 @@ def import_file(bill_txt, bill_pk):
             segment.bill_id = bill_pk
             segment.type_id = segment_type_id
             segment.number = roman.fromRoman(re.sub(r"^Subse\xc3\xa7\xc3\xa3o ", '', line))
-            segment.content = lines[order + 1].decode('utf-8')
+            segment.content = lines[order].decode('utf-8')
             segment.save()
         elif re.match(r"^Art. \d+ \W+", line) or re.match(r"^Art. \d+\.", line) and not is_quote:
             try:

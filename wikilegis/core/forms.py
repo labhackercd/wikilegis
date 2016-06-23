@@ -102,6 +102,7 @@ class BillAdminForm(forms.ModelForm):
     reporting_member = forms.ModelChoiceField(label=_('Reporting member'), required=False,
                                               queryset=User.objects.filter(id_congressman__isnull=False,
                                                                            is_active=True))
+    file_txt = forms.FileField(label=_('File in txt format'), required=False)
 
     def __init__(self, *args, **kwargs):
         super(BillAdminForm, self).__init__(*args, **kwargs)

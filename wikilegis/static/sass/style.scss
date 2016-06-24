@@ -121,9 +121,9 @@ body {
     }
     .search-bar {
         float: right;
-        
+
         @media #{$medium-and-down} {
-            float: none;
+            float: left;
         }
 
         .searchSidebar {

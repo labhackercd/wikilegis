@@ -119,36 +119,44 @@ body {
             visibility: visible;
         }
     }
-    .searchSidebar {
-        margin-top: 5px;
-        nav {
-            height: 35px;
-            padding: 0 !important;
-            background: transparent;
-            box-shadow: 0px 0px 0px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.7);
-            input {
-                line-height: 2em !important;
-                color: white;
-                border-radius: 25px;
-                font-size: 1.1em;
-                padding-top: 2px;
-                padding-left: 2.6em !important;
-            }
-            label {
-                left: 0.6rem !important;
-                i.material-icons {
+    .search-bar {
+        float: right;
+
+        @media #{$medium-and-down} {
+            float: left;
+        }
+
+        .searchSidebar {
+            margin-top: 5px;
+            nav {
+                height: 35px;
+                padding: 0 !important;
+                background: transparent;
+                box-shadow: 0px 0px 0px;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+                input {
+                    line-height: 2em !important;
                     color: white;
-                    font-size: 2em;
-                    line-height: 1.3em;
+                    border-radius: 25px;
+                    font-size: 1.1em;
+                    padding-top: 2px;
+                    padding-left: 2.6em !important;
                 }
-            }
-            .input-field {
-                input[type=search]:focus {
-                    background-color: transparent;
-                    border: 0;
-                    box-shadow: none;
-                    color: white;
+                label {
+                    left: 0.6rem !important;
+                    i.material-icons {
+                        color: white;
+                        font-size: 2em;
+                        line-height: 1.3em;
+                    }
+                }
+                .input-field {
+                    input[type=search]:focus {
+                        background-color: transparent;
+                        border: 0;
+                        box-shadow: none;
+                        color: white;
+                    }
                 }
             }
         }
@@ -157,7 +165,7 @@ body {
 
 img.logo {
     width: 100%;
-    max-width: 300px;
+    max-width: 275px;
     @media #{$medium-and-down} {
         max-width: 200px;
     }
@@ -210,7 +218,7 @@ img.logo {
             font-size: 4rem;
         }
         .desc {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             color: white;
             opacity: .5;
         }
@@ -245,11 +253,6 @@ img.logo {
     }
     .see-projects {
         @media #{$medium-and-down} {
-            position: relative;
-            margin-top: 50px;
-            margin-bottom: 20px;
-        }
-        @media screen and ( max-height: 790px ){
             position: relative;
             margin-top: 50px;
             margin-bottom: 20px;
@@ -1287,12 +1290,10 @@ blockquote {
     a {
         color: inherit;
         opacity: .7;
+        margin-left: 20px;
         &:hover {
             opacity: 1;
         }
-    }
-    a:first-child {
-        margin-right: 20px;
     }
     i {
         vertical-align: middle;

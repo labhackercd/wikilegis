@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-22 15:13-0300\n"
+"POT-Creation-Date: 2016-06-23 18:49-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -633,8 +633,8 @@ msgid "Facebook"
 msgstr ""
 
 #: templates/_about_link.html:3
-msgid "about wikilegis"
-msgstr "sobre o wikilegis"
+msgid "About"
+msgstr "Sobre"
 
 #: templates/_sidebar_language_selector.html:7
 msgid "Select language"
@@ -703,7 +703,7 @@ msgstr "Remover"
 #: templates/auth2/_current_user_or_login_button.html:10
 #: templates/registration/login.html:47
 msgid "Log in"
-msgstr "Iniciar sessão"
+msgstr "Acessar"
 
 #: templates/auth2/show_users_profile.html:15
 msgid "Joined on"
@@ -957,6 +957,9 @@ msgstr ""
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
 msgstr "Reenviar"
+
+#~ msgid "about wikilegis"
+#~ msgstr "sobre o wikilegis"
 
 #~ msgid "AUTOR"
 #~ msgstr "AUTHOR"

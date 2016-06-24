@@ -2,27 +2,27 @@
 
 <nav class="wiki-navbar valign-wrapper">
     <div class="row">
-        <div class="logo col s2 l4">
+        <div class="logo col s2 l3">
             <a href="/#projects">
                 <img class="hide-on-med-and-down" src='{% static "img/nav-logo.png" %}' alt="Wikilegis" />
                 <img class="hide-on-large-only" src='{% static "img/nav-mob-logo.png" %}' alt="Wikilegis" />
             </a>
         </div>
-        <div class="col s8 l2">
-            {% include "_sidebar_search.html" %}
-        </div>
         <div class="hide-on-med-and-down mo">
-            <div class="col s2">
-                {% include "_sidebar_language_selector.html" %}
-            </div>
-            <div class="col s2">
+            <div class="user-status col right">
                 {% include "_sidebar_user_status.html" %}
             </div>
-            <div class="col s2">
+            <div class="more-links col right">
                 <div class="more-links">
-                    {% include "_admin_link.html" %} {% include "_about_link.html" %}
+                   {% include "_about_link.html" %} {% include "_admin_link.html" %}
                 </div>
             </div>
+            <div class="language-selector col right">
+                {% include "_sidebar_language_selector.html" %}
+            </div>            
+        </div>
+        <div class="search-bar col s8 l2">
+            {% include "_sidebar_search.html" %}
         </div>
         <a id="open-menu" href="#">
             <div class="col s2 hide-on-large-only menu-trigger">

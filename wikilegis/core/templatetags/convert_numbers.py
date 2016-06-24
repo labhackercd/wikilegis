@@ -92,7 +92,7 @@ def segment_numbering(segment):
                     return "Art. %d " % int_number
             elif type_name == 'paragrafo':
                 if int_number <= 9:
-                    if int_number == 1 and BillSegment.objects.filter(type__name=segment['type__name'], parent_id=segment['parent']).count() == 1:
+                    if int_number == 1 and BillSegment.objects.filter(type__name=segment.type.name, parent_id=segment.parent_id).count() == 1:
                             return "%s. " % _("Sole paragraph")
                     else:
                         return "§ %dº " % int_number

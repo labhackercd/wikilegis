@@ -1,9 +1,10 @@
+{% load i18n %}
 <div class="searchSidebar">
     <nav>
         <div class="nav-wrapper">
             <div class="input-field">
                 <form method="get" action="/search/">
-                    <input class="[]" id="id_q" name="q" type="search" value="" placeholder="Search..." autocomplete="off">
+                    <input class="[]" id="id_q" name="q" type="search" value="" placeholder="{% trans "Search" %}..." autocomplete="off">
                     <label for="" class="active"><i class="material-icons">search</i>
                     </label>
                 </form>

@@ -16,7 +16,9 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic import DetailView, CreateView
 
 from .forms import CitizenAmendmentCreationForm, AddProposalForm
-from .models import Bill, BillSegment, UpDownVote, TypeSegment
+from .models import Bill, BillSegment, UpDownVote, Proposition
+from django_comments.models import Comment
+from wikilegis.auth2.models import Congressman
 from wikilegis.comments2.utils import create_comment
 from wikilegis.core.genericdata import BillVideo, BillAuthorData
 from wikilegis.core.orderers import SimpleOrderer
@@ -65,28 +67,36 @@ def index(request):
     ))
 
 
-def show_bill(request, bill_id):
-    bill = get_object_or_404(Bill, pk=bill_id)
-    original_segments = bill.segments.filter(original=True)
-    new_proposals = bill.segments.filter(original=False, replaced__isnull=True)
-    metadata = bill.metadata.all()
+class BillDetailView(DetailView):
+    model = Bill
+    template_name = 'bill/bill.html'
 
-    authors = filter(lambda x: x.type == 'AUTHOR', metadata)
-    authors = map(BillAuthorData, authors)
-
-    videos = filter(lambda x: x.type == 'VIDEO', metadata)
-    videos = map(BillVideo, videos)
-
-    form = AddProposalForm(bill_id=bill_id)
-
-    return render(request, 'bill/bill.html', context=dict(
-        bill=bill,
-        form=form,
-        original_segments=original_segments,
-        new_proposals=new_proposals,
-        videos=videos,
-        authors=authors
-    ))
+    def get_context_data(self, **kwargs):
+        context = super(BillDetailView, self).get_context_data(**kwargs)
+        metadata = self.object.metadata.all()
+        videos = filter(lambda x: x.type == 'VIDEO', metadata)
+        segment_ctype = ContentType.objects.get_for_model(BillSegment)
+        segments_id = set(self.object.segments.values_list('id', flat=True))
+        votes_ids = UpDownVote.objects.filter(content_type=segment_ctype,
+                                              object_id__in=segments_id).values_list('user__id', flat=True)
+        comment_ids = Comment.objects.filter(object_pk__in=segments_id,
+                                             content_type=segment_ctype).values_list('user__id', flat=True)
+        context['attendees'] = len(set(list(votes_ids) + list(comment_ids)))
+        context['proposals'] = self.object.segments.filter(original=False).count()
+        context['videos'] = map(BillVideo, videos)
+        try:
+            context['congressman'] = Congressman.objects.filter(user_id=self.object.reporting_member.id).latest('id')
+        except:
+            pass
+        try:
+            context['proposition'] = Proposition.objects.filter(bill_id=self.object.id).values(
+                'id', 'situation', 'id_proposition', 'id_register', 'author', 'party_author', 'uf_author').latest('id')
+        except:
+            pass
+        context['original_segments'] = self.object.segments.filter(original=True).values(
+            'id', 'type__name', 'content', 'number', 'parent', 'substitutes').annotate(
+            proposals_count=Count('substitutes'))
+        return context
 
 
 def _get_segment_or_404(bill_id, segment_id):

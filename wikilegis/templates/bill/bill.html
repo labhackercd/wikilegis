@@ -70,13 +70,13 @@
         {% endif %}
 
         <div class="row">
-          {% if bill.proposition_set.all.0.id_register %}
+          {% if proposition %}
             <div class="after-bar">
               <div class="user col s12">
                 <div class="col m3 s2">
                   <div class="avatr">
-                    {% if bill.proposition_set.all.0.id_register %}
-                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.proposition_set.all.0.id_register }}.jpg')"></div>
+                    {% if proposition.id_register %}
+                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ proposition.id_register }}.jpg')"></div>
                     {% else %}
                     <div class="pic" style="background-image: url('{% static 'img/user.png' %}')"></div>
                     {% endif %}
@@ -85,10 +85,9 @@
                 <div class="col m9 s9">
                   <span class="user-name">
                     <div class="user-type">{% trans "AUTHOR" %}</div>
-                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.proposition_set.all.0.id_register }}">{{ bill.proposition_set.all.0.author }} </a>
+                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ proposition.id_register }}">{{ proposition.author }} </a>
                   </span>
-                  <p class="p-uf">({{ bill.proposition_set.all.0.party_author }}-{{ bill.proposition_set.all.0.uf_author }})</p>
-                  <p class="date">{{ bill.created|date }}</p>
+                  <p class="p-uf">({{ proposition.party_author }}-{{ proposition.uf_author }})</p>
                 </div>
               </div>
             </div>
@@ -96,23 +95,22 @@
         </div>
 
         <div class="row">
-          {% if bill.reporting_member and bill.reporting_member.congressman_set.all %}
+          {% if congressman %}
             <div class="after-bar">
               <div class="user col s12">
                 <div class="col m3 s2">
                   <div class="avatr">
-                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ bill.reporting_member.id_congressman }}.jpg')"></div>
+                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ congressman.user.id_congressman }}.jpg')"></div>
                   </div>
                 </div>
                 <div class="col m9 s9">
                   <span class="user-name">
                     <div class="user-type">{% trans "RAPPORTEUR" %}</div>
-                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ bill.reporting_member.id_congressman }}">
-                      {{ bill.reporting_member.congressman_set.all.0.parliamentary_name|title }}
+                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ congressman.user.id_congressman }}">
+                      {{ congressman.parliamentary_name|title }}
                     </a>
                   </span>
-                  <p class="p-uf">({{ bill.reporting_member.congressman_set.all.0.party }}-{{ bill.reporting_member.congressman_set.all.0.uf }})</p>
-                  <p class="date">{{ bill.created|date }}</p>
+                  <p class="p-uf">({{ congressman.party }}-{{ congressman.uf }})</p>
                 </div>
               </div>
             </div>
@@ -122,37 +120,20 @@
         <div class="divider"></div>
       
         <div class="pl-info">
-          {% if bill.proposition_set.all.0.situation %}
+          {% if proposition.situation %}
             <span class="item">
               <span class="pl-subheading">{% trans "Bill status:" %}</span>
               <span class="pl-status">
-                <a target="_blank" href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao={{ bill.proposition_set.all.0.id_proposition }}">
-                  {{ bill.proposition_set.all.0.situation }}
+                <a target="_blank" href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao={{ proposition.id_proposition }}">
+                  {{ proposition.situation }}
                 </a>
               </span>
             </span>
 
           {% endif %}
-          <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ bill|attendees_count }}</span></span> 
-          <span class="item"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count">{{ bill|proposals_count }}</span></span>
+          <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ attendees }}</span></span> 
+          <span class="item"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count">{{ proposals }}</span></span>
         </div>
-            
-        <!--
-        {% for author in authors %}
-            <div class="pl-author">
-                {% if author.user.avatar %}
-                    <div class="avatar" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
-                {% else %}
-                    <div class="avatar" style="background-image: url('{% static "img/user.png" %}')"></div>
-                {% endif %}
-      
-                <div class="info">
-                    <span class="author"><a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a></span>
-                </div>
-            </div>
-            {% if not forloop.last %}<hr />{% endif %}
-        {% endfor %}
-        -->
       
         {% for item in videos %}
           <div class="pl-about video-descripition">

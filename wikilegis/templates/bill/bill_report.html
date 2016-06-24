@@ -8,15 +8,10 @@
     <h4>{{ object.title }}</h4>
     <span>{{ votes }} votos / {{ comments }} comentários / {{ attendees }} participantes / {{ proposals }} propostas</span>
     {% for segment in original_segments %}
-    <h5><strong></strong>{{ segment.content }}</h5>
-    <span>{{ votes }} apoiaram / {{ comments }} não apoiaram / {{ attendees }} comentários / {{ proposals_count }} propostas</span>
-        <h5>{{ segment.amendments.count }} sugestões para alteração</h5>
-        {% for amendment in segment.amendments.all %}
-            <p>{{ amendment.content|safe }} - {{ amendment.choosings.count }} apoiaram</p>
-            <b>{% get_comment_count for amendment as comment_count %} {{ comment_count }} Comentários</b>
-            {% render_comment_list for amendment %}
-        <hr>
-        {% endfor %}
+        {% get_comment_count for segment as comment_count %}
+        <p><strong>{% segment_numbering segment %}</strong>{{ segment.content }}</p>
+        <span> apoiaram /  não apoiaram / {{ comment_count }} comentários / {{ segment.proposals_count }} propostas</span>
+        {% render_comment_list for segment %}
     {% endfor %}
 </body>
 </html>

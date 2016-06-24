@@ -250,14 +250,13 @@ class BillReport(DetailView):
         segments_id = set(self.object.segments.values_list('id', flat=True))
         votes_ids = UpDownVote.objects.filter(content_type=segment_ctype,
                                               object_id__in=segments_id).values_list('user__id', flat=True)
-        # comment_ids = Comment.objects.filter(object_pk__in=segments_id,
-        #                                      content_type=segment_ctype).values_list('user__id', flat=True)
+        comment_ids = Comment.objects.filter(object_pk__in=segments_id,
+                                             content_type=segment_ctype).values_list('user__id', flat=True)
         context['votes'] = len(list(votes_ids))
-        # context['comments'] = len(list(comment_ids))
-        # context['attendees'] = len(set(list(votes_ids) + list(comment_ids)))
+        context['comments'] = len(list(comment_ids))
+        context['attendees'] = len(set(list(votes_ids) + list(comment_ids)))
         context['proposals'] = self.object.segments.filter(original=False).count()
-        context['original_segments'] = self.object.segments.filter(original=True).values(
-            'id', 'type__name', 'content', 'number', 'parent', 'substitutes').annotate(
+        context['original_segments'] = self.object.segments.filter(original=True).annotate(
             proposals_count=Count('substitutes'))
         return context
 

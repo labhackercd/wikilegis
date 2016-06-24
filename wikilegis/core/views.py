@@ -244,6 +244,23 @@ class BillReport(DetailView):
     model = Bill
     template_name = 'bill/bill_report.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(BillReport, self).get_context_data(**kwargs)
+        segment_ctype = ContentType.objects.get_for_model(BillSegment)
+        segments_id = set(self.object.segments.values_list('id', flat=True))
+        votes_ids = UpDownVote.objects.filter(content_type=segment_ctype,
+                                              object_id__in=segments_id).values_list('user__id', flat=True)
+        # comment_ids = Comment.objects.filter(object_pk__in=segments_id,
+        #                                      content_type=segment_ctype).values_list('user__id', flat=True)
+        context['votes'] = len(list(votes_ids))
+        # context['comments'] = len(list(comment_ids))
+        # context['attendees'] = len(set(list(votes_ids) + list(comment_ids)))
+        context['proposals'] = self.object.segments.filter(original=False).count()
+        context['original_segments'] = self.object.segments.filter(original=True).values(
+            'id', 'type__name', 'content', 'number', 'parent', 'substitutes').annotate(
+            proposals_count=Count('substitutes'))
+        return context
+
 
 def get_votable_object_or_404(user, content_type, object_id):
     content_type = get_object_or_404(ContentType, pk=content_type)

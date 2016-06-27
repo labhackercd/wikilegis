@@ -116,7 +116,8 @@ class BillAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Bill
-        fields = ('title', 'description', 'status',  'editors', 'reporting_member', 'type', 'number', 'year')
+        fields = ('title', 'description', 'status', 'editors',
+                  'reporting_member', 'closing_date', 'type', 'number', 'year')
 
     def clean(self):
         if self.data['type'] or self.data['number'] or self.data['year']:
@@ -137,7 +138,8 @@ class BillAdminForm(forms.ModelForm):
             if instance.proposition_set.all():
                 delete_proposition(instance.proposition_set.all()[0].id_proposition)
             try:
-                params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data['number'], 'ano': self.cleaned_data['year']}
+                params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data[
+                    'number'], 'ano': self.cleaned_data['year']}
                 response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
                                         params=params)
                 create_proposition(response, instance.id)
@@ -235,8 +237,10 @@ class AddProposalForm(forms.ModelForm):
 
 class BillSegmentAdminForm(forms.ModelForm):
     try:
-        bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(), initial=Bill.objects.latest('id').id)
-        parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
+        bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(),
+                                      initial=Bill.objects.latest('id').id)
+        parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(
+            bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
     except:
         bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all())
 
@@ -248,9 +252,7 @@ class BillSegmentAdminForm(forms.ModelForm):
         obj = super(BillSegmentAdminForm, self).save(commit=False)
         original_segments = BillSegment.objects.filter(bill_id=obj.bill_id, original=True)
         if obj.order in original_segments.values_list('order', flat=True):
-            original_segments.filter(order__gte=obj.order).update(order=F('order')+1)
+            original_segments.filter(order__gte=obj.order).update(order=F('order') + 1)
         obj.save()
 
         return obj
-
-

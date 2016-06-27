@@ -155,7 +155,7 @@ class BillAdmin(admin.ModelAdmin):
     actions = [propositions_update]
     form = BillAdminForm
     fieldsets = [
-        (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'status', 'reporting_member', 'editors']}),
+        (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'status', 'reporting_member', 'closing_date', 'editors']}),
         (_('Legislative proposal'), {'fields': ['type', 'number', 'year'],
                                      'description': _("This data will be used to assign the project to a legislative "
                                                       "proposal pending before the House of Representatives. You only "
@@ -163,7 +163,7 @@ class BillAdmin(admin.ModelAdmin):
                                                       "delete , leave the fields blank.")}),
         # 'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
         (_('File to import'), {'fields': ['file_txt'], 'description': _(
-            "This data wifile_txtll be used to import a txt file.")}),
+            "This field will be used to import a txt file.")}),
     ]
 
     class Media:

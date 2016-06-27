@@ -93,8 +93,7 @@ class BillDetailView(DetailView):
                 'id', 'situation', 'id_proposition', 'id_register', 'author', 'party_author', 'uf_author').latest('id')
         except:
             pass
-        context['original_segments'] = self.object.segments.filter(original=True).values(
-            'id', 'type__name', 'content', 'number', 'parent', 'substitutes').annotate(
+        context['original_segments'] = self.object.segments.filter(original=True).annotate(
             proposals_count=Count('substitutes'))
         return context
 

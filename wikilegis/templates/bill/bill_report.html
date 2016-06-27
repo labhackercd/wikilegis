@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% load comments convert_numbers %}
+    {% load comments convert_numbers votes %}
     <title>Relatório - {{ object.title }}</title>
 </head>
 <body>
-    <h4>{{ object.title }}</h4>
+    <h2>{{ object.title }}</h2>
     <span>{{ votes }} votos / {{ comments }} comentários / {{ attendees }} participantes / {{ proposals }} propostas</span>
     {% for segment in original_segments %}
         {% get_comment_count for segment as comment_count %}
-        <p><strong>{% segment_numbering segment %}</strong>{{ segment.content }}</p>
-        <span> apoiaram /  não apoiaram / {{ comment_count }} comentários / {{ segment.proposals_count }} propostas</span>
-        {% render_comment_list for segment %}
+        <h3>{% segment_numbering segment %}{{ segment.content }}</h3>
+        <span> {% get_upvote_count segment %} apoiaram / {% get_downvote_count segment %} não apoiaram / {{ comment_count }} comentários / {{ segment.proposals_count }} propostas</span>
+        {% get_comment_list for segment as comments_segments %}
+        {% for comment in comments_segments %}
+            {% if forloop.first %} 
+                <h4>Comentários</h4>
+            {% endif %}
+            <p>{{ comment.comment }} - {{ comment.user_name }}</p>
+        {% endfor %}
+        {% for proposal in segment.substitutes.all %}
+            {% get_comment_count for proposal as proposal_comment_count %}
+            {% if forloop.first %}
+                <h4>Propostas</h4>
+            {% endif %}
+            <p>{{ proposal.content }} - {{ proposal.author }}</p>
+            <span> {% get_upvote_count proposal %} apoiaram / {% get_downvote_count proposal %} não apoiaram / {{ proposal_comment_count }} comentários</span>
+            {% get_comment_list for proposal as comments_proposals %}
+            {% for comment in comments_proposals %}
+                {% if forloop.first %} 
+                    <h4>&ensp;&ensp;&ensp;&ensp;Comentários</h4>
+                {% endif %}
+                <p>&ensp;&ensp;&ensp;&ensp;{{ comment.comment }} - {{ comment.user }}</p>
+            {% endfor %}
+        {% endfor %}
+        <hr>
     {% endfor %}
 </body>
 </html>

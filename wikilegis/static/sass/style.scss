@@ -176,6 +176,9 @@ img.logo {
     @media #{$medium-and-down} {
         padding-top: 50px;
     }
+    @media (max-width: 1366px) {
+        padding-top: 100px;
+    } 
     padding-top: 150px;
     height: 100%;
     @media #{$medium-and-down} {
@@ -206,6 +209,7 @@ img.logo {
             padding-left: 0px;
             text-align: center;
         }
+
         border-left: 3px solid rgba(255,
         255,
         255,
@@ -216,16 +220,26 @@ img.logo {
             color: white;
             font-weight: bold;
             font-size: 4rem;
+
+            @media (max-width: 1366px) {
+                font-size: 2.7rem;
+            }
         }
         .desc {
             font-size: 1.35rem;
             color: white;
             opacity: .5;
+            @media (max-width: 1366px) {
+                font-size: 1.05rem;
+            }
         }
     }
     .login-or-signup {
         @media #{$medium-and-down} {
             margin-top: 50px;
+        }
+        @media (max-width: 1366px) {
+            margin-top: 0;
         }
         margin-top: 100px;
         margin-left: auto;

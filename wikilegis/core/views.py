@@ -16,7 +16,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic import DetailView, CreateView
 
 from .forms import CitizenAmendmentCreationForm, AddProposalForm
-from .models import Bill, BillSegment, UpDownVote, Proposition
+from .models import Bill, BillSegment, UpDownVote, Proposition, TypeSegment
 from django_comments.models import Comment
 from wikilegis.auth2.models import Congressman
 from wikilegis.comments2.utils import create_comment

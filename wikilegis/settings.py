@@ -233,6 +233,7 @@ language_tuple = lambda language_code: (language_code, languages[language_code])
 LANGUAGES = (
     language_tuple('en'),
     language_tuple('pt-br'),
+    language_tuple('es'),
 )
 
 LANGUAGE_CODE = 'pt-br'

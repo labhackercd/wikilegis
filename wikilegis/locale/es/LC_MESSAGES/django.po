@@ -689,6 +689,12 @@ msgid ""
 "BY 4.0. Besides participating in discussions of the bill, you can help us to "
 "improve our tool."
 msgstr ""
+"Wikilegis es un proyecto desarrollado por el Laboratorio Hacker de la "
+"Cámara de Diputados del Parlamento de Brasil, diseñado para habilitar "
+"a los ciudadanos a que sugieran modificaciones al texto de los "
+"Proyectos de Ley. Es un proyecto open source, desarrollado bajo licencia "
+"CC BY 4.0. Además de participar en las discusiones de los proyectos, "
+"puedes ayudarnos a mejorar la herramienta."
 
 #: templates/about.html:22
 msgid ""
@@ -696,147 +702,153 @@ msgid ""
 "report bugs. If you have programming skills, you can also collaborate to the "
 "development of Wikilegis. "
 msgstr ""
+"Visítanos en Trello, Github y en nuestra página para proponer nuevas "
+"funcionalidades o para reportar errores. Si tienes habilidades de "
+"programación, también puedes colaborar con el desarrollo de Wikilegis."
 
 #: templates/about.html:33
 #: templates/registration/registration_complete.html:14
 msgid "Back to main page"
-msgstr ""
+msgstr "Volver a la página principal"
 
 #: templates/admin/base_site.html:6
 msgid "Django administration"
-msgstr ""
+msgstr "Administración de Django"
 
 #: templates/adminsortable2/tabular-1.6.html:10
 msgid "Sort"
-msgstr ""
+msgstr "Ordenar"
 
 #: templates/adminsortable2/tabular-1.6.html:18
 msgid "Delete?"
-msgstr ""
+msgstr "¿Eliminar?"
 
+#TODO check what is that last "s" for
 #: templates/adminsortable2/tabular-1.6.html:90
 #, python-format
 msgid "Add another %(verbose_name)s"
-msgstr ""
+msgstr "Agregar otro(a) %(verbose_name)s"
 
 #: templates/adminsortable2/tabular-1.6.html:91
 msgid "Remove"
-msgstr ""
+msgstr "Quitar"
 
 #: templates/auth2/_current_user_or_login_button.html:10
 #: templates/registration/login.html:47
 msgid "Log in"
-msgstr ""
+msgstr "Acceder"
 
 #: templates/auth2/show_users_profile.html:15
 msgid "Joined on"
-msgstr ""
+msgstr "Fecha de registro"
 
 #: templates/auth2/your_profile.html:18
 msgid "Your profile"
-msgstr ""
+msgstr "Tu perfil"
 
 #: templates/auth2/your_profile.html:40
 msgid "Update my profile"
-msgstr ""
+msgstr "Actualizar mi perfil"
 
 #: templates/bill/_bill_segment_item.html:4
 msgid "TITLE"
-msgstr ""
+msgstr "TÍTULO"
 
 #: templates/bill/_bill_segment_item.html:6
 msgid "BOOK"
-msgstr ""
+msgstr "LIBRO"
 
 #: templates/bill/_bill_segment_item.html:8
 msgid "CHAPTER"
-msgstr ""
+msgstr "CAPÍTULO"
 
 #: templates/bill/_bill_segment_item.html:10
 msgid "Section"
-msgstr ""
+msgstr "Sección"
 
 #: templates/bill/_bill_segment_item.html:12
 msgid "Subsection"
-msgstr ""
+msgstr "Subsección"
 
 #: templates/bill/bill.html:40
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Cancelar suscripción"
 
 #: templates/bill/bill.html:47
 msgid "Subscribe to this bill"
-msgstr ""
+msgstr "Recibir notificaciones de este proyecto"
 
 #: templates/bill/bill.html:51
 msgid ""
 "You can be notified of changes in this bill via e-mail by subscribing to it."
-msgstr ""
+msgstr "Puedes ser notificado por correo electrónico de los cambios en "
+"este proyecto suscribiéndote al mismo."
 
 #: templates/bill/bill.html:65
 msgid "Subscribe"
-msgstr ""
+msgstr "Suscribirse"
 
 #: templates/bill/bill.html:88
 msgid "AUTHOR"
-msgstr ""
+msgstr "AUTOR"
 
+#TODO check if in the chilean parliament exists this role
 #: templates/bill/bill.html:109
 msgid "RAPPORTEUR"
-msgstr ""
+msgstr "PARLAMENTARIO INFORMANTE"
 
 #: templates/bill/bill.html:126
 msgid "Bill status:"
-msgstr ""
+msgstr "Estado del proyecto:"
 
 #: templates/bill/bill.html:135
 msgid "Attendees:"
-msgstr ""
+msgstr "Participantes:"
 
 #: templates/bill/bill.html:136
 msgid "Proposals:"
-msgstr ""
+msgstr "Propuestas:"
 
 #: templates/bill/bill.html:138
 msgid "Closing date:"
-msgstr ""
+msgstr "Fecha límite"
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
 msgid "Original text"
-msgstr ""
+msgstr "Texto original"
 
 #: templates/bill/bill_segment.html:149
 msgid "Submitted proposals"
-msgstr ""
+msgstr "Propuestas enviadas"
 
 #: templates/bill/bill_segment.html:215
 msgid "Make a proposal!"
-msgstr ""
+msgstr "¡Sugiere una propuesta!"
 
 #: templates/bill/create_amendment.html:26
 #: templates/bill/create_amendment.html:61
 msgid "Send proposal"
-msgstr ""
+msgstr "Enviar propuesta"
 
 #: templates/bill/create_amendment.html:60
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: templates/comments2/_comment_form.html:24
 msgid "Post"
-msgstr ""
+msgstr "Enviar"
 
 #: templates/comments2/_comment_form.html:25
 msgid "Preview"
-msgstr ""
+msgstr "Previsualizar"
 
 #: templates/export/export_form.html:10
 msgid "Download"
-msgstr ""
+msgstr "Descargar"
 
 #: templates/index.html:11
 msgid "Your legislative editing tool"
-msgstr ""
+msgstr "Tu herramienta de edición legislativa"
 
 #: templates/index.html:12
 msgid ""
@@ -844,6 +856,9 @@ msgid ""
 "paragraphs. The rapporteurs of the bills track the participation and can "
 "take up your idea!"
 msgstr ""
+"Revisa los proyectos de ley y sugiere mejoras a la redacción de los "
+"artículos o párrafos. ¡El responsable del proyecto de ley estará "
+"siguiendo la participación y podrá tomar tu idea!"
 
 #: templates/index.html:13
 msgid ""
@@ -851,84 +866,87 @@ msgid ""
 "legislative process, and the Parliament profits by approving improved laws "
 "that are better attuned to citizens’ needs."
 msgstr ""
+"Con esta interacción, la sociedad se beneficia al participar más activamente "
+"en el proceso legislativo y el Parlamento se beneficia al aprobar mejores "
+"leyes, conectadas con las necesidades de los ciudadanos"
 
 #: templates/index.html:20
 msgid "Login"
-msgstr ""
+msgstr "Iniciar Sesión"
 
 #: templates/index.html:20
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #: templates/index.html:20
 msgid "sign in"
-msgstr ""
+msgstr "registráte"
 
 #: templates/index.html:37
 msgid "Closed Bills"
-msgstr ""
+msgstr "Proyectos de ley cerrados"
 
 #: templates/index.html:37
 msgid "Bills"
-msgstr ""
+msgstr "Proyectos de ley"
 
 #: templates/index.html:46
 msgid "Open"
-msgstr ""
+msgstr "Abiertos"
 
 #: templates/index.html:65
 msgid "Created at"
-msgstr ""
+msgstr "Creados"
 
 #: templates/index.html:70
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: templates/index.html:80
 msgid "Proposals"
-msgstr ""
+msgstr "Propuestas"
 
 #: templates/index.html:80
 msgid "Proposal"
-msgstr ""
+msgstr "Propuesta"
 
 #: templates/index.html:84 templates/index.html.py:88
 msgid "No proposals"
-msgstr ""
+msgstr "No hay propuestas"
 
 #: templates/index.html:89
 msgid "Participate"
-msgstr ""
+msgstr "Participar"
 
 #: templates/index.html:100
 msgid "No bills"
-msgstr ""
+msgstr "No hay proyectos de ley"
 
 #: templates/registration/login.html:43
 msgid "Activate Account"
-msgstr ""
+msgstr "Activar cuenta"
 
 #: templates/registration/login.html:55
 #: templates/registration/registration_form.html:34
 #, python-format
 msgid "Sign in with %(backend_name)s"
-msgstr ""
+msgstr "Iniciar sesión con %(backend_name)s"
 
 #: templates/registration/login.html:60
 msgid "Don't have an account?"
-msgstr ""
+msgstr "¿No tienes una cuenta aún?"
 
 #: templates/registration/login.html:60
 msgid "Sign up now!"
-msgstr ""
+msgstr "¡Registrate ahora!"
 
 #: templates/registration/login.html:61
 msgid "Forgot your password?"
-msgstr ""
+msgstr "¿Olvidaste tu contraseña?"
 
 #: templates/registration/login.html:61
 msgid "Ask for a new one!"
-msgstr ""
+msgstr "¡Pide por una nueva!"
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -936,40 +954,46 @@ msgid ""
 "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
+"Estás recibiendo este correo porque has requerido una nueva contraseña "
+"para tu cuenta de usuario de %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Por favor, accede al siguiente link y crea una nueva contraseña:"
 
 #: templates/registration/password_reset_email.html:8
 msgid "Your username, in case you've forgotten:"
-msgstr ""
+msgstr "Tu usuario, en caso que lo hayas olvidado:"
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thanks for using our site!"
-msgstr ""
+msgstr "¡Gracias por utilizar nuestro sitio!"
 
 #: templates/registration/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
-msgstr ""
+msgstr "El equipo de %(site_name)s"
 
 #: templates/registration/registration_complete.html:4
 msgid "Activation email sent"
-msgstr ""
+msgstr "Mensaje de activación enviado"
 
 #: templates/registration/registration_complete.html:13
 msgid "Please check your email to complete the registration process."
 msgstr ""
+"Por favor revisa tu correo electrónico para completar el "
+"proceso de registro."
 
 #: templates/registration/registration_form.html:26
 msgid "Sign Up"
-msgstr ""
+msgstr "Regístrate"
 
 #: templates/registration/resend_activation_form.html:18
 msgid "Type your email to resend your account activation link"
 msgstr ""
+"Escribe tu correo electrónico para que te reenviemos "
+"el mensaje de activación de tu cuenta"
 
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
-msgstr ""
+msgstr "Reenviar"

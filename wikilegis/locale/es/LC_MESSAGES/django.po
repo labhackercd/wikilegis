@@ -20,81 +20,90 @@ msgstr ""
 
 #: auth2/admin.py:23
 msgid "Congressmen updated successfully."
-msgstr ""
+msgstr "Parlamentario actualizado correctamente"
 
 #: auth2/admin.py:25
 msgid "Update selected congressmen"
-msgstr ""
+msgstr "Actualizar parlamentario seleccionado"
 
 #: auth2/admin.py:31
 msgid "Personal info"
-msgstr ""
+msgstr "Información personal"
 
 #: auth2/admin.py:32
 msgid "Permissions"
-msgstr ""
+msgstr "Permisos"
 
 #: auth2/admin.py:33
 msgid "Important dates"
-msgstr ""
+msgstr "Fechas importantes"
 
 #: auth2/models.py:61
 #, python-brace-format
 msgid "The maximum file size is {0}"
-msgstr ""
+msgstr "El límite de tamaño del archivo es {0}"
 
 #: auth2/models.py:65
 msgid "email address"
-msgstr ""
+msgstr "correo electrónico"
 
 #: auth2/models.py:67
 msgid "first name"
-msgstr ""
+msgstr "primer nombre"
 
 #: auth2/models.py:68
 msgid "last name"
-msgstr ""
+msgstr "apellido"
 
 #: auth2/models.py:69
 msgid "staff status"
-msgstr ""
+msgstr "miembro del equipo"
 
 #: auth2/models.py:70
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
+"Determina si el usuario puede iniciar sesión en este sitio de "
+"administración"
 
 #: auth2/models.py:72
 msgid "active"
-msgstr ""
+msgstr "activo"
 
 #: auth2/models.py:73
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
-
+"Determina si este usuario debiera ser tratado como activo. "
+"Deselecciona esto en vez de borrar cuentas de usuario"
 #: auth2/models.py:75
 msgid "date joined"
-msgstr ""
+msgstr "fecha de registro"
 
 #: auth2/models.py:76
 msgid "profile picture"
-msgstr ""
+msgstr "foto de perfil"
 
 #: auth2/models.py:79
 msgid ""
 "Note that the preview above will only be updated after you submit the form."
 msgstr ""
+"Ten en cuenta que la previsualización de arriba sólo será actualizada después "
+"de haber enviado el formulario."
 
 #: auth2/models.py:86
 msgid "Congressman ID"
-msgstr ""
+msgstr "ID del parlamentario"
 
+#TODO make the url as a variable
 #: auth2/models.py:87
 msgid ""
 "The id of each congressman may be found in the url parameters in "
 "thecongressman profile from the site: http://www2.camara.leg.br/"
 msgstr ""
+"El id de cada parlamentario puede ser encontrado en los parámetros "
+"de la url en el perfil del parlamentario en el sitio "
+"http://www2.camara.leg.br/"
 
 #: auth2/models.py:121 core/models.py:196 notification/models.py:30
 msgid "user"

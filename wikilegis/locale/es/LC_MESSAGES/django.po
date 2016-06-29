@@ -49,7 +49,7 @@ msgstr "correo electrónico"
 
 #: auth2/models.py:67
 msgid "first name"
-msgstr "primer nombre"
+msgstr "nombre"
 
 #: auth2/models.py:68
 msgid "last name"
@@ -277,7 +277,7 @@ msgstr "Publicado"
 
 #: core/models.py:21 templates/index.html:48
 msgid "Closed"
-msgstr "Cerrado"
+msgstr "Cerrados"
 
 #: core/models.py:25
 msgid "Others"
@@ -599,7 +599,7 @@ msgstr "Ordenar por"
 
 #: core/views.py:38
 msgid "Hot"
-msgstr "Relevante"
+msgstr "Relevantes"
 
 #: core/views.py:39
 msgid "Date"
@@ -659,10 +659,10 @@ msgstr ""
 msgid "Facebook"
 msgstr ""
 
-#TODO see the context, could be Sobre o Acerca de esto...
+#TODO see the context, could be Sobre o Acerca de esto...see if "Sobre Wikilegis" fits
 #: templates/_about_link.html:3
 msgid "About"
-msgstr "Sobre"
+msgstr "Sobre Wikilegis"
 
 #: templates/_sidebar_language_selector.html:7
 msgid "Select language"
@@ -872,7 +872,7 @@ msgstr ""
 
 #: templates/index.html:20
 msgid "Login"
-msgstr "Iniciar Sesión"
+msgstr "Iniciar sesión"
 
 #: templates/index.html:20
 msgid "or"
@@ -880,7 +880,7 @@ msgstr "o"
 
 #: templates/index.html:20
 msgid "sign in"
-msgstr "registráte"
+msgstr "registrarse"
 
 #: templates/index.html:37
 msgid "Closed Bills"
@@ -896,7 +896,7 @@ msgstr "Abiertos"
 
 #: templates/index.html:65
 msgid "Created at"
-msgstr "Creados"
+msgstr "Creado el"
 
 #: templates/index.html:70
 msgid "Status"
@@ -914,9 +914,10 @@ msgstr "Propuesta"
 msgid "No proposals"
 msgstr "No hay propuestas"
 
+#TODO I think that in the view there is a '!' added after msgstr
 #: templates/index.html:89
 msgid "Participate"
-msgstr "Participar"
+msgstr "Participa"
 
 #: templates/index.html:100
 msgid "No bills"
@@ -938,7 +939,7 @@ msgstr "¿No tienes una cuenta aún?"
 
 #: templates/registration/login.html:60
 msgid "Sign up now!"
-msgstr "¡Registrate ahora!"
+msgstr "¡Regístrate ahora!"
 
 #: templates/registration/login.html:61
 msgid "Forgot your password?"
@@ -946,7 +947,7 @@ msgstr "¿Olvidaste tu contraseña?"
 
 #: templates/registration/login.html:61
 msgid "Ask for a new one!"
-msgstr "¡Pide por una nueva!"
+msgstr "¡Pide una nueva!"
 
 #: templates/registration/password_reset_email.html:2
 #, python-format

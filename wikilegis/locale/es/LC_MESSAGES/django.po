@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-29 14:50-0300\n"
+"POT-Creation-Date: 2016-06-29 15:08-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -713,6 +713,10 @@ msgstr ""
 "programación, también puedes colaborar con el desarrollo de Wikilegis."
 
 #: templates/about.html:33
+msgid "terms of use"
+msgstr ""
+
+#: templates/about.html:36
 #: templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr "Volver a la página principal"

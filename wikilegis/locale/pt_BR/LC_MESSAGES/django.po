@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-29 14:50-0300\n"
+"POT-Creation-Date: 2016-06-29 15:08-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -258,6 +258,8 @@ msgid ""
 "When adding a field in the legislative proposal, the three fields are now "
 "required"
 msgstr ""
+"Ao adicionar um campo na proposta legislativa, os três campos se tornam "
+"obrigatórios."
 
 #: core/forms.py:239 core/forms.py:244 core/models.py:103 core/models.py:128
 #: core/models.py:210 notification/models.py:29
@@ -703,6 +705,10 @@ msgstr ""
 "contribuir para o desenvolvimento do Wikilegis."
 
 #: templates/about.html:33
+msgid "terms of use"
+msgstr "Termos de uso"
+
+#: templates/about.html:36
 #: templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr "Voltar à página inicial"

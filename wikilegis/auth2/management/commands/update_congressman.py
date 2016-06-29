@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import requests
 from wikilegis.auth2.models import Congressman
-from wikilegis.auth2.views import update_congressman
+from wikilegis.auth2.admin import update_congressman
 
 
 class Command(BaseCommand):
@@ -12,5 +12,3 @@ class Command(BaseCommand):
             response = requests.get('http://www.camara.gov.br/SitCamaraWS/Deputados.asmx/ObterDetalhesDeputado',
                                     params=params)
             update_congressman(response, congresman.id)
-
-

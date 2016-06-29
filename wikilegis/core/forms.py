@@ -4,7 +4,6 @@ from __future__ import absolute_import
 from operator import attrgetter
 from django import forms
 from django.core.exceptions import ValidationError
-from django.db.models import Max
 from django.db.models.expressions import F
 from django.utils.translation import ugettext_lazy as _
 from wikilegis.auth2.models import User

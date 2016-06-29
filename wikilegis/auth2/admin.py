@@ -5,8 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from wikilegis.auth2.forms import UserChangeForm, UserCreationForm
 from wikilegis.auth2.models import User, Congressman
 from image_cropping import ImageCroppingMixin
-
-from wikilegis.auth2.views import create_congressman, update_congressman
+from xml.etree import ElementTree
 
 
 def congressman_update(ModelAdmin, request, queryset):
@@ -23,6 +22,25 @@ def congressman_update(ModelAdmin, request, queryset):
     ModelAdmin.message_user(request, _("Congressmen updated successfully."))
 
 congressman_update.short_description = _("Update selected congressmen")
+
+
+def update_congressman(response, congresman_id):
+    tree = ElementTree.fromstring(response.content)
+    congressman = Congressman.objects.get(id=congresman_id)
+    congressman.uf = tree[-1].find('ufRepresentacaoAtual').text
+    congressman.party = tree[-1].find('partidoAtual').find('sigla').text
+    congressman.parliamentary_name = tree[-1].find('nomeParlamentarAtual').text
+    congressman.save()
+
+
+def create_congressman(response, user_id):
+    tree = ElementTree.fromstring(response.content)
+    congressman = Congressman()
+    congressman.user_id = user_id
+    congressman.uf = tree[-1].find('ufRepresentacaoAtual').text
+    congressman.party = tree[-1].find('partidoAtual').find('sigla').text
+    congressman.parliamentary_name = tree[-1].find('nomeParlamentarAtual').text
+    congressman.save()
 
 
 class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):

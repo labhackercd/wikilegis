@@ -222,7 +222,7 @@ msgstr "Puedes explicar tu propuesta aquí."
 #: core/forms.py:84
 msgid "Suggest a new proposal! You can begin editing the original one."
 msgstr ""
-"Sugiera una nueva propuesta! Puedes empezar editando la "
+"¡Sugiere una nueva propuesta! Puedes empezar editando la "
 "versión original."
 
 #: core/forms.py:93

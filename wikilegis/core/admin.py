@@ -28,13 +28,11 @@ def propositions_update(ModelAdmin, request, queryset):
     selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
     bills = Bill.objects.filter(id__in=selected)
     for bill in bills:
-        try:
+        if bill.proposition_set.all():
             params = {'IdProp': bill.proposition_set.all()[0].id_proposition}
             response = requests.get(
                 'http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID', params=params)
-            update_proposition(response, bill.proposition_set.all()[0].id_proposition)
-        except:
-            pass
+            update_proposition(response, bill.proposition_set.all()[0].id_proposition, bill.id)
     ModelAdmin.message_user(request, _("Bills updated successfully."))
 
 propositions_update.short_description = _("Update status of selected bills")

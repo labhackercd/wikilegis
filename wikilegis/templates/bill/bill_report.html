@@ -1,39 +1,75 @@
+{% load static compress %}
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     {% load comments convert_numbers votes %}
     <title>Relatório - {{ object.title }}</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+    {% compress css %}
+    <link type="text/x-scss" rel="stylesheet" href="{% static "sass/bill_report.scss" %}" media="screen, print" />
+  {% endcompress %}
 </head>
 <body>
-    <h2>{{ object.title }}</h2>
-    <span>{{ votes }} votos / {{ comments }} comentários / {{ attendees }} participantes / {{ proposals }} propostas</span>
+  <div class="header">
+    <img class="logo" src="{% static "img/logo.svg" %}" alt="Wikilegis" />
+    <div class="title">
+      <h2 class="bill-title">{{ object.title }}</h2>
+      <p class="emission-date">Relatório emitido em {% now 'F, Y' %}</p>
+    </div>
+  </div>
+  <div class="bill-summary">
+    <span><i class="material-icons">thumbs_up_down</i> {{ votes }} votos</span>
+    <span><i class="material-icons">forum</i> {{ comments }} comentários <i class="class"></i></span>
+    <span><i class="material-icons">people</i> {{ attendees }} participantes</span>
+    <span><i class="material-icons">note_add</i> {{ proposals }} propostas</span>
+  </div>
+  <div class="segments">
     {% for segment in original_segments %}
-        {% get_comment_count for segment as comment_count %}
-        <h3>{% segment_numbering segment %}{{ segment.content }}</h3>
-        <span> {% get_upvote_count segment %} apoiaram / {% get_downvote_count segment %} não apoiaram / {{ comment_count }} comentários / {{ segment.proposals_count }} propostas</span>
-        {% get_comment_list for segment as comments_segments %}
-        {% for comment in comments_segments %}
-            {% if forloop.first %} 
-                <h4>Comentários</h4>
-            {% endif %}
-            <p>{{ comment.comment }} - {{ comment.user_name }}</p>
-        {% endfor %}
-        {% for proposal in segment.substitutes.all %}
-            {% get_comment_count for proposal as proposal_comment_count %}
-            {% if forloop.first %}
-                <h4>Propostas</h4>
-            {% endif %}
-            <p>{{ proposal.content }} - {{ proposal.author }}</p>
-            <span> {% get_upvote_count proposal %} apoiaram / {% get_downvote_count proposal %} não apoiaram / {{ proposal_comment_count }} comentários</span>
-            {% get_comment_list for proposal as comments_proposals %}
-            {% for comment in comments_proposals %}
-                {% if forloop.first %} 
-                    <h4>&ensp;&ensp;&ensp;&ensp;Comentários</h4>
-                {% endif %}
-                <p>&ensp;&ensp;&ensp;&ensp;{{ comment.comment }} - {{ comment.user }}</p>
-            {% endfor %}
-        {% endfor %}
-        <hr>
+      {% get_comment_count for segment as comment_count %}
+      <h3>{% segment_numbering segment %}{{ segment.content }}</h3>
+      <div class="segment-summary">
+        <span><i class="material-icons">thumb_up</i> {% get_upvote_count segment %}</span>
+        <span><i class="material-icons">thumb_down</i> {% get_downvote_count segment %}</span>
+        <span><i class="material-icons">forum</i> {{ comment_count }}</span>
+        <span><i class="material-icons">note_add</i> {{ segment.proposals_count }}</span>
+      </div>
+      {% get_comment_list for segment as comments_segments %}
+      {% for comment in comments_segments %}
+        {% if forloop.first %}
+          <h4>Comentários</h4>
+        {% endif %}
+        <div class="segment-comment">
+          <p class="comment"> {{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
+        </div>
+      {% endfor %}
+      {% for proposal in segment.substitutes.all %}
+        {% get_comment_count for proposal as proposal_comment_count %}
+        <h4>Proposta {{ forloop.counter }}</h4>
+        <div class="proposal">
+          <div class="content">
+            <p>{{ proposal.content }} - <span>{{ proposal.author }}</span></p>
+          </div>
+          <div class="segment-summary">
+            <span><i class="material-icons">thumb_up</i> {% get_upvote_count proposal %}</span>
+            <span><i class="material-icons">thumb_down</i> {% get_downvote_count proposal %}</span>
+            <span><i class="material-icons">forum</i> {{ proposal_comment_count }}</span>
+          </div>
+          {% get_comment_list for proposal as comments_proposals %}
+          {% for comment in comments_proposals %}
+            <div class="proposal-comment">
+              {% if forloop.first %}
+              <h4>Comentários</h4>
+              {% endif %}
+              <p class="comment">{{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
     {% endfor %}
+  </div>
+  <script type="text/javascript">
+  window.print();
+  </script>
 </body>
 </html>

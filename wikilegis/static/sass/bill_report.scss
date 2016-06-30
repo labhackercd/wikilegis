@@ -1,0 +1,124 @@
+@page {
+  margin: 1.5cm;
+}
+
+html {
+  font-family: "Open Sans";
+  line-height: 1.3;
+  @media screen {
+    padding-right: 15rem;
+    padding-left: 15rem;
+  }
+}
+
+.header {
+  .logo {
+    display: inline;
+    height: 5rem;
+    vertical-align: middle;
+    @media print {
+      height: 4rem;
+    }
+  }
+  .title {
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 1rem;
+  }
+}
+
+.bill-title {
+  font-size: 2rem;
+  margin-bottom: 0;
+  @media print {
+    font-size: 1.5rem;
+  }
+}
+.emission-date {
+  font-size: 0.8rem;
+  margin: 0;
+  @media print {
+    font-size: 0.6rem;
+  }
+}
+.bill-summary {
+  vertical-align: middle;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  span {
+    i {
+      font-size: 1rem;
+      @media print {
+        font-size: 0.8rem;
+      }
+    }
+    margin-right: 1rem;
+    @media print {
+      font-size: 0.8rem;
+    }
+  }
+}
+.segments {
+  margin-top: 3rem;
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    @media print {
+      font-size: 1.2rem;
+    }
+  }
+  h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    @media print {
+      font-size: 1rem;
+    }
+  }
+  .segment-summary {
+    @extend .bill-summary;
+    text-align: left;
+    margin: 0;
+    margin-top: 1rem;
+    @media print {
+      margin: 0;
+    }
+  }
+}
+.segment-comment {
+  .comment {
+    border-left: 3px solid grey;
+    background-color: lighten(grey, 47);
+    padding: 0.8rem 1rem 0.8rem 1rem;
+    color: grey;
+    @media print {
+      font-size: 0.8rem;
+      -webkit-print-color-adjust: exact;
+    }
+    .author {
+      font-style: italic;
+    }
+  }
+}
+.proposal {
+  margin-bottom: 3rem;
+  .content {
+    margin-top: 1rem;
+    background-color: lighten(grey, 47);
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    color: grey;
+    @media print {
+      -webkit-print-color-adjust: exact;
+      font-size: 0.8rem;
+    }
+    span {
+      font-style: italic;
+    }
+  }
+  .proposal-comment {
+    @extend .segment-comment;
+    padding-left: 3rem;
+    h4 {
+      font-size: 1rem;
+    }
+  }
+}

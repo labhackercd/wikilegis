@@ -14,6 +14,7 @@ from django.utils.decorators import method_decorator
 from django.utils.text import capfirst
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic import DetailView, CreateView
+from django.db.models import Q
 
 from .forms import CitizenAmendmentCreationForm, AddProposalForm
 from .models import Bill, BillSegment, UpDownVote, Proposition, TypeSegment
@@ -243,6 +244,25 @@ class CreateProposal(CreateView):
 class BillReport(DetailView):
     model = Bill
     template_name = 'bill/bill_report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BillReport, self).get_context_data(**kwargs)
+        segment_ctype = ContentType.objects.get_for_model(BillSegment)
+        segments_id = set(self.object.segments.values_list('id', flat=True))
+        votes = UpDownVote.objects.filter(content_type=segment_ctype, object_id__in=segments_id)
+        comments = Comment.objects.filter(object_pk__in=segments_id, content_type=segment_ctype)
+        proposals = self.object.segments.filter(original=False)
+        featured_segments = set(list(votes.values_list('object_id', flat=True)) +
+                                list(comments.values_list('object_pk', flat=True)) +
+                                list(proposals.values_list('parent_id', flat=True)))
+        context['votes'] = votes.count()
+        context['comments'] = comments.count()
+        context['attendees'] = len(set(list(votes.values_list('user__id', flat=True)) +
+                                       list(comments.values_list('user__id', flat=True))))
+        context['proposals'] = proposals.count()
+        context['original_segments'] = self.object.segments.filter(
+            original=True, id__in=featured_segments).annotate(proposals_count=Count('substitutes'))
+        return context
 
 
 def get_votable_object_or_404(user, content_type, object_id):

@@ -12,14 +12,16 @@ from wikilegis.auth2.views import create_congressman, update_congressman
 def congressman_update(ModelAdmin, request, queryset):
     selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
     congressmen = Congressman.objects.filter(id__in=selected)
-    for congresman in congressmen:
-        try:
-            params = {'ideCadastro': congresman.user.id_congressman, 'numLegislatura': ''}
-            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Deputados.asmx/ObterDetalhesDeputado',
-                                    params=params)
-            update_congressman(response, congresman.id)
-        except:
-            pass
+
+    # Code suppressed for Hackathon
+    # for congresman in congressmen:
+    #     try:
+    #         params = {'ideCadastro': congresman.user.id_congressman, 'numLegislatura': ''}
+    #         response = requests.get('http://www.camara.gov.br/SitCamaraWS/Deputados.asmx/ObterDetalhesDeputado',
+    #                                 params=params)
+    #         update_congressman(response, congresman.id)
+    #     except:
+    #         pass
     ModelAdmin.message_user(request, _("Congressmen updated successfully."))
 
 congressman_update.short_description = _("Update selected congressmen")

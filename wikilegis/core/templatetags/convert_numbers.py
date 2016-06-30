@@ -64,8 +64,6 @@ def segment_numbering(segment):
                     return "§ %dº " % int_number
             else:
                 return "§ %d " % int_number
-        elif type_name == 'inciso':
-            return "%s - " % int_to_roman(int_number)
         elif type_name == 'alinea':
             return "%s) " % int_to_letter(int_number)
         elif type_name == 'titulo':
@@ -78,5 +76,27 @@ def segment_numbering(segment):
             return "%s" % int_to_roman(int_number)
         elif type_name == 'subsecao':
             return "%s" % int_to_roman(int_number)
+
+        if type_name == 'articulo':
+            if int_number <= 9:
+                return "Articulo %dº " % int_number
+            else:
+                return "Articulo %d " % int_number
+        elif type_name == 'seccion':
+                return "Seccion %d " % int_number
+        elif type_name == 'parte':
+            return "%s - " % int_number
+        elif type_name == 'inciso':
+            return "%s.- " % int_number
+        elif type_name == 'titulo':
+            return "%s" % int_number
+        elif type_name == 'libro':
+            return "%s" % int_number
+        elif type_name == 'capitulo':
+            return "%s" % int_number
+        elif type_name == 'letra':
+            return "%s" % int_to_letter(int_number)
+        elif type_name == 'numero':
+            return "%s" % int_number
     else:
         return ''

@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from operator import attrgetter
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Max
 from django.db.models.expressions import F
 from django.utils.translation import ugettext_lazy as _
@@ -89,16 +90,14 @@ class CitizenAmendmentCreationForm(forms.ModelForm):
 
 
 class BillAdminForm(forms.ModelForm):
-    PROPOSITION_TYPE_CHOICES = (
-        ('', _('Select a type')),
-        ('PEC', 'PEC - Proposta de Emenda à Constituição'),
-        ('PLP', 'PLP - Projeto de Lei Complementar'),
-        ('PL', 'PL - Projeto de Lei'),
-        ('MPV', 'MPV - Medida Provisória')
-    )
-    type = forms.ChoiceField(label=_('Type'), choices=PROPOSITION_TYPE_CHOICES, required=False)
+    type = forms.CharField(label=_('Type'), required=False)
     number = forms.IntegerField(label=_('Number'), required=False)
     year = forms.IntegerField(label=_('Year'), required=False)
+    author = forms.CharField(label=_('Author'), required=False)
+    uf_author = forms.CharField(label=_('UF Author'), required=False)
+    party_author = forms.CharField(label=_('Party Author'), required=False)
+    author_photo = forms.FileField(label=_('Author photo'), required=False)
+
     reporting_member = forms.ModelChoiceField(label=_('Reporting member'), required=False,
                                               queryset=User.objects.filter(id_congressman__isnull=False,
                                                                            is_active=True))
@@ -111,13 +110,19 @@ class BillAdminForm(forms.ModelForm):
             self.fields['type'].initial = proposition.type.strip()
             self.fields['number'].initial = proposition.number
             self.fields['year'].initial = proposition.year
+            self.fields['author_photo'].initial = proposition.author_photo
+            self.fields['author'].initial = proposition.author
+            self.fields['uf_author'].initial = proposition.uf_author
+            self.fields['party_author'].initial = proposition.party_author
         except:
             pass
 
     class Meta:
         model = models.Bill
         fields = ('title', 'description', 'status', 'editors',
-                  'reporting_member', 'closing_date', 'type', 'number', 'year')
+                  'reporting_member', 'closing_date', 'type', 
+                  'number', 'year', 'author', 'author_photo', 'uf_author', 
+                  'party_author')
 
     def clean(self):
         if self.data['type'] or self.data['number'] or self.data['year']:
@@ -134,23 +139,41 @@ class BillAdminForm(forms.ModelForm):
         instance = super(BillAdminForm, self).save(commit=False)
         instance.save()
         self.save_m2m()
-        if self.cleaned_data['type'] and self.cleaned_data['number'] and self.cleaned_data['year']:
-            if instance.proposition_set.all():
-                delete_proposition(instance.proposition_set.all()[0].id_proposition)
-            try:
-                params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data[
-                    'number'], 'ano': self.cleaned_data['year']}
-                response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
-                                        params=params)
-                create_proposition(response, instance.id)
-            except:
-                pass
-        else:
-            try:
-                delete_proposition(instance.proposition_set.all()[0].id_proposition)
-            except:
-                pass
+        create_or_update_proposition(instance.id, self.cleaned_data['type'], self.cleaned_data['number'], self.cleaned_data['year'], self.cleaned_data['author'], self.cleaned_data['author_photo'], self.cleaned_data['uf_author'], self.cleaned_data['party_author'])
+        # Supressed for the Hackathon
+        # if self.cleaned_data['type'] and self.cleaned_data['number'] and self.cleaned_data['year']:
+        #     if instance.proposition_set.all():
+        #         delete_proposition(instance.proposition_set.all()[0].id_proposition)
+        #     try:
+        #         params = {'tipo': self.cleaned_data['type'], 'numero': self.cleaned_data[
+        #             'number'], 'ano': self.cleaned_data['year']}
+        #         response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicao',
+        #                                 params=params)
+        #         create_proposition(response, instance.id)
+        #     except:
+        #         pass
+        # else:
+        #     try:
+        #         delete_proposition(instance.proposition_set.all()[0].id_proposition)
+        #     except:
+        #         pass
         return instance
+
+def create_or_update_proposition(bill_id, type, number, year, author, author_photo, uf_author, party_author):
+    try:
+        proposition = Proposition.objects.get(bill_id=bill_id)
+    except ObjectDoesNotExist:
+        proposition = Proposition()
+    
+    proposition.bill_id = bill_id
+    proposition.type = type
+    proposition.number = number
+    proposition.year = year
+    proposition.author = author
+    proposition.author_photo = author_photo
+    proposition.uf_author = uf_author
+    proposition.party_author = party_author
+    proposition.save()
 
 
 def delete_proposition(proposition_id):
@@ -188,7 +211,6 @@ def create_proposition(response, bill_id):
     proposition.content_link = tree.find('LinkInteiroTeor').text
 
     proposition.save()
-
 
 def update_proposition(response, proposition_id):
     tree = ElementTree.fromstring(response.content)

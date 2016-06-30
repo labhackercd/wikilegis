@@ -27,14 +27,16 @@ def get_permission(action, opts):
 def propositions_update(ModelAdmin, request, queryset):
     selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
     bills = Bill.objects.filter(id__in=selected)
-    for bill in bills:
-        try:
-            params = {'IdProp': bill.proposition_set.all()[0].id_proposition}
-            response = requests.get(
-                'http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID', params=params)
-            update_proposition(response, bill.proposition_set.all()[0].id_proposition)
-        except:
-            pass
+
+    # Code suppressed for Hackathon
+    # for bill in bills:
+    #     try:
+    #         params = {'IdProp': bill.proposition_set.all()[0].id_proposition}
+    #         response = requests.get(
+    #             'http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID', params=params)
+    #         update_proposition(response, bill.proposition_set.all()[0].id_proposition)
+    #     except:
+    #         pass
     ModelAdmin.message_user(request, _("Bills updated successfully."))
 
 propositions_update.short_description = _("Update status of selected bills")
@@ -156,7 +158,7 @@ class BillAdmin(admin.ModelAdmin):
     form = BillAdminForm
     fieldsets = [
         (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'status', 'reporting_member', 'closing_date', 'editors']}),
-        (_('Legislative proposal'), {'fields': ['type', 'number', 'year'],
+        (_('Legislative proposal'), {'fields': ['type', 'number', 'year', 'author', 'author_photo', 'uf_author', 'party_author'],
                                      'description': _("This data will be used to assign the project to a legislative "
                                                       "proposal pending before the House of Representatives. You only "
                                                       "need to inform them if your procedure has been initiated. To "
@@ -171,8 +173,11 @@ class BillAdmin(admin.ModelAdmin):
 
     def save_form(self, request, form, change):
         bill = form.save(commit=False)
-        if form.files:
-            import_file(form.files['file_txt'], bill.pk)
+        ## Commented for Hackathon.
+        ## Commenting this is bad, it breaks importing.
+        ## PLEASE FIX 
+        # if form.files:
+        #     import_file(form.files['file_txt'], bill.pk)
         return form.save(commit=False)
 
     def save_formset(self, request, form, formset, change):

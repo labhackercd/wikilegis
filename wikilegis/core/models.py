@@ -202,8 +202,8 @@ class UpDownVote(TimestampedMixin):
     class Meta:
         unique_together = ('user', 'object_id', 'content_type')
 
-    def __unicode__(self):
-        return self.user.get_full_name() or self.user.email
+    # def __unicode__(self):
+    #     return self.user.get_full_name() or self.user.email
 
 
 class Proposition(models.Model):
@@ -222,6 +222,7 @@ class Proposition(models.Model):
     id_register = models.CharField(_('id register'), max_length=200, null=True, blank=True)
     uf_author = models.CharField(_('uf author'), max_length=200, null=True, blank=True)
     party_author = models.CharField(_('party author'), max_length=200, null=True, blank=True)
+    author_photo = models.FileField(_('author photo'), null=True)
     apresentation_date = models.DateField(_('apresentation date'), null=True, blank=True)
     processing_regime = models.CharField(_('processing_regime'), max_length=200, null=True, blank=True)
     last_dispatch_date = models.DateField(_('last dispatch date'), null=True, blank=True)

@@ -75,13 +75,13 @@
         {% endif %}
 
         <div class="row">
-          {% if proposition %}
+          {# if proposition #}
             <div class="after-bar">
               <div class="user col s12">
                 <div class="col m3 s2">
                   <div class="avatr">
                     {% if proposition.id_register %}
-                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ proposition.id_register }}.jpg')"></div>
+                    <div class="pic" style="background-image: url('{{ proposition.author_photo }}')"></div>
                     {% else %}
                     <div class="pic" style="background-image: url('{% static 'img/user.png' %}')"></div>
                     {% endif %}
@@ -96,7 +96,7 @@
                 </div>
               </div>
             </div>
-          {% endif %}
+          {# endif #}
         </div>
 
         <div class="row">

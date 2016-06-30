@@ -16,4 +16,4 @@ def verify_newsletter(request, bill_id=None):
             newsletter.periodicity = request.GET.get('periodicity')
         newsletter.save()
 
-    return HttpResponseRedirect(reverse('show_bill', kwargs={'bill_id': bill_id}))
+    return HttpResponseRedirect(reverse('show_bill', kwargs={'pk': bill_id}))

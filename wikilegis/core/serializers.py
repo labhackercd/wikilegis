@@ -34,9 +34,15 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('email', 'first_name', 'last_name', 'avatar')
 
 
+class CommentsUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'avatar')
+
+
 class CommentsSerializer(serializers.ModelSerializer):
     content_type = serializers.SerializerMethodField('get_content_type_name')
-    user = UserSerializer()
+    user = CommentsUserSerializer()
 
     def get_content_type_name(self, obj):
         return obj.content_type.name

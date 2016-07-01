@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-29 15:08-0300\n"
+"POT-Creation-Date: 2016-07-01 15:49-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,43 +142,43 @@ msgstr "Sua conta agora está ativada."
 msgid "Profile successfully updated"
 msgstr "Perfil atualizado com sucesso"
 
-#: core/admin.py:38
+#: core/admin.py:36
 msgid "Bills updated successfully."
 msgstr "Projetos atualizados com sucesso"
 
-#: core/admin.py:40
+#: core/admin.py:38
 msgid "Update status of selected bills"
 msgstr "Atualizar o status dos projetos selecionados"
 
-#: core/admin.py:53 core/models.py:142
+#: core/admin.py:51 core/models.py:142
 msgid "segment"
 msgstr "trecho"
 
-#: core/admin.py:53 core/models.py:143
+#: core/admin.py:51 core/models.py:143
 msgid "segments"
 msgstr "trechos"
 
-#: core/admin.py:112 core/models.py:134 core/models.py:172 core/models.py:221
+#: core/admin.py:110 core/models.py:134 core/models.py:172 core/models.py:221
 msgid "author"
 msgstr "autor"
 
-#: core/admin.py:113
+#: core/admin.py:111
 msgid "authors"
 msgstr "autores"
 
-#: core/admin.py:122
+#: core/admin.py:120
 msgid "video"
 msgstr "vídeo"
 
-#: core/admin.py:123
+#: core/admin.py:121
 msgid "videos"
 msgstr "vídeos"
 
-#: core/admin.py:159
+#: core/admin.py:157
 msgid "Legislative proposal"
 msgstr "Proposta"
 
-#: core/admin.py:160
+#: core/admin.py:158
 msgid ""
 "This data will be used to assign the project to a legislative proposal "
 "pending before the House of Representatives. You only need to inform them if "
@@ -189,23 +189,23 @@ msgstr ""
 "los se o trâmite já foi iniciado. Para apagar os dados, submita os campos em "
 "branco."
 
-#: core/admin.py:165
+#: core/admin.py:163
 msgid "File to import"
 msgstr "Arquivo para importação"
 
-#: core/admin.py:166
+#: core/admin.py:164
 msgid "This field will be used to import a txt file."
 msgstr "Este campo será usado para importar um arquivo .txt"
 
-#: core/admin.py:216
+#: core/admin.py:214
 msgid "Situation"
 msgstr "Situação"
 
-#: core/admin.py:220
+#: core/admin.py:218
 msgid "Show"
 msgstr "Ver"
 
-#: core/admin.py:222
+#: core/admin.py:220
 msgid "Report"
 msgstr "Relatório"
 
@@ -221,7 +221,7 @@ msgstr "Título"
 msgid "video url"
 msgstr "url do vídeo"
 
-#: core/forms.py:79 core/forms.py:224
+#: core/forms.py:79 core/forms.py:218
 msgid "You can explain your proposal here."
 msgstr "Você pode explicar sua proposta aqui."
 
@@ -261,12 +261,12 @@ msgstr ""
 "Ao adicionar um campo na proposta legislativa, os três campos se tornam "
 "obrigatórios."
 
-#: core/forms.py:239 core/forms.py:244 core/models.py:103 core/models.py:128
+#: core/forms.py:233 core/forms.py:238 core/models.py:103 core/models.py:128
 #: core/models.py:210 notification/models.py:29
 msgid "bill"
 msgstr "projeto de lei"
 
-#: core/forms.py:241 core/models.py:132
+#: core/forms.py:235 core/models.py:132
 msgid "segment parent"
 msgstr "trecho ancestral"
 
@@ -592,24 +592,24 @@ msgstr "Nenhum"
 msgid "Sole paragraph"
 msgstr "Parágrafo único"
 
-#: core/views.py:32
+#: core/views.py:33
 msgid "Order by"
 msgstr "Ordem"
 
-#: core/views.py:38
+#: core/views.py:39
 msgid "Hot"
 msgstr "Relevantes"
 
-#: core/views.py:39
+#: core/views.py:40
 msgid "Date"
 msgstr "Recentes"
 
-#: core/views.py:163
+#: core/views.py:164
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:193 core/views.py:234
+#: core/views.py:194 core/views.py:235
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
@@ -650,11 +650,11 @@ msgstr "Newsletter"
 msgid "Newsletters"
 msgstr "Newsletters"
 
-#: settings.py:212
+#: settings.py:214
 msgid "Google"
 msgstr ""
 
-#: settings.py:216
+#: settings.py:218
 msgid "Facebook"
 msgstr ""
 
@@ -922,6 +922,53 @@ msgstr "Participe"
 #: templates/index.html:100
 msgid "No bills"
 msgstr "Não há projetos de lei"
+
+#: templates/registration/activation_email.html:7
+msgid "registration"
+msgstr "inscrição"
+
+#: templates/registration/activation_email.html:12
+#, python-format
+msgid ""
+"\n"
+"    You (or someone pretending to be you) have asked to register an account "
+"at\n"
+"    %(site_name)s.  If this wasn't you, please ignore this email\n"
+"    and your address will be removed from our records.\n"
+"    "
+msgstr ""
+"\n"
+"    Você (ou alguém fingindo ser você) pediram para registrar uma conta no\n"
+"    %(site_name)s.  Se não foi você, por favor ignore este email\n"
+"    e seu endereço será removido de nossos registros.\n"
+"    "
+
+#: templates/registration/activation_email.html:19
+#, python-format
+msgid ""
+"\n"
+"    To activate this account, please click the following link within the "
+"next\n"
+"    %(expiration_days)s days:\n"
+"    "
+msgstr ""
+"\n"
+"    Para activar esta conta, clique no link em até     %(expiration_days)s "
+"dias:\n"
+"    "
+
+#: templates/registration/activation_email.html:31
+#, python-format
+msgid ""
+"\n"
+"    Sincerely,\n"
+"    %(site_name)s Management\n"
+"    "
+msgstr ""
+"\n"
+"    Atenciosamente,\n"
+"    Equipe %(site_name)s.\n"
+"    "
 
 #: templates/registration/login.html:43
 msgid "Activate Account"

@@ -163,6 +163,8 @@ REGISTRATION_AUTO_LOGIN = True
 
 REGISTRATION_FORM = 'wikilegis.auth2.forms.RegistrationForm'
 
+REGISTRATION_EMAIL_SUBJECT_PREFIX = ""
+
 # XXX Please don't change. The URL is included in `wikilegis.auth2.urls`.
 INCLUDE_REGISTER_URL = False
 

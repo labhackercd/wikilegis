@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-29 15:08-0300\n"
+"POT-Creation-Date: 2016-07-01 15:49-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,66 +135,66 @@ msgstr ""
 msgid "Profile successfully updated"
 msgstr ""
 
-#: core/admin.py:38
+#: core/admin.py:36
 msgid "Bills updated successfully."
 msgstr ""
 
-#: core/admin.py:40
+#: core/admin.py:38
 msgid "Update status of selected bills"
 msgstr ""
 
-#: core/admin.py:53 core/models.py:142
+#: core/admin.py:51 core/models.py:142
 msgid "segment"
 msgstr ""
 
-#: core/admin.py:53 core/models.py:143
+#: core/admin.py:51 core/models.py:143
 msgid "segments"
 msgstr ""
 
-#: core/admin.py:112 core/models.py:134 core/models.py:172 core/models.py:221
+#: core/admin.py:110 core/models.py:134 core/models.py:172 core/models.py:221
 msgid "author"
 msgstr ""
 
-#: core/admin.py:113
+#: core/admin.py:111
 msgid "authors"
 msgstr ""
 
-#: core/admin.py:122
+#: core/admin.py:120
 msgid "video"
 msgstr ""
 
-#: core/admin.py:123
+#: core/admin.py:121
 msgid "videos"
 msgstr ""
 
-#: core/admin.py:159
+#: core/admin.py:157
 msgid "Legislative proposal"
 msgstr ""
 
-#: core/admin.py:160
+#: core/admin.py:158
 msgid ""
 "This data will be used to assign the project to a legislative proposal "
 "pending before the House of Representatives. You only need to inform them if "
 "your procedure has been initiated. To delete , leave the fields blank."
 msgstr ""
 
-#: core/admin.py:165
+#: core/admin.py:163
 msgid "File to import"
 msgstr ""
 
-#: core/admin.py:166
+#: core/admin.py:164
 msgid "This field will be used to import a txt file."
 msgstr ""
 
-#: core/admin.py:216
+#: core/admin.py:214
 msgid "Situation"
 msgstr ""
 
-#: core/admin.py:220
+#: core/admin.py:218
 msgid "Show"
 msgstr ""
 
-#: core/admin.py:222
+#: core/admin.py:220
 msgid "Report"
 msgstr ""
 
@@ -210,7 +210,7 @@ msgstr ""
 msgid "video url"
 msgstr ""
 
-#: core/forms.py:79 core/forms.py:224
+#: core/forms.py:79 core/forms.py:218
 msgid "You can explain your proposal here."
 msgstr ""
 
@@ -248,12 +248,12 @@ msgid ""
 "required"
 msgstr ""
 
-#: core/forms.py:239 core/forms.py:244 core/models.py:103 core/models.py:128
+#: core/forms.py:233 core/forms.py:238 core/models.py:103 core/models.py:128
 #: core/models.py:210 notification/models.py:29
 msgid "bill"
 msgstr ""
 
-#: core/forms.py:241 core/models.py:132
+#: core/forms.py:235 core/models.py:132
 msgid "segment parent"
 msgstr ""
 
@@ -579,24 +579,24 @@ msgstr ""
 msgid "Sole paragraph"
 msgstr ""
 
-#: core/views.py:32
+#: core/views.py:33
 msgid "Order by"
 msgstr ""
 
-#: core/views.py:38
+#: core/views.py:39
 msgid "Hot"
 msgstr ""
 
-#: core/views.py:39
+#: core/views.py:40
 msgid "Date"
 msgstr ""
 
-#: core/views.py:163
+#: core/views.py:164
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr ""
 
-#: core/views.py:193 core/views.py:234
+#: core/views.py:194 core/views.py:235
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr ""
@@ -637,11 +637,11 @@ msgstr ""
 msgid "Newsletters"
 msgstr ""
 
-#: settings.py:212
+#: settings.py:214
 msgid "Google"
 msgstr ""
 
-#: settings.py:216
+#: settings.py:218
 msgid "Facebook"
 msgstr ""
 
@@ -891,6 +891,40 @@ msgstr ""
 
 #: templates/index.html:100
 msgid "No bills"
+msgstr ""
+
+#: templates/registration/activation_email.html:7
+msgid "registration"
+msgstr ""
+
+#: templates/registration/activation_email.html:12
+#, python-format
+msgid ""
+"\n"
+"    You (or someone pretending to be you) have asked to register an account "
+"at\n"
+"    %(site_name)s.  If this wasn't you, please ignore this email\n"
+"    and your address will be removed from our records.\n"
+"    "
+msgstr ""
+
+#: templates/registration/activation_email.html:19
+#, python-format
+msgid ""
+"\n"
+"    To activate this account, please click the following link within the "
+"next\n"
+"    %(expiration_days)s days:\n"
+"    "
+msgstr ""
+
+#: templates/registration/activation_email.html:31
+#, python-format
+msgid ""
+"\n"
+"    Sincerely,\n"
+"    %(site_name)s Management\n"
+"    "
 msgstr ""
 
 #: templates/registration/login.html:43

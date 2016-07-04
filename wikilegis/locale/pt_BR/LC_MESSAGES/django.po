@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 15:49-0300\n"
+"POT-Creation-Date: 2016-07-04 17:37-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -604,12 +604,12 @@ msgstr "Relevantes"
 msgid "Date"
 msgstr "Recentes"
 
-#: core/views.py:164
+#: core/views.py:165
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:194 core/views.py:235
+#: core/views.py:195 core/views.py:236
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
@@ -630,11 +630,11 @@ msgstr ""
 msgid "history notifications"
 msgstr ""
 
-#: notification/models.py:25 templates/bill/bill.html:66
+#: notification/models.py:25 templates/bill/bill.html:71
 msgid "Daily"
 msgstr "Diariamente"
 
-#: notification/models.py:26 templates/bill/bill.html:61
+#: notification/models.py:26 templates/bill/bill.html:66
 msgid "Weekly"
 msgstr "Semanalmente"
 
@@ -751,6 +751,10 @@ msgstr "Seu perfil"
 msgid "Update my profile"
 msgstr "Atualizar meu perfil"
 
+#: templates/bill/_base.html:19 templates/bill/bill.html:33
+msgid "Participations Closed"
+msgstr "Participações Encerradoas"
+
 #: templates/bill/_bill_segment_item.html:4
 msgid "TITLE"
 msgstr "TÍTULO"
@@ -771,48 +775,48 @@ msgstr "Seção"
 msgid "Subsection"
 msgstr "Subseção"
 
-#: templates/bill/bill.html:45
+#: templates/bill/bill.html:50
 msgid "Unsubscribe"
 msgstr "Cancelar assinatura"
 
-#: templates/bill/bill.html:52
+#: templates/bill/bill.html:57
 msgid "Subscribe to this bill"
 msgstr "Receber notificações"
 
-#: templates/bill/bill.html:56
+#: templates/bill/bill.html:61
 msgid ""
 "You can be notified of changes in this bill via e-mail by subscribing to it."
 msgstr ""
 "Você pode ser notificado de mudanças neste projeto via e-mail ao fazer sua "
 "assinatura."
 
-#: templates/bill/bill.html:70
+#: templates/bill/bill.html:75
 msgid "Subscribe"
 msgstr "Assinar"
 
-#: templates/bill/bill.html:93
-msgid "AUTHOR"
-msgstr "AUTOR"
-
-#: templates/bill/bill.html:114
-msgid "RAPPORTEUR"
-msgstr "RELATOR"
-
-#: templates/bill/bill.html:131
+#: templates/bill/bill.html:86
 msgid "Bill status:"
 msgstr "Status da proposta:"
 
-#: templates/bill/bill.html:140
+#: templates/bill/bill.html:95
 msgid "Attendees:"
 msgstr "Participantes:"
 
-#: templates/bill/bill.html:141
+#: templates/bill/bill.html:96
 msgid "Proposals:"
 msgstr "Propostas:"
 
-#: templates/bill/bill.html:143
+#: templates/bill/bill.html:98
 msgid "Closing date:"
 msgstr "Contribuições até:"
+
+#: templates/bill/bill.html:117
+msgid "AUTHOR"
+msgstr "AUTOR"
+
+#: templates/bill/bill.html:138
+msgid "RAPPORTEUR"
+msgstr "RELATOR"
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
 msgid "Original text"
@@ -825,6 +829,10 @@ msgstr "Propostas"
 #: templates/bill/bill_segment.html:215
 msgid "Make a proposal!"
 msgstr "Sugerir uma proposta!"
+
+#: templates/bill/bill_segment.html:222
+msgid "Participations closed"
+msgstr "Participações encerradas"
 
 #: templates/bill/create_amendment.html:26
 #: templates/bill/create_amendment.html:61

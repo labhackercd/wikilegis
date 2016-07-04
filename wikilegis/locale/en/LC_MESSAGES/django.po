@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 15:49-0300\n"
+"POT-Creation-Date: 2016-07-04 17:37-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -591,12 +591,12 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: core/views.py:164
+#: core/views.py:165
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr ""
 
-#: core/views.py:194 core/views.py:235
+#: core/views.py:195 core/views.py:236
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr ""
@@ -617,11 +617,11 @@ msgstr ""
 msgid "history notifications"
 msgstr ""
 
-#: notification/models.py:25 templates/bill/bill.html:66
+#: notification/models.py:25 templates/bill/bill.html:71
 msgid "Daily"
 msgstr ""
 
-#: notification/models.py:26 templates/bill/bill.html:61
+#: notification/models.py:26 templates/bill/bill.html:66
 msgid "Weekly"
 msgstr ""
 
@@ -729,6 +729,10 @@ msgstr ""
 msgid "Update my profile"
 msgstr ""
 
+#: templates/bill/_base.html:19 templates/bill/bill.html:33
+msgid "Participations Closed"
+msgstr ""
+
 #: templates/bill/_bill_segment_item.html:4
 msgid "TITLE"
 msgstr ""
@@ -749,45 +753,45 @@ msgstr ""
 msgid "Subsection"
 msgstr ""
 
-#: templates/bill/bill.html:45
+#: templates/bill/bill.html:50
 msgid "Unsubscribe"
 msgstr ""
 
-#: templates/bill/bill.html:52
+#: templates/bill/bill.html:57
 msgid "Subscribe to this bill"
 msgstr ""
 
-#: templates/bill/bill.html:56
+#: templates/bill/bill.html:61
 msgid ""
 "You can be notified of changes in this bill via e-mail by subscribing to it."
 msgstr ""
 
-#: templates/bill/bill.html:70
+#: templates/bill/bill.html:75
 msgid "Subscribe"
 msgstr ""
 
-#: templates/bill/bill.html:93
-msgid "AUTHOR"
-msgstr ""
-
-#: templates/bill/bill.html:114
-msgid "RAPPORTEUR"
-msgstr ""
-
-#: templates/bill/bill.html:131
+#: templates/bill/bill.html:86
 msgid "Bill status:"
 msgstr ""
 
-#: templates/bill/bill.html:140
+#: templates/bill/bill.html:95
 msgid "Attendees:"
 msgstr ""
 
-#: templates/bill/bill.html:141
+#: templates/bill/bill.html:96
 msgid "Proposals:"
 msgstr ""
 
-#: templates/bill/bill.html:143
+#: templates/bill/bill.html:98
 msgid "Closing date:"
+msgstr ""
+
+#: templates/bill/bill.html:117
+msgid "AUTHOR"
+msgstr ""
+
+#: templates/bill/bill.html:138
+msgid "RAPPORTEUR"
 msgstr ""
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
@@ -800,6 +804,10 @@ msgstr ""
 
 #: templates/bill/bill_segment.html:215
 msgid "Make a proposal!"
+msgstr ""
+
+#: templates/bill/bill_segment.html:222
+msgid "Participations closed"
 msgstr ""
 
 #: templates/bill/create_amendment.html:26

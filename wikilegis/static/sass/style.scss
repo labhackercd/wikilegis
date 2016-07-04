@@ -523,6 +523,10 @@ strong {
 .pl-title {
     font-weight: 700;
     color: $gray;
+    
+    &.closed {
+        color: #b96635 !important;
+    }
 }
 
 .circle {

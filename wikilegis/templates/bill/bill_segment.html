@@ -209,12 +209,20 @@
            
         {% endfor %}
         {% if segment.bill.status = 'published' %}
-        <div class="row center">
-          <a class="add-prop-cta bill btn-large waves-effect waves-light" href="{% url 'create_amendment' segment.bill.id segment.id %}">
-            <i class="material-icons left">lightbulb_outline</i>
-                {% trans "Make a proposal!" %}
-          </a>
-        </div>
+            <div class="row center">
+              <a class="add-prop-cta bill btn-large waves-effect waves-light" href="{% url 'create_amendment' segment.bill.id segment.id %}">
+                <i class="material-icons left">lightbulb_outline</i>
+                    {% trans "Make a proposal!" %}
+              </a>
+            </div>
+            {% elif segment.bill.status = 'closed' %}
+                <div class="row center">
+                  <a class="add-prop-cta bill btn-large waves-effect waves-light disabled" href=#>
+                    <i class="material-icons left">block</i>
+                        {% trans "Participations closed" %}
+                  </a>
+                </div>
+
         {% endif %}
     </div>
 </div>

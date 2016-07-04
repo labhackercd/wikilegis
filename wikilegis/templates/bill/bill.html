@@ -27,6 +27,11 @@
     </div>
     <div class="col s10 l11 valign">
       <h4 class="pl-title">{{ bill.title }}</h4>
+
+      {% if bill.status = "closed" %}
+        <h4 class="pl-title closed"> ({% trans "Participations Closed" %})</h4>
+      {% endif %}
+
     </div>
   </div>
 
@@ -35,7 +40,7 @@
     <div class="col s12 l3 push-l9">
       <div class="pl-full pl-description">
 
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and bill.status = "published"  %}
           {% subscriber bill.id request.user.id as newsletter_status %}
           <form action="{% url 'verify_newsletter' bill.id %}#btn_newsletter" method="get">
           {% if newsletter_status %}
@@ -73,6 +78,25 @@
           {% endif %}
           </form>
         {% endif %}
+
+        <div class="pl-info">
+          {% if proposition.situation %}
+            <span class="item">
+              <span class="pl-subheading">{% trans "Bill status:" %}</span>
+              <span class="pl-status">
+                <a target="_blank" href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao={{ proposition.id_proposition }}">
+                  {{ proposition.situation }}
+                </a>
+              </span>
+            </span>
+
+          {% endif %}
+          <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ attendees }}</span></span> 
+          <span class="item"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count">{{ proposals }}</span></span>
+          {% if bill.closing_date %}  
+          <span class="item"><span class="pl-subheading">{% trans "Closing date:" %}</span> <span class="prop-count">{{ bill.closing_date|date:'d/m/Y' }}</span></span>
+          {% endif %}
+        </div>
 
         <div class="row">
           {% if proposition %}
@@ -123,26 +147,7 @@
         </div>
 
         <div class="divider"></div>
-      
-        <div class="pl-info">
-          {% if proposition.situation %}
-            <span class="item">
-              <span class="pl-subheading">{% trans "Bill status:" %}</span>
-              <span class="pl-status">
-                <a target="_blank" href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao={{ proposition.id_proposition }}">
-                  {{ proposition.situation }}
-                </a>
-              </span>
-            </span>
-
-          {% endif %}
-          <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ attendees }}</span></span> 
-          <span class="item"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count">{{ proposals }}</span></span>
-          {% if bill.closing_date %}  
-          <span class="item"><span class="pl-subheading">{% trans "Closing date:" %}</span> <span class="prop-count">{{ bill.closing_date|date:'d/m/Y' }}</span></span>
-          {% endif %}
-        </div>
-      
+            
         {% for item in videos %}
           <div class="pl-about video-descripition">
             {% video item.url %}

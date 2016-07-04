@@ -82,7 +82,8 @@ class BillDetailView(DetailView):
                                               object_id__in=segments_id).values_list('user__id', flat=True)
         comment_ids = Comment.objects.filter(object_pk__in=segments_id,
                                              content_type=segment_ctype).values_list('user__id', flat=True)
-        context['attendees'] = len(set(list(votes_ids) + list(comment_ids)))
+        proposals_ids = self.object.segments.filter(original=False).values_list('author__id', flat=True)
+        context['attendees'] = len(set(list(votes_ids) + list(comment_ids) + list(proposals_ids)))
         context['proposals'] = self.object.segments.filter(original=False).count()
         context['videos'] = map(BillVideo, videos)
         try:

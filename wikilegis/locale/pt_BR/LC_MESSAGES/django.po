@@ -753,7 +753,7 @@ msgstr "Atualizar meu perfil"
 
 #: templates/bill/_base.html:19 templates/bill/bill.html:33
 msgid "Participations Closed"
-msgstr "Participações Encerradoas"
+msgstr "Participações Encerradas"
 
 #: templates/bill/_bill_segment_item.html:4
 msgid "TITLE"
@@ -901,7 +901,7 @@ msgstr "Projetos de Lei"
 
 #: templates/index.html:46
 msgid "Open"
-msgstr "Abertas"
+msgstr "Abertos"
 
 #: templates/index.html:65
 msgid "Created at"

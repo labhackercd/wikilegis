@@ -168,30 +168,6 @@ class BillSegment(TimestampedMixin):
                 return reverse('show_proposal', args=[self.bill.id, self.id])
 
 
-class CitizenAmendment(TimestampedMixin):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'))
-    segment = models.ForeignKey('core.BillSegment', related_name='amendments', verbose_name=_('bill segment'))
-    content = models.TextField(_('content'))
-
-    class Meta:
-        verbose_name = _('citizen amendment')
-        verbose_name_plural = _('citizen amendments')
-
-    def __unicode__(self):
-        return model_repr(CitizenAmendment, author=self.author,
-                          segment=self.segment, content=self.content)
-
-    def original_content(self):
-        return self.segment.content
-
-    def html_id(self):
-        return 'amendment-{0}'.format(self.pk)
-
-    @permalink
-    def get_absolute_url(self):
-        return 'show_amendment', [self.pk]
-
-
 class UpDownVote(TimestampedMixin):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
     object_id = models.PositiveIntegerField()

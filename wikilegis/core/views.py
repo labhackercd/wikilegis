@@ -259,7 +259,8 @@ class BillReport(DetailView):
         context['votes'] = votes.count()
         context['comments'] = comments.count()
         context['attendees'] = len(set(list(votes.values_list('user__id', flat=True)) +
-                                       list(comments.values_list('user__id', flat=True))))
+                                       list(comments.values_list('user__id', flat=True)) +
+                                       list(proposals.values_list('author__id', flat=True))))
         context['proposals'] = proposals.count()
         context['original_segments'] = self.object.segments.filter(
             original=True, id__in=featured_segments).annotate(proposals_count=Count('substitutes'))

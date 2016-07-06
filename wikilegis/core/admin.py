@@ -259,10 +259,6 @@ class BillAdmin(admin.ModelAdmin):
         return self.has_change_permission(request) or super(BillAdmin, self).has_module_permission(request)
 
 
-class CitizenAmendmentAdmin(admin.ModelAdmin):
-    list_display = ('author', 'segment', 'original_content', 'content')
-
-
 class TypeSegmentAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         perm = get_permission('change', self.opts)
@@ -295,5 +291,4 @@ class BillSegmentAdmin(admin.ModelAdmin):
 
 admin.site.register(BillSegment, BillSegmentAdmin)
 admin.site.register(models.Bill, BillAdmin)
-admin.site.register(models.CitizenAmendment, CitizenAmendmentAdmin)
 admin.site.register(TypeSegment, TypeSegmentAdmin)

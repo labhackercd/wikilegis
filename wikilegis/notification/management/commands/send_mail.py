@@ -8,7 +8,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django_comments.models import Comment
 from wikilegis.auth2.models import User
-from wikilegis.core.models import Bill, CitizenAmendment, UpDownVote, BillSegment
+from wikilegis.core.models import Bill, UpDownVote, BillSegment
 from wikilegis.notification.models import HistoryNotification
 
 

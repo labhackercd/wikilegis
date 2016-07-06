@@ -11,5 +11,4 @@ class Command(BaseCommand):
             params = {'IdProp': proposition.id_proposition}
             response = requests.get('http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterProposicaoPorID'
                                     , params=params)
-            update_proposition(response, proposition.id_proposition)
-
+            update_proposition(response, proposition.id_proposition, proposition.bill.id)

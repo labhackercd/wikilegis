@@ -43,7 +43,8 @@
           <p class="comment"> {{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
         </div>
       {% endfor %}
-      {% for proposal in segment.substitutes.all %}
+      {% order_by_score for segment.substitutes.all as proposals_ordered %} 
+      {% for proposal in proposals_ordered %}
         {% get_comment_count for proposal as proposal_comment_count %}
         <h4>Proposta {{ forloop.counter }}</h4>
         <div class="proposal">

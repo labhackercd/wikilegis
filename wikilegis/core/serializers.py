@@ -5,19 +5,19 @@ from wikilegis.auth2.models import User
 from wikilegis.core.models import Bill, BillSegment, TypeSegment
 
 
+class CommentsUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'avatar')
+
+
 class SegmentSerializer(serializers.ModelSerializer):
+    author = CommentsUserSerializer()
 
     class Meta:
         model = BillSegment
         fields = ('id', 'bill', 'original', 'replaced', 'parent',
-                  'type', 'number', 'content')
-
-
-class BillSegmentSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = BillSegment
-        fields = ('id', 'parent', 'type', 'number', 'content')
+                  'type', 'number', 'content', 'author')
 
 
 class BillSerializer(serializers.ModelSerializer):
@@ -32,12 +32,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('email', 'first_name', 'last_name', 'avatar')
-
-
-class CommentsUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'avatar')
 
 
 class CommentsSerializer(serializers.ModelSerializer):

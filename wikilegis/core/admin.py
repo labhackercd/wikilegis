@@ -152,14 +152,16 @@ class BillAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'theme', 'status', 'get_situation', 'get_report')
     actions = [propositions_update]
     form = BillAdminForm
-    fieldsets = [
-        (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'status', 'reporting_member', 'closing_date', 'editors']}),
+    user_fieldsets = [
+        (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'reporting_member', 'closing_date']}),
         (_('Legislative proposal'), {'fields': ['type', 'number', 'year'],
                                      'description': _("This data will be used to assign the project to a legislative "
                                                       "proposal pending before the House of Representatives. You only "
                                                       "need to inform them if your procedure has been initiated. To "
                                                       "delete , leave the fields blank.")}),
-        # 'description': "Esses dados serão usados para associar o projeto a uma proposição legislativa em tramitação na Câmara dos Deputados. Apenas é necessário informá-los se sua tramitação tiver sido iniciada. Para excluir, deixe os campos em branco."})
+    ]
+    superuser_fieldsets = [
+        (_('Administrator filds'), {'fields': ['status', 'editors']}),
         (_('File to import'), {'fields': ['file_txt'], 'description': _(
             "This field will be used to import a txt file.")}),
     ]
@@ -220,27 +222,13 @@ class BillAdmin(admin.ModelAdmin):
     get_report.short_description = _('Report')
     get_report.allow_tags = True
 
-    def get_fieldsets(self, request, obj=None):
-        excluded = self.get_excluded_fields(request, obj=obj)
-        fieldsets = super(BillAdmin, self).get_fieldsets(request, obj=obj)
-        for (title, fieldset) in fieldsets:
-            fields = fieldset.get('fields', [])
-            for e in excluded:
-                if e in fields:
-                    fields.remove(e)
-        return fieldsets
-
     def get_form(self, request, obj=None, **kwargs):
-        exclude = self.get_excluded_fields(request, obj=obj)
-        exclude.extend(kwargs.pop('exclude', []))
+        if request.user.is_superuser:
+            self.fieldsets = self.user_fieldsets + self.superuser_fieldsets
+        else:
+            self.fieldsets = self.user_fieldsets
         request._obj_ = obj
-        return super(BillAdmin, self).get_form(request, obj, exclude=exclude, **kwargs)
-
-    def get_excluded_fields(self, request, obj=None):
-        exclude = []
-        if not request.user.has_perm('core.change_bill_secret_fields', obj):
-            exclude.extend(['editors', 'status'])
-        return exclude
+        return super(BillAdmin, self).get_form(request, obj, **kwargs)
 
     def get_changelist(self, request, **kwargs):
         # XXX We override the ChangeList so we can override *only* the queryset for the changelist view.

@@ -13,12 +13,12 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django_comments.models import Comment
 from django_extensions.db.fields.json import JSONField
-
+from django.utils.translation import pgettext_lazy
 
 BILL_STATUS_CHOICES = (
     ('draft', _('Draft')),
     ('published', _('Published')),
-    ('closed', _('Closed'))
+    ('closed', pgettext_lazy('Not open', 'Closed'))
 )
 
 BILL_THEMES_CHOICES = (

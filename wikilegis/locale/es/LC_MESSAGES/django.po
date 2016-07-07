@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-04 17:37-0300\n"
+"POT-Creation-Date: 2016-07-07 17:36-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,7 @@ msgstr ""
 "El id de cada parlamentario puede ser encontrado en los parámetros de la url "
 "en el perfil del parlamentario en el sitio http://www2.camara.leg.br/"
 
-#: auth2/models.py:121 core/models.py:196 notification/models.py:30
+#: auth2/models.py:121 core/models.py:172 notification/models.py:30
 msgid "user"
 msgstr "usuario"
 
@@ -160,7 +160,7 @@ msgstr "elemento"
 msgid "segments"
 msgstr "elementos"
 
-#: core/admin.py:110 core/models.py:134 core/models.py:172 core/models.py:221
+#: core/admin.py:110 core/models.py:134 core/models.py:197
 msgid "author"
 msgstr "autor"
 
@@ -191,23 +191,29 @@ msgstr ""
 "informarlos si tu procedimiento ha sido iniciado. Para borrar, deja los "
 "campos en blanco"
 
-#: core/admin.py:163
+#: core/admin.py:164
+#, fuzzy
+#| msgid "Public Administration"
+msgid "Administrator filds"
+msgstr "Administración Pública"
+
+#: core/admin.py:165
 msgid "File to import"
 msgstr "Archivo a importar"
 
-#: core/admin.py:164
+#: core/admin.py:166
 msgid "This field will be used to import a txt file."
 msgstr "Este campo puede ser usado para importar un archivo txt"
 
-#: core/admin.py:214
+#: core/admin.py:216
 msgid "Situation"
 msgstr "Situación"
 
-#: core/admin.py:218
+#: core/admin.py:220
 msgid "Show"
 msgstr "Mostrar"
 
-#: core/admin.py:220
+#: core/admin.py:222
 msgid "Report"
 msgstr "Reporte"
 
@@ -266,7 +272,7 @@ msgstr ""
 "obligatorios"
 
 #: core/forms.py:233 core/forms.py:238 core/models.py:103 core/models.py:128
-#: core/models.py:210 notification/models.py:29
+#: core/models.py:186 notification/models.py:29
 msgid "bill"
 msgstr "proyecto"
 
@@ -282,7 +288,10 @@ msgstr "Borrador"
 msgid "Published"
 msgstr "Publicado"
 
-#: core/models.py:21 templates/index.html:48
+#: core/models.py:21
+#, fuzzy
+#| msgid "Closed"
+msgctxt "Not open"
 msgid "Closed"
 msgstr "Cerrado"
 
@@ -406,7 +415,7 @@ msgstr "modificado"
 msgid "data"
 msgstr "datos"
 
-#: core/models.py:78 core/models.py:130 core/models.py:211
+#: core/models.py:78 core/models.py:130 core/models.py:187
 msgid "type"
 msgstr "tipo"
 
@@ -431,7 +440,7 @@ msgstr "fecha de cierre"
 msgid "status"
 msgstr "estado"
 
-#: core/models.py:90 core/models.py:218
+#: core/models.py:90 core/models.py:194
 msgid "theme"
 msgstr "tema"
 
@@ -475,7 +484,7 @@ msgstr "tipos de elemento"
 msgid "order"
 msgstr "orden"
 
-#: core/models.py:131 core/models.py:212
+#: core/models.py:131 core/models.py:188
 msgid "number"
 msgstr "número"
 
@@ -487,107 +496,95 @@ msgstr "elemento reemplazado"
 msgid "original"
 msgstr "original"
 
-#: core/models.py:136 core/models.py:174
+#: core/models.py:136
 msgid "content"
 msgstr "contenido"
 
-#: core/models.py:173
-msgid "bill segment"
-msgstr "elemento del proyecto"
-
-#: core/models.py:177
-msgid "citizen amendment"
-msgstr "propuesta ciudadana"
-
-#: core/models.py:178
-msgid "citizen amendments"
-msgstr "propuestas ciudadanas"
-
-#: core/models.py:200
+#: core/models.py:176
 msgid "Up Vote"
 msgstr "Voto a favor"
 
-#: core/models.py:200
+#: core/models.py:176
 msgid "Down Vote"
 msgstr "Voto en contra"
 
-#: core/models.py:213
+#: core/models.py:189
 msgid "year"
 msgstr "año"
 
-#: core/models.py:214
+#: core/models.py:190
 msgid "name proposition"
 msgstr "nombre de la propuesta"
 
-#: core/models.py:215
+#: core/models.py:191
 msgid "id proposition"
 msgstr "id de la propuesta"
 
-#: core/models.py:216
+#: core/models.py:192
 msgid "id main proposition"
 msgstr "id de la propuesta principal"
 
-#: core/models.py:217
+#: core/models.py:193
 msgid "name origin proposition"
 msgstr "nombre de la proposición de origen"
 
-#: core/models.py:219
+#: core/models.py:195
 msgid "menu"
 msgstr "menu"
 
-#: core/models.py:220
+#: core/models.py:196
 msgid "menu_explanation"
 msgstr ""
 
-#: core/models.py:222
+#: core/models.py:198
 msgid "id register"
 msgstr "id de registro"
 
-#: core/models.py:223
+#: core/models.py:199
 msgid "uf author"
 msgstr ""
 
-#: core/models.py:224
+#: core/models.py:200
 msgid "party author"
 msgstr ""
 
-#: core/models.py:225
+#: core/models.py:201
 msgid "apresentation date"
 msgstr ""
 
-#: core/models.py:226
+#: core/models.py:202
 msgid "processing_regime"
 msgstr ""
 
-#: core/models.py:227
+#: core/models.py:203
 msgid "last dispatch date"
 msgstr ""
 
-#: core/models.py:228
+#: core/models.py:204
 msgid "last dispatch"
 msgstr ""
 
-#: core/models.py:229
+#: core/models.py:205
 msgid "appraisal"
 msgstr ""
 
-#: core/models.py:230
+#: core/models.py:206
 msgid "indexing"
 msgstr ""
 
-#: core/models.py:231
+#: core/models.py:207
 msgid "situation"
 msgstr "situación"
 
-#: core/models.py:232
+#: core/models.py:208
 msgid "content link"
 msgstr "link del contenido"
 
-#: core/models.py:235
+#: core/models.py:211
 msgid "proposition"
 msgstr "proposición"
 
-#: core/models.py:236
+#: core/models.py:212
 msgid "propositions"
 msgstr "proposiciones"
 
@@ -917,6 +914,10 @@ msgstr "Proyectos de ley"
 msgid "Open"
 msgstr "Abiertos"
 
+#: templates/index.html:48
+msgid "Closed"
+msgstr "Cerrado"
+
 #: templates/index.html:65
 msgid "Created at"
 msgstr "Creados"
@@ -1055,3 +1056,12 @@ msgstr ""
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
 msgstr "Reenviar"
+
+#~ msgid "bill segment"
+#~ msgstr "elemento del proyecto"
+
+#~ msgid "citizen amendment"
+#~ msgstr "propuesta ciudadana"
+
+#~ msgid "citizen amendments"
+#~ msgstr "propuestas ciudadanas"

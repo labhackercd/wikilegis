@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.views.generic.base import TemplateView
 
 from wikilegis.core.api import (BillListAPI, SegmentsListAPI, CommentListAPI,
-                                api_root, UserUpdateAPI, UserAPI,
+                                api_root, UserUpdateAPI, UserAPI, BillAPI,
                                 TypeSegmentAPI)
 from wikilegis.core.views import BillReport, CreateProposal, BillDetailView
 
@@ -34,6 +34,8 @@ urlpatterns += [
     url(r'^api/$', api_root),
     url(r'^api/bills/$', BillListAPI.as_view(),
         name='bill_list_api'),
+    url(r'^api/bills/(?P<pk>\d+)$', BillAPI.as_view(),
+        name='bill_api'),
     url(r'^api/segment_types/$', TypeSegmentAPI.as_view(),
         name='types_segments_list_api'),
     url(r'^api/segments/$', SegmentsListAPI.as_view(),

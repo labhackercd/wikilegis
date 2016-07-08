@@ -70,13 +70,21 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'image_cropping',
     'rest_framework',
+    'corsheaders',
+)
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_METHODS = (
+    'GET',
+    'OPTIONS'
 )
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-         'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.AllowAny',
     ],
     'PAGE_SIZE': 10
 }
@@ -84,6 +92,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -274,7 +283,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))
 
-## Debug toolbar
+# Debug toolbar
 STATIC_IPS = ('127.0.0.1', '::1', )
 
 # Login settings

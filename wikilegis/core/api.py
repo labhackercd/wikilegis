@@ -9,8 +9,8 @@ from wikilegis.auth2.models import User
 from wikilegis.core.models import Bill, BillSegment, TypeSegment
 from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
                                         CommentsSerializer, UserSerializer,
-                                        TypeSegmentSerializer)
-from rest_framework import generics, permissions
+                                        TypeSegmentSerializer, BillDetailSerializer)
+from rest_framework import generics, permissions, mixins
 
 
 class TokenPermission(permissions.BasePermission):
@@ -21,6 +21,17 @@ class TokenPermission(permissions.BasePermission):
             return True
         else:
             return False
+
+
+class BillAPI(generics.GenericAPIView, mixins.RetrieveModelMixin):
+    serializer_class = BillDetailSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def get_object(self):
+        obj = Bill.objects.get(pk=self.kwargs['pk'])
+        return obj
 
 
 class BillListAPI(generics.ListAPIView):

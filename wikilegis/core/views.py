@@ -413,7 +413,17 @@ def import_file(bill_txt, bill_pk):
             segment.number = string.lowercase.index(re.search(r"^[a-z]", line).group(0)) + 1
             segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
             segment.save()
-        elif re.match(r"^\"", line) or line.decode('utf-8').startswith('Pena') or is_quote:
+        elif re.match(r"^\d+\. ", line) and not is_quote:
+            label = re.match(r"^\d+\. ", line).group(0)
+            segment_type_id = TypeSegment.objects.get(name="Item").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.number = re.search(r"^\d+", line).group(0)
+            segment.content = line.decode('utf-8').replace(label.decode('utf-8'), '')
+            segment.save()
+        elif line.decode('utf-8').startswith('Pena') and not is_quote:
             segment_type_id = TypeSegment.objects.get(name="Citação").id
             segment = BillSegment()
             segment.order = order
@@ -421,7 +431,15 @@ def import_file(bill_txt, bill_pk):
             segment.type_id = segment_type_id
             segment.content = line.decode('utf-8')
             segment.save()
-            if re.search(r"\(NR\)$", line) or re.search(r"\"$", line):
+        elif re.match(r"^\"", line) or is_quote:
+            segment_type_id = TypeSegment.objects.get(name="Citação").id
+            segment = BillSegment()
+            segment.order = order
+            segment.bill_id = bill_pk
+            segment.type_id = segment_type_id
+            segment.content = line.decode('utf-8')
+            segment.save()
+            if line.decode('utf-8').endswith("(NR)") or line.decode('utf-8').endswith('"'):
                 is_quote = False
             else:
                 is_quote = True

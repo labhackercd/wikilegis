@@ -1,0 +1,121 @@
+.wikilegis-widget {
+    width: 80%;
+    margin: 0 auto; 
+    font-family: 'Open Sans', sans-serif;		
+}
+
+#loadingDiv {
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://www.arabianbusiness.com/skins/ab.main/gfx/loading_spinner.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+.wikilegis-widget .title{
+    text-align: center;
+}
+
+.wikilegis-widget .description{
+    text-align: right;
+}
+
+.wikilegis-widget .description p{
+	text-align: left;
+    display: inline-block;
+    max-width: 40em;
+}
+
+.wikilegis-widget .epigraph{
+    text-align: center;
+}
+
+.wikilegis-widget .segment .heading{
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 1.5rem;
+}
+
+.wikilegis-widget div {
+    margin: 10px 0;
+}
+
+.wikilegis-widget .segment{
+    margin-top: 20px;
+}
+
+.wikilegis-widget .segment .heading .heading-title{
+    display: block;
+}
+
+.wikilegis-widget .number{
+    font-weight: bold;
+}
+
+.wikilegis-widget .author{
+    font-weight: bold;
+}
+
+.wikilegis-widget .segment .propCount{
+    display: inline-block;
+    cursor: pointer;
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+.wikilegis-widget .segment .commentCount{
+    display: inline-block;
+    cursor: pointer;
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+.wikilegis-widget .segment .proposals{
+    padding-left: 20px;
+    margin: 20px 0 20px 0;
+}
+
+.wikilegis-widget .segment .segment-proposal .content{
+    display: inline;
+}
+
+.wikilegis-widget .segment .comments{
+    padding-left: 20px;
+    margin: 20px 0 20px 0;
+}
+
+.wikilegis-widget .added{
+    font-weight: bold;  
+    background-color: #d8d8d8;    
+}
+
+.wikilegis-widget .removed{
+    text-decoration: line-through; 
+}
+
+.pp{
+	display: inline;
+}
+
+.pp p {
+	display: inline;
+}
+
+.wikilegis-widget .link {
+	margin-left: 10px;
+}
+
+.votes .material-icons {
+	margin-right: 5px
+}
+
+.material-icons {
+  font-size: 14px;
+}

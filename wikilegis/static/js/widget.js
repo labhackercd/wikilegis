@@ -190,17 +190,17 @@ function loadBill(bill_id){
 		    		var i = j = index;
 		    		var count_paragraph = 0;
 	    			while(segments[i].type != 1){
+	    				if(segments[i].type == 4 && segments[i].original == true){
+				    		++count_paragraph;
+					    };
 	    				++i;
 	    			};
 	    			while(segments[j].type != 1){
 	    				--j;
-	    			};
-	    			var segments_slice = segments.slice(j, i);
-    				segments_slice.forEach(function(object) {
-					    if(object.type == 4 && object.original == true){
+	    				if(segments[j].type == 4 && segments[j].original == true){
 				    		++count_paragraph;
 					    };
-					});
+	    			};
 					if(count_paragraph == 1){
 						flag_paragraph = true;
 					};

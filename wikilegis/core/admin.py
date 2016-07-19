@@ -16,7 +16,7 @@ import requests
 from wikilegis.core.forms import BillAdminForm, update_proposition, BillSegmentAdminForm
 from wikilegis.core.models import Bill, TypeSegment, BillSegment
 from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
-from wikilegis.core.views import import_file
+from wikilegis.core.import_file import import_file
 
 
 def get_permission(action, opts):

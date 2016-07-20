@@ -8,10 +8,29 @@ import string
 
 
 def create_segment(type_id, order, bill_pk, number, content):
+    segments = BillSegment.objects.filter(bill_id=bill_pk, original=True)
     segment = BillSegment()
     segment.order = order
     segment.bill_id = bill_pk
     segment.type_id = type_id
+    if type_id == TypeSegment.objects.get(name="Parágrafo").id:
+        type_parent = TypeSegment.objects.get(name="Artigo").id
+        segment.parent = segments.filter(order__lt=order, type_id=type_parent).last()
+    elif type_id == TypeSegment.objects.get(name="Inciso").id:
+        type_parents = []
+        type_parents.append(TypeSegment.objects.get(name="Artigo").id)
+        type_parents.append(TypeSegment.objects.get(name="Parágrafo").id)
+        segment.parent = segments.filter(order__lt=order, type_id__in=type_parents).last()
+    elif type_id == TypeSegment.objects.get(name="Alínea").id:
+        type_parents = []
+        type_parents.append(TypeSegment.objects.get(name="Inciso").id)
+        type_parents.append(TypeSegment.objects.get(name="Parágrafo").id)
+        segment.parent = segments.filter(order__lt=order, type_id__in=type_parents).last()
+    elif type_id == TypeSegment.objects.get(name="Item").id:
+        type_parent = TypeSegment.objects.get(name="Alínea").id
+        segment.parent = segments.filter(order__lt=order, type_id=type_parent).last()
+    elif type_id == TypeSegment.objects.get(name="Citação").id:
+        segment.parent = segments.exclude(type_id=type_id).filter(order__lt=order).last()
     segment.number = number
     segment.content = content
     segment.save()

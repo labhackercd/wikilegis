@@ -44,7 +44,8 @@ class SegmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = BillSegment
         fields = ('id', 'order', 'bill', 'original', 'replaced', 'parent',
-                  'type', 'number', 'content', 'author', 'comments', 'votes')
+                  'type', 'number', 'content', 'author', 'comments', 'votes',
+		  'created', 'modified')
 
 
 class BillDetailSerializer(serializers.ModelSerializer):
@@ -53,7 +54,7 @@ class BillDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = ('id', 'title', 'epigraph', 'description',
-                  'status', 'theme', 'segments')
+                  'status', 'theme', 'segments', 'created', 'modified')
 
 
 class BillSerializer(serializers.ModelSerializer):

@@ -1,5 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyirght © 2016 Adonay "adfeno" Felipe Nogueira <adfeno@openmailbox.org> <https://libreplanet.org/wiki/User:Adfeno>
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -10,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-07 17:36-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Adonay Felipe Nogueira <adfeno@openmailbox.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -805,10 +806,18 @@ msgstr ""
 
 #: templates/bill/create_amendment.html:26
 #: templates/bill/create_amendment.html:61
+#: templates/bill/create_proposal.html:9
+#: templates/bill/create_proposal.html:33
 msgid "Send proposal"
 msgstr ""
 
+#: templates/bill/create_amendment.html:27
+#: templates/bill/create_proposal.html:10
+msgid "Create your proposal for this article taking the original as a base"
+msgstr ""
+
 #: templates/bill/create_amendment.html:60
+#: templates/bill/create_proposal.html:32
 msgid "Cancel"
 msgstr ""
 

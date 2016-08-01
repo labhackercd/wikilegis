@@ -1,4 +1,23 @@
 var domain = 'http://wikilegis.labhackercd.net/';
+var bill_id = $('.wikilegis-widget').attr('id').replace('bill-', '')
+
+function loadScript(url){    
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    head.appendChild(script);
+}
+
+loadScript(domain + 'static/js/lodash.min.js');
+loadScript(domain + 'static/js/diff.min.js');
+
+$('head').append('<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">');
+$('head').append('<link rel="stylesheet" type="text/css" href="' + domain + 'static/css/widget.css">');
+
+$(document).ready(function() {
+	loadBill(bill_id);
+});
 
 $('body').append($(document.createElement('div')).attr('id', 'loadingDiv'));
 

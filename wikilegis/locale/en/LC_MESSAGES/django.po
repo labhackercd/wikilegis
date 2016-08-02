@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-07 17:36-0300\n"
+"POT-Creation-Date: 2016-08-02 13:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -572,24 +572,24 @@ msgstr ""
 msgid "Sole paragraph"
 msgstr ""
 
-#: core/views.py:33
+#: core/views.py:28
 msgid "Order by"
 msgstr ""
 
-#: core/views.py:39
+#: core/views.py:34
 msgid "Hot"
 msgstr ""
 
-#: core/views.py:40
+#: core/views.py:35
 msgid "Date"
 msgstr ""
 
-#: core/views.py:165
+#: core/views.py:160
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr ""
 
-#: core/views.py:195 core/views.py:236
+#: core/views.py:190 core/views.py:231
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr ""
@@ -630,11 +630,11 @@ msgstr ""
 msgid "Newsletters"
 msgstr ""
 
-#: settings.py:214
+#: settings.py:223
 msgid "Google"
 msgstr ""
 
-#: settings.py:218
+#: settings.py:227
 msgid "Facebook"
 msgstr ""
 
@@ -785,6 +785,14 @@ msgstr ""
 
 #: templates/bill/bill.html:138
 msgid "RAPPORTEUR"
+msgstr ""
+
+#: templates/bill/bill.html:165
+msgid "Embedding Code"
+msgstr ""
+
+#: templates/bill/bill.html:169
+msgid "Copy and paste this code in your website."
 msgstr ""
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24

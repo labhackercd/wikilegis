@@ -156,7 +156,28 @@
             <hr />
           {% endif %} 
         {% endfor %}
-          
+        
+        <ul class="subscribe-button collapsible">
+          <li>
+            <div class="subscribe-header collapsible-header waves-effect waves-light valign-wrapper">
+              <i class="material-icons valign">http</i>
+              <span class="header-text valign">{% trans "Embedding Code" %}</span>
+            </div>
+            <div class="subscribe-body collapsible-body">
+
+              <p>{% trans "Copy and paste this code in your website." %}</p>
+
+              <div class="subscribe-options embed-code">
+                <code>
+                <div>&lt;div class="wikilegis-widget" bill-id="{{ bill.id }}"&gt;&lt;/div&gt;</div>
+                <div>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"&gt;&lt;/script&gt;</div>
+                <div>&lt;script src="http://wikilegis.labhackercd.net/static/js/widget.js"&gt;&lt;/script&gt;</div>
+                </code>
+              </div>
+            </div>           
+          </li>
+        </ul>
+
       </div>
     </div>
 
@@ -169,13 +190,13 @@
         
           <div class="row">
             <div class="amendment-thead col s6 offset-s4 m5 offset-m1">
-              
+             
             </div>
             <div class="syllabus col s12 m6">
               {{ bill.description }}
             </div>
           </div>
-        
+          
         
           {% for segment in original_segments %}
             {% include "bill/_bill_segment_item.html" %}

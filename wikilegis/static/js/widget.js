@@ -1,5 +1,5 @@
 var domain = 'http://wikilegis.labhackercd.net/';
-var bill_id = $('.wikilegis-widget').attr('id').replace('bill-', '')
+var bill_id = $('.wikilegis-widget').attr('bill-id')
 
 function loadScript(url){    
     var head = document.getElementsByTagName('head')[0];

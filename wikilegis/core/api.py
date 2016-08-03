@@ -1,4 +1,5 @@
 from django_comments.models import Comment
+from django.contrib.contenttypes.models import ContentType
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -9,7 +10,8 @@ from wikilegis.auth2.models import User
 from wikilegis.core.models import Bill, BillSegment, TypeSegment
 from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
                                         CommentsSerializer, UserSerializer,
-                                        TypeSegmentSerializer, BillDetailSerializer)
+                                        TypeSegmentSerializer, BillDetailSerializer,
+                                        CommentsSerializerForPost, SegmentSerializerForPost)
 from rest_framework import generics, permissions, mixins
 
 
@@ -39,14 +41,57 @@ class BillListAPI(generics.ListAPIView):
     serializer_class = BillSerializer
 
 
-class SegmentsListAPI(generics.ListAPIView):
+class SegmentsListAPI(generics.ListCreateAPIView):
     queryset = BillSegment.objects.exclude(bill__status='draft').order_by('-created')
     serializer_class = SegmentSerializer
 
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return self.serializer_class
+        elif self.request.method == 'POST':
+            return SegmentSerializerForPost
 
-class CommentListAPI(generics.ListAPIView):
+    def create(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            obj_replaced = BillSegment.objects.get(id=request.data['replaced'])
+            obj = BillSegment()
+            obj.bill_id = request.data['bill']
+            obj.author = request.user
+            obj.original = False
+            obj.content = request.data['content']
+            obj.replaced = obj_replaced
+            obj.parent = obj_replaced.parent
+            obj.number = obj_replaced.number
+            obj.type = obj_replaced.type
+            obj.save()
+            return Response(status=201)
+        else:
+            return Response(status=403)
+
+
+class CommentListAPI(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return self.serializer_class
+        elif self.request.method == 'POST':
+            return CommentsSerializerForPost
+
+    def create(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            obj_content_type = ContentType.objects.get_for_model(BillSegment)
+            obj = Comment()
+            obj.content_type = obj_content_type
+            obj.user = request.user
+            obj.comment = request.data['comment']
+            obj.object_pk = request.data['object_pk']
+            obj.site_id = settings.SITE_ID
+            obj.save()
+            return Response(status=201)
+        else:
+            return Response(status=403)
 
 
 class TypeSegmentAPI(generics.ListAPIView):

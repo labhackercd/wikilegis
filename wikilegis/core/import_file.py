@@ -42,6 +42,8 @@ def import_file(bill_txt, bill_pk):
     order = 1
     is_quote = False
     for line in lines:
+        if order == 1:
+            line = line.decode("utf-8-sig").encode("utf-8")
         type_id = None
         if slugify(line).startswith('livro') and not is_quote:
             type_id = TypeSegment.objects.get(name="Livro").id
@@ -93,7 +95,7 @@ def import_file(bill_txt, bill_pk):
             content = line.decode('utf-8').replace(label.decode('utf-8'), '')
         elif re.match(r"^\d+\. ", line) and not is_quote:
             label = re.match(r"^\d+\. ", line).group(0)
-            segment_type_id = TypeSegment.objects.get(name="Item").id
+            type_id = TypeSegment.objects.get(name="Item").id
             number = re.search(r"^\d+", line).group(0)
             content = line.decode('utf-8').replace(label.decode('utf-8'), '')
         elif line.decode('utf-8').startswith('Pena') and not is_quote:
@@ -108,6 +110,11 @@ def import_file(bill_txt, bill_pk):
                 is_quote = False
             else:
                 is_quote = True
+        else:
+            if not slugify(lines[order - 2]).startswith('livro') and not slugify(lines[order - 2]).startswith('titulo') and not slugify(lines[order - 2]).startswith('capitulo') and not slugify(lines[order - 2]).startswith('secao') and not slugify(lines[order - 2]).startswith('subsecao'):
+                type_id = TypeSegment.objects.get(name="Citação").id
+                content = line.decode('utf-8')
+                number = None
         if type_id:
             create_segment(type_id, order, bill_pk, number, content)
 

@@ -173,7 +173,7 @@ class UpDownVote(TimestampedMixin):
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey('contenttypes.ContentType')
     content_object = GenericForeignKey('content_type', 'object_id')
-    vote = models.BooleanField(choices=((True, _('Up Vote')), (False, _('Down Vote'))))
+    vote = models.BooleanField(default=False, choices=((True, _('Up Vote')), (False, _('Down Vote'))))
 
     class Meta:
         unique_together = ('user', 'object_id', 'content_type')

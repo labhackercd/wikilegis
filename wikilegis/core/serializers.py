@@ -89,3 +89,15 @@ class TypeSegmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeSegment
         fields = ('id', 'name')
+
+
+class UpDownVoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UpDownVote
+        fields = ('user', 'content_type', 'object_id', 'vote')
+
+
+class UpDownVoteSerializerForPost(serializers.ModelSerializer):
+    class Meta:
+        model = UpDownVote
+        fields = ('object_id', 'vote')

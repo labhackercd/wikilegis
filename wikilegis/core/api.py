@@ -7,11 +7,12 @@ from rest_framework import status
 
 from wikilegis import settings
 from wikilegis.auth2.models import User
-from wikilegis.core.models import Bill, BillSegment, TypeSegment
+from wikilegis.core.models import Bill, BillSegment, TypeSegment, UpDownVote
 from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
                                         CommentsSerializer, UserSerializer,
                                         TypeSegmentSerializer, BillDetailSerializer,
-                                        CommentsSerializerForPost, SegmentSerializerForPost)
+                                        CommentsSerializerForPost, SegmentSerializerForPost,
+                                        UpDownVoteSerializer, UpDownVoteSerializerForPost)
 from rest_framework import generics, permissions, mixins
 
 
@@ -94,6 +95,35 @@ class CommentListAPI(generics.ListCreateAPIView):
             return Response(status=403)
 
 
+class UpDownVoteListAPI(generics.ListCreateAPIView):
+    queryset = UpDownVote.objects.all()
+    serializer_class = UpDownVoteSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return self.serializer_class
+        elif self.request.method == 'POST':
+            return UpDownVoteSerializerForPost
+
+    def get_queryset(self):
+        queryset = self.queryset
+        if self.request.user.is_authenticated():
+            queryset = queryset.filter(user=self.request.user)
+        return queryset
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            obj_content_type = ContentType.objects.get_for_model(BillSegment)
+            vote = UpDownVote.objects.get_or_create(user=request.user,
+                                                    object_id=request.data['object_id'],
+                                                    content_type=obj_content_type)[0]
+            vote.vote = eval(request.data['vote'])
+            vote.save()
+            return Response(status=201)
+        else:
+            return Response(status=403)
+
+
 class TypeSegmentAPI(generics.ListAPIView):
     queryset = TypeSegment.objects.all()
     serializer_class = TypeSegmentSerializer
@@ -135,5 +165,7 @@ def api_root(request, format=None):
         'segment-types': reverse('types_segments_list_api',
                                  request=request, format=format),
         'users': reverse('users_list_api',
+                         request=request, format=format),
+        'votes': reverse('votes_api',
                          request=request, format=format)
     })

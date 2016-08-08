@@ -42,8 +42,6 @@ def import_file(bill_txt, bill_pk):
     order = 1
     is_quote = False
     for line in lines:
-        if order == 1:
-            line = line.decode("utf-8-sig").encode("utf-8")
         type_id = None
         if slugify(line).startswith('livro') and not is_quote:
             type_id = TypeSegment.objects.get(name="Livro").id

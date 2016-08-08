@@ -24,6 +24,12 @@ class CommentsSerializer(serializers.ModelSerializer):
                   'content_type', 'object_pk', 'comment')
 
 
+class CommentsSerializerForPost(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('object_pk', 'comment')
+
+
 class VoteSerializer(serializers.ModelSerializer):
     content_type = serializers.SerializerMethodField('get_content_type_name')
     user = CommentsUserSerializer()
@@ -45,7 +51,16 @@ class SegmentSerializer(serializers.ModelSerializer):
         model = BillSegment
         fields = ('id', 'order', 'bill', 'original', 'replaced', 'parent',
                   'type', 'number', 'content', 'author', 'comments', 'votes',
-		  'created', 'modified')
+                  'created', 'modified')
+
+
+class SegmentSerializerForPost(serializers.ModelSerializer):
+    bill = serializers.UUIDField()
+    replaced = serializers.UUIDField()
+
+    class Meta:
+        model = BillSegment
+        fields = ('bill', 'replaced', 'content')
 
 
 class BillDetailSerializer(serializers.ModelSerializer):
@@ -74,3 +89,15 @@ class TypeSegmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeSegment
         fields = ('id', 'name')
+
+
+class UpDownVoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UpDownVote
+        fields = ('user', 'content_type', 'object_id', 'vote')
+
+
+class UpDownVoteSerializerForPost(serializers.ModelSerializer):
+    class Meta:
+        model = UpDownVote
+        fields = ('object_id', 'vote')

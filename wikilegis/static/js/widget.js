@@ -1,4 +1,4 @@
-var domain = 'http://wikilegis.labhackercd.net/';
+var domain = 'http://wikilegis-staging.labhackercd.net/';
 var bill_id = $('.wikilegis-widget').attr('bill-id')
 
 function loadScript(url){    
@@ -11,6 +11,7 @@ function loadScript(url){
 
 loadScript(domain + 'static/js/lodash.min.js');
 loadScript(domain + 'static/js/diff.min.js');
+loadScript(domain + 'static/js/jquery.cookie.js');
 
 $('head').append('<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">');
 $('head').append('<link rel="stylesheet" type="text/css" href="' + domain + 'static/css/widget.css">');
@@ -33,6 +34,50 @@ $('.widget-briefing')
 );
 
 $('.wikilegis-widget').append($(document.createElement('div')).attr('id', 'loadingDiv'));
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+}
+
+if(getCookie('wikilegis-token') == ''){
+	$('.wikilegis-widget').append($(document.createElement('div'))
+								.addClass('login-form')
+								.attr('id', 'login-wikilegis')
+								.append($(document.createElement('input'))
+									.attr('type', 'email')
+									.attr('name','username'))
+								.append($(document.createElement('input'))
+									.attr('type', 'password')
+									.attr('name','password'))
+								.append($(document.createElement('button'))
+									.attr('id', 'btn-login')
+									.text('Login')));
+}else{
+	$('.wikilegis-widget').append($(document.createElement('button'))
+								.attr('id', 'logout-wikilegis')
+								.text("Sair"));
+};
+$("#logout-wikilegis").click(function() {
+	$.cookie('wikilegis-token', '');
+});
+$("#btn-login").click(function() {
+	var username = $("#login-wikilegis input[name=username]").val();
+	var password = $("#login-wikilegis input[name=password]").val();
+	$.post(domain + 'accounts/api-token-auth/', {username: username, password: password}, function(data) {
+		$.cookie('wikilegis-token', data['token']);
+	});
+});
 
 function romanize(num) {
     if (!+num)
@@ -76,7 +121,18 @@ function changesToMarkup(changes) {
 	changes = _.map(changes, changeToMarkup);
 	return linebreaks(changes.join(''));
 };
-function get_votes(votes){
+function vote(bool, segment_id){
+	if(bool=="up"){
+		bool='True';
+	}else if(bool="down"){
+		bool='False';
+	}
+	$.post(domain + 'api/votes/', {vote: bool, object_id: segment_id, token: $.cookie('wikilegis-token')})
+		.done(function(data){
+			window.location.reload()
+		});
+};
+function get_votes(votes, segment_id){
 	var up_votes = 0;
 	var down_votes = 0;
 	$.each(votes, function(index, vote) {
@@ -86,7 +142,10 @@ function get_votes(votes){
 			down_votes++;
 		};
 	});
-	return $(document.createElement('div')).addClass('votes').html('<i class="material-icons">thumb_up</i>' + up_votes  + ' <i class="tiny material-icons">thumb_down</i>' + down_votes)
+	return $(document.createElement('div'))
+				.addClass('votes')
+				.html('<i class="material-icons" onclick=vote("up",'+segment_id+');>thumb_up</i>' + up_votes  + 
+					  ' <i class="tiny material-icons" onclick=vote("down",'+segment_id+');>thumb_down</i>' + down_votes)
 }
 function segmentNotEditable(type, name, number, content){
 	return $(document.createElement('h5'))
@@ -109,8 +168,8 @@ function segmentEditable(name, number, content, votes, bill, id){
             	.append($(document.createElement('span'))
             		.addClass('number')
             		.html(number))
-            	.append(content))
-            	.append(get_votes(votes)
+            	.append(content)
+            	.append(get_votes(votes, id)
             		.append($(document.createElement('a'))
 	    				.addClass('link')
 	    				.attr('href', domain + 'bill/'+ bill +'/segments/'+ id +'/')

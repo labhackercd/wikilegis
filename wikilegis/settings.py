@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'image_cropping',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'django_filters',
     'crispy_forms',

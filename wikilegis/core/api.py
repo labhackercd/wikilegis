@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 
 from wikilegis import settings
 from wikilegis.auth2.models import User
@@ -133,6 +134,15 @@ class UpDownVoteListAPI(generics.ListCreateAPIView):
         if request.user.is_authenticated():
             obj_content_type = ContentType.objects.get_for_model(BillSegment)
             vote = UpDownVote.objects.get_or_create(user=request.user,
+                                                    object_id=request.data['object_id'],
+                                                    content_type=obj_content_type)[0]
+            vote.vote = eval(request.data['vote'])
+            vote.save()
+            return Response(status=201)
+        elif request.data['token']:
+            token =Token.objects.get(key=request.data['token'])
+            obj_content_type = ContentType.objects.get_for_model(BillSegment)
+            vote = UpDownVote.objects.get_or_create(user=token.user,
                                                     object_id=request.data['object_id'],
                                                     content_type=obj_content_type)[0]
             vote.vote = eval(request.data['vote'])

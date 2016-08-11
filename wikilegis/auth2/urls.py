@@ -3,6 +3,7 @@ from django.conf.urls import url, include
 from registration.backends.default.views import RegistrationView
 from registration.backends.simple.views import RegistrationView as SimpleRegistrationView
 from wikilegis.auth2.views import ActivationCompleteView
+from rest_framework.authtoken import views
 
 urlpatterns = [
     # XXX We want the user to be redirected after successful account activation.
@@ -26,4 +27,9 @@ urlpatterns += [
     # TODO all these names sucks (edit, your_profile, edit_profile). pls fix.
     url(r'^edit/$', 'wikilegis.auth2.views.your_profile', name='edit_profile'),
     url(r'^users/(?P<user_id>\d+)/$', 'wikilegis.auth2.views.show_users_profile', name='users_profile'),
+]
+
+
+urlpatterns += [
+    url(r'^api-token-auth/', views.obtain_auth_token)
 ]

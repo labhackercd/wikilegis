@@ -78,6 +78,20 @@ class SegmentsListAPI(generics.ListCreateAPIView):
                 return Response(status=201)
             except Exception as e:
                 return Response(status=403, data=e.message)
+        elif request.data['token']:
+            token = Token.objects.get(key=request.data['token'])
+            obj_replaced = BillSegment.objects.get(id=request.data['replaced'])
+            obj = BillSegment()
+            obj.bill_id = request.data['bill']
+            obj.author = token.user
+            obj.original = False
+            obj.content = request.data['content']
+            obj.replaced = obj_replaced
+            obj.parent = obj_replaced.parent
+            obj.number = obj_replaced.number
+            obj.type = obj_replaced.type
+            obj.save()
+            return Response(status=201)
         else:
             return Response(status=403)
 
@@ -104,6 +118,17 @@ class CommentListAPI(generics.ListCreateAPIView):
             obj.user = request.user
             obj.comment = request.data['comment']
             obj.object_pk = request.data['object_pk']
+            obj.site_id = settings.SITE_ID
+            obj.save()
+            return Response(status=201)
+        elif request.data['token']:
+            token = Token.objects.get(key=request.data['token'])
+            obj_content_type = ContentType.objects.get_for_model(BillSegment)
+            obj = Comment()
+            obj.content_type = obj_content_type
+            obj.user = token.user
+            obj.comment = request.data['comment']
+            obj.object_pk = request.data['object_id']
             obj.site_id = settings.SITE_ID
             obj.save()
             return Response(status=201)
@@ -140,7 +165,7 @@ class UpDownVoteListAPI(generics.ListCreateAPIView):
             vote.save()
             return Response(status=201)
         elif request.data['token']:
-            token =Token.objects.get(key=request.data['token'])
+            token = Token.objects.get(key=request.data['token'])
             obj_content_type = ContentType.objects.get_for_model(BillSegment)
             vote = UpDownVote.objects.get_or_create(user=token.user,
                                                     object_id=request.data['object_id'],

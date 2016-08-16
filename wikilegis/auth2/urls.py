@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 from registration.backends.default.views import RegistrationView
 from registration.backends.simple.views import RegistrationView as SimpleRegistrationView
 from wikilegis.auth2.views import ActivationCompleteView
-from rest_framework.authtoken import views
+from wikilegis.core.api import ObtainAuthToken
 
 urlpatterns = [
     # XXX We want the user to be redirected after successful account activation.
@@ -31,5 +31,5 @@ urlpatterns += [
 
 
 urlpatterns += [
-    url(r'^api-token-auth/', views.obtain_auth_token)
+    url(r'^api-token-auth/', ObtainAuthToken.as_view())
 ]

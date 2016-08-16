@@ -50,34 +50,103 @@ function getCookie(cname) {
     return "";
 }
 
-if(getCookie('wikilegis-token') == ''){
-	$('.wikilegis-widget').append($(document.createElement('div'))
+$('.wikilegis-widget').append($(document.createElement('div'))
 								.addClass('login-form')
-								.attr('id', 'login-wikilegis')
-								.append($(document.createElement('input'))
-									.attr('type', 'email')
-									.attr('name','username'))
-								.append($(document.createElement('input'))
-									.attr('type', 'password')
-									.attr('name','password'))
-								.append($(document.createElement('button'))
-									.attr('id', 'btn-login')
-									.text('Login')));
+								.attr('id', 'login-wikilegis'))
+
+if(getCookie('wikilegis-token') == ''){
+	$('#login-wikilegis').append($(document.createElement('input'))
+							.attr('type', 'email')
+							.attr('name','username'))
+						 .append($(document.createElement('input'))
+							.attr('type', 'password')
+							.attr('name','password'))
+						 .append($(document.createElement('button'))
+							.attr('id', 'btn-login')
+							.attr('onclick', 'loginWikilegis()')
+							.text('Login'));
 }else{
-	$('.wikilegis-widget').append($(document.createElement('button'))
+	$('#login-wikilegis').append($(document.createElement('p'))
+							 	.html('Bem vindo, '+unescape(getCookie('wikilegis-user'))))
+						.append($(document.createElement('button'))
 								.attr('id', 'logout-wikilegis')
+								.attr('onclick', 'logoutWikilegis()')
 								.text("Sair"));
 };
-$("#logout-wikilegis").click(function() {
+function createForms() {
+	$.each($('.create-comment'), function(index, form) {
+			var segment_id = $(form).parent().attr('segment-id')
+			$(form).html('').append($(document.createElement('textarea'))
+									.attr('name', 'comment')
+									.attr('id', 'comment-'+segment_id)
+									.attr('cols', '40')
+									.attr('rows', '10'))
+								.append($(document.createElement('button'))
+									.attr('id', 'btn-comment')
+									.text('Enviar')
+									.attr('rows', '10')
+									.attr('onclick', 'comment('+segment_id+')'))
+		});
+		$.each($('.create-proposal'), function(index, form) {
+			var segment_id = $(form).parent().attr('segment-id')
+			var bill_id = $(form).parent().attr('bill-id')
+			$(form).html('').append($(document.createElement('textarea'))
+								.attr('name', 'proposal')
+								.attr('id', 'proposal-'+segment_id)
+								.attr('cols', '40')
+								.attr('rows', '10')
+								.val($('.segment-'+segment_id).attr('data-raw-content')))
+							.append($(document.createElement('button'))
+								.attr('id', 'btn-proposal')
+								.text('Enviar')
+								.attr('rows', '10')
+								.attr('onclick', 'proposal('+bill_id+','+segment_id+')'))
+		});
+};
+function hideForms() {
+	$.each($('.create-comment'), function(index, form) {
+		$(form).html('').append($(document.createElement('p')).html('Fa&ccedil;a o login para comentar.'));
+	});
+	$.each($('.create-proposal'), function(index, form) {
+		$(form).html('').append($(document.createElement('p')).html('Fa&ccedil;a o login para sugerir uma proposta.'));
+	});
+};
+function logoutWikilegis() {
 	$.cookie('wikilegis-token', '');
-});
-$("#btn-login").click(function() {
+	$.cookie('wikilegis-user', '');
+	$('#login-wikilegis').html('').append($(document.createElement('input'))
+										.attr('type', 'email')
+										.attr('name','username'))
+								  .append($(document.createElement('input'))
+										.attr('type', 'password')
+										.attr('name','password'))
+								  .append($(document.createElement('button'))
+										.attr('id', 'btn-login')
+										.attr('onclick', 'loginWikilegis()')
+										.text('Login'));
+    hideForms();
+};
+function loginWikilegis() {
 	var username = $("#login-wikilegis input[name=username]").val();
 	var password = $("#login-wikilegis input[name=password]").val();
 	$.post(domain + 'accounts/api-token-auth/', {username: username, password: password}, function(data) {
 		$.cookie('wikilegis-token', data['token']);
-	});
-});
+		$.cookie('wikilegis-user', data['user'].first_name+' '+data['user'].last_name);
+	})
+	.done(function(data) {
+		$('#login-wikilegis').html('')
+							 .append($(document.createElement('p'))
+							 	.text('Bem vindo, '+$.cookie('wikilegis-user')))
+							 .append($(document.createElement('button'))
+								.attr('id', 'logout-wikilegis')
+								.attr('onclick', 'logoutWikilegis()')
+								.text("Sair"));
+		createForms();
+	})
+	.error(function() {
+		$('#login-wikilegis').append($(document.createElement('p')).html('Usu&aacute;rio ou senha inv&aacute;lidos!'));
+	})
+};
 
 function romanize(num) {
     if (!+num)
@@ -130,6 +199,9 @@ function vote(bool, segment_id){
 	$.post(domain + 'api/votes/', {vote: bool, object_id: segment_id, token: $.cookie('wikilegis-token')})
 		.done(function(data){
 			window.location.reload()
+		})
+		.error(function(){
+			alert('Faca o login para votar.');
 		});
 };
 function get_votes(votes, segment_id){
@@ -230,7 +302,7 @@ function comment(segment_id){
 		});
 };
 function listComments(comments, segment_id){
-	var commentHtml = $(document.createElement('div')).addClass('comments')
+	var commentHtml = $(document.createElement('div')).addClass('comments').attr('segment-id', segment_id)
 	$.each(comments, function(index, comment) {
 		commentHtml.append($(document.createElement('div'))
 							.addClass('comment comment-'+ comment.id)
@@ -239,22 +311,7 @@ function listComments(comments, segment_id){
 								.html(comment.user.first_name + ' ' + comment.user.last_name + ' - '))
 							.append(comment.comment))
 	});	
-	if(getCookie('wikilegis-token') == ''){
-		commentHtml.append($(document.createElement('p')).html('Fa&ccedil;a o login para comentar.'))
-	}else{
-		commentHtml.append($(document.createElement('div'))
-						.addClass('create-comment')
-						.append($(document.createElement('textarea'))
-							.attr('name', 'comment')
-							.attr('id', 'comment-'+segment_id)
-							.attr('cols', '40')
-							.attr('rows', '10'))
-						.append($(document.createElement('button'))
-							.attr('id', 'btn-comment')
-							.text('Enviar')
-							.attr('rows', '10')
-							.attr('onclick', 'comment('+segment_id+')')))
-	};
+	commentHtml.append($(document.createElement('div')).addClass('create-comment'));
 	return commentHtml
 };
 function proposal(bill_id, segment_id){
@@ -263,9 +320,12 @@ function proposal(bill_id, segment_id){
 			window.location.reload()
 		});
 };
-function listProposals(proposals, bill_id, segment_id){
+function listProposals(proposals){
 	var propHtml = $(document.createElement('div')).addClass('proposals')
 	$.each(proposals, function(index, proposal) {
+		if(index==0){
+			propHtml.attr('segment-id', proposal.id).attr('bill-id', proposal.bill)
+		}
 		propHtml.append($(document.createElement('div'))
 							.addClass('segment-proposal segment-' + proposal.id)
 							.append($(document.createElement('span'))
@@ -285,34 +345,15 @@ function listProposals(proposals, bill_id, segment_id){
 									.addClass('link')
 									.attr('href', domain + 'bill/'+ proposal.bill +'/segments/'+ proposal.replaced +'/#amendment-'+ proposal.id)
 									.attr('title', 'Ver no Wikilegis')
-									.html('<i class="material-icons">call_made</i>'))));
-		var comments_prop = proposal.comments;
-    	if(comments_prop.length > 0){
-    		propHtml.append($(document.createElement('div'))
-								.addClass('commentCountWrapper')
-								.append($(document.createElement('div'))
-									.addClass('commentCount')
-									.append('<i class="material-icons">forum</i> '+ comments_prop.length +' coment&aacute;rios ')))
-					.append(listComments(comments_prop, proposal.id))
-		};
+									.html('<i class="material-icons">call_made</i>'))))
+    			.append($(document.createElement('div'))
+							.addClass('commentCountWrapper')
+							.append($(document.createElement('div'))
+								.addClass('commentCount')
+								.append('<i class="material-icons">forum</i> '+ proposal.comments.length +' coment&aacute;rios ')))
+				.append(listComments(proposal.comments, proposal.id))
 	});	
-	if(getCookie('wikilegis-token') == ''){
-		propHtml.append($(document.createElement('p')).html('Fa&ccedil;a o login para sugerir uma proposta.'))
-	}else{
-		propHtml.append($(document.createElement('div'))
-						.addClass('create-proposal')
-						.append($(document.createElement('textarea'))
-							.attr('name', 'proposal')
-							.attr('id', 'proposal-'+segment_id)
-							.attr('cols', '40')
-							.attr('rows', '10')
-							.val($('.segment-'+segment_id).attr('data-raw-content')))
-						.append($(document.createElement('button'))
-							.attr('id', 'btn-proposal')
-							.text('Enviar')
-							.attr('rows', '10')
-							.attr('onclick', 'proposal('+bill_id+','+segment_id+')')))
-	};
+	propHtml.append($(document.createElement('div')).addClass('create-proposal'));
 	return propHtml
 };
 function loadBill(bill_id){
@@ -356,6 +397,7 @@ function loadBill(bill_id){
 		    	$('.wikilegis-widget').append(
 		    		$(document.createElement('div'))
 		    			.addClass('segment original segment-' + obj.id)
+		    			.attr('segment-id', obj.id)
 		    			.attr('data-raw-content', obj.content)
 		    			.append(numberingByType(obj.type, obj.number, obj.content, obj.votes, obj.bill, obj.id, flag_paragraph))
 	    		);
@@ -380,7 +422,7 @@ function loadBill(bill_id){
 					$('.segment-'+ obj.id).append($(document.createElement('div'))
 													.addClass('propCount')
 													.append('<i class="material-icons">note_add</i> '+ proposals.length +' propostas '))
-										  .append(listProposals(proposals,obj.bill, obj.id));
+										  .append(listProposals(proposals));
 				}
 		    };
 	    });
@@ -390,6 +432,11 @@ function loadBill(bill_id){
 		$('.wikilegis-widget .link').remove();
 	})
 	.done(function() {
+		if(getCookie('wikilegis-token') == ''){
+			hideForms();
+		}else{
+			createForms();
+		};
 		$(".comments").hide();
 		$(".proposals").hide();	
 		$(".commentCount").on('click', function() {

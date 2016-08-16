@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import status
 from rest_framework.authtoken.models import Token
+from rest_framework import parsers, renderers
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.views import APIView
 
 from wikilegis import settings
 from wikilegis.auth2.models import User
@@ -222,3 +225,19 @@ def api_root(request, format=None):
         'votes': reverse('votes_api',
                          request=request, format=format)
     })
+
+
+class ObtainAuthToken(APIView):
+    throttle_classes = ()
+    permission_classes = ()
+    parser_classes = (parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser,)
+    renderer_classes = (renderers.JSONRenderer,)
+    serializer_class = AuthTokenSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        user_serializer = UserSerializer(user)
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key, 'user': user_serializer.data})

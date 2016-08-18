@@ -8,7 +8,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework import parsers, renderers
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.views import APIView
-
+from django.http import HttpResponse
+from rest_framework.renderers import JSONRenderer
 from wikilegis import settings
 from wikilegis.auth2.models import User
 from wikilegis.core.models import Bill, BillSegment, TypeSegment, UpDownVote
@@ -18,6 +19,16 @@ from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
                                         CommentsSerializerForPost, SegmentSerializerForPost,
                                         UpDownVoteSerializer, UpDownVoteSerializerForPost)
 from rest_framework import generics, permissions, mixins, filters
+
+
+class JSONResponse(HttpResponse):
+    """
+    An HttpResponse that renders its content into JSON.
+    """
+    def __init__(self, data, **kwargs):
+        content = JSONRenderer().render(data)
+        kwargs['content_type'] = 'application/json'
+        super(JSONResponse, self).__init__(content, **kwargs)
 
 
 class TokenPermission(permissions.BasePermission):
@@ -94,7 +105,8 @@ class SegmentsListAPI(generics.ListCreateAPIView):
             obj.number = obj_replaced.number
             obj.type = obj_replaced.type
             obj.save()
-            return Response(status=201)
+            serializer = SegmentSerializer(obj)
+            return JSONResponse(serializer.data, status=201)
         else:
             return Response(status=403)
 
@@ -134,7 +146,8 @@ class CommentListAPI(generics.ListCreateAPIView):
             obj.object_pk = request.data['object_id']
             obj.site_id = settings.SITE_ID
             obj.save()
-            return Response(status=201)
+            serializer = CommentsSerializer(obj)
+            return JSONResponse(serializer.data, status=201)
         else:
             return Response(status=403)
 
@@ -175,7 +188,10 @@ class UpDownVoteListAPI(generics.ListCreateAPIView):
                                                     content_type=obj_content_type)[0]
             vote.vote = eval(request.data['vote'])
             vote.save()
-            return Response(status=201)
+            queryset = UpDownVote.objects.filter(object_id=request.data['object_id'],
+                                                 content_type=obj_content_type)
+            serializer = UpDownVoteSerializer(queryset, many=True)
+            return JSONResponse(serializer.data, status=201)
         else:
             return Response(status=403)
 

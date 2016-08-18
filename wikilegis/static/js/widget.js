@@ -95,7 +95,7 @@ function createForms() {
 								.attr('id', 'proposal-'+segment_id)
 								.attr('cols', '40')
 								.attr('rows', '10')
-								.val($('.segment-'+segment_id).attr('data-raw-content')))
+								.val($('.segment-'+segment_id).children('.content').attr('data-raw-content')))
 							.append($(document.createElement('button'))
 								.attr('id', 'btn-proposal')
 								.text('Enviar')
@@ -190,20 +190,6 @@ function changesToMarkup(changes) {
 	changes = _.map(changes, changeToMarkup);
 	return linebreaks(changes.join(''));
 };
-function vote(bool, segment_id){
-	if(bool=="up"){
-		bool='True';
-	}else if(bool="down"){
-		bool='False';
-	}
-	$.post(domain + 'api/votes/', {vote: bool, object_id: segment_id, token: $.cookie('wikilegis-token')})
-		.done(function(data){
-			window.location.reload()
-		})
-		.error(function(){
-			alert('Faca o login para votar.');
-		});
-};
 function get_votes(votes, segment_id){
 	var up_votes = 0;
 	var down_votes = 0;
@@ -219,6 +205,35 @@ function get_votes(votes, segment_id){
 				.html('<i class="material-icons" onclick=vote("up",'+segment_id+');>thumb_up</i>' + up_votes  + 
 					  ' <i class="tiny material-icons" onclick=vote("down",'+segment_id+');>thumb_down</i>' + down_votes)
 }
+function vote(bool, segment_id){
+	if(bool=="up"){
+		bool='True';
+	}else if(bool="down"){
+		bool='False';
+	}
+	$.post(domain + 'api/votes/', {vote: bool, object_id: segment_id, token: $.cookie('wikilegis-token')})
+		.done(function(data){
+			var up_votes = 0,
+				down_votes = 0;
+			$.each(data, function(index, vote) {
+				if (vote.vote == true){
+					up_votes++;		
+				} else {
+					down_votes++;
+				};
+			});
+			$('.segment-'+segment_id)
+				.children()
+				.children('.actions')
+				.children('.votes')
+				.html('<i class="material-icons" onclick=vote("up",'+ segment_id + ');>thumb_up</i>' +
+					  up_votes  + ' <i class="tiny material-icons" onclick=vote("down",'+ segment_id +
+					  ');>thumb_down</i>' + down_votes)
+		})
+		.error(function(){
+			alert('Faca o login para votar.');
+		});
+};
 function segmentNotEditable(type, name, number, content){
 	return $(document.createElement('h5'))
 				.addClass('heading ' + type)
@@ -241,7 +256,9 @@ function segmentEditable(name, number, content, votes, bill, id){
             		.addClass('number')
             		.html(number))
             	.append(content)
-            	.append(get_votes(votes, id)
+            	.append($(document.createElement('div'))
+					.addClass('actions')
+					.append(get_votes(votes, id))
             		.append($(document.createElement('a'))
 	    				.addClass('link')
 	    				.attr('href', domain + 'bill/'+ bill +'/segments/'+ id +'/')
@@ -286,8 +303,10 @@ function numberingByType(typeDispositive, number, content, votes, bill, id, flag
 					.addClass('citacao')
 					.append($(document.createElement('p'))
 					.addClass('segment-content')
-					.append(content))
-					.append(get_votes(votes)
+					.append(content)
+					.append($(document.createElement('div'))
+						.addClass('actions')
+						.append(get_votes(votes, id))
 	            		.append($(document.createElement('a'))
 		    				.addClass('link')
 		    				.attr('href', domain + 'bill/'+ bill +'/segments/'+ id +'/')
@@ -339,13 +358,15 @@ function listProposals(proposals){
 								.attr('title', 'Ver no Wikilegis')
 								.append($(document.createElement('p'))
 									.addClass('pp')
-									.html(proposal.content)))
-							.append(get_votes(proposal.votes)
-								.append($(document.createElement('a'))
-									.addClass('link')
-									.attr('href', domain + 'bill/'+ proposal.bill +'/segments/'+ proposal.replaced +'/#amendment-'+ proposal.id)
-									.attr('title', 'Ver no Wikilegis')
-									.html('<i class="material-icons">call_made</i>'))))
+									.html(proposal.content))
+								.append($(document.createElement('div'))
+									.addClass('actions')
+									.append(get_votes(proposal.votes, proposal.id))
+									.append($(document.createElement('a'))
+										.addClass('link')
+										.attr('href', domain + 'bill/'+ proposal.bill +'/segments/'+ proposal.replaced +'/#amendment-'+ proposal.id)
+										.attr('title', 'Ver no Wikilegis')
+										.html('<i class="material-icons">call_made</i>')))))
     			.append($(document.createElement('div'))
 							.addClass('commentCountWrapper')
 							.append($(document.createElement('div'))

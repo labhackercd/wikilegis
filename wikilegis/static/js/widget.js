@@ -95,7 +95,7 @@ function createForms() {
 								.attr('id', 'proposal-'+segment_id)
 								.attr('cols', '40')
 								.attr('rows', '10')
-								.val($('.segment-'+segment_id).children('.content').attr('data-raw-content')))
+								.val($('.original.segment-'+segment_id).attr('data-raw-content')))
 							.append($(document.createElement('button'))
 								.attr('id', 'btn-proposal')
 								.text('Enviar')
@@ -189,6 +189,18 @@ function linebreaks(text) {
 function changesToMarkup(changes) {
 	changes = _.map(changes, changeToMarkup);
 	return linebreaks(changes.join(''));
+};
+function addDiff() {
+	$('.original').each(function(){
+        var div_original = this;
+        var original = $(div_original).attr('data-raw-content');
+        $(div_original).children('.proposals').children('.segment-proposal').children('.content').each(function(i, cur) {
+            var $cur = $(cur);
+            var current = $cur.attr('data-raw-content');
+            $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
+        });
+        $('.pp').next('p').remove();
+    });
 };
 function get_votes(votes, segment_id){
 	var up_votes = 0;
@@ -351,15 +363,50 @@ function listComments(comments, segment_id){
 function proposal(bill_id, segment_id){
 	$.post(domain + 'api/segments/', {content: $('#proposal-'+segment_id).val(), replaced: segment_id, bill: bill_id, token: $.cookie('wikilegis-token')})
 		.done(function(data){
-			window.location.reload()
+			$(document.createElement('div'))
+				.addClass('segment-proposal segment-' + data.id)
+				.append($(document.createElement('span'))
+					.addClass('author')
+					.html(data.author.first_name + ' ' + data.author.last_name + ' - '))
+				.append($(document.createElement('div'))
+					.addClass('content')
+					.attr('data-raw-content', data.content)
+					.append($(document.createElement('p'))
+						.addClass('pp')
+						.html(data.content))
+					.append($(document.createElement('div'))
+						.addClass('actions')
+						.append(get_votes(data.votes, data.id))
+						.append($(document.createElement('a'))
+							.addClass('link')
+							.attr('href', domain + 'bill/'+ data.bill +'/segments/'+ data.replaced +'/#amendment-'+ data.id)
+							.attr('title', 'Ver no Wikilegis')
+							.html('<i class="material-icons">call_made</i>'))))
+    			.append($(document.createElement('div'))
+							.addClass('commentCountWrapper')
+							.append($(document.createElement('div'))
+								.addClass('commentCount')
+								.append('<i class="material-icons">forum</i> '+ data.comments.length +' coment&aacute;rios ')))
+				.append(listComments(data.comments, data.id))
+			.insertBefore($('.proposals[segment-id='+segment_id+']').children('.create-proposal'));
+			$('#proposal-'+segment_id).val($('.original.segment-'+segment_id).attr('data-raw-content'));
+			var total_comment = Number($('.original.segment-'+segment_id)
+									.children('.propCount')
+									.text().match(/\d+/)) + 1
+			$('.original.segment-'+segment_id)
+				.children('.propCount')
+				.html('<i class="material-icons">note_add</i> '+total_comment+' propostas');
+			addDiff();
+			createForms();
+			$('.comments[segment-id='+data.id+']').hide();
+			$('.segment-proposal.segment-'+data.id).children(".commentCountWrapper").children(".commentCount").on('click', function() {
+			    $(this).parent().next(".comments").toggle();
+			});
 		});
 };
-function listProposals(proposals){
-	var propHtml = $(document.createElement('div')).addClass('proposals')
+function listProposals(proposals, bill_id, segment_id){
+	var propHtml = $(document.createElement('div')).addClass('proposals').attr('segment-id', segment_id).attr('bill-id', bill_id)
 	$.each(proposals, function(index, proposal) {
-		if(index==0){
-			propHtml.attr('segment-id', proposal.id).attr('bill-id', proposal.bill)
-		}
 		propHtml.append($(document.createElement('div'))
 							.addClass('segment-proposal segment-' + proposal.id)
 							.append($(document.createElement('span'))
@@ -454,12 +501,13 @@ function loadBill(bill_id){
 					};
 				};
 				proposals = sortByKey(proposals, 'id')
-				if(proposals.length > 0){
-					$('.segment-'+ obj.id).append($(document.createElement('div'))
-													.addClass('propCount')
-													.append('<i class="material-icons">note_add</i> '+ proposals.length +' propostas '))
-										  .append(listProposals(proposals));
-				}
+				
+				$('.segment-'+ obj.id)
+					.append($(document.createElement('div'))
+						.addClass('propCount')
+						.append('<i class="material-icons">note_add</i> '+ proposals.length +' propostas '))
+				  	.append(listProposals(proposals, obj.bill, obj.id));
+				
 		    };
 	    });
 		//Placeholder code for alpha widget release! XXX

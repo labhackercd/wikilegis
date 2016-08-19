@@ -317,7 +317,22 @@ function numberingByType(typeDispositive, number, content, votes, bill, id, flag
 function comment(segment_id){
 	$.post(domain + 'api/comments/', {comment: $('#comment-'+segment_id).val(), object_id: segment_id, token: $.cookie('wikilegis-token')})
 		.done(function(data){
-			window.location.reload()
+			$(document.createElement('div'))
+				.addClass('comment comment-'+ data.id)
+				.append($(document.createElement('span'))
+					.addClass('author')
+					.html(data.user.first_name + ' ' + data.user.last_name + ' - '))
+				.append(data.comment)
+			.insertBefore($('.comments[segment-id='+segment_id+']').children('.create-comment'));
+			$('#comment-'+segment_id).val('');
+			var total_comment = Number($('.segment-'+segment_id)
+									.children('.commentCountWrapper')
+									.children('.commentCount')
+									.text().match(/\d+/)) + 1
+			$('.segment-'+segment_id)
+				.children('.commentCountWrapper')
+				.children('.commentCount')
+				.html('<i class="material-icons">forum</i> '+total_comment+' coment&aacute;rios')
 		});
 };
 function listComments(comments, segment_id){
@@ -366,13 +381,13 @@ function listProposals(proposals){
 										.addClass('link')
 										.attr('href', domain + 'bill/'+ proposal.bill +'/segments/'+ proposal.replaced +'/#amendment-'+ proposal.id)
 										.attr('title', 'Ver no Wikilegis')
-										.html('<i class="material-icons">call_made</i>')))))
-    			.append($(document.createElement('div'))
-							.addClass('commentCountWrapper')
-							.append($(document.createElement('div'))
-								.addClass('commentCount')
-								.append('<i class="material-icons">forum</i> '+ proposal.comments.length +' coment&aacute;rios ')))
-				.append(listComments(proposal.comments, proposal.id))
+										.html('<i class="material-icons">call_made</i>'))))
+			    			.append($(document.createElement('div'))
+										.addClass('commentCountWrapper')
+										.append($(document.createElement('div'))
+											.addClass('commentCount')
+											.append('<i class="material-icons">forum</i> '+ proposal.comments.length +' coment&aacute;rios ')))
+							.append(listComments(proposal.comments, proposal.id)))
 	});	
 	propHtml.append($(document.createElement('div')).addClass('create-proposal'));
 	return propHtml
@@ -423,14 +438,14 @@ function loadBill(bill_id){
 		    			.append(numberingByType(obj.type, obj.number, obj.content, obj.votes, obj.bill, obj.id, flag_paragraph))
 	    		);
 		    	var comments = sortByKey(obj.comments, 'id');
-		    	if(comments.length > 0){
-					$('.segment-'+ obj.id).append($(document.createElement('div'))
-													.addClass('commentCountWrapper')
-													.append($(document.createElement('div'))
-														.addClass('commentCount')
-														.append('<i class="material-icons">forum</i> '+ comments.length +' coment&aacute;rios ')))
-										  .append(listComments(comments, obj.id));
-				}
+		  
+				$('.segment-'+ obj.id).append($(document.createElement('div'))
+												.addClass('commentCountWrapper')
+												.append($(document.createElement('div'))
+													.addClass('commentCount')
+													.append('<i class="material-icons">forum</i> '+ comments.length +' coment&aacute;rios ')))
+									  .append(listComments(comments, obj.id));
+				
 		    	var proposals = [];
 		    	for (var i = 0; i < segments.length; ++i) {
 					var segment = segments[i];

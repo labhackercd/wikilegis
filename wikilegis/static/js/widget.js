@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 var domain = 'http://wikilegis-staging.labhackercd.net/';
+=======
+var domain = 'http://wikilegis.labhackercd.net/';
+>>>>>>> add decode string to show username
 var bill_id = $('.wikilegis-widget').attr('bill-id')
 
 function loadScript(url){    
@@ -67,7 +71,7 @@ if(getCookie('wikilegis-token') == ''){
 							.text('Login'));
 }else{
 	$('#login-wikilegis').append($(document.createElement('p'))
-							 	.html('Bem vindo, '+unescape(getCookie('wikilegis-user'))))
+							 	.html('Bem vindo, '+decodeURI(getCookie('wikilegis-user'))))
 						.append($(document.createElement('button'))
 								.attr('id', 'logout-wikilegis')
 								.attr('onclick', 'logoutWikilegis()')

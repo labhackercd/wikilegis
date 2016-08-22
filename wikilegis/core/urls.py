@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 
 from wikilegis.core.api import (BillListAPI, SegmentsListAPI, CommentListAPI,
                                 api_root, UserUpdateAPI, UserAPI, BillAPI,
-                                TypeSegmentAPI, UpDownVoteListAPI)
+                                TypeSegmentAPI, UpDownVoteListAPI, CreateUserAPI)
 from wikilegis.core.views import BillReport, CreateProposal, BillDetailView
 
 urlpatterns = [
@@ -44,6 +44,8 @@ urlpatterns += [
         name='comment_list_api'),
     url(r'^api/user/update/$', UserUpdateAPI.as_view(),
         name='user_update_api'),
+    url(r'^api/user/create/$', CreateUserAPI.as_view(),
+        name='user_create_api'),
     url(r'^api/users/$', UserAPI.as_view(),
         name='users_list_api'),
     url(r'^api/votes/$', UpDownVoteListAPI.as_view(),

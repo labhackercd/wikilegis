@@ -17,7 +17,8 @@ from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
                                         CommentsSerializer, UserSerializer,
                                         TypeSegmentSerializer, BillDetailSerializer,
                                         CommentsSerializerForPost, SegmentSerializerForPost,
-                                        UpDownVoteSerializer, UpDownVoteSerializerForPost)
+                                        UpDownVoteSerializer, UpDownVoteSerializerForPost,
+                                        CreateUserSerializer)
 from rest_framework import generics, permissions, mixins, filters
 
 
@@ -59,6 +60,23 @@ class BillListAPI(generics.ListAPIView):
     filter_fields = ('theme', 'reporting_member')
     search_fields = ('title', 'epigraph', 'description', 'theme')
     ordering_fields = ('closing_date', 'created', 'modified', 'id')
+
+
+class CreateUserAPI(generics.CreateAPIView):
+    serializer_class = CreateUserSerializer
+
+    def create(self, request, *args, **kwargs):
+        serialized = self.get_serializer(data=request.data)
+        if serialized.is_valid():
+            User.objects.create(
+                email=serialized.data['email'],
+                first_name=serialized.data['first_name'],
+                last_name=serialized.data['last_name'],
+                password=serialized.data['password']
+            )
+            return Response(serialized.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SegmentsListAPI(generics.ListCreateAPIView):
@@ -108,7 +126,7 @@ class SegmentsListAPI(generics.ListCreateAPIView):
             serializer = SegmentSerializer(obj)
             return JSONResponse(serializer.data, status=201)
         else:
-            return Response(status=403)
+            return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CommentListAPI(generics.ListCreateAPIView):
@@ -149,7 +167,7 @@ class CommentListAPI(generics.ListCreateAPIView):
             serializer = CommentsSerializer(obj)
             return JSONResponse(serializer.data, status=201)
         else:
-            return Response(status=403)
+            return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UpDownVoteListAPI(generics.ListCreateAPIView):
@@ -193,7 +211,7 @@ class UpDownVoteListAPI(generics.ListCreateAPIView):
             serializer = UpDownVoteSerializer(queryset, many=True)
             return JSONResponse(serializer.data, status=201)
         else:
-            return Response(status=403)
+            return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TypeSegmentAPI(generics.ListAPIView):

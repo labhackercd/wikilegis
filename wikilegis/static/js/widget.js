@@ -57,18 +57,47 @@ function getCookie(cname) {
 $('.wikilegis-widget').append($(document.createElement('div'))
 								.addClass('login-form')
 								.attr('id', 'login-wikilegis'))
+					  .append($(document.createElement('div'))
+								.addClass('registration-form')
+								.attr('id', 'registration-wikilegis'))
 
-if(getCookie('wikilegis-token') == ''){
+function createLoginSiginForms(){
+	$('#registration-wikilegis').append($(document.createElement('input'))
+							.attr('type', 'text')
+							.attr('placeholder', 'nome')
+							.attr('name','first_name'))
+						 .append($(document.createElement('input'))
+							.attr('type', 'text')
+							.attr('placeholder', 'sobrenome')
+							.attr('name','last_name'))						 
+						 .append($(document.createElement('input'))
+							.attr('type', 'email')
+							.attr('placeholder', 'email')
+							.attr('name','email'))						 
+						 .append($(document.createElement('input'))
+							.attr('type', 'password')
+							.attr('placeholder', 'senha')
+							.attr('name','password'))
+						 .append($(document.createElement('button'))
+							.attr('id', 'btn-registration')
+							.attr('onclick', 'registrationWikilegis()')
+							.text('Cadastrar'));
 	$('#login-wikilegis').append($(document.createElement('input'))
 							.attr('type', 'email')
+							.attr('placeholder', 'email')
 							.attr('name','username'))
 						 .append($(document.createElement('input'))
 							.attr('type', 'password')
+							.attr('placeholder', 'senha')
 							.attr('name','password'))
 						 .append($(document.createElement('button'))
 							.attr('id', 'btn-login')
 							.attr('onclick', 'loginWikilegis()')
 							.text('Login'));
+}
+
+if(getCookie('wikilegis-token') == ''){
+	createLoginSiginForms();
 }else{
 	$('#login-wikilegis').append($(document.createElement('p'))
 							 	.html('Bem vindo, '+decodeURI(getCookie('wikilegis-user'))))
@@ -118,16 +147,8 @@ function hideForms() {
 function logoutWikilegis() {
 	$.cookie('wikilegis-token', '');
 	$.cookie('wikilegis-user', '');
-	$('#login-wikilegis').html('').append($(document.createElement('input'))
-										.attr('type', 'email')
-										.attr('name','username'))
-								  .append($(document.createElement('input'))
-										.attr('type', 'password')
-										.attr('name','password'))
-								  .append($(document.createElement('button'))
-										.attr('id', 'btn-login')
-										.attr('onclick', 'loginWikilegis()')
-										.text('Login'));
+	$('#login-wikilegis').html('');
+	createLoginSiginForms();
     hideForms();
 };
 function loginWikilegis() {
@@ -145,10 +166,24 @@ function loginWikilegis() {
 								.attr('id', 'logout-wikilegis')
 								.attr('onclick', 'logoutWikilegis()')
 								.text("Sair"));
+		$('#registration-wikilegis').html('');					 
 		createForms();
 	})
 	.error(function() {
 		$('#login-wikilegis').append($(document.createElement('p')).html('Usu&aacute;rio ou senha inv&aacute;lidos!'));
+	})
+};
+function registrationWikilegis() {
+	var first_name = $("#registration-wikilegis input[name=first_name]").val();
+	var last_name = $("#registration-wikilegis input[name=last_name]").val();
+	var email = $("#registration-wikilegis input[name=email]").val();
+	var password = $("#registration-wikilegis input[name=password]").val();
+	$.post(domain + 'api/user/create/', {first_name: first_name, last_name: last_name, email: email, password: password})
+	.done(function(data) {
+		$('#registration-wikilegis').append($(document.createElement('p')).html('Conta criada com sucesso! Fa&ccedil;a o login.'));
+	})
+	.error(function() {
+		$('#registration-wikilegis').append($(document.createElement('p')).html('Dados inv&aacute;lidos!'));
 	})
 };
 

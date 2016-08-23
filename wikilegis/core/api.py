@@ -68,7 +68,7 @@ class CreateUserAPI(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         serialized = self.get_serializer(data=request.data)
         if serialized.is_valid():
-            User.objects.create(
+            User.objects.create_user(
                 email=serialized.data['email'],
                 first_name=serialized.data['first_name'],
                 last_name=serialized.data['last_name'],

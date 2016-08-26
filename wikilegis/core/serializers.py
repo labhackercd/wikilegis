@@ -1,4 +1,5 @@
 from django_comments.models import Comment
+from django.conf import settings
 from rest_framework import serializers
 
 from wikilegis.auth2.models import User
@@ -14,6 +15,21 @@ class CommentsUserSerializer(serializers.ModelSerializer):
 class CommentsSerializer(serializers.ModelSerializer):
     content_type = serializers.SerializerMethodField('get_content_type_name')
     user = CommentsUserSerializer()
+
+    def __init__(self, *args, **kwargs):
+        super(CommentsSerializer, self).__init__(*args, **kwargs)
+
+        try:
+            request = kwargs.get('context').get('request')
+            api_key = request.GET.get('api_key', None)
+
+            if api_key and api_key == settings.API_KEY:
+                self.fields['user'] = UserSerializer()
+            else:
+                self.fields['user'] = CommentsUserSerializer()
+        except AttributeError:
+            # When django initializes kwarg is None
+            pass
 
     def get_content_type_name(self, obj):
         return obj.content_type.name

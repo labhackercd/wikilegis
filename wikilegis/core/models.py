@@ -109,7 +109,7 @@ class TypeSegment(models.Model):
 class BillSegment(TimestampedMixin):
     bill = models.ForeignKey('core.Bill', related_name='segments', verbose_name=_('bill'))
     order = models.PositiveIntegerField(_('order'), default=0)
-    type = models.ForeignKey(TypeSegment, verbose_name=_('type'))
+    type = models.ForeignKey(TypeSegment, verbose_name=_('type'), null=True, blank=True)
     number = models.CharField(_('number'), null=True, blank=True, max_length=200)
     parent = models.ForeignKey('self', related_name='children', verbose_name=_('segment parent'), null=True, blank=True)
     replaced = models.ForeignKey('self', related_name='substitutes', verbose_name=_('segment replaced'), null=True, blank=True)

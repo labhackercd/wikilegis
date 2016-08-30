@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 # from django.template.defaultfilters import slugify
-# from models import BillSegment, TypeSegment
+from models import BillSegment
 # import re
 # import roman
 # import string

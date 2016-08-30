@@ -82,10 +82,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # This field and all the logic and subsystems associated with it
     # should belong to a plugin or something. It should be a separate,
     # optional component.
-    id_congressman = models.CharField(
-        _('Congressman ID'), max_length=30, null=True, blank=True,
-        help_text=_("The id of each congressman may be found in the url parameters in the"
-                    "congressman profile from the site: http://www2.camara.leg.br/"))
+    is_congressman = models.BooleanField(
+        _('Is Congressman'), default=False)
 
     objects = UserManager()
 

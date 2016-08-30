@@ -16,7 +16,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic import DetailView, CreateView
 
 from .forms import CitizenAmendmentCreationForm, AddProposalForm
-from .models import Bill, BillSegment, UpDownVote, Proposition
+from .models import Bill, BillSegment, UpDownVote
 from django_comments.models import Comment
 from wikilegis.auth2.models import Congressman
 from wikilegis.comments2.utils import create_comment
@@ -83,11 +83,6 @@ class BillDetailView(DetailView):
         context['videos'] = map(BillVideo, videos)
         try:
             context['congressman'] = Congressman.objects.filter(user_id=self.object.reporting_member.id).latest('id')
-        except:
-            pass
-        try:
-            context['proposition'] = Proposition.objects.filter(bill_id=self.object.id).values(
-                'id', 'situation', 'id_proposition', 'id_register', 'author', 'party_author', 'uf_author').latest('id')
         except:
             pass
         context['original_segments'] = self.object.segments.filter(original=True).annotate(

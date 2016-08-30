@@ -192,10 +192,8 @@ msgstr ""
 "campos en blanco"
 
 #: core/admin.py:164
-#, fuzzy
-#| msgid "Public Administration"
 msgid "Administrator filds"
-msgstr "Administración Pública"
+msgstr "Campos del Administrador"
 
 #: core/admin.py:165
 msgid "File to import"
@@ -289,8 +287,6 @@ msgid "Published"
 msgstr "Publicado"
 
 #: core/models.py:21
-#, fuzzy
-#| msgid "Closed"
 msgctxt "Not open"
 msgid "Closed"
 msgstr "Cerrado"

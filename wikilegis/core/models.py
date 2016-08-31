@@ -131,11 +131,11 @@ class BillSegment(TimestampedMixin):
         verbose_name_plural = _('segments')
 
     def __unicode__(self):
-        if self.number:
+        if self.number and self.type:
             return '{kind} {number}'.format(
                 kind=self.type, number=self.number)
         else:
-            return self.type.name
+            return self.bill.title
 
     def is_editable(self):
         return self.type.editable is True

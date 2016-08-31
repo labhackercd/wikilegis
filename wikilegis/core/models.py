@@ -56,7 +56,7 @@ class GenericData(models.Model):
 class Theme(TimestampedMixin):
     name = models.CharField(_('name'), max_length=200)
     icon = ImageCropField(_('icon'), upload_to="icons/",
-                          validators=[avatar_validation], null=True, blank=True)
+                          validators=[avatar_validation])
     cropping = ImageRatioField('icon', '50x50', help_text=_(
         'Note that the preview above will only be updated after you submit the form.'))
 
@@ -74,7 +74,7 @@ class Bill(TimestampedMixin):
     description = models.TextField(_('digest'))
     closing_date = models.DateField(_('closing date'), null=True, blank=True)
     status = models.CharField(_('status'), max_length=20, choices=BILL_STATUS_CHOICES, default='1')
-    theme = models.ForeignKey(Theme, verbose_name=_('theme'), null=True, blank=True)
+    theme = models.ForeignKey(Theme, verbose_name=_('theme'), null=True, blank=True, on_delete=models.SET_NULL)
     editors = models.ManyToManyField(
         'auth.Group', verbose_name=_('editors'), blank=True,
         help_text=_('Any users in any of these groups will '

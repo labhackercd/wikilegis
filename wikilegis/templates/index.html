@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %} {% load i18n %} {% load proposals %} {% block content %} {% include "_sidebar.html" %}
+{% extends "base.html" %} {% load static %} {% load i18n %} {% load proposals %} {% load cropping %} {% block content %} {% include "_sidebar.html" %}
 
 
 <div class="container cover animatedParent animateOnce" data-sequence='300'>
@@ -55,7 +55,11 @@
                 <div class="pl row valign-wrapper">
                     <div class="col m2 hide-on-med-and-down">
                         <div class="circle {% if bill.status = 'closed' %}border-red{% endif %} valign-wrapper">
-                            <img class="logo" src="{% static 'img/icons/' %}{{ bill.theme }}{% if bill.status = 'closed' %}-2{% endif %}.png" alt="{{ bill.get_theme_display }}" title="{{ bill.get_theme_display }}"/>
+                            {% if bill.theme %}
+                                <img class="logo" src="{% cropped_thumbnail bill.theme 'cropping' %}" alt="{{ bill.theme.name }}" title="{{ bill.theme.name }}"/>
+                            {% else %}
+                                <img class="logo" src="{% static 'img/icons/documento.png' %}" alt="" title=""/>    
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col s12 m10 description">

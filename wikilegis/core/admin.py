@@ -12,11 +12,12 @@ from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
-import requests
+# import requests
 from wikilegis.core.forms import BillAdminForm, BillSegmentAdminForm
 from wikilegis.core.models import Bill, TypeSegment, BillSegment, Theme
 from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
 from wikilegis.core.import_file import import_file
+from image_cropping import ImageCroppingMixin
 
 
 def get_permission(action, opts):
@@ -280,7 +281,14 @@ class BillSegmentAdmin(admin.ModelAdmin):
         return field
 
 
+class ThemeAdmin(ImageCroppingMixin, admin.ModelAdmin):
+    search_fields = ['name']
+    fieldsets = (
+        (None, {'fields': ('name',)}),
+        (None, {'fields': ('icon', 'cropping')}),
+    )
+
 admin.site.register(BillSegment, BillSegmentAdmin)
 admin.site.register(models.Bill, BillAdmin)
 admin.site.register(TypeSegment, TypeSegmentAdmin)
-admin.site.register(Theme)
+admin.site.register(Theme, ThemeAdmin)

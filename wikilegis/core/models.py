@@ -14,6 +14,8 @@ from django.core.urlresolvers import reverse
 from django_comments.models import Comment
 from django_extensions.db.fields.json import JSONField
 from django.utils.translation import pgettext_lazy
+from image_cropping import ImageCropField, ImageRatioField
+from wikilegis.auth2.models import avatar_validation
 
 BILL_STATUS_CHOICES = (
     ('draft', _('Draft')),
@@ -53,6 +55,10 @@ class GenericData(models.Model):
 
 class Theme(TimestampedMixin):
     name = models.CharField(_('name'), max_length=200)
+    icon = ImageCropField(_('icon'), upload_to="icons/",
+                          validators=[avatar_validation], null=True, blank=True)
+    cropping = ImageRatioField('icon', '50x50', help_text=_(
+        'Note that the preview above will only be updated after you submit the form.'))
 
     class Meta:
         verbose_name = _('theme')

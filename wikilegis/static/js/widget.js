@@ -1,4 +1,4 @@
-var domain = 'http://wikilegis.labhackercd.net/';
+var domain = 'http://localhost:8083/';
 var bill_id = $('.wikilegis-widget').attr('bill-id')
 
 function loadScript(url){    
@@ -19,7 +19,20 @@ $(document).ready(function() {
 	loadBill(bill_id);
 });
 
-$('body').append($(document.createElement('div')).attr('id', 'loadingDiv'));
+$('.wikilegis-widget').wrap("<div class='wikilegis-widget-wrapper'></div>")
+
+$('.wikilegis-widget-wrapper')
+	.prepend($(document.createElement('p'))
+		.addClass('widget-briefing')
+		.html('Contribua diretamente no Projeto de Lei da Câmara do Deputados:')
+	);
+$('.widget-briefing')
+	.before($(document.createElement('img'))
+		.addClass('wikilegis-logo')
+		.attr('src', domain + 'static/img/nav-logo.png')
+);
+
+$('.wikilegis-widget').append($(document.createElement('div')).attr('id', 'loadingDiv'));
 
 function romanize(num) {
     if (!+num)
@@ -84,15 +97,19 @@ function segmentNotEditable(type, name, number, content){
 					.append(romanize(number)))
 				.append($(document.createElement('span'))
 					.addClass('heading-title')
-					.append(content))
+					.append($(document.createElement('p'))
+					.addClass('segment-content')
+					.append(content)))
 }
 function segmentEditable(name, number, content, votes, bill, id){
 	return $(document.createElement('div'))
             	.addClass(name)
+            	.append($(document.createElement('p'))
+            	.addClass('segment-content')
             	.append($(document.createElement('span'))
             		.addClass('number')
             		.html(number))
-            	.append(content)
+            	.append(content))
             	.append(get_votes(votes)
             		.append($(document.createElement('a'))
 	    				.addClass('link')
@@ -136,7 +153,9 @@ function numberingByType(typeDispositive, number, content, votes, bill, id, flag
 	}else if(typeDispositive == 11){
 		return $(document.createElement('div'))
 					.addClass('citacao')
-					.append(content)
+					.append($(document.createElement('p'))
+					.addClass('segment-content')
+					.append(content))
 					.append(get_votes(votes)
 	            		.append($(document.createElement('a'))
 		    				.addClass('link')
@@ -165,9 +184,12 @@ function listProposals(proposals){
 							.append($(document.createElement('span'))
 								.addClass('author')
 								.html(proposal.author.first_name + ' ' + proposal.author.last_name + ' - '))
-							.append($(document.createElement('div'))
+							//Placeholder code (swapped div for link and added attr) for alpha widget release! XXX
+							.append($(document.createElement('a'))
 								.addClass('content')
 								.attr('data-raw-content', proposal.content)
+								.attr('href', domain + 'bill/'+ proposal.bill +'/segments/'+ proposal.replaced +'/#amendment-'+ proposal.id)
+								.attr('title', 'Ver no Wikilegis')
 								.append($(document.createElement('p'))
 									.addClass('pp')
 									.html(proposal.content)))
@@ -191,16 +213,19 @@ function listProposals(proposals){
 };
 function loadBill(bill_id){
 	$.getJSON(domain + 'api/bills/'+ bill_id +'?format=json', function(data) {
-		$('.wikilegis-widget').append($(document.createElement('h1'))
-								.addClass('title')
-								.append(data.title)
-								.append($(document.createElement('a'))
-			    				.addClass('link')
-			    				.attr('href', domain + 'bill/'+ data.id)
-			    				.attr('title', 'Ver no Wikilegis')
-								.html('<i class="material-icons">call_made</i>')))
-					.append($(document.createElement('h4')).addClass('epigraph').html(data.epigraph))
-					.append($(document.createElement('div')).addClass('description').append($(document.createElement('p')).html(data.description)))
+		$('.wikilegis-widget')
+					.append($(document.createElement('div'))
+								.addClass('widget-header')
+								.append($(document.createElement('h1'))
+											.addClass('title')
+											.append(data.title)
+											.append($(document.createElement('a'))
+						    				.addClass('link')
+						    				.attr('href', domain + 'bill/'+ data.id)
+						    				.attr('title', 'Ver no Wikilegis')
+											.html('<i class="material-icons">call_made</i>')))
+								.append($(document.createElement('h4')).addClass('epigraph').html(data.epigraph))
+								.append($(document.createElement('div')).addClass('description').append($(document.createElement('p')).html(data.description))))
 		var segments = sortByKey(data.segments, 'order')
 		$.each(segments, function(index, obj) {
 		    if(obj.original == true){
@@ -255,6 +280,10 @@ function loadBill(bill_id){
 				}
 		    };
 	    });
+		//Placeholder code for alpha widget release! XXX
+		$('.wikilegis-widget .segment-content').wrap( "<a href='" + domain + "bill/" + data.id + "' class='placeholder-link' title='Ver no Wikilegis'></a>" );
+		$('.wikilegis-widget .title').wrap( "<a href='" + domain + "bill/" + data.id + "' class='placeholder-link' title='Ver no Wikilegis'></a>" );
+		$('.wikilegis-widget .link').remove();
 	})
 	.done(function() {
 		$(".comments").hide();
@@ -265,17 +294,51 @@ function loadBill(bill_id){
 		$(".propCount").on('click', function() {
 		    $(this).next(".proposals").toggle();
 		});
-	    $('.original').each(function(){
-	        var div_original = this;
-	        var original = $(div_original).attr('data-raw-content');
-	        $(div_original).children('.proposals').children('.segment-proposal').children('.content').each(function(i, cur) {
-	            var $cur = $(cur);
-	            var current = $cur.attr('data-raw-content');
-	            $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
-	        });
-	        $('.pp').next('p').remove();
-	    });
-	    $('#loadingDiv').hide();
+
+    $('.original').each(function(){
+        var div_original = this;
+        var original = $(div_original).attr('data-raw-content');
+        $(div_original).children('.proposals').children('.segment-proposal').children('.content').each(function(i, cur) {
+            var $cur = $(cur);
+            var current = $cur.attr('data-raw-content');
+            $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
+        });
+        $('.pp').next('p').remove();
+    });
+
+    // 20 or more segments, add "read more" button
+    if ($('.wikilegis-widget .segment').length > 19) {
+
+    	var firstSegmentsHeight = 0;
+
+    	$('.segment.original:lt(21)').each(function() {
+    	   firstSegmentsHeight += $(this).outerHeight(true);
+    	});
+
+    	$('.wikilegis-widget')
+    		.css('height', firstSegmentsHeight + 'px')
+    		.css('overflow', 'hidden')
+
+    	$('.wikilegis-widget')
+    		.append($(document.createElement('a'))
+    		.addClass('read-more')
+    		.attr('href', domain + 'bill/'+ bill_id)
+    		.html('Ver todo o projeto no Wikilegis')
+    	);
+    }
+
+    /*
+    $('.wikilegis-widget .read-more').click(function() {
+    	$('.wikilegis-widget')
+    		.css('height', 'auto')
+    		.css('overflow', 'visible');
+
+    	$('.wikilegis-widget .read-more')
+    		.css('display', 'none');				
+    })
+    */
+
+    $('#loadingDiv').hide();
 	});
 };
 

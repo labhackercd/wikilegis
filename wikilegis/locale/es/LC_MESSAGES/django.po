@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-31 10:39-0300\n"
+"POT-Creation-Date: 2016-08-31 11:08-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,57 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\wikilegis\auth2\admin.py:51
+#: .\auth2\admin.py:51
 msgid "Personal info"
 msgstr "Información personal"
 
-#: .\wikilegis\auth2\admin.py:52
+#: .\auth2\admin.py:52
 msgid "Permissions"
 msgstr "Permisos"
 
-#: .\wikilegis\auth2\admin.py:53
+#: .\auth2\admin.py:53
 msgid "Important dates"
 msgstr "Fechas importantes"
 
-#: .\wikilegis\auth2\forms.py:26
+#: .\auth2\forms.py:26
 msgid "ID not found."
 msgstr ""
 
-#: .\wikilegis\auth2\forms.py:27
+#: .\auth2\forms.py:27
 msgid "No congressman found with this id."
 msgstr ""
 
-#: .\wikilegis\auth2\models.py:61
+#: .\auth2\models.py:61
 #, python-brace-format
 msgid "The maximum file size is {0}"
 msgstr "El límite de tamaño del archivo es {0}"
 
-#: .\wikilegis\auth2\models.py:65
+#: .\auth2\models.py:65
 msgid "email address"
 msgstr "correo electrónico"
 
-#: .\wikilegis\auth2\models.py:67
+#: .\auth2\models.py:67
 msgid "first name"
 msgstr "primer nombre"
 
-#: .\wikilegis\auth2\models.py:68
+#: .\auth2\models.py:68
 msgid "last name"
 msgstr "apellido"
 
-#: .\wikilegis\auth2\models.py:69
+#: .\auth2\models.py:69
 msgid "staff status"
 msgstr "miembro del equipo"
 
-#: .\wikilegis\auth2\models.py:70
+#: .\auth2\models.py:70
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 "Determina si el usuario puede iniciar sesión en este sitio de administración"
 
-#: .\wikilegis\auth2\models.py:72
+#: .\auth2\models.py:72
 msgid "active"
 msgstr "activo"
 
-#: .\wikilegis\auth2\models.py:73
+#: .\auth2\models.py:73
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -76,209 +76,207 @@ msgstr ""
 "Determina si este usuario debiera ser tratado como activo. Deselecciona esto "
 "en vez de borrar cuentas de usuario"
 
-#: .\wikilegis\auth2\models.py:75
+#: .\auth2\models.py:75
 msgid "date joined"
 msgstr "fecha de registro"
 
-#: .\wikilegis\auth2\models.py:76
+#: .\auth2\models.py:76
 msgid "profile picture"
 msgstr "foto de perfil"
 
-#: .\wikilegis\auth2\models.py:79
+#: .\auth2\models.py:79
 msgid ""
 "Note that the preview above will only be updated after you submit the form."
 msgstr ""
 "Ten en cuenta que la previsualización de arriba sólo será actualizada "
 "después de haber enviado el formulario."
 
-#: .\wikilegis\auth2\models.py:86
+#: .\auth2\models.py:86
 msgid "Is Congressman"
 msgstr "Es Parlamentario"
 
-#: .\wikilegis\auth2\models.py:119 .\wikilegis\core\models.py:151
-#: .\wikilegis\notification\models.py:30
+#: .\auth2\models.py:119 .\core\models.py:151 .\notification\models.py:30
 msgid "user"
 msgstr "usuario"
 
-#: .\wikilegis\auth2\models.py:120
+#: .\auth2\models.py:120
 msgid "uf"
 msgstr "uf"
 
-#: .\wikilegis\auth2\models.py:121
+#: .\auth2\models.py:121
 msgid "party"
 msgstr "partido"
 
-#: .\wikilegis\auth2\models.py:122
+#: .\auth2\models.py:122
 msgid "parliamentary name"
 msgstr "nombre del parlamentario"
 
-#: .\wikilegis\auth2\models.py:125
+#: .\auth2\models.py:125
 msgid "congressman"
 msgstr "parlamentario"
 
-#: .\wikilegis\auth2\models.py:126
+#: .\auth2\models.py:126
 msgid "congressmen"
 msgstr "parlamentarios"
 
-#: .\wikilegis\auth2\views.py:33
+#: .\auth2\views.py:33
 msgid "Your account is now activated."
 msgstr "Tu cuenta ha sido activada."
 
-#: .\wikilegis\auth2\views.py:43
+#: .\auth2\views.py:43
 msgid "Profile successfully updated"
 msgstr "El perfil ha sido actualizado con éxito."
 
-#: .\wikilegis\core\admin.py:51 .\wikilegis\core\models.py:124
+#: .\core\admin.py:51 .\core\models.py:124
 msgid "segment"
 msgstr "elemento"
 
-#: .\wikilegis\core\admin.py:51 .\wikilegis\core\models.py:125
+#: .\core\admin.py:51 .\core\models.py:125
 msgid "segments"
 msgstr "elementos"
 
-#: .\wikilegis\core\admin.py:110 .\wikilegis\core\models.py:116
+#: .\core\admin.py:110 .\core\models.py:116
 msgid "author"
 msgstr "autor"
 
-#: .\wikilegis\core\admin.py:111
+#: .\core\admin.py:111
 msgid "authors"
 msgstr "autores"
 
-#: .\wikilegis\core\admin.py:120
+#: .\core\admin.py:120
 msgid "video"
 msgstr "video"
 
-#: .\wikilegis\core\admin.py:121
+#: .\core\admin.py:121
 msgid "videos"
 msgstr "videos"
 
-#: .\wikilegis\core\admin.py:166
+#: .\core\admin.py:166
 msgid "Administrator filds"
 msgstr "Administración Pública"
 
-#: .\wikilegis\core\admin.py:167
+#: .\core\admin.py:167
 msgid "File to import"
 msgstr "Archivo a importar"
 
-#: .\wikilegis\core\admin.py:168
+#: .\core\admin.py:168
 msgid "This field will be used to import a txt file."
 msgstr "Este campo puede ser usado para importar un archivo txt"
 
-#: .\wikilegis\core\admin.py:223
+#: .\core\admin.py:223
 msgid "Show"
 msgstr "Mostrar"
 
-#: .\wikilegis\core\admin.py:225
+#: .\core\admin.py:225
 msgid "Report"
 msgstr "Reporte"
 
-#: .\wikilegis\core\forms.py:57
+#: .\core\forms.py:57
 msgid "User"
 msgstr "Usuario"
 
-#: .\wikilegis\core\forms.py:58
+#: .\core\forms.py:58
 msgid "Title"
 msgstr "Título"
 
-#: .\wikilegis\core\forms.py:71
+#: .\core\forms.py:71
 msgid "video url"
 msgstr "url del video"
 
-#: .\wikilegis\core\forms.py:79 .\wikilegis\core\forms.py:221
+#: .\core\forms.py:79 .\core\forms.py:221
 msgid "You can explain your proposal here."
 msgstr "Puedes explicar tu propuesta aquí."
 
-#: .\wikilegis\core\forms.py:83
+#: .\core\forms.py:83
 msgid "Suggest a new proposal! You can begin editing the original one."
 msgstr ""
 "Sugiera una nueva propuesta! Puedes empezar editando la versión original."
 
 # TODO Check if this role exists on Chilean Parliament 
-#: .\wikilegis\core\forms.py:102
+#: .\core\forms.py:102
 msgid "Reporting member"
 msgstr "Parlamentario informante"
 
-#: .\wikilegis\core\forms.py:105
+#: .\core\forms.py:105
 msgid "File in txt format"
 msgstr "Archivo en formato txt"
 
-#: .\wikilegis\core\forms.py:236 .\wikilegis\core\forms.py:241
-#: .\wikilegis\core\models.py:84 .\wikilegis\core\models.py:110
-#: .\wikilegis\notification\models.py:29
+#: .\core\forms.py:236 .\core\forms.py:241 .\core\models.py:84
+#: .\core\models.py:110 .\notification\models.py:29
 msgid "bill"
 msgstr "proyecto"
 
-#: .\wikilegis\core\forms.py:238 .\wikilegis\core\models.py:114
+#: .\core\forms.py:238 .\core\models.py:114
 msgid "segment parent"
 msgstr "elemento padre"
 
-#: .\wikilegis\core\models.py:19
+#: .\core\models.py:19
 msgid "Draft"
 msgstr "Borrador"
 
-#: .\wikilegis\core\models.py:20
+#: .\core\models.py:20
 msgid "Published"
 msgstr "Publicado"
 
-#: .\wikilegis\core\models.py:21
+#: .\core\models.py:21
 msgctxt "Not open"
 msgid "Closed"
 msgstr "Cerrado"
 
-#: .\wikilegis\core\models.py:34
+#: .\core\models.py:34
 msgid "created"
 msgstr "creado"
 
-#: .\wikilegis\core\models.py:35
+#: .\core\models.py:35
 msgid "modified"
 msgstr "modificado"
 
-#: .\wikilegis\core\models.py:47
+#: .\core\models.py:47
 msgid "data"
 msgstr "datos"
 
-#: .\wikilegis\core\models.py:48 .\wikilegis\core\models.py:112
+#: .\core\models.py:48 .\core\models.py:112
 msgid "type"
 msgstr "tipo"
 
-#: .\wikilegis\core\models.py:55 .\wikilegis\core\models.py:97
+#: .\core\models.py:55 .\core\models.py:97
 msgid "name"
 msgstr "nombre"
 
-#: .\wikilegis\core\models.py:58 .\wikilegis\core\models.py:71
+#: .\core\models.py:58 .\core\models.py:71
 msgid "theme"
 msgstr "tema"
 
-#: .\wikilegis\core\models.py:59
+#: .\core\models.py:59
 msgid "Themes"
 msgstr "Temas"
 
-#: .\wikilegis\core\models.py:66
+#: .\core\models.py:66
 msgid "subject"
 msgstr "asunto"
 
-#: .\wikilegis\core\models.py:67
+#: .\core\models.py:67
 msgid "epigraph"
 msgstr "epígrafe"
 
 # TODO pending translate into Spanish
-#: .\wikilegis\core\models.py:68
+#: .\core\models.py:68
 msgid "digest"
 msgstr ""
 
-#: .\wikilegis\core\models.py:69
+#: .\core\models.py:69
 msgid "closing date"
 msgstr "fecha de cierre"
 
-#: .\wikilegis\core\models.py:70
+#: .\core\models.py:70
 msgid "status"
 msgstr "estado"
 
-#: .\wikilegis\core\models.py:73
+#: .\core\models.py:73
 msgid "editors"
 msgstr ""
 
-#: .\wikilegis\core\models.py:74
+#: .\core\models.py:74
 msgid ""
 "Any users in any of these groups will have permission to change this "
 "document."
@@ -286,157 +284,155 @@ msgstr ""
 "Los usuarios de estos grupos tendrán permiso para cambiar este documento"
 
 # TODO Check if this role exists on Chilean Parliament 
-#: .\wikilegis\core\models.py:76
+#: .\core\models.py:76
 msgid "reporting member"
 msgstr "parlamentario informante"
 
-#: .\wikilegis\core\models.py:85
+#: .\core\models.py:85
 msgid "bills"
 msgstr "proyectos de ley"
 
-#: .\wikilegis\core\models.py:98
+#: .\core\models.py:98
 msgid "apresentation name"
 msgstr "Mostrar como"
 
-#: .\wikilegis\core\models.py:99
+#: .\core\models.py:99
 msgid "editable"
 msgstr "editable"
 
-#: .\wikilegis\core\models.py:102
+#: .\core\models.py:102
 msgid "type segment"
 msgstr "tipo de elemento"
 
-#: .\wikilegis\core\models.py:103
+#: .\core\models.py:103
 msgid "types segment"
 msgstr "tipos de elemento"
 
-#: .\wikilegis\core\models.py:111
+#: .\core\models.py:111
 msgid "order"
 msgstr "orden"
 
-#: .\wikilegis\core\models.py:113
+#: .\core\models.py:113
 msgid "number"
 msgstr "número"
 
-#: .\wikilegis\core\models.py:115
+#: .\core\models.py:115
 msgid "segment replaced"
 msgstr "elemento reemplazado"
 
-#: .\wikilegis\core\models.py:117
+#: .\core\models.py:117
 msgid "original"
 msgstr "original"
 
-#: .\wikilegis\core\models.py:118
+#: .\core\models.py:118
 msgid "content"
 msgstr "contenido"
 
-#: .\wikilegis\core\models.py:155
+#: .\core\models.py:155
 msgid "Up Vote"
 msgstr "Voto a favor"
 
-#: .\wikilegis\core\models.py:155
+#: .\core\models.py:155
 msgid "Down Vote"
 msgstr "Voto en contra"
 
-#: .\wikilegis\core\orderers.py:100
+#: .\core\orderers.py:100
 msgid "None"
 msgstr "Ninguno"
 
-#: .\wikilegis\core\templatetags\convert_numbers.py:62
+#: .\core\templatetags\convert_numbers.py:62
 msgid "Sole paragraph"
 msgstr "Párrafo único"
 
-#: .\wikilegis\core\views.py:28
+#: .\core\views.py:28
 msgid "Order by"
 msgstr "Ordenar por"
 
-#: .\wikilegis\core\views.py:34
+#: .\core\views.py:34
 msgid "Hot"
 msgstr "Relevante"
 
-#: .\wikilegis\core\views.py:35
+#: .\core\views.py:35
 msgid "Date"
 msgstr "Recientes"
 
-#: .\wikilegis\core\views.py:155
+#: .\core\views.py:155
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "No se pueden enviar propuestas a {object}"
 
-#: .\wikilegis\core\views.py:185 .\wikilegis\core\views.py:226
+#: .\core\views.py:185 .\core\views.py:226
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado"
 
-#: .\wikilegis\notification\models.py:11
+#: .\notification\models.py:11
 msgid "amendment"
 msgstr "cambio"
 
-#: .\wikilegis\notification\models.py:12
+#: .\notification\models.py:12
 msgid "hour"
 msgstr "hora"
 
-#: .\wikilegis\notification\models.py:16
+#: .\notification\models.py:16
 msgid "history notification"
 msgstr "historial de notificación"
 
-#: .\wikilegis\notification\models.py:17
+#: .\notification\models.py:17
 msgid "history notifications"
 msgstr "historial de notificaciones"
 
-#: .\wikilegis\notification\models.py:25
-#: .\wikilegis\templates\bill\bill.html:71
+#: .\notification\models.py:25 .\templates\bill\bill.html:71
 msgid "Daily"
 msgstr "Diariamente"
 
-#: .\wikilegis\notification\models.py:26
-#: .\wikilegis\templates\bill\bill.html:66
+#: .\notification\models.py:26 .\templates\bill\bill.html:66
 msgid "Weekly"
 msgstr "Semanalmente"
 
-#: .\wikilegis\notification\models.py:31
+#: .\notification\models.py:31
 msgid "periodicity"
 msgstr "periódicamente"
 
-#: .\wikilegis\notification\models.py:35
+#: .\notification\models.py:35
 msgid "Newsletter"
 msgstr "Boletín"
 
-#: .\wikilegis\notification\models.py:36
+#: .\notification\models.py:36
 msgid "Newsletters"
 msgstr "Boletines"
 
-#: .\wikilegis\settings.py:223
+#: .\settings.py:223
 msgid "Google"
 msgstr ""
 
-#: .\wikilegis\settings.py:227
+#: .\settings.py:227
 msgid "Facebook"
 msgstr ""
 
 # TODO see the context, could be Sobre o Acerca de esto...
-#: .\wikilegis\templates\_about_link.html:3
+#: .\templates\_about_link.html:3
 msgid "About"
 msgstr "Sobre"
 
-#: .\wikilegis\templates\_sidebar_language_selector.html:7
+#: .\templates\_sidebar_language_selector.html:7
 msgid "Select language"
 msgstr "Elegir idioma"
 
-#: .\wikilegis\templates\_sidebar_search.html:7
+#: .\templates\_sidebar_search.html:7
 msgid "Search"
 msgstr "Buscar"
 
-#: .\wikilegis\templates\_vote_buttons_read_only.html:5
-#: .\wikilegis\templates\_vote_buttons_read_only.html:13
+#: .\templates\_vote_buttons_read_only.html:5
+#: .\templates\_vote_buttons_read_only.html:13
 msgid "This bill is closed, you can not vote or comment."
 msgstr "Este proyecto está cerrado, no puedes votar o comentar."
 
-#: .\wikilegis\templates\about.html:17
+#: .\templates\about.html:17
 msgid "About Wikilegis"
 msgstr "Acerca de Wikilegis"
 
-#: .\wikilegis\templates\about.html:18
+#: .\templates\about.html:18
 msgid ""
 "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
 "Hacker Lab, designed to enable citizens to suggest modifications to the "
@@ -451,7 +447,7 @@ msgstr ""
 "participar en las discusiones de los proyectos, puedes ayudarnos a mejorar "
 "la herramienta."
 
-#: .\wikilegis\templates\about.html:22
+#: .\templates\about.html:22
 msgid ""
 "Visit us on Trello, Github and in our page to propose new features or to "
 "report bugs. If you have programming skills, you can also collaborate to the "
@@ -461,174 +457,172 @@ msgstr ""
 "funcionalidades o para reportar errores. Si tienes habilidades de "
 "programación, también puedes colaborar con el desarrollo de Wikilegis."
 
-#: .\wikilegis\templates\about.html:33
+#: .\templates\about.html:33
 msgid "terms of use"
 msgstr ""
 
-#: .\wikilegis\templates\about.html:36
-#: .\wikilegis\templates\registration\registration_complete.html:14
+#: .\templates\about.html:36
+#: .\templates\registration\registration_complete.html:14
 msgid "Back to main page"
 msgstr "Volver a la página principal"
 
-#: .\wikilegis\templates\admin\base_site.html:6
+#: .\templates\admin\base_site.html:6
 msgid "Django administration"
 msgstr "Administración de Django"
 
-#: .\wikilegis\templates\adminsortable2\tabular-1.6.html:10
+#: .\templates\adminsortable2\tabular-1.6.html:10
 msgid "Sort"
 msgstr "Ordenar"
 
-#: .\wikilegis\templates\adminsortable2\tabular-1.6.html:18
+#: .\templates\adminsortable2\tabular-1.6.html:18
 msgid "Delete?"
 msgstr "¿Eliminar?"
 
 # TODO check what is that last "s" for
-#: .\wikilegis\templates\adminsortable2\tabular-1.6.html:90
+#: .\templates\adminsortable2\tabular-1.6.html:90
 #, python-format
 msgid "Add another %(verbose_name)s"
 msgstr "Agregar otro(a) %(verbose_name)s"
 
-#: .\wikilegis\templates\adminsortable2\tabular-1.6.html:91
+#: .\templates\adminsortable2\tabular-1.6.html:91
 msgid "Remove"
 msgstr "Quitar"
 
-#: .\wikilegis\templates\auth2\_current_user_or_login_button.html:10
-#: .\wikilegis\templates\registration\login.html:47
+#: .\templates\auth2\_current_user_or_login_button.html:10
+#: .\templates\registration\login.html:47
 msgid "Log in"
 msgstr "Acceder"
 
-#: .\wikilegis\templates\auth2\show_users_profile.html:15
+#: .\templates\auth2\show_users_profile.html:15
 msgid "Joined on"
 msgstr "Fecha de registro"
 
-#: .\wikilegis\templates\auth2\your_profile.html:18
+#: .\templates\auth2\your_profile.html:18
 msgid "Your profile"
 msgstr "Tu perfil"
 
-#: .\wikilegis\templates\auth2\your_profile.html:40
+#: .\templates\auth2\your_profile.html:40
 msgid "Update my profile"
 msgstr "Actualizar mi perfil"
 
-#: .\wikilegis\templates\bill\_base.html:19
-#: .\wikilegis\templates\bill\bill.html:33
+#: .\templates\bill\_base.html:19 .\templates\bill\bill.html:33
 msgid "Participations Closed"
 msgstr "Participación Finalizada"
 
-#: .\wikilegis\templates\bill\_bill_segment_item.html:4
+#: .\templates\bill\_bill_segment_item.html:4
 msgid "TITLE"
 msgstr "TÍTULO"
 
-#: .\wikilegis\templates\bill\_bill_segment_item.html:6
+#: .\templates\bill\_bill_segment_item.html:6
 msgid "BOOK"
 msgstr "LIBRO"
 
-#: .\wikilegis\templates\bill\_bill_segment_item.html:8
+#: .\templates\bill\_bill_segment_item.html:8
 msgid "CHAPTER"
 msgstr "CAPÍTULO"
 
-#: .\wikilegis\templates\bill\_bill_segment_item.html:10
+#: .\templates\bill\_bill_segment_item.html:10
 msgid "Section"
 msgstr "Sección"
 
-#: .\wikilegis\templates\bill\_bill_segment_item.html:12
+#: .\templates\bill\_bill_segment_item.html:12
 msgid "Subsection"
 msgstr "Subsección"
 
-#: .\wikilegis\templates\bill\bill.html:50
+#: .\templates\bill\bill.html:50
 msgid "Unsubscribe"
 msgstr "Cancelar suscripción"
 
-#: .\wikilegis\templates\bill\bill.html:57
+#: .\templates\bill\bill.html:57
 msgid "Subscribe to this bill"
 msgstr "Recibir notificaciones de este proyecto"
 
-#: .\wikilegis\templates\bill\bill.html:61
+#: .\templates\bill\bill.html:61
 msgid ""
 "You can be notified of changes in this bill via e-mail by subscribing to it."
 msgstr ""
 "Puedes ser notificado por correo electrónico de los cambios en este proyecto "
 "suscribiéndote al mismo."
 
-#: .\wikilegis\templates\bill\bill.html:75
+#: .\templates\bill\bill.html:75
 msgid "Subscribe"
 msgstr "Suscribirse"
 
-#: .\wikilegis\templates\bill\bill.html:86
+#: .\templates\bill\bill.html:86
 msgid "Bill status:"
 msgstr "Estado del proyecto:"
 
-#: .\wikilegis\templates\bill\bill.html:95
+#: .\templates\bill\bill.html:95
 msgid "Attendees:"
 msgstr "Participantes:"
 
-#: .\wikilegis\templates\bill\bill.html:96
+#: .\templates\bill\bill.html:96
 msgid "Proposals:"
 msgstr "Propuestas:"
 
-#: .\wikilegis\templates\bill\bill.html:98
+#: .\templates\bill\bill.html:98
 msgid "Closing date:"
 msgstr "Fecha límite"
 
-#: .\wikilegis\templates\bill\bill.html:117
+#: .\templates\bill\bill.html:117
 msgid "AUTHOR"
 msgstr "AUTOR"
 
 # TODO check if in the chilean parliament exists this role
-#: .\wikilegis\templates\bill\bill.html:138
+#: .\templates\bill\bill.html:138
 msgid "RAPPORTEUR"
 msgstr "PARLAMENTARIO INFORMANTE"
 
-#: .\wikilegis\templates\bill\bill.html:165
+#: .\templates\bill\bill.html:165
 msgid "Embedding Code"
 msgstr ""
 
-#: .\wikilegis\templates\bill\bill.html:169
+#: .\templates\bill\bill.html:169
 msgid "Copy and paste this code in your website."
 msgstr ""
 
-#: .\wikilegis\templates\bill\bill_segment.html:28
-#: .\wikilegis\templates\bill\proposal.html:24
+#: .\templates\bill\bill_segment.html:28 .\templates\bill\proposal.html:24
 msgid "Original text"
 msgstr "Texto original"
 
-#: .\wikilegis\templates\bill\bill_segment.html:149
+#: .\templates\bill\bill_segment.html:149
 msgid "Submitted proposals"
 msgstr "Propuestas enviadas"
 
-#: .\wikilegis\templates\bill\bill_segment.html:215
+#: .\templates\bill\bill_segment.html:215
 msgid "Make a proposal!"
 msgstr "¡Sugiere una propuesta!"
 
-#: .\wikilegis\templates\bill\bill_segment.html:222
+#: .\templates\bill\bill_segment.html:222
 msgid "Participations closed"
 msgstr "Participación finalizada"
 
-#: .\wikilegis\templates\bill\create_amendment.html:26
-#: .\wikilegis\templates\bill\create_amendment.html:61
+#: .\templates\bill\create_amendment.html:26
+#: .\templates\bill\create_amendment.html:61
 msgid "Send proposal"
 msgstr "Enviar propuesta"
 
-#: .\wikilegis\templates\bill\create_amendment.html:60
+#: .\templates\bill\create_amendment.html:60
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: .\wikilegis\templates\comments2\_comment_form.html:24
+#: .\templates\comments2\_comment_form.html:24
 msgid "Post"
 msgstr "Enviar"
 
-#: .\wikilegis\templates\comments2\_comment_form.html:25
+#: .\templates\comments2\_comment_form.html:25
 msgid "Preview"
 msgstr "Previsualizar"
 
-#: .\wikilegis\templates\export\export_form.html:10
+#: .\templates\export\export_form.html:10
 msgid "Download"
 msgstr "Descargar"
 
-#: .\wikilegis\templates\index.html:11
+#: .\templates\index.html:11
 msgid "Your legislative editing tool"
 msgstr "Tu herramienta de edición legislativa"
 
-#: .\wikilegis\templates\index.html:12
+#: .\templates\index.html:12
 msgid ""
 "Check the bills and contribute suggestions of new wordings to articles or "
 "paragraphs. The rapporteurs of the bills track the participation and can "
@@ -638,7 +632,7 @@ msgstr ""
 "artículos o párrafos. ¡El responsable del proyecto de ley estará siguiendo "
 "la participación y podrá tomar tu idea!"
 
-#: .\wikilegis\templates\index.html:13
+#: .\templates\index.html:13
 msgid ""
 "With this interaction, society profits by participating more actively in the "
 "legislative process, and the Parliament profits by approving improved laws "
@@ -648,67 +642,67 @@ msgstr ""
 "en el proceso legislativo y el Parlamento se beneficia al aprobar mejores "
 "leyes, conectadas con las necesidades de los ciudadanos"
 
-#: .\wikilegis\templates\index.html:20
+#: .\templates\index.html:20
 msgid "Login"
 msgstr "Iniciar Sesión"
 
-#: .\wikilegis\templates\index.html:20
+#: .\templates\index.html:20
 msgid "or"
 msgstr "o"
 
-#: .\wikilegis\templates\index.html:20
+#: .\templates\index.html:20
 msgid "sign in"
 msgstr "registráte"
 
-#: .\wikilegis\templates\index.html:37
+#: .\templates\index.html:37
 msgid "Closed Bills"
 msgstr "Proyectos de ley cerrados"
 
-#: .\wikilegis\templates\index.html:37
+#: .\templates\index.html:37
 msgid "Bills"
 msgstr "Proyectos de ley"
 
-#: .\wikilegis\templates\index.html:46
+#: .\templates\index.html:46
 msgid "Open"
 msgstr "Abiertos"
 
-#: .\wikilegis\templates\index.html:48
+#: .\templates\index.html:48
 msgid "Closed"
 msgstr "Cerrado"
 
-#: .\wikilegis\templates\index.html:65
+#: .\templates\index.html:65
 msgid "Created at"
 msgstr "Creados"
 
-#: .\wikilegis\templates\index.html:70
+#: .\templates\index.html:70
 msgid "Status"
 msgstr "Estado"
 
-#: .\wikilegis\templates\index.html:80
+#: .\templates\index.html:80
 msgid "Proposals"
 msgstr "Propuestas"
 
-#: .\wikilegis\templates\index.html:80
+#: .\templates\index.html:80
 msgid "Proposal"
 msgstr "Propuesta"
 
-#: .\wikilegis\templates\index.html:84 .\wikilegis\templates\index.html:88
+#: .\templates\index.html:84 .\templates\index.html.py:88
 msgid "No proposals"
 msgstr "No hay propuestas"
 
-#: .\wikilegis\templates\index.html:89
+#: .\templates\index.html:89
 msgid "Participate"
 msgstr "Participar"
 
-#: .\wikilegis\templates\index.html:100
+#: .\templates\index.html:100
 msgid "No bills"
 msgstr "No hay proyectos de ley"
 
-#: .\wikilegis\templates\registration\activation_email.html:7
+#: .\templates\registration\activation_email.html:7
 msgid "registration"
 msgstr "registro"
 
-#: .\wikilegis\templates\registration\activation_email.html:12
+#: .\templates\registration\activation_email.html:12
 #, python-format
 msgid ""
 "\n"
@@ -719,7 +713,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: .\wikilegis\templates\registration\activation_email.html:19
+#: .\templates\registration\activation_email.html:19
 #, python-format
 msgid ""
 "\n"
@@ -729,7 +723,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: .\wikilegis\templates\registration\activation_email.html:31
+#: .\templates\registration\activation_email.html:31
 #, python-format
 msgid ""
 "\n"
@@ -738,33 +732,33 @@ msgid ""
 "    "
 msgstr ""
 
-#: .\wikilegis\templates\registration\login.html:43
+#: .\templates\registration\login.html:43
 msgid "Activate Account"
 msgstr "Activar cuenta"
 
-#: .\wikilegis\templates\registration\login.html:55
-#: .\wikilegis\templates\registration\registration_form.html:34
+#: .\templates\registration\login.html:55
+#: .\templates\registration\registration_form.html:34
 #, python-format
 msgid "Sign in with %(backend_name)s"
 msgstr "Iniciar sesión con %(backend_name)s"
 
-#: .\wikilegis\templates\registration\login.html:60
+#: .\templates\registration\login.html:60
 msgid "Don't have an account?"
 msgstr "¿No tienes una cuenta aún?"
 
-#: .\wikilegis\templates\registration\login.html:60
+#: .\templates\registration\login.html:60
 msgid "Sign up now!"
 msgstr "¡Registrate ahora!"
 
-#: .\wikilegis\templates\registration\login.html:61
+#: .\templates\registration\login.html:61
 msgid "Forgot your password?"
 msgstr "¿Olvidaste tu contraseña?"
 
-#: .\wikilegis\templates\registration\login.html:61
+#: .\templates\registration\login.html:61
 msgid "Ask for a new one!"
 msgstr "¡Pide por una nueva!"
 
-#: .\wikilegis\templates\registration\password_reset_email.html:2
+#: .\templates\registration\password_reset_email.html:2
 #, python-format
 msgid ""
 "You're receiving this email because you requested a password reset for your "
@@ -773,43 +767,43 @@ msgstr ""
 "Estás recibiendo este correo porque has requerido una nueva contraseña para "
 "tu cuenta de usuario de %(site_name)s."
 
-#: .\wikilegis\templates\registration\password_reset_email.html:4
+#: .\templates\registration\password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
 msgstr "Por favor, accede al siguiente link y crea una nueva contraseña:"
 
-#: .\wikilegis\templates\registration\password_reset_email.html:8
+#: .\templates\registration\password_reset_email.html:8
 msgid "Your username, in case you've forgotten:"
 msgstr "Tu usuario, en caso que lo hayas olvidado:"
 
-#: .\wikilegis\templates\registration\password_reset_email.html:10
+#: .\templates\registration\password_reset_email.html:10
 msgid "Thanks for using our site!"
 msgstr "¡Gracias por utilizar nuestro sitio!"
 
-#: .\wikilegis\templates\registration\password_reset_email.html:12
+#: .\templates\registration\password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
 msgstr "El equipo de %(site_name)s"
 
-#: .\wikilegis\templates\registration\registration_complete.html:4
+#: .\templates\registration\registration_complete.html:4
 msgid "Activation email sent"
 msgstr "Mensaje de activación enviado"
 
-#: .\wikilegis\templates\registration\registration_complete.html:13
+#: .\templates\registration\registration_complete.html:13
 msgid "Please check your email to complete the registration process."
 msgstr ""
 "Por favor revisa tu correo electrónico para completar el proceso de registro."
 
-#: .\wikilegis\templates\registration\registration_form.html:26
+#: .\templates\registration\registration_form.html:26
 msgid "Sign Up"
 msgstr "Regístrate"
 
-#: .\wikilegis\templates\registration\resend_activation_form.html:18
+#: .\templates\registration\resend_activation_form.html:18
 msgid "Type your email to resend your account activation link"
 msgstr ""
 "Escribe tu correo electrónico para que te reenviemos el mensaje de "
 "activación de tu cuenta"
 
-#: .\wikilegis\templates\registration\resend_activation_form.html:27
+#: .\templates\registration\resend_activation_form.html:27
 msgid "Resend"
 msgstr "Reenviar"
 

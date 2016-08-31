@@ -1,4 +1,4 @@
-var domain = 'http://localhost:8083/';
+var domain = 'http://wikilegis.labhackercd.net/';
 var bill_id = $('.wikilegis-widget').attr('bill-id')
 
 function loadScript(url){    

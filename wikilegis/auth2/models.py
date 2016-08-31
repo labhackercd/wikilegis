@@ -120,7 +120,7 @@ class Congressman(models.Model):
     uf = models.CharField(_('uf'), max_length=200, null=True, blank=True)
     party = models.CharField(_('party'), max_length=200, null=True, blank=True)
     parliamentary_name = models.CharField(verbose_name=_("parliamentary name"), max_length=200, null=True, blank=True)
-    link = models.URLField(verbose_name=_("parliamentary link"), null=True, blank=True)
+    link = models.URLField(verbose_name=_("parliamentary website"), null=True, blank=True)
 
     class Meta:
         verbose_name = _('congressman')

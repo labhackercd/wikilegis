@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-31 11:08-0300\n"
+"POT-Creation-Date: 2016-08-31 16:32-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,410 +17,410 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\auth2\admin.py:51
+#: auth2/admin.py:51
 msgid "Personal info"
 msgstr ""
 
-#: .\auth2\admin.py:52
+#: auth2/admin.py:52
 msgid "Permissions"
 msgstr ""
 
-#: .\auth2\admin.py:53
+#: auth2/admin.py:53
 msgid "Important dates"
 msgstr ""
 
-#: .\auth2\forms.py:26
-msgid "ID not found."
-msgstr ""
-
-#: .\auth2\forms.py:27
-msgid "No congressman found with this id."
-msgstr ""
-
-#: .\auth2\models.py:61
+#: auth2/models.py:61
 #, python-brace-format
 msgid "The maximum file size is {0}"
 msgstr ""
 
-#: .\auth2\models.py:65
+#: auth2/models.py:65
 msgid "email address"
 msgstr ""
 
-#: .\auth2\models.py:67
+#: auth2/models.py:67
 msgid "first name"
 msgstr ""
 
-#: .\auth2\models.py:68
+#: auth2/models.py:68
 msgid "last name"
 msgstr ""
 
-#: .\auth2\models.py:69
+#: auth2/models.py:69
 msgid "staff status"
 msgstr ""
 
-#: .\auth2\models.py:70
+#: auth2/models.py:70
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: .\auth2\models.py:72
+#: auth2/models.py:72
 msgid "active"
 msgstr ""
 
-#: .\auth2\models.py:73
+#: auth2/models.py:73
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: .\auth2\models.py:75
+#: auth2/models.py:75
 msgid "date joined"
 msgstr ""
 
-#: .\auth2\models.py:76
+#: auth2/models.py:76
 msgid "profile picture"
 msgstr ""
 
-#: .\auth2\models.py:79
+#: auth2/models.py:79 core/models.py:61
 msgid ""
 "Note that the preview above will only be updated after you submit the form."
 msgstr ""
 
-#: .\auth2\models.py:86
+#: auth2/models.py:86
 msgid "Is Congressman"
 msgstr ""
 
-#: .\auth2\models.py:119 .\core\models.py:151 .\notification\models.py:30
+#: auth2/models.py:119 core/models.py:157 notification/models.py:30
 msgid "user"
 msgstr ""
 
-#: .\auth2\models.py:120
+#: auth2/models.py:120
 msgid "uf"
 msgstr ""
 
-#: .\auth2\models.py:121
+#: auth2/models.py:121
 msgid "party"
 msgstr ""
 
-#: .\auth2\models.py:122
+#: auth2/models.py:122
 msgid "parliamentary name"
 msgstr ""
 
-#: .\auth2\models.py:125
+#: auth2/models.py:123
+msgid "parliamentary website"
+msgstr ""
+
+#: auth2/models.py:126
 msgid "congressman"
 msgstr ""
 
-#: .\auth2\models.py:126
+#: auth2/models.py:127
 msgid "congressmen"
 msgstr ""
 
-#: .\auth2\views.py:33
+#: auth2/views.py:33
 msgid "Your account is now activated."
 msgstr ""
 
-#: .\auth2\views.py:43
+#: auth2/views.py:43
 msgid "Profile successfully updated"
 msgstr ""
 
-#: .\core\admin.py:51 .\core\models.py:124
+#: core/admin.py:52 core/models.py:130
 msgid "segment"
 msgstr ""
 
-#: .\core\admin.py:51 .\core\models.py:125
+#: core/admin.py:52 core/models.py:131
 msgid "segments"
 msgstr ""
 
-#: .\core\admin.py:110 .\core\models.py:116
+#: core/admin.py:111 core/models.py:122
 msgid "author"
 msgstr ""
 
-#: .\core\admin.py:111
+#: core/admin.py:112
 msgid "authors"
 msgstr ""
 
-#: .\core\admin.py:120
+#: core/admin.py:121
 msgid "video"
 msgstr ""
 
-#: .\core\admin.py:121
+#: core/admin.py:122
 msgid "videos"
 msgstr ""
 
-#: .\core\admin.py:166
-msgid "Administrator filds"
+#: core/admin.py:167
+msgid "Administrator fields"
 msgstr ""
 
-#: .\core\admin.py:167
+#: core/admin.py:168
 msgid "File to import"
 msgstr ""
 
-#: .\core\admin.py:168
+#: core/admin.py:169
 msgid "This field will be used to import a txt file."
 msgstr ""
 
-#: .\core\admin.py:223
+#: core/admin.py:224
 msgid "Show"
 msgstr ""
 
-#: .\core\admin.py:225
+#: core/admin.py:226
 msgid "Report"
 msgstr ""
 
-#: .\core\forms.py:57
+#: core/forms.py:52
 msgid "User"
 msgstr ""
 
-#: .\core\forms.py:58
+#: core/forms.py:53
 msgid "Title"
 msgstr ""
 
-#: .\core\forms.py:71
+#: core/forms.py:66
 msgid "video url"
 msgstr ""
 
-#: .\core\forms.py:79 .\core\forms.py:221
+#: core/forms.py:74 core/forms.py:215
 msgid "You can explain your proposal here."
 msgstr ""
 
-#: .\core\forms.py:83
+#: core/forms.py:78
 msgid "Suggest a new proposal! You can begin editing the original one."
 msgstr ""
 
-#: .\core\forms.py:102
+#: core/forms.py:97
 msgid "Reporting member"
 msgstr ""
 
-#: .\core\forms.py:105
+#: core/forms.py:99
 msgid "File in txt format"
 msgstr ""
 
-#: .\core\forms.py:236 .\core\forms.py:241 .\core\models.py:84
-#: .\core\models.py:110 .\notification\models.py:29
+#: core/forms.py:230 core/forms.py:235 core/models.py:90 core/models.py:116
+#: notification/models.py:29
 msgid "bill"
 msgstr ""
 
-#: .\core\forms.py:238 .\core\models.py:114
+#: core/forms.py:232 core/models.py:120
 msgid "segment parent"
 msgstr ""
 
-#: .\core\models.py:19
+#: core/models.py:21
 msgid "Draft"
 msgstr ""
 
-#: .\core\models.py:20
+#: core/models.py:22
 msgid "Published"
 msgstr ""
 
-#: .\core\models.py:21
+#: core/models.py:23
 msgctxt "Not open"
 msgid "Closed"
 msgstr ""
 
-#: .\core\models.py:34
+#: core/models.py:36
 msgid "created"
 msgstr ""
 
-#: .\core\models.py:35
+#: core/models.py:37
 msgid "modified"
 msgstr ""
 
-#: .\core\models.py:47
+#: core/models.py:49
 msgid "data"
 msgstr ""
 
-#: .\core\models.py:48 .\core\models.py:112
+#: core/models.py:50 core/models.py:118
 msgid "type"
 msgstr ""
 
-#: .\core\models.py:55 .\core\models.py:97
+#: core/models.py:57 core/models.py:103
 msgid "name"
 msgstr ""
 
-#: .\core\models.py:58 .\core\models.py:71
+#: core/models.py:58
+msgid "icon"
+msgstr ""
+
+#: core/models.py:64 core/models.py:77
 msgid "theme"
 msgstr ""
 
-#: .\core\models.py:59
+#: core/models.py:65
 msgid "Themes"
 msgstr ""
 
-#: .\core\models.py:66
+#: core/models.py:72
 msgid "subject"
 msgstr ""
 
-#: .\core\models.py:67
+#: core/models.py:73
 msgid "epigraph"
 msgstr ""
 
-#: .\core\models.py:68
+#: core/models.py:74
 msgid "digest"
 msgstr ""
 
-#: .\core\models.py:69
+#: core/models.py:75
 msgid "closing date"
 msgstr ""
 
-#: .\core\models.py:70
+#: core/models.py:76
 msgid "status"
 msgstr ""
 
-#: .\core\models.py:73
+#: core/models.py:79
 msgid "editors"
 msgstr ""
 
-#: .\core\models.py:74
+#: core/models.py:80
 msgid ""
 "Any users in any of these groups will have permission to change this "
 "document."
 msgstr ""
 
-#: .\core\models.py:76
+#: core/models.py:82
 msgid "reporting member"
 msgstr ""
 
-#: .\core\models.py:85
+#: core/models.py:91
 msgid "bills"
 msgstr ""
 
-#: .\core\models.py:98
+#: core/models.py:104
 msgid "apresentation name"
 msgstr ""
 
-#: .\core\models.py:99
+#: core/models.py:105
 msgid "editable"
 msgstr ""
 
-#: .\core\models.py:102
+#: core/models.py:108
 msgid "type segment"
 msgstr ""
 
-#: .\core\models.py:103
+#: core/models.py:109
 msgid "types segment"
 msgstr ""
 
-#: .\core\models.py:111
+#: core/models.py:117
 msgid "order"
 msgstr ""
 
-#: .\core\models.py:113
+#: core/models.py:119
 msgid "number"
 msgstr ""
 
-#: .\core\models.py:115
+#: core/models.py:121
 msgid "segment replaced"
 msgstr ""
 
-#: .\core\models.py:117
+#: core/models.py:123
 msgid "original"
 msgstr ""
 
-#: .\core\models.py:118
+#: core/models.py:124
 msgid "content"
 msgstr ""
 
-#: .\core\models.py:155
+#: core/models.py:161
 msgid "Up Vote"
 msgstr ""
 
-#: .\core\models.py:155
+#: core/models.py:161
 msgid "Down Vote"
 msgstr ""
 
-#: .\core\orderers.py:100
+#: core/orderers.py:100
 msgid "None"
 msgstr ""
 
-#: .\core\templatetags\convert_numbers.py:62
+#: core/templatetags/convert_numbers.py:62
 msgid "Sole paragraph"
 msgstr ""
 
-#: .\core\views.py:28
+#: core/views.py:28
 msgid "Order by"
 msgstr ""
 
-#: .\core\views.py:34
+#: core/views.py:34
 msgid "Hot"
 msgstr ""
 
-#: .\core\views.py:35
+#: core/views.py:35
 msgid "Date"
 msgstr ""
 
-#: .\core\views.py:155
+#: core/views.py:155
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr ""
 
-#: .\core\views.py:185 .\core\views.py:226
+#: core/views.py:185 core/views.py:226
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr ""
 
-#: .\notification\models.py:11
+#: notification/models.py:11
 msgid "amendment"
 msgstr ""
 
-#: .\notification\models.py:12
+#: notification/models.py:12
 msgid "hour"
 msgstr ""
 
-#: .\notification\models.py:16
+#: notification/models.py:16
 msgid "history notification"
 msgstr ""
 
-#: .\notification\models.py:17
+#: notification/models.py:17
 msgid "history notifications"
 msgstr ""
 
-#: .\notification\models.py:25 .\templates\bill\bill.html:71
+#: notification/models.py:25 templates/bill/bill.html:75
 msgid "Daily"
 msgstr ""
 
-#: .\notification\models.py:26 .\templates\bill\bill.html:66
+#: notification/models.py:26 templates/bill/bill.html:70
 msgid "Weekly"
 msgstr ""
 
-#: .\notification\models.py:31
+#: notification/models.py:31
 msgid "periodicity"
 msgstr ""
 
-#: .\notification\models.py:35
+#: notification/models.py:35
 msgid "Newsletter"
 msgstr ""
 
-#: .\notification\models.py:36
+#: notification/models.py:36
 msgid "Newsletters"
 msgstr ""
 
-#: .\settings.py:223
+#: settings.py:223
 msgid "Google"
 msgstr ""
 
-#: .\settings.py:227
+#: settings.py:227
 msgid "Facebook"
 msgstr ""
 
-#: .\templates\_about_link.html:3
+#: templates/_about_link.html:3
 msgid "About"
 msgstr ""
 
-#: .\templates\_sidebar_language_selector.html:7
+#: templates/_sidebar_language_selector.html:7
 msgid "Select language"
 msgstr ""
 
-#: .\templates\_sidebar_search.html:7
+#: templates/_sidebar_search.html:7
 msgid "Search"
 msgstr ""
 
-#: .\templates\_vote_buttons_read_only.html:5
-#: .\templates\_vote_buttons_read_only.html:13
+#: templates/_vote_buttons_read_only.html:5
+#: templates/_vote_buttons_read_only.html:13
 msgid "This bill is closed, you can not vote or comment."
 msgstr ""
 
-#: .\templates\about.html:17
+#: templates/about.html:17
 msgid "About Wikilegis"
 msgstr ""
 
-#: .\templates\about.html:18
+#: templates/about.html:18
 msgid ""
 "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
 "Hacker Lab, designed to enable citizens to suggest modifications to the "
@@ -429,249 +429,237 @@ msgid ""
 "improve our tool."
 msgstr ""
 
-#: .\templates\about.html:22
+#: templates/about.html:22
 msgid ""
 "Visit us on Trello, Github and in our page to propose new features or to "
 "report bugs. If you have programming skills, you can also collaborate to the "
 "development of Wikilegis. "
 msgstr ""
 
-#: .\templates\about.html:33
+#: templates/about.html:33
 msgid "terms of use"
 msgstr ""
 
-#: .\templates\about.html:36
-#: .\templates\registration\registration_complete.html:14
+#: templates/about.html:36
+#: templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr ""
 
-#: .\templates\admin\base_site.html:6
+#: templates/admin/base_site.html:6
 msgid "Django administration"
 msgstr ""
 
-#: .\templates\adminsortable2\tabular-1.6.html:10
+#: templates/adminsortable2/tabular-1.6.html:10
 msgid "Sort"
 msgstr ""
 
-#: .\templates\adminsortable2\tabular-1.6.html:18
+#: templates/adminsortable2/tabular-1.6.html:18
 msgid "Delete?"
 msgstr ""
 
-#: .\templates\adminsortable2\tabular-1.6.html:90
+#: templates/adminsortable2/tabular-1.6.html:90
 #, python-format
 msgid "Add another %(verbose_name)s"
 msgstr ""
 
-#: .\templates\adminsortable2\tabular-1.6.html:91
+#: templates/adminsortable2/tabular-1.6.html:91
 msgid "Remove"
 msgstr ""
 
-#: .\templates\auth2\_current_user_or_login_button.html:10
-#: .\templates\registration\login.html:47
+#: templates/auth2/_current_user_or_login_button.html:10
+#: templates/registration/login.html:47
 msgid "Log in"
 msgstr ""
 
-#: .\templates\auth2\show_users_profile.html:15
+#: templates/auth2/show_users_profile.html:15
 msgid "Joined on"
 msgstr ""
 
-#: .\templates\auth2\your_profile.html:18
+#: templates/auth2/your_profile.html:18
 msgid "Your profile"
 msgstr ""
 
-#: .\templates\auth2\your_profile.html:40
+#: templates/auth2/your_profile.html:40
 msgid "Update my profile"
 msgstr ""
 
-#: .\templates\bill\_base.html:19 .\templates\bill\bill.html:33
+#: templates/bill/_base.html:19 templates/bill/bill.html:37
 msgid "Participations Closed"
 msgstr ""
 
-#: .\templates\bill\_bill_segment_item.html:4
+#: templates/bill/_bill_segment_item.html:4
 msgid "TITLE"
 msgstr ""
 
-#: .\templates\bill\_bill_segment_item.html:6
+#: templates/bill/_bill_segment_item.html:6
 msgid "BOOK"
 msgstr ""
 
-#: .\templates\bill\_bill_segment_item.html:8
+#: templates/bill/_bill_segment_item.html:8
 msgid "CHAPTER"
 msgstr ""
 
-#: .\templates\bill\_bill_segment_item.html:10
+#: templates/bill/_bill_segment_item.html:10
 msgid "Section"
 msgstr ""
 
-#: .\templates\bill\_bill_segment_item.html:12
+#: templates/bill/_bill_segment_item.html:12
 msgid "Subsection"
 msgstr ""
 
-#: .\templates\bill\bill.html:50
+#: templates/bill/bill.html:54
 msgid "Unsubscribe"
 msgstr ""
 
-#: .\templates\bill\bill.html:57
+#: templates/bill/bill.html:61
 msgid "Subscribe to this bill"
 msgstr ""
 
-#: .\templates\bill\bill.html:61
+#: templates/bill/bill.html:65
 msgid ""
 "You can be notified of changes in this bill via e-mail by subscribing to it."
 msgstr ""
 
-#: .\templates\bill\bill.html:75
+#: templates/bill/bill.html:79
 msgid "Subscribe"
 msgstr ""
 
-#: .\templates\bill\bill.html:86
-msgid "Bill status:"
-msgstr ""
-
-#: .\templates\bill\bill.html:95
+#: templates/bill/bill.html:102
 msgid "Attendees:"
 msgstr ""
 
-#: .\templates\bill\bill.html:96
+#: templates/bill/bill.html:103
 msgid "Proposals:"
 msgstr ""
 
-#: .\templates\bill\bill.html:98
+#: templates/bill/bill.html:105
 msgid "Closing date:"
 msgstr ""
 
-#: .\templates\bill\bill.html:117
-msgid "AUTHOR"
-msgstr ""
-
-#: .\templates\bill\bill.html:138
+#: templates/bill/bill.html:148
 msgid "RAPPORTEUR"
 msgstr ""
 
-#: .\templates\bill\bill.html:165
+#: templates/bill/bill.html:175
 msgid "Embedding Code"
 msgstr ""
 
-#: .\templates\bill\bill.html:169
+#: templates/bill/bill.html:179
 msgid "Copy and paste this code in your website."
 msgstr ""
 
-#: .\templates\bill\bill_segment.html:28 .\templates\bill\proposal.html:24
+#: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
 msgid "Original text"
 msgstr ""
 
-#: .\templates\bill\bill_segment.html:149
+#: templates/bill/bill_segment.html:149
 msgid "Submitted proposals"
 msgstr ""
 
-#: .\templates\bill\bill_segment.html:215
+#: templates/bill/bill_segment.html:215
 msgid "Make a proposal!"
 msgstr ""
 
-#: .\templates\bill\bill_segment.html:222
+#: templates/bill/bill_segment.html:222
 msgid "Participations closed"
 msgstr ""
 
-#: .\templates\bill\create_amendment.html:26
-#: .\templates\bill\create_amendment.html:61
+#: templates/bill/create_amendment.html:26
+#: templates/bill/create_amendment.html:61
 msgid "Send proposal"
 msgstr ""
 
-#: .\templates\bill\create_amendment.html:60
+#: templates/bill/create_amendment.html:60
 msgid "Cancel"
 msgstr ""
 
-#: .\templates\comments2\_comment_form.html:24
+#: templates/comments2/_comment_form.html:24
 msgid "Post"
 msgstr ""
 
-#: .\templates\comments2\_comment_form.html:25
+#: templates/comments2/_comment_form.html:25
 msgid "Preview"
 msgstr ""
 
-#: .\templates\export\export_form.html:10
+#: templates/export/export_form.html:10
 msgid "Download"
 msgstr ""
 
-#: .\templates\index.html:11
+#: templates/index.html:11
 msgid "Your legislative editing tool"
 msgstr ""
 
-#: .\templates\index.html:12
+#: templates/index.html:12
 msgid ""
 "Check the bills and contribute suggestions of new wordings to articles or "
 "paragraphs. The rapporteurs of the bills track the participation and can "
 "take up your idea!"
 msgstr ""
 
-#: .\templates\index.html:13
+#: templates/index.html:13
 msgid ""
 "With this interaction, society profits by participating more actively in the "
 "legislative process, and the Parliament profits by approving improved laws "
 "that are better attuned to citizens’ needs."
 msgstr ""
 
-#: .\templates\index.html:20
+#: templates/index.html:20
 msgid "Login"
 msgstr ""
 
-#: .\templates\index.html:20
+#: templates/index.html:20
 msgid "or"
 msgstr ""
 
-#: .\templates\index.html:20
+#: templates/index.html:20
 msgid "sign in"
 msgstr ""
 
-#: .\templates\index.html:37
+#: templates/index.html:37
 msgid "Closed Bills"
 msgstr ""
 
-#: .\templates\index.html:37
+#: templates/index.html:37
 msgid "Bills"
 msgstr ""
 
-#: .\templates\index.html:46
+#: templates/index.html:46
 msgid "Open"
 msgstr ""
 
-#: .\templates\index.html:48
+#: templates/index.html:48
 msgid "Closed"
 msgstr ""
 
-#: .\templates\index.html:65
+#: templates/index.html:69
 msgid "Created at"
 msgstr ""
 
-#: .\templates\index.html:70
-msgid "Status"
-msgstr ""
-
-#: .\templates\index.html:80
+#: templates/index.html:88
 msgid "Proposals"
 msgstr ""
 
-#: .\templates\index.html:80
+#: templates/index.html:88
 msgid "Proposal"
 msgstr ""
 
-#: .\templates\index.html:84 .\templates\index.html.py:88
+#: templates/index.html:92 templates/index.html.py:96
 msgid "No proposals"
 msgstr ""
 
-#: .\templates\index.html:89
+#: templates/index.html:97
 msgid "Participate"
 msgstr ""
 
-#: .\templates\index.html:100
+#: templates/index.html:108
 msgid "No bills"
 msgstr ""
 
-#: .\templates\registration\activation_email.html:7
+#: templates/registration/activation_email.html:7
 msgid "registration"
 msgstr ""
 
-#: .\templates\registration\activation_email.html:12
+#: templates/registration/activation_email.html:12
 #, python-format
 msgid ""
 "\n"
@@ -682,7 +670,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: .\templates\registration\activation_email.html:19
+#: templates/registration/activation_email.html:19
 #, python-format
 msgid ""
 "\n"
@@ -692,7 +680,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: .\templates\registration\activation_email.html:31
+#: templates/registration/activation_email.html:31
 #, python-format
 msgid ""
 "\n"
@@ -701,72 +689,72 @@ msgid ""
 "    "
 msgstr ""
 
-#: .\templates\registration\login.html:43
+#: templates/registration/login.html:43
 msgid "Activate Account"
 msgstr ""
 
-#: .\templates\registration\login.html:55
-#: .\templates\registration\registration_form.html:34
+#: templates/registration/login.html:55
+#: templates/registration/registration_form.html:34
 #, python-format
 msgid "Sign in with %(backend_name)s"
 msgstr ""
 
-#: .\templates\registration\login.html:60
+#: templates/registration/login.html:60
 msgid "Don't have an account?"
 msgstr ""
 
-#: .\templates\registration\login.html:60
+#: templates/registration/login.html:60
 msgid "Sign up now!"
 msgstr ""
 
-#: .\templates\registration\login.html:61
+#: templates/registration/login.html:61
 msgid "Forgot your password?"
 msgstr ""
 
-#: .\templates\registration\login.html:61
+#: templates/registration/login.html:61
 msgid "Ask for a new one!"
 msgstr ""
 
-#: .\templates\registration\password_reset_email.html:2
+#: templates/registration/password_reset_email.html:2
 #, python-format
 msgid ""
 "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
 
-#: .\templates\registration\password_reset_email.html:4
+#: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
 msgstr ""
 
-#: .\templates\registration\password_reset_email.html:8
+#: templates/registration/password_reset_email.html:8
 msgid "Your username, in case you've forgotten:"
 msgstr ""
 
-#: .\templates\registration\password_reset_email.html:10
+#: templates/registration/password_reset_email.html:10
 msgid "Thanks for using our site!"
 msgstr ""
 
-#: .\templates\registration\password_reset_email.html:12
+#: templates/registration/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
 msgstr ""
 
-#: .\templates\registration\registration_complete.html:4
+#: templates/registration/registration_complete.html:4
 msgid "Activation email sent"
 msgstr ""
 
-#: .\templates\registration\registration_complete.html:13
+#: templates/registration/registration_complete.html:13
 msgid "Please check your email to complete the registration process."
 msgstr ""
 
-#: .\templates\registration\registration_form.html:26
+#: templates/registration/registration_form.html:26
 msgid "Sign Up"
 msgstr ""
 
-#: .\templates\registration\resend_activation_form.html:18
+#: templates/registration/resend_activation_form.html:18
 msgid "Type your email to resend your account activation link"
 msgstr ""
 
-#: .\templates\registration\resend_activation_form.html:27
+#: templates/registration/resend_activation_form.html:27
 msgid "Resend"
 msgstr ""

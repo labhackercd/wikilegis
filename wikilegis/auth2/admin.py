@@ -69,14 +69,13 @@ class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         instance = form.save(commit=False)
         instance.save()
-        if instance.id_congressman:
-            if instance.congressman_set.all():
-                Congressman.objects.get(id=instance.congressman_set.all()[0].id).delete()
-            # TO-CUSTOMIZE: To get congressman from open data
-            # params = {'ideCadastro': instance.id_congressman, 'numLegislatura': ''}
-            # response = requests.get('http://www.camara.gov.br/SitCamaraWS/Deputados.asmx/ObterDetalhesDeputado',
-            #                         params=params)
-            # create_congressman(response, instance.id)
+        # TO-CUSTOMIZE: To get congressman from open data
+        # if instance.id_congressman:
+        #     if instance.congressman_set.all():
+        #         Congressman.objects.get(id=instance.congressman_set.all()[0].id).delete()
+        #     params = {'ideCadastro': instance.id_congressman, 'numLegislatura': ''}
+        #     response = requests.get('', params=params)
+        #     create_congressman(response, instance.id)
 
         return instance
 

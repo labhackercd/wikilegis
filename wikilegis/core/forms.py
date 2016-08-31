@@ -3,15 +3,10 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 from operator import attrgetter
 from django import forms
-from django.core.exceptions import ValidationError
 from django.db.models.expressions import F
 from django.utils.translation import ugettext_lazy as _
-from wikilegis.auth2.models import User
+from wikilegis.auth2.models import User, Congressman
 from . import models
-from datetime import datetime
-import requests
-from xml.etree import ElementTree
-
 
 # TODO FIXME Meta*Form, really? C'mon, we can do better naming than this.
 # from wikilegis.core.views import add_proposition
@@ -88,7 +83,7 @@ class CitizenAmendmentCreationForm(forms.ModelForm):
 
 
 class BillAdminForm(forms.ModelForm):
-    # TO-CUSTOMIZE: This fields are params to request in brazilian open data 
+    # TO-CUSTOMIZE: This fields are params to request in brazilian open data
     # PROPOSITION_TYPE_CHOICES = (
     #     ('', _('Select a type')),
     #     ('PEC', 'PEC - Proposta de Emenda à Constituição'),
@@ -100,8 +95,7 @@ class BillAdminForm(forms.ModelForm):
     # number = forms.IntegerField(label=_('Number'), required=False)
     # year = forms.IntegerField(label=_('Year'), required=False)
     reporting_member = forms.ModelChoiceField(label=_('Reporting member'), required=False,
-                                              queryset=User.objects.filter(is_congressman=True,
-                                                                           is_active=True))
+                                              queryset=Congressman.objects.all())
     file_txt = forms.FileField(label=_('File in txt format'), required=False)
 
     def __init__(self, *args, **kwargs):

@@ -68,6 +68,8 @@
                             <p class="d">{{ bill.description|linebreaks|truncatechars:205 }}</p>
                             <span class="pl-created-date">{% trans "Created at" %} {{ bill.created|date }}</span>
                         </div>                        
+                        {% comment %} 
+                        TO-CUSTOMIZE: Add situation of bill 
                         <div class="row">
                             {% if bill.proposition_set.all.0.situation %}
                             <div class="col s12 status">
@@ -76,7 +78,8 @@
                             {% else %}
                             <div class="col s12"></div>
                             {% endif %}
-                        </div>
+                        </div> 
+                        {% endcomment %}
                     </div>
                     <div class="col s12 m2 prop-count">
                         {% if bill.score > 0 %}

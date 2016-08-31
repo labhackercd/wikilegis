@@ -84,24 +84,27 @@
         {% endif %}
 
         <div class="pl-info">
+          {% comment %}
+          TO-CUSTOMIZE: Show situation of bill  
           {% if proposition.situation %}
             <span class="item">
               <span class="pl-subheading">{% trans "Bill status:" %}</span>
               <span class="pl-status">
-                <a target="_blank" href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao={{ proposition.id_proposition }}">
+                <a target="_blank" href="">
                   {{ proposition.situation }}
                 </a>
               </span>
             </span>
-
           {% endif %}
+          {% endcomment %}
           <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ attendees }}</span></span> 
           <span class="item"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count">{{ proposals }}</span></span>
           {% if bill.closing_date %}  
           <span class="item"><span class="pl-subheading">{% trans "Closing date:" %}</span> <span class="prop-count">{{ bill.closing_date|date:'d/m/Y' }}</span></span>
           {% endif %}
         </div>
-
+        {% comment %}
+        TO-CUSTOMIZE: Show author from bill
         <div class="row">
           {% if proposition %}
             <div class="after-bar">
@@ -109,7 +112,7 @@
                 <div class="col m3 s2">
                   <div class="avatr">
                     {% if proposition.id_register %}
-                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ proposition.id_register }}.jpg')"></div>
+                    <div class="pic" style="background-image: url('')"></div>
                     {% else %}
                     <div class="pic" style="background-image: url('{% static 'img/user.png' %}')"></div>
                     {% endif %}
@@ -126,6 +129,7 @@
             </div>
           {% endif %}
         </div>
+        {% endcomment %}
 
         <div class="row">
           {% if congressman %}
@@ -133,13 +137,13 @@
               <div class="user col s12">
                 <div class="col m3 s2">
                   <div class="avatr">
-                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ congressman.user.id_congressman }}.jpg')"></div>
+                    <div class="pic" style="background-image: url('{% cropped_thumbnail congressman.user 'cropping' %}')"></div>
                   </div>
                 </div>
                 <div class="col m9 s9">
                   <span class="user-name">
                     <div class="user-type">{% trans "RAPPORTEUR" %}</div>
-                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ congressman.user.id_congressman }}">
+                    <a target="_blank" href="{{ congressman.link }}">
                       {{ congressman.parliamentary_name|title }}
                     </a>
                   </span>

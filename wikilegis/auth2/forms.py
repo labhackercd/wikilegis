@@ -17,15 +17,16 @@ class UserChangeForm(BaseUserChangeForm):
     class Meta(BaseUserChangeForm.Meta):
         model = User
 
-    def clean(self):
-        if self.data['id_congressman']:
-            params = {'ideCadastro': self.data['id_congressman'], 'numLegislatura': ''}
-            response = requests.get('http://www.camara.gov.br/SitCamaraWS/Deputados.asmx/ObterDetalhesDeputado',
-                                    params=params)
-            if response.status_code == 500:
-                self.add_error('id_congressman', _('ID not found.'))
-                raise ValidationError(_('No congressman found with this id.'))
-        return self.cleaned_data
+    # TO-CUSTOMIZE: Update congressman with open data when save this form
+    # def clean(self):
+    #     if self.data['id_congressman']:
+    #         params = {'ideCadastro': self.data['id_congressman'], 'numLegislatura': ''}
+    #         response = requests.get('',
+    #                                 params=params)
+    #         if response.status_code == 500:
+    #             self.add_error('id_congressman', _('ID not found.'))
+    #             raise ValidationError(_('No congressman found with this id.'))
+    #     return self.cleaned_data
 
 
 class RegistrationForm(UserCreationForm):

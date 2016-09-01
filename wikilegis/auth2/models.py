@@ -82,8 +82,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     # This field and all the logic and subsystems associated with it
     # should belong to a plugin or something. It should be a separate,
     # optional component.
-    is_congressman = models.BooleanField(
-        _('Is Congressman'), default=False)
 
     objects = UserManager()
 

@@ -94,8 +94,6 @@ class BillAdminForm(forms.ModelForm):
     # type = forms.ChoiceField(label=_('Type'), choices=PROPOSITION_TYPE_CHOICES, required=False)
     # number = forms.IntegerField(label=_('Number'), required=False)
     # year = forms.IntegerField(label=_('Year'), required=False)
-    reporting_member = forms.ModelChoiceField(label=_('Reporting member'), required=False,
-                                              queryset=Congressman.objects.all())
     file_txt = forms.FileField(label=_('File in txt format'), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -112,7 +110,7 @@ class BillAdminForm(forms.ModelForm):
     class Meta:
         model = models.Bill
         fields = ('title', 'description', 'status', 'editors',
-                  'reporting_member', 'closing_date')
+                  'authors', 'reporting_member', 'closing_date')
 
     # TO-CUSTOMIZE: Validate your params fields
     # def clean(self):

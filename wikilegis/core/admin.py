@@ -105,16 +105,6 @@ class BillSegmentInline(SortableInlineAdminMixin, admin.TabularInline):
         return field
 
 
-class BillAuthorDataInline(GenericTabularInline):
-    form = forms.MetaAuthorForm
-    model = models.GenericData
-    verbose_name = _('author')
-    verbose_name_plural = _('authors')
-
-    def get_queryset(self, request):
-        return super(BillAuthorDataInline, self).get_queryset(request).filter(type=self.form.get_type())
-
-
 class BillVideoInline(GenericTabularInline):
     form = forms.MetaVideoForm
     model = models.GenericData
@@ -148,14 +138,14 @@ class BillChangeList(ChangeList):
 
 
 class BillAdmin(admin.ModelAdmin):
-    inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
+    inlines = (BillVideoInline, BillSegmentInline)
     list_filter = ['status']
     list_display = ('title', 'description', 'theme', 'status', 'get_report')
     # TO-CUSTOMIZE: Action to update bills from open data
     # actions = [propositions_update]
     form = BillAdminForm
     user_fieldsets = [
-        (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'reporting_member', 'closing_date']}),
+        (None, {'fields': ['title', 'epigraph', 'description', 'theme', 'reporting_member', 'authors', 'closing_date']}),
         # TO-CUSTOMIZE: Params to request open data in forms.py
         # (_('Legislative proposal'), {'fields': ['type', 'number', 'year'],
         #                              'description': _("This data will be used to assign the project to a legislative "
@@ -211,7 +201,7 @@ class BillAdmin(admin.ModelAdmin):
             return HttpResponseRedirect(redirect_url + '#add_segment')
         return super(BillAdmin, self).response_change(request, obj)
 
-    # TO-CUSTOMIZE: Get situation from open data object    
+    # TO-CUSTOMIZE: Get situation from open data object
     # def get_situation(self, obj):
     #     try:
     #         return "%s" % obj.proposition_set.all()[0].situation

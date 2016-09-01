@@ -79,6 +79,7 @@ class Bill(TimestampedMixin):
         'auth.Group', verbose_name=_('editors'), blank=True,
         help_text=_('Any users in any of these groups will '
                     'have permission to change this document.'))
+    authors = models.ManyToManyField('auth2.Congressman', verbose_name=_('authors'), blank=True, related_name='bill_owner')
     reporting_member = models.ForeignKey('auth2.Congressman', verbose_name=_('reporting member'), null=True, blank=True)
 
     metadata = GenericRelation('GenericData')

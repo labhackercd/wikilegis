@@ -24,7 +24,7 @@ $('.wikilegis-widget').wrap("<div class='wikilegis-widget-wrapper'></div>")
 $('.wikilegis-widget-wrapper')
 	.prepend($(document.createElement('p'))
 		.addClass('widget-briefing')
-		.html('Contribua diretamente no Projeto de Lei da Câmara do Deputados:')
+		.html('Contribua diretamente no Projeto de Lei da C&acirc;mara do Deputados:')
 	);
 $('.widget-briefing')
 	.before($(document.createElement('img'))

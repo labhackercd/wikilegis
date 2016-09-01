@@ -84,10 +84,8 @@ msgstr ""
 "después de haber enviado el formulario."
 
 #: auth2/models.py:86
-#, fuzzy
-#| msgid "congressman"
 msgid "Is Congressman"
-msgstr "parlamentario"
+msgstr "Es Parlamentario"
 
 #: auth2/models.py:119 core/models.py:157 notification/models.py:30
 msgid "user"
@@ -106,10 +104,8 @@ msgid "parliamentary name"
 msgstr "nombre del parlamentario"
 
 #: auth2/models.py:123
-#, fuzzy
-#| msgid "parliamentary name"
 msgid "parliamentary website"
-msgstr "nombre del parlamentario"
+msgstr "Web del parlamentario"
 
 #: auth2/models.py:126
 msgid "congressman"
@@ -152,10 +148,8 @@ msgid "videos"
 msgstr "videos"
 
 #: core/admin.py:167
-#, fuzzy
-#| msgid "Administrator filds"
 msgid "Administrator fields"
-msgstr "Campos del Administrador"
+msgstr "Administradoción"
 
 #: core/admin.py:168
 msgid "File to import"
@@ -254,10 +248,8 @@ msgid "theme"
 msgstr "tema"
 
 #: core/models.py:65
-#, fuzzy
-#| msgid "theme"
 msgid "Themes"
-msgstr "tema"
+msgstr "Temas"
 
 #: core/models.py:72
 msgid "subject"
@@ -301,10 +293,8 @@ msgid "bills"
 msgstr "proyectos de ley"
 
 #: core/models.py:104
-#, fuzzy
-#| msgid "parliamentary name"
 msgid "apresentation name"
-msgstr "nombre del parlamentario"
+msgstr "Mostrar como"
 
 #: core/models.py:105
 msgid "editable"
@@ -516,10 +506,8 @@ msgid "Update my profile"
 msgstr "Actualizar mi perfil"
 
 #: templates/bill/_base.html:19 templates/bill/bill.html:37
-#, fuzzy
-#| msgid "Participate"
 msgid "Participations Closed"
-msgstr "Participar"
+msgstr "Etapa de participación finalizada"
 
 #: templates/bill/_bill_segment_item.html:4
 msgid "TITLE"
@@ -598,10 +586,8 @@ msgid "Make a proposal!"
 msgstr "¡Sugiere una propuesta!"
 
 #: templates/bill/bill_segment.html:222
-#, fuzzy
-#| msgid "Participate"
 msgid "Participations closed"
-msgstr "Participar"
+msgstr "Etapa de participación finalizada"
 
 #: templates/bill/create_amendment.html:26
 #: templates/bill/create_amendment.html:61
@@ -701,10 +687,8 @@ msgid "No bills"
 msgstr "No hay proyectos de ley"
 
 #: templates/registration/activation_email.html:7
-#, fuzzy
-#| msgid "Situation"
 msgid "registration"
-msgstr "Situación"
+msgstr "registro"
 
 #: templates/registration/activation_email.html:12
 #, python-format

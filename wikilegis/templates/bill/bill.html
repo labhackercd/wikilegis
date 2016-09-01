@@ -99,33 +99,37 @@
           <span class="item"><span class="pl-subheading">{% trans "Closing date:" %}</span> <span class="prop-count">{{ bill.closing_date|date:'d/m/Y' }}</span></span>
           {% endif %}
         </div>
-        {% comment %}
-        TO-CUSTOMIZE: Show author from bill
-        <div class="row">
-          {% if proposition %}
-            <div class="after-bar">
-              <div class="user col s12">
-                <div class="col m3 s2">
-                  <div class="avatr">
-                    {% if proposition.id_register %}
-                    <div class="pic" style="background-image: url('')"></div>
-                    {% else %}
-                    <div class="pic" style="background-image: url('{% static 'img/user.png' %}')"></div>
-                    {% endif %}
+
+        {% for author in bill.authors.all %}   
+          <div class="row">
+              <div class="after-bar">
+                <div class="user col s12">
+                  <div class="col m3 s2">
+                    <div class="avatr">
+                      {% if author.user.avatar %}
+                      <div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>
+                      {% else %}
+                      <div class="pic" style="background-image: url('{% static 'img/user.png' %}')"></div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="col m9 s9">
+                    <span class="user-name">
+                      <div class="user-type">{% trans "AUTHOR" %}</div>
+                      {% if author.link %}
+                        <a target="_blank" href="{{ author.link }}">
+                          {{ author.parliamentary_name }}
+                        </a>
+                      {% else %}
+                        {{ author.parliamentary_name }}
+                      {% endif %}
+                    </span>
+                    <p class="p-uf">({{ author.party }}-{{ author.uf }})</p>
                   </div>
                 </div>
-                <div class="col m9 s9">
-                  <span class="user-name">
-                    <div class="user-type">{% trans "AUTHOR" %}</div>
-                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ proposition.id_register }}">{{ proposition.author }} </a>
-                  </span>
-                  <p class="p-uf">({{ proposition.party_author }}-{{ proposition.uf_author }})</p>
-                </div>
               </div>
-            </div>
-          {% endif %}
-        </div>
-        {% endcomment %}
+          </div>
+        {% endfor %}
 
         <div class="row">
           {% if congressman %}

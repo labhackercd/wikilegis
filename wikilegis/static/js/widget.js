@@ -325,6 +325,10 @@ function loadBill(bill_id){
     		.attr('href', domain + 'bill/'+ bill_id)
     		.html('Ver todo o projeto no Wikilegis')
     	);
+    } else {
+    	$('.wikilegis-widget')
+    		.css('height', 'auto')
+    		.css('overflow', 'visible');
     }
 
     /*

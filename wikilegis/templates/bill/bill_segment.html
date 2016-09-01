@@ -1,14 +1,16 @@
 {% extends "bill/_base.html" %}
 
 {% load comments %}
+{% comment %}
 {% load previous_segments %}
+{% load convert_numbers %}
+{% endcomment %}
 {% load static %}
 {% load i18n %}
 {% load render_comments from comments2 %}
 {% load cropping %}
 
 {% block content3 %}
-{% load convert_numbers %}
 <div class="pl-full">
     <div class="container">
         <div class="articles-header valign-wrapper">
@@ -29,6 +31,8 @@
         </div>
 
         <div class="divider"></div>
+        {% comment %}
+        TO-CUSTOMIZE: To show previous segments 
         {% if segment.type.name != 'Artigo' %}
         <div class="segments-before">
             {% for dispositive in segment|previous %}
@@ -48,7 +52,7 @@
 
                     <div class="content">
                         <div class="article-content">
-                            <span>{% segment_numbering dispositive %}</span> {{ dispositive.content }}
+                            <span>{{ dispositive.type.apresentation_name|default_if_none:'' }} {{ dispositive.number }}}</span> {{ dispositive.content }}
                         </div>
                     </div>
                 </div>
@@ -72,7 +76,7 @@
         </div>
 
         {% endif %}
-
+        {% endcomment %}
         <div class="row layarticle">
             <div class="col s2 m2 l1">
                 <div class="votes">
@@ -88,7 +92,7 @@
 
             <div class="col s10 m10 l11">
                 <div class="article-prop">
-                    <p id="original" data-raw-content="{{ segment.content }}"><span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
+                    <p id="original" data-raw-content="{{ segment.content }}"><span class="article-type">{{ segment.type.apresentation_name|default_if_none:'' }} {{ segment.number|default_if_none:'' }}</span>{{ segment.content }}</p>
                 </div>
                 <div class="after-bar">
                     <div class="col s12 m12 l8">

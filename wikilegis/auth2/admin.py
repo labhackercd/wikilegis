@@ -48,7 +48,7 @@ from image_cropping import ImageCroppingMixin
 class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'is_congressman', 'avatar', 'cropping')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'avatar', 'cropping')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
@@ -60,7 +60,7 @@ class UserAdmin(BaseUserAdmin, ImageCroppingMixin, admin.ModelAdmin):
     )
     form = UserChangeForm
     add_form = UserCreationForm
-    list_filter = ['is_congressman', 'is_superuser', 'is_active']
+    list_filter = ['is_superuser', 'is_active']
     list_display = ('email', 'first_name', 'last_name', 'is_staff')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)

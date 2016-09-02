@@ -93,7 +93,7 @@ msgstr "usuario"
 
 #: auth2/models.py:120
 msgid "uf"
-msgstr "uf"
+msgstr "distrito"
 
 #: auth2/models.py:121
 msgid "party"

@@ -6,7 +6,7 @@ from wikilegis.auth2.models import User
 from wikilegis.core.models import Bill, BillSegment, TypeSegment, UpDownVote
 
 
-class CommentsUserSerializer(serializers.ModelSerializer):
+class BasicUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'avatar')
@@ -14,7 +14,7 @@ class CommentsUserSerializer(serializers.ModelSerializer):
 
 class CommentsSerializer(serializers.ModelSerializer):
     content_type = serializers.SerializerMethodField('get_content_type_name')
-    user = CommentsUserSerializer()
+    user = BasicUserSerializer()
 
     def __init__(self, *args, **kwargs):
         super(CommentsSerializer, self).__init__(*args, **kwargs)
@@ -26,7 +26,7 @@ class CommentsSerializer(serializers.ModelSerializer):
             if api_key and api_key == settings.API_KEY:
                 self.fields['user'] = UserSerializer()
             else:
-                self.fields['user'] = CommentsUserSerializer()
+                self.fields['user'] = BasicUserSerializer()
         except AttributeError:
             # When django initializes kwarg is None
             pass
@@ -48,7 +48,7 @@ class CommentsSerializerForPost(serializers.ModelSerializer):
 
 class VoteSerializer(serializers.ModelSerializer):
     content_type = serializers.SerializerMethodField('get_content_type_name')
-    user = CommentsUserSerializer()
+    user = BasicUserSerializer()
 
     def get_content_type_name(self, obj):
         return obj.content_type.name
@@ -59,9 +59,24 @@ class VoteSerializer(serializers.ModelSerializer):
 
 
 class SegmentSerializer(serializers.ModelSerializer):
-    author = CommentsUserSerializer()
+    author = BasicUserSerializer()
     comments = CommentsSerializer(many=True)
     votes = VoteSerializer(many=True)
+
+    def __init__(self, *args, **kwargs):
+        super(SegmentSerializer, self).__init__(*args, **kwargs)
+
+        try:
+            request = kwargs.get('context').get('request')
+            api_key = request.GET.get('api_key', None)
+
+            if api_key and api_key == settings.API_KEY:
+                self.fields['author'] = UserSerializer()
+            else:
+                self.fields['author'] = BasicUserSerializer()
+        except AttributeError:
+            # When django initializes kwarg is None
+            pass
 
     class Meta:
         model = BillSegment
@@ -89,10 +104,27 @@ class BillDetailSerializer(serializers.ModelSerializer):
 
 
 class BillSerializer(serializers.ModelSerializer):
+    reporting_member = BasicUserSerializer()
+
+    def __init__(self, *args, **kwargs):
+        super(BillSerializer, self).__init__(*args, **kwargs)
+
+        try:
+            request = kwargs.get('context').get('request')
+            api_key = request.GET.get('api_key', None)
+
+            if api_key and api_key == settings.API_KEY:
+                self.fields['reporting_member'] = UserSerializer()
+            else:
+                self.fields['reporting_member'] = BasicUserSerializer()
+        except AttributeError:
+            # When django initializes kwarg is None
+            pass
+
     class Meta:
         model = Bill
-        fields = ('id', 'title', 'epigraph', 'description',
-                  'status', 'theme', 'segments')
+        fields = ('id', 'title', 'epigraph', 'description', 'reporting_member',
+                  'status', 'theme', 'segments', 'created', 'modified')
 
 
 class UserSerializer(serializers.ModelSerializer):

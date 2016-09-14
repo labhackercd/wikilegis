@@ -101,6 +101,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'wikilegis.core.middlewares.ForceLangMiddleware',
 )
 
 ROOT_URLCONF = 'wikilegis.urls'

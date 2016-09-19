@@ -40,7 +40,7 @@ BILL_THEMES_CHOICES = (
     ('industria', _('Industry')),
     ('institucional', _('Institutional')),
     ('meio-ambiente', _('Environment')),
-    ('participacao_e_transparencia', _('Participation and Transparency')),
+    ('participacao-e-transparencia', _('Participation and Transparency')),
     ('politica', _('Policy')),
     ('previdencia', _('Foresight')),
     ('relacoes-exteriores', _('Foreign Affairs')),

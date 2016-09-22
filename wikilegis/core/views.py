@@ -14,6 +14,7 @@ from django.utils.decorators import method_decorator
 from django.utils.text import capfirst
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.generic import DetailView, CreateView
+from django.contrib.sites.models import Site
 
 from .forms import CitizenAmendmentCreationForm, AddProposalForm
 from .models import Bill, BillSegment, UpDownVote, Proposition
@@ -81,6 +82,7 @@ class BillDetailView(DetailView):
         context['attendees'] = len(set(list(votes_ids) + list(comment_ids) + list(proposals_ids)))
         context['proposals'] = self.object.segments.filter(original=False).count()
         context['videos'] = map(BillVideo, videos)
+        context['domain'] = Site.objects.get_current()
         try:
             context['congressman'] = Congressman.objects.filter(user_id=self.object.reporting_member.id).latest('id')
         except:

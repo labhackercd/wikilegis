@@ -151,8 +151,9 @@ LOCALE_PATHS = [
     os.path.join(HERE, 'locale'),
 ]
 
-
 # Authentication and user management
+
+LOGIN_URL = config('LOGIN_URL', default='/accounts/login/')
 
 AUTH_USER_MODEL = 'auth2.User'
 

@@ -215,7 +215,7 @@
     function verify_newsletter() {
         $.ajax({
             type: "GET",
-            url: "/newsletter/verify/" + {{ bill.id }} + "/" + $('#id_periodicity').val() + "/",
+            url: {% url 'verify_newsletter' bill.id %} + '?periodicity='+ $('#id_periodicity').val(),
             error: function (data) {
                 alert("An error occurred, please try again."); // TODO: How do we internationalize strings inside JS?
             }

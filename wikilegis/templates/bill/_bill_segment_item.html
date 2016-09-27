@@ -11,7 +11,7 @@
 {% elif segment.type.name|slugify == 'subsecao' %}
     <h5 class="heading subsecao" id="subsection-{{segment.id}}">{% trans "Subsection" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
 {% else %}
-<a class="bill-link col s12" href="{% url 'show_segment' bill.id segment.id %}">
+<a class="bill-link col s12 {% ifequal segment.proposals_count 0 %}no-proposal{% endifequal %}" href="{% url 'show_segment' bill.id segment.id %}">
     <div class="article {{ segment.type.name|slugify }}" id="segment-{{ segment.id }}">
         <div class="comments-counter">
             <div class="cn">

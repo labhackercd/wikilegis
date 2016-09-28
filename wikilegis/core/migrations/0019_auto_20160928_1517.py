@@ -12,10 +12,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunSQL('SET CONSTRAINTS ALL IMMEDIATE',
+                          reverse_sql=migrations.RunSQL.noop),
         migrations.AlterField(
             model_name='bill',
             name='closing_date',
             field=models.DateField(default=datetime.datetime(2016, 12, 31, 0, 0), verbose_name='closing date'),
             preserve_default=False,
         ),
+        migrations.RunSQL(migrations.RunSQL.noop,
+                          reverse_sql='SET CONSTRAINTS ALL IMMEDIATE'),
     ]

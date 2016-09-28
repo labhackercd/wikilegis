@@ -85,7 +85,7 @@ class Bill(TimestampedMixin):
     title = models.CharField(_('subject'), max_length=255)
     epigraph = models.CharField(_('epigraph'), max_length=255, null=True)
     description = models.TextField(_('digest'))
-    closing_date = models.DateField(_('closing date'), null=True, blank=True)
+    closing_date = models.DateField(_('closing date'))
     status = models.CharField(_('status'), max_length=20, choices=BILL_STATUS_CHOICES, default='1')
     theme = models.CharField(_('theme'), max_length=255, choices=BILL_THEMES_CHOICES, default='documento')
     editors = models.ManyToManyField(

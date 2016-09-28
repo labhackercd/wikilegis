@@ -99,7 +99,7 @@ class BillDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bill
-        fields = ('id', 'title', 'epigraph', 'description',
+        fields = ('id', 'title', 'epigraph', 'description', 'closing_date',
                   'status', 'theme', 'segments', 'created', 'modified')
 
 
@@ -124,7 +124,8 @@ class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = ('id', 'title', 'epigraph', 'description', 'reporting_member',
-                  'status', 'theme', 'segments', 'created', 'modified')
+                  'status', 'theme', 'segments', 'created', 'modified',
+                  'closing_date')
 
 
 class UserSerializer(serializers.ModelSerializer):

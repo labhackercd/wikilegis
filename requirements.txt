@@ -35,6 +35,7 @@ sqlparse==0.1.16
 Whoosh==2.7.0
 djangorestframework==3.3.3
 Markdown==2.6.6
-django-filter==0.13.0
+django-filter==0.15.2
 roman==2.0.0
 django-cors-headers==1.1.0
+django-crispy-forms==1.6.0

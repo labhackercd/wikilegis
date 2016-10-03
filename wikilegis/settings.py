@@ -71,6 +71,8 @@ INSTALLED_APPS = (
     'image_cropping',
     'rest_framework',
     'corsheaders',
+    'django_filters',
+    'crispy_forms',
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -86,6 +88,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.DjangoFilterBackend',
+    ),
     'PAGE_SIZE': 10
 }
 

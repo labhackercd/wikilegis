@@ -13,7 +13,7 @@ from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
                                         TypeSegmentSerializer, BillDetailSerializer,
                                         CommentsSerializerForPost, SegmentSerializerForPost,
                                         UpDownVoteSerializer, UpDownVoteSerializerForPost)
-from rest_framework import generics, permissions, mixins
+from rest_framework import generics, permissions, mixins, filters
 
 
 class TokenPermission(permissions.BasePermission):
@@ -40,11 +40,19 @@ class BillAPI(generics.GenericAPIView, mixins.RetrieveModelMixin):
 class BillListAPI(generics.ListAPIView):
     queryset = Bill.objects.exclude(status='draft').order_by('-created')
     serializer_class = BillSerializer
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    filter_fields = ('theme', 'reporting_member')
+    search_fields = ('title', 'epigraph', 'description', 'theme')
+    ordering_fields = ('closing_date', 'created', 'modified', 'id')
 
 
 class SegmentsListAPI(generics.ListCreateAPIView):
     queryset = BillSegment.objects.exclude(bill__status='draft').order_by('-created')
     serializer_class = SegmentSerializer
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    filter_fields = ('bill', 'type', 'original', 'author')
+    search_fields = ('number', 'content')
+    ordering_fields = ('order', 'original', 'created', 'modified', 'id')
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -73,6 +81,10 @@ class SegmentsListAPI(generics.ListCreateAPIView):
 class CommentListAPI(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    filter_fields = ('content_type', 'object_pk', 'user')
+    search_fields = ('comment', 'user_name')
+    ordering_fields = ('submit_date', 'id')
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -98,6 +110,9 @@ class CommentListAPI(generics.ListCreateAPIView):
 class UpDownVoteListAPI(generics.ListCreateAPIView):
     queryset = UpDownVote.objects.all()
     serializer_class = UpDownVoteSerializer
+    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter)
+    filter_fields = ('user', 'object_id', 'vote')
+    ordering_fields = ('created', 'modified', 'id')
 
     def get_serializer_class(self):
         if self.request.method == 'GET':

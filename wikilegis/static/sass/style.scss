@@ -564,6 +564,9 @@ strong {
             margin: 10px 0;
             display: block;
         }
+        .filter-proposals {
+            cursor: pointer;
+        }
         margin-bottom: 20px;
         color: $medgrey;
         .pl-subheading {
@@ -766,6 +769,10 @@ strong {
         text-transform: uppercase;
         font-weight: 100;
         font-size: 1.5rem;
+    }
+
+    &.hide-empty > .col > .bill-link.no-proposal {
+        display: none;
     }
 
 }

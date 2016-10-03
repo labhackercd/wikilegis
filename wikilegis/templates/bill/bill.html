@@ -92,7 +92,7 @@
 
           {% endif %}
           <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ attendees }}</span></span> 
-          <span class="item" style="cursor:pointer" onclick="filter_proposal();"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count" id="filter-proposal">{{ proposals }}</span></span>
+          <span class="item filter-proposals"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count" id="filter-proposal">{{ proposals }}</span></span>
           {% if bill.closing_date %}  
           <span class="item"><span class="pl-subheading">{% trans "Closing date:" %}</span> <span class="prop-count">{{ bill.closing_date|date:'d/m/Y' }}</span></span>
           {% endif %}
@@ -221,8 +221,8 @@
             }
         });
     }
-    function filter_proposal() {
-      $(".no-proposal").toggle(1000);
-    };
+    $('.filter-proposals').click(function() {
+      $('.list-amendment').toggleClass('hide-empty');
+    });
 </script>
 {% endblock %}

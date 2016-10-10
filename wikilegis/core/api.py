@@ -62,18 +62,21 @@ class SegmentsListAPI(generics.ListCreateAPIView):
 
     def create(self, request, *args, **kwargs):
         if request.user.is_authenticated():
-            obj_replaced = BillSegment.objects.get(id=request.data['replaced'])
-            obj = BillSegment()
-            obj.bill_id = request.data['bill']
-            obj.author = request.user
-            obj.original = False
-            obj.content = request.data['content']
-            obj.replaced = obj_replaced
-            obj.parent = obj_replaced.parent
-            obj.number = obj_replaced.number
-            obj.type = obj_replaced.type
-            obj.save()
-            return Response(status=201)
+            try:
+                obj_replaced = BillSegment.objects.get(id=request.data['replaced'])
+                obj = BillSegment()
+                obj.bill_id = request.data['bill']
+                obj.author = request.user
+                obj.original = False
+                obj.content = request.data['content']
+                obj.replaced = obj_replaced
+                obj.parent = obj_replaced.parent
+                obj.number = obj_replaced.number
+                obj.type = obj_replaced.type
+                obj.save()
+                return Response(status=201)
+            except Exception as e:
+                return Response(status=403, data=e.message)
         else:
             return Response(status=403)
 

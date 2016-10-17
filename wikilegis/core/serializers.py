@@ -55,7 +55,7 @@ class VoteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UpDownVote
-        fields = ('id', 'user', 'content_type', 'object_id', 'vote')
+        fields = ('id', 'user', 'content_type', 'object_id', 'vote', 'created', 'modified')
 
 
 class SegmentSerializer(serializers.ModelSerializer):
@@ -131,7 +131,7 @@ class BillSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'avatar')
+        fields = ('id', 'email', 'first_name', 'last_name', 'avatar')
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -145,12 +145,6 @@ class TypeSegmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeSegment
         fields = ('id', 'name')
-
-
-class UpDownVoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UpDownVote
-        fields = ('user', 'content_type', 'object_id', 'vote')
 
 
 class UpDownVoteSerializerForPost(serializers.ModelSerializer):

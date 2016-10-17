@@ -17,9 +17,11 @@ from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
                                         CommentsSerializer, UserSerializer,
                                         TypeSegmentSerializer, BillDetailSerializer,
                                         CommentsSerializerForPost, SegmentSerializerForPost,
-                                        UpDownVoteSerializer, UpDownVoteSerializerForPost,
+                                        VoteSerializer, UpDownVoteSerializerForPost,
                                         CreateUserSerializer)
 from rest_framework import generics, permissions, mixins, filters
+import django_filters
+from django_filters import rest_framework
 
 
 class JSONResponse(HttpResponse):
@@ -53,11 +55,20 @@ class BillAPI(generics.GenericAPIView, mixins.RetrieveModelMixin):
         return obj
 
 
+class BillFilter(rest_framework.FilterSet):
+    created = django_filters.DateTimeFilter(name="created", lookup_type="gte")
+    modified = django_filters.DateTimeFilter(name="modified", lookup_type="gte")
+
+    class Meta:
+        model = Bill
+        fields = ['theme', 'reporting_member', 'created', 'modified']
+
+
 class BillListAPI(generics.ListAPIView):
     queryset = Bill.objects.exclude(status='draft').order_by('-created')
     serializer_class = BillSerializer
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
-    filter_fields = ('theme', 'reporting_member')
+    filter_class = BillFilter
     search_fields = ('title', 'epigraph', 'description', 'theme')
     ordering_fields = ('closing_date', 'created', 'modified', 'id')
 
@@ -79,11 +90,20 @@ class CreateUserAPI(generics.CreateAPIView):
             return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class BillSegmentFilter(rest_framework.FilterSet):
+    created = django_filters.DateTimeFilter(name="created", lookup_type="gte")
+    modified = django_filters.DateTimeFilter(name="modified", lookup_type="gte")
+
+    class Meta:
+        model = BillSegment
+        fields = ['bill', 'type', 'original', 'author', 'created', 'modified']
+
+
 class SegmentsListAPI(generics.ListCreateAPIView):
     queryset = BillSegment.objects.exclude(bill__status='draft').order_by('-created')
     serializer_class = SegmentSerializer
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
-    filter_fields = ('bill', 'type', 'original', 'author')
+    filter_class = BillSegmentFilter
     search_fields = ('number', 'content')
     ordering_fields = ('order', 'original', 'created', 'modified', 'id')
 
@@ -129,11 +149,19 @@ class SegmentsListAPI(generics.ListCreateAPIView):
             return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CommentFilter(rest_framework.FilterSet):
+    created = django_filters.DateTimeFilter(name="submit_date", lookup_type="gte")
+
+    class Meta:
+        model = Comment
+        fields = ['content_type', 'object_pk', 'user']
+
+
 class CommentListAPI(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
-    filter_fields = ('content_type', 'object_pk', 'user')
+    filter_class = CommentFilter
     search_fields = ('comment', 'user_name')
     ordering_fields = ('submit_date', 'id')
 
@@ -170,11 +198,20 @@ class CommentListAPI(generics.ListCreateAPIView):
             return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class VotesFilter(rest_framework.FilterSet):
+    created = django_filters.DateTimeFilter(name="created", lookup_type="gte")
+    modified = django_filters.DateTimeFilter(name="modified", lookup_type="gte")
+
+    class Meta:
+        model = UpDownVote
+        fields = ['user', 'object_id', 'vote', 'created', 'modified']
+
+
 class UpDownVoteListAPI(generics.ListCreateAPIView):
     queryset = UpDownVote.objects.all()
-    serializer_class = UpDownVoteSerializer
+    serializer_class = VoteSerializer
     filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter)
-    filter_fields = ('user', 'object_id', 'vote')
+    filter_class = VotesFilter
     ordering_fields = ('created', 'modified', 'id')
 
     def get_serializer_class(self):
@@ -208,7 +245,7 @@ class UpDownVoteListAPI(generics.ListCreateAPIView):
             vote.save()
             queryset = UpDownVote.objects.filter(object_id=request.data['object_id'],
                                                  content_type=obj_content_type)
-            serializer = UpDownVoteSerializer(queryset, many=True)
+            serializer = VoteSerializer(queryset, many=True)
             return JSONResponse(serializer.data, status=201)
         else:
             return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)

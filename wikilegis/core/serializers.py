@@ -105,6 +105,7 @@ class BillDetailSerializer(serializers.ModelSerializer):
 
 class BillSerializer(serializers.ModelSerializer):
     reporting_member = BasicUserSerializer()
+    proposals_count = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
         super(BillSerializer, self).__init__(*args, **kwargs)
@@ -124,8 +125,11 @@ class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = ('id', 'title', 'epigraph', 'description', 'reporting_member',
-                  'status', 'theme', 'segments', 'created', 'modified',
-                  'closing_date')
+                  'status', 'theme', 'proposals_count', 'segments', 'created',
+                  'modified', 'closing_date')
+
+    def get_proposals_count(self, obj):
+        return obj.segments.filter(original=False).count()
 
 
 class UserSerializer(serializers.ModelSerializer):

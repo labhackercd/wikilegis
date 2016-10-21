@@ -96,7 +96,7 @@ class BillSegmentFilter(rest_framework.FilterSet):
 
     class Meta:
         model = BillSegment
-        fields = ['bill', 'type', 'original', 'author', 'created', 'modified']
+        fields = ['bill', 'type', 'original', 'author', 'replaced', 'created', 'modified']
 
 
 class SegmentsListAPI(generics.ListCreateAPIView):

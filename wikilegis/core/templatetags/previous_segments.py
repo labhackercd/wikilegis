@@ -16,3 +16,15 @@ def previous(segment):
         return previous_segment
     except:
         return {}
+
+
+@register.filter
+def previous_article(segment):
+    # import ipdb; ipdb.set_trace()
+    try:
+        if segment.type.name != "Artigo":
+            article = BillSegment.objects.filter(bill_id=segment.bill_id, original=True,
+                                                 order__lt=segment.order, type__name='Artigo').order_by('-order')[0]
+            return article
+    except:
+        return {}

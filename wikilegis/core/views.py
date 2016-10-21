@@ -250,9 +250,10 @@ class BillReport(DetailView):
         votes = UpDownVote.objects.filter(content_type=segment_ctype, object_id__in=segments_id)
         comments = Comment.objects.filter(object_pk__in=segments_id, content_type=segment_ctype)
         proposals = self.object.segments.filter(original=False)
-        featured_segments = set(list(votes.values_list('object_id', flat=True)) +
-                                list(comments.values_list('object_pk', flat=True)) +
-                                list(proposals.values_list('parent_id', flat=True)))
+        featured_segments = (list(votes.values_list('object_id', flat=True)) +
+                             list(comments.values_list('object_pk', flat=True)) +
+                             list(proposals.values_list('replaced_id', flat=True)))
+        featured_segments = set(map(int, featured_segments))
         context['votes'] = votes.count()
         context['comments'] = comments.count()
         context['attendees'] = len(set(list(votes.values_list('user__id', flat=True)) +

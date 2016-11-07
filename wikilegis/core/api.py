@@ -251,6 +251,37 @@ class UpDownVoteListAPI(generics.ListCreateAPIView):
             return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class VoteUpdateDeleteAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UpDownVote.objects.all()
+    serializer_class = UpDownVoteSerializerForPost
+
+    def put(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if request.user.is_authenticated() and request.user == obj.user:
+            return self.update(request, *args, **kwargs)
+        elif request.data['token']:
+            token = Token.objects.get(key=request.data['token'])
+            if token.user == obj.user:
+                return self.update(request, *args, **kwargs)
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if request.user.is_authenticated() and request.user == obj.user:
+            return self.destroy(request, *args, **kwargs)
+        elif request.data['token']:
+            token = Token.objects.get(key=request.data['token'])
+            if token.user == obj.user:
+                return self.destroy(request, *args, **kwargs)
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
 class TypeSegmentAPI(generics.ListAPIView):
     queryset = TypeSegment.objects.all()
     serializer_class = TypeSegmentSerializer

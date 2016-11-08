@@ -176,15 +176,12 @@
             </div>
             <div class="subscribe-body collapsible-body">
 
-              <p>{% trans "Copy and paste this code in your website." %}</p>
+              <p>{% trans "You may have this project featured in your own website by pasting the following code in your own source code." %}</p>
 
               <div class="subscribe-options embed-code">
-                <code>
-                <div>&lt;div class="wikilegis-widget" bill-id="{{ bill.id }}"&gt;&lt;/div&gt;</div>
-                <div>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"&gt;&lt;/script&gt;</div>
-                <div>&lt;script src="http://{{ domain }}/static/js/widget.js"&gt;&lt;/script&gt;</div>
-                </code>
+                <textarea readonly style="resize:none; height:170px; width:250px;max-width:100%;">&lt;div class="wikilegis-widget" bill-id="{{ bill.id }}"&gt;&lt;/div&gt;&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="http://{{ domain }}/static/js/widget.js"&gt;&lt;/script&gt;</textarea>
               </div>
+              <button class="subscribe-submit btn-flat waves-effect waves-light copy-button" data-clipboard-target=".subscribe-options.embed-code textarea" data-text-success="{% trans 'Copied!' %}">{% trans "Copy" %}</button>
             </div>
           </li>
         </ul>
@@ -235,5 +232,19 @@
     $('.filter-proposals').click(function() {
       $('.list-amendment').toggleClass('hide-empty');
     });
+</script>
+
+<script>
+  var clipboard = new Clipboard('.copy-button');
+
+  clipboard.on('success', function() {
+    var copyButtonContent = $('.copy-button').text();
+
+    $('.copy-button').text($('.copy-button').data('text-success'));
+
+    setTimeout(function(){
+      $('.copy-button').text(copyButtonContent);
+    }, 3000);
+  });
 </script>
 {% endblock %}

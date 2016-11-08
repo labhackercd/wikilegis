@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-02 13:58-0300\n"
+"POT-Creation-Date: 2016-11-08 19:21-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -592,24 +592,24 @@ msgstr "Ninguno"
 msgid "Sole paragraph"
 msgstr "Párrafo único"
 
-#: core/views.py:28
+#: core/views.py:29
 msgid "Order by"
 msgstr "Ordenar por"
 
-#: core/views.py:34
+#: core/views.py:35
 msgid "Hot"
 msgstr "Relevante"
 
-#: core/views.py:35
+#: core/views.py:36
 msgid "Date"
 msgstr "Recientes"
 
-#: core/views.py:160
+#: core/views.py:162
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "No se pueden enviar propuestas a {object}"
 
-#: core/views.py:190 core/views.py:231
+#: core/views.py:192 core/views.py:233
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado"
@@ -650,11 +650,11 @@ msgstr "Boletín"
 msgid "Newsletters"
 msgstr "Boletines"
 
-#: settings.py:223
+#: settings.py:230
 msgid "Google"
 msgstr ""
 
-#: settings.py:227
+#: settings.py:234
 msgid "Facebook"
 msgstr ""
 
@@ -709,8 +709,7 @@ msgstr ""
 msgid "terms of use"
 msgstr ""
 
-#: templates/about.html:36
-#: templates/registration/registration_complete.html:14
+#: templates/about.html:36 templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr "Volver a la página principal"
 
@@ -823,12 +822,22 @@ msgstr "AUTOR"
 msgid "RAPPORTEUR"
 msgstr "PARLAMENTARIO INFORMANTE"
 
-#: templates/bill/bill.html:165
+#: templates/bill/bill.html:186
 msgid "Embedding Code"
 msgstr ""
 
-#: templates/bill/bill.html:169
-msgid "Copy and paste this code in your website."
+#: templates/bill/bill.html:190
+msgid ""
+"You may have this project featured in your own website by pasting the "
+"following code in your own source code."
+msgstr ""
+
+#: templates/bill/bill.html:195
+msgid "Copied!"
+msgstr ""
+
+#: templates/bill/bill.html:195
+msgid "Copy"
 msgstr ""
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24

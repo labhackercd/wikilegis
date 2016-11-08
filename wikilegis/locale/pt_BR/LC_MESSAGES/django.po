@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-02 13:58-0300\n"
+"POT-Creation-Date: 2016-11-08 19:21-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -587,24 +587,24 @@ msgstr "Nenhum"
 msgid "Sole paragraph"
 msgstr "Parágrafo único"
 
-#: core/views.py:28
+#: core/views.py:29
 msgid "Order by"
 msgstr "Ordem"
 
-#: core/views.py:34
+#: core/views.py:35
 msgid "Hot"
 msgstr "Relevantes"
 
-#: core/views.py:35
+#: core/views.py:36
 msgid "Date"
 msgstr "Recentes"
 
-#: core/views.py:160
+#: core/views.py:162
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:190 core/views.py:231
+#: core/views.py:192 core/views.py:233
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
@@ -645,11 +645,11 @@ msgstr "Newsletter"
 msgid "Newsletters"
 msgstr "Newsletters"
 
-#: settings.py:223
+#: settings.py:230
 msgid "Google"
 msgstr ""
 
-#: settings.py:227
+#: settings.py:234
 msgid "Facebook"
 msgstr ""
 
@@ -703,8 +703,7 @@ msgstr ""
 msgid "terms of use"
 msgstr "Termos de uso"
 
-#: templates/about.html:36
-#: templates/registration/registration_complete.html:14
+#: templates/about.html:36 templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr "Voltar à página inicial"
 
@@ -813,13 +812,25 @@ msgstr "AUTOR"
 msgid "RAPPORTEUR"
 msgstr "RELATOR"
 
-#: templates/bill/bill.html:165
+#: templates/bill/bill.html:186
 msgid "Embedding Code"
 msgstr "Incorporar"
 
-#: templates/bill/bill.html:169
-msgid "Copy and paste this code in your website."
-msgstr "Copie e cole o código abaixo em seu site."
+#: templates/bill/bill.html:190
+msgid ""
+"You may have this project featured in your own website by pasting the "
+"following code in your own source code."
+msgstr ""
+"Você pode levar este projeto para o seu website colando o código abaixo no "
+"seu próprio código fonte."
+
+#: templates/bill/bill.html:195
+msgid "Copied!"
+msgstr "Texto Copiado!"
+
+#: templates/bill/bill.html:195
+msgid "Copy"
+msgstr "Copiar"
 
 #: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
 msgid "Original text"

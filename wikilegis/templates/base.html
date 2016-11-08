@@ -18,7 +18,7 @@
 
 <body>
     {% block content %}
-        
+
     {% endblock %}
 
     {% block bottom_scripts %}
@@ -28,6 +28,7 @@
             <script type="text/javascript" src="{% static "js/diff.min.js" %}"></script>
             <script type="text/javascript" src="{% static "js/lodash.min.js" %}"></script>
             <script type="text/javascript" src="{% static "js/css3-animate-it.js" %}"></script>
+            <script type="text/javascript" src="{% static "js/clipboard.min.js" %}"></script>
             <script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
         {% endcompress %}
 
@@ -56,12 +57,12 @@
         </script>
         {% endif %}
     {% endblock %}
-  
+
     {% block partialscript %}
-        
+
     {% endblock %}
-    
-   
+
+
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d59e5f7525348b"></script>
     <!-- begin olark code -->

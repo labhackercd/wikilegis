@@ -178,17 +178,17 @@ img.logo {
     }
     @media (max-width: 1366px) {
         padding-top: 100px;
-    } 
+    }
     padding-top: 150px;
     height: 100%;
     @media #{$medium-and-down} {
         height: auto;
     }
-    
+
     @media screen and (max-height: 790px) {
         height: auto;
     }
-    
+
     min-height: 93vh;
     .cover-content {
         @media #{$medium-and-down} {
@@ -293,7 +293,7 @@ img.logo {
                 line-height: 52px;
                 font-size: 40px;
                 display: block;
-                animation: goDown 2s cubic-bezier(.55,0,.1,1) infinite 
+                animation: goDown 2s cubic-bezier(.55,0,.1,1) infinite
             }
 
             @keyframes goDown {
@@ -386,7 +386,7 @@ strong {
     border: 5px solid #b0b0b0;
 }
 
-.add-prop-cta {   
+.add-prop-cta {
     max-width: 965px;
     border-radius: 3px;
     background-color: rgba(40, 210, 122, 0.15);
@@ -404,8 +404,8 @@ strong {
             font-size: 2rem;
         }
     }
-    div { 
-        font-weight: bold; 
+    div {
+        font-weight: bold;
         font-size: 1.5em;
         @media #{$medium-and-down} {
             font-size: 1em;
@@ -523,7 +523,7 @@ strong {
 .pl-title {
     font-weight: 700;
     color: $gray;
-    
+
     &.closed {
         color: #b96635 !important;
     }
@@ -711,11 +711,41 @@ strong {
         word-break: break-all;
     }
 
+    .votes-title {
+      font-weight: 600;
+      color: #6775a6;
+    }
+
+    .votes {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .votes a {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .votes a p {
+      margin: 0 1rem;
+    }
+
+    .downvote svg {
+      transform: rotate(180deg);
+    }
+
+    .votes a svg {
+      width: 2rem;
+      fill: #324545;
+    }
+
 }
 
 .list-amendment {
     margin-bottom: 100px;
-    
+
     .amendment-thead {
         min-height: 100px;
         background-image: url(static("img/brasao.png"));
@@ -738,7 +768,7 @@ strong {
     @media #{$medium-and-down} {
         padding-right: 20px;
     }
-    
+
     .syllabus {
         opacity: .85;
         margin-top: 20px;
@@ -806,7 +836,7 @@ strong {
         &:hover {
             opacity: 1;
         }
-        svg { 
+        svg {
             margin-right: auto;
             margin-left: auto;
             margin-top: -3px;
@@ -831,7 +861,7 @@ strong {
 .view-comments {
     opacity: .7;
     i {
-       vertical-align:middle; 
+       vertical-align:middle;
     }
     &:hover {
         opacity: 1;
@@ -841,8 +871,8 @@ strong {
 .add-segment-item {
     @media #{$small-and-down} {
         margin-top: 20px;
-    }    
-    .asi-link {        
+    }
+    .asi-link {
         opacity: .8;
         cursor: pointer;
         font-weight: 600;
@@ -851,8 +881,8 @@ strong {
             opacity: 1;
         }
         i {
-           vertical-align:middle; 
-        }        
+           vertical-align:middle;
+        }
     }
     .add-segment-form {
         max-width: 840px;
@@ -871,7 +901,7 @@ strong {
                 width: 100%;
                 margin-bottom: 20px;
                 margin-left: 0px;
-            } 
+            }
             border: none;
             background-color: #E0E0E0;
             color: gray;
@@ -945,7 +975,7 @@ strong {
                 vertical-align:middle;
                 margin-left: auto;
                 margin-right: auto;
-            } 
+            }
         }
     }
 }
@@ -954,11 +984,11 @@ strong {
     a.bill-link {
         color: inherit;
     }
-    
-    position: relative; 
+
+    position: relative;
     /*    padding-left: 30px !important;
     padding-right: 30px !important;*/
-    
+
     @media #{$small-and-down} {
         overflow: inherit;
     }
@@ -1062,10 +1092,10 @@ strong {
                 box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.1);
             }
         }
-       
-       
+
+
     }
-    
+
 }
 
 .article-number {
@@ -1408,10 +1438,10 @@ $opacity: .4;
             svg {
                 -ms-transform: rotate(180deg);
                 /* IE 9 */
-                
+
                 -webkit-transform: rotate(180deg);
                 /* Chrome, Safari, Opera */
-                
+
                 transform: rotate(180deg);
             }
             &.active {
@@ -1656,8 +1686,8 @@ $opacity: .4;
     form {
         margin-top: 60px;
         .picture {
-            label { 
-                top: -40px; 
+            label {
+                top: -40px;
                 left: -16px;
             }
         }
@@ -1753,11 +1783,11 @@ $opacity: .4;
     display: none;
     min-width: 300px;
     /* Changed this to accomodate content width */
-    
+
     max-height: auto;
     overflow: hidden;
     /* Changed this from overflow-y:auto; to overflow:hidden; */
-    
+
     opacity: 0;
     position: absolute;
     white-space: nowrap;

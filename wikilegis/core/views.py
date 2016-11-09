@@ -74,13 +74,16 @@ class BillDetailView(DetailView):
         metadata = self.object.metadata.all()
         videos = filter(lambda x: x.type == 'VIDEO', metadata)
         segment_ctype = ContentType.objects.get_for_model(BillSegment)
+        bill_ctype = ContentType.objects.get_for_model(Bill)
         segments_id = set(self.object.segments.values_list('id', flat=True))
         votes_ids = UpDownVote.objects.filter(content_type=segment_ctype,
                                               object_id__in=segments_id).values_list('user__id', flat=True)
+        votes_bill_ids = UpDownVote.objects.filter(content_type=bill_ctype,
+                                                   object_id=self.object.id).values_list('user__id', flat=True)
         comment_ids = Comment.objects.filter(object_pk__in=segments_id,
                                              content_type=segment_ctype).values_list('user__id', flat=True)
         proposals_ids = self.object.segments.filter(original=False).values_list('author__id', flat=True)
-        context['attendees'] = len(set(list(votes_ids) + list(comment_ids) + list(proposals_ids)))
+        context['attendees'] = len(set(list(votes_bill_ids) + list(votes_ids) + list(comment_ids) + list(proposals_ids)))
         context['proposals'] = self.object.segments.filter(original=False).count()
         context['videos'] = map(BillVideo, videos)
         context['domain'] = Site.objects.get_current().domain + settings.FORCE_SCRIPT_NAME

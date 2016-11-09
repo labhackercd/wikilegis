@@ -146,7 +146,7 @@
           {% endif %}
         </div>
 
-        <span class="votes-title">Voce apoia este projeto?</span>
+        <span class="votes-title">{% trans "Do you support this bill?" %}</span>
         <div class="votes">
           {% with bill as content_object %}
               {% if bill.status = 'published' %}

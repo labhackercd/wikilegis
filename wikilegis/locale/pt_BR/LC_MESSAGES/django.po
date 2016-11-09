@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-08 19:21-0200\n"
+"POT-Creation-Date: 2016-11-09 17:50-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -587,24 +587,24 @@ msgstr "Nenhum"
 msgid "Sole paragraph"
 msgstr "Parágrafo único"
 
-#: core/views.py:29
+#: core/views.py:30
 msgid "Order by"
 msgstr "Ordem"
 
-#: core/views.py:35
+#: core/views.py:36
 msgid "Hot"
 msgstr "Relevantes"
 
-#: core/views.py:36
+#: core/views.py:37
 msgid "Date"
 msgstr "Recentes"
 
-#: core/views.py:162
+#: core/views.py:166
 #, python-brace-format
 msgid "Cannot submit proposals to {object}."
 msgstr "Falha ao enviar proposta para o objeto {object}."
 
-#: core/views.py:192 core/views.py:233
+#: core/views.py:196 core/views.py:237
 #, python-brace-format
 msgid "{object_type} submitted."
 msgstr "{object_type} enviado."
@@ -645,11 +645,11 @@ msgstr "Newsletter"
 msgid "Newsletters"
 msgstr "Newsletters"
 
-#: settings.py:230
+#: settings.py:232
 msgid "Google"
 msgstr ""
 
-#: settings.py:234
+#: settings.py:236
 msgid "Facebook"
 msgstr ""
 
@@ -812,11 +812,15 @@ msgstr "AUTOR"
 msgid "RAPPORTEUR"
 msgstr "RELATOR"
 
-#: templates/bill/bill.html:186
+#: templates/bill/bill.html:150
+msgid "Do you support this bill?"
+msgstr "Voce apoia este projeto?"
+
+#: templates/bill/bill.html:176
 msgid "Embedding Code"
 msgstr "Incorporar"
 
-#: templates/bill/bill.html:190
+#: templates/bill/bill.html:180
 msgid ""
 "You may have this project featured in your own website by pasting the "
 "following code in your own source code."
@@ -824,11 +828,11 @@ msgstr ""
 "Você pode levar este projeto para o seu website colando o código abaixo no "
 "seu próprio código fonte."
 
-#: templates/bill/bill.html:195
+#: templates/bill/bill.html:185
 msgid "Copied!"
 msgstr "Texto Copiado!"
 
-#: templates/bill/bill.html:195
+#: templates/bill/bill.html:185
 msgid "Copy"
 msgstr "Copiar"
 

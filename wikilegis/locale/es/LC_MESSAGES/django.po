@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-09 17:50-0200\n"
+"POT-Creation-Date: 2016-11-09 18:01-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -813,34 +813,40 @@ msgstr "Propuestas:"
 msgid "Closing date:"
 msgstr "Fecha límite"
 
-#: templates/bill/bill.html:117
+#: templates/bill/bill.html:102
+#, fuzzy
+#| msgid "Report"
+msgid "Access Report"
+msgstr "Reporte"
+
+#: templates/bill/bill.html:119
 msgid "AUTHOR"
 msgstr "AUTOR"
 
 # TODO check if in the chilean parliament exists this role
-#: templates/bill/bill.html:138
+#: templates/bill/bill.html:140
 msgid "RAPPORTEUR"
 msgstr "PARLAMENTARIO INFORMANTE"
 
-#: templates/bill/bill.html:150
+#: templates/bill/bill.html:152
 msgid "Do you support this bill?"
 msgstr ""
 
-#: templates/bill/bill.html:176
+#: templates/bill/bill.html:178
 msgid "Embedding Code"
 msgstr ""
 
-#: templates/bill/bill.html:180
+#: templates/bill/bill.html:182
 msgid ""
 "You may have this project featured in your own website by pasting the "
 "following code in your own source code."
 msgstr ""
 
-#: templates/bill/bill.html:185
+#: templates/bill/bill.html:187
 msgid "Copied!"
 msgstr ""
 
-#: templates/bill/bill.html:185
+#: templates/bill/bill.html:187
 msgid "Copy"
 msgstr ""
 

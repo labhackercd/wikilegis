@@ -98,6 +98,8 @@
           {% endif %}
         </div>
 
+        <div class="report"><a class="report-link" href="{% url 'bill_report' bill.id %}">{% trans "Access Report" %}</a></div>
+
         <div class="row">
           {% if proposition %}
             <div class="after-bar">

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-09 17:50-0200\n"
+"POT-Creation-Date: 2016-11-09 18:01-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -804,23 +804,27 @@ msgstr "Propostas:"
 msgid "Closing date:"
 msgstr "Contribuições até:"
 
-#: templates/bill/bill.html:117
+#: templates/bill/bill.html:102
+msgid "Access Report"
+msgstr "Visualizar Relatório"
+
+#: templates/bill/bill.html:119
 msgid "AUTHOR"
 msgstr "AUTOR"
 
-#: templates/bill/bill.html:138
+#: templates/bill/bill.html:140
 msgid "RAPPORTEUR"
 msgstr "RELATOR"
 
-#: templates/bill/bill.html:150
+#: templates/bill/bill.html:152
 msgid "Do you support this bill?"
 msgstr "Voce apoia este projeto?"
 
-#: templates/bill/bill.html:176
+#: templates/bill/bill.html:178
 msgid "Embedding Code"
 msgstr "Incorporar"
 
-#: templates/bill/bill.html:180
+#: templates/bill/bill.html:182
 msgid ""
 "You may have this project featured in your own website by pasting the "
 "following code in your own source code."
@@ -828,11 +832,11 @@ msgstr ""
 "Você pode levar este projeto para o seu website colando o código abaixo no "
 "seu próprio código fonte."
 
-#: templates/bill/bill.html:185
+#: templates/bill/bill.html:187
 msgid "Copied!"
 msgstr "Texto Copiado!"
 
-#: templates/bill/bill.html:185
+#: templates/bill/bill.html:187
 msgid "Copy"
 msgstr "Copiar"
 

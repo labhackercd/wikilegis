@@ -10,10 +10,10 @@ Usage:
 
 {% spaceless %}
     {% if user.get_full_name|default:""|length > 0 %}
-        {{ user.get_full_name|truncatechars:25 }}
+        {{ user.get_full_name }}
     {% else %}
         {% if user.get_short_name|default:""|length > 0 %}
-            {{ user.get_short_name|truncatechars:25 }}
+            {{ user.get_short_name }}
         {% else %}
             {{ user.get_username }}
         {% endif %}

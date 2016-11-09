@@ -7,7 +7,7 @@ from django.core.management.base import BaseCommand
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django_comments.models import Comment
-from wikilegis.auth2.models import User
+from django.conf import settings
 from wikilegis.core.models import Bill, UpDownVote, BillSegment
 from wikilegis.notification.models import HistoryNotification
 
@@ -15,7 +15,7 @@ from wikilegis.notification.models import HistoryNotification
 class Command(BaseCommand):
     def handle(self, *args, **options):
         bills = Bill.objects.filter(status='published')
-        current_site = Site.objects.get_current()
+        domain = Site.objects.get_current().domain + settings.FORCE_SCRIPT_NAME
         for bill in bills:
             segment_amendments = defaultdict(list)
             amendment_comments = defaultdict(list)
@@ -71,7 +71,7 @@ class Command(BaseCommand):
                 except:
                     proposition = ''
                 html = render_to_string('notification/notification_email.html',
-                                        {'current_site': current_site, 'bill': bill.title,
+                                        {'domain': domain, 'bill': bill.title,
                                          'amendments': dict(segment_amendments),
                                          'comments': dict(amendment_comments),
                                          'proposition': proposition,

@@ -24,6 +24,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 import django.conf.global_settings as default
 
 
+FORCE_SCRIPT_NAME = config('FORCE_SCRIPT_NAME', default="")
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 

@@ -19,6 +19,7 @@ from django.contrib.sites.models import Site
 from .forms import CitizenAmendmentCreationForm, AddProposalForm
 from .models import Bill, BillSegment, UpDownVote, Proposition
 from django_comments.models import Comment
+from django.conf import settings
 from wikilegis.auth2.models import Congressman
 from wikilegis.comments2.utils import create_comment
 from wikilegis.core.genericdata import BillVideo, BillAuthorData
@@ -82,7 +83,7 @@ class BillDetailView(DetailView):
         context['attendees'] = len(set(list(votes_ids) + list(comment_ids) + list(proposals_ids)))
         context['proposals'] = self.object.segments.filter(original=False).count()
         context['videos'] = map(BillVideo, videos)
-        context['domain'] = Site.objects.get_current()
+        context['domain'] = Site.objects.get_current().domain + settings.FORCE_SCRIPT_NAME
         try:
             context['congressman'] = Congressman.objects.filter(user_id=self.object.reporting_member.id).latest('id')
         except:

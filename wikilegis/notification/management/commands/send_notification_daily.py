@@ -13,7 +13,7 @@ from wikilegis.auth2.models import User
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        current_site = Site.objects.get_current()
+        domain = Site.objects.get_current().domain + settings.FORCE_SCRIPT_NAME
         users = User.objects.filter(newsletters__isnull=False, newsletters__periodicity='daily').distinct()
         bill_proposals = defaultdict(list)
         for user in users:
@@ -22,7 +22,7 @@ class Command(BaseCommand):
                     bill_proposals[newsletter.bill].append(segment)
             if bill_proposals:
                 html = render_to_string('notification/bill_notification.html',
-                                        {'current_site': current_site,
+                                        {'domain': domain,
                                          'proposals': dict(bill_proposals)})
                 subject = u'[Wikilegis] Notificação Diária'
                 mail = EmailMultiAlternatives(subject, '', settings.EMAIL_HOST_USER, [user.email])

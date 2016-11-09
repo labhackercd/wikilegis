@@ -20,14 +20,14 @@
             <p id="original">
                 <span class="article-type">{% segment_numbering proposal.replaced %}</span>
                 {{ proposal.replaced.content }}
-                <a href="http://{{ current_site.domain }}{{ proposal.get_absolute_url }}">Acesse clicando aqui</a>
+                <a href="http://{{ domain }}{{ proposal.get_absolute_url }}">Acesse clicando aqui</a>
             </p>
         </div>
         <h4><b>Novas Propostas</b></h4>
         <div class="article-prop">
             <blockquote style="color: #228B22">{{ proposal.content|safe }}
                 <span style="color: #666666"> - {{ proposal.author }} </span>
-                <a href="http://{{ current_site.domain }}{{ proposal.get_absolute_url }}">Acesse clicando aqui</a>
+                <a href="http://{{ domain }}{{ proposal.get_absolute_url }}">Acesse clicando aqui</a>
             </blockquote>
         </div>
         {% endfor %}

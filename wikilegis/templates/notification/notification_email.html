@@ -20,7 +20,7 @@
             {% for segment, amendment_list in amendments.items %}
                 <h4><b>Trecho original:</b></h4>
                 <blockquote style="color: #1B5E20"><b>{% segment_numbering segment %} {{ segment.content }}</b>
-                    <a href="http://{{ current_site.domain }}{{ segment.get_absolute_url }}">Acesse clicando aqui</a></blockquote>
+                    <a href="http://{{ domain }}{{ segment.get_absolute_url }}">Acesse clicando aqui</a></blockquote>
                 {% if amendment_list|length == 1 %}
                 <h4>Uma nova sugestão de redação:</h4>
                 {% else %}
@@ -29,7 +29,7 @@
                 {% for amendment in amendment_list %}
                 <blockquote style="color: #228B22">{{ amendment.content|safe }}
                     <span style="color: #666666"> - {{ amendment.author }} </span>
-                    <a href="http://{{ current_site.domain }}{{ amendment.get_absolute_url }}">Acesse clicando aqui</a>
+                    <a href="http://{{ domain }}{{ amendment.get_absolute_url }}">Acesse clicando aqui</a>
                 </blockquote>
                 {% endfor %}
             {% endfor %}
@@ -54,7 +54,7 @@
                 {% for comment in value_list %}
                     <blockquote style="color: #d8730a">{{ comment.comment }}
                         <span style="color: #666666"> - {{ comment.user.get_display_name }} </span>
-                    <a href="http://{{ current_site.domain }}{{ key.get_absolute_url }}">Acesse clicando aqui</a></blockquote>
+                    <a href="http://{{ domain }}{{ key.get_absolute_url }}">Acesse clicando aqui</a></blockquote>
                 {% endfor %}
             {% endfor %}
             <br>
@@ -70,7 +70,7 @@
             {% for top in top_amendments %}
                 <blockquote style="color: #228B22">{{ top.content|safe }}
                     <span style="color: #666666"> - {{ top.author }} </span>
-                    <a href="http://{{ current_site.domain }}{{ top.get_absolute_url }}">Acesse clicando aqui</a>
+                    <a href="http://{{ domain }}{{ top.get_absolute_url }}">Acesse clicando aqui</a>
                 </blockquote>
             {% endfor %}
         {% endif %}

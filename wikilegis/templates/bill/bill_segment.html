@@ -88,7 +88,9 @@
 
             <div class="col s10 m10 l11">
                 <div class="article-prop">
-                    <p id="original" data-raw-content="{{ segment.content }}"><span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
+                    {# We seriously can't put html into data attributes jeez #}
+                    <p id="original" data-raw-content="<span class='article-type'>{% segment_numbering segment %}</span>{{ segment.content }}"><span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
+                }
                 </div>
                 <div class="after-bar">
                     <div class="col s12 m12 l8">
@@ -164,7 +166,8 @@
                 </div>
             </div>
             <div class="col s10 m10 l11">
-                <div class="article-prop" data-raw-content="{{ amendment.content|escape }}">
+                {# We seriously can't put html into data attributes jeez #}
+                <div class="article-prop" data-raw-content="<span class='article-type'>{% segment_numbering segment %}</span>{{ amendment.content|escape }}">
                     <p class="pp">{{ amendment.content|linebreaks }}</p>
                 </div>
                 <div class="after-bar">

@@ -16,7 +16,7 @@ function linebreaks(text) {
     var linePattern = /(?:\r\n|\r|\n)/g;
     var paragraphPattern = /(?:\r\n|\r|\n){2}/g;
     return _.map(text.split(paragraphPattern), function (p) {
-        return '<p>' + p.replace(linePattern, '<br />') + '</p>';
+        return p.replace(linePattern, '<br />');
     }).join('\n\n');
 }
 
@@ -27,7 +27,7 @@ function changesToMarkup(changes) {
 
 jQuery(document).ready(function ($) {
 
-    //navbar	
+    //navbar
 
     var is_root = location.pathname == "/";
 
@@ -59,25 +59,25 @@ jQuery(document).ready(function ($) {
         if (!is_opened) {
             open();
         } else {
-            close();             
+            close();
         }
-        
+
         $('#overlay').click(function() {
-            close(); 
+            close();
         });
-        
+
     });
-    
+
     function open() {
         $(document.body).append('<div id="overlay"></div>');
         $('.wiki-navbar').addClass('opened');
         $('.wiki-navbar').css('background-color', '#324545');
-        $('.wiki-navbar').css('box-shadow', '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)');                   
+        $('.wiki-navbar').css('box-shadow', '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)');
         $('#menu-button').html('close');
         $('.wiki-navbar').css('height', 'auto');
         $('.opened-menu').removeClass('hide');
     }
-    
+
     function close() {
         $('#overlay').remove();
         $('.wiki-navbar').removeClass('opened');
@@ -87,8 +87,8 @@ jQuery(document).ready(function ($) {
         $('.wiki-navbar').css('height', '');
         $('.opened-menu').addClass('hide');
     }
-    
-    
+
+
 
     //See projects
 
@@ -98,32 +98,32 @@ jQuery(document).ready(function ($) {
         }, 1000, 'easeOutCirc');
     });
 
-    
+
     //Show more segments
-    
+
     $('.show-more-segments').click(function() {
         $(this).parent().find('.bill-link').nextAll('.bill-link').show();
         $(this).remove();
     });
-    
-    
+
+
     //Add segment item
-    
+
     $('.asi-link').click(function() {
         $(this).hide();
         $('.add-segment-form').removeClass('hide');
         $('.segment-content').focus();
     });
-    
+
     var cancel = $('.add-segment-form').find('.cancel');
-    
+
     cancel.click(function() {
         $('.add-segment-form').addClass('hide');
         $('.asi-link').show();
     });
-    
+
     //View comments
-    
+
     $('.view-comments').click(function(e) {
         e.preventDefault();
         //$(this).hide();

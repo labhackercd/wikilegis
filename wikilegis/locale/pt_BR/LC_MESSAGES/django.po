@@ -818,7 +818,7 @@ msgstr "RELATOR"
 
 #: templates/bill/bill.html:152
 msgid "Do you support this bill?"
-msgstr "Voce apoia este projeto?"
+msgstr "Você apoia este projeto?"
 
 #: templates/bill/bill.html:178
 msgid "Embedding Code"

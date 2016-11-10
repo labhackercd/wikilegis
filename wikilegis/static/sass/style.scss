@@ -56,7 +56,6 @@ body {
     background-color: $lightgray;
     min-height: 100vh;
     padding-top: 20px;
-    margin-bottom: -20px;
 }
 
 .wiki-navbar {
@@ -349,7 +348,6 @@ strong {
     background-color: $lightgray;
     background-image: url(static("img/etpat.png"));
     min-height: 100vh;
-    margin-bottom: -20px;
     padding-top: $nav-height;
     .container {
         margin-top: 50px;
@@ -360,6 +358,9 @@ strong {
     margin-bottom: 0;
     align-self: flex-end;
     margin-top: 30px;
+    a {
+      margin-left: 1rem;
+    }
     .description {
         width: 70%;
         margin: 0 auto 10px auto;
@@ -1384,8 +1385,18 @@ blockquote {
 
 .about {
     color: white;
+    margin: 2.5rem 1rem;
     p {
         opacity: .7;
+    }
+
+    @media #{$medium-and-down} {
+      margin-bottom: 60px;
+    }
+
+    .terms-link {
+      color: #29d17a;
+      font-weight: 600;
     }
 }
 
@@ -1856,6 +1867,12 @@ $opacity: .4;
             border: 1px solid rgba(0, 0, 0, 1);
         }
     }
+}
+
+div#habla_window_div {
+  @media #{$medium-and-down} {
+    transform: translateY(-32px);
+  }
 }
 
 //helpers

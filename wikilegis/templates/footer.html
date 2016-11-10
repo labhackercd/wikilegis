@@ -1,0 +1,20 @@
+{% load static %}
+{% load i18n %}
+
+<footer class="about">
+  <div class="row">
+    <div class="col m6">
+      <p>{% trans "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ Hacker Lab, designed to enable citizens to suggest modifications to the wording of Bills. It is an open source project, developed under license CC BY 4.0. Besides participating in discussions of the bill, you can help us to improve our tool." %} <a class="terms-link" href="http://edemocracia.camara.gov.br/termos#.V3QNE0orKCg">{% trans "terms of use" %}</a></p>
+    </div>
+    <div class="col m6">
+      <p>{% trans "Visit us on Trello, Github and in our page to propose new features or to report bugs. If you have programming skills, you can also collaborate to the development of Wikilegis. " %}</p>
+      <div class="buttonsShareProjetc">
+        <iframe src="https://ghbtns.com/github-btn.html?user=labhackercd&repo=wikilegis&type=star&count=true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>
+        <a href="https://trello.com/b/b4hyvcH2" target="_blank"><img src="{% static "img/trello-icon.png" %}" height="22" /></a>
+        <a href="http://www.camara.leg.br" target="_blank"><img height="28" src="{% static "img/logo-camara.png" %}" /></a>
+        <a href="http://labhackercd.net/" target="_blank"><img height="28" src="{% static "img/labhacker.png" %}" /></a>
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">&nbsp;<img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+      </div>
+    </div>
+  </div>
+</footer>

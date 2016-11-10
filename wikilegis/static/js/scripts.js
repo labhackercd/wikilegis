@@ -167,7 +167,8 @@ jQuery(document).ready(function ($) {
         $('form', this).submit();
     });
 
-    // Dropdown Orderer
+    // Dropdown Orderer\
     $(".dropdown-button").dropdown();
 
 });
+

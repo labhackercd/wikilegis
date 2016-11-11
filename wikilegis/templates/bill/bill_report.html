@@ -12,117 +12,119 @@
   {% endcompress %}
 </head>
 <body>
-  <div class="header">
-    <img class="logo" src="{% static "img/logo.svg" %}" alt="Wikilegis" />
-    <div class="title">
-      <h2 class="bill-title">{{ object.title }}</h2>
-      <p class="emission-date">Relatório emitido em {% now 'F, Y' %}</p>
+  <div class="bill-report-container">
+    <div class="header">
+      <img class="logo" src="{% static "img/logo.svg" %}" alt="Wikilegis" />
+      <div class="title">
+        <h2 class="bill-title">{{ object.title }}</h2>
+        <p class="emission-date">Relatório emitido em {% now 'F, Y' %}</p>
+      </div>
     </div>
-  </div>
-  <div class="bill-summary">
-    <span><i class="material-icons">thumbs_up_down</i> {{ votes }} votos</span>
-    <span><i class="material-icons">forum</i> {{ comments }} comentários <i class="class"></i></span>
-    <span><i class="material-icons">people</i> {{ attendees }} participantes</span>
-    <span><i class="material-icons">note_add</i> {{ proposals }} propostas</span>
-  </div>
-  <div class="segments">
-    {% for segment in original_segments %}
-      {% if segment|previous_article %}
-      <h2>{% segment_numbering segment|previous_article %} ...</h2>
-      {% endif %}
-      <div class="original {% if segment|previous_article %}in-article{% endif %}" data-raw-content="{{ segment.content }}">
-      {% get_comment_count for segment as comment_count %}
-      <h3>{% segment_numbering segment %}{{ segment.content }}</h3>
-      <div class="segment-summary">
-        <span><i class="material-icons">thumb_up</i> {% get_upvote_count segment %}</span>
-        <span><i class="material-icons">thumb_down</i> {% get_downvote_count segment %}</span>
-        <span><i class="material-icons">forum</i> {{ comment_count }}</span>
-        <span><i class="material-icons">note_add</i> {{ segment.proposals_count }}</span>
-      </div>
-      {% get_comment_list for segment as comments_segments %}
-      {% for comment in comments_segments %}
-        {% if forloop.first %}
-          <h4>Comentários</h4>
+    <div class="bill-summary">
+      <span><i class="material-icons">thumbs_up_down</i> {{ votes }} votos</span>
+      <span><i class="material-icons">forum</i> {{ comments }} comentários <i class="class"></i></span>
+      <span><i class="material-icons">people</i> {{ attendees }} participantes</span>
+      <span><i class="material-icons">note_add</i> {{ proposals }} propostas</span>
+    </div>
+    <div class="segments">
+      {% for segment in original_segments %}
+        {% if segment|previous_article %}
+        <h2>{% segment_numbering segment|previous_article %} ...</h2>
         {% endif %}
-        <div class="segment-comment">
-          <p class="comment"> {{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
+        <div class="original {% if segment|previous_article %}in-article{% endif %}" data-raw-content="{{ segment.content }}">
+        {% get_comment_count for segment as comment_count %}
+        <h3>{% segment_numbering segment %}{{ segment.content }}</h3>
+        <div class="segment-summary">
+          <span><i class="material-icons">thumb_up</i> {% get_upvote_count segment %}</span>
+          <span><i class="material-icons">thumb_down</i> {% get_downvote_count segment %}</span>
+          <span><i class="material-icons">forum</i> {{ comment_count }}</span>
+          <span><i class="material-icons">note_add</i> {{ segment.proposals_count }}</span>
         </div>
-      {% endfor %}
-      {% order_by_score for segment.substitutes.all as proposals_ordered %} 
-      {% for proposal in proposals_ordered %}
-        {% get_comment_count for proposal as proposal_comment_count %}
-        <h4>Proposta {{ forloop.counter }}</h4>
-        <div class="proposal">
-          <div class="content" data-raw-content="{{ proposal.content|escape }}">
-            <p class="pp">{{ proposal.content }}</p><span>{{ proposal.author }}</span>
+        {% get_comment_list for segment as comments_segments %}
+        {% for comment in comments_segments %}
+          {% if forloop.first %}
+            <h4>Comentários</h4>
+          {% endif %}
+          <div class="segment-comment">
+            <p class="comment"> {{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
           </div>
-          <div class="segment-summary">
-            <span><i class="material-icons">thumb_up</i> {% get_upvote_count proposal %}</span>
-            <span><i class="material-icons">thumb_down</i> {% get_downvote_count proposal %}</span>
-            <span><i class="material-icons">forum</i> {{ proposal_comment_count }}</span>
-          </div>
-          {% get_comment_list for proposal as comments_proposals %}
-          {% for comment in comments_proposals %}
-            <div class="proposal-comment">
-              {% if forloop.first %}
-              <h4>Comentários</h4>
-              {% endif %}
-              <p class="comment">{{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
+        {% endfor %}
+        {% order_by_score for segment.substitutes.all as proposals_ordered %}
+        {% for proposal in proposals_ordered %}
+          {% get_comment_count for proposal as proposal_comment_count %}
+          <h4>Proposta {{ forloop.counter }}</h4>
+          <div class="proposal">
+            <div class="content" data-raw-content="{{ proposal.content|escape }}">
+              <p class="pp">{{ proposal.content }}</p><span>{{ proposal.author }}</span>
             </div>
-          {% endfor %}
+            <div class="segment-summary">
+              <span><i class="material-icons">thumb_up</i> {% get_upvote_count proposal %}</span>
+              <span><i class="material-icons">thumb_down</i> {% get_downvote_count proposal %}</span>
+              <span><i class="material-icons">forum</i> {{ proposal_comment_count }}</span>
+            </div>
+            {% get_comment_list for proposal as comments_proposals %}
+            {% for comment in comments_proposals %}
+              <div class="proposal-comment">
+                {% if forloop.first %}
+                <h4>Comentários</h4>
+                {% endif %}
+                <p class="comment">{{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
         </div>
       {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
-  <script type="text/javascript" src="{% static "js/jquery-2.1.4.js" %}"></script>
-  <script type="text/javascript" src="{% static "js/diff.min.js" %}"></script>
-  <script type="text/javascript" src="{% static "js/lodash.min.js" %}"></script>
-  <script type="text/javascript">
-      function wlDiff(a, b) {
-        return JsDiff.diffWordsWithSpace(a, b);
-      }
+    </div>
+    <script type="text/javascript" src="{% static "js/jquery-2.1.4.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/diff.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/lodash.min.js" %}"></script>
+    <script type="text/javascript">
+        function wlDiff(a, b) {
+          return JsDiff.diffWordsWithSpace(a, b);
+        }
 
-      function changeToMarkup(change) {
-          var value = change.value;
-          if (change.added) {
-              value = '<span class="added">' + value + '</span>';
-          } else if (change.removed) {
-              value = '<span class="removed">' + value + '</span>';
-          }
-          return value;
-      }
+        function changeToMarkup(change) {
+            var value = change.value;
+            if (change.added) {
+                value = '<span class="added">' + value + '</span>';
+            } else if (change.removed) {
+                value = '<span class="removed">' + value + '</span>';
+            }
+            return value;
+        }
 
-      function linebreaks(text) {
-          var linePattern = /(?:\r\n|\r|\n)/g;
-          var paragraphPattern = /(?:\r\n|\r|\n){2}/g;
-          return _.map(text.split(paragraphPattern), function (p) {
-              return '<p>' + p.replace(linePattern, '<br />') + '</p>';
-          }).join('\n\n');
-      }
+        function linebreaks(text) {
+            var linePattern = /(?:\r\n|\r|\n)/g;
+            var paragraphPattern = /(?:\r\n|\r|\n){2}/g;
+            return _.map(text.split(paragraphPattern), function (p) {
+                return '<p>' + p.replace(linePattern, '<br />') + '</p>';
+            }).join('\n\n');
+        }
 
-      function changesToMarkup(changes) {
-          changes = _.map(changes, changeToMarkup);
-          return linebreaks(changes.join(''));
-      }
+        function changesToMarkup(changes) {
+            changes = _.map(changes, changeToMarkup);
+            return linebreaks(changes.join(''));
+        }
 
-  </script>
-  <script type="text/javascript">
-  window.print();
-  </script>
-  <script type="text/javascript">
-      $(function() {
-            $('.original').each(function(){
-                var div_original = this;
-                var original = $(div_original).attr('data-raw-content');
-                $(div_original).children('.proposal').children('.content').each(function(i, cur) {
-                    var $cur = $(cur);
-                    var current = $cur.attr('data-raw-content');
-                    $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
-                });
-                $('.pp').next('p').remove();
-            });
-      });
     </script>
-</body>
+    <script type="text/javascript">
+    window.print();
+    </script>
+    <script type="text/javascript">
+        $(function() {
+              $('.original').each(function(){
+                  var div_original = this;
+                  var original = $(div_original).attr('data-raw-content');
+                  $(div_original).children('.proposal').children('.content').each(function(i, cur) {
+                      var $cur = $(cur);
+                      var current = $cur.attr('data-raw-content');
+                      $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
+                  });
+                  $('.pp').next('p').remove();
+              });
+        });
+      </script>
+    </body>
+  </div>
 </html>

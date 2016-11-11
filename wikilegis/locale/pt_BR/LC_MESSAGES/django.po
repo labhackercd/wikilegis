@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-09 18:01-0200\n"
+"POT-Creation-Date: 2016-11-11 18:18-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -689,7 +689,7 @@ msgstr ""
 "da discussão dos projetos de lei, você pode auxiliar no melhoramento da "
 "ferramenta."
 
-#: templates/about.html:22
+#: templates/about.html:22 templates/footer.html:10
 msgid ""
 "Visit us on Trello, Github and in our page to propose new features or to "
 "report bugs. If you have programming skills, you can also collaborate to the "
@@ -699,7 +699,7 @@ msgstr ""
 "reportar bugs. Se você tiver habilidades de programação, pode também "
 "contribuir para o desenvolvimento do Wikilegis."
 
-#: templates/about.html:33
+#: templates/about.html:33 templates/footer.html:7
 msgid "terms of use"
 msgstr "Termos de uso"
 
@@ -844,15 +844,15 @@ msgstr "Copiar"
 msgid "Original text"
 msgstr "Texto original"
 
-#: templates/bill/bill_segment.html:149
+#: templates/bill/bill_segment.html:151
 msgid "Submitted proposals"
 msgstr "Propostas"
 
-#: templates/bill/bill_segment.html:215
+#: templates/bill/bill_segment.html:214
 msgid "Make a proposal!"
 msgstr "Sugerir uma proposta!"
 
-#: templates/bill/bill_segment.html:222
+#: templates/bill/bill_segment.html:221
 msgid "Participations closed"
 msgstr "Participações encerradas"
 
@@ -876,6 +876,20 @@ msgstr "Pré-visualizar"
 #: templates/export/export_form.html:10
 msgid "Download"
 msgstr "Baixar"
+
+#: templates/footer.html:7
+msgid ""
+"Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+"Hacker Lab, designed to enable citizens to suggest modifications to the "
+"wording of Bills or other types of legislation. It is an open source "
+"project, developed under license CC BY 4.0."
+msgstr ""
+"O Wikilegis é um projeto desenvolvido pelo Laboratório Hacker da Câmara dos "
+"Deputados para os cidadãos participarem ativamente do processo legislativo, "
+"sugerindo alterações à redação de projetos de lei e outras proposições. "
+"A ferramenta é desenvolvida em código aberto e todo o conteúdo é colocado sob "
+"a licença CC BY SA 4.0. Além da interação para aprimorar os projetos de lei, "
+"também gostaríamos de sua ajuda para melhorar constantemente a ferramenta."
 
 #: templates/index.html:11
 msgid "Your legislative editing tool"

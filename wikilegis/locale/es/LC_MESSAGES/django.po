@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-09 18:01-0200\n"
+"POT-Creation-Date: 2016-11-11 18:18-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -695,7 +695,7 @@ msgstr ""
 "participar en las discusiones de los proyectos, puedes ayudarnos a mejorar "
 "la herramienta."
 
-#: templates/about.html:22
+#: templates/about.html:22 templates/footer.html:10
 msgid ""
 "Visit us on Trello, Github and in our page to propose new features or to "
 "report bugs. If you have programming skills, you can also collaborate to the "
@@ -705,7 +705,7 @@ msgstr ""
 "funcionalidades o para reportar errores. Si tienes habilidades de "
 "programación, también puedes colaborar con el desarrollo de Wikilegis."
 
-#: templates/about.html:33
+#: templates/about.html:33 templates/footer.html:7
 msgid "terms of use"
 msgstr ""
 
@@ -854,15 +854,15 @@ msgstr ""
 msgid "Original text"
 msgstr "Texto original"
 
-#: templates/bill/bill_segment.html:149
+#: templates/bill/bill_segment.html:151
 msgid "Submitted proposals"
 msgstr "Propuestas enviadas"
 
-#: templates/bill/bill_segment.html:215
+#: templates/bill/bill_segment.html:214
 msgid "Make a proposal!"
 msgstr "¡Sugiere una propuesta!"
 
-#: templates/bill/bill_segment.html:222
+#: templates/bill/bill_segment.html:221
 #, fuzzy
 #| msgid "Participate"
 msgid "Participations closed"
@@ -888,6 +888,27 @@ msgstr "Previsualizar"
 #: templates/export/export_form.html:10
 msgid "Download"
 msgstr "Descargar"
+
+#: templates/footer.html:7
+#, fuzzy
+#| msgid ""
+#| "Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+#| "Hacker Lab, designed to enable citizens to suggest modifications to the "
+#| "wording of Bills. It is an open source project, developed under license "
+#| "CC BY 4.0. Besides participating in discussions of the bill, you can help "
+#| "us to improve our tool."
+msgid ""
+"Wikilegis is a project developed by the Brazilian Chamber of Deputies’ "
+"Hacker Lab, designed to enable citizens to suggest modifications to the "
+"wording of Bills or other types of legislation. It is an open source "
+"project, developed under license CC BY 4.0."
+msgstr ""
+"Wikilegis es un proyecto desarrollado por el Laboratorio Hacker de la Cámara "
+"de Diputados del Parlamento de Brasil, diseñado para habilitar a los "
+"ciudadanos a que sugieran modificaciones al texto de los Proyectos de Ley. "
+"Es un proyecto open source, desarrollado bajo licencia CC BY 4.0. Además de "
+"participar en las discusiones de los proyectos, puedes ayudarnos a mejorar "
+"la herramienta."
 
 #: templates/index.html:11
 msgid "Your legislative editing tool"

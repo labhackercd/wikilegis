@@ -3,13 +3,14 @@ from django.conf import settings
 from rest_framework import serializers
 
 from wikilegis.auth2.models import User
+from wikilegis.notification.models import Newsletter
 from wikilegis.core.models import Bill, BillSegment, TypeSegment, UpDownVote
 
 
 class BasicUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'avatar')
+        fields = ('id', 'first_name', 'last_name', 'avatar')
 
 
 class CommentsSerializer(serializers.ModelSerializer):
@@ -56,6 +57,20 @@ class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = UpDownVote
         fields = ('id', 'user', 'content_type', 'object_id', 'vote', 'created', 'modified')
+
+
+class NewsletterSerializer(serializers.ModelSerializer):
+    user = BasicUserSerializer()
+
+    class Meta:
+        model = Newsletter
+        fields = ('id', 'user', 'bill', 'periodicity', 'status')
+
+
+class NewsletterSerializerForPost(serializers.ModelSerializer):
+    class Meta:
+        model = Newsletter
+        fields = ('id', 'bill', 'periodicity', 'status')
 
 
 class SegmentSerializer(serializers.ModelSerializer):

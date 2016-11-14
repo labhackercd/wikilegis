@@ -4,7 +4,8 @@ from django.views.generic.base import TemplateView
 from wikilegis.core.api import (BillListAPI, SegmentsListAPI, CommentListAPI,
                                 api_root, UserUpdateAPI, UserAPI, BillAPI,
                                 TypeSegmentAPI, UpDownVoteListAPI,
-                                CreateUserAPI, VoteUpdateDeleteAPI)
+                                CreateUserAPI, VoteUpdateDeleteAPI,
+                                NewsleterListAPI)
 from wikilegis.core.views import BillReport, CreateProposal, BillDetailView
 
 urlpatterns = [
@@ -53,4 +54,6 @@ urlpatterns += [
         name='votes_api'),
     url(r'^api/votes/update/(?P<pk>\d+)$', VoteUpdateDeleteAPI.as_view(),
         name='votes_update_api'),
+    url(r'^api/newsletter/$', NewsleterListAPI.as_view(),
+        name='newsletter_api'),
 ]

@@ -12,13 +12,15 @@ from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 from wikilegis import settings
 from wikilegis.auth2.models import User
+from wikilegis.notification.models import Newsletter
 from wikilegis.core.models import Bill, BillSegment, TypeSegment, UpDownVote
 from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
                                         CommentsSerializer, UserSerializer,
                                         TypeSegmentSerializer, BillDetailSerializer,
                                         CommentsSerializerForPost, SegmentSerializerForPost,
                                         VoteSerializer, UpDownVoteSerializerForPost,
-                                        CreateUserSerializer)
+                                        CreateUserSerializer, NewsletterSerializer,
+                                        NewsletterSerializerForPost)
 from rest_framework import generics, permissions, mixins, filters
 import django_filters
 from django_filters import rest_framework
@@ -293,6 +295,49 @@ class UserAPI(generics.ListAPIView):
     permission_classes = (TokenPermission, )
 
 
+class NewsleterListAPI(generics.ListCreateAPIView):
+    queryset = Newsletter.objects.all()
+    serializer_class = NewsletterSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('user', 'bill', 'periodicity', 'status')
+
+    def get_queryset(self):
+        queryset = self.queryset
+        if self.request.user.is_authenticated():
+            queryset = queryset.filter(user=self.request.user)
+        return queryset
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return self.serializer_class
+        elif self.request.method == 'POST':
+            return NewsletterSerializerForPost
+
+    def post(self, request, *args, **kwargs):
+        key = request.data.get('token', None)
+        if request.user.is_authenticated():
+            newsletter = Newsletter.objects.get_or_create(user=request.user,
+                                                          bill_id=request.data['bill'])[0]
+            newsletter_status = request.data.get('status', False)
+            newsletter.status = newsletter_status
+            newsletter.periodicity = request.data['periodicity']
+            newsletter.save()
+            serializer = NewsletterSerializerForPost(newsletter)
+            return Response(serializer.data, status=201)
+        elif key:
+            token = Token.objects.get(key=key)
+            newsletter = Newsletter.objects.get_or_create(user=token.user,
+                                                          bill_id=request.data['bill'])[0]
+            newsletter_status = request.data.get('status', False)
+            newsletter.status = eval(newsletter_status)
+            newsletter.periodicity = request.data['periodicity']
+            newsletter.save()
+            serializer = NewsletterSerializer(newsletter)
+            return JSONResponse(serializer.data, status=201)
+        else:
+            return Response(status=400)
+
+
 class UserUpdateAPI(generics.UpdateAPIView):
     model = User
     serializer_class = UserSerializer
@@ -325,7 +370,9 @@ def api_root(request, format=None):
         'users': reverse('users_list_api',
                          request=request, format=format),
         'votes': reverse('votes_api',
-                         request=request, format=format)
+                         request=request, format=format),
+        'newsletter': reverse('newsletter_api',
+                              request=request, format=format),
     })
 
 

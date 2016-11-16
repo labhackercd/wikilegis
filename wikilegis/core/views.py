@@ -250,8 +250,11 @@ class BillReport(DetailView):
     def get_context_data(self, **kwargs):
         context = super(BillReport, self).get_context_data(**kwargs)
         segment_ctype = ContentType.objects.get_for_model(BillSegment)
+        bill_ctype = ContentType.objects.get_for_model(Bill)
         segments_id = set(self.object.segments.values_list('id', flat=True))
         votes = UpDownVote.objects.filter(content_type=segment_ctype, object_id__in=segments_id)
+        votes_bill_ids = UpDownVote.objects.filter(content_type=bill_ctype,
+                                                   object_id=self.object.id).values_list('user__id', flat=True)
         comments = Comment.objects.filter(object_pk__in=segments_id, content_type=segment_ctype)
         proposals = self.object.segments.filter(original=False)
         featured_segments = (list(votes.values_list('object_id', flat=True)) +
@@ -260,7 +263,8 @@ class BillReport(DetailView):
         featured_segments = set(map(int, featured_segments))
         context['votes'] = votes.count()
         context['comments'] = comments.count()
-        context['attendees'] = len(set(list(votes.values_list('user__id', flat=True)) +
+        context['attendees'] = len(set(list(votes_bill_ids) +
+                                       list(votes.values_list('user__id', flat=True)) +
                                        list(comments.values_list('user__id', flat=True)) +
                                        list(proposals.values_list('author__id', flat=True))))
         context['proposals'] = proposals.count()

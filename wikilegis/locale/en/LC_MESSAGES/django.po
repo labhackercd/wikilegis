@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 11:54-0200\n"
+"POT-Creation-Date: 2016-11-16 13:20-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -836,6 +836,10 @@ msgstr ""
 
 #: templates/bill/create_amendment.html:60
 msgid "Cancel"
+msgstr ""
+
+#: templates/comments2/_comment_form.html:17
+msgid "Write a comment"
 msgstr ""
 
 #: templates/comments2/_comment_form.html:31

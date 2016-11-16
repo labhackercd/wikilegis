@@ -13,7 +13,7 @@
             {% elif field.name == "comment" %}
                 <div class="comment-textarea {% if field.errors %} error{% endif %}">
                     <textarea class="materialize-textarea" cols="40" id="id_comment"
-                    placeholder="Escreva um comentário" maxlength="3000" name="comment" rows="10"></textarea>
+                    placeholder="{% trans "Write a comment" %}" maxlength="3000" name="comment" rows="10"></textarea>
                 </div>
 
             {% else %}

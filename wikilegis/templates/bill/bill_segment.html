@@ -11,136 +11,110 @@
 {% load convert_numbers %}
 <div class="pl-full">
     <div class="container">
-        <div class="articles-header valign-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" viewBox="0 0 494.64 494.64" style="display: block;" xml:space="preserve" class="detail convertSvgInline replaced-svg" width="50px" height="50px" data-id="1351" data-kw="purchase1" fill="#000000">
-                <g>
-                    <g>
-                        <path style="" d="M491.986,79.216c-2.775-4.641-7.351-7.895-12.631-8.957L199.171,2.712    c-9.234-1.79-18.344,3.311-21.54,12.134L70.833,286.161l35.654,12.993l101.21-257.977L451.144,103.3    c-15.204,47.134-51.383,145.512-86.064,237.112c-30.236,79.921-47.635,107.289-80.705,112.878    c-0.039-0.039-0.075-0.077-0.075-0.135c-67.586,9.474-66.373-76.688-66.373-76.688L2.076,289.276    C-13.263,386.5,61.443,409.884,61.443,409.884l158.033,71.75c0.038,0.02,24.708,11.771,51.521,10.563    c72.323-1.703,97.739-54.218,129.585-138.352c46.008-121.594,92.705-257.838,93.164-259.283    C495.392,89.407,494.742,83.847,491.986,79.216z" fill=""></path>
-                        <path style="" d="M364.272,188.63c1.646,0.45,3.35,0.689,5.033,0.689c8.324,0,15.94-5.55,18.274-13.971    c2.774-10.115-3.216-20.564-13.317-23.32l-82.233-25.381c-9.989-2.765-20.555,3.177-23.311,13.282    c-2.757,10.114,3.178,20.564,13.318,23.33L364.272,188.63z" fill=""></path>
-                        <path style="" d="M235.784,215.939c-3.296,9.962,2.055,20.69,11.989,24.015l81.802,29.232    c1.986,0.661,3.938,0.958,5.907,0.969c7.979,0.042,15.453-4.991,18.117-12.96c3.305-9.935-2.036-20.679-12.01-24.002    l-81.771-29.213C249.825,200.673,239.119,206.023,235.784,215.939z" fill=""></path>
-                        <path style="" d="M228.587,283.185c-9.952-3.33-20.698,2.104-23.952,12.096c-3.272,9.914,2.182,20.67,12.134,23.923    l81.973,29.111c1.975,0.669,3.942,0.956,5.936,0.956c7.961,0,15.387-5.07,18.01-13.033c3.271-9.971-2.163-20.707-12.115-23.961    L228.587,283.185z" fill=""></path>
-                        <path style="" d="M225.552,104.517c11.617,0,21.043,9.167,21.043,20.459c0,11.301-9.426,20.458-21.043,20.458    c-11.626,0-21.052-9.158-21.052-20.458C204.501,113.684,213.926,104.517,225.552,104.517z" fill=""></path>
-                        <path style="" d="M195.783,180.572c11.627,0,21.043,9.158,21.043,20.449c0,11.282-9.416,20.439-21.043,20.439    c-11.626,0-21.052-9.157-21.052-20.439C174.731,189.731,184.157,180.572,195.783,180.572z" fill=""></path>
-                        <path style="" d="M164.033,259.039c11.627,0,21.052,9.168,21.052,20.479c0,11.29-9.425,20.438-21.052,20.438    c-11.626,0-21.052-9.146-21.052-20.438C142.981,268.207,152.407,259.039,164.033,259.039z" fill=""></path>
-                    </g>
-                </g>
-            </svg>
-            <h5>{% trans "Original text" %}</h5>
-        </div>
-
-        <div class="divider"></div>
-        {% if segment.type.name != 'Artigo' %}
-        <div class="segments-before">
-            {% for dispositive in segment|previous %}
-
-            <a class="bill-link parent" href="{% url 'show_segment' dispositive.bill.id dispositive.id %}">
-                <div class="article {{ dispositive.type|slugify }}" id="segment-{{ dispositive.id }}">
-                    <div class="comments-counter">
-                        <div class="cn">
-                            <div class="cc-holder">
-                                <i class="material-icons">mode_comment</i>
-                                <div class="n">
-                                    {{ dispositive.substitutes.all.count }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <div class="article-content">
-                            <span>{% segment_numbering dispositive %}</span> {{ dispositive.content }}
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            {% endfor %}
-
-            {% if segment|previous|length > 1 %}
-            <div class="show-more-segments">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" fill="#A2A2A2" x="0px" y="0px" width="50" height="25" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="54175" data-kw="more10">
+        <div class="original-text">
+            <div class="articles-header valign-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" viewBox="0 0 494.64 494.64" style="display: block;" xml:space="preserve" class="detail convertSvgInline replaced-svg" width="50px" height="50px" data-id="1351" data-kw="purchase1" fill="#000000">
                     <g>
                         <g>
-                            <circle cx="69.545" cy="306" r="69.545"></circle>
-                            <circle cx="306" cy="306" r="69.545"></circle>
-                            <circle cx="542.455" cy="306" r="69.545"></circle>
+                            <path style="" d="M491.986,79.216c-2.775-4.641-7.351-7.895-12.631-8.957L199.171,2.712    c-9.234-1.79-18.344,3.311-21.54,12.134L70.833,286.161l35.654,12.993l101.21-257.977L451.144,103.3    c-15.204,47.134-51.383,145.512-86.064,237.112c-30.236,79.921-47.635,107.289-80.705,112.878    c-0.039-0.039-0.075-0.077-0.075-0.135c-67.586,9.474-66.373-76.688-66.373-76.688L2.076,289.276    C-13.263,386.5,61.443,409.884,61.443,409.884l158.033,71.75c0.038,0.02,24.708,11.771,51.521,10.563    c72.323-1.703,97.739-54.218,129.585-138.352c46.008-121.594,92.705-257.838,93.164-259.283    C495.392,89.407,494.742,83.847,491.986,79.216z" fill=""></path>
+                            <path style="" d="M364.272,188.63c1.646,0.45,3.35,0.689,5.033,0.689c8.324,0,15.94-5.55,18.274-13.971    c2.774-10.115-3.216-20.564-13.317-23.32l-82.233-25.381c-9.989-2.765-20.555,3.177-23.311,13.282    c-2.757,10.114,3.178,20.564,13.318,23.33L364.272,188.63z" fill=""></path>
+                            <path style="" d="M235.784,215.939c-3.296,9.962,2.055,20.69,11.989,24.015l81.802,29.232    c1.986,0.661,3.938,0.958,5.907,0.969c7.979,0.042,15.453-4.991,18.117-12.96c3.305-9.935-2.036-20.679-12.01-24.002    l-81.771-29.213C249.825,200.673,239.119,206.023,235.784,215.939z" fill=""></path>
+                            <path style="" d="M228.587,283.185c-9.952-3.33-20.698,2.104-23.952,12.096c-3.272,9.914,2.182,20.67,12.134,23.923    l81.973,29.111c1.975,0.669,3.942,0.956,5.936,0.956c7.961,0,15.387-5.07,18.01-13.033c3.271-9.971-2.163-20.707-12.115-23.961    L228.587,283.185z" fill=""></path>
+                            <path style="" d="M225.552,104.517c11.617,0,21.043,9.167,21.043,20.459c0,11.301-9.426,20.458-21.043,20.458    c-11.626,0-21.052-9.158-21.052-20.458C204.501,113.684,213.926,104.517,225.552,104.517z" fill=""></path>
+                            <path style="" d="M195.783,180.572c11.627,0,21.043,9.158,21.043,20.449c0,11.282-9.416,20.439-21.043,20.439    c-11.626,0-21.052-9.157-21.052-20.439C174.731,189.731,184.157,180.572,195.783,180.572z" fill=""></path>
+                            <path style="" d="M164.033,259.039c11.627,0,21.052,9.168,21.052,20.479c0,11.29-9.425,20.438-21.052,20.438    c-11.626,0-21.052-9.146-21.052-20.438C142.981,268.207,152.407,259.039,164.033,259.039z" fill=""></path>
                         </g>
                     </g>
                 </svg>
+                <h5>{% trans "Original text" %}</h5>
             </div>
+
+            {% if segment.type.name != 'Artigo' %}
+            <div class="segments-before">
+                {% for dispositive in segment|previous %}
+
+                <a class="bill-link parent" href="{% url 'show_segment' dispositive.bill.id dispositive.id %}">
+                    <div class="article {{ dispositive.type|slugify }}" id="segment-{{ dispositive.id }}">
+                        <div class="comments-counter">
+                            <div class="cn">
+                                <div class="cc-holder">
+                                    <i class="material-icons">mode_comment</i>
+                                    <div class="n">
+                                        {{ dispositive.substitutes.all.count }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <div class="article-content">
+                                <span>{% segment_numbering dispositive %}</span> {{ dispositive.content }}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                {% endfor %}
+
+                {% if segment|previous|length > 1 %}
+                <div class="show-more-segments">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" fill="#A2A2A2" x="0px" y="0px" width="50" height="25" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="54175" data-kw="more10">
+                        <g>
+                            <g>
+                                <circle cx="69.545" cy="306" r="69.545"></circle>
+                                <circle cx="306" cy="306" r="69.545"></circle>
+                                <circle cx="542.455" cy="306" r="69.545"></circle>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                {% endif %}
+            </div>
+
             {% endif %}
-        </div>
 
-        {% endif %}
-
-        <div class="row layarticle">
-            <div class="col s2 m2 l1">
-                <div class="votes">
-                    {% with segment as content_object %}
-                        {% if segment.bill.status = 'published' %}
-                            {% include "_vote_buttons.html" %}
-                        {% else %}
-                            {% include "_vote_buttons_read_only.html" %}
-                        {% endif%}
-                    {% endwith %}
+            <div class="row layarticle">
+                <div class="col s2 m2 l1">
+                    <div class="votes">
+                        {% with segment as content_object %}
+                            {% if segment.bill.status = 'published' %}
+                                {% include "_vote_buttons.html" %}
+                            {% else %}
+                                {% include "_vote_buttons_read_only.html" %}
+                            {% endif%}
+                        {% endwith %}
+                    </div>
                 </div>
-            </div>
 
-            <div class="col s10 m10 l11">
-                <div class="article-prop">
-                    {# We seriously can't put html into data attributes jeez #}
-                    <p id="original" data-raw-content="<span class='article-type'>{% segment_numbering segment %}</span>{{ segment.content }}">
-                    <span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
-                </div>
-                <div class="after-bar">
-                    <div class="col s12 m12 l8">
-                        <div class="user col s12 m6">
-                            <!--<div class="col m3 s3">-->
-                                <!--<div class="avatr">-->
-                                    <!--{% if author.user.avatar %}-->
-                                    <!--<div class="pic" style="background-image: url('{% cropped_thumbnail author.user 'cropping' %}')"></div>-->
-                                    <!--{% else %}-->
-                                    <!--<div class="pic" style="background-image: url('{% static "img/user.png " %}')"></div>-->
-                                    <!--{% endif %}-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="col m9 s9">-->
-                                <!--<span class="user-name">-->
-                                <!--{% if author.user and author.user.pk %}-->
-                                    <!--<a href="{% url 'users_profile' author.user.pk %}">{{ author.user }}</a>-->
-                                <!--{% else %}-->
-                                    <!--{{ author.user }}-->
-                                <!--{% endif %}-->
-                            <!--</span>-->
-                                <!--<p class="date">{{ segment.created|date }}</p>-->
-                            <!--</div>-->
+                <div class="col s10 m10 l11">
+                    <div class="article-prop">
+                        {# We seriously can't put html into data attributes jeez #}
+                        <p id="original" data-raw-content="<span class='article-type'>{% segment_numbering segment %}</span>{{ segment.content }}">
+                        <span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
+                    </div>
+                    <div class="comments">
+                        <div class="main">
+                            <a href="#">
+                                <div class="view-comments">
+                                    <i class="material-icons">question_answer</i>
+                                    {% get_comment_count for segment as comment_segment_count %}
+                                    Comentários do texto original (<span class="comments-counter">{{ comment_segment_count }}</span>)
+                                </div>
+                            </a>
+                            <div class="holder hide">
+                                {% if segment.bill.status = 'published' %}
+                                {% render_comments segment readonly|default:False %}
+                                {% else %}
+                                {% render_comments segment readonly|default:True %}
+                                {% endif %}
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row comments">
-            <div class="col s11 offset-m1">
-                <div class="main">
-                    <a href="#">
-                        <div class="view-comments">
-                            <i class="material-icons">question_answer</i>
-                            {% get_comment_count for segment as comment_segment_count %}
-                            Comentarios (<span class="comments-counter">{{ comment_segment_count }}</span>)
-                        </div>
-                    </a>
-                    <div class="holder hide">
-                        {% if segment.bill.status = 'published' %}
-                        {% render_comments segment readonly|default:False %}
-                        {% else %}
-                        {% render_comments segment readonly|default:True %}
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
+
         {% if segment.substitutes.all %}
         <div class="articles-header submitted-proposals">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 79.536 79.536" style="enable-background:new 0 0 79.536 79.536;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="27546" data-kw="leader">
@@ -148,13 +122,12 @@
                     <path style="fill:#010002;" d="M55.313,48.99c-1.735,0-3.139,1.403-3.139,3.128c0,1.714,1.403,3.122,3.139,3.122   c1.719,0,3.122-1.408,3.122-3.122C58.436,50.394,57.032,48.99,55.313,48.99z M10.344,48.99c-1.729,0-3.136,1.403-3.136,3.128   c0,1.714,1.406,3.122,3.136,3.122c1.722,0,3.127-1.408,3.127-3.122C13.471,50.394,12.065,48.99,10.344,48.99z M45.992,43.3   c-2.558,0-4.647,2.092-4.647,4.649c0,2.568,2.09,4.66,4.647,4.66c2.579,0,4.671-2.092,4.671-4.66   C50.663,45.392,48.571,43.3,45.992,43.3z M60.444,71.603h-5.297v-9.76c0-1.673-0.492-3.236-1.289-4.594   c0.471-0.135,0.947-0.238,1.455-0.238c2.827,0,5.131,2.32,5.131,5.147V71.603z M19.644,43.3c-2.561,0-4.65,2.092-4.65,4.649   c0,2.568,2.089,4.66,4.65,4.66s4.655-2.092,4.655-4.66C24.299,45.392,22.204,43.3,19.644,43.3z M10.344,57.011   c0.507,0,0.979,0.104,1.447,0.238c-0.803,1.357-1.29,2.921-1.29,4.594v9.76H5.199v-9.444C5.199,59.32,7.517,57.011,10.344,57.011z    M32.819,33.994c-3.791,0-6.877,3.092-6.877,6.877c0,3.801,3.086,6.887,6.877,6.887c3.79,0,6.887-3.086,6.887-6.887   C39.706,37.086,36.609,33.994,32.819,33.994z M53.438,75.238h-8.13V60.388c0-2.057-0.538-3.957-1.408-5.645   c0.663-0.202,1.367-0.342,2.092-0.342c4.102,0,7.446,3.335,7.446,7.441V75.238L53.438,75.238z M20.327,60.388v14.851h-8.125V61.848   c0-4.102,3.337-7.441,7.436-7.441c0.735,0,1.432,0.14,2.095,0.342C20.863,56.441,20.327,58.337,20.327,60.388z M22.028,79.536   H43.61V60.388c0-5.955-4.842-10.792-10.791-10.792c-5.96,0-10.792,4.837-10.792,10.792V79.536z M42.052,38.883V28.596h-2.78   c-4.332,0-7.858-3.526-7.858-7.863V7.853C31.408,3.521,34.935,0,39.271,0h27.206c4.334,0,7.859,3.521,7.859,7.853v12.875   c0,4.336-3.525,7.863-7.859,7.863H52.351L42.052,38.883z M39.271,2.812c-2.773,0-5.036,2.263-5.036,5.041v12.875   c0,2.783,2.263,5.046,5.036,5.046h5.603v6.304l6.307-6.304h15.297c2.775,0,5.038-2.263,5.038-5.046V7.853   c0-2.778-2.263-5.041-5.038-5.041H39.271z"></path>
                 </g>
             </svg>
-            <h5>{% trans "Submitted proposals" %}</h5>
+            <h5>{% trans "Proposed by the society" %}</h5>
         </div>
-        <div class="divider"></div>
         {% endif %}
         {% for amendment in segment.substitutes.all %}
         <div class="row layarticle prop" id="amendment-{{ amendment.pk }}">
-            <div class="col s2 m2 l1">
+            <div class="col s2 m1">
                 <div class="votes">
                     {% with amendment as content_object %}
                         {% if amendment.bill.status = 'published' %}
@@ -166,41 +139,46 @@
                 </div>
             </div>
             <div class="col s10 m10 l11">
-                {# We seriously can't put html into data attributes jeez #}
-                <div class="article-prop" data-raw-content="<span class='article-type'>{% segment_numbering segment %}</span>{{ amendment.content|escape }}">
-                    <p class="pp">{{ amendment.content|linebreaks }}</p>
-                </div>
                 <div class="after-bar">
-                    <div class="user col s12">
-                        <div class="avatr">
-                            {% if amendment.author.avatar %}
-                            <div class="pic" style="background-image: url('{% cropped_thumbnail amendment.author 'cropping' %}')"></div>
-                            {% else %}
-                            <div class="pic" style="background-image: url('{% static "img/user.png " %}')"></div>
-                            {% endif %}
-                        </div>
+                    <div class="user">
+
+                        {# XXX Removing avatar for now as it is not really being used #}
+                        {% comment %}
+                            <div class="avatr">
+                                {% if amendment.author.avatar %}
+                                <div class="pic" style="background-image: url('{% cropped_thumbnail amendment.author 'cropping' %}')"></div>
+                                {% else %}
+                                <div class="pic" style="background-image: url('{% static "img/user.png " %}')"></div>
+                                {% endif %}
+                            </div>
+                        {% endcomment %}
+
+                        <span class="by">{% trans "By" %}</span>
                         <span class="user-name">{% with user=amendment.author %}{% include "auth2/_user_display_name.html" %}{% endwith %}</span>
-                        <p class="date">{{ segment.created|date }}</p>
+                        <span class="date">- {{ segment.created|date }}</span>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row comments">
-            <div class="col s11 offset-m1">
-                <div class="main">
-                    <a href="#">
-                        <div class="view-comments">
-                            <i class="material-icons">question_answer</i>
-                            {% get_comment_count for amendment as comment_amendmentt_count %}
-                            Comentar (<span class="comments-counter">{{ comment_amendmentt_count }}</span>)
+                {# We seriously can't put html into data attributes jeez #}
+                <div class="article-prop" data-raw-content="<span class='article-type'>{% segment_numbering segment %}</span>{{ amendment.content|escape }}">
+                    <p class="pp">{{ amendment.content }}</p>
+                </div>
+
+                <div class="comments">
+                    <div class="main">
+                        <a href="#">
+                            <div class="view-comments">
+                                <i class="material-icons">question_answer</i>
+                                {% get_comment_count for amendment as comment_amendmentt_count %}
+                                Comentários desta sugestão (<span class="comments-counter">{{ comment_amendmentt_count }}</span>)
+                            </div>
+                        </a>
+                        <div class="holder hide">
+                            {% if amendment.bill.status = 'published' %}
+                            {% render_comments amendment readonly|default:False %}
+                            {% else %}
+                            {% render_comments amendment readonly|default:True %}
+                            {% endif %}
                         </div>
-                    </a>
-                    <div class="holder hide">
-                        {% if amendment.bill.status = 'published' %}
-                        {% render_comments amendment readonly|default:False %}
-                        {% else %}
-                        {% render_comments amendment readonly|default:True %}
-                        {% endif %}
                     </div>
                 </div>
             </div>

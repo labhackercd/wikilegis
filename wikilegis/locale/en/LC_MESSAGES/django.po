@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 13:20-0200\n"
+"POT-Creation-Date: 2016-11-16 18:04-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -679,8 +679,7 @@ msgstr ""
 msgid "terms of use"
 msgstr ""
 
-#: templates/about.html:36
-#: templates/registration/registration_complete.html:14
+#: templates/about.html:36 templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr ""
 
@@ -722,7 +721,7 @@ msgstr ""
 msgid "Update my profile"
 msgstr ""
 
-#: templates/bill/_base.html:19 templates/bill/bill.html:33
+#: templates/bill/_base.html:18 templates/bill/bill.html:33
 msgid "Participations Closed"
 msgstr ""
 
@@ -813,19 +812,24 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: templates/bill/bill_segment.html:28 templates/bill/proposal.html:24
+#: templates/bill/bill_segment.html:29 templates/bill/proposal.html:24
 msgid "Original text"
 msgstr ""
 
-#: templates/bill/bill_segment.html:151
-msgid "Submitted proposals"
+#: templates/bill/bill_segment.html:125
+msgid "Proposed by the society"
 msgstr ""
 
-#: templates/bill/bill_segment.html:214
+#: templates/bill/bill_segment.html:157
+#: templates/comments2/_comment_list.html:7
+msgid "By"
+msgstr ""
+
+#: templates/bill/bill_segment.html:193
 msgid "Make a proposal!"
 msgstr ""
 
-#: templates/bill/bill_segment.html:221
+#: templates/bill/bill_segment.html:200
 msgid "Participations closed"
 msgstr ""
 
@@ -846,8 +850,8 @@ msgstr ""
 msgid "Post"
 msgstr ""
 
-#: templates/comments2/_comment_list.html:10
-msgid "on"
+#: templates/comments2/_comment_list.html:15
+msgid "No comments yet. Be the first to comment!"
 msgstr ""
 
 #: templates/export/export_form.html:10

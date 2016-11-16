@@ -596,14 +596,7 @@ strong {
         width: 70px;
         height: 70px;
     }
-    &.back {
-        .circle {
-            svg {
-                opacity: .5;
-                margin-left: -5px;
-            }
-        }
-    }
+
     .pl-author {
         margin-top: 20px;
         margin-bottom: 20px;
@@ -814,11 +807,12 @@ strong {
 
 .segments-before {
     margin-top: 20px;
+    max-width: 960px;
     .bill-link {
         .article {
             opacity: .5;
             &:hover {
-                opacity: 1;
+                opacity: 0.99;
             }
         }
         &:not(:first-child) {
@@ -839,7 +833,7 @@ strong {
         -moz-border-radius: 5px;
         border-radius: 15px;
         &:hover {
-            opacity: 1;
+            opacity: 0.99;
         }
         svg {
             margin-right: auto;
@@ -986,6 +980,31 @@ strong {
 }
 
 .pl-full {
+    .original-text {
+      position: relative;
+      padding-top: 15px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100vw;
+        height: 100%;
+        width: 200vw;
+        z-index: 0;
+        background-color: hsla(149,67%,90%,1);
+      }
+
+      .articles-header {
+        svg {
+            opacity: 0.7;
+        }
+        h5 {
+            opacity: 0.7;
+        }
+      }
+
+    }
     a.bill-link {
         color: inherit;
     }
@@ -998,11 +1017,12 @@ strong {
         overflow: inherit;
     }
     .articles-header {
-        padding: 20px;
+        padding: 10px;
+        margin-bottom: 20px;
         svg {
             opacity: .5;
             float: left;
-            margin-right: 20px;
+            margin-right: 18px;
         }
         h5 {
             font-weight: bold;
@@ -1112,9 +1132,16 @@ strong {
     background-color: $maingreen;
 }
 
-.pl-description.back {
-    width: 100%;
-    margin-bottom: 20px;
+.pl-title.back {
+
+    &.back {
+        .circle {
+            svg {
+                opacity: .5;
+                margin-left: -5px;
+            }
+        }
+    }
 }
 
 .tabs {
@@ -1431,24 +1458,32 @@ blockquote {
     margin-left: 72px;
 }
 
-$opacity: .4;
+$opacity: .6;
 .layarticle {
-    margin-top: 20px;
+    margin: 0;
     position: relative;
+    max-width: 960px;
+    margin-bottom: 1.5rem;
     .votes {
-        margin-top: 30px;
         padding-left: 10px;
         text-align: center;
         p {
             margin-top: 0px;
+            margin-bottom: 6px;
         }
         a {
             color: inherit;
+            display: inline-block;
+
+            svg {
+                width: 25px;
+                display: block;
+            }
         }
         .downvote {
             opacity: $opacity;
             p {
-                opacity: $opacity;
+                opacity: 0.8;
             }
             svg {
                 -ms-transform: rotate(180deg);
@@ -1473,7 +1508,7 @@ $opacity: .4;
         .upvote {
             opacity: $opacity;
             p {
-                opacity: $opacity;
+                opacity: 0.8;
             }
             &.active {
                 path {
@@ -1488,26 +1523,37 @@ $opacity: .4;
         }
     }
     .article-prop {
-        max-width: 840px;
-        font-size: 1.1em;
+        font-size: 16px;
         font-weight: 400;
+        margin-bottom: 2px;
+
+        .pp {
+            margin: 0;
+        }
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: calc(100% - 2.15rem);
+        border-bottom: 1px solid $fkingrey;
+        margin-left: 1.4rem;
+        margin-right: 0.75rem;
+        padding-top: 1.5rem;
+
     }
 }
 
 .comments {
-    margin-bottom: 20px;
+    margin-top: 10px;
     li {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
     span.comment-submit-date {
         color: #A5A5A5;
     }
     .main {
-        text-align: right;
         max-width: 840px;
-        border-bottom: 1px solid $fkingrey;
-        padding-bottom: 10px;
-        padding-left: 30px;
     }
     .submit {
         margin-top: 0px;
@@ -1521,21 +1567,46 @@ $opacity: .4;
             }
         }
     }
+    .comment-name {
+      font-weight: 700;
+    }
+
+    .title {
+      font-size: 0.9em;
+    }
+}
+
+.collapsible-comments {
+  margin-left: 1.9rem;
+
+  .collapsible-comments-item {
+    color: #404040;
+    font-size: 1rem;
+  }
+
+  .collapsible-comments-comment {
+    color: black;
+    font-size: 16px;
+  }
 }
 
 .after-bar {
     position: relative;
-    min-height: 50px;
-    margin-top: 30px;
+    margin-bottom: 5px;
+    opacity: 0.9;
+
     .col {
         padding-left: 0px;
     }
-    max-width: 840px;
     .user {
+        .by {
+            font-size: 1em;
+        }
+
         .user-name {
             word-break: break-word;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1em;
         }
         .user-type {
             position: relative;
@@ -1557,6 +1628,7 @@ $opacity: .4;
         .date {
             margin: 0;
             opacity: .4;
+            font-size: 0.9em;
         }
     }
     .prop-btn {
@@ -1839,10 +1911,6 @@ $opacity: .4;
         margin-bottom: 10px;
         color: #9e9e9e !important;
     }
-}
-
-.submitted-proposals {
-    margin-top: 50px;
 }
 
 .wbtn {

@@ -2,13 +2,17 @@
 
 <ul class="comments collapsible-comments" data-show="3">
     {% for comment in comment_list %}
+
         <li class="avatar collapsible-comments-item" id="c{{ comment.id }}">
-            <span>
+           {% trans "By" %}
+        <span class="title"><span class="comment-name">{{ comment.user }}</span><span class="comment-submit-date"> - {{ comment.submit_date }}</span></span>
+            <div class="collapsible-comments-comment">
                 {{ comment.comment }}
-            </span>
-             - 
-          <span class="title"><span class="comment-name">{{ comment.user }}</span><span class="comment-submit-date"> {% trans "on" %} {{ comment.submit_date }}</span></span>
+            </div>
+
         </li>
+    {% empty %}
+    <span class="no-comments">{% trans "No comments yet. Be the first to comment!" %}</span>
     {%  endfor %}
     {% if not readonly %}
     <li class="avatar">

@@ -715,14 +715,14 @@ strong {
       margin-bottom: 20px;
     }
 
-    .votes a {
+    .votes a, .votes span {
       display: flex;
       align-items: center;
       margin-left: 1rem;
       margin-top: 0.5rem;
     }
 
-    .votes a p {
+    .votes a p, .votes span p {
       margin: 0 1rem;
     }
 
@@ -730,7 +730,7 @@ strong {
       transform: rotate(180deg);
     }
 
-    .votes a svg {
+    .votes a svg, .votes span svg {
       width: 2rem;
       fill: #324545;
     }

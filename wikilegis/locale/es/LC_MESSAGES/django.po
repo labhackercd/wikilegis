@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 18:18-0200\n"
+"POT-Creation-Date: 2016-11-16 11:54-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,27 +112,27 @@ msgstr ""
 "El id de cada parlamentario puede ser encontrado en los parámetros de la url "
 "en el perfil del parlamentario en el sitio http://www2.camara.leg.br/"
 
-#: auth2/models.py:121 core/models.py:172 notification/models.py:30
+#: auth2/models.py:124 core/models.py:172 notification/models.py:30
 msgid "user"
 msgstr "usuario"
 
-#: auth2/models.py:122
+#: auth2/models.py:125
 msgid "uf"
 msgstr "uf"
 
-#: auth2/models.py:123
+#: auth2/models.py:126
 msgid "party"
 msgstr "partido"
 
-#: auth2/models.py:124
+#: auth2/models.py:127
 msgid "parliamentary name"
 msgstr "nombre del parlamentario"
 
-#: auth2/models.py:127
+#: auth2/models.py:130
 msgid "congressman"
 msgstr "parlamentario"
 
-#: auth2/models.py:128
+#: auth2/models.py:131
 msgid "congressmen"
 msgstr "parlamentarios"
 
@@ -709,7 +709,8 @@ msgstr ""
 msgid "terms of use"
 msgstr ""
 
-#: templates/about.html:36 templates/registration/registration_complete.html:14
+#: templates/about.html:36
+#: templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr "Volver a la página principal"
 
@@ -877,13 +878,13 @@ msgstr "Enviar propuesta"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: templates/comments2/_comment_form.html:24
+#: templates/comments2/_comment_form.html:31
 msgid "Post"
 msgstr "Enviar"
 
-#: templates/comments2/_comment_form.html:25
-msgid "Preview"
-msgstr "Previsualizar"
+#: templates/comments2/_comment_list.html:10
+msgid "on"
+msgstr "el"
 
 #: templates/export/export_form.html:10
 msgid "Download"
@@ -1100,6 +1101,9 @@ msgstr ""
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
 msgstr "Reenviar"
+
+#~ msgid "Preview"
+#~ msgstr "Previsualizar"
 
 #~ msgid "bill segment"
 #~ msgstr "elemento del proyecto"

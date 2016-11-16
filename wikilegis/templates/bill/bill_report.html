@@ -46,7 +46,7 @@
             <h4>Comentários</h4>
           {% endif %}
           <div class="segment-comment">
-            <p class="comment"> {{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
+            <p class="comment"> {{ comment.comment }} - <span class="author">{{ comment.user }}</span></p>
           </div>
         {% endfor %}
         {% order_by_score for segment.substitutes.all as proposals_ordered %}
@@ -68,7 +68,7 @@
                 {% if forloop.first %}
                 <h4>Comentários</h4>
                 {% endif %}
-                <p class="comment">{{ comment.comment }} - <span class="author">{{ comment.user_name }}</span></p>
+                <p class="comment">{{ comment.comment }} - <span class="author">{{ comment.user }}</span></p>
               </div>
             {% endfor %}
           </div>

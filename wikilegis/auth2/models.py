@@ -109,8 +109,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         """
         return self.first_name
 
+    def get_email_name(self):
+        return self.email.split('@')[0]
+
     def get_display_name(self):
-        return self.get_full_name() or self.email
+        return self.get_full_name() or self.get_email_name()
 
     @permalink
     def get_absolute_url(self):

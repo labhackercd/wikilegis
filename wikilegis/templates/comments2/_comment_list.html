@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <ul class="comments collapsible-comments" data-show="3">
     {% for comment in comment_list %}
@@ -7,7 +7,7 @@
                 {{ comment.comment }}
             </span>
              - 
-          <span class="title"><span class="comment-name">{{ comment.name }}</span><span class="comment-submit-date"> em {{ comment.submit_date }}</span></span>
+          <span class="title"><span class="comment-name">{{ comment.user }}</span><span class="comment-submit-date"> {% trans "on" %} {{ comment.submit_date }}</span></span>
         </li>
     {%  endfor %}
     {% if not readonly %}

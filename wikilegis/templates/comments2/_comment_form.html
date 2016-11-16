@@ -10,17 +10,23 @@
         {% else %}
             {% if field.is_hidden %}
                 <div>{{ field }}</div>
+            {% elif field.name == "comment" %}
+                <div class="comment-textarea {% if field.errors %} error{% endif %}">
+                    <textarea class="materialize-textarea" cols="40" id="id_comment"
+                    placeholder="Escreva um comentário" maxlength="3000" name="comment" rows="10"></textarea>
+                </div>
+
             {% else %}
                 {% if field.errors %}{{ field.errors }}{% endif %}
                 <div class="comment-textarea {% if field.errors %} error{% endif %}"
                         {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
-                    {% render_materialized_field field extra_classes="materialize-textarea" placeholder="Escreva um comentário" %}
+
+                    {% render_materialized_field field extra_classes="materialize-textarea" %}
                 </div>
             {% endif %}
         {% endif %}
     {% endfor %}
     <p class="submit">
         <input type="submit" name="post" class="submit-post" value="{% trans "Post" %}"/>
-        <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}"/>
     </p>
 </form>

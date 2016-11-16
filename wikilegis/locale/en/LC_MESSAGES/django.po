@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 18:18-0200\n"
+"POT-Creation-Date: 2016-11-16 11:54-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,27 +103,27 @@ msgid ""
 "thecongressman profile from the site: http://www2.camara.leg.br/"
 msgstr ""
 
-#: auth2/models.py:121 core/models.py:172 notification/models.py:30
+#: auth2/models.py:124 core/models.py:172 notification/models.py:30
 msgid "user"
 msgstr ""
 
-#: auth2/models.py:122
+#: auth2/models.py:125
 msgid "uf"
 msgstr ""
 
-#: auth2/models.py:123
+#: auth2/models.py:126
 msgid "party"
 msgstr ""
 
-#: auth2/models.py:124
+#: auth2/models.py:127
 msgid "parliamentary name"
 msgstr ""
 
-#: auth2/models.py:127
+#: auth2/models.py:130
 msgid "congressman"
 msgstr ""
 
-#: auth2/models.py:128
+#: auth2/models.py:131
 msgid "congressmen"
 msgstr ""
 
@@ -679,7 +679,8 @@ msgstr ""
 msgid "terms of use"
 msgstr ""
 
-#: templates/about.html:36 templates/registration/registration_complete.html:14
+#: templates/about.html:36
+#: templates/registration/registration_complete.html:14
 msgid "Back to main page"
 msgstr ""
 
@@ -837,12 +838,12 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: templates/comments2/_comment_form.html:24
+#: templates/comments2/_comment_form.html:31
 msgid "Post"
 msgstr ""
 
-#: templates/comments2/_comment_form.html:25
-msgid "Preview"
+#: templates/comments2/_comment_list.html:10
+msgid "on"
 msgstr ""
 
 #: templates/export/export_form.html:10

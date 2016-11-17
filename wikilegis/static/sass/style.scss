@@ -981,7 +981,6 @@ strong {
 }
 
 .pl-full {
-    overflow-x: hidden;
 
     .original-text {
       position: relative;
@@ -1181,6 +1180,10 @@ strong {
         }
 
 
+    }
+
+    &.pl-segments {
+        overflow-x: hidden;
     }
 
 }

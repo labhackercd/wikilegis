@@ -859,6 +859,8 @@ strong {
 }
 
 .view-comments {
+    color: #6775a6;
+    cursor: pointer;
     opacity: .7;
     i {
        vertical-align:middle;
@@ -1866,6 +1868,9 @@ $opacity: .6;
 }
 
 .show-more {
+    color: #6775a6;
+    cursor: pointer;
+
     label {
         padding-top: 10px;
         padding-left: 15px;

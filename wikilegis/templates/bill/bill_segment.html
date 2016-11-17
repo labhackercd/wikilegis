@@ -174,13 +174,11 @@
 
                 <div class="comments">
                     <div class="main">
-                        <a href="#">
-                            <div class="view-comments">
-                                <i class="material-icons">question_answer</i>
-                                {% get_comment_count for amendment as comment_amendmentt_count %}
-                                {% trans "Comments for this suggestion" %} (<span class="comments-counter">{{ comment_amendmentt_count }}</span>)
-                            </div>
-                        </a>
+                        <div class="view-comments" role="button">
+                            <i class="material-icons">question_answer</i>
+                            {% get_comment_count for amendment as comment_amendmentt_count %}
+                            {% trans "Comments for this suggestion" %} (<span class="comments-counter">{{ comment_amendmentt_count }}</span>)
+                        </div>
                         <div class="holder hide">
                             {% if amendment.bill.status = 'published' %}
                             {% render_comments amendment readonly|default:False %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-17 13:44-0200\n"
+"POT-Creation-Date: 2016-11-17 14:25-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -207,9 +207,9 @@ msgstr "Este campo será usado para importar um arquivo .txt"
 msgid "Situation"
 msgstr "Situação"
 
-#: core/admin.py:220
+#: core/admin.py:220 templates/comments2/_comment_list.html:29
 msgid "Show"
-msgstr "Ver"
+msgstr "Ver mais"
 
 #: core/admin.py:222
 msgid "Report"
@@ -885,6 +885,14 @@ msgstr "Nenhum comentário foi feito."
 #: templates/comments2/_comment_list.html:18
 msgid "No comments yet. Be the first to comment!"
 msgstr "Nenhum comentário ainda. Seja o primeiro a comentar!"
+
+#: templates/comments2/_comment_list.html:30
+msgid "more comments"
+msgstr "comentários"
+
+#: templates/comments2/_comment_list.html:31
+msgid "Expand to show all comments on this post"
+msgstr "Visualizar todos os comentários"
 
 #: templates/export/export_form.html:10
 msgid "Download"

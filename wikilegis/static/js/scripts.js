@@ -141,7 +141,7 @@ jQuery(document).ready(function ($) {
                 $(commentsList[i]).hide();
             }
 
-            $(commentsList[qtd_to_show - 1]).after('<a class="show-more" href="#" title="expand to show all comments on this post" onclick>show <b>' + String(comments.length - qtd_to_show) + '</b> more comments</a>')
+            $(commentsList[qtd_to_show - 1]).after('<a class="show-more" href="#" title="'+ moreCommentsString3 +'" onclick>'+ moreCommentsString1 +'<b> ' + String(comments.length - qtd_to_show) + ' </b>'+ moreCommentsString2 +'</a>')
         }
 
         function showMoreComments(commentsList) {

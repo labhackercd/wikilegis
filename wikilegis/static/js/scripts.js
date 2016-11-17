@@ -170,5 +170,36 @@ jQuery(document).ready(function ($) {
     // Dropdown Orderer\
     $(".dropdown-button").dropdown();
 
+
+    // Read more button
+
+    // Configure/customize these variables.
+    var showChar = 190;  // How many characters are shown by default
+    var ellipsisText = "... ";
+
+    $('.collapsible-comments-comment').each(function() {
+        var content = $(this).html();
+
+        if(content.length > showChar) {
+
+            $(this).addClass('more');
+
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+
+            var html = c + '<span class="ellipsis">' + ellipsisText + '</span><span class="full-comment"><span>' + h + '</span><span class="comment-read-more" role="button">' + ' ' + readMoreString + '</span></span>';
+
+            $(this).html(html);
+        }
+
+    });
+
+    $(".comment-read-more").click(function(){
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        $(this).remove();
+        return false;
+    });
+
 });
 

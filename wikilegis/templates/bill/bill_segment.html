@@ -34,21 +34,25 @@
                 {% for dispositive in segment|previous %}
 
                 <a class="bill-link parent" href="{% url 'show_segment' dispositive.bill.id dispositive.id %}">
-                    <div class="article {{ dispositive.type|slugify }}" id="segment-{{ dispositive.id }}">
-                        <div class="comments-counter">
-                            <div class="cn">
-                                <div class="cc-holder">
-                                    <i class="material-icons">mode_comment</i>
-                                    <div class="n">
-                                        {{ dispositive.substitutes.all.count }}
+                    <div class="article {{ dispositive.type|slugify }} row" id="segment-{{ dispositive.id }}">
+                        <div class="col s2 m2 l1">
+                            <div class="comments-counter ">
+                                <div class="cn">
+                                    <div class="cc-holder">
+                                        <i class="material-icons">mode_comment</i>
+                                        <div class="n">
+                                            {{ dispositive.substitutes.all.count }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="content">
-                            <div class="article-content">
-                                <span>{% segment_numbering dispositive %}</span> {{ dispositive.content }}
+                        <div class="col s10 m10 l11">
+                            <div class="content">
+                                <div class="article-content">
+                                    <span>{% segment_numbering dispositive %}</span> {{ dispositive.content }}
+                                </div>
                             </div>
                         </div>
                     </div>

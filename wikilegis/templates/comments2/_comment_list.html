@@ -12,7 +12,12 @@
 
         </li>
     {% empty %}
-    <span class="no-comments">{% trans "No comments yet. Be the first to comment!" %}</span>
+    {% if segment.bill.status == 'closed' %}
+        <span class="no-comments">{% trans "No comments made." %}</span>
+    {% else %}
+        <span class="no-comments">{% trans "No comments yet. Be the first to comment!" %}</span>
+    {% endif %}
+
     {%  endfor %}
     {% if not readonly %}
     <li class="avatar">

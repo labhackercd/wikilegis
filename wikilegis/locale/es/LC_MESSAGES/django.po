@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 18:04-0200\n"
+"POT-Creation-Date: 2016-11-17 13:44-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -854,20 +854,20 @@ msgstr ""
 msgid "Original text"
 msgstr "Texto original"
 
-#: templates/bill/bill_segment.html:125
+#: templates/bill/bill_segment.html:129
 msgid "Proposed by the society"
 msgstr ""
 
-#: templates/bill/bill_segment.html:157
+#: templates/bill/bill_segment.html:161
 #: templates/comments2/_comment_list.html:7
 msgid "By"
 msgstr ""
 
-#: templates/bill/bill_segment.html:193
+#: templates/bill/bill_segment.html:197
 msgid "Make a proposal!"
 msgstr "¡Sugiere una propuesta!"
 
-#: templates/bill/bill_segment.html:200
+#: templates/bill/bill_segment.html:204
 #, fuzzy
 #| msgid "Participate"
 msgid "Participations closed"
@@ -892,7 +892,11 @@ msgstr "propuesta ciudadana"
 msgid "Post"
 msgstr "Enviar"
 
-#: templates/comments2/_comment_list.html:15
+#: templates/comments2/_comment_list.html:16
+msgid "No comments made."
+msgstr ""
+
+#: templates/comments2/_comment_list.html:18
 msgid "No comments yet. Be the first to comment!"
 msgstr ""
 

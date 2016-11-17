@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-17 17:29-0200\n"
+"POT-Creation-Date: 2016-11-17 20:36-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -914,6 +914,10 @@ msgstr "propuesta ciudadana"
 
 #: templates/comments2/_comment_list.html:31
 msgid "Expand to show all comments on this post"
+msgstr ""
+
+#: templates/comments2/_comment_list.html:32
+msgid "Read more"
 msgstr ""
 
 #: templates/export/export_form.html:10

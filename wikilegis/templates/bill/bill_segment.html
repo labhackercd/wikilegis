@@ -96,10 +96,17 @@
                         <p id="original" data-raw-content="<span class='article-type'>{% segment_numbering segment %}</span>{{ segment.content }}">
                         <span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
                     </div>
-                    <a class="add-prop-cta bill btn waves-effect waves-light" href="{% url 'create_amendment' segment.bill.id segment.id %}">
-                        <i class="material-icons left">lightbulb_outline</i>
-                        <span class="add-prop-cta-text">{% trans "Suggest new amendment!" %}</span>
-                    </a>
+                    {% if segment.bill.status = 'published' %}
+                        <a class="add-prop-cta bill btn waves-effect waves-light" href="{% url 'create_amendment' segment.bill.id segment.id %}">
+                            <i class="material-icons left">lightbulb_outline</i>
+                            <span class="add-prop-cta-text">{% trans "Suggest new amendment!" %}</span>
+                        </a>
+                    {% elif segment.bill.status = 'closed' %}
+                        <a class="add-prop-cta bill btn waves-effect waves-light disabled">
+                            <i class="material-icons left">block</i>
+                            <span class="add-prop-cta-text">{% trans "Participations closed" %}</span>
+                        </a>
+                    {% endif %}
 
                     <a class="add-prop-cta bill btn waves-effect waves-light view-comments" href="#">
                         <i class="material-icons left">question_answer</i>
@@ -201,7 +208,7 @@
             </div>
             {% elif segment.bill.status = 'closed' %}
                 <div class="row center">
-                  <a class="add-prop-cta bill btn-large waves-effect waves-light disabled" href=#>
+                  <a class="add-prop-cta bill btn-large waves-effect waves-light disabled">
                     <i class="material-icons left">block</i>
                         {% trans "Participations closed" %}
                   </a>

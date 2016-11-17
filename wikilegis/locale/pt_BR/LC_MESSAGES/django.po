@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-17 14:25-0200\n"
+"POT-Creation-Date: 2016-11-17 15:24-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -844,20 +844,24 @@ msgstr "Copiar"
 msgid "Original text"
 msgstr "Texto original"
 
-#: templates/bill/bill_segment.html:129
+#: templates/bill/bill_segment.html:101 templates/bill/bill_segment.html:202
+msgid "Suggest new text!"
+msgstr "Sugerir novo texto!"
+
+#: templates/bill/bill_segment.html:134
 msgid "Proposed by the society"
 msgstr "Emendas sugeridas pela sociedade"
 
-#: templates/bill/bill_segment.html:161
+#: templates/bill/bill_segment.html:166
 #: templates/comments2/_comment_list.html:7
 msgid "By"
 msgstr "Por"
 
-#: templates/bill/bill_segment.html:197
-msgid "Make a proposal!"
-msgstr "Sugerir uma proposta!"
+#: templates/bill/bill_segment.html:182
+msgid "Comments for this suggestion"
+msgstr "Comentários desta sugestão"
 
-#: templates/bill/bill_segment.html:204
+#: templates/bill/bill_segment.html:209
 msgid "Participations closed"
 msgstr "Participações encerradas"
 
@@ -1111,6 +1115,9 @@ msgstr ""
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
 msgstr "Reenviar"
+
+#~ msgid "Make a proposal!"
+#~ msgstr "Sugerir uma proposta!"
 
 #~ msgid "Proposed Amendments"
 #~ msgstr "Emendas Sugeridas"

@@ -96,15 +96,20 @@
                         <p id="original" data-raw-content="<span class='article-type'>{% segment_numbering segment %}</span>{{ segment.content }}">
                         <span class="article-type">{% segment_numbering segment %}</span>{{ segment.content }}</p>
                     </div>
+                    <a class="add-prop-cta bill btn waves-effect waves-light" href="{% url 'create_amendment' segment.bill.id segment.id %}">
+                        <i class="material-icons left">lightbulb_outline</i>
+                        <span class="add-prop-cta-text">{% trans "Suggest new text!" %}</span>
+                    </a>
+
+                    <a class="add-prop-cta bill btn waves-effect waves-light view-comments" href="#">
+                        <i class="material-icons left">question_answer</i>
+                        {% get_comment_count for segment as comment_segment_count %}
+                        <span class="add-prop-cta-text comments-counter">{{ comment_segment_count }} Comentários</span>
+                    </a>
                     <div class="comments">
                         <div class="main">
-                            <a href="#">
-                                <div class="view-comments">
-                                    <i class="material-icons">question_answer</i>
-                                    {% get_comment_count for segment as comment_segment_count %}
-                                    Comentários do texto original (<span class="comments-counter">{{ comment_segment_count }}</span>)
-                                </div>
-                            </a>
+
+
                             <div class="holder hide">
                                 {% if segment.bill.status = 'published' %}
                                 {% render_comments segment readonly|default:False %}
@@ -173,7 +178,7 @@
                             <div class="view-comments">
                                 <i class="material-icons">question_answer</i>
                                 {% get_comment_count for amendment as comment_amendmentt_count %}
-                                Comentários desta sugestão (<span class="comments-counter">{{ comment_amendmentt_count }}</span>)
+                                {% trans "Comments for this suggestion" %} (<span class="comments-counter">{{ comment_amendmentt_count }}</span>)
                             </div>
                         </a>
                         <div class="holder hide">
@@ -193,7 +198,7 @@
             <div class="row center">
               <a class="add-prop-cta bill btn-large waves-effect waves-light" href="{% url 'create_amendment' segment.bill.id segment.id %}">
                 <i class="material-icons left">lightbulb_outline</i>
-                    {% trans "Make a proposal!" %}
+                <span class="add-prop-cta-text">{% trans "Suggest new text!" %}</span>
               </a>
             </div>
             {% elif segment.bill.status = 'closed' %}

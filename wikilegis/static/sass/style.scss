@@ -21,10 +21,6 @@ $unnamedcolor: #28D27A;
     font-size: 36px;
 }
 
-html {
-    overflow-x: hidden;
-}
-
 html,
 body {
     height: 100%;
@@ -50,6 +46,7 @@ body {
     background-image: url(static("img/bg.png"));
     padding-top: $nav-height;
     background-attachment: fixed;
+    overflow-x: hidden;
 }
 
 .row.main {
@@ -397,7 +394,11 @@ strong {
     font-weight: 600;
     span { font-size: .9em; }
     &.bill {
-        background-color: $unnamedcolor;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1rem;
+        background-color: #27ae60;
         color:#fff;
         padding: 0 2rem;
         font-size: 1.3rem;
@@ -980,6 +981,8 @@ strong {
 }
 
 .pl-full {
+    overflow-x: hidden;
+
     .original-text {
       position: relative;
       padding-top: 15px;
@@ -1022,7 +1025,43 @@ strong {
             }
         }
 
+        .view-comments {
+            opacity: 0.99;
+        }
 
+        .add-prop-cta.bill {
+          background-color: #27ae60;
+          color: #fff;
+          padding: 0 1rem;
+          font-size: 1rem;
+
+          &.view-comments {
+            background-color: #6b8cae;
+            margin-left: 15px;
+
+            @media #{$medium-and-down} {
+                margin-left: 0;
+                margin-top: 10px;
+                display: flex;
+                width: 195px;
+            }
+
+          }
+
+          i {
+            font-size: 1.5rem;
+            margin-right: 8px;
+          }
+
+          span {
+              font-size: 0.9rem;
+          }
+        }
+
+        .collapsible-comments {
+            margin-left: 0;
+            margin-top: 20px;
+        }
 
     }
     a.bill-link {
@@ -1035,6 +1074,7 @@ strong {
 
     @media #{$small-and-down} {
         overflow: inherit;
+        overflow-x: hidden;
     }
     .articles-header {
         padding: 10px;

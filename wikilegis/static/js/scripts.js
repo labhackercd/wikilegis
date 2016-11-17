@@ -127,7 +127,7 @@ jQuery(document).ready(function ($) {
     $('.view-comments').click(function(e) {
         e.preventDefault();
         //$(this).hide();
-        console.log($(this).closest('.main').find('.holder').removeClass('hide'));
+        console.log($(this).closest('.main').find('.holder').toggleClass('hide'));
         /*$('.segment-content').focus();*/
     });
 

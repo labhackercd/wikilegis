@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-17 15:24-0200\n"
+"POT-Creation-Date: 2016-11-17 17:29-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -844,9 +844,9 @@ msgstr "Copiar"
 msgid "Original text"
 msgstr "Texto original"
 
-#: templates/bill/bill_segment.html:101 templates/bill/bill_segment.html:202
-msgid "Suggest new text!"
-msgstr "Sugerir novo texto!"
+#: templates/bill/bill_segment.html:101 templates/bill/bill_segment.html:200
+msgid "Suggest new amendment!"
+msgstr "Sugerir emenda!"
 
 #: templates/bill/bill_segment.html:134
 msgid "Proposed by the society"
@@ -857,11 +857,11 @@ msgstr "Emendas sugeridas pela sociedade"
 msgid "By"
 msgstr "Por"
 
-#: templates/bill/bill_segment.html:182
+#: templates/bill/bill_segment.html:181
 msgid "Comments for this suggestion"
 msgstr "Comentários desta sugestão"
 
-#: templates/bill/bill_segment.html:209
+#: templates/bill/bill_segment.html:207
 msgid "Participations closed"
 msgstr "Participações encerradas"
 

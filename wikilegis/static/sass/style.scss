@@ -21,6 +21,12 @@ $unnamedcolor: #28D27A;
     font-size: 36px;
 }
 
+html {
+    @media #{$small-and-down} {
+        font-size: 12px;
+    }
+}
+
 html,
 body {
     height: 100%;
@@ -1028,6 +1034,10 @@ strong {
             }
         }
 
+        p#original {
+            margin-top: 0;
+        }
+
         .view-comments {
             opacity: 0.99;
         }
@@ -1086,12 +1096,16 @@ strong {
             opacity: .5;
             float: left;
             margin-right: 18px;
+            @media #{$small-and-down}{
+                width: 32px;
+                margin-right: 10px;
+            }
         }
         h5 {
             font-weight: bold;
             opacity: .6;
-            @media screen and (max-width: 400px) {
-                font-size: 1.8em;
+            @media #{$small-and-down}{
+                font-size: 1.4em;
             }
         }
         h6 {
@@ -1151,8 +1165,8 @@ strong {
                     color: gray;
                     position: relative;
                     margin-top: -37px;
-                    @media #{$medium-and-down} {
-                        margin-top: -34px;
+                    @media #{$small-and-down} {
+                        margin-top: -30px;
                     }
                     z-index: 2;
                 }
@@ -1206,6 +1220,10 @@ strong {
             svg {
                 opacity: .5;
                 margin-left: -5px;
+                @media #{$medium-and-down} {
+                    margin: 0;
+                    width: 20px;
+                }
             }
         }
     }
@@ -1585,7 +1603,7 @@ $opacity: .6;
         }
     }
     .article-prop {
-        font-size: 16px;
+        font-size: 1.15rem;
         font-weight: 400;
         margin-bottom: 2px;
 
@@ -1648,7 +1666,7 @@ $opacity: .6;
 
   .collapsible-comments-comment {
     color: black;
-    font-size: 16px;
+    font-size: 1.15rem;
   }
 }
 

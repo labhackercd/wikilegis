@@ -994,6 +994,7 @@ strong {
       position: relative;
       padding-top: 15px;
 
+
         &::before {
         content: '';
         position: absolute;
@@ -1077,6 +1078,59 @@ strong {
         }
 
     }
+
+    .original-text.fixed {
+        position: fixed;
+        z-index: 10;
+        padding: 10px 0;
+
+        .articles-header {
+            margin: 0;
+            padding: 0 10px;
+
+            svg {
+                width: 26px;
+                height: 40px;
+                margin-left: 8px;
+                margin-right: 35px;
+            }
+            h5 {
+               font-size: 18px;
+               margin: 0;
+            }
+        }
+
+        .segments-before {
+            display: none;
+        }
+
+        .votes {
+            height: 1px;
+            visibility: hidden;
+        }
+
+        .article-prop {
+            font-size: 1rem;
+        }
+
+        .add-prop-cta {
+            display: none;
+        }
+
+        .comments {
+            display: none;
+        }
+
+        .layarticle::after {
+            display: none;
+        }
+
+        p#original {
+            margin-bottom: 6px;
+        }
+
+    }
+
     a.bill-link {
         color: inherit;
     }

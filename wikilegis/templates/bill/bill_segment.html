@@ -257,5 +257,42 @@
                 });
             });
         {% endif %}
+
+        $( document ).ready(function() {
+
+            if ($(window).width() > 1023) {
+               var originalTextHeight = (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()) + ($('.original-text').offset().top - $(window).scrollTop());
+
+               if ($(window).scrollTop()  >= originalTextHeight) {
+                 $('.original-text').addClass('fixed');
+                   $('.original-text').css('top', (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()));
+                   var orignalTextFixedHeight = $('.original-text.fixed').outerHeight();
+                   $('.submitted-proposals').css('padding-top', orignalTextFixedHeight + 40)
+
+                 } else {
+                   $('.original-text').removeClass('fixed');
+                   $('.original-text').css('top', 0);
+                   $('.submitted-proposals').css('padding-top', 10)
+                 }
+
+               $(window).scroll(function() {
+                 var originalTextHeight = (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()) + ($('.original-text').offset().top - $(window).scrollTop());
+                 var scroll = $(window).scrollTop();
+
+                 if (scroll >= originalTextHeight) {
+                   $('.original-text').addClass('fixed');
+                   $('.original-text').css('top', (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()));
+                   var orignalTextFixedHeight = $('.original-text.fixed').outerHeight();
+                   $('.submitted-proposals').css('padding-top', orignalTextFixedHeight + 40)
+
+                 } else {
+                   $('.original-text').removeClass('fixed');
+                   $('.original-text').css('top', 0);
+                   $('.submitted-proposals').css('padding-top', 10)
+                 }
+               });
+            }
+        });
+
     </script>
 {% endblock %}

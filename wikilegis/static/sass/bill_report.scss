@@ -45,9 +45,10 @@ html {
   }
 }
 .bill-summary {
-  vertical-align: middle;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 3rem 0;
   span {
     i {
       font-size: 1rem;
@@ -60,6 +61,40 @@ html {
       font-size: 0.8rem;
     }
   }
+
+  .bill-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
+    flex: 1 1 0%;
+  }
+
+  .bill-stats i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid;
+    border-radius: 50%;
+    padding: 0.5em;
+    font-size: 3em;
+  }
+
+  .bill-stats-number {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+
+  .bill-stats-text {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+  }
+
 }
 .segments {
   margin-top: 3rem;
@@ -79,6 +114,10 @@ html {
   }
   .segment-summary {
     @extend .bill-summary;
+    display: block;
+    vertical-align: middle;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     text-align: left;
     margin: 0;
     margin-top: 1rem;

@@ -262,6 +262,7 @@ class BillReport(DetailView):
                              list(proposals.values_list('replaced_id', flat=True)))
         featured_segments = set(map(int, featured_segments))
         context['votes'] = votes.count()
+        context['bill_votes'] = votes_bill_ids.count()
         context['comments'] = comments.count()
         context['attendees'] = len(set(list(votes_bill_ids) +
                                        list(votes.values_list('user__id', flat=True)) +

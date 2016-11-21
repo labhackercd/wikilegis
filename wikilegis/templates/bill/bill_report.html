@@ -21,10 +21,11 @@
       </div>
     </div>
     <div class="bill-summary">
-      <span><i class="material-icons">thumbs_up_down</i> {{ votes }} votos</span>
-      <span><i class="material-icons">forum</i> {{ comments }} comentários <i class="class"></i></span>
-      <span><i class="material-icons">people</i> {{ attendees }} participantes</span>
-      <span><i class="material-icons">note_add</i> {{ proposals }} propostas</span>
+      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number">{{ bill_votes }}</span><span class="bill-stats-text">Votos do Projeto</span></span>
+      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number">{{ votes }}</span><span class="bill-stats-text">Votos em Dispositivos</span></span>
+      <span class="bill-stats"><i class="material-icons">forum</i><span class="bill-stats-number">{{ comments }}</span><span class="bill-stats-text">Comentários</span></span>
+      <span class="bill-stats"><i class="material-icons">people</i><span class="bill-stats-number">{{ attendees }}</span><span class="bill-stats-text">Participantes</span></span>
+      <span class="bill-stats"><i class="material-icons">note_add</i><span class="bill-stats-number">{{ proposals }}</span><span class="bill-stats-text">Propostas</span></span>
     </div>
     <div class="segments">
       {% for segment in original_segments %}

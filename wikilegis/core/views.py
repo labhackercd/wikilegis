@@ -162,9 +162,10 @@ def create_amendment(request, bill_id, segment_id):
     segment = _get_segment_or_404(bill_id, segment_id)
 
     if not segment.is_editable():
-        messages.error(request, ugettext(
-            "Cannot submit proposals to {object}.").format(object=segment))
-        return redirect_to_segment_at_bill_page(segment)
+        return redirect('show_bill', pk=bill_id)
+
+    if not segment.bill.status == 'published':
+        return redirect('show_segment', bill_id=bill_id, segment_id=segment_id)
 
     form_factory = CitizenAmendmentCreationForm
     form_initial_data = {

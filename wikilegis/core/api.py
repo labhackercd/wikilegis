@@ -200,7 +200,21 @@ class CommentListAPI(generics.ListCreateAPIView):
             return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CaseInsensitiveBooleanFilter(django_filters.Filter):
+
+    def filter(self, qs, value):
+        if value is not None:
+            lc_value = value.lower()
+            if lc_value == "true":
+                value = True
+            elif lc_value == "false":
+                value = False
+            return qs.filter(**{self.name: value})
+        return qs
+
+
 class VotesFilter(rest_framework.FilterSet):
+    vote = CaseInsensitiveBooleanFilter(name="vote", lookup_type='eq')
     created = django_filters.DateTimeFilter(name="created", lookup_type="gte")
     modified = django_filters.DateTimeFilter(name="modified", lookup_type="gte")
 

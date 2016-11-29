@@ -3,13 +3,14 @@ from django.conf import settings
 from rest_framework import serializers
 
 from wikilegis.auth2.models import User
+from wikilegis.notification.models import Newsletter
 from wikilegis.core.models import Bill, BillSegment, TypeSegment, UpDownVote
 
 
 class BasicUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'avatar')
+        fields = ('id', 'first_name', 'last_name', 'avatar')
 
 
 class CommentsSerializer(serializers.ModelSerializer):
@@ -55,7 +56,21 @@ class VoteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UpDownVote
-        fields = ('id', 'user', 'content_type', 'object_id', 'vote')
+        fields = ('id', 'user', 'content_type', 'object_id', 'vote', 'created', 'modified')
+
+
+class NewsletterSerializer(serializers.ModelSerializer):
+    user = BasicUserSerializer()
+
+    class Meta:
+        model = Newsletter
+        fields = ('id', 'user', 'bill', 'periodicity', 'status')
+
+
+class NewsletterSerializerForPost(serializers.ModelSerializer):
+    class Meta:
+        model = Newsletter
+        fields = ('id', 'bill', 'periodicity', 'status')
 
 
 class SegmentSerializer(serializers.ModelSerializer):
@@ -105,6 +120,7 @@ class BillDetailSerializer(serializers.ModelSerializer):
 
 class BillSerializer(serializers.ModelSerializer):
     reporting_member = BasicUserSerializer()
+    proposals_count = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
         super(BillSerializer, self).__init__(*args, **kwargs)
@@ -124,26 +140,30 @@ class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = ('id', 'title', 'epigraph', 'description', 'reporting_member',
-                  'status', 'theme', 'segments', 'created', 'modified',
-                  'closing_date')
+                  'status', 'theme', 'proposals_count', 'segments', 'created',
+                  'modified', 'closing_date')
+
+    def get_proposals_count(self, obj):
+        return obj.segments.filter(original=False).count()
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'avatar')
+        fields = ('id', 'email', 'first_name', 'last_name', 'avatar')
+
+
+class CreateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'first_name', 'last_name', 'password')
+        write_only_fields = ('password',)
 
 
 class TypeSegmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeSegment
         fields = ('id', 'name')
-
-
-class UpDownVoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UpDownVote
-        fields = ('user', 'content_type', 'object_id', 'vote')
 
 
 class UpDownVoteSerializerForPost(serializers.ModelSerializer):

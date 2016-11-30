@@ -27,6 +27,8 @@ urlpatterns = [
         'wikilegis.core.views.show_amendment', name='show_amendment'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'),
         name='about'),
+    url(r'^widget/$', TemplateView.as_view(template_name='widget/widget.html'),
+        name='widget'),
     url(r'^bill/(?P<pk>\d+)/report/$', BillReport.as_view(),
         name='bill_report'),
     url(r'^upvote/(?P<content_type>\d+)/(?P<object_id>\d+)/$',

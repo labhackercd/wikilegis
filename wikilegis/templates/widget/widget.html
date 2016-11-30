@@ -1,0 +1,167 @@
+{% load static compress %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Wikilegis Widget</title>
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+      {% compress css %}
+          <link type="text/x-scss" rel="stylesheet" href="{% static "sass/widget-2.0.scss" %}"  media="screen,projection"/>
+      {% endcompress %}
+  </head>
+
+  <body>
+    <div class="wikilegis-widget">
+
+      <div class="wikilegis-widget__login">
+        Daew
+        <button class="wikilegis-widget__button wikilegis-widget__button--login">Sair</button>
+      </div>
+
+      <div class="wikilegis-widget__signup"></div>
+
+      <img class="wikilegis-widget__logo wikilegis-widget__logo--wikilegis" src="">
+
+      <div class="wikilegis-widget__bill-wrapper">
+        <div class="wikilegis-widget__header">
+          <h1 class="wikilegis-widget__heading wikilegis-widget__heading--title">TITULO</h1>
+          <h4 class="wikilegis-widget__heading wikilegis-widget__heading--epigraph">EPIGRAFE</h4>
+          <a class="wikilegis-widget__link wikilegis-widget__link--header" href="#">Ver o Projeto de Lei no Wikilegis</a>
+
+          <p class="wikilegis-widget__paragraph wikilegis-widget__paragraph--resume">
+            DESCRIÇÃO
+          </p>
+        </div>
+
+        <div class="wikilegis-widget__segment wikilegis-widget__segment--original wikilegis-widget__segment--type" data-segment-id="">
+
+          <div class="wikilegis-widget__segment-content">
+            <div class="wikilegis-widget__segment-text-wrapper">
+              <span class="wikilegis-widget__segment-number">Art. 0</span>
+              <p class="wikilegis-widget__segment-text">
+                TEXTO
+              </p>
+            </div>
+
+            <div class="wikilegis-widget__actions">
+
+              <div class="wikilegis-widget__actions-group">
+                <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
+                  <i class="wikilegis-widget__action-icon material-icons">thumb_up</i>
+                  <span class="wikilegis-widget__action-text">0</span>
+                </div>
+
+                <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
+                  <i class="wikilegis-widget__action-icon material-icons">thumb_down</i>
+                  <span class="wikilegis-widget__action-text">0</span>
+                </div>
+              </div>
+
+              <div class="wikilegis-widget__actions-group">
+                <div class="wikilegis-widget__action wikilegis-widget__action--comments" role="button" tabindex="0">
+                  <i class="wikilegis-widget__action-icon material-icons">forum</i>
+                  <span class="wikilegis-widget__action-text">0 Comentários</span>
+                </div>
+
+                <div class="wikilegis-widget__action wikilegis-widget__action--amendments" role="button" tabindex="0">
+                  <i class="wikilegis-widget__action-icon material-icons">note_add</i>
+                  <span class="wikilegis-widget__action-text">0 Emendas</span>
+                </div>
+              </div>
+
+              <a class="wikilegis-widget__link wikilegis-widget__link--actions" href="#">Ver artigo no Wikilegis</a>
+
+            </div>
+          </div>
+
+          <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments">
+            <div class="wikilegis-widget__action-box-wrapper">
+              <div class="wikilegis-widget__action-box-info">
+                <i class="wikilegis-widget__action-icon material-icons">forum</i>
+                <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
+                <span class="wikilegis-widget__span wikilegis-widget__span--author">autor</span>
+                <span class="wikilegis-widget__span wikilegis-widget__span--date">em 06/11/2016</span>
+              </div>
+              <p class="wikilegis-widget__action-box-content">Comentário</p>
+            </div>
+
+            <div class="wikilegis-widget__action-box-input">
+              <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
+              <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre a emenda original"></textarea>
+              <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
+            </div>
+          </div>
+
+          <div class="wikilegis-widget__action-box wikilegis-widget__action-box--proposals" data-segment-id="" data-bill-id="">
+
+            <div class="wikilegis-widget__action-box-item">
+
+              <div class="wikilegis-widget__action-box-wrapper">
+                <div class="wikilegis-widget__action-box-info">
+                  <i class="wikilegis-widget__action-icon material-icons">note_add</i>
+                  <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
+                  <span class="wikilegis-widget__span wikilegis-widget__span--author">autor</span>
+                  <span class="wikilegis-widget__span wikilegis-widget__span--date">em 06/11/2016</span>
+                </div>
+
+                <p class="wikilegis-widget__action-box-content">Proposta</p>
+              </div>
+
+              <div class="wikilegis-widget__actions">
+
+                <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
+                  <i class="wikilegis-widget__action-icon material-icons">thumb_up</i>
+                  <span class="wikilegis-widget__action-text">0</span>
+                </div>
+
+                <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
+                  <i class="wikilegis-widget__action-icon material-icons">thumb_down</i>
+                  <span class="wikilegis-widget__action-text">0</span>
+                </div>
+
+                <div class="wikilegis-widget__action wikilegis-widget__action--comments" role="button" tabindex="0">
+                  <i class="wikilegis-widget__action-icon material-icons">forum</i>
+                  <span class="wikilegis-widget__action-text">0 Comentários</span>
+                </div>
+
+              </div>
+
+              <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments">
+                <div class="wikilegis-widget__action-box-wrapper">
+                  <div class="wikilegis-widget__action-box-info">
+                    <i class="wikilegis-widget__action-icon material-icons">forum</i>
+                    <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
+                    <span class="wikilegis-widget__span wikilegis-widget__span--author">autor</span>
+                    <span class="wikilegis-widget__span wikilegis-widget__span--date">em 06/11/2016</span>
+                  </div>
+                  <p class="wikilegis-widget__action-box-content">Comentário de Proposta</p>
+                </div>
+
+                <div class="wikilegis-widget__action-box-input">
+                  <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
+                  <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre esta proposta"></textarea>
+                  <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="wikilegis-widget__action-box-input">
+              <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Sugira uma nova emenda:</span>
+              <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Escreva aqui uma nova emenda tomando a original como base"></textarea>
+              <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% compress js %}
+        <script type="text/javascript" src="{% static "js/jquery-2.1.4.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/widget-2.0.js" %}"></script>
+    {% endcompress %}
+  </body>
+</html>

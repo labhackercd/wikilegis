@@ -6,7 +6,8 @@ from wikilegis.core.api import (BillListAPI, SegmentsListAPI, CommentListAPI,
                                 TypeSegmentAPI, UpDownVoteListAPI,
                                 CreateUserAPI, VoteUpdateDeleteAPI,
                                 NewsleterListAPI)
-from wikilegis.core.views import BillReport, CreateProposal, BillDetailView
+from wikilegis.core.views import (BillReport, CreateProposal, BillDetailView,
+                                  WidgetView)
 
 urlpatterns = [
     url(r'^$', 'wikilegis.core.views.index', name='index'),
@@ -27,8 +28,7 @@ urlpatterns = [
         'wikilegis.core.views.show_amendment', name='show_amendment'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'),
         name='about'),
-    url(r'^widget/$', TemplateView.as_view(template_name='widget/widget.html'),
-        name='widget'),
+    url(r'^widget/(?P<pk>\d+)/?$', WidgetView.as_view(), name='widget'),
     url(r'^bill/(?P<pk>\d+)/report/$', BillReport.as_view(),
         name='bill_report'),
     url(r'^upvote/(?P<content_type>\d+)/(?P<object_id>\d+)/$',

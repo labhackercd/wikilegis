@@ -118,6 +118,11 @@ class BillDetailView(DetailView):
             return self.model._default_manager.all()
 
 
+class WidgetView(DetailView):
+    model = Bill
+    template_name = "widget/widget.html"
+
+
 def _get_segment_or_404(bill_id, segment_id):
     return get_object_or_404(BillSegment, pk=segment_id, bill__id=bill_id)
 

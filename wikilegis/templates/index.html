@@ -50,6 +50,50 @@
             </div>
         </div>
         <div class="pls">
+            {% for allowed in allowed_bills %}
+            <a class="hover" href="{% url 'show_bill' allowed.id %}">
+                <div class="pl row valign-wrapper">
+                    <div class="col m2 hide-on-med-and-down">
+                        <div class="circle {% if allowed.status = 'closed' %}border-red{% endif %} valign-wrapper">
+                            <img class="logo" src="{% static 'img/icons/' %}{{ allowed.theme }}{% if allowed.status = 'closed' %}-2{% endif %}.png" alt="{{ allowed.get_theme_display }}" title="{{ allowed.get_theme_display }}"/>
+                        </div>
+                    </div>
+                    <div class="col s12 m10 description">
+                        <div class="row">
+                            <h5 class="title">{{ allowed.title }}</h5>
+                            <p class="d">{{ allowed.description|linebreaks|truncatechars:205 }}</p>
+                            <span class="pl-created-date">{% trans "Created at" %} {{ allowed.created|date }}</span>
+                        </div>                        
+                        <div class="row">
+                            {% if allowed.proposition_set.all.0.situation %}
+                            <div class="col s12 status">
+                                <span class="title">{% trans "Status" %} </span><span class="status-content">{{ allowed.proposition_set.all.0.situation }}</span>
+                            </div>
+                            {% else %}
+                            <div class="col s12"></div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col s12 m2 prop-count">
+                        {% if allowed.score > 0 %}
+                            <h4>{{ allowed.score }}</h4>
+                            <span>{% if allowed.score > 1 %}{% trans "Proposals" %}{% else %}{% trans "Proposal" %}{% endif %}</span>
+                        {% else %}
+                            {% if allowed.status = 'closed' %}
+                            <div class="add-prop-cta">
+                                <span>{% trans "No proposals" %}</span>
+                            </div>
+                            {% else %}
+                            <div class="add-prop-cta">
+                                <span>{% trans "No proposals" %}</span>
+                                <div>{% trans "Participate" %}!</div>
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
             {% for bill in bills %}
             <a class="hover" href="{% url 'show_bill' bill.id %}">
                 <div class="pl row valign-wrapper">

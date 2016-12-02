@@ -147,9 +147,10 @@ class BillChangeList(ChangeList):
 
 
 class BillAdmin(admin.ModelAdmin):
-    inlines = (BillAuthorDataInline, BillVideoInline, BillSegmentInline)
+    inlines = (BillVideoInline, BillSegmentInline)
     list_filter = ['status']
     list_display = ('title', 'description', 'theme', 'status', 'get_situation', 'get_report')
+    filter_horizontal = ('allowed_users', 'editors')
     actions = [propositions_update]
     form = BillAdminForm
     user_fieldsets = [
@@ -161,7 +162,7 @@ class BillAdmin(admin.ModelAdmin):
                                                       "delete , leave the fields blank.")}),
     ]
     superuser_fieldsets = [
-        (_('Administrator filds'), {'fields': ['status', 'editors']}),
+        (_('Administrator filds'), {'fields': ['status', 'editors', 'allowed_users']}),
         (_('File to import'), {'fields': ['file_txt'], 'description': _(
             "This field will be used to import a txt file.")}),
     ]

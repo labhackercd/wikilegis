@@ -92,6 +92,9 @@ class Bill(TimestampedMixin):
         'auth.Group', verbose_name=_('editors'), blank=True,
         help_text=_('Any users in any of these groups will '
                     'have permission to change this document.'))
+    allowed_users = models.ManyToManyField(
+        'auth2.User', related_name='allowed_bills',
+        verbose_name=_('allowed users'), blank=True)
     reporting_member = models.ForeignKey('auth2.User', verbose_name=_('reporting member'), null=True, blank=True)
 
     metadata = GenericRelation('GenericData')

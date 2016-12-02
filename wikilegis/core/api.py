@@ -12,6 +12,7 @@ from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 from wikilegis import settings
 from wikilegis.auth2.models import User
+from django.http import Http404
 from wikilegis.notification.models import Newsletter
 from wikilegis.core.models import Bill, BillSegment, TypeSegment, UpDownVote
 from wikilegis.core.serializers import (BillSerializer, SegmentSerializer,
@@ -54,7 +55,10 @@ class BillAPI(generics.GenericAPIView, mixins.RetrieveModelMixin):
 
     def get_object(self):
         obj = Bill.objects.get(pk=self.kwargs['pk'])
-        return obj
+        if obj.allowed_users.all():
+            raise Http404()
+        else:
+            return obj
 
 
 class BillFilter(rest_framework.FilterSet):
@@ -67,7 +71,7 @@ class BillFilter(rest_framework.FilterSet):
 
 
 class BillListAPI(generics.ListAPIView):
-    queryset = Bill.objects.exclude(status='draft').order_by('-created')
+    queryset = Bill.objects.filter(allowed_users__isnull=True).exclude(status='draft').order_by('-created')
     serializer_class = BillSerializer
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filter_class = BillFilter
@@ -102,7 +106,7 @@ class BillSegmentFilter(rest_framework.FilterSet):
 
 
 class SegmentsListAPI(generics.ListCreateAPIView):
-    queryset = BillSegment.objects.exclude(bill__status='draft').order_by('-created')
+    queryset = BillSegment.objects.exclude(bill__status='draft', bill__allowed_users__isnull=True).order_by('-created')
     serializer_class = SegmentSerializer
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filter_class = BillSegmentFilter

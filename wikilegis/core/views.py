@@ -51,12 +51,15 @@ class BillOrderer(SimpleOrderer):
 
 
 def index(request):
+    allowed_bills = Bill.objects.none()
     if request.GET.get('status') == 'closed':
         bills = Bill.objects.filter(status='closed', allowed_users__isnull=True)
-        allowed_bills = request.user.allowed_bills.filter(status='closed')
+        if request.user.is_authenticated():
+            allowed_bills = request.user.allowed_bills.filter(status='closed')
     else:
         bills = Bill.objects.filter(status='published', allowed_users__isnull=True)
-        allowed_bills = request.user.allowed_bills.filter(status='published')
+        if request.user.is_authenticated():
+            allowed_bills = request.user.allowed_bills.filter(status='published')
 
     orderer = BillOrderer(request, dict(request.GET.items()))
     bills = orderer.queryset(request, bills)

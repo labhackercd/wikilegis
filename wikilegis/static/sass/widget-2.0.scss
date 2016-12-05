@@ -1,6 +1,6 @@
 $wikilegis-color: #1cd37a;
 
-$swift-out: cubic-bezier(.55,0,.1,1);
+$swift-out: cubic-bezier(0.55, 0, 0.1, 1);
 
 @mixin transition-default($property) {
   transition: $property 0.3s $swift-out;
@@ -14,7 +14,6 @@ body {
   font-family: 'Open Sans', sans-serif;
   margin: 1em;
   padding: 0;
-
 }
 
 *, *:before, *:after {
@@ -26,12 +25,7 @@ p {
   margin-bottom: 1em;
 }
 
-
 .wikilegis-widget {
-  &__login {
-
-  }
-
   &__button {
     border: 0;
     font-weight: 600;
@@ -42,35 +36,19 @@ p {
     background-color: $wikilegis-color;
     color: white;
     cursor: pointer;
+
     @include transition-default(background-color);
 
     &:hover, &:focus {
       background-color: darken($wikilegis-color, 10%);
     }
 
-    &--login {
-
+    &--access {
+      text-align: center;
+      color: #fff;
+      width: 100%;
+      height: 3em;
     }
-
-
-    &--action-box {
-
-    }
-  }
-
-  &__signup {
-
-  }
-
-  &__logo {
-
-    &--wikilegis {
-
-    }
-  }
-
-  &__bill-wrapper {
-
   }
 
   &__header {
@@ -82,15 +60,6 @@ p {
   &__heading {
     margin: 0;
     margin-bottom: 0.5em;
-
-    &--title {
-
-    }
-
-
-    &--epigraph {
-
-    }
   }
 
   &__link {
@@ -105,29 +74,6 @@ p {
     &--header {
       margin-bottom: 2em;
     }
-  }
-
-  &__paragraph {
-
-    &--resume {
-
-    }
-  }
-
-  &__segment {
-
-    &--original {
-
-    }
-
-
-    &--type {
-
-    }
-  }
-
-  &__segment-content {
-
   }
 
   &__segment-text-wrapper {
@@ -156,9 +102,7 @@ p {
     &:first-child {
       margin-left: 0;
     }
-
   }
-
 
   &__action {
     display: inline-flex;
@@ -183,20 +127,6 @@ p {
       border-color: $wikilegis-color;
       z-index: 1;
     }
-
-    &--vote {
-
-    }
-
-
-    &--comments {
-
-    }
-
-
-    &--amendments {
-
-    }
   }
 
   &__action-icon {
@@ -208,25 +138,17 @@ p {
   }
 
   &__action-box {
-    background-color: hsl(0,0%,95%);
+    background-color: hsl(0, 0%, 95%);
     padding: 1em;
     margin-bottom: 1em;
-
-    &--comments {
-
-    }
 
     &--proposals {
       .wikilegis-widget__action-box {
         margin-bottom: 1em;
         border-left: 1px solid hsl(0, 0%, 50%);
-        background-color: hsl(0, 0%, 90%)
+        background-color: hsl(0, 0%, 90%);
       }
     }
-  }
-
-  &__action-box-wrapper {
-
   }
 
   &__action-box-info {
@@ -234,19 +156,12 @@ p {
   }
 
   &__span {
-
-    &--by {
-
-    }
-
-
     &--author {
       font-weight: 700;
     }
 
-
     &--date {
-      color: hsl(0,0%,50%);
+      color: hsl(0, 0%, 50%);
       font-size: 0.8em;
     }
 
@@ -257,13 +172,9 @@ p {
     }
   }
 
-  &__action-box-content {
-
-  }
-
   &__action-box-input {
     display: block;
-    border-top: 1px solid hsl(0,0%,70%);
+    border-top: 1px solid hsl(0, 0%, 70%);
     padding-top: 0.3em;
   }
 
@@ -277,5 +188,122 @@ p {
       padding: 0.5em;
       margin-bottom: 0.5em;
     }
+
+    &--access {
+      width: 100%;
+      height: 3em;
+      border: 1px solid #dee3e4;
+      padding: 0em 1em;
+      margin: 0.5em 0;
+
+      &:focus {
+        outline: none;
+        border: 1px solid $wikilegis-color;
+        @include transition-default(border)
+      }
+    }
+  }
+
+  &__image {
+    &--top-logo {
+      margin-bottom: 1em;
+      width: calc(100% - 3em);
+    }
+  }
+
+  &__access-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__access {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 320px;
+    padding: 1.5em 0;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #1cd37a;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
+    border-radius: 0.5em;
+  }
+
+  &__access-box-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__access-box {
+    flex: 1 0 100%;
+    width: 100%;
+    padding: 0 1.5em;
+    background: #fff;
+    @include transition-default(transform);
+  }
+
+  &__button {
+    &--social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      width: 100%;
+      height: 3em;
+      margin: 0.5em 0;
+      color: #fff;
+      text-align: center;
+      @include transition-default(background-color)
+    }
+
+    &--facebook {
+      background-color: #527EBF;
+
+      &:hover, &:focus {
+        background-color: darken(#527EBF, 10%);
+      }
+    }
+
+    &--google {
+      background-color: #DB4A37;
+
+      &:hover, &:focus {
+        background-color: darken(#DB4A37, 10%);
+      }
+    }
+  }
+
+  &__icon {
+    &--access {
+      width: 1.5em;
+      margin-right: 1em;
+    }
+  }
+
+  &__access-footer {
+    width: 100%;
+    height: 1em;
+    margin-top: 0.5em;
+    text-align: center;
+    color: #666;
+    font-family: sans-serif;
+  }
+
+  &__separator {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #dee3e4;
+    position: relative;
+    margin: 1em 0
+  }
+}
+
+.translatex {
+  &--left {
+    transform: translateX(-100%);
   }
 }

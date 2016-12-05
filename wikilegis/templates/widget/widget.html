@@ -1,73 +1,57 @@
 {% extends "widget/base.html" %}
 {% load static convert_numbers compress votes comments segments i18n %}
-
 {% block content %}
   <div class="wikilegis-widget">
-
     <div class="wikilegis-widget__login">
       Daew
       <button class="wikilegis-widget__button wikilegis-widget__button--login">Sair</button>
     </div>
-
     <div class="wikilegis-widget__signup"></div>
-
     <img class="wikilegis-widget__logo wikilegis-widget__logo--wikilegis" src="">
-
     <div class="wikilegis-widget__bill-wrapper">
       <div class="wikilegis-widget__header">
         <h1 class="wikilegis-widget__heading wikilegis-widget__heading--title">{{object.title}}</h1>
         <h4 class="wikilegis-widget__heading wikilegis-widget__heading--epigraph">{{object.epigraph}}</h4>
-        <a class="wikilegis-widget__link wikilegis-widget__link--header" href="#">Ver o Projeto de Lei no Wikilegis</a>
-
+        <a class="wikilegis-widget__link wikilegis-widget__link--header" target="_blank" href="{% url 'show_bill' object.id %}">Ver o Projeto de Lei no Wikilegis</a>
         <p class="wikilegis-widget__paragraph wikilegis-widget__paragraph--resume">
           {{object.description}}
         </p>
       </div>
-
       {% for segment in object.segments.all %}
         {% if segment.original %}
           <div class="wikilegis-widget__segment wikilegis-widget__segment--original wikilegis-widget__segment--type" data-segment-id="{{segment.id}}">
-
             <div class="wikilegis-widget__segment-content">
               <div class="wikilegis-widget__segment-text-wrapper">
                 <span class="wikilegis-widget__segment-number">{% segment_numbering segment %}</span>
-                <p class="wikilegis-widget__segment-text">
+                <p class="wikilegis-widget__segment-text wikilegis-widget__segment-text--original">
                   {{segment.content}}
                 </p>
               </div>
-
               <div class="wikilegis-widget__actions">
-
                 <div class="wikilegis-widget__actions-group">
                   <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
                     <i class="wikilegis-widget__action-icon material-icons">thumb_up</i>
                     <span class="wikilegis-widget__action-text">{% get_upvote_count segment %}</span>
                   </div>
-
                   <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
                     <i class="wikilegis-widget__action-icon material-icons">thumb_down</i>
                     <span class="wikilegis-widget__action-text">{% get_downvote_count segment %}</span>
                   </div>
                 </div>
-
                 <div class="wikilegis-widget__actions-group">
                   <div class="wikilegis-widget__action wikilegis-widget__action--comments" role="button" tabindex="0">
                     <i class="wikilegis-widget__action-icon material-icons">forum</i>
                     {% get_comment_count for segment as comment_segment_count %}
                     <span class="wikilegis-widget__action-text">{{comment_segment_count}} Comentários</span>
                   </div>
-
                   <div class="wikilegis-widget__action wikilegis-widget__action--amendments" role="button" tabindex="0">
                     <i class="wikilegis-widget__action-icon material-icons">note_add</i>
                     <span class="wikilegis-widget__action-text">{{segment|amendments_count}} Emendas</span>
                   </div>
                 </div>
-
-                <a class="wikilegis-widget__link wikilegis-widget__link--actions" href="#">Ver artigo no Wikilegis</a>
-
+                <a class="wikilegis-widget__link wikilegis-widget__link--actions" target="_blank" href="{% url 'show_segment' object.id segment.id %}">Ver artigo no Wikilegis</a>
               </div>
             </div>
-
             <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments">
               {% for comment in segment.comments.all %}
                 <div class="wikilegis-widget__action-box-wrapper">
@@ -79,53 +63,46 @@
                   </div>
                   <p class="wikilegis-widget__action-box-content">{{comment.comment}}</p>
                 </div>
-              {% empty %}
+                {% empty %}
                 olar
               {% endfor %}
-
               <div class="wikilegis-widget__action-box-input">
                 <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
                 <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre a emenda original"></textarea>
                 <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
               </div>
             </div>
-
             {% for amendment in segment.substitutes.all %}
               <div class="wikilegis-widget__action-box wikilegis-widget__action-box--proposals" data-segment-id="{{amendment.id}}" data-bill-id="{{object.id}}">
-
                 <div class="wikilegis-widget__action-box-item">
-
                   <div class="wikilegis-widget__action-box-wrapper">
                     <div class="wikilegis-widget__action-box-info">
                       <i class="wikilegis-widget__action-icon material-icons">note_add</i>
                       <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
                       <span class="wikilegis-widget__span wikilegis-widget__span--author">{{amendment.author}}</span>
                       <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{amendment.created|date:"d/m/Y"}}</span>
+                      <div class="wikilegis-widget__action-box-content">
+                        <p class="wikilegis-widget__segment-text wikilegis-widget__segment-text--amendment">
+                          {{amendment.content}}
+                        </p>
+                      </div>
                     </div>
-
-                    <p class="wikilegis-widget__action-box-content">{{amendment.content}}</p>
                   </div>
-
                   <div class="wikilegis-widget__actions">
-
                     <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
                       <i class="wikilegis-widget__action-icon material-icons">thumb_up</i>
                       <span class="wikilegis-widget__action-text">{% get_upvote_count amendment %}</span>
                     </div>
-
                     <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
                       <i class="wikilegis-widget__action-icon material-icons">thumb_down</i>
                       <span class="wikilegis-widget__action-text">{% get_downvote_count amendment %}</span>
                     </div>
-
                     <div class="wikilegis-widget__action wikilegis-widget__action--comments" role="button" tabindex="0">
                       <i class="wikilegis-widget__action-icon material-icons">forum</i>
                       {% get_comment_count for amendment as amendment_comment_count %}
                       <span class="wikilegis-widget__action-text">{{amendment_comment_count}} Comentários</span>
                     </div>
-
                   </div>
-
                   <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments">
                     {% for comment in amendment.comments.all %}
                       <div class="wikilegis-widget__action-box-wrapper">
@@ -137,31 +114,25 @@
                         </div>
                         <p class="wikilegis-widget__action-box-content">{{comment.comment}}</p>
                       </div>
-                    {% empty %}
+                      {% empty %}
                       olar de emenda
                     {% endfor %}
-
                     <div class="wikilegis-widget__action-box-input">
                       <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
                       <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre esta proposta"></textarea>
                       <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
                     </div>
                   </div>
-
                 </div>
-
                 <div class="wikilegis-widget__action-box-input">
                   <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Sugira uma nova emenda:</span>
                   <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Escreva aqui uma nova emenda tomando a original como base"></textarea>
                   <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
                 </div>
-
               </div>
             {% endfor %}
           </div>
         {% endif %}
       {% endfor %}
-
     </div>
-  </div>
-{% endblock content %}
+  {% endblock content %}

@@ -35,7 +35,7 @@ urlpatterns = [
         name='bill_report'),
     url(r'^upvote/(?P<content_type>\d+)/(?P<object_id>\d+)/$',
         'wikilegis.core.views.upvote', name='upvote'),
-    url(r'^downvote/(?P<content_type>\d+)/(?P<object_id>\d-+)/$',
+    url(r'^downvote/(?P<content_type>\d+)/(?P<object_id>\d+)/$',
         'wikilegis.core.views.downvote', name='downvote'),
 ]
 

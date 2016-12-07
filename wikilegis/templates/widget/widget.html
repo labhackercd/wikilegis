@@ -20,31 +20,38 @@
       {% for segment in object.segments.all %}
         {% if segment.original %}
           <div class="wikilegis-widget__segment wikilegis-widget__segment--original wikilegis-widget__segment--type" data-segment-id="{{segment.id}}">
+
             <div class="wikilegis-widget__segment-content">
-              <div class="wikilegis-widget__segment-text-wrapper">
-                <span class="wikilegis-widget__segment-number">{% segment_numbering segment %}</span>
-                <p class="wikilegis-widget__segment-text wikilegis-widget__segment-text--original">
-                  {{segment.content|safe}}
-                </p>
-              </div>
-              <div class="wikilegis-widget__actions">
-                <div class="wikilegis-widget__actions-group">
+
+              <div class="wikilegis-widget__segment-content-wrapper">
+
+                <div class="wikilegis-widget__actions wikilegis-widget__actions--votes">
                   {% include "widget/_action_votes.html" with segment=segment user=request.user %}
                 </div>
-                <div class="wikilegis-widget__actions-group">
-                  <div class="wikilegis-widget__action wikilegis-widget__action--comments" role="button" tabindex="0" data-segment-id="{{segment.id}}">
-                    <i class="wikilegis-widget__action-icon material-icons">forum</i>
-                    {% get_comment_count for segment as comment_segment_count %}
-                    <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{comment_segment_count}}</span>Comentários</span>
-                  </div>
-                  <div class="wikilegis-widget__action wikilegis-widget__action--amendments" role="button" tabindex="0" data-segment-id="{{segment.id}}">
-                    <i class="wikilegis-widget__action-icon material-icons">note_add</i>
-                    <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{segment|amendments_count}}</span>Emendas</span>
+
+                <div class="wikilegis-widget__segment-text-wrapper">
+                  <span class="wikilegis-widget__segment-number">{% segment_numbering segment %}</span>
+                  <p class="wikilegis-widget__segment-text wikilegis-widget__segment-text--original">
+                    {{segment.content|safe}}
+                  </p>
+                  <div class="wikilegis-widget__actions wikilegis-widget__actions--user-content">
+                    <div class="wikilegis-widget__action wikilegis-widget__action--comments" role="button" tabindex="0" data-segment-id="{{segment.id}}">
+                      <i class="wikilegis-widget__action-icon material-icons">forum</i>
+                      {% get_comment_count for segment as comment_segment_count %}
+                      <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{comment_segment_count}}</span> Comentários</span>
+                    </div>
+                    <div class="wikilegis-widget__action wikilegis-widget__action--amendments" role="button" tabindex="0" data-segment-id="{{segment.id}}">
+                      <i class="wikilegis-widget__action-icon material-icons">note_add</i>
+                      <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{segment|amendments_count}}</span> Emendas</span>
+                    </div>
+                    <a class="wikilegis-widget__link wikilegis-widget__link--actions" target="_blank" href="{% url 'show_segment' object.id segment.id %}">Ver artigo no Wikilegis</a>
                   </div>
                 </div>
-                <a class="wikilegis-widget__link wikilegis-widget__link--actions" target="_blank" href="{% url 'show_segment' object.id segment.id %}">Ver artigo no Wikilegis</a>
+
               </div>
+
             </div>
+
             <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments" data-segment-id="{{segment.id}}" data-bill-id="{{object.id}}">
               {% for comment in segment.comments.all %}
                 <div class="wikilegis-widget__action-box-wrapper">

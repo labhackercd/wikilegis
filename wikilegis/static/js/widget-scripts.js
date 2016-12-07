@@ -87,6 +87,8 @@ $('.wikilegis-widget__action--amendments').click(function(){
         $('html, body').animate({
             scrollTop: ($(`.wikilegis-widget__action-box--amendments[data-segment-id='${segmentId}'`).parent().offset().top - 16)
         }, 300);
+    }
+});
 
 function getCookie(name) {
   var cookieValue = null;
@@ -103,10 +105,12 @@ function getCookie(name) {
   }
   return cookieValue;
 }
+
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+
 function sameOrigin(url) {
     // test that a given url is a same-origin URL
     // url could be relative or scheme relative or absolute
@@ -120,6 +124,7 @@ function sameOrigin(url) {
         // or any other URL that isn't scheme relative or absolute i.e relative.
         !(/^(\/\/|http:|https:).*/.test(url));
 }
+
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
         if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {

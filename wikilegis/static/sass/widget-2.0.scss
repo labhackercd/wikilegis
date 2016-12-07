@@ -173,8 +173,8 @@ p {
 
     &.active {
       position: relative;
-      background-color: hsl(0, 0%, 50%);
-      color: white;
+      color: black;
+      transform: translateY(1em);
 
       &::after {
         content: '';
@@ -185,9 +185,9 @@ p {
         top: calc(100% + 1px);
         width: 0;
         height: 0;
-        border-left: 1.5em solid transparent;
-        border-right: 1.5em solid transparent;
-        border-bottom: 1.2em solid hsl(0, 0%, 95%);
+        border-left: 3em solid transparent;
+        border-right: 3em solid transparent;
+        border-bottom: 2.75em solid hsl(0, 0%, 95%);
 
         .wikilegis-widget__action-box-item--amendment & {
           border-bottom-color: hsl(0, 0%, 90%);
@@ -238,10 +238,11 @@ p {
   }
 
   &__action-box {
+    position: relative;
     display: none;
-    background-color: hsl(0, 0%, 95%);
+    background-color: hsla(0,0%,95%,1);
     padding: 1em;
-    margin-bottom: 1em;
+    margin-top: 2em;
 
     &--amendments {
       .wikilegis-widget__action-box {

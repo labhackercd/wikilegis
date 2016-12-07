@@ -140,7 +140,7 @@
   {% block extra_js %}
     <script>
       function updateActionGroupHTML(voteButton, data) {
-        var actionGroup = voteButton.closest('.wikilegis-widget__actions-group');
+        var actionGroup = voteButton.closest('.wikilegis-widget__actions--votes');
         actionGroup.html(data.html);
         actionGroup.find('.wikilegis-widget__action--vote').click(voteClick);
       }

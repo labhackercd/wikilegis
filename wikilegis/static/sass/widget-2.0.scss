@@ -208,10 +208,16 @@ p {
       &:hover, &:focus {
         color: $wikilegis-color;
       }
+      &.voted {
+        color: $wikilegis-color;
+      }
     }
 
     &--downvote {
       &:hover, &:focus {
+        color: #e74c3c;
+      }
+      &.voted {
         color: #e74c3c;
       }
     }

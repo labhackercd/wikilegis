@@ -88,6 +88,19 @@ p {
     display: inline;
   }
 
+  &__diff {
+    &--added {
+      background-color: hsla(0,0%,85%,1);
+      font-weight: 700;
+    }
+
+    &--removed {
+      text-decoration: line-through;
+      color: hsla(0,0%,25%,1);
+      font-weight: 700;
+    }
+  }
+
   &__actions {
     display: inline-flex;
     flex-wrap: wrap;
@@ -116,6 +129,7 @@ p {
     color: hsl(0, 0%, 50%);
     z-index: 0;
     cursor: pointer;
+    outline: none;
     @include transition-default(all);
 
     &:first-child {
@@ -126,6 +140,31 @@ p {
       color: black;
       border-color: $wikilegis-color;
       z-index: 1;
+    }
+
+    &.active {
+      position: relative;
+      background-color: hsl(0, 0%, 50%);
+      color: white;
+      border-color: hsl(0, 0%, 50%);
+
+      &::after {
+        content: '';
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: calc(100% + 1px);
+        width: 0;
+        height: 0;
+        border-left: 1.5em solid transparent;
+        border-right: 1.5em solid transparent;
+        border-bottom: 1.2em solid hsl(0, 0%, 95%);
+
+        .wikilegis-widget__action-box-item--amendment & {
+          border-bottom-color: hsl(0, 0%, 90%);
+        }
+      }
     }
   }
 
@@ -138,17 +177,26 @@ p {
   }
 
   &__action-box {
+    display: none;
     background-color: hsl(0, 0%, 95%);
     padding: 1em;
     margin-bottom: 1em;
 
-    &--proposals {
+    &--amendments {
       .wikilegis-widget__action-box {
         margin-bottom: 1em;
         border-left: 1px solid hsl(0, 0%, 50%);
         background-color: hsl(0, 0%, 90%);
       }
     }
+
+    &.active {
+      display: block;
+    }
+  }
+
+  &__action-box-wrapper {
+    margin-bottom: 1em;
   }
 
   &__action-box-info {
@@ -169,6 +217,11 @@ p {
       display: block;
       font-weight: 700;
       margin-bottom: 0.3em;
+    }
+
+    &--empty-comment {
+      display: block;
+      margin-bottom: 1em;
     }
   }
 

@@ -25,5 +25,8 @@
         <script type="text/javascript" src="{% static "js/diff.min.js" %}"></script>
         <script type="text/javascript" src="{% static "js/widget-scripts.js" %}"></script>
     {% endcompress %}
+
+    {% block extra_js %}
+    {% endblock extra_js %}
   </body>
 </html>

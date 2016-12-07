@@ -29,14 +29,7 @@
               </div>
               <div class="wikilegis-widget__actions">
                 <div class="wikilegis-widget__actions-group">
-                  <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
-                    <i class="wikilegis-widget__action-icon material-icons">thumb_up</i>
-                    <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count"></span>{% get_upvote_count segment %}</span>
-                  </div>
-                  <div class="wikilegis-widget__action wikilegis-widget__action--vote" role="button" tabindex="0">
-                    <i class="wikilegis-widget__action-icon material-icons">thumb_down</i>
-                    <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{% get_downvote_count segment %}</span></span>
-                  </div>
+                  {% include "widget/_action_votes.html" with segment=segment user=request.user %}
                 </div>
                 <div class="wikilegis-widget__actions-group">
                   <div class="wikilegis-widget__action wikilegis-widget__action--comments" role="button" tabindex="0" data-segment-id="{{segment.id}}">
@@ -136,3 +129,46 @@
       {% endfor %}
     </div>
   {% endblock content %}
+
+  {% block extra_js %}
+    <script>
+      function updateActionGroupHTML(voteButton, data) {
+        var actionGroup = voteButton.closest('.wikilegis-widget__actions-group');
+        actionGroup.html(data.html);
+        actionGroup.find('.wikilegis-widget__action--vote').click(voteClick);
+      }
+      function voteClick() {
+        var upvote = $(this).hasClass('wikilegis-widget__action--upvote');
+        var voted = $(this).hasClass('voted');
+        var voteButton = $(this);
+        var segment = $(this.closest("[data-segment-id]"));
+        var segmentId = segment.data('segment-id');
+        var url = '{% url "widget_vote" 0 %}'.replace(0, segmentId);
+        if ((voted && upvote) || (voted && !upvote)) {
+          $.ajax({url: url,type: 'DELETE',
+            success: function(data) {
+              updateActionGroupHTML(voteButton, data);
+            },
+            statusCode: {403: function() {alert('loga aí cara!');}}
+          })
+        } else if (!voted && upvote) {
+          $.ajax({url: url, type: 'POST', data: {vote: true},
+            success: function(data) {
+              updateActionGroupHTML(voteButton, data);
+            },
+            statusCode: {403: function() {alert('loga aí cara!');}}
+          })
+        } else if (!voted && !upvote) {
+          $.ajax({url: url, type: 'POST', data: {vote: false},
+            success: function(data) {
+              updateActionGroupHTML(voteButton, data);
+            },
+            statusCode: {403: function() {alert('loga aí cara!');}}
+          })
+        }
+      }
+      $('.wikilegis-widget__action--vote').each(function() {
+        $(this).click(voteClick)
+      })
+    </script>
+  {% endblock extra_js %}

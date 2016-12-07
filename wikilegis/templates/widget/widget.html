@@ -38,11 +38,17 @@
                     <div class="wikilegis-widget__action wikilegis-widget__action--comments" role="button" tabindex="0" data-segment-id="{{segment.id}}">
                       <i class="wikilegis-widget__action-icon material-icons">forum</i>
                       {% get_comment_count for segment as comment_segment_count %}
-                      <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{comment_segment_count}}</span> Comentários</span>
+                      <span class="wikilegis-widget__action-text">
+                        <span class="wikilegis-widget__action-count">{{comment_segment_count}}</span>
+                        <span class="wikilegis-widget__action-text-label"> Comentários</span>
+                      </span>
                     </div>
                     <div class="wikilegis-widget__action wikilegis-widget__action--amendments" role="button" tabindex="0" data-segment-id="{{segment.id}}">
                       <i class="wikilegis-widget__action-icon material-icons">note_add</i>
-                      <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{segment|amendments_count}}</span> Emendas</span>
+                      <span class="wikilegis-widget__action-text">
+                        <span class="wikilegis-widget__action-count">{{segment|amendments_count}}</span>
+                        <span class="wikilegis-widget__action-text-label"> Emendas</span>
+                      </span>
                     </div>
                     <a class="wikilegis-widget__link wikilegis-widget__link--actions" target="_blank" href="{% url 'show_segment' object.id segment.id %}">Ver artigo no Wikilegis</a>
                   </div>
@@ -71,7 +77,7 @@
               <div class="wikilegis-widget__action-box-input">
                 <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
                 <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre a emenda original"></textarea>
-                <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
+                <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar comentário</button>
               </div>
             </div>
               <div class="wikilegis-widget__action-box wikilegis-widget__action-box--amendments" data-segment-id="{{segment.id}}" data-bill-id="{{object.id}}">
@@ -102,7 +108,10 @@
                           <div class="wikilegis-widget__action wikilegis-widget__action--comments wikilegis-widget__action--amendment" role="button" tabindex="0" data-segment-id="{{amendment.id}}">
                             <i class="wikilegis-widget__action-icon material-icons">forum</i>
                             {% get_comment_count for amendment as comment_amendment_count %}
-                            <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{comment_amendment_count}}</span> Comentários</span>
+                            <span class="wikilegis-widget__action-text">
+                              <span class="wikilegis-widget__action-count">{{comment_amendment_count}}</span>
+                              <span class="wikilegis-widget__action-text-label"> Comentários</span>
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -128,7 +137,7 @@
                       <div class="wikilegis-widget__action-box-input">
                         <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
                         <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre esta proposta"></textarea>
-                        <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
+                        <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar comentário</button>
                       </div>
                     </div>
                   </div>
@@ -138,7 +147,7 @@
                 <div class="wikilegis-widget__action-box-input">
                   <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Sugira uma nova emenda:</span>
                   <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Escreva aqui uma nova emenda tomando a original como base"></textarea>
-                  <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar</button>
+                  <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar nova emenda</button>
                 </div>
               </div>
           </div>

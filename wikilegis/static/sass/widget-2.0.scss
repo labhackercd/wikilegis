@@ -88,6 +88,7 @@ p {
         opacity: 1;
         order: -1;
         margin-bottom: 0.25em;
+        width: 100%;
       }
 
       &:focus {
@@ -161,6 +162,13 @@ p {
         flex: 0 0 2.5em;
         margin-right: 0.5em;
       }
+
+      .wikilegis-widget__action-box-item--amendment & {
+        @media (max-width: 640px) {
+          flex: 0 0 3em;
+          margin-right: 0em;
+        }
+      }
     }
   }
 
@@ -201,8 +209,8 @@ p {
         content: '';
         position: absolute;
         margin: auto;
-        left: 0;
-        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
         top: calc(100% + 1px);
         width: 0;
         height: 0;
@@ -255,12 +263,22 @@ p {
 
   &__action-icon {
     font-size: 1em;
+
+    @media (max-width: 640px) {
+      font-size: 1.25em;
+    }
   }
 
   &__action-text {
     font-size: 0.9em;
     margin-left: 0.25em;
     font-weight: 600;
+  }
+
+  &__action-text-label {
+    @media (max-width: 640px) {
+      display: none;
+    }
   }
 
   &__action-box {
@@ -310,6 +328,12 @@ p {
   &__action-box-item {
     padding: 1em;
     border-bottom: 1px solid hsla(0,0%,80%,1);
+
+    &--amendment {
+      @media (max-width: 640px) {
+        padding-left: 0;
+      }
+    }
   }
 
   &__action-box-wrapper {

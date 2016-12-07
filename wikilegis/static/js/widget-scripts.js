@@ -51,6 +51,7 @@ $('.wikilegis-widget__action').click(function(){
     if (!$(this).is('.wikilegis-widget__action--vote, .wikilegis-widget__action--amendment, .active')) {
         $('.wikilegis-widget__action').removeClass('active');
         $('.wikilegis-widget__action-box').removeClass('active');
+        $('.wikilegis-widget__segment').removeClass('active');
     }
 });
 
@@ -79,10 +80,12 @@ $('.wikilegis-widget__action--amendments').click(function(){
     var segmentId = $(this).data('segment-id');
     if ($(this).hasClass('active')) {
         $(this).removeClass('active');
+        $(this).closest('.wikilegis-widget__segment').removeClass('active');
         $(`.wikilegis-widget__action-box--amendments[data-segment-id='${segmentId}'`).removeClass('active');
     } else {
         $(this).addClass('active');
         $(`.wikilegis-widget__action-box--amendments[data-segment-id='${segmentId}'`).addClass('active');
+        $(this).closest('.wikilegis-widget__segment').addClass('active');
 
         $('html, body').animate({
             scrollTop: ($(`.wikilegis-widget__action-box--amendments[data-segment-id='${segmentId}'`).parent().offset().top - 16)

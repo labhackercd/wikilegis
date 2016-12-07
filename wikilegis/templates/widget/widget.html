@@ -54,14 +54,16 @@
 
             <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments" data-segment-id="{{segment.id}}" data-bill-id="{{object.id}}">
               {% for comment in segment.comments.all %}
-                <div class="wikilegis-widget__action-box-wrapper">
+                <div class="wikilegis-widget__action-box-item">
                   <div class="wikilegis-widget__action-box-info">
                     <i class="wikilegis-widget__action-icon material-icons">forum</i>
                     <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
                     <span class="wikilegis-widget__span wikilegis-widget__span--author">{{comment.user}}</span>
                     <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{comment.submit_date|date:"d/m/Y"}}</span>
                   </div>
-                  <p class="wikilegis-widget__action-box-content">{{comment.comment}}</p>
+                  <div class="wikilegis-widget__action-box-content">
+                    <p class="wikilegis-widget__action-box-comment">{{comment.comment}}</p>
+                  </div>
                 </div>
                 {% empty %}
                 <span class="wikilegis-widget__span wikilegis-widget__span--empty-comment">Nenhum comentário feito até o momento. Seja o primeiro!</span>
@@ -75,40 +77,51 @@
               <div class="wikilegis-widget__action-box wikilegis-widget__action-box--amendments" data-segment-id="{{segment.id}}" data-bill-id="{{object.id}}">
                 {% for amendment in segment.substitutes.all %}
                   <div class="wikilegis-widget__action-box-item wikilegis-widget__action-box-item--amendment" data-segment-id="{{amendment.id}}">
+
                     <div class="wikilegis-widget__action-box-wrapper">
-                      <div class="wikilegis-widget__action-box-info">
-                        <i class="wikilegis-widget__action-icon material-icons">note_add</i>
-                        <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
-                        <span class="wikilegis-widget__span wikilegis-widget__span--author">{{amendment.author}}</span>
-                        <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{amendment.created|date:"d/m/Y"}}</span>
+
+                      <div class="wikilegis-widget__actions wikilegis-widget__actions--votes">
+                        {% include "widget/_action_votes.html" with segment=amendment user=request.user %}
+                      </div>
+
+                      <div class="wikilegis-widget__action-box-content-wrapper">
+                        <div class="wikilegis-widget__action-box-info">
+                          <i class="wikilegis-widget__action-icon material-icons">note_add</i>
+                          <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
+                          <span class="wikilegis-widget__span wikilegis-widget__span--author">{{amendment.author}}</span>
+                          <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{amendment.created|date:"d/m/Y"}}</span>
+                        </div>
+
                         <div class="wikilegis-widget__action-box-content">
                           <p class="wikilegis-widget__segment-text wikilegis-widget__segment-text--amendment">
                             {{amendment.content|safe}}
                           </p>
                         </div>
+
+                        <div class="wikilegis-widget__actions wikilegis-widget__actions--user-content">
+                          <div class="wikilegis-widget__action wikilegis-widget__action--comments wikilegis-widget__action--amendment" role="button" tabindex="0" data-segment-id="{{amendment.id}}">
+                            <i class="wikilegis-widget__action-icon material-icons">forum</i>
+                            {% get_comment_count for amendment as comment_amendment_count %}
+                            <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{comment_amendment_count}}</span> Comentários</span>
+                          </div>
+                        </div>
                       </div>
+
                     </div>
-                    <div class="wikilegis-widget__actions">
-                      <div class="wikilegis-widget__actions wikilegis-widget__actions--votes">
-                        {% include "widget/_action_votes.html" with segment=amendment user=request.user %}
-                      </div>
-                      <div class="wikilegis-widget__action wikilegis-widget__action--comments wikilegis-widget__action--amendment" role="button" tabindex="0" data-segment-id="{{amendment.id}}" data-bill-id="{{object.id}}">
-                        <i class="wikilegis-widget__action-icon material-icons">forum</i>
-                        {% get_comment_count for amendment as amendment_comment_count %}
-                        <span class="wikilegis-widget__action-text"><span class="wikilegis-widget__action-count">{{amendment_comment_count}}</span>Comentários</span>
-                      </div>
-                    </div>
+
                     <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments" data-segment-id="{{amendment.id}}" data-bill-id="{{object.id}}">
                       {% for comment in amendment.comments.all %}
-                        <div class="wikilegis-widget__action-box-wrapper">
+                        <div class="wikilegis-widget__action-box-item">
                           <div class="wikilegis-widget__action-box-info">
                             <i class="wikilegis-widget__action-icon material-icons">forum</i>
                             <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
                             <span class="wikilegis-widget__span wikilegis-widget__span--author">{{comment.user}}</span>
                             <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{comment.submit_date|date:"d/m/Y"}}</span>
                           </div>
+                          <div class="wikilegis-widget__action-box-content">
+                            <p class="wikilegis-widget__action-box-comment">{{comment.comment}}</p>
+                          </div>
                         </div>
-                          <p class="wikilegis-widget__action-box-content">{{comment.comment}}</p>
                         {% empty %}
                         <span class="wikilegis-widget__span wikilegis-widget__span--empty-comment">Nenhum comentário feito até o momento. Seja o primeiro!</span>
                       {% endfor %}

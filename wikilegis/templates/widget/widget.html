@@ -66,7 +66,7 @@
                   </div>
                 </div>
                 {% empty %}
-                <span class="wikilegis-widget__span wikilegis-widget__span--empty-comment">Nenhum comentário feito até o momento. Seja o primeiro!</span>
+                <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhum comentário feito até o momento. Seja o primeiro!</span>
               {% endfor %}
               <div class="wikilegis-widget__action-box-input">
                 <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
@@ -123,7 +123,7 @@
                           </div>
                         </div>
                         {% empty %}
-                        <span class="wikilegis-widget__span wikilegis-widget__span--empty-comment">Nenhum comentário feito até o momento. Seja o primeiro!</span>
+                        <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhum comentário feito até o momento. Seja o primeiro!</span>
                       {% endfor %}
                       <div class="wikilegis-widget__action-box-input">
                         <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
@@ -132,6 +132,8 @@
                       </div>
                     </div>
                   </div>
+                  {% empty %}
+                  <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhuma emenda foi sugerida até o momento. Seja o primeiro!</span>
                 {% endfor %}
                 <div class="wikilegis-widget__action-box-input">
                   <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Sugira uma nova emenda:</span>

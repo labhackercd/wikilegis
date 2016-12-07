@@ -27,6 +27,11 @@ p {
 }
 
 .wikilegis-widget {
+
+  @media (max-width: 640px) {
+    font-size: 0.9em;
+  }
+
   &__button {
     border: 0;
     font-weight: 600;
@@ -61,6 +66,7 @@ p {
   &__heading {
     margin: 0;
     margin-bottom: 0.5em;
+    text-align: center;
   }
 
   &__link {
@@ -77,6 +83,12 @@ p {
       opacity: 0;
       outline: none;
       @include transition-default(opacity);
+
+      @media (max-width: 640px) {
+        opacity: 1;
+        order: -1;
+        margin-bottom: 0.25em;
+      }
 
       &:focus {
         opacity: 1;
@@ -143,6 +155,12 @@ p {
       display: flex;
       justify-content: space-around;
       margin-right: 0.75em;
+
+      @media (max-width: 640px) {
+        flex-direction: column;
+        flex: 0 0 2.5em;
+        margin-right: 0.5em;
+      }
     }
   }
 
@@ -212,9 +230,14 @@ p {
     }
 
     &--upvote {
+      @media (max-width: 640px) {
+        margin-bottom: 0.5em;
+      }
+
       &:hover, &:focus {
         color: $wikilegis-color;
       }
+
       &.voted {
         color: $wikilegis-color;
       }
@@ -275,10 +298,13 @@ p {
       margin-bottom: 0.3em;
     }
 
-    &--empty-comment {
+    &--empty-action {
       display: block;
       padding: 1em;
-      padding-bottom: 0;    }
+      padding-bottom: 0;
+      color: #ee8377;
+      font-weight: 700;
+    }
   }
 
   &__action-box-item {

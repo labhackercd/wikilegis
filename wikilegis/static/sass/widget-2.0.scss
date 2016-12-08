@@ -286,6 +286,13 @@ p {
     font-size: 0.9em;
     margin-left: 0.25em;
     font-weight: 600;
+    overflow: hidden;
+  }
+
+  &__action-count {
+    display: inline-block;
+    transform: translateY(0);
+    @include transition-default(transform);
   }
 
   &__action-text-label {
@@ -495,5 +502,11 @@ p {
 .translatex {
   &--left {
     transform: translateX(-100%);
+  }
+}
+
+.translatey {
+  &--bottom {
+    transform: translateY(100%);
   }
 }

@@ -1,0 +1,15 @@
+{% for comment in segment.comments.all %}
+  <div class="wikilegis-widget__action-box-item">
+    <div class="wikilegis-widget__action-box-info">
+      <i class="wikilegis-widget__action-icon material-icons">forum</i>
+      <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
+      <span class="wikilegis-widget__span wikilegis-widget__span--author">{{comment.user}}</span>
+      <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{comment.submit_date|date:"d/m/Y"}}</span>
+    </div>
+    <div class="wikilegis-widget__action-box-content">
+      <p class="wikilegis-widget__action-box-comment">{{comment.comment}}</p>
+    </div>
+  </div>
+  {% empty %}
+  <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhum comentário feito até o momento. Seja o primeiro!</span>
+{% endfor %}

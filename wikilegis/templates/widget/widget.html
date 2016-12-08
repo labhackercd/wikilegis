@@ -39,7 +39,7 @@
                       <i class="wikilegis-widget__action-icon material-icons">forum</i>
                       {% get_comment_count for segment as comment_segment_count %}
                       <span class="wikilegis-widget__action-text">
-                        <span class="wikilegis-widget__action-count">{{comment_segment_count}}</span>
+                        <span class="wikilegis-widget__action-count comments">{{comment_segment_count}}</span>
                         <span class="wikilegis-widget__action-text-label"> Comentários</span>
                       </span>
                     </div>
@@ -59,25 +59,13 @@
             </div>
 
             <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments" data-segment-id="{{segment.id}}" data-bill-id="{{object.id}}">
-              {% for comment in segment.comments.all %}
-                <div class="wikilegis-widget__action-box-item">
-                  <div class="wikilegis-widget__action-box-info">
-                    <i class="wikilegis-widget__action-icon material-icons">forum</i>
-                    <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
-                    <span class="wikilegis-widget__span wikilegis-widget__span--author">{{comment.user}}</span>
-                    <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{comment.submit_date|date:"d/m/Y"}}</span>
-                  </div>
-                  <div class="wikilegis-widget__action-box-content">
-                    <p class="wikilegis-widget__action-box-comment">{{comment.comment}}</p>
-                  </div>
-                </div>
-                {% empty %}
-                <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhum comentário feito até o momento. Seja o primeiro!</span>
-              {% endfor %}
+              <div class="wikilegis-widget__action-box--comments-wrapper">
+                {% include "widget/_segment_comments.html" with segment=segment %}
+              </div>
               <div class="wikilegis-widget__action-box-input">
                 <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
                 <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre a emenda original"></textarea>
-                <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar comentário</button>
+                <button class="wikilegis-widget__button wikilegis-widget__button--action-box comment" id="">Enviar comentário</button>
               </div>
             </div>
               <div class="wikilegis-widget__action-box wikilegis-widget__action-box--amendments" data-segment-id="{{segment.id}}" data-bill-id="{{object.id}}">
@@ -109,7 +97,7 @@
                             <i class="wikilegis-widget__action-icon material-icons">forum</i>
                             {% get_comment_count for amendment as comment_amendment_count %}
                             <span class="wikilegis-widget__action-text">
-                              <span class="wikilegis-widget__action-count">{{comment_amendment_count}}</span>
+                              <span class="wikilegis-widget__action-count comments">{{comment_amendment_count}}</span>
                               <span class="wikilegis-widget__action-text-label"> Comentários</span>
                             </span>
                           </div>
@@ -119,25 +107,13 @@
                     </div>
 
                     <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments" data-segment-id="{{amendment.id}}" data-bill-id="{{object.id}}">
-                      {% for comment in amendment.comments.all %}
-                        <div class="wikilegis-widget__action-box-item">
-                          <div class="wikilegis-widget__action-box-info">
-                            <i class="wikilegis-widget__action-icon material-icons">forum</i>
-                            <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
-                            <span class="wikilegis-widget__span wikilegis-widget__span--author">{{comment.user}}</span>
-                            <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{comment.submit_date|date:"d/m/Y"}}</span>
-                          </div>
-                          <div class="wikilegis-widget__action-box-content">
-                            <p class="wikilegis-widget__action-box-comment">{{comment.comment}}</p>
-                          </div>
-                        </div>
-                        {% empty %}
-                        <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhum comentário feito até o momento. Seja o primeiro!</span>
-                      {% endfor %}
+                      <div class="wikilegis-widget__action-box--comments-wrapper">
+                        {% include "widget/_segment_comments.html" with segment=amendment %}
+                      </div>
                       <div class="wikilegis-widget__action-box-input">
                         <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
                         <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre esta proposta"></textarea>
-                        <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar comentário</button>
+                        <button class="wikilegis-widget__button wikilegis-widget__button--action-box comment" id="">Enviar comentário</button>
                       </div>
                     </div>
                   </div>
@@ -193,8 +169,36 @@
           })
         }
       }
+      function sendComment() {
+        var segment = $(this).closest("[data-segment-id]");
+        var parent = $(this).closest('.wikilegis-widget__action-box-item, .wikilegis-widget__segment');
+        var segmentId = segment.data('segment-id');
+        var commentArea = $(this).siblings('.wikilegis-widget__input--textarea');
+        var commentWrapper = segment.find('.wikilegis-widget__action-box--comments-wrapper');
+        if (commentArea.val() === '') {
+          alert('comenta ai cara!');
+        } else {
+          var url = '{% url "widget_comment" 0 %}'.replace(0, segmentId);
+          $.ajax({url: url, type: 'POST', data: {comment: commentArea.val()},
+            success: function(data) {
+              commentWrapper.html(data.html);
+              commentArea.val('');
+              var counter = parent.find('.wikilegis-widget__action-count.comments').first();
+              counter.addClass('translatey--bottom');
+              counter.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function() {
+                counter.text(data.count);
+                $(this).removeClass('translatey--bottom');
+              })
+            },
+            statusCode: {403: function() {alert('loga ai pow');}}
+          })
+        }
+      }
       $('.wikilegis-widget__action--vote').each(function() {
         $(this).click(voteClick)
+      })
+      $('.wikilegis-widget__button--action-box.comment').each(function() {
+        $(this).click(sendComment);
       })
     </script>
   {% endblock extra_js %}

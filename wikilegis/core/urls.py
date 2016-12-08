@@ -6,8 +6,7 @@ from wikilegis.core.api import (BillListAPI, SegmentsListAPI, CommentListAPI,
                                 TypeSegmentAPI, UpDownVoteListAPI,
                                 CreateUserAPI, VoteUpdateDeleteAPI,
                                 NewsleterListAPI)
-from wikilegis.core.views import (BillReport, CreateProposal, BillDetailView,
-                                  WidgetView)
+from wikilegis.core.views import (BillReport, CreateProposal, BillDetailView)
 from wikilegis.core import widget_views
 
 urlpatterns = [
@@ -38,11 +37,10 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^widget/(?P<pk>\d+)/?$', WidgetView.as_view(), name='widget'),
-    url(r'^widget/login/$', TemplateView.as_view(template_name='widget/login.html'),
-        name='widget_login'),
+    url(r'^widget/(?P<pk>\d+)/?$', widget_views.WidgetView.as_view(), name='widget'),
     url(r'^widget/vote/(?P<segment_id>\d+)$', widget_views.updown_vote,
         name='widget_vote'),
+    url(r'^widget/login/$', widget_views.LoginView.as_view(), name='widget_login'),
     url(r'^widget/comment/(?P<segment_id>\d+)$', widget_views.comment,
         name='widget_comment'),
 ]

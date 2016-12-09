@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
-
+from registration.backends.default.views import RegistrationView
 from wikilegis.core.api import (BillListAPI, SegmentsListAPI, CommentListAPI,
                                 api_root, UserUpdateAPI, UserAPI, BillAPI,
                                 TypeSegmentAPI, UpDownVoteListAPI,
@@ -38,9 +38,14 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^widget/(?P<pk>\d+)/?$', widget_views.WidgetView.as_view(), name='widget'),
+    url(r'^widget/login/$', widget_views.LoginView.as_view(),
+        name='widget_login'),
+    url(r'^widget/signup/$', RegistrationView.as_view(success_url='widget_login'),
+        name='widget_signup'),
+    url(r'^widget/logout/$', widget_views.LogoutView.as_view(),
+        name='widget_logout'),
     url(r'^widget/vote/(?P<segment_id>\d+)$', widget_views.updown_vote,
         name='widget_vote'),
-    url(r'^widget/login/$', widget_views.LoginView.as_view(), name='widget_login'),
     url(r'^widget/comment/(?P<segment_id>\d+)$', widget_views.comment,
         name='widget_comment'),
 ]

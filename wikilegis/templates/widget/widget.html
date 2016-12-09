@@ -6,9 +6,9 @@
 
       <div class="wikilegis-widget__login">
         {% if user.is_authenticated %}
-          <a href="{% url 'widget_logout' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--logout">Encerrar Sessão</a>
-        {% else %}
           <a href="{% url 'widget_login' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--login">Fazer Login</a>
+        {% else %}
+          <a href="{% url 'widget_logout' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--logout">Encerrar Sessão</a>
         {% endif %}
       </div>
     </div>

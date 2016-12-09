@@ -435,6 +435,14 @@ p {
     }
   }
 
+  &__input-error {
+    display: block;
+    color: #c0392b;
+    font-weight: 600;
+    font-size: 0.8em;
+    margin-bottom: -0.5em;
+  }
+
   &__image {
     &--top-logo {
       margin-bottom: 1em;

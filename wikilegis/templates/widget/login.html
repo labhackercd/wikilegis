@@ -11,20 +11,24 @@
                 {{ form.non_field_errors }}
             </div>
         {% endif %}
+        {% if 'inactive' in form.errors.as_json %}
+        <a href="{% url 'resend_activation' %}" class="btn waves-effect waves-light" name="action">
+            <input class="wikilegis-widget__button wikilegis-widget__button--access" type="submit" name="login" value="{% trans 'Re-send activation email' %}">
+        </a>
+        {% endif %}
         <div class="wikilegis-widget__access-box-wrapper">
           <div class="wikilegis-widget__access-box wikilegis-widget__access-box--login {% if 'signup' in request.path %}translatex--left{% endif %}">
             <form class="wikilegis-widget__access-form" name="login" action="{% url 'widget_login' %}?next={{ request.GET.next }}" method="POST">
               {% csrf_token %}
-              <input class="wikilegis-widget__input wikilegis-widget__input--access" type="username" name="username" placeholder="{% trans 'Email' %}">
-              {{ form.username.errors }}
-              <input class="wikilegis-widget__input wikilegis-widget__input--access" type="password" name="password" placeholder="{% trans 'Password' %}">
-              {{ form.password.errors }}
-              <input type="hidden" name="next" value="{{ request.GET.next }}" />
-              {% if 'inactive' in form.errors.as_json %}
-              <a href="{% url 'resend_activation' %}" class="btn waves-effect waves-light" name="action">
-                  <input class="wikilegis-widget__button wikilegis-widget__button--access" type="submit" name="login" value="{% trans 'Activate Account' %}">
-              </a>
+              {% if form.username.errors %}
+                <label class="wikilegis-widget__input-error" for="username">• {% trans "Email is a necessary field" %}</label>
               {% endif %}
+              <input class="wikilegis-widget__input wikilegis-widget__input--access" type="username" name="username" placeholder="{% trans 'Email' %}">
+              {% if form.password.errors %}
+                <label class="wikilegis-widget__input-error" for="password">• {% trans "Password is a necessary field" %}</label>
+              {% endif %}
+              <input class="wikilegis-widget__input wikilegis-widget__input--access" type="password" name="password" placeholder="{% trans 'Password' %}">
+              <input type="hidden" name="next" value="{{ request.GET.next }}" />
               <input class="wikilegis-widget__button wikilegis-widget__button--access" type="submit" name="login" value="{% trans 'Log in' %}">
             </form>
 
@@ -48,11 +52,18 @@
               {% csrf_token %}
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="first-name" name="first_name" placeholder="{% trans 'First name' %}">
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="last-name" name="last_name" placeholder="{% trans 'Last name' %}">
-              <input class="wikilegis-widget__input wikilegis-widget__input--access" type="email" name="email" placeholder="{% trans 'Email' %}"> {{ form.email.errors }}
+              {% if form.email.errors %}
+                <label class="wikilegis-widget__input-error" for="email">• {% trans "Email is a necessary field" %}</label>
+              {% endif %}
+              <input class="wikilegis-widget__input wikilegis-widget__input--access" type="email" name="email" placeholder="{% trans 'Email' %}">
+              {% if form.password1.errors %}
+                <label class="wikilegis-widget__input-error" for="password1">• {% trans "Password is a necessary field" %}</label>
+              {% endif %}
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="password" name="password1" placeholder="{% trans 'Password' %}">
-              {{ form.password1.errors }}
+              {% if form.password2.errors %}
+                <label class="wikilegis-widget__input-error" for="password2">• {% trans "Confirm Password is a necessary field" %}</label>
+              {% endif %}
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="password" name="password2" placeholder="{% trans 'Confirm your password' %}">
-              {{ form.password2.errors }}
               <input class="wikilegis-widget__button wikilegis-widget__button--access" type="submit" name="signup" value="{% trans 'Sign Up' %}">
             </form>
 

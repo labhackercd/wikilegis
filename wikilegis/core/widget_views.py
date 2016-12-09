@@ -56,8 +56,8 @@ class WidgetView(DetailView):
 
 def amendment(request, segment_id):
     if request.user.is_authenticated():
-        replaced = models.BillSegment.objects.get(pk=segment_id)
-        segment = models.BillSegment()
+        replaced = BillSegment.objects.get(pk=segment_id)
+        segment = BillSegment()
         segment.replaced = replaced
         segment.bill = replaced.bill
         segment.author = request.user

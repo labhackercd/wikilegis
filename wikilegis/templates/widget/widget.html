@@ -163,6 +163,7 @@
         var originalText = parent.find('.wikilegis-widget__segment-text--original').text();
         var segmentId = parent.data('segment-id');
         var amendmentArea = $(this).siblings('.wikilegis-widget__input--textarea');
+        var amendmentWrapper = segment.find('.wikilegis-widget__action-box--amendments-wrapper');
         if (amendmentArea.val() === '') {
           alert('propoe uma emenda ai djow!');
         } if (amendmentArea.val() === originalText.trim()) {
@@ -171,7 +172,6 @@
           var url = '{% url "widget_amendment" 0 %}'.replace(0, segmentId);
           $.ajax({url: url, type: 'POST', data: {amendment: amendmentArea.val()},
             success: function(data) {
-              var amendmentWrapper = $('.wikilegis-widget__action-box--amendments-wrapper');
               amendmentWrapper.html(data.html);
               amendmentArea.blur();
               amendmentArea.val('');
@@ -193,14 +193,16 @@
       function initialAmendmentText() {
         var parent = $(this).closest('.wikilegis-widget__segment--original');
         var originalText = parent.find('.wikilegis-widget__segment-text--original').text();
-        $(this).val(originalText.trim());
+        if ($(this).val() === '') {
+          $(this).val(originalText.trim());
+        }
       }
 
       $(document).ready(function() {
         $('body').on('click', '.wikilegis-widget__action--vote', voteClick);
         $('body').on('click', '.wikilegis-widget__button--action-box.comment', sendComment);
         $('body').on('click', '.wikilegis-widget__button--action-box.amendment', sendAmendment);
-        $('body').one('click', '.wikilegis-widget__input--textarea.amendment', initialAmendmentText);
+        $('body').on('click', '.wikilegis-widget__input--textarea.amendment', initialAmendmentText);
       })
     </script>
   {% endblock extra_js %}

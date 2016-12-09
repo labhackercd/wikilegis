@@ -57,6 +57,8 @@ class WidgetView(DetailView):
 def amendment(request, segment_id):
     if request.user.is_authenticated():
         replaced = BillSegment.objects.get(pk=segment_id)
+        if replaced.bill.status == 'closed':
+            return HttpResponseForbidden(reason='Projeto encerrado')
         segment = BillSegment()
         segment.replaced = replaced
         segment.bill = replaced.bill
@@ -72,11 +74,15 @@ def amendment(request, segment_id):
         return JsonResponse({'html': html,
                              'count': replaced.substitutes.all().count()})
     else:
-        return HttpResponseForbidden()
+        return HttpResponseForbidden(reason='Loga ai cara')
 
 
 def updown_vote(request, segment_id):
     if request.user.is_authenticated():
+        segment = BillSegment.objects.get(pk=segment_id)
+        if segment.bill.status == 'closed':
+            return HttpResponseForbidden(reason='Projeto encerrado')
+
         ctype = ContentType.objects.get_for_model(BillSegment)
         vote = UpDownVote.objects.get_or_create(
             object_id=segment_id,
@@ -90,17 +96,19 @@ def updown_vote(request, segment_id):
             vote.delete()
         elif request.method == 'PUT':
             return HttpResponseForbidden()
-        segment = BillSegment.objects.get(pk=segment_id)
         html = render_to_string('widget/_action_votes.html',
                                 {'segment': segment, 'user': request.user})
         return JsonResponse({'html': html})
     else:
-        return HttpResponseForbidden()
+        return HttpResponseForbidden(reason='Loga ai cara')
 
 
 def comment(request, segment_id):
     if request.user.is_authenticated() and request.method == 'POST':
         ctype = ContentType.objects.get_for_model(BillSegment)
+        segment = BillSegment.objects.get(pk=segment_id)
+        if segment.bill.status == 'closed':
+            return HttpResponseForbidden(reason='Projeto encerrado')
         obj = Comment()
         obj.content_type = ctype
         obj.user = request.user
@@ -108,10 +116,9 @@ def comment(request, segment_id):
         obj.object_pk = segment_id
         obj.site_id = settings.SITE_ID
         obj.save()
-        segment = BillSegment.objects.get(pk=segment_id)
         html = render_to_string('widget/_segment_comments.html',
                                 {'segment': segment})
         return JsonResponse({'html': html,
                              'count': segment.comments.all().count()})
     else:
-        return HttpResponseForbidden()
+        return HttpResponseForbidden(reason='Loga ai cara')

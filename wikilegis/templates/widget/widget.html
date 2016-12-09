@@ -3,12 +3,18 @@
 {% block content %}
   <div class="wikilegis-widget">
     <div class="wikilegis-widget__top-bar">
+
       <div class="wikilegis-widget__login">
-        <a href="{% url 'widget_login' %}" class="wikilegis-widget__button wikilegis-widget__button--login">Fazer Login</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'widget_logout' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--logout">Encerrar Sessão</a>
+        {% else %}
+          <a href="{% url 'widget_login' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--login">Fazer Login</a>
+        {% endif %}
       </div>
     </div>
-    <div class="wikilegis-widget__signup"></div>
-    <img class="wikilegis-widget__logo wikilegis-widget__logo--wikilegis" src="">
+      <div class="wikilegis-widget__logos">
+        <a class="wikilegis-widget__link wikilegis-widget__link--logo" href="{% url 'index' %}" alt="Ir para a versão completa do Wikilegis"><img class="wikilegis-widget__logo--wikilegis" src="{% static 'img/nav-logo.png' %}" alt="Logo Wikilegis"></a>
+      </div>
     <div class="wikilegis-widget__bill-wrapper">
       <div class="wikilegis-widget__header">
         <h1 class="wikilegis-widget__heading wikilegis-widget__heading--title">{{object.title}}</h1>

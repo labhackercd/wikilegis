@@ -34,6 +34,32 @@ p {
 
 .wikilegis-widget {
 
+  &__top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+  }
+
+  &__logos {
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+  }
+
+  &__logo {
+
+    &--wikilegis {
+      height: 2em;
+    }
+  }
+
+  &__login {
+    margin-left: auto;
+  }
+
   &__button {
     border: 0;
     font-weight: 600;
@@ -80,6 +106,12 @@ p {
 
     &--header {
       margin-bottom: 2em;
+    }
+
+    &--logo {
+      display: inline-flex;
+      font-size: 1em;
+      margin: 0.25em 0.75em;
     }
 
     &--actions {

@@ -57,7 +57,7 @@
                       <div class="wikilegis-widget__action wikilegis-widget__action--amendments" role="button" tabindex="0" data-segment-id="{{segment.id}}">
                         <i class="wikilegis-widget__action-icon material-icons">note_add</i>
                         <span class="wikilegis-widget__action-text">
-                          <span class="wikilegis-widget__action-count">{{segment|amendments_count}}</span>
+                          <span class="wikilegis-widget__action-count amendments">{{segment|amendments_count}}</span>
                           <span class="wikilegis-widget__action-text-label"> Emendas</span>
                         </span>
                       </div>
@@ -80,61 +80,13 @@
                 </div>
               </div>
                 <div class="wikilegis-widget__action-box wikilegis-widget__action-box--amendments" data-segment-id="{{segment.id}}" data-bill-id="{{object.id}}">
-                  {% for amendment in segment.substitutes.all %}
-                    <div class="wikilegis-widget__action-box-item wikilegis-widget__action-box-item--amendment" data-segment-id="{{amendment.id}}">
-
-                      <div class="wikilegis-widget__action-box-wrapper">
-
-                        <div class="wikilegis-widget__actions wikilegis-widget__actions--votes">
-                          {% include "widget/_action_votes.html" with segment=amendment user=request.user %}
-                        </div>
-
-                        <div class="wikilegis-widget__action-box-content-wrapper">
-                          <div class="wikilegis-widget__action-box-info">
-                            <i class="wikilegis-widget__action-icon material-icons">note_add</i>
-                            <span class="wikilegis-widget__span wikilegis-widget__span--by">Por </span>
-                            <span class="wikilegis-widget__span wikilegis-widget__span--author">{{amendment.author}}</span>
-                            <span class="wikilegis-widget__span wikilegis-widget__span--date">em {{amendment.created|date:"d/m/Y"}}</span>
-                          </div>
-
-                          <div class="wikilegis-widget__action-box-content">
-                            <p class="wikilegis-widget__segment-text wikilegis-widget__segment-text--amendment">
-                              {{amendment.content|safe}}
-                            </p>
-                          </div>
-
-                          <div class="wikilegis-widget__actions wikilegis-widget__actions--user-content">
-                            <div class="wikilegis-widget__action wikilegis-widget__action--comments wikilegis-widget__action--amendment" role="button" tabindex="0" data-segment-id="{{amendment.id}}">
-                              <i class="wikilegis-widget__action-icon material-icons">forum</i>
-                              {% get_comment_count for amendment as comment_amendment_count %}
-                              <span class="wikilegis-widget__action-text">
-                                <span class="wikilegis-widget__action-count comments">{{comment_amendment_count}}</span>
-                                <span class="wikilegis-widget__action-text-label"> Comentários</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-
-                      <div class="wikilegis-widget__action-box wikilegis-widget__action-box--comments" data-segment-id="{{amendment.id}}" data-bill-id="{{object.id}}">
-                        <div class="wikilegis-widget__action-box--comments-wrapper">
-                          {% include "widget/_segment_comments.html" with segment=amendment %}
-                        </div>
-                        <div class="wikilegis-widget__action-box-input">
-                          <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
-                          <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre esta proposta"></textarea>
-                          <button class="wikilegis-widget__button wikilegis-widget__button--action-box comment" id="">Enviar comentário</button>
-                        </div>
-                      </div>
-                    </div>
-                    {% empty %}
-                    <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhuma emenda foi sugerida até o momento. Seja o primeiro!</span>
-                  {% endfor %}
+                  <div class="wikilegis-widget__action-box--amendments-wrapper">
+                    {% include "widget/_amendments.html" with segment=segment user=request.user %}
+                  </div>
                   <div class="wikilegis-widget__action-box-input">
                     <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Sugira uma nova emenda:</span>
-                    <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Escreva aqui uma nova emenda tomando a original como base"></textarea>
-                    <button class="wikilegis-widget__button wikilegis-widget__button--action-box" id="">Enviar nova emenda</button>
+                    <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea amendment" name="" id="" placeholder="Escreva aqui uma nova emenda tomando a original como base"></textarea>
+                    <button class="wikilegis-widget__button wikilegis-widget__button--action-box amendment" id="">Enviar nova emenda</button>
                   </div>
                 </div>
             </div>
@@ -149,7 +101,6 @@
       function updateActionGroupHTML(voteButton, data) {
         var actionGroup = voteButton.closest('.wikilegis-widget__actions--votes');
         actionGroup.html(data.html);
-        actionGroup.find('.wikilegis-widget__action--vote').click(voteClick);
       }
       function voteClick() {
         var upvote = $(this).hasClass('wikilegis-widget__action--upvote');
@@ -183,7 +134,7 @@
       }
       function sendComment() {
         var segment = $(this).closest("[data-segment-id]");
-        var parent = $(this).closest('.wikilegis-widget__action-box-item, .wikilegis-widget__segment');
+        var parent = $(this).closest('.wikilegis-widget__segment--original');
         var segmentId = segment.data('segment-id');
         var commentArea = $(this).siblings('.wikilegis-widget__input--textarea');
         var commentWrapper = segment.find('.wikilegis-widget__action-box--comments-wrapper');
@@ -206,11 +157,50 @@
           })
         }
       }
-      $('.wikilegis-widget__action--vote').each(function() {
-        $(this).click(voteClick)
-      })
-      $('.wikilegis-widget__button--action-box.comment').each(function() {
-        $(this).click(sendComment);
+      function sendAmendment() {
+        var segment = $(this).closest("[data-segment-id]");
+        var parent = $(this).closest('.wikilegis-widget__segment--original');
+        var originalText = parent.find('.wikilegis-widget__segment-text--original').text();
+        var segmentId = parent.data('segment-id');
+        var amendmentArea = $(this).siblings('.wikilegis-widget__input--textarea');
+        if (amendmentArea.val() === '') {
+          alert('propoe uma emenda ai djow!');
+        } if (amendmentArea.val() === originalText.trim()) {
+          alert('voce nao está propondo nada, cara')
+        } else {
+          var url = '{% url "widget_amendment" 0 %}'.replace(0, segmentId);
+          $.ajax({url: url, type: 'POST', data: {amendment: amendmentArea.val()},
+            success: function(data) {
+              var amendmentWrapper = $('.wikilegis-widget__action-box--amendments-wrapper');
+              amendmentWrapper.html(data.html);
+              amendmentArea.blur();
+              amendmentArea.val('');
+              amendmentArea.one('focus', initialAmendmentText);
+              var counter = parent.find('.wikilegis-widget__action-count.amendments').first();
+              counter.addClass('translatey--bottom');
+              counter.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function() {
+                counter.text(data.count);
+                $(this).removeClass('translatey--bottom');
+              });
+              amendmentWrapper.find('.wikilegis-widget__segment-text--amendment').each(function() {
+                $(this).html(changesToMarkup(wlDiff(originalText.trim(), $(this).text())));
+              })
+            },
+            statusCode: {403: function() {alert('loga ae cara');}}
+          })
+        }
+      }
+      function initialAmendmentText() {
+        var parent = $(this).closest('.wikilegis-widget__segment--original');
+        var originalText = parent.find('.wikilegis-widget__segment-text--original').text();
+        $(this).val(originalText.trim());
+      }
+
+      $(document).ready(function() {
+        $('body').on('click', '.wikilegis-widget__action--vote', voteClick);
+        $('body').on('click', '.wikilegis-widget__button--action-box.comment', sendComment);
+        $('body').on('click', '.wikilegis-widget__button--action-box.amendment', sendAmendment);
+        $('body').one('click', '.wikilegis-widget__input--textarea.amendment', initialAmendmentText);
       })
     </script>
   {% endblock extra_js %}

@@ -54,6 +54,27 @@ class WidgetView(DetailView):
         return obj
 
 
+def amendment(request, segment_id):
+    if request.user.is_authenticated():
+        replaced = models.BillSegment.objects.get(pk=segment_id)
+        segment = models.BillSegment()
+        segment.replaced = replaced
+        segment.bill = replaced.bill
+        segment.author = request.user
+        segment.original = False
+        segment.content = request.POST.get('amendment')
+        segment.type = replaced.type
+        segment.number = replaced.number
+        segment.order = replaced.order
+        segment.save()
+        html = render_to_string('widget/_amendments.html',
+                                {'segment': replaced, 'user': request.user})
+        return JsonResponse({'html': html,
+                             'count': replaced.substitutes.all().count()})
+    else:
+        return HttpResponseForbidden()
+
+
 def updown_vote(request, segment_id):
     if request.user.is_authenticated():
         ctype = ContentType.objects.get_for_model(BillSegment)

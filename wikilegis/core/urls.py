@@ -46,6 +46,8 @@ urlpatterns += [
         name='widget_logout'),
     url(r'^widget/vote/(?P<segment_id>\d+)$', widget_views.updown_vote,
         name='widget_vote'),
+    url(r'^widget/amendment/(?P<segment_id>\d+)$', widget_views.amendment,
+        name='widget_amendment'),
     url(r'^widget/comment/(?P<segment_id>\d+)$', widget_views.comment,
         name='widget_comment'),
 ]

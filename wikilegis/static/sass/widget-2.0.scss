@@ -29,7 +29,7 @@ body {
 p {
   margin: 0;
   margin-bottom: 1em;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .wikilegis-widget {
@@ -44,6 +44,7 @@ p {
     background-color: $wikilegis-color;
     color: white;
     cursor: pointer;
+    text-decoration: none;
 
     @include transition-default(background-color);
 

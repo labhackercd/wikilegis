@@ -2,9 +2,10 @@
 {% load static convert_numbers compress votes comments segments i18n %}
 {% block content %}
   <div class="wikilegis-widget">
-    <div class="wikilegis-widget__login">
-      Daew
-      <button class="wikilegis-widget__button wikilegis-widget__button--login">Sair</button>
+    <div class="wikilegis-widget__top-bar">
+      <div class="wikilegis-widget__login">
+        <a href="{% url 'widget_login' %}" class="wikilegis-widget__button wikilegis-widget__button--login">Fazer Login</a>
+      </div>
     </div>
     <div class="wikilegis-widget__signup"></div>
     <img class="wikilegis-widget__logo wikilegis-widget__logo--wikilegis" src="">

@@ -17,6 +17,7 @@ from django.utils.translation import pgettext_lazy
 
 BILL_STATUS_CHOICES = (
     ('draft', _('Draft')),
+    ('unlisted', _('Unlisted')),
     ('published', _('Published')),
     ('closed', pgettext_lazy('Not open', 'Closed'))
 )

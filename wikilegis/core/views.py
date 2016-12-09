@@ -181,7 +181,7 @@ def create_amendment(request, bill_id, segment_id):
     if not segment.is_editable():
         return redirect('show_bill', pk=bill_id)
 
-    if not segment.bill.status == 'published':
+    if segment.bill.status not in ['published', 'unlisted']:
         return redirect('show_segment', bill_id=bill_id, segment_id=segment_id)
 
     form_factory = CitizenAmendmentCreationForm

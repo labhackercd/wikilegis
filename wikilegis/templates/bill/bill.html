@@ -40,7 +40,7 @@
     <div class="col s12 l3 push-l9">
       <div class="pl-full pl-description">
 
-        {% if user.is_authenticated and bill.status = "published"  %}
+        {% if user.is_authenticated and bill.status = "published" or bill.status = "unlisted" %}
           {% subscriber bill.id request.user.id as newsletter_status %}
           <form action="{% url 'verify_newsletter' bill.id %}#btn_newsletter" method="get">
           {% if newsletter_status %}
@@ -151,7 +151,7 @@
         <span class="votes-title">{% trans "Do you support this bill?" %}</span>
         <div class="votes">
           {% with bill as content_object %}
-              {% if bill.status == 'published' %}
+              {% if bill.status == 'published' or bill.status == 'unlisted' %}
                   {% include "_vote_buttons.html" %}
               {% else %}
                   {% include "_vote_buttons_read_only.html" %}

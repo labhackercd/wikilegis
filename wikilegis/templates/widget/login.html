@@ -6,17 +6,19 @@
     <div class="wikilegis-widget__access-wrapper">
       <div class="wikilegis-widget__access">
         <img class="wikilegis-widget__image wikilegis-widget__image--top-logo" src="{% static 'img/nav-logo.png' %}" alt="Logo Wikilegis">
+        {% if form.non_field_errors %}
+            <div>
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
         <div class="wikilegis-widget__access-box-wrapper">
-          <div class="wikilegis-widget__access-box wikilegis-widget__access-box--login">
-            <form class="wikilegis-widget__access-form" name="login" action="{% url 'widget_login' %}" method="POST">
+          <div class="wikilegis-widget__access-box wikilegis-widget__access-box--login {% if 'signup' in request.path %}translatex--left{% endif %}">
+            <form class="wikilegis-widget__access-form" name="login" action="{% url 'widget_login' %}?next={{ request.GET.next }}" method="POST">
               {% csrf_token %}
-              {% if form.non_field_errors %}
-                  <div>
-                      {{ form.non_field_errors }}
-                  </div>
-              {% endif %}
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="username" name="username" placeholder="{% trans 'Email' %}">
+              {{ form.username.errors }}
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="password" name="password" placeholder="{% trans 'Password' %}">
+              {{ form.password.errors }}
               <input type="hidden" name="next" value="{{ request.GET.next }}" />
               {% if 'inactive' in form.errors.as_json %}
               <a href="{% url 'resend_activation' %}" class="btn waves-effect waves-light" name="action">
@@ -41,14 +43,16 @@
               <span>{% trans "or" %} </span><a class="wikilegis-widget__link wikilegis-widget__link--access-toggle" href="#">{% trans "Sign Up" %}</a>
             </div>
           </div>
-          <div class="wikilegis-widget__access-box wikilegis-widget__access-box--signup">
-            <form class="wikilegis-widget__access-form" name="signup" action="{% url 'widget_signup' %}" method="POST">
+          <div class="wikilegis-widget__access-box wikilegis-widget__access-box--signup {% if 'signup' in request.path %}translatex--left{% endif %}">
+            <form class="wikilegis-widget__access-form" name="signup" action="{% url 'widget_signup' %}?next={{ request.GET.next }}" method="POST">
               {% csrf_token %}
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="first-name" name="first_name" placeholder="{% trans 'First name' %}">
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="last-name" name="last_name" placeholder="{% trans 'Last name' %}">
-              <input class="wikilegis-widget__input wikilegis-widget__input--access" type="email" name="email" placeholder="{% trans 'Email' %}">
+              <input class="wikilegis-widget__input wikilegis-widget__input--access" type="email" name="email" placeholder="{% trans 'Email' %}"> {{ form.email.errors }}
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="password" name="password1" placeholder="{% trans 'Password' %}">
+              {{ form.password1.errors }}
               <input class="wikilegis-widget__input wikilegis-widget__input--access" type="password" name="password2" placeholder="{% trans 'Confirm your password' %}">
+              {{ form.password2.errors }}
               <input class="wikilegis-widget__button wikilegis-widget__button--access" type="submit" name="signup" value="{% trans 'Sign Up' %}">
             </form>
 

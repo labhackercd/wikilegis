@@ -40,8 +40,9 @@ urlpatterns += [
     url(r'^widget/(?P<pk>\d+)/?$', widget_views.WidgetView.as_view(), name='widget'),
     url(r'^widget/login/$', widget_views.LoginView.as_view(),
         name='widget_login'),
-    url(r'^widget/signup/$', RegistrationView.as_view(success_url='widget_login'),
-        name='widget_signup'),
+    url(r'^widget/signup/$', RegistrationView.as_view(
+        success_url='widget_login',
+        template_name='widget/login.html'), name='widget_signup'),
     url(r'^widget/logout/$', widget_views.LogoutView.as_view(),
         name='widget_logout'),
     url(r'^widget/vote/(?P<segment_id>\d+)$', widget_views.updown_vote,

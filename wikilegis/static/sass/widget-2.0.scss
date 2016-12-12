@@ -159,7 +159,36 @@ p {
         box-shadow: 0 1px 2px lighten($wikilegis-color, 25%);
       }
     }
+
+    &--paragrafo {
+      margin-left: 1em;
+      @media (max-width: 640px) {
+        margin-left: 0.5em;
+      }
+    }
+
+    &--inciso {
+      margin-left: 2em;
+      @media (max-width: 640px) {
+        margin-left: 1em;
+      }
+    }
+
+    &--alinea {
+      margin-left: 3em;
+      @media (max-width: 640px) {
+        margin-left: 1.5em;
+      }
+    }
+
+    &--item {
+      margin-left: 4rem;
+      @media (max-width: 640px) {
+        margin-left: 2em;
+      }
+    }
   }
+
 
   &__segment-content-wrapper {
     display: flex;

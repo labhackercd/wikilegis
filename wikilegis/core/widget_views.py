@@ -7,10 +7,12 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.conf import settings
 from django_comments.models import Comment
+from django.utils.translation import ugettext, ugettext_lazy as _
 from distutils.util import strtobool
 from django.views.generic import FormView, RedirectView, DetailView
 
 from wikilegis.core.models import Bill, BillSegment, UpDownVote
+from wikilegis.core.decorators import open_for_partifipations
 
 
 class LoginView(FormView):
@@ -54,11 +56,10 @@ class WidgetView(DetailView):
         return obj
 
 
+@open_for_partifipations
 def amendment(request, segment_id):
     if request.user.is_authenticated():
         replaced = BillSegment.objects.get(pk=segment_id)
-        if replaced.bill.status == 'closed':
-            return HttpResponseForbidden(reason='Projeto encerrado')
         segment = BillSegment()
         segment.replaced = replaced
         segment.bill = replaced.bill
@@ -74,14 +75,14 @@ def amendment(request, segment_id):
         return JsonResponse({'html': html,
                              'count': replaced.substitutes.all().count()})
     else:
-        return HttpResponseForbidden(reason='Loga ai cara')
+        msg = _("You must be logged to suggest a new amendment.")
+        return HttpResponseForbidden(reason=msg)
 
 
+@open_for_partifipations
 def updown_vote(request, segment_id):
     if request.user.is_authenticated():
         segment = BillSegment.objects.get(pk=segment_id)
-        if segment.bill.status == 'closed':
-            return HttpResponseForbidden(reason='Projeto encerrado')
 
         ctype = ContentType.objects.get_for_model(BillSegment)
         vote = UpDownVote.objects.get_or_create(
@@ -100,15 +101,15 @@ def updown_vote(request, segment_id):
                                 {'segment': segment, 'user': request.user})
         return JsonResponse({'html': html})
     else:
-        return HttpResponseForbidden(reason='Loga ai cara')
+        msg = _("You must be logged to vote.")
+        return HttpResponseForbidden(reason=msg)
 
 
+@open_for_partifipations
 def comment(request, segment_id):
     if request.user.is_authenticated() and request.method == 'POST':
         ctype = ContentType.objects.get_for_model(BillSegment)
         segment = BillSegment.objects.get(pk=segment_id)
-        if segment.bill.status == 'closed':
-            return HttpResponseForbidden(reason='Projeto encerrado')
         obj = Comment()
         obj.content_type = ctype
         obj.user = request.user
@@ -121,4 +122,5 @@ def comment(request, segment_id):
         return JsonResponse({'html': html,
                              'count': segment.comments.all().count()})
     else:
-        return HttpResponseForbidden(reason='Loga ai cara')
+        msg = _("You must be logged to comment.")
+        return HttpResponseForbidden(reason=msg)

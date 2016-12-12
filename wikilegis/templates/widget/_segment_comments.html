@@ -11,5 +11,9 @@
     </div>
   </div>
   {% empty %}
-  <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhum comentário feito até o momento. Seja o primeiro!</span>
+  {% if object.status == 'closed' %}
+
+  {% else %}
+    <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhum comentário feito até o momento. Seja o primeiro!</span>
+  {% endif %}
 {% endfor %}

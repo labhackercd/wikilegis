@@ -42,6 +42,9 @@
         {% include "widget/_segment_comments.html" with segment=amendment %}
       </div>
       <div class="wikilegis-widget__action-box-input">
+      {% if object.status == 'closed' %}
+        <span class="wikilegis-widget__span wikilegis-widget__span--closed">Projeto encerrado para participações</span>
+      {% else %}
         <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
         {% if user.is_authenticated %}
           <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre esta proposta"></textarea>
@@ -49,9 +52,14 @@
         {% else %}
           <a href="{% url 'widget_login' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--login">{% trans "Please log in to comment" %}</a>
         {% endif %}
+      {% endif %}
       </div>
     </div>
   </div>
   {% empty %}
-  <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhuma emenda foi sugerida até o momento. Seja o primeiro!</span>
+  {% if object.status == 'closed' %}
+
+  {% else %}
+    <span class="wikilegis-widget__span wikilegis-widget__span--empty-action">Nenhuma emenda foi sugerida até o momento. Seja o primeiro!</span>
+  {% endif %}
 {% endfor %}

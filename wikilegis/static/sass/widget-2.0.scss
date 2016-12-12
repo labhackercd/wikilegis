@@ -60,6 +60,23 @@ p {
     margin-left: auto;
   }
 
+  &__access-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 1.5em;
+  }
+
+  &__back-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.2em solid #1cd37a;
+    color: black;
+    text-decoration: none;
+  }
+
   &__button {
     border: 0;
     font-weight: 600;
@@ -425,6 +442,12 @@ p {
       color: #ee8377;
       font-weight: 700;
     }
+
+    &--closed {
+      display: block;
+      color: #ee8377;
+      font-weight: 700;
+    }
   }
 
   &__action-box-item {
@@ -507,7 +530,7 @@ p {
 
   &__image {
     &--top-logo {
-      margin-bottom: 1em;
+      margin-bottom: 0.3em;
       width: calc(100% - 3em);
     }
   }
@@ -582,6 +605,10 @@ p {
     &--access {
       width: 1.5em;
       margin-right: 1em;
+    }
+
+    &--access-back {
+      font-size: 2em;
     }
   }
 

@@ -5,7 +5,12 @@
   <div class="wikilegis-widget">
     <div class="wikilegis-widget__access-wrapper">
       <div class="wikilegis-widget__access">
-        <img class="wikilegis-widget__image wikilegis-widget__image--top-logo" src="{% static 'img/nav-logo.png' %}" alt="Logo Wikilegis">
+        <div class="wikilegis-widget__access-top">
+          <a href="{{ request.GET.next }}" class="wikilegis-widget__back-icon">
+            <i class="wikilegis-widget__icon wikilegis-widget__icon--access-back material-icons">keyboard_arrow_left</i>
+          </a>
+          <img class="wikilegis-widget__image wikilegis-widget__image--top-logo" src="{% static 'img/nav-logo.png' %}" alt="Logo Wikilegis">
+        </div>
         {% if form.non_field_errors %}
             <ul class="wikilegis-widget__error-list">
             {% for error in form.non_field_errors %}

@@ -17,7 +17,13 @@
       </div>
     <div class="wikilegis-widget__bill-wrapper">
       <div class="wikilegis-widget__header">
-        <h1 class="wikilegis-widget__heading wikilegis-widget__heading--title">{{object.title}}</h1>
+        <h1 class="wikilegis-widget__heading wikilegis-widget__heading--title">
+          {{object.title}}
+
+          {% if object.status == 'closed' %}
+            <span class="wikilegis-widget__span wikilegis-widget__span--closed">(Projeto encerrado para participações)</span>
+          {% endif %}
+        </h1>
         <h2 class="wikilegis-widget__heading wikilegis-widget__heading--epigraph">{{object.epigraph}}</h4>
         <a class="wikilegis-widget__link wikilegis-widget__link--header" target="_blank" href="{% url 'show_bill' object.id %}">Ver o Projeto de Lei no Wikilegis</a>
         <p class="wikilegis-widget__paragraph wikilegis-widget__paragraph--resume">
@@ -101,12 +107,16 @@
                   {% include "widget/_segment_comments.html" with segment=segment %}
                 </div>
                 <div class="wikilegis-widget__action-box-input">
-                  <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
-                  {% if user.is_authenticated %}
-                    <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre a emenda original"></textarea>
-                    <button class="wikilegis-widget__button wikilegis-widget__button--action-box comment" id="">Enviar comentário</button>
+                  {% if object.status == 'closed' %}
+                    <span class="wikilegis-widget__span wikilegis-widget__span--closed">Projeto encerrado para participações</span>
                   {% else %}
-                    <a href="{% url 'widget_login' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--login">{% trans "Please log in to comment" %}</a>
+                  <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
+                    {% if user.is_authenticated %}
+                      <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre a emenda original"></textarea>
+                      <button class="wikilegis-widget__button wikilegis-widget__button--action-box comment" id="">Enviar comentário</button>
+                    {% else %}
+                      <a href="{% url 'widget_login' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--login">{% trans "Please log in to comment" %}</a>
+                    {% endif %}
                   {% endif %}
                 </div>
               </div>
@@ -115,6 +125,9 @@
                     {% include "widget/_amendments.html" with segment=segment user=request.user %}
                   </div>
                   <div class="wikilegis-widget__action-box-input">
+                  {% if object.status == 'closed' %}
+                    <span class="wikilegis-widget__span wikilegis-widget__span--closed">Projeto encerrado para participações</span>
+                  {% else %}
                     <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Sugira uma nova emenda:</span>
                     {% if user.is_authenticated %}
                       <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea amendment" name="" id="" placeholder="Escreva aqui uma nova emenda tomando a original como base"></textarea>
@@ -122,6 +135,7 @@
                     {% else %}
                       <a href="{% url 'widget_login' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--login">{% trans "Please log in to suggest an amendment" %}</a>
                     {% endif %}
+                  {% endif %}
                   </div>
                 </div>
             </div>

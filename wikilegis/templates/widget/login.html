@@ -7,9 +7,11 @@
       <div class="wikilegis-widget__access">
         <img class="wikilegis-widget__image wikilegis-widget__image--top-logo" src="{% static 'img/nav-logo.png' %}" alt="Logo Wikilegis">
         {% if form.non_field_errors %}
-            <div>
-                {{ form.non_field_errors }}
-            </div>
+            <ul class="wikilegis-widget__error-list">
+            {% for error in form.non_field_errors %}
+              <li class="wikilegis-widget__error-item">• {{ error }}</li>
+            {% endfor %}
+            </ul>
         {% endif %}
         {% if 'inactive' in form.errors.as_json %}
         <a href="{% url 'resend_activation' %}" class="btn waves-effect waves-light" name="action">

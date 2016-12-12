@@ -1,4 +1,4 @@
-{% load votes comments %}
+{% load votes comments i18n %}
 
 {% for amendment in segment.substitutes.all %}
   <div class="wikilegis-widget__action-box-item wikilegis-widget__action-box-item--amendment" data-segment-id="{{amendment.id}}">
@@ -43,8 +43,12 @@
       </div>
       <div class="wikilegis-widget__action-box-input">
         <span class="wikilegis-widget__span wikilegis-widget__span--action-box-input">Escreva um comentário:</span>
-        <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre esta proposta"></textarea>
-        <button class="wikilegis-widget__button wikilegis-widget__button--action-box comment" id="">Enviar comentário</button>
+        {% if user.is_authenticated %}
+          <textarea onkeydown="auto_grow(this)" class="wikilegis-widget__input wikilegis-widget__input--textarea" name="" id="" placeholder="Insira um comentário sobre esta proposta"></textarea>
+          <button class="wikilegis-widget__button wikilegis-widget__button--action-box comment" id="">Enviar comentário</button>
+        {% else %}
+          <a href="{% url 'widget_login' %}?next={% url 'widget' object.id %}" class="wikilegis-widget__button wikilegis-widget__button--login">{% trans "Please log in to comment" %}</a>
+        {% endif %}
       </div>
     </div>
   </div>

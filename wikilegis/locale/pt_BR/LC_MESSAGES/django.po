@@ -453,7 +453,7 @@ msgstr "Usuários nestes grupos terão permissão para alterar este documento."
 
 #: core/models.py:98
 msgid "allowed users"
-msgstr ""
+msgstr "usuários permitidos"
 
 #: core/models.py:99
 msgid "reporting member"

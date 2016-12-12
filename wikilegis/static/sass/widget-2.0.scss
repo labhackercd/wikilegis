@@ -96,6 +96,25 @@ p {
     margin: 0;
     margin-bottom: 0.5em;
     text-align: center;
+    font-weight: 400;
+
+    &--title {
+      font-weight: 700;
+    }
+
+    &--type {
+      margin-bottom: 1em;
+      margin-top: 1em;
+      font-size: 1.4em;
+    }
+
+    &--secao, &--subsecao {
+      font-weight: 700;
+    }
+  }
+
+  &__heading-title {
+    display: block;
   }
 
   &__link {

@@ -18,7 +18,7 @@
     <div class="wikilegis-widget__bill-wrapper">
       <div class="wikilegis-widget__header">
         <h1 class="wikilegis-widget__heading wikilegis-widget__heading--title">{{object.title}}</h1>
-        <h4 class="wikilegis-widget__heading wikilegis-widget__heading--epigraph">{{object.epigraph}}</h4>
+        <h2 class="wikilegis-widget__heading wikilegis-widget__heading--epigraph">{{object.epigraph}}</h4>
         <a class="wikilegis-widget__link wikilegis-widget__link--header" target="_blank" href="{% url 'show_bill' object.id %}">Ver o Projeto de Lei no Wikilegis</a>
         <p class="wikilegis-widget__paragraph wikilegis-widget__paragraph--resume">
           {{object.description}}
@@ -27,15 +27,35 @@
       {% for segment in object.segments.all %}
         {% if segment.original %}
           {% if segment.type.name|slugify == 'titulo' %}
-              <h5 class="heading livro" id="title-{{segment.id}}">{% trans "TITLE" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+              <h3 class="wikilegis-widget__heading wikilegis-widget__heading--type wikilegis-widget__heading--titulo">
+                <span class="wikilegis-widget__heading-type">{% trans "TITLE" %}</span>
+                <span class="wikilegis-widget__heading-number">{% segment_numbering segment %}</span>
+                <span class="wikilegis-widget__heading-title">{{ segment.content }}</span>
+              </h3>
           {% elif segment.type.name|slugify == 'livro' %}
-              <h5 class="heading livro" id="book-{{segment.id}}">{% trans "BOOK" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+              <h3 class="wikilegis-widget__heading wikilegis-widget__heading--type wikilegis-widget__heading--livro">
+                <span class="wikilegis-widget__heading-type">{% trans "BOOK" %}</span>
+                <span class="wikilegis-widget__heading-number">{% segment_numbering segment %}</span>
+                <span class="wikilegis-widget__heading-title">{{ segment.content }}</span>
+              </h3>
           {% elif segment.type.name|slugify == 'capitulo' %}
-              <h5 class="heading capitulo" id="chapter-{{segment.id}}">{% trans "CHAPTER" %}  <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+              <h3 class="wikilegis-widget__heading wikilegis-widget__heading--type wikilegis-widget__heading--capitulo">
+                <span class="wikilegis-widget__heading-type">{% trans "CHAPTER" %}</span>
+                <span class="wikilegis-widget__heading-number">{% segment_numbering segment %}</span>
+                <span class="wikilegis-widget__heading-title">{{ segment.content }}</span>
+              </h3>
           {% elif segment.type.name|slugify == 'secao' %}
-              <h5 class="heading secao" id="section-{{segment.id}}">{% trans "Section" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+              <h3 class="wikilegis-widget__heading wikilegis-widget__heading--type wikilegis-widget__heading--secao">
+                <span class="wikilegis-widget__heading-type">{% trans "Section" %}</span>
+                <span class="wikilegis-widget__heading-number">{% segment_numbering segment %}</span>
+                <span class="wikilegis-widget__heading-title">{{ segment.content }}</span>
+              </h3>
           {% elif segment.type.name|slugify == 'subsecao' %}
-              <h5 class="heading subsecao" id="subsection-{{segment.id}}">{% trans "Subsection" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+              <h3 class="wikilegis-widget__heading wikilegis-widget__heading--type wikilegis-widget__heading--subsecao">
+                <span class="wikilegis-widget__heading-type">{% trans "Subsection" %}</span>
+                <span class="wikilegis-widget__heading-number">{% segment_numbering segment %}</span>
+                <span class="wikilegis-widget__heading-title">{{ segment.content }}</span>
+              </h3>
           {% else %}
             <div class="wikilegis-widget__segment wikilegis-widget__segment--original wikilegis-widget__segment--{{ segment.type|slugify }}" data-segment-id="{{segment.id}}">
 

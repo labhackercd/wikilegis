@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-12 14:40-0200\n"
+"POT-Creation-Date: 2016-12-13 17:18-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,7 +103,7 @@ msgid ""
 "thecongressman profile from the site: http://www2.camara.leg.br/"
 msgstr ""
 
-#: auth2/models.py:133 core/models.py:176 notification/models.py:30
+#: auth2/models.py:133 core/models.py:175 notification/models.py:30
 msgid "user"
 msgstr ""
 
@@ -143,15 +143,15 @@ msgstr ""
 msgid "Update status of selected bills"
 msgstr ""
 
-#: core/admin.py:51 core/models.py:146
+#: core/admin.py:51 core/models.py:145
 msgid "segment"
 msgstr ""
 
-#: core/admin.py:51 core/models.py:147
+#: core/admin.py:51 core/models.py:146
 msgid "segments"
 msgstr ""
 
-#: core/admin.py:110 core/models.py:138 core/models.py:201
+#: core/admin.py:110 core/models.py:137 core/models.py:200
 msgid "author"
 msgstr ""
 
@@ -179,7 +179,7 @@ msgid ""
 msgstr ""
 
 #: core/admin.py:165
-msgid "Administrator filds"
+msgid "Administrator fields"
 msgstr ""
 
 #: core/admin.py:166
@@ -200,6 +200,10 @@ msgstr ""
 
 #: core/admin.py:223
 msgid "Report"
+msgstr ""
+
+#: core/decorators.py:11
+msgid "Bill closed for participations."
 msgstr ""
 
 #: core/forms.py:57
@@ -252,12 +256,12 @@ msgid ""
 "required"
 msgstr ""
 
-#: core/forms.py:233 core/forms.py:238 core/models.py:107 core/models.py:132
-#: core/models.py:190 notification/models.py:29
+#: core/forms.py:233 core/forms.py:238 core/models.py:106 core/models.py:131
+#: core/models.py:189 notification/models.py:29
 msgid "bill"
 msgstr ""
 
-#: core/forms.py:235 core/models.py:136
+#: core/forms.py:235 core/models.py:135
 msgid "segment parent"
 msgstr ""
 
@@ -592,9 +596,21 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: core/views.py:214 core/views.py:255
+#: core/views.py:231 core/views.py:272
 #, python-brace-format
 msgid "{object_type} submitted."
+msgstr ""
+
+#: core/widget_views.py:78
+msgid "You must be logged to suggest a new amendment."
+msgstr ""
+
+#: core/widget_views.py:104
+msgid "You must be logged to vote."
+msgstr ""
+
+#: core/widget_views.py:125
+msgid "You must be logged to comment."
 msgstr ""
 
 #: notification/models.py:11
@@ -633,11 +649,11 @@ msgstr ""
 msgid "Newsletters"
 msgstr ""
 
-#: settings.py:233
+#: settings.py:237
 msgid "Google"
 msgstr ""
 
-#: settings.py:237
+#: settings.py:241
 msgid "Facebook"
 msgstr ""
 
@@ -709,7 +725,8 @@ msgid "Remove"
 msgstr ""
 
 #: templates/auth2/_current_user_or_login_button.html:10
-#: templates/registration/login.html:47
+#: templates/registration/login.html:47 templates/widget/login.html:39
+#: templates/widget/login.html.py:78
 msgid "Log in"
 msgstr ""
 
@@ -729,23 +746,23 @@ msgstr ""
 msgid "Participations Closed"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:4
+#: templates/bill/_bill_segment_item.html:4 templates/widget/widget.html:37
 msgid "TITLE"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:6
+#: templates/bill/_bill_segment_item.html:6 templates/widget/widget.html:43
 msgid "BOOK"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:8
+#: templates/bill/_bill_segment_item.html:8 templates/widget/widget.html:49
 msgid "CHAPTER"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:10
+#: templates/bill/_bill_segment_item.html:10 templates/widget/widget.html:55
 msgid "Section"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:12
+#: templates/bill/_bill_segment_item.html:12 templates/widget/widget.html:61
 msgid "Subsection"
 msgstr ""
 
@@ -912,7 +929,8 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: templates/index.html:20
+#: templates/index.html:20 templates/widget/login.html:54
+#: templates/widget/login.html.py:78
 msgid "or"
 msgstr ""
 
@@ -1058,6 +1076,7 @@ msgid "Please check your email to complete the registration process."
 msgstr ""
 
 #: templates/registration/registration_form.html:26
+#: templates/widget/login.html:54 templates/widget/login.html.py:74
 msgid "Sign Up"
 msgstr ""
 
@@ -1067,4 +1086,68 @@ msgstr ""
 
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
+msgstr ""
+
+#: templates/widget/_amendments.html:53 templates/widget/widget.html:118
+msgid "Please log in to comment"
+msgstr ""
+
+#: templates/widget/login.html:23
+msgid "Re-send activation email"
+msgstr ""
+
+#: templates/widget/login.html:31 templates/widget/login.html.py:63
+msgid "Email is a necessary field"
+msgstr ""
+
+#: templates/widget/login.html:33 templates/widget/login.html.py:65
+msgid "Email"
+msgstr ""
+
+#: templates/widget/login.html:35 templates/widget/login.html.py:67
+msgid "Password is a necessary field"
+msgstr ""
+
+#: templates/widget/login.html:37 templates/widget/login.html.py:69
+msgid "Password"
+msgstr ""
+
+#: templates/widget/login.html:46
+msgid "Log in with Facebook"
+msgstr ""
+
+#: templates/widget/login.html:50
+msgid "Log in with Google"
+msgstr ""
+
+#: templates/widget/login.html:60
+msgid "First name"
+msgstr ""
+
+#: templates/widget/login.html:61
+msgid "Last name"
+msgstr ""
+
+#: templates/widget/login.html:71
+msgid "Confirm Password is a necessary field"
+msgstr ""
+
+#: templates/widget/login.html:73
+msgid "Confirm your password"
+msgstr ""
+
+#: templates/widget/widget.html:136
+msgid "Please log in to suggest an amendment"
+msgstr ""
+
+#: templates/widget/widget.html:206
+msgid "Comment field is empty."
+msgstr ""
+
+#: templates/widget/widget.html:232
+msgid "Amendment field is empty."
+msgstr ""
+
+#: templates/widget/widget.html:234
+msgid "Amendment text is the same of original text."
 msgstr ""

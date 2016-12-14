@@ -104,7 +104,9 @@
           {% endif %}
         </div>
 
-        <div class="report"><a class="report-link" href="{% url 'bill_report' bill.id %}">{% trans "Access Report" %}</a></div>
+        <a class="bill-info-link report-link" href="{% url 'bill_report' bill.id %}"><i class="material-icons">assignment_turned_in</i><span>{% trans "Access Report" %}</span></a>
+
+        <a class="bill-info-link references-link" href="{% url 'bill_references' bill.id %}"><i class="material-icons">description</i><span>{% trans "Access References" %}</span></a>
 
         <div class="row">
           {% if proposition %}

@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^bill/(?P<pk>\d+)/$', BillDetailView.as_view(),
         name='show_bill'),
     url(r'^bill/(?P<pk>\d+)/references/$', BillDetailView.as_view(template_name='bill/references.html'),
-        name='references'),
+        name='bill_references'),
     url(r'^bill/(?P<bill_id>\d+)/proposal/$', CreateProposal.as_view(),
         name='create_proposal'),
     url(r'^bill/(?P<bill_id>\d+)/proposal/(?P<segment_id>\d+)/$',

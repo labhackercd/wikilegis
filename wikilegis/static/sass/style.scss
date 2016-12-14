@@ -742,8 +742,18 @@ strong {
       fill: #324545;
     }
 
-    .report-link {
-      font-weight: 600;
+    .bill-info-link {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+
+        i {
+            margin-right: 5px;
+        }
+
+        i,span {
+            vertical-align: middle;
+        }
     }
 
 }

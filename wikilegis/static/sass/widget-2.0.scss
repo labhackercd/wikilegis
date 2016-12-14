@@ -632,6 +632,59 @@ p {
     position: relative;
     margin: 1em 0
   }
+
+  &__modal {
+
+    &--background {
+      background-color: rgba(0, 0, 0, 0.7);
+      overflow: auto;
+      display: flex;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      position: fixed;
+    }
+
+    &--content {
+      background-color: hsl(0, 0%, 98%);
+      color: #000;
+      font-size: 1.3em;
+      margin: auto;
+      overflow: auto;
+      overflow-x: hidden;
+      padding: 2em;
+      padding-top: 1.5em;
+      width: 50%;
+      position: relative;
+      @include transition-default(transform);
+
+      @media (max-width: 640px) {
+        width: 80%;
+      }
+    }
+
+    &--close {
+      cursor: pointer;
+      position: absolute;
+      right: .3em;
+      top: .3em;
+      padding:0;
+      color: hsl(0, 0%, 55%);
+    }
+
+    &--title {
+      margin: 0;
+      font-size: 1.5em;
+      color: hsl(0, 0%, 15%);
+    }
+
+    &--text {
+      margin: 0;
+      margin-top: 1em;
+      color: hsl(0, 0%, 25%);
+    }
+  }
 }
 
 .translatex {
@@ -644,4 +697,8 @@ p {
   &--bottom {
     transform: translateY(100%);
   }
+}
+
+.hide {
+  display: none;
 }

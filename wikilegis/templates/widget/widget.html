@@ -143,6 +143,16 @@
         {% endif %}
       {% endfor %}
     </div>
+
+    <div class="wikilegis-widget__modal wikilegis-widget__modal--background hide">
+      <div class="wikilegis-widget__modal wikilegis-widget__modal--content">
+        <h1 class="wikilegis-widget__modal wikilegis-widget__modal--title">
+          Erro!
+        </h1>
+        <p class="wikilegis-widget__modal wikilegis-widget__modal--text"></p>
+        <i class="wikilegis-widget__modal wikilegis-widget__modal--close material-icons">close</i>
+      </div>
+    </div>
   {% endblock content %}
 
   {% block extra_js %}
@@ -152,7 +162,9 @@
         actionGroup.html(data.html);
       }
       function showError(data) {
-        alert(data.statusText);
+        var modal = $('.wikilegis-widget__modal--background');
+        $('.wikilegis-widget__modal--text').text(data.statusText);
+        modal.removeClass('hide');
       }
       function voteClick() {
         var upvote = $(this).hasClass('wikilegis-widget__action--upvote');
@@ -191,7 +203,7 @@
         var commentArea = $(this).siblings('.wikilegis-widget__input--textarea');
         var commentWrapper = segment.find('.wikilegis-widget__action-box--comments-wrapper');
         if (commentArea.val() === '') {
-          alert('comenta ai cara!');
+          showError({statusText: '{% trans "Comment field is empty." %}'});
         } else {
           var url = '{% url "widget_comment" 0 %}'.replace(0, segmentId);
           $.ajax({url: url, type: 'POST', data: {comment: commentArea.val()},
@@ -217,9 +229,9 @@
         var amendmentArea = $(this).siblings('.wikilegis-widget__input--textarea');
         var amendmentWrapper = segment.find('.wikilegis-widget__action-box--amendments-wrapper');
         if (amendmentArea.val() === '') {
-          alert('propoe uma emenda ai djow!');
+          showError({statusText: '{% trans "Amendment field is empty." %}'});
         } if (amendmentArea.val() === originalText.trim()) {
-          alert('voce nao está propondo nada, cara')
+          showError({statusText: '{% trans "Amendment text is the same of original text." %}'});
         } else {
           var url = '{% url "widget_amendment" 0 %}'.replace(0, segmentId);
           $.ajax({url: url, type: 'POST', data: {amendment: amendmentArea.val()},
@@ -249,12 +261,24 @@
           $(this).val(originalText.trim());
         }
       }
+      function closeModal() {
+        $('.wikilegis-widget__modal--background').addClass('hide');
+      }
 
       $(document).ready(function() {
         $('body').on('click', '.wikilegis-widget__action--vote', voteClick);
         $('body').on('click', '.wikilegis-widget__button--action-box.comment', sendComment);
         $('body').on('click', '.wikilegis-widget__button--action-box.amendment', sendAmendment);
         $('body').on('click', '.wikilegis-widget__input--textarea.amendment', initialAmendmentText);
+        $('body').on('click', '.wikilegis-widget__modal--close', closeModal)
+      })
+
+      $(document).mouseup(function(e) {
+        var modal = $('.wikilegis-widget__modal--content');
+
+        if (!modal.is(e.target) && modal.has(e.target).length === 0) {
+          closeModal();
+        }
       })
     </script>
   {% endblock extra_js %}

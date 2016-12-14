@@ -76,6 +76,12 @@ class BillDetailView(DetailView):
     model = Bill
     template_name = 'bill/bill.html'
 
+    def get_object(self, queryset=None):
+        obj = super(BillDetailView, self).get_object(queryset)
+        if obj.status == 'draft':
+            raise Http404
+        return obj
+
     def get_context_data(self, **kwargs):
         context = super(BillDetailView, self).get_context_data(**kwargs)
         metadata = self.object.metadata.all()
@@ -116,6 +122,17 @@ class BillDetailView(DetailView):
                 raise Http404()
         else:
             return self.model._default_manager.all()
+
+
+class WidgetView(DetailView):
+    model = Bill
+    template_name = "widget/widget.html"
+
+    def get_object(self, queryset=None):
+        obj = super(WidgetView, self).get_object(queryset)
+        if obj.status == 'draft':
+            raise Http404
+        return obj
 
 
 def _get_segment_or_404(bill_id, segment_id):

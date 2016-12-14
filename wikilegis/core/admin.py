@@ -169,7 +169,7 @@ class BillAdmin(admin.ModelAdmin):
                                                       "delete , leave the fields blank.")}),
     ]
     superuser_fieldsets = [
-        (_('Administrator filds'), {'fields': ['status', 'editors', 'allowed_users']}),
+        (_('Administrator fields'), {'fields': ['status', 'editors', 'allowed_users']}),
         (_('File to import'), {'fields': ['file_txt'], 'description': _(
             "This field will be used to import a txt file.")}),
     ]

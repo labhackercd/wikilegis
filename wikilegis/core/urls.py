@@ -1,12 +1,13 @@
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
-
+from registration.backends.default.views import RegistrationView
 from wikilegis.core.api import (BillListAPI, SegmentsListAPI, CommentListAPI,
                                 api_root, UserUpdateAPI, UserAPI, BillAPI,
                                 TypeSegmentAPI, UpDownVoteListAPI,
                                 CreateUserAPI, VoteUpdateDeleteAPI,
                                 NewsleterListAPI)
-from wikilegis.core.views import BillReport, CreateProposal, BillDetailView
+from wikilegis.core.views import (BillReport, CreateProposal, BillDetailView)
+from wikilegis.core import widget_views
 
 urlpatterns = [
     url(r'^$', 'wikilegis.core.views.index', name='index'),
@@ -33,6 +34,21 @@ urlpatterns = [
         'wikilegis.core.views.upvote', name='upvote'),
     url(r'^downvote/(?P<content_type>\d+)/(?P<object_id>\d+)/$',
         'wikilegis.core.views.downvote', name='downvote'),
+]
+
+urlpatterns += [
+    url(r'^widget/(?P<pk>\d+)/?$', widget_views.WidgetView.as_view(), name='widget'),
+    url(r'^widget/login/$', widget_views.LoginView.as_view(),
+        name='widget_login'),
+    url(r'^widget/signup/$', RegistrationView.as_view(
+        success_url='widget_login',
+        template_name='widget/login.html'), name='widget_signup'),
+    url(r'^widget/vote/(?P<segment_id>\d+)$', widget_views.updown_vote,
+        name='widget_vote'),
+    url(r'^widget/amendment/(?P<segment_id>\d+)$', widget_views.amendment,
+        name='widget_amendment'),
+    url(r'^widget/comment/(?P<segment_id>\d+)$', widget_views.comment,
+        name='widget_comment'),
 ]
 
 urlpatterns += [

@@ -100,8 +100,10 @@
 
         <a class="bill-info-link report-link" href="{% url 'bill_report' bill.id %}"><i class="material-icons">assignment_turned_in</i><span>{% trans "Access Report" %}</span></a>
 
+        {% if bill.references.all %}
         <a class="bill-info-link references-link" href="{% url 'bill_references' bill.id %}"><i class="material-icons">description</i><span>{% trans "Access References" %}</span></a>
-
+        {% endif %}
+        
         <div class="row">
           {% if proposition %}
             <div class="after-bar">
@@ -176,7 +178,7 @@
           {% endif %}
         {% endfor %}
 
-<!--        <ul class="subscribe-button collapsible">
+        <ul class="subscribe-button collapsible">
           <li>
             <div class="subscribe-header collapsible-header waves-effect waves-light valign-wrapper">
               <i class="material-icons valign">http</i>
@@ -187,16 +189,15 @@
               <p>{% trans "You may have this project featured in your own website by pasting the following code in your own source code." %}</p>
 
               <div class="subscribe-options embed-code">
-                <textarea readonly style="resize:none; height:170px; width:250px;max-width:100%;">&lt;div class="wikilegis-widget" bill-id="{{ bill.id }}"&gt;&lt;/div&gt;&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="http://{{ domain }}/static/js/widget.js"&gt;&lt;/script&gt;</textarea>
+                <textarea readonly style="resize:none; height:170px; width:250px;max-width:100%;">&lt;iframe width="100%" height="100%" src="https://{{ domain }}/widget/{{ bill.id }}/"&gt;&lt;/iframe&gt;</textarea>
               </div>
               <button class="subscribe-submit btn-flat waves-effect waves-light copy-button" data-clipboard-target=".subscribe-options.embed-code textarea" data-text-success="{% trans 'Copied!' %}">{% trans "Copy" %}</button>
             </div>
           </li>
-        </ul> -->
+        </ul>
 
       </div>
     </div>
-
     <div class="col s12 l9 pull-l3">
       <div class="row pl-full list-amendment">
         <div class="col l11">

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-12 14:40-0200\n"
+"POT-Creation-Date: 2016-12-14 17:30-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,7 +103,7 @@ msgid ""
 "thecongressman profile from the site: http://www2.camara.leg.br/"
 msgstr ""
 
-#: auth2/models.py:133 core/models.py:176 notification/models.py:30
+#: auth2/models.py:133 core/models.py:213 notification/models.py:30
 msgid "user"
 msgstr ""
 
@@ -143,15 +143,15 @@ msgstr ""
 msgid "Update status of selected bills"
 msgstr ""
 
-#: core/admin.py:51 core/models.py:146
+#: core/admin.py:51 core/models.py:183
 msgid "segment"
 msgstr ""
 
-#: core/admin.py:51 core/models.py:147
+#: core/admin.py:51 core/models.py:184
 msgid "segments"
 msgstr ""
 
-#: core/admin.py:110 core/models.py:138 core/models.py:201
+#: core/admin.py:110 core/models.py:175 core/models.py:238
 msgid "author"
 msgstr ""
 
@@ -167,39 +167,51 @@ msgstr ""
 msgid "videos"
 msgstr ""
 
-#: core/admin.py:158
+#: core/admin.py:151 core/models.py:149
+msgid "reference"
+msgstr ""
+
+#: core/admin.py:152 core/models.py:150
+msgid "references"
+msgstr ""
+
+#: core/admin.py:165
 msgid "Legislative proposal"
 msgstr ""
 
-#: core/admin.py:159
+#: core/admin.py:166
 msgid ""
 "This data will be used to assign the project to a legislative proposal "
 "pending before the House of Representatives. You only need to inform them if "
 "your procedure has been initiated. To delete , leave the fields blank."
 msgstr ""
 
-#: core/admin.py:165
-msgid "Administrator filds"
+#: core/admin.py:172
+msgid "Administrator fields"
 msgstr ""
 
-#: core/admin.py:166
+#: core/admin.py:173
 msgid "File to import"
 msgstr ""
 
-#: core/admin.py:167
+#: core/admin.py:174
 msgid "This field will be used to import a txt file."
 msgstr ""
 
-#: core/admin.py:217
+#: core/admin.py:226
 msgid "Situation"
 msgstr ""
 
-#: core/admin.py:221 templates/comments2/_comment_list.html:29
+#: core/admin.py:230 templates/comments2/_comment_list.html:29
 msgid "Show"
 msgstr ""
 
-#: core/admin.py:223
+#: core/admin.py:232
 msgid "Report"
+msgstr ""
+
+#: core/decorators.py:11
+msgid "Bill closed for participations."
 msgstr ""
 
 #: core/forms.py:57
@@ -252,323 +264,323 @@ msgid ""
 "required"
 msgstr ""
 
-#: core/forms.py:233 core/forms.py:238 core/models.py:107 core/models.py:132
-#: core/models.py:190 notification/models.py:29
+#: core/forms.py:233 core/forms.py:238 core/models.py:119 core/models.py:144
+#: core/models.py:169 core/models.py:227 notification/models.py:29
 msgid "bill"
 msgstr ""
 
-#: core/forms.py:235 core/models.py:136
+#: core/forms.py:235 core/models.py:173
 msgid "segment parent"
 msgstr ""
 
-#: core/models.py:19
+#: core/models.py:24
 msgid "Draft"
 msgstr ""
 
-#: core/models.py:20
+#: core/models.py:25
 msgid "Unlisted"
 msgstr ""
 
-#: core/models.py:21
+#: core/models.py:26
 msgid "Published"
 msgstr ""
 
-#: core/models.py:22
+#: core/models.py:27
 msgctxt "Not open"
 msgid "Closed"
 msgstr ""
 
-#: core/models.py:26
+#: core/models.py:31
 msgid "Others"
 msgstr ""
 
-#: core/models.py:27
+#: core/models.py:32
 msgid "Public Administration"
 msgstr ""
 
-#: core/models.py:28
+#: core/models.py:33
 msgid "Farming"
 msgstr ""
 
-#: core/models.py:29
+#: core/models.py:34
 msgid "Social Assistance"
 msgstr ""
 
-#: core/models.py:30
+#: core/models.py:35
 msgid "Cities"
 msgstr ""
 
-#: core/models.py:31
+#: core/models.py:36
 msgid "Science"
 msgstr ""
 
-#: core/models.py:32
+#: core/models.py:37
 msgid "Communication"
 msgstr ""
 
-#: core/models.py:33
+#: core/models.py:38
 msgid "Consumer"
 msgstr ""
 
-#: core/models.py:34
+#: core/models.py:39
 msgid "Culture"
 msgstr ""
 
-#: core/models.py:35
+#: core/models.py:40
 msgid "Law and Justice"
 msgstr ""
 
-#: core/models.py:36
+#: core/models.py:41
 msgid "Human Rights"
 msgstr ""
 
-#: core/models.py:37
+#: core/models.py:42
 msgid "Economy"
 msgstr ""
 
-#: core/models.py:38
+#: core/models.py:43
 msgid "Education"
 msgstr ""
 
-#: core/models.py:39
+#: core/models.py:44
 msgid "Sports"
 msgstr ""
 
-#: core/models.py:40
+#: core/models.py:45
 msgid "Family"
 msgstr ""
 
-#: core/models.py:41
+#: core/models.py:46
 msgid "Industry"
 msgstr ""
 
-#: core/models.py:42
+#: core/models.py:47
 msgid "Institutional"
 msgstr ""
 
-#: core/models.py:43
+#: core/models.py:48
 msgid "Environment"
 msgstr ""
 
-#: core/models.py:44
+#: core/models.py:49
 msgid "Participation and Transparency"
 msgstr ""
 
-#: core/models.py:45
+#: core/models.py:50
 msgid "Policy"
 msgstr ""
 
-#: core/models.py:46
+#: core/models.py:51
 msgid "Foresight"
 msgstr ""
 
-#: core/models.py:47
+#: core/models.py:52
 msgid "Foreign Affairs"
 msgstr ""
 
-#: core/models.py:48
+#: core/models.py:53
 msgid "Health"
 msgstr ""
 
-#: core/models.py:49
+#: core/models.py:54
 msgid "Security"
 msgstr ""
 
-#: core/models.py:50
+#: core/models.py:55
 msgid "Work"
 msgstr ""
 
-#: core/models.py:51
+#: core/models.py:56
 msgid "Transportation and Transit"
 msgstr ""
 
-#: core/models.py:52
+#: core/models.py:57
 msgid "Tourism"
 msgstr ""
 
-#: core/models.py:65
+#: core/models.py:77
 msgid "created"
 msgstr ""
 
-#: core/models.py:66
+#: core/models.py:78
 msgid "modified"
 msgstr ""
 
-#: core/models.py:78
+#: core/models.py:90
 msgid "data"
 msgstr ""
 
-#: core/models.py:79 core/models.py:134 core/models.py:191
+#: core/models.py:91 core/models.py:171 core/models.py:228
 msgid "type"
 msgstr ""
 
-#: core/models.py:86
+#: core/models.py:98
 msgid "subject"
 msgstr ""
 
-#: core/models.py:87
+#: core/models.py:99
 msgid "epigraph"
 msgstr ""
 
-#: core/models.py:88
+#: core/models.py:100
 msgid "digest"
 msgstr ""
 
-#: core/models.py:89
+#: core/models.py:101
 msgid "closing date"
 msgstr ""
 
-#: core/models.py:90
+#: core/models.py:102
 msgid "status"
 msgstr ""
 
-#: core/models.py:91 core/models.py:198
+#: core/models.py:103 core/models.py:235
 msgid "theme"
 msgstr ""
 
-#: core/models.py:93
+#: core/models.py:105
 msgid "editors"
 msgstr ""
 
-#: core/models.py:94
+#: core/models.py:106
 msgid ""
 "Any users in any of these groups will have permission to change this "
 "document."
 msgstr ""
 
-#: core/models.py:98
+#: core/models.py:110
 msgid "allowed users"
 msgstr ""
 
-#: core/models.py:99
+#: core/models.py:111
 msgid "reporting member"
 msgstr ""
 
-#: core/models.py:108
+#: core/models.py:120
 msgid "bills"
 msgstr ""
 
-#: core/models.py:120
+#: core/models.py:132
 msgid "name"
 msgstr ""
 
-#: core/models.py:121
+#: core/models.py:133
 msgid "editable"
 msgstr ""
 
-#: core/models.py:124
+#: core/models.py:136
 msgid "type segment"
 msgstr ""
 
-#: core/models.py:125
+#: core/models.py:137
 msgid "types segment"
 msgstr ""
 
-#: core/models.py:133
+#: core/models.py:170
 msgid "order"
 msgstr ""
 
-#: core/models.py:135 core/models.py:192
+#: core/models.py:172 core/models.py:229
 msgid "number"
 msgstr ""
 
-#: core/models.py:137
+#: core/models.py:174
 msgid "segment replaced"
 msgstr ""
 
-#: core/models.py:139
+#: core/models.py:176
 msgid "original"
 msgstr ""
 
-#: core/models.py:140
+#: core/models.py:177
 msgid "content"
 msgstr ""
 
-#: core/models.py:180
+#: core/models.py:217
 msgid "Up Vote"
 msgstr ""
 
-#: core/models.py:180
+#: core/models.py:217
 msgid "Down Vote"
 msgstr ""
 
-#: core/models.py:193
+#: core/models.py:230
 msgid "year"
 msgstr ""
 
-#: core/models.py:194
+#: core/models.py:231
 msgid "name proposition"
 msgstr ""
 
-#: core/models.py:195
+#: core/models.py:232
 msgid "id proposition"
 msgstr ""
 
-#: core/models.py:196
+#: core/models.py:233
 msgid "id main proposition"
 msgstr ""
 
-#: core/models.py:197
+#: core/models.py:234
 msgid "name origin proposition"
 msgstr ""
 
-#: core/models.py:199
+#: core/models.py:236
 msgid "menu"
 msgstr ""
 
-#: core/models.py:200
+#: core/models.py:237
 msgid "menu_explanation"
 msgstr ""
 
-#: core/models.py:202
+#: core/models.py:239
 msgid "id register"
 msgstr ""
 
-#: core/models.py:203
+#: core/models.py:240
 msgid "uf author"
 msgstr ""
 
-#: core/models.py:204
+#: core/models.py:241
 msgid "party author"
 msgstr ""
 
-#: core/models.py:205
+#: core/models.py:242
 msgid "apresentation date"
 msgstr ""
 
-#: core/models.py:206
+#: core/models.py:243
 msgid "processing_regime"
 msgstr ""
 
-#: core/models.py:207
+#: core/models.py:244
 msgid "last dispatch date"
 msgstr ""
 
-#: core/models.py:208
+#: core/models.py:245
 msgid "last dispatch"
 msgstr ""
 
-#: core/models.py:209
+#: core/models.py:246
 msgid "appraisal"
 msgstr ""
 
-#: core/models.py:210
+#: core/models.py:247
 msgid "indexing"
 msgstr ""
 
-#: core/models.py:211
+#: core/models.py:248
 msgid "situation"
 msgstr ""
 
-#: core/models.py:212
+#: core/models.py:249
 msgid "content link"
 msgstr ""
 
-#: core/models.py:215
+#: core/models.py:252
 msgid "proposition"
 msgstr ""
 
-#: core/models.py:216
+#: core/models.py:253
 msgid "propositions"
 msgstr ""
 
@@ -592,9 +604,21 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: core/views.py:214 core/views.py:255
+#: core/views.py:231 core/views.py:272
 #, python-brace-format
 msgid "{object_type} submitted."
+msgstr ""
+
+#: core/widget_views.py:74
+msgid "You must be logged to suggest a new amendment."
+msgstr ""
+
+#: core/widget_views.py:101
+msgid "You must be logged to vote."
+msgstr ""
+
+#: core/widget_views.py:123
+msgid "You must be logged to comment."
 msgstr ""
 
 #: notification/models.py:11
@@ -614,10 +638,12 @@ msgid "history notifications"
 msgstr ""
 
 #: notification/models.py:25 templates/bill/bill.html:71
+#: templates/bill/references.html:77
 msgid "Daily"
 msgstr ""
 
 #: notification/models.py:26 templates/bill/bill.html:66
+#: templates/bill/references.html:72
 msgid "Weekly"
 msgstr ""
 
@@ -633,11 +659,11 @@ msgstr ""
 msgid "Newsletters"
 msgstr ""
 
-#: settings.py:233
+#: settings.py:239
 msgid "Google"
 msgstr ""
 
-#: settings.py:237
+#: settings.py:243
 msgid "Facebook"
 msgstr ""
 
@@ -709,7 +735,8 @@ msgid "Remove"
 msgstr ""
 
 #: templates/auth2/_current_user_or_login_button.html:10
-#: templates/registration/login.html:47
+#: templates/registration/login.html:47 templates/widget/login.html:39
+#: templates/widget/login.html.py:78
 msgid "Log in"
 msgstr ""
 
@@ -726,93 +753,98 @@ msgid "Update my profile"
 msgstr ""
 
 #: templates/bill/_base.html:18 templates/bill/bill.html:33
+#: templates/bill/references.html:38
 msgid "Participations Closed"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:4
+#: templates/bill/_bill_segment_item.html:4 templates/widget/widget.html:37
 msgid "TITLE"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:6
+#: templates/bill/_bill_segment_item.html:6 templates/widget/widget.html:43
 msgid "BOOK"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:8
+#: templates/bill/_bill_segment_item.html:8 templates/widget/widget.html:49
 msgid "CHAPTER"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:10
+#: templates/bill/_bill_segment_item.html:10 templates/widget/widget.html:55
 msgid "Section"
 msgstr ""
 
-#: templates/bill/_bill_segment_item.html:12
+#: templates/bill/_bill_segment_item.html:12 templates/widget/widget.html:61
 msgid "Subsection"
 msgstr ""
 
-#: templates/bill/bill.html:50
+#: templates/bill/bill.html:50 templates/bill/references.html:56
 msgid "Unsubscribe"
 msgstr ""
 
-#: templates/bill/bill.html:57
+#: templates/bill/bill.html:57 templates/bill/references.html:63
 msgid "Subscribe to this bill"
 msgstr ""
 
-#: templates/bill/bill.html:61
+#: templates/bill/bill.html:61 templates/bill/references.html:67
 msgid ""
 "You can be notified of changes in this bill via e-mail by subscribing to it."
 msgstr ""
 
-#: templates/bill/bill.html:75
+#: templates/bill/bill.html:75 templates/bill/references.html:81
 msgid "Subscribe"
 msgstr ""
 
-#: templates/bill/bill.html:86
+#: templates/bill/bill.html:86 templates/bill/references.html:92
 msgid "Bill status:"
 msgstr ""
 
-#: templates/bill/bill.html:95
+#: templates/bill/bill.html:95 templates/bill/references.html:101
 msgid "Attendees:"
 msgstr ""
 
-#: templates/bill/bill.html:96
+#: templates/bill/bill.html:96 templates/bill/references.html:102
 msgid "Proposals:"
 msgstr ""
 
-#: templates/bill/bill.html:98
+#: templates/bill/bill.html:98 templates/bill/references.html:104
 msgid "Closing date:"
 msgstr ""
 
-#: templates/bill/bill.html:102
+#: templates/bill/bill.html:102 templates/bill/references.html:108
 msgid "Access Report"
 msgstr ""
 
-#: templates/bill/bill.html:119
+#: templates/bill/bill.html:104
+msgid "Access References"
+msgstr ""
+
+#: templates/bill/bill.html:121 templates/bill/references.html:125
 msgid "AUTHOR"
 msgstr ""
 
-#: templates/bill/bill.html:140
+#: templates/bill/bill.html:142 templates/bill/references.html:146
 msgid "RAPPORTEUR"
 msgstr ""
 
-#: templates/bill/bill.html:152
+#: templates/bill/bill.html:154 templates/bill/references.html:158
 msgid "Do you support this bill?"
 msgstr ""
 
-#: templates/bill/bill.html:182
+#: templates/bill/bill.html:184 templates/bill/references.html:188
 msgid "Embedding Code"
 msgstr ""
 
-#: templates/bill/bill.html:186
+#: templates/bill/bill.html:188 templates/bill/references.html:192
 msgid ""
 "You may have this project featured in your own website by pasting the "
 "following code in your own source code."
 msgstr ""
 
-#: templates/bill/bill.html:191
+#: templates/bill/bill.html:193 templates/bill/references.html:197
 msgid "Copied!"
 msgstr ""
 
-#: templates/bill/bill.html:191
+#: templates/bill/bill.html:193 templates/bill/references.html:197
 msgid "Copy"
 msgstr ""
 
@@ -848,6 +880,10 @@ msgstr ""
 
 #: templates/bill/create_amendment.html:60
 msgid "Cancel"
+msgstr ""
+
+#: templates/bill/references.html:209
+msgid "References"
 msgstr ""
 
 #: templates/comments2/_comment_form.html:17
@@ -912,7 +948,8 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: templates/index.html:20
+#: templates/index.html:20 templates/widget/login.html:54
+#: templates/widget/login.html.py:78
 msgid "or"
 msgstr ""
 
@@ -1058,6 +1095,7 @@ msgid "Please check your email to complete the registration process."
 msgstr ""
 
 #: templates/registration/registration_form.html:26
+#: templates/widget/login.html:54 templates/widget/login.html.py:74
 msgid "Sign Up"
 msgstr ""
 
@@ -1067,4 +1105,68 @@ msgstr ""
 
 #: templates/registration/resend_activation_form.html:27
 msgid "Resend"
+msgstr ""
+
+#: templates/widget/_amendments.html:53 templates/widget/widget.html:118
+msgid "Please log in to comment"
+msgstr ""
+
+#: templates/widget/login.html:23
+msgid "Re-send activation email"
+msgstr ""
+
+#: templates/widget/login.html:31 templates/widget/login.html.py:63
+msgid "Email is a necessary field"
+msgstr ""
+
+#: templates/widget/login.html:33 templates/widget/login.html.py:65
+msgid "Email"
+msgstr ""
+
+#: templates/widget/login.html:35 templates/widget/login.html.py:67
+msgid "Password is a necessary field"
+msgstr ""
+
+#: templates/widget/login.html:37 templates/widget/login.html.py:69
+msgid "Password"
+msgstr ""
+
+#: templates/widget/login.html:46
+msgid "Log in with Facebook"
+msgstr ""
+
+#: templates/widget/login.html:50
+msgid "Log in with Google"
+msgstr ""
+
+#: templates/widget/login.html:60
+msgid "First name"
+msgstr ""
+
+#: templates/widget/login.html:61
+msgid "Last name"
+msgstr ""
+
+#: templates/widget/login.html:71
+msgid "Confirm Password is a necessary field"
+msgstr ""
+
+#: templates/widget/login.html:73
+msgid "Confirm your password"
+msgstr ""
+
+#: templates/widget/widget.html:136
+msgid "Please log in to suggest an amendment"
+msgstr ""
+
+#: templates/widget/widget.html:206
+msgid "Comment field is empty."
+msgstr ""
+
+#: templates/widget/widget.html:232
+msgid "Amendment field is empty."
+msgstr ""
+
+#: templates/widget/widget.html:234
+msgid "Amendment text is the same of original text."
 msgstr ""

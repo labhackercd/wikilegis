@@ -43,8 +43,6 @@ urlpatterns += [
     url(r'^widget/signup/$', RegistrationView.as_view(
         success_url='widget_login',
         template_name='widget/login.html'), name='widget_signup'),
-    url(r'^widget/logout/$', widget_views.LogoutView.as_view(),
-        name='widget_logout'),
     url(r'^widget/vote/(?P<segment_id>\d+)$', widget_views.updown_vote,
         name='widget_vote'),
     url(r'^widget/amendment/(?P<segment_id>\d+)$', widget_views.amendment,

@@ -2,14 +2,14 @@
 from django.http import HttpResponseForbidden, HttpResponseRedirect, Http404
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
+from django.contrib.auth import login
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.conf import settings
 from django_comments.models import Comment
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from distutils.util import strtobool
-from django.views.generic import FormView, RedirectView, DetailView
+from django.views.generic import FormView, DetailView
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 from wikilegis.core.models import Bill, BillSegment, UpDownVote
@@ -30,24 +30,6 @@ class LoginView(FormView):
 
     def get_success_url(self):
         next_url = self.request.POST.get('next', None)
-        if next_url:
-            return next_url
-        else:
-            raise Http404()
-
-
-class LogoutView(RedirectView):
-
-    @xframe_options_exempt
-    def dispatch(self, *args, **kwargs):
-        return super(LogoutView, self).dispatch(*args, **kwargs)
-
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        return super(LogoutView, self).get(request, *args, **kwargs)
-
-    def get_redirect_url(self, *args, **kwargs):
-        next_url = self.request.GET.get('next', None)
         if next_url:
             return next_url
         else:

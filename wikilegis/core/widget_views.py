@@ -10,6 +10,7 @@ from django_comments.models import Comment
 from django.utils.translation import ugettext, ugettext_lazy as _
 from distutils.util import strtobool
 from django.views.generic import FormView, RedirectView, DetailView
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from wikilegis.core.models import Bill, BillSegment, UpDownVote
 from wikilegis.core.decorators import open_for_partifipations
@@ -18,6 +19,10 @@ from wikilegis.core.decorators import open_for_partifipations
 class LoginView(FormView):
     form_class = AuthenticationForm
     template_name = 'widget/login.html'
+
+    @xframe_options_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(LoginView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
         login(self.request, form.get_user())
@@ -32,6 +37,10 @@ class LoginView(FormView):
 
 
 class LogoutView(RedirectView):
+
+    @xframe_options_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(LogoutView, self).dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         logout(request)
@@ -49,6 +58,10 @@ class WidgetView(DetailView):
     model = Bill
     template_name = "widget/widget.html"
 
+    @xframe_options_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(WidgetView, self).dispatch(*args, **kwargs)
+
     def get_object(self, queryset=None):
         obj = super(WidgetView, self).get_object(queryset)
         if obj.status == 'draft':
@@ -56,6 +69,7 @@ class WidgetView(DetailView):
         return obj
 
 
+@xframe_options_exempt
 @open_for_partifipations
 def amendment(request, segment_id):
     if request.user.is_authenticated():
@@ -79,6 +93,7 @@ def amendment(request, segment_id):
         return HttpResponseForbidden(reason=msg)
 
 
+@xframe_options_exempt
 @open_for_partifipations
 def updown_vote(request, segment_id):
     if request.user.is_authenticated():
@@ -105,6 +120,7 @@ def updown_vote(request, segment_id):
         return HttpResponseForbidden(reason=msg)
 
 
+@xframe_options_exempt
 @open_for_partifipations
 def comment(request, segment_id):
     if request.user.is_authenticated() and request.method == 'POST':

@@ -14,6 +14,11 @@ from django.core.urlresolvers import reverse
 from django_comments.models import Comment
 from django_extensions.db.fields.json import JSONField
 from django.utils.translation import pgettext_lazy
+from django.utils.text import slugify
+
+import os
+import random
+import string
 
 BILL_STATUS_CHOICES = (
     ('draft', _('Draft')),
@@ -59,6 +64,13 @@ def model_repr(cls, **kwargs):
     values = ('='.join(kv) for kv in values)
     values = '; '.join(values)
     return ''.join((cls.__name__, '{', values, '}'))
+
+
+def update_filename(instance, filename):
+    path = "bill/references/"
+    fname = filename.split('.')
+    format = slugify(fname[0]) + '.' + fname[-1]
+    return os.path.join(path, format)
 
 
 class TimestampedMixin(models.Model):
@@ -126,6 +138,31 @@ class TypeSegment(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class BillReference(TimestampedMixin):
+    bill = models.ForeignKey('core.Bill', related_name='references', verbose_name=_('bill'))
+    name = models.CharField('Nome', max_length=200, blank=True, null=True)
+    file = models.FileField(upload_to=update_filename)
+
+    class Meta:
+        verbose_name = _('reference')
+        verbose_name_plural = _('references')
+
+    def __unicode__(self):
+        if self.name:
+            return self.name
+        else:
+            return u'%s' % str(self.file).split('/')[-1]
+
+    def get_display_name(self):
+        if self.name:
+            return self.name
+        else:
+            return u'%s' % str(self.file).split('/')[-1]
+
+    def get_file_type(self):
+        return u'%s' % str(self.file).split('.')[-1]
 
 
 class BillSegment(TimestampedMixin):

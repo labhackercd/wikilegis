@@ -33,7 +33,7 @@
                 </div>
                 <div class="col s10 l11">
                     <h4 class="pl-title">{{ bill.title }}</h4>
-                    {% if segment.bill.status = "closed" %}
+                    {% if bill.status = "closed" %}
                       <h4 class="pl-title closed"> ({% trans "Participations Closed" %})</h4>
                     {% endif %}
                 </div>
@@ -105,8 +105,6 @@
         </div>
 
         <a class="bill-info-link report-link" href="{% url 'bill_report' bill.id %}"><i class="material-icons">assignment_turned_in</i><span>{% trans "Access Report" %}</span></a>
-
-        <a class="bill-info-link references-link" href="{% url 'bill_references' bill.id %}"><i class="material-icons">description</i><span>{% trans "Access References" %}</span></a>
 
         <div class="row">
           {% if proposition %}
@@ -210,10 +208,13 @@
           <h4 class="amendment-title">{% trans "References" %}</h4>
           <!--<h5 class="sub">{{ segment.content }}</h5>-->
           <div class="collection">
-            <a href="#!" class="collection-item"><i class="material-icons">description</i><span class="name">Documento</span></a>
-            <a href="#!" class="collection-item"><i class="material-icons">picture_as_pdf</i><span class="name">Documento</span></a>
-            <a href="#!" class="collection-item"><i class="material-icons">description</i><span class="name">Documento</span></a>
-            <a href="#!" class="collection-item"><i class="material-icons">picture_as_pdf</i><span class="name">Documento</span></a>
+            {% for file in bill.references.all %}
+              {% if file.get_file_type == 'pdf' %}
+                <a href="{{ MEDIA_URL }}{{ file.file }}" class="collection-item"><i class="material-icons">picture_as_pdf</i><span class="name">{{file.get_display_name}}</span></a>
+              {% else %}
+                <a href="{{ MEDIA_URL }}{{ file.file }}" class="collection-item" download><i class="material-icons">description</i><span class="name">{{file.get_display_name}}</span></a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>

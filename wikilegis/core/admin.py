@@ -14,7 +14,7 @@ from adminsortable2.admin import SortableInlineAdminMixin
 from . import models, forms
 import requests
 from wikilegis.core.forms import BillAdminForm, update_proposition, BillSegmentAdminForm
-from wikilegis.core.models import Bill, TypeSegment, BillSegment
+from wikilegis.core.models import Bill, TypeSegment, BillSegment, BillReference
 from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
 from wikilegis.core.import_file import import_file
 
@@ -146,8 +146,15 @@ class BillChangeList(ChangeList):
         return queryset
 
 
+class BillReferenceInline(admin.TabularInline):
+    model = BillReference
+    verbose_name = _('reference')
+    verbose_name_plural = _('references')
+    extra = 1
+
+
 class BillAdmin(admin.ModelAdmin):
-    inlines = (BillVideoInline, BillSegmentInline)
+    inlines = (BillVideoInline, BillReferenceInline, BillSegmentInline)
     list_filter = ['status']
     list_display = ('title', 'description', 'theme', 'status', 'get_situation', 'get_report')
     filter_horizontal = ('allowed_users', 'editors')
@@ -172,8 +179,10 @@ class BillAdmin(admin.ModelAdmin):
 
     def save_form(self, request, form, change):
         bill = form.save(commit=False)
-        if form.files:
+        try:
             import_file(form.files['file_txt'], bill.pk)
+        except:
+            pass
         return form.save(commit=False)
 
     def save_formset(self, request, form, formset, change):

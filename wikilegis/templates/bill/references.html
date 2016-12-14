@@ -1,0 +1,254 @@
+{% extends "base_with_sidebar.html" %} {% load static humanize i18n %} {% load video from embed_video_tags %} {% load cropping %} {% load proposals %} {% load subscribers %}
+
+{% block extrameta %}
+<meta property="og:type"   content="article" />
+<meta property="og:title" content="{{ bill.epigraph }}" />
+<meta property="og:description" content="{{ bill.description }}" />
+<meta property="og:image:url"  content="http://wikilegis.labhackercd.net/static/img/share/{{ bill.theme }}.jpg" />
+<meta property="og:image:type" content="image/png" />
+<meta name="twitter:card" content="photo" />
+<meta name="twitter:site" content="@edemocracia" />
+<meta name="twitter:title" content="{{ bill.epigraph }}">
+<meta name="twitter:description" content="{{ bill.description }}">
+<meta name="twitter:image" content="http://wikilegis.labhackercd.net/static/img/share/{{ bill.theme }}.jpg">
+{% endblock %}
+
+{% block content2 %} {% comment %}TODO Remove these funny scroll sheningans{% endcomment %}
+<style>
+    select {display:block;}
+</style>
+<div class="container">
+
+  <div class="pl-title back">
+        <a href="{% url 'show_bill' bill.id %}">
+            <div class="row valign-wrapper">
+                <div class="col s2 l1">
+                    <div class="circle {% if segment.bill.status = 'closed' %}border-red{% endif %} valign-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="imgView" x="0px" y="0px" width="256px" height="30px" viewBox="0 0 199.404 199.404" style="enable-background:new 0 0 199.404 199.404;" xml:space="preserve" class="detail convertSvgInline replaced-svg" data-id="60573" data-kw="left207">
+                            <g>
+                                <polygon points="135.412,0 35.709,99.702 135.412,199.404 163.695,171.119 92.277,99.702 163.695,28.285  "></polygon>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="col s10 l11">
+                    <h4 class="pl-title">{{ bill.title }}</h4>
+                    {% if segment.bill.status = "closed" %}
+                      <h4 class="pl-title closed"> ({% trans "Participations Closed" %})</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+  </div>
+
+  <div class="row">
+
+    <div class="col s12 l3 push-l9">
+      <div class="pl-full pl-description">
+
+        {% if user.is_authenticated and bill.status = "published" or bill.status = "unlisted" %}
+          {% subscriber bill.id request.user.id as newsletter_status %}
+          <form action="{% url 'verify_newsletter' bill.id %}#btn_newsletter" method="get">
+          {% if newsletter_status %}
+            <button class="subscribe-cancel btn-flat waves-effect waves-light valign-wrapper" type="submit">
+              <i class="material-icons valign left">backspace</i>
+              <span class="header-text valign">{% trans "Unsubscribe" %}</span>
+            </button>
+          {% else %}
+            <ul class="subscribe-button collapsible">
+              <li>
+                <div class="subscribe-header collapsible-header waves-effect waves-light valign-wrapper">
+                  <i class="material-icons valign">email</i>
+                  <span class="header-text valign">{% trans "Subscribe to this bill" %}</span>
+                </div>
+                <div class="subscribe-body collapsible-body">
+
+                  <p>{% trans "You can be notified of changes in this bill via e-mail by subscribing to it." %}</p>
+
+                  <div class="subscribe-options">
+                    <div>
+                      <input class="with-gap" value="weekly" name="periodicity" type="radio" id="periodicity_weekly" checked>
+                      <label for="periodicity_weekly">{% trans "Weekly" %}</label>
+                    </div>
+
+                    <div>
+                      <input class="with-gap" value="daily" name="periodicity" type="radio" id="periodicity_daily">
+                      <label for="periodicity_daily">{% trans "Daily" %}</label>
+                    </div>
+                  </div>
+
+                  <button class="subscribe-submit btn-flat waves-effect waves-light" type="submit">{% trans "Subscribe" %}</button>
+                </div>
+              </li>
+            </ul>
+          {% endif %}
+          </form>
+        {% endif %}
+
+        <div class="pl-info">
+          {% if proposition.situation %}
+            <span class="item">
+              <span class="pl-subheading">{% trans "Bill status:" %}</span>
+              <span class="pl-status">
+                <a target="_blank" href="http://www.camara.gov.br/proposicoesWeb/fichadetramitacao?idProposicao={{ proposition.id_proposition }}">
+                  {{ proposition.situation }}
+                </a>
+              </span>
+            </span>
+
+          {% endif %}
+          <span class="item"><span class="pl-subheading">{% trans "Attendees:" %}</span> <span class="users-count">{{ attendees }}</span></span>
+          <span class="item filter-proposals"><span class="pl-subheading">{% trans "Proposals:" %}</span> <span class="prop-count" id="filter-proposal">{{ proposals }}</span></span>
+          {% if bill.closing_date %}
+          <span class="item"><span class="pl-subheading">{% trans "Closing date:" %}</span> <span class="prop-count">{{ bill.closing_date|date:'d/m/Y' }}</span></span>
+          {% endif %}
+        </div>
+
+        <div class="report"><a class="report-link" href="{% url 'bill_report' bill.id %}">{% trans "Access Report" %}</a></div>
+
+        <div class="row">
+          {% if proposition %}
+            <div class="after-bar">
+              <div class="user col s12">
+                <div class="col m3 s2">
+                  <div class="avatr">
+                    {% if proposition.id_register %}
+                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ proposition.id_register }}.jpg')"></div>
+                    {% else %}
+                    <div class="pic" style="background-image: url('{% static 'img/user.png' %}')"></div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="col m9 s9">
+                  <span class="user-name">
+                    <div class="user-type">{% trans "AUTHOR" %}</div>
+                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ proposition.id_register }}">{{ proposition.author }} </a>
+                  </span>
+                  <p class="p-uf">({{ proposition.party_author }}-{{ proposition.uf_author }})</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="row">
+          {% if congressman %}
+            <div class="after-bar">
+              <div class="user col s12">
+                <div class="col m3 s2">
+                  <div class="avatr">
+                    <div class="pic" style="background-image: url('http://www.camara.gov.br/internet/deputado/bandep/{{ congressman.user.id_congressman }}.jpg')"></div>
+                  </div>
+                </div>
+                <div class="col m9 s9">
+                  <span class="user-name">
+                    <div class="user-type">{% trans "RAPPORTEUR" %}</div>
+                    <a target="_blank" href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{ congressman.user.id_congressman }}">
+                      {{ congressman.parliamentary_name|title }}
+                    </a>
+                  </span>
+                  <p class="p-uf">({{ congressman.party }}-{{ congressman.uf }})</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        <span class="votes-title">{% trans "Do you support this bill?" %}</span>
+        <div class="votes">
+          {% with bill as content_object %}
+              {% if bill.status == 'published' or bill.status == 'unlisted' %}
+                  {% include "_vote_buttons.html" %}
+              {% else %}
+                  {% include "_vote_buttons_read_only.html" %}
+              {% endif%}
+          {% endwith %}
+        </div>
+
+        <div class="divider"></div>
+
+        {% for item in videos %}
+          {% video item.url as obj %}
+          <div class="pl-about video-descripition">
+          {% if obj.backend == 'YoutubeBackend' %}
+          <iframe width="480" height="360" src="https://www.youtube.com/embed/{{ obj.code }}" frameborder="0" allowfullscreen=""></iframe>
+          </div>
+          {% endif %}
+          {% endvideo %}
+          {% if not forloop.last %}
+            <hr />
+          {% endif %}
+        {% endfor %}
+
+<!--        <ul class="subscribe-button collapsible">
+          <li>
+            <div class="subscribe-header collapsible-header waves-effect waves-light valign-wrapper">
+              <i class="material-icons valign">http</i>
+              <span class="header-text valign">{% trans "Embedding Code" %}</span>
+            </div>
+            <div class="subscribe-body collapsible-body">
+
+              <p>{% trans "You may have this project featured in your own website by pasting the following code in your own source code." %}</p>
+
+              <div class="subscribe-options embed-code">
+                <textarea readonly style="resize:none; height:170px; width:250px;max-width:100%;">&lt;div class="wikilegis-widget" bill-id="{{ bill.id }}"&gt;&lt;/div&gt;&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="http://{{ domain }}/static/js/widget.js"&gt;&lt;/script&gt;</textarea>
+              </div>
+              <button class="subscribe-submit btn-flat waves-effect waves-light copy-button" data-clipboard-target=".subscribe-options.embed-code textarea" data-text-success="{% trans 'Copied!' %}">{% trans "Copy" %}</button>
+            </div>
+          </li>
+        </ul> -->
+
+      </div>
+    </div>
+
+    <div class="col s12 l9 pull-l3">
+      <div class="row pl-full">
+        <div class="col s12 m11 references">
+          <!--Article header template, uncomment subs and titles later-->
+          <h4 class="amendment-title">{% trans "References" %}</h4>
+          <!--<h5 class="sub">{{ segment.content }}</h5>-->
+          <div class="collection">
+            <a href="#!" class="collection-item"><i class="material-icons">description</i><span class="name">Documento</span></a>
+            <a href="#!" class="collection-item"><i class="material-icons">description</i><span class="name">Documento</span></a>
+            <a href="#!" class="collection-item"><i class="material-icons">description</i><span class="name">Documento</span></a>
+            <a href="#!" class="collection-item"><i class="material-icons">description</i><span class="name">Documento</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block partialscript %}
+<script type="text/javascript">
+    function verify_newsletter() {
+        $.ajax({
+            type: "GET",
+            url: '{% url 'verify_newsletter' bill.id %}' + '?periodicity='+ $('#id_periodicity').val(),
+            error: function (data) {
+                alert("An error occurred, please try again."); // TODO: How do we internationalize strings inside JS?
+            }
+        });
+    }
+    $('.filter-proposals').click(function() {
+      $('.list-amendment').toggleClass('hide-empty');
+    });
+</script>
+
+<script>
+  var clipboard = new Clipboard('.copy-button');
+
+  clipboard.on('success', function() {
+    var copyButtonContent = $('.copy-button').text();
+
+    $('.copy-button').text($('.copy-button').data('text-success'));
+
+    setTimeout(function(){
+      $('.copy-button').text(copyButtonContent);
+    }, 3000);
+  });
+</script>
+{% endblock %}

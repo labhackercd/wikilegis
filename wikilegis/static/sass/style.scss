@@ -812,6 +812,37 @@ strong {
 
 }
 
+.references {
+    .collection {
+        .collection-item {
+            color: $unnamedcolor;
+
+            &:not(.active):hover {
+                background-color: #f2f2f2;
+            }
+
+            > i {
+                margin-right: 20px;
+                font-size: 2.2em;
+            }
+
+            > span {
+                font-weight: 600;
+                font-size: 1.2em;
+                color: #6775a6;
+            }
+
+            > i, > span {
+                vertical-align: middle
+            }
+        }
+    }
+
+    .amendment-title {
+        text-align: center;
+    }
+}
+
 .segments-before {
     margin-top: 20px;
     max-width: 960px;

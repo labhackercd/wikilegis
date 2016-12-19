@@ -17,6 +17,7 @@ from wikilegis.core.forms import BillAdminForm, update_proposition, BillSegmentA
 from wikilegis.core.models import Bill, TypeSegment, BillSegment, BillReference
 from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
 from wikilegis.core.import_file import import_file
+from django import forms as django_forms
 
 
 def get_permission(action, opts):
@@ -267,24 +268,35 @@ class TypeSegmentAdmin(admin.ModelAdmin):
         return request.user.has_perm(perm, obj)
 
 
+class UserChoiceField(django_forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.email
+
+
 class BillSegmentAdmin(admin.ModelAdmin):
     list_filter = ['original', 'type', 'bill']
     list_display = ('bill', 'order', 'type', 'number', 'author', 'parent', 'original')
     search_fields = ['content']
     form = BillSegmentAdminForm
+    raw_id_fields = ('parent', 'replaced')
     fieldsets = [
-        (None, {'fields': ['bill', 'order', 'parent', 'type', 'number', 'content']})
+        (None, {'fields': ['bill', 'order', 'parent', 'replaced', 'type', 'number', 'content', 'author', 'original']})
     ]
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        field = super(BillSegmentAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-        if db_field.name == 'order':
-            try:
-                field.initial = BillSegment.objects.filter(
-                    bill_id=Bill.objects.all().last().id).aggregate(Max('order'))['order__max'] + 1
-            except:
-                field.initial = 1
-        return field
+    # def formfield_for_dbfield(self, db_field, **kwargs):
+    #     field = super(BillSegmentAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+    #     if db_field.name == 'order':
+    #         try:
+    #             field.initial = BillSegment.objects.filter(
+    #                 bill_id=Bill.objects.all().last().id).aggregate(Max('order'))['order__max'] + 1
+    #         except:
+    #             field.initial = 1
+    #     return field
+
+    def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+        if db_field.name == 'author':
+            kwargs['form_class'] = UserChoiceField
+        return super(BillSegmentAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 admin.site.register(BillSegment, BillSegmentAdmin)

@@ -229,23 +229,24 @@ class AddProposalForm(forms.ModelForm):
 
 
 class BillSegmentAdminForm(forms.ModelForm):
-    try:
-        bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(),
-                                      initial=Bill.objects.latest('id').id)
-        parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(
-            bill_id=Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
-    except:
-        bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all())
+    # try:
+    #     bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all(),
+    #                                   initial=Bill.objects.latest('id').id)
+    #     parent = forms.ModelChoiceField(label=_('segment parent'), queryset=BillSegment.objects.filter(
+    #     bill_id = Bill.objects.latest('id').id, original=True).order_by('-id'), required=False)
+    # except:
+    #     bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all())
+    bill = forms.ModelChoiceField(label=_('bill'), queryset=Bill.objects.all())
 
     class Meta:
         model = BillSegment
-        fields = ('bill', 'order', 'parent', 'type', 'number', 'content')
+        fields = ('bill', 'order', 'parent', 'type', 'number', 'content', 'replaced', 'author', 'original')
 
-    def save(self, commit=True):
-        obj = super(BillSegmentAdminForm, self).save(commit=False)
-        original_segments = BillSegment.objects.filter(bill_id=obj.bill_id, original=True)
-        if obj.order in original_segments.values_list('order', flat=True):
-            original_segments.filter(order__gte=obj.order).update(order=F('order') + 1)
-        obj.save()
+    # def save(self, commit=True):
+    #     obj = super(BillSegmentAdminForm, self).save(commit=False)
+    #     original_segments = BillSegment.objects.filter(bill_id=obj.bill_id, original=True)
+    #     if obj.order in original_segments.values_list('order', flat=True):
+    #         original_segments.filter(order__gte=obj.order).update(order=F('order') + 1)
+    #     obj.save()
 
-        return obj
+    #     return obj

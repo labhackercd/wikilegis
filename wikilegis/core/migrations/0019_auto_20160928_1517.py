@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
+from django.db import models, migrations, connection
+from django.conf import settings
 import datetime
 
 
@@ -23,3 +24,6 @@ class Migration(migrations.Migration):
         migrations.RunSQL(migrations.RunSQL.noop,
                           reverse_sql='SET CONSTRAINTS ALL IMMEDIATE'),
     ]
+
+    if connection.vendor != "postgresql":
+        operations = operations[1:2]

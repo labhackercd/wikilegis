@@ -3,11 +3,12 @@
 * Python 2.7.x
 * Probably a working C compiler and `make` (to build libsass)
 * Pillow install dependencies [1]
+* libjpeg-dev, zlib1g-dev and build-essential (for debian like distributions)
 
 # Installation
 
 ```bash
-$ git clone git@github.com:labhackercd/wikilegis.git
+$ git clone https://github.com/labhackercd/wikilegis.git
 $ cd wikilegis
 $ pip install -r requirements.txt
 ```

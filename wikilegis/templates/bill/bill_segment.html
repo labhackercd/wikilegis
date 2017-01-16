@@ -259,40 +259,43 @@
         {% endif %}
 
         $( document ).ready(function() {
+           titleHeight = $('.pl-title.back').outerHeight() + 40;
+           navDistanceTop = $('.wiki-navbar').offset().top - $(window).scrollTop();
+           if ($(window).width() > 1023) {
 
-            if ($(window).width() > 1023) {
-               var originalTextHeight = (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()) + ($('.original-text').offset().top - $(window).scrollTop());
+              if ($(window).scrollTop() >= titleHeight + navDistanceTop) {
+                $('.original-text').addClass('fixed');
+                  $('.original-text').css('top', (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()));
+                  var orignalTextFixedHeight = $('.original-text.fixed').outerHeight();
+                  $('.submitted-proposals').css('padding-top', orignalTextFixedHeight + 40)
 
-               if ($(window).scrollTop()  >= originalTextHeight) {
-                 $('.original-text').addClass('fixed');
-                   $('.original-text').css('top', (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()));
-                   var orignalTextFixedHeight = $('.original-text.fixed').outerHeight();
-                   $('.submitted-proposals').css('padding-top', orignalTextFixedHeight + 40)
+                } else {
+                  $('.original-text').removeClass('fixed');
+                  $('.original-text').css('top', 0);
+                  $('.submitted-proposals').css('padding-top', 10)
+               }
 
-                 } else {
-                   $('.original-text').removeClass('fixed');
-                   $('.original-text').css('top', 0);
-                   $('.submitted-proposals').css('padding-top', 10)
-                 }
+              $(window).scroll(function() {
+                titleHeight = $('.pl-title.back').outerHeight() + 40;
+                navDistanceTop = $('.wiki-navbar').offset().top - $(window).scrollTop();
+                scroll = $(window).scrollTop();
+                        console.log('scroll(' + scroll + ') titleHeight(' + titleHeight + ') navDistanceTop(' + navDistanceTop + ')');
 
-               $(window).scroll(function() {
-                 var originalTextHeight = (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()) + ($('.original-text').offset().top - $(window).scrollTop());
-                 var scroll = $(window).scrollTop();
 
-                 if (scroll >= originalTextHeight) {
-                   $('.original-text').addClass('fixed');
-                   $('.original-text').css('top', (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()));
-                   var orignalTextFixedHeight = $('.original-text.fixed').outerHeight();
-                   $('.submitted-proposals').css('padding-top', orignalTextFixedHeight + 40)
+                if (scroll >= titleHeight + navDistanceTop) {
+                  $('.original-text').addClass('fixed');
+                  $('.original-text').css('top', (($('.wiki-navbar').offset().top - $(window).scrollTop()) + $('.wiki-navbar').outerHeight()));
+                  var orignalTextFixedHeight = $('.original-text.fixed').outerHeight();
+                  $('.submitted-proposals').css('padding-top', orignalTextFixedHeight + 40)
 
-                 } else {
-                   $('.original-text').removeClass('fixed');
-                   $('.original-text').css('top', 0);
-                   $('.submitted-proposals').css('padding-top', 10)
-                 }
-               });
-            }
-        });
+                } else {
+                  $('.original-text').removeClass('fixed');
+                  $('.original-text').css('top', 0);
+                  $('.submitted-proposals').css('padding-top', 10)
+                }
+              });
+           }
+       });
 
     </script>
 {% endblock %}

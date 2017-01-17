@@ -4,7 +4,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(BASE_DIR)
 
-if DEBUG:
+if not DEBUG:
     LOGGING = {
         'version': 1,
         'disable_existing_loggers': True,

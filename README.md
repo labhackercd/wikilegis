@@ -13,6 +13,51 @@ $ cd wikilegis
 $ pip install -r requirements.txt
 ```
 
+# Customizing settings
+
+To customize some wikilegis settings, create the file  `settings.ini` on `./wikilegis/settings/`. The availables parameters are:
+
+```
+[settings]
+
+# Application settings
+API_KEY = api_key
+SECRET_KEY = secret_key
+FORCE_SCRIPT_NAME
+DEBUG = 1 # True
+ALLOWED_HOSTS = *
+DATABASE_URL = sqlite:///db.sqlite3
+
+# Authentication settings
+LOGIN_URL = /accounts/login/
+LOGIN_REDIRECT_URL = /
+AUTH_USER_MODEL = auth2.User
+ENABLE_REMOTE_USER = 0 # False
+SESSION_COOKIE_NAME = sessionid
+ACCOUNT_ACTIVATION_REQUIRED = 0 # False
+ACCOUNT_ACTIVATION_DAYS = 7
+ENABLE_SOCIAL_AUTH = 1 # True
+
+# Email settings
+EMAIL_HOST = localhost
+EMAIL_PORT = 587
+EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS
+DEFAULT_FROM_EMAIL
+
+# Locale settings
+LANGUAGE_CODE = pt-br
+TIME_ZONE = America/Sao_Paulo
+
+# Logging settings
+LOG_DIR = wikilegis.log
+
+# Staticfiles settings
+STATIC_URL = /static/
+MEDIA_URL = /media/
+
+```
 
 # Database and superuser setup
 

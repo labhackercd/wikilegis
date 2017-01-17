@@ -1,3 +1,6 @@
+from decouple import config
+
+
 DJANGO_MIDDLEWARES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -19,5 +22,13 @@ THIRD_PARTY = [
 WIKILEGIS_MIDDLEWARES = [
     'wikilegis.core.middlewares.ForceLangMiddleware',
 ]
+
+if config('ENABLE_REMOTE_USER', default=0, cast=bool):
+    WIKILEGIS_MIDDLEWARES += [
+        'wikilegis.auth2.middlewares.WikilegisRemoteUser'
+    ]
+    DJANGO_MIDDLEWARES.remove(
+        'django.contrib.auth.middleware.SessionAuthenticationMiddleware'
+    )
 
 MIDDLEWARE_CLASSES = DJANGO_MIDDLEWARES + THIRD_PARTY + WIKILEGIS_MIDDLEWARES

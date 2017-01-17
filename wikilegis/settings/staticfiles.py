@@ -1,4 +1,5 @@
 from easy_thumbnails.conf import Settings as thumbnail_settings
+from decouple import config
 from . import application
 import django.conf.global_settings as default
 import os
@@ -11,7 +12,7 @@ THUMBNAIL_PROCESSORS = (
 ) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
 
-STATIC_URL = '/static/'
+STATIC_URL = config('STATIC_URL', default='/static/')
 
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'static'))
 
@@ -29,7 +30,7 @@ COMPRESS_PRECOMPILERS = (
 
 LIBSASS_SOURCEMAPS = application.DEBUG
 
-MEDIA_URL = '/media/'
+MEDIA_URL = config('MEDIA_URL', default='/media/')
 
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))
 

@@ -78,6 +78,19 @@ class BillListAPI(generics.ListAPIView):
     search_fields = ('title', 'epigraph', 'description', 'theme')
     ordering_fields = ('closing_date', 'created', 'modified', 'id')
 
+    def get(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        if request.GET.get('api_key') != settings.API_KEY:
+            queryset = queryset.exclude(status='draft')
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 class CreateUserAPI(generics.CreateAPIView):
     serializer_class = CreateUserSerializer

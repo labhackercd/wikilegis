@@ -11,7 +11,8 @@ DJANGO_APPS = [
 
 THIRD_PARTY = [
     'flat',
-    'object_tools',
+    # 'object_tools',
+    'import_export',
     'export',
     'haystack',
     'compressor',
@@ -22,7 +23,7 @@ THIRD_PARTY = [
     'django_extensions',
     'rules.apps.AutodiscoverRulesConfig',
     'embed_video',
-    'social.apps.django_app.default',
+    'social_django',
     'easy_thumbnails',
     'image_cropping',
     'rest_framework',

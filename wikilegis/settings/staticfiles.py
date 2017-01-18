@@ -16,17 +16,17 @@ STATIC_URL = config('STATIC_URL', default='/static/')
 
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'static'))
 
-STATICFILES_FINDERS = default.STATICFILES_FINDERS + (
+STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
     'compressor.finders.CompressorFinder',
-)
+]
 
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'wikilegis', 'static'),
-)
+]
 
-COMPRESS_PRECOMPILERS = (
+COMPRESS_PRECOMPILERS = [
     ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+]
 
 LIBSASS_SOURCEMAPS = application.DEBUG
 
@@ -43,8 +43,8 @@ DJANGO_CONTEXT_PROCESSORS = [
 ]
 
 THIRD_PARTY_CONTEXT_PROCESSORS = [
-    'social.apps.django_app.context_processors.backends',
-    'social.apps.django_app.context_processors.login_redirect',
+    'social_django.context_processors.backends',
+    'social_django.context_processors.login_redirect',
 ]
 
 WIKILEGIS_CONTEXT_PROCESSORS = [

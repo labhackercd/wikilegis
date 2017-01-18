@@ -13,8 +13,8 @@ if config('ENABLE_REMOTE_USER', default=0, cast=bool):
     )
 else:
     AUTHENTICATION_BACKENDS = (
-        'social.backends.google.GoogleOAuth2',
-        'social.backends.facebook.Facebook2OAuth2',
+        'social_core.backends.google.GoogleOAuth2',
+        'social_core.backends.facebook.FacebookOAuth2',
         'rules.permissions.ObjectPermissionBackend',
         'django.contrib.auth.backends.ModelBackend',
     )

@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 from operator import attrgetter
 
-from django.contrib.contenttypes import generic
 from django.db import models
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
@@ -175,8 +174,8 @@ class BillSegment(TimestampedMixin):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('author'), null=True)
     original = models.BooleanField(_('original'), default=True)
     content = models.TextField(_('content'))
-    comments = generic.GenericRelation(Comment, object_id_field="object_pk")
-    votes = generic.GenericRelation('core.UpDownVote', object_id_field="object_id")
+    comments = GenericRelation(Comment, object_id_field="object_pk")
+    votes = GenericRelation('core.UpDownVote', object_id_field="object_id")
 
     class Meta:
         ordering = ('order',)

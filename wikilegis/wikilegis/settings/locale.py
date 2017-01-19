@@ -1,4 +1,3 @@
-import django.conf.global_settings as default
 from decouple import config
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -9,14 +8,10 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'wikilegis/locale'),
 ]
 
-languages = dict(default.LANGUAGES)
-language_tuple = lambda language_code: (language_code,
-                                        languages[language_code])
-
 LANGUAGES = (
-    language_tuple('en'),
-    language_tuple('pt-br'),
-    language_tuple('es'),
+    ('en', 'English'),
+    ('pt-br', 'Brazilian Portuguese'),
+    ('es', 'Spanish'),
 )
 
 LANGUAGE_CODE = config('LANGUAGE_CODE', default='pt-br')

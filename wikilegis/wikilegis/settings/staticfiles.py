@@ -1,5 +1,4 @@
 from decouple import config
-from . import application
 import django.conf.global_settings as default
 import os
 

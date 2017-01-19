@@ -17,7 +17,7 @@ install:
   - pip install -r ci-requirements.txt
 
 script:
-  - py.test src/pygov_br/tests/ --cov --cov-report term-missing -v
+  - coverage run wikilegis/manage.py test
   - flake8 wikilegis
 after_success:
   - coveralls

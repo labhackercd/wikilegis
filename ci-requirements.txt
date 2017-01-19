@@ -1,0 +1,2 @@
+flake8>=3.2.1
+coveralls>=1.1

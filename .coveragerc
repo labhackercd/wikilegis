@@ -1,0 +1,14 @@
+[run]
+include = wikilegis/*
+branch = True
+
+
+[report]
+omit =
+    */migrations/*
+    wikilegis/manage.py
+show_missing = True
+
+
+[paths]
+source = wikilegis/

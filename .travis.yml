@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.5-dev" # 3.5 development branch
+  - "3.6-dev" # 3.6 development branch
+
+matrix:
+  allow_failures:
+    - python: "3.5-dev"
+    - python: "3.6-dev"
+
+install:
+  - pip install -r requirements.txt
+  - pip install -r ci-requirements.txt
+
+script:
+  - py.test src/pygov_br/tests/ --cov --cov-report term-missing -v
+  - flake8 wikilegis
+after_success:
+  - coveralls

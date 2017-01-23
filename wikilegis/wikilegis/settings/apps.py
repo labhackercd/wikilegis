@@ -1,3 +1,6 @@
+from decouple import config
+
+
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -16,10 +19,12 @@ THIRD_PARTY = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'social_django',
     'djangobower',
     'crispy_forms',
 ]
+
+if config('ENABLE_SOCIAL_AUTH', default=0, cast=bool):
+    THIRD_PARTY.append('social_django')
 
 WIKILEGIS_APPS = [
     'core',

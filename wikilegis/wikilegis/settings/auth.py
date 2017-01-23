@@ -30,11 +30,14 @@ if config('ENABLE_REMOTE_USER', default=0, cast=bool):
     AUTHENTICATION_BACKENDS = (
         'wikilegis.auth2.backends.WikielgisAuthBackend',
     )
-else:
+elif config('ENABLE_SOCIAL_AUTH', default=0, cast=bool):
     AUTHENTICATION_BACKENDS = (
         'social_core.backends.google.GoogleOAuth2',
         'social_core.backends.facebook.FacebookOAuth2',
-        'rules.permissions.ObjectPermissionBackend',
+        'django.contrib.auth.backends.ModelBackend',
+    )
+else:
+    AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
     )
 

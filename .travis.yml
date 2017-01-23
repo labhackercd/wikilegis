@@ -15,8 +15,11 @@ install:
   - pip install -r requirements.txt
   - pip install -r ci-requirements.txt
 
+before_script:
+  - cd wikilegis
+
 script:
-  - coverage run wikilegis/manage.py test
-  - flake8 wikilegis
+  - coverage run manage.py test
+  - flake8
 after_success:
   - coveralls

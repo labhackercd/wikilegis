@@ -18,7 +18,7 @@ STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
 BOWER_PATH = os.path.join(NODE_MODULES, '.bin/bower')
 BOWER_INSTALLED_APPS = [
-
+    'normalize.css',
 ]
 
 COMPRESS_PRECOMPILERS = [

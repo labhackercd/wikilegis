@@ -1,0 +1,27 @@
+[class^="segment-header"] {
+  font-size: 1.4em;
+  margin: 1em 0;
+  text-align: center;
+
+  .header__title {
+    display: block;
+  }
+}
+
+.segment-header--livro,
+.segment-header--capitulo {
+  font-weight: 400;
+}
+
+.segment-item {
+  align-items: center;
+  background-color: $color-white;
+  border: 2px solid $color-white;
+  box-shadow: 0 1px 2px $color-shadow-1;
+  display: flex;
+  padding: .6em;
+
+  + .segment-item {
+    margin-top: .5em;
+  }
+}

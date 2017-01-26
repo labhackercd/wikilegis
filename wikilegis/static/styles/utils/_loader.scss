@@ -1,0 +1,23 @@
+.loader,
+.loader::after {
+  border-radius: 50%;
+  height: 10em;
+  width: 10em;
+}
+
+.loader {
+  animation: loader 1.1s infinite linear;
+  border-bottom: 1.1em solid rgba(0,0,0, 0.2);
+  border-left: 1.1em solid #000000;
+  border-right: 1.1em solid rgba(0,0,0, 0.2);
+  border-top: 1.1em solid rgba(0,0,0, 0.2);
+  font-size: 10px;
+  margin: 60px auto;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+
+  &[data-loading="false"] {
+    display: none;
+  }
+}

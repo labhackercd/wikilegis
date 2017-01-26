@@ -4,7 +4,7 @@ from core import views
 
 
 urlpatterns = [
-    url(r'^', TemplateView.as_view(template_name='home.html'),
+    url(r'^$', TemplateView.as_view(template_name='home.html'),
         name='home'),
     url(r'^render/bill_info/(?P<bill_id>\d+)/$', views.render_bill_info,
         name='render_bill_info'),

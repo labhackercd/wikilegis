@@ -1,0 +1,6 @@
+$swift-out: cubic-bezier(.55, 0, .1, 1);
+
+@keyframes loader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

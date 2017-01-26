@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha wikilegis/static/javascript/tests",
-    "lint": "eslint wikilegis/static/javascript/**"
+    "lint": "eslint wikilegis/static/javascript/**/*.js"
   },
   "repository": {
     "type": "git",

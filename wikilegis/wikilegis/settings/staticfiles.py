@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(BASE_DIR)
 NODE_MODULES = os.path.join(os.path.dirname(BASE_DIR), 'node_modules')
 
 STATIC_URL = config('STATIC_URL', default='/static/')
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR,'static'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'static'))
 
 STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
     'djangobower.finders.BowerFinder',

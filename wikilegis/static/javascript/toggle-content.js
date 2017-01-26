@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-(function toggleBill() {
+function toggleContent() {
   const elements = {
     wikilegisEl: document.getElementsByClassName('wikilegis')[0],
     billInfoWrapperEl: document.getElementsByClassName('bill__info-wrapper')[0],
@@ -61,21 +61,21 @@ import $ from 'jquery';
     $.ajax({
       url,
       beforeSend(xhr) {
-        request.xhr = xhr;
+        request.xhr = xhr; // eslint-disable-line no-param-reassign
         ajaxRequests.push(request.name);
         setLoader(request, true);
       },
-      success(xhr, message) {
+      success(xhr) {
         request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
         request.loadedIds.push(id);
       },
       error(xhr, status) {
-        console.log(status);
+        console.log(status); // eslint-disable-line no-console
       },
       complete() {
         const requestIndex = ajaxRequests.indexOf(request.name);
         if (requestIndex > -1) ajaxRequests.splice(requestIndex, 1);
-        request.xhr = {};
+        request.xhr = {}; // eslint-disable-line no-param-reassign
         setLoader(request, false);
       },
     });
@@ -115,13 +115,11 @@ import $ from 'jquery';
     contentObj.wrapperEl.dataset[`${contentName}Open`] = 'true';
     contentObj.activeId = contentId;
 
-    for (const request in requests) {
-      if (requests.hasOwnProperty(request)) {
-        if (contentObj.requests[request].loadedIds.indexOf(contentId) === -1) {
-          getContent(contentId, contentObj.requests[request]);
-        }
+    Object.keys(requests).forEach((request) => {
+      if (requests[request].loadedIds.indexOf(contentId) === -1) {
+        getContent(contentId, contentObj.requests[request]);
       }
-    }
+    });
   }
 
   function toggleInteractionsContent(index) {
@@ -158,4 +156,6 @@ import $ from 'jquery';
   }
 
   elements.wikilegisEl.addEventListener('click', clickEvent);
-}());
+}
+
+export default toggleContent;

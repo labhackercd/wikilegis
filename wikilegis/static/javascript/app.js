@@ -1,1 +1,3 @@
-import './toggle-bill';
+import toggleContent from './toggle-content';
+
+toggleContent();

@@ -16,12 +16,9 @@ install:
   - pip install -r ci-requirements.txt
   - npm install
 
-before_script:
-  - cd wikilegis
-
 script:
-  - coverage run manage.py test
-  - flake8
+  - coverage run wikilegis/manage.py test
+  - flake8 wikilegis
   - npm run lint
 
 after_success:

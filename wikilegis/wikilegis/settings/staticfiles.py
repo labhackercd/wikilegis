@@ -8,15 +8,11 @@ BASE_DIR = os.path.dirname(BASE_DIR)
 NODE_MODULES = os.path.join(os.path.dirname(BASE_DIR), 'node_modules')
 
 STATIC_URL = config('STATIC_URL', default='/static/')
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'static'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR,'static'))
 
 STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
     'djangobower.finders.BowerFinder',
     'compressor.finders.CompressorFinder',
-]
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'wikilegis', 'static'),
 ]
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
@@ -34,6 +30,7 @@ COMPRESS_NODE_MODULES = NODE_MODULES
 COMPRESS_NODE_SASS_BIN = os.path.join(NODE_MODULES, '.bin/node-sass')
 COMPRESS_POSTCSS_BIN = os.path.join(NODE_MODULES, '.bin/postcss')
 COMPRESS_BROWSERIFY_BIN = os.path.join(NODE_MODULES, '.bin/browserify')
+COMPRESS_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = config('MEDIA_URL', default='/media/')
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))

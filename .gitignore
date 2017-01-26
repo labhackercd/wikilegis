@@ -1,5 +1,6 @@
 whoosh_index
 public
+*.sqlite
 *.sqlite3
 .webassets-cache
 
@@ -81,3 +82,5 @@ local_settings.py
 node_modules/
 bower_components/
 
+CACHE/
+TODO

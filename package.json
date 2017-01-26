@@ -24,5 +24,8 @@
     "browserify": "^13.3.0",
     "node-sass": "^4.3.0",
     "postcss-cli": "^2.6.0"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1"
   }
 }

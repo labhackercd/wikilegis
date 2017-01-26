@@ -14,6 +14,7 @@ matrix:
 install:
   - pip install -r requirements.txt
   - pip install -r ci-requirements.txt
+  - npm install
 
 before_script:
   - cd wikilegis
@@ -21,5 +22,7 @@ before_script:
 script:
   - coverage run manage.py test
   - flake8
+  - npm run lint
+
 after_success:
   - coveralls

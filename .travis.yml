@@ -11,10 +11,12 @@ matrix:
     - python: "3.5-dev"
     - python: "3.6-dev"
 
+before_install:
+  - npm install
+
 install:
   - pip install -r requirements.txt
   - pip install -r ci-requirements.txt
-  - npm install
 
 script:
   - coverage run wikilegis/manage.py test

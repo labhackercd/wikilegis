@@ -1,5 +1,5 @@
 #!/bin/bash
-coverage run manage.py test
+coverage run wikilegis/manage.py test
 coverage report
 echo $'\nRunning flake8...\n'
-flake8
+flake8 wikilegis

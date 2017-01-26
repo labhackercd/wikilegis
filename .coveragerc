@@ -1,13 +1,13 @@
 [run]
-include = ./*
+include = ./wikilegis/*
 branch = True
 
 
 [report]
 omit =
     */migrations/*
-    manage.py
-    wikilegis/settings/*.py
+    wikilegis/manage.py
+    */settings/*.py
 show_missing = True
 
 

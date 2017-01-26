@@ -4,7 +4,7 @@
   "description": "Your legislative editing tool",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha wikilegis/static/javascript/tests",
     "lint": "eslint wikilegis/static/javascript/**"
   },
   "repository": {

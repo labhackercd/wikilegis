@@ -1,0 +1,7 @@
+[flake8]
+exclude =
+    .git,
+    node_modules/,
+    __pycache__,
+    wikilegis/manage.py,
+    migrations/,

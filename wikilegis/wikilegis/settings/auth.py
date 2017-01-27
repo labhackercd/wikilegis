@@ -5,7 +5,7 @@ from . import application
 LOGIN_URL = config('LOGIN_URL', default='/accounts/login/')
 LOGIN_REDIRECT_URL = config('LOGIN_REDIRECT_URL', default='/')
 
-AUTH_USER_MODEL = config('AUTH_USER_MODEL', default='auth.User')
+AUTH_USER_MODEL = config('AUTH_USER_MODEL', default='accounts.User')
 
 AUTH_PASSWORD_VALIDATORS = [
     {

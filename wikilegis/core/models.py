@@ -1,28 +1,19 @@
-from django.contrib.contenttypes.fields import (GenericRelation,
-                                                GenericForeignKey)
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
 from django.conf import settings
+from core.model_mixins import (TimestampedMixin, VoteCountMixin, SegmentMixin,
+                               GenericRelationMixin, CommentCountMixin,
+                               AmendmentCountMixin, ParticipationCountMixin)
+from core.utils import references_filename, theme_icon_filename
 
-# Create your models here.
 
-
-class BillStatus(models.Model):
-
-    class Meta:
-        verbose_name = _("Bill Status")
-        verbose_name_plural = _("Bill Status")
-
-    def __str__(self):
-        return self.slug
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.description)
-        return super(BillStatus, self).save(*args, **kwargs)
-
-    description = models.CharField(_('description'), max_length=50)
-    slug = models.SlugField(_('slug'), max_length=50)
+BILL_STATUS_CHOICES = (
+    ('draft', _('Draft')),
+    ('published', _('Published')),
+    ('closed', _('Closed'))
+)
 
 
 class BillTheme(models.Model):
@@ -40,24 +31,15 @@ class BillTheme(models.Model):
 
     description = models.CharField(_('description'), max_length=50)
     slug = models.SlugField(_('slug'), max_length=50)
+    icon = models.ImageField(upload_to=theme_icon_filename,
+                             verbose_name=_('icon'))
 
 
-class TimestampedMixin(models.Model):
-    created = models.DateTimeField(_('created'), editable=False,
-                                   blank=True, auto_now_add=True)
-    modified = models.DateTimeField(_('modified'), editable=False,
-                                    blank=True, auto_now=True)
+class Comment(TimestampedMixin, GenericRelationMixin):
 
     class Meta:
-        abstract = True
-
-
-class Comment(TimestampedMixin):
-
-    class Meta:
-        verbose_name = "Segment Comment"
-        verbose_name_plural = "Segment Comments"
-        unique_together = ('object_id', 'content_type')
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
 
     def __str__(self):
         return self.text
@@ -65,29 +47,24 @@ class Comment(TimestampedMixin):
     text = models.CharField(_("text"), max_length=500)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                verbose_name=_('author'), null=True)
-    object_id = models.PositiveIntegerField()
-    content_type = models.ForeignKey('contenttypes.ContentType')
-    content_object = GenericForeignKey('content_type', 'object_id')
 
 
-class Bill(TimestampedMixin):
+class Bill(TimestampedMixin, ParticipationCountMixin, VoteCountMixin,
+           CommentCountMixin):
     title = models.CharField(_('subject'), max_length=255)
     epigraph = models.CharField(_('epigraph'), max_length=255, null=True)
     description = models.TextField(_('description'))
     closing_date = models.DateField(_('closing date'))
-    status = models.ForeignKey('BillStatus', verbose_name=_('status'))
+    status = models.CharField(_('status'), max_length=20,
+                              choices=BILL_STATUS_CHOICES, default='1')
+    is_visible = models.BooleanField(default=False, verbose_name=_('visible'))
     theme = models.ForeignKey('BillTheme', verbose_name=_('theme'))
-    editors = models.ManyToManyField(
-        'auth.Group', verbose_name=_('editors'), blank=True,
-        help_text=_('Any users in any of these groups will '
-                    'have permission to change this document.'))
     allowed_users = models.ManyToManyField(
-        'auth.User', related_name='allowed_bills',
+        settings.AUTH_USER_MODEL, related_name='allowed_bills',
         verbose_name=_('allowed users'), blank=True)
     reporting_member = models.ForeignKey(
-        'auth.User', verbose_name=_('reporting member'), null=True, blank=True)
-    comments = GenericRelation('Comment', object_id_field="object_id")
-    votes = GenericRelation('UpDownVote', object_id_field="object_id")
+        settings.AUTH_USER_MODEL, verbose_name=_('reporting member'),
+        null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -97,27 +74,41 @@ class Bill(TimestampedMixin):
         verbose_name_plural = _('Bills')
 
 
-class BillSegment(TimestampedMixin):
-    bill = models.ForeignKey('Bill', related_name='segments',
+class BillVideo(models.Model):
+
+    class Meta:
+        verbose_name = "Bill Video"
+        verbose_name_plural = "Bill Videos"
+
+    def __str__(self):
+        return self.url
+
+    url = models.URLField(verbose_name=_('URL'))
+    bill = models.ForeignKey('Bill', related_name='videos',
                              verbose_name=_('bill'))
-    order = models.PositiveIntegerField(_('order'), default=0)
-    segment_type = models.ForeignKey('SegmentType', verbose_name=_('type'),
-                                     null=True, blank=True,
-                                     on_delete=models.SET_NULL)
-    number = models.CharField(_('number'), null=True,
-                              blank=True, max_length=200)
-    parent = models.ForeignKey('self', related_name='children',
-                               verbose_name=_('segment parent'),
-                               null=True, blank=True)
-    replaced = models.ForeignKey('self', related_name='substitutes',
-                                 verbose_name=_('segment replaced'),
-                                 null=True, blank=True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               verbose_name=_('author'), null=True)
-    original = models.BooleanField(_('original'), default=True)
-    content = models.TextField(_('content'))
-    comments = GenericRelation('Comment', object_id_field="object_id")
-    votes = GenericRelation('UpDownVote', object_id_field="object_id")
+
+
+class BillReference(models.Model):
+
+    class Meta:
+        verbose_name = "Bill Reference"
+        verbose_name_plural = "Bill References"
+
+    def __str__(self):
+        return self.title
+
+    title = models.CharField(max_length=50, verbose_name=_('title'))
+    reference_file = models.FileField(upload_to=references_filename,
+                                      verbose_name=_('reference_file'))
+    bill = models.ForeignKey('Bill', verbose_name=_('bill'))
+
+
+class BillSegment(SegmentMixin, AmendmentCountMixin):
+    bill = models.ForeignKey('core.Bill', related_name='segments',
+                             verbose_name=_('bill'))
+    additive_amendments_count = models.IntegerField(default=0)
+    modifier_amendments_count = models.IntegerField(default=0)
+    supress_amendments_count = models.IntegerField(default=0)
 
     class Meta:
         ordering = ('order',)
@@ -125,10 +116,34 @@ class BillSegment(TimestampedMixin):
         verbose_name_plural = _('segments')
 
 
+class AdditiveAmendment(SegmentMixin):
+    reference = models.ForeignKey('BillSegment', verbose_name=_('reference'),
+                                  related_name="additive_amendments")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               verbose_name=_('author'))
+
+
+class ModifierAmendment(SegmentMixin):
+    replaced = models.ForeignKey('BillSegment', verbose_name=_('replaced'),
+                                 related_name="modifier_amendments")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               verbose_name=_('author'))
+
+
+class SupressAmendment(SegmentMixin):
+    supressed = models.ForeignKey('BillSegment', verbose_name=_('supressed'),
+                                  related_name="supress_amendments")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               verbose_name=_('author'))
+
+
 class SegmentType(models.Model):
     name = models.CharField(_('name'), max_length=200)
-    apresentation_name = models.CharField(
-        _('apresentation name'), max_length=200, blank=True, null=True)
+    presentation_name = models.CharField(_('presentation name'),
+                                         max_length=200, blank=True, null=True)
+    parent = models.ForeignKey('self', related_name='children',
+                               verbose_name=_('parent type'),
+                               null=True, blank=True)
     editable = models.BooleanField(_('editable'), default='True')
 
     class Meta:
@@ -139,17 +154,14 @@ class SegmentType(models.Model):
         return self.name
 
 
-class UpDownVote(TimestampedMixin):
+class UpDownVote(GenericRelationMixin, TimestampedMixin):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'))
-    object_id = models.PositiveIntegerField()
-    content_type = models.ForeignKey('contenttypes.ContentType')
-    content_object = GenericForeignKey('content_type', 'object_id')
-    vote = models.BooleanField(default=False,
+    vote = models.BooleanField(default=False, verbose_name=_('vote'),
                                choices=((True, _('Up Vote')),
                                         (False, _('Down Vote'))))
 
     class Meta:
         unique_together = ('user', 'object_id', 'content_type')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.get_full_name() or self.user.email

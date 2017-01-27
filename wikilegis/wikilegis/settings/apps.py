@@ -27,6 +27,7 @@ if config('ENABLE_SOCIAL_AUTH', default=0, cast=bool):
     THIRD_PARTY.append('social_django')
 
 WIKILEGIS_APPS = [
+    'accounts',
     'core',
 ]
 

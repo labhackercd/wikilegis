@@ -6,17 +6,18 @@ python:
   - "3.5-dev" # 3.5 development branch
   - "3.6-dev" # 3.6 development branch
 
+node_js:
+  - "6"
+
 matrix:
   allow_failures:
     - python: "3.5-dev"
     - python: "3.6-dev"
 
-before_install:
-  - npm install
-
 install:
   - pip install -r requirements.txt
   - pip install -r ci-requirements.txt
+  - npm install
 
 script:
   - coverage run wikilegis/manage.py test

@@ -4,8 +4,7 @@
   "description": "Your legislative editing tool",
   "main": "index.js",
   "scripts": {
-    "test": "mocha wikilegis/static/javascript/tests",
-    "lint": "eslint wikilegis/static/javascript/**/*.js"
+    "lint": "eslint wikilegis/static/javascript/**/*"
   },
   "repository": {
     "type": "git",
@@ -26,7 +25,6 @@
     "eslint": "^3.14.1",
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-plugin-import": "^2.2.0",
-    "mocha": "^3.2.0",
     "node-sass": "^4.3.0",
     "postcss-cli": "^2.6.0"
   },

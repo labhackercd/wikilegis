@@ -17,25 +17,22 @@
   </head>
 
   <body>
-    <main id="bills-list-search" class="wikilegis" data-bill-open="false">
+    <main id="bill-list-search" class="wikilegis" data-bill-open="false">
       <div class="wikilegis__banner">
         <h1>WIKILEGIS</h1>
         <input class="banner__search" placeholder="Search" />
       </div>
 
-      <!-- <ul class="wikilegis__bills-list" data-close="bill">
+      <!-- <ul class="wikilegis__bill-list" data-close="bill">
         {% for bill in bills %}
-        <li class="bills-list__item" data-open="bill" data-bill={{bill.id}}>
+        <li class="bill-list__item" data-open="bill" data-bill={{bill.id}}>
           {{bill.title}}
         </li>
         {% endfor %}
       </ul> -->
 
-      <ul class="wikilegis__bills-list" data-close="bill">
-        <li class="bills-list__item" data-open="bill" data-bill="1">
-          <h4 class="item__title">Desmatamento</h4>
-          <p class="item__text">Trata do desmatamento das florestas nativas do Brasil.</p>
-        </li>
+      <ul class="wikilegis__bill-list" data-close="bill">
+        {% include "bill/_list-item.html" %}
       </ul>
 
       <div class="wikilegis__bill">

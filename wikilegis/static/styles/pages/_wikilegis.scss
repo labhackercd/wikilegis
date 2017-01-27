@@ -6,7 +6,7 @@
   &[data-bill-open="true"] {
     transform: translateX(-50vw);
 
-    .wikilegis__bills-list::after {
+    .wikilegis__bill-list::after {
       opacity: .5;
       transition: opacity .5s $swift-out, z-index 0s 0s;
       z-index: 0;
@@ -27,7 +27,7 @@
   justify-content: center;
 }
 
-.wikilegis__bills-list {
+.wikilegis__bill-list {
   flex: 0 0 50vw;
   list-style: none;
   margin: 0;
@@ -50,7 +50,7 @@
     z-index: -1;
   }
 
-  .bills-list__item {
+  .bill-list__item {
     height: 100px;
 
     &:nth-child(odd) {

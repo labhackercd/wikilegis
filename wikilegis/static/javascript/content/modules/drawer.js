@@ -4,18 +4,18 @@ import content from '../config';
 
 const load = loadModule();
 
-function toggleModule() {
-  function hide(contentName) {
+function drawerModule() {
+  function close(contentName) {
     const contentObj = content[contentName];
 
     load.abortRequests(contentObj);
 
     contentObj.lastActiveId = contentObj.activeId;
-    contentObj.wrapperEl.dataset[`${contentName}Toggle`] = 'false';
+    contentObj.wrapperEl.dataset[`${contentName}Open`] = 'false';
     contentObj.activeId = 0;
   }
 
-  function show(contentName, contentId) {
+  function open(contentName, contentId) {
     const contentObj = content[contentName];
     const requests = contentObj.requests;
 
@@ -26,10 +26,10 @@ function toggleModule() {
       const $lastActiveContent = $(`[data-content="${contentName}"][data-${contentName}="${contentObj.lastActiveId}"]`);
       $lastActiveContent.addClass('hidden');
 
-      if (contentName === 'bill') hide('interactions');
+      if (contentName === 'bill') close('interactions');
     }
 
-    contentObj.wrapperEl.dataset[`${contentName}Toggle`] = 'true';
+    contentObj.wrapperEl.dataset[`${contentName}Open`] = 'true';
     contentObj.activeId = contentId;
 
     Object.keys(requests).forEach((request) => {
@@ -40,9 +40,9 @@ function toggleModule() {
   }
 
   return {
-    hide,
-    show,
+    close,
+    open,
   };
 }
 
-export default toggleModule;
+export default drawerModule;

@@ -1,21 +1,21 @@
-import toggleModule from './modules/toggle';
+import drawerModule from './modules/drawer';
 import tabsModule from './modules/tabs';
 
 import content from './config';
 
-const toggle = toggleModule();
+const drawer = drawerModule();
 const tabs = tabsModule();
 
 function clickEvent(event) {
   const dataset = event.target.dataset;
 
-  if (dataset.show) {
-    const contentName = dataset.show;
+  if (dataset.drawerOpen) {
+    const contentName = dataset.drawerOpen;
     const contentId = dataset[contentName];
 
-    toggle.show(contentName, contentId);
-  } else if (dataset.hide) {
-    toggle.hide(dataset.hide);
+    drawer.open(contentName, contentId);
+  } else if (dataset.drawerClose) {
+    drawer.close(dataset.drawerClose);
   }
 
   if (dataset.tab) {

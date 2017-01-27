@@ -1,2 +1,2 @@
-import './toggle-content';
+import './content/events';
 import './search';

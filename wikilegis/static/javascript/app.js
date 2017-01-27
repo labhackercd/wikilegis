@@ -1,3 +1,2 @@
-import toggleContent from './toggle-content';
-
-toggleContent();
+import './toggle-content';
+import './search';

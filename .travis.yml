@@ -6,13 +6,14 @@ python:
   - "3.5-dev" # 3.5 development branch
   - "3.6-dev" # 3.6 development branch
 
-node_js:
-  - "6"
-
 matrix:
   allow_failures:
     - python: "3.5-dev"
     - python: "3.6-dev"
+
+before_install:
+  - nvm install 7.2.0
+  - nvm use 7.2.0
 
 install:
   - pip install -r requirements.txt

@@ -31,4 +31,7 @@ WIKILEGIS_APPS = [
     'core',
 ]
 
+if config('CONNECT_TO_LEGACY_WIKILEGIS', default=False, cast=bool):
+    WIKILEGIS_APPS.append('legacy')
+
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + WIKILEGIS_APPS

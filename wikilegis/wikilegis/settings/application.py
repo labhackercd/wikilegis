@@ -21,12 +21,28 @@ CORS_ALLOW_METHODS = (
     'GET',
     'OPTIONS'
 )
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.' + config('DATABASE_ENGINE',
+                                                 default='sqlite3'),
+        'NAME': config('DATABASE_NAME', default='db.sqlite3'),
+        'USER': config('DATABASE_USER', default=''),
+        'PASSWORD': config('DATABASE_PASSWORD', default=''),
+        'HOST': config('DATABASE_HOST', default=''),
+        'PORT': config('DATABASE_PORT', default=''),
+    }
+}
 
-DATABASES = dict(default=config(
-    'DATABASE_URL',
-    cast=db_url,
-    default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-))
+if config('CONNECT_TO_LEGACY_WIKILEGIS', default=False, cast=bool):
+    DATABASES['legacy'] = {
+        'ENGINE': 'django.db.backends.' + config('LEGACY_DATABASE_ENGINE',
+                                                 default='sqlite3'),
+        'NAME': config('LEGACY_DATABASE_NAME', default='legacy.sqlite3'),
+        'USER': config('LEGACY_DATABASE_USER', default=''),
+        'PASSWORD': config('LEGACY_DATABASE_PASSWORD', default=''),
+        'HOST': config('LEGACY_DATABASE_HOST', default=''),
+        'PORT': config('LEGACY_DATABASE_PORT', default=''),
+    }
 
 ROOT_URLCONF = 'wikilegis.urls'
 INCLUDE_REGISTER_URL = False

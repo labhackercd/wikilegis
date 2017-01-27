@@ -26,7 +26,12 @@ SECRET_KEY = secret_key
 FORCE_SCRIPT_NAME
 DEBUG = 1 # True
 ALLOWED_HOSTS = *
-DATABASE_URL = sqlite:///db.sqlite3
+DATABASE_ENGINE = sqlite3 # postgresql, mysql, sqlite3, oracle
+DATABASE_NAME = db.sqlite3
+DATABASE_USER
+DATABASE_PASSWORD
+DATABASE_HOST
+DATABASE_PORT
 
 # Authentication settings
 LOGIN_URL = /accounts/login/
@@ -56,6 +61,15 @@ LOG_DIR = wikilegis.log
 # Staticfiles settings
 STATIC_URL = /static/
 MEDIA_URL = /media/
+
+# Legacy Wikilegis settings
+CONNECT_TO_LEGACY_WIKILEGIS = 0 # False
+LEGACY_DATABASE_ENGINE = sqlite3 # postgresql, mysql, sqlite3, oracle
+LEGACY_DATABASE_NAME = legacy.sqlite3
+LEGACY_DATABASE_USER
+LEGACY_DATABASE_PASSWORD
+LEGACY_DATABASE_HOST
+LEGACY_DATABASE_PORT
 
 ```
 

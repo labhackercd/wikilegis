@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-function toggleContent() {
+(function toggleContent() {
   const elements = {
     wikilegisEl: document.getElementsByClassName('wikilegis')[0],
     billInfoWrapperEl: document.getElementsByClassName('bill__info-wrapper')[0],
@@ -156,6 +156,4 @@ function toggleContent() {
   }
 
   elements.wikilegisEl.addEventListener('click', clickEvent);
-}
-
-export default toggleContent;
+}());

@@ -21,8 +21,8 @@
   transition: transform .3s $swift-out;
   width: 300%;
 
-  &[data-tab-content="2"] { transform: translateX(calc(-100% / 3)); }
-  &[data-tab-content="3"] { transform: translateX(calc(-100% * 2 / 3)); }
+  &[data-tab="2"] { transform: translateX(calc(-100% / 3)); }
+  &[data-tab="3"] { transform: translateX(calc(-100% * 2 / 3)); }
 }
 
 .interactions__content {

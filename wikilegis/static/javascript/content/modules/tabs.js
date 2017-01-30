@@ -1,26 +1,38 @@
-function tabsModule() {
-  let tabContentEl = '';
+import content from '../config';
 
-  function setActiveOnRequestCompletion(elementQuery, index, request) {
-    request.xhr.done(() => {
-      tabContentEl = document.querySelector(elementQuery);
-      tabContentEl.dataset.tabContent = index;
-    });
+function tabsModule() {
+  let name = '';
+  let contentElQuery = '';
+  let contentEl = {};
+  let request = {};
+  let id = 0;
+  let index = 0;
+  let isLoaded = false;
+
+  function setConfig(targetEl) {
+    name = targetEl.dataset.tabContent;
+    index = targetEl.dataset.tab;
+    request = content[name].requests[name];
+    isLoaded = request.loadedIds.indexOf(id) > -1;
+    id = targetEl.dataset[name] ? targetEl.dataset[name] : content[name].activeId;
+    contentElQuery = `[data-tab][data-content="${name}"][data-${name}="${id}"]`;
   }
 
-  function setActive(elementQuery, index, request = {}) {
-    tabContentEl = document.querySelector(elementQuery);
+  function setActive(targetEl) {
+    setConfig(targetEl);
 
-    if (!tabContentEl) {
-      setActiveOnRequestCompletion(elementQuery, index, request);
+    if (!isLoaded) {
+      request.xhr.done(() => {
+        contentEl = document.querySelector(contentElQuery);
+        contentEl.dataset.tab = index;
+      });
     } else {
-      tabContentEl.dataset.tabContent = index;
+      contentEl = document.querySelector(contentElQuery);
+      contentEl.dataset.tab = index;
     }
   }
 
-  return {
-    setActive,
-  };
+  return { setActive };
 }
 
 export default tabsModule;

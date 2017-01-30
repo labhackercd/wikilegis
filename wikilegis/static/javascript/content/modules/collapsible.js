@@ -5,32 +5,37 @@ const load = loadModule();
 
 function collapsibleModule() {
   let name = '';
-  let request = {};
-  let id = 0;
   let isOpen = '';
+  let request = {};
   let contentEl = {};
   let wrapperEl = {};
+  let id = 0;
+  let isLoaded = false;
 
-  function openOnRequestCompletion() {
-    request.xhr.done(() => {
-      contentEl = wrapperEl.querySelector('[data-collapsible-content]');
-      wrapperEl.style.height = `${contentEl.offsetHeight}px`;
-    });
+  function setConfig(targetEl) {
+    name = targetEl.dataset.collapsible;
+    id = targetEl.dataset[name];
+    request = content[name].requests[name];
+    isLoaded = request.loadedIds.indexOf(id) > -1;
+
+    const wrapperElQuery = `[data-collapsible-wrapper="${name}"][data-${name}="${id}"]`;
+    request.wrapperEl = document.querySelector(wrapperElQuery);
+
+    wrapperEl = request.wrapperEl;
+    isOpen = wrapperEl.dataset.collapsibleOpen;
   }
 
   function open() {
     wrapperEl.dataset.collapsibleOpen = 'true';
-    contentEl = wrapperEl.querySelector('[data-collapsible-content]');
 
-    const contentIsLoaded = request.loadedIds.indexOf(id) !== -1;
-
-    if (!contentIsLoaded) {
+    if (!isLoaded) {
       load.get(id, request);
-    }
-
-    if (!contentEl) {
-      openOnRequestCompletion();
+      request.xhr.done(() => {
+        contentEl = wrapperEl.querySelector('[data-collapsible-content]');
+        wrapperEl.style.height = `${contentEl.offsetHeight}px`;
+      });
     } else {
+      contentEl = wrapperEl.querySelector('[data-collapsible-content]');
       wrapperEl.style.height = `${contentEl.offsetHeight}px`;
     }
   }
@@ -40,26 +45,14 @@ function collapsibleModule() {
     wrapperEl.style.height = '0';
   }
 
-  function setConfig(targetEl) {
-    name = targetEl.dataset.collapsible;
-    id = targetEl.dataset[name];
-
-    Object.keys(content).forEach((item) => {
-      if (content[item].requests[name]) request = content[item].requests[name];
-    });
-
-    const wrapperElQuery = `[data-collapsible-wrapper="${name}"][data-${name}="${id}"]`;
-    request.wrapperEl = document.querySelector(wrapperElQuery);
-    wrapperEl = request.wrapperEl;
-
-    isOpen = request.wrapperEl.dataset.collapsibleOpen;
-  }
-
   function toggle(targetEl) {
     setConfig(targetEl);
 
-    if (isOpen === 'false') open();
-    else close();
+    if (isOpen === 'false') {
+      open();
+    } else {
+      close();
+    }
   }
 
   return { toggle };

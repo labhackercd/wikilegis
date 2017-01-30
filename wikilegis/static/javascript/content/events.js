@@ -21,20 +21,7 @@ function clickEvent(event) {
   }
 
   if (dataset.collapsible) {
-    if (dataset.comments) {
-      const commentsRequest = content.comments.requests.comments;
-      const commentsId = dataset.comments;
-      const collapsibleWrapperEl = document.querySelector(`[data-collapsible-wrapper][data-comments="${commentsId}"]`);
-      const collapsibleContentElQuery = '[data-collapsible-content]';
-
-      commentsRequest.wrapperEl = collapsibleWrapperEl;
-
-      if (collapsibleWrapperEl.dataset.collapsibleOpen === 'false') {
-        collapsible.open(collapsibleContentElQuery, commentsId, commentsRequest);
-      } else {
-        collapsible.close(collapsibleContentElQuery, commentsId, commentsRequest);
-      }
-    }
+    collapsible.toggle(event.target);
   }
 
   if (dataset.tab) {

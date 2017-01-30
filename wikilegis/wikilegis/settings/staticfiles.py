@@ -19,6 +19,7 @@ BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
 BOWER_PATH = os.path.join(NODE_MODULES, '.bin/bower')
 BOWER_INSTALLED_APPS = [
     'normalize.css',
+    'https://github.com/labhackercd/fontastic-labhacker.git',
 ]
 
 COMPRESS_PRECOMPILERS = [

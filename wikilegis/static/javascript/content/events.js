@@ -10,20 +10,17 @@ function clickEvent(event) {
   const dataset = event.target.dataset;
 
   if (dataset.drawerOpen) {
-    const contentName = dataset.drawerOpen;
-    const contentId = dataset[contentName];
-
-    drawer.open(contentName, contentId);
+    drawer.open(event.target);
   } else if (dataset.drawerClose) {
     drawer.close(dataset.drawerClose);
   }
 
-  if (dataset.collapsible) {
-    collapsible.toggle(event.target);
-  }
-
   if (dataset.tab) {
     tabs.setActive(event.target);
+  }
+
+  if (dataset.collapsible) {
+    collapsible.toggle(event.target);
   }
 }
 

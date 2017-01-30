@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { requests } from '../config';
 
 function loadModule() {
   let inProgress = [];
@@ -36,18 +37,14 @@ function loadModule() {
     });
   }
 
-  function abortRequests(contentObj) {
+  function abortRequests() {
     inProgress.forEach((requestName) => {
-      contentObj.requests[requestName].xhr.abort();
+      requests[requestName].xhr.abort();
     });
     inProgress = [];
   }
 
-  return {
-    inProgress,
-    get,
-    abortRequests,
-  };
+  return { get, abortRequests };
 }
 
 export default loadModule;

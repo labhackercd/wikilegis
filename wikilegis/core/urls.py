@@ -12,4 +12,6 @@ urlpatterns = [
         views.render_bill_content, name='render_bill_content'),
     url(r'^render/bill_interactions/(?P<segment_id>\d+)/$',
         views.render_bill_interactions, name='render_bill_interactions'),
+    url(r'^render/segment_comments/(?P<segment_id>\d+)/$',
+        views.render_segment_comments, name='render_segment_comments'),
 ]

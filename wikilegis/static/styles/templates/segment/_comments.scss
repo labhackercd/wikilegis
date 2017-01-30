@@ -1,0 +1,5 @@
+.segment__comments-wrapper {
+  height: 0;
+  overflow-y: hidden;
+  transition: height .5s $swift-out;
+}

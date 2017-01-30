@@ -23,20 +23,20 @@
         <input class="banner__search" placeholder="Search" />
       </div>
 
-      <!-- <ul class="wikilegis__bill-list" data-close="bill">
+      <!-- <ul class="wikilegis__bill-list" data-drawer-close="bill">
         {% for bill in bills %}
-        <li class="bill-list__item" data-open="bill" data-bill={{bill.id}}>
+        <li class="bill-list__item" data-drawer-open="bill" data-bill={{bill.id}}>
           {{bill.title}}
         </li>
         {% endfor %}
       </ul> -->
 
-      <ul class="wikilegis__bill-list" data-close="bill">
+      <ul class="wikilegis__bill-list" data-drawer-close="bill">
         {% include "bill/_list-item.html" %}
       </ul>
 
       <div class="wikilegis__bill">
-        <button class="bill__close" data-close="bill">Fechar</button>
+        <button class="bill__close" data-drawer-close="bill">Fechar</button>
 
         <div class="bill__info-wrapper">
           <div class="loader" data-loading="false"></div>
@@ -48,12 +48,12 @@
 
         <div class="bill__interactions-wrapper">
           <nav class="interactions__nav">
-            <a class="nav__item" data-interactions-nav="1">Aba 1</a>
-            <a class="nav__item" data-interactions-nav="2">Aba 2</a>
-            <a class="nav__item" data-interactions-nav="3">Aba 3</a>
+            <a class="nav__item" data-tab="1">Aba 1</a>
+            <a class="nav__item" data-tab="2">Aba 2</a>
+            <a class="nav__item" data-tab="3">Aba 3</a>
           </nav>
 
-          <button class="interactions__close" data-close="interactions">Fechar</button>
+          <button class="interactions__close" data-drawer-close="interactions">Fechar</button>
           <div class="loader" data-loading="false"></div>
         </div>
       </div>

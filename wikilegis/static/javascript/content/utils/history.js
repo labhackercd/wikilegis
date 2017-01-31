@@ -26,8 +26,21 @@ function removePath(name) {
   window.history.pushState(null, null, newPath);
 }
 
+function updatePath(newPath) {
+  window.history.replaceState(null, null, newPath);
+}
+
+function updateHash(newPath, hash) {
+  if (hash !== paths.hash) {
+    paths.update(undefined, hash);
+    window.history.pushState(null, null, newPath);
+  }
+}
+
 export {
   addMultiplePaths,
   addPath,
   removePath,
+  updatePath,
+  updateHash,
 };

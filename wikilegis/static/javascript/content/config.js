@@ -24,14 +24,16 @@ class Request {
 }
 
 class Path {
-  constructor(last = '', current = window.location.pathname) {
+  constructor(last = '', current = window.location.pathname, hash = '') {
     this.last = last;
     this.current = current;
+    this.hash = hash;
   }
 
-  update(current = this.current) {
+  update(current = this.current, hash = this.hash) {
     this.last = this.current;
     this.current = current;
+    this.hash = hash;
   }
 }
 

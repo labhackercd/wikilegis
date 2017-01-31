@@ -1,4 +1,5 @@
 import { paths } from './config';
+import { updatePath, updateHash } from './utils/history';
 import drawerModule from './modules/drawer';
 import tabsModule from './modules/tabs';
 import collapsibleModule from './modules/collapsible';
@@ -16,8 +17,10 @@ function clickEvent(event) {
     drawer.close(dataset.drawerClose);
   }
 
-  if (dataset.tab) {
-    tabs.setActive(event.target);
+  if (dataset.tab && dataset.drawerOpen) {
+    updatePath(event.target.href);
+  } else if (dataset.tab) {
+    updateHash(event.target.href, event.target.hash);
   }
 
   if (dataset.collapsible) {
@@ -40,6 +43,7 @@ function changeContent(pathsDiff, action) {
 function historyChangeEvent() {
   paths.update(window.location.pathname);
 
+  const hash = window.location.hash;
   const pathsLast = paths.last;
   const pathsCurrent = paths.current;
   let pathsDiff = '';
@@ -56,6 +60,12 @@ function historyChangeEvent() {
   } else if (pathsCurrent < pathsLast) {
     pathsDiff = pathsLast.replace(pathsCurrent, '');
     changeContent(pathsDiff, 'close');
+  }
+
+  // specific to tab
+  if (hash.indexOf('tab_') > -1) {
+    const navItemEl = document.querySelector(`.nav__item[data-tab][href="${hash}"]`);
+    tabs.setActive(navItemEl);
   }
 }
 

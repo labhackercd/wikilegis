@@ -1,0 +1,14 @@
+<div class="amendments__content--{{amendment_type}}">
+  <p class="segment__text">
+    <strong>{{segment.segment_type.presentation_name}} {{segment.number}}</strong>
+    {{segment.content|safe}}
+  </p>
+
+  {% for amendment in amendments %}
+    <p class="segment__text">
+      {{amendment.author}}
+      <strong>{{amendment.segment_type.presentation_name}} {{amendment.number}}</strong>
+      {{amendment.content|safe}}
+    </p>
+  {% endfor %}
+</div>

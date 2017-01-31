@@ -1,18 +1,10 @@
 <div
   class="bill__amendments"
   data-content="amendments"
-  data-amendments="1"
+  data-amendments="{{segment.id}}"
   data-tab="1"
 >
-  <div class="amendments__content">
-    <h1>Nav 1</h1>
-  </div>
-
-  <div class="amendments__content">
-    <h1>Nav 2</h1>
-  </div>
-
-  <div class="amendments__content">
-    <h1>Nav 3</h1>
-  </div>
+  {% include "bill/_amendments_content.html" with amendment_type='additive' amendments=segment.additive_amendments.all %}
+  {% include "bill/_amendments_content.html" with amendment_type='modifier' amendments=segment.modifier_amendments.all %}
+  {% include "bill/_amendments_content.html" with amendment_type='supress' amendments=segment.supress_amendments.all %}
 </div>

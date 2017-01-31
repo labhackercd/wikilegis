@@ -16,20 +16,14 @@
   <body>
     <main id="bill-list-search" class="wikilegis" data-bill-open="false">
       <div class="wikilegis__banner">
-        <h1>WIKILEGIS</h1>
+        <h1>Wikilegis</h1>
         <input class="banner__search" placeholder="Search" />
       </div>
 
-      <!-- <ul class="wikilegis__bill-list" data-drawer-close="bill">
-        {% for bill in bills %}
-        <li class="bill-list__item" data-drawer-open="bill" data-bill={{bill.id}}>
-          {{bill.title}}
-        </li>
-        {% endfor %}
-      </ul> -->
-
       <ul class="wikilegis__bill-list" data-drawer-close="bill">
-        {% include "bill/_list-item.html" %}
+        {% for bill in bills %}
+          {% include "bill/_list-item.html" with bill=bill %}
+        {% endfor %}
       </ul>
 
       <div class="wikilegis__bill">
@@ -45,9 +39,9 @@
 
         <div class="bill__amendments-wrapper">
           <nav class="amendments__nav">
-            <a href="#tab_edit" class="nav__item" data-tab-content="amendments" data-tab="1">Aba 1</a>
-            <a href="#tab_add" class="nav__item" data-tab-content="amendments" data-tab="2">Aba 2</a>
-            <a href="#tab_remove" class="nav__item" data-tab-content="amendments" data-tab="3">Aba 3</a>
+            <a href="#tab_edit" class="nav__item" data-tab-content="amendments" data-tab="1">EDIÇÃO</a>
+            <a href="#tab_add" class="nav__item" data-tab-content="amendments" data-tab="2">ADIÇÃO</a>
+            <a href="#tab_remove" class="nav__item" data-tab-content="amendments" data-tab="3">EXCLUSÃO</a>
           </nav>
 
           <button class="amendments__close" data-drawer-close="amendments">Fechar</button>

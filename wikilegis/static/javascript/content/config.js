@@ -1,7 +1,7 @@
 const wikilegisEl = document.getElementsByClassName('wikilegis')[0];
 const billInfoWrapperEl = document.getElementsByClassName('bill__info-wrapper')[0];
 const billContentWrapperEl = document.getElementsByClassName('bill__content-wrapper')[0];
-const billInteractionsWrapperEl = document.getElementsByClassName('bill__interactions-wrapper')[0];
+const billAmendmentsWrapperEl = document.getElementsByClassName('bill__amendments-wrapper')[0];
 
 class Content {
   constructor(name = '', wrapperEl = {}, activeId = 0, lastActiveId = 0) {
@@ -39,13 +39,13 @@ class Path {
 
 const contents = {};
 contents.bill = new Content('bill', wikilegisEl);
-contents.interactions = new Content('interactions', billInteractionsWrapperEl);
+contents.amendments = new Content('amendments', billAmendmentsWrapperEl);
 contents.comments = new Content('comments');
 
 const requests = {};
 requests.info = new Request('bill', 'info', billInfoWrapperEl, 'render/bill_info/');
 requests.content = new Request('bill', 'content', billContentWrapperEl, 'render/bill_content/');
-requests.interactions = new Request('interactions', 'interactions', billInteractionsWrapperEl, 'render/bill_interactions/');
+requests.amendments = new Request('amendments', 'amendments', billAmendmentsWrapperEl, 'render/bill_amendments/');
 requests.comments = new Request('comments', 'comments', undefined, 'render/segment_comments/');
 
 const paths = new Path();

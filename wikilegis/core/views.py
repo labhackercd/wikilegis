@@ -12,8 +12,8 @@ def render_bill_content(request, bill_id):
     return JsonResponse({'html': html})
 
 
-def render_bill_interactions(request, segment_id):
-    html = render_to_string('bill/_interactions.html')
+def render_bill_amendments(request, segment_id):
+    html = render_to_string('bill/_amendments.html')
     return JsonResponse({'html': html})
 
 

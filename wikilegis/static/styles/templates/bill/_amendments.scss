@@ -1,4 +1,4 @@
-.bill__interactions-wrapper {
+.bill__amendments-wrapper {
   background-color: $color-white;
   display: flex;
   flex-direction: column;
@@ -10,12 +10,12 @@
   transition: transform .5s $swift-out;
   width: calc(100% - 300px);
 
-  &[data-interactions-open="true"] {
+  &[data-amendments-open="true"] {
     transform: translateX(0);
   }
 }
 
-.bill__interactions {
+.bill__amendments {
   display: flex;
   flex: 1;
   transition: transform .3s $swift-out;
@@ -25,6 +25,6 @@
   &[data-tab="3"] { transform: translateX(calc(-100% * 2 / 3)); }
 }
 
-.interactions__content {
+.amendments__content {
   flex: 1;
 }

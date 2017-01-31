@@ -38,8 +38,8 @@ function drawerModule() {
 
     // specific to bill and iteractions
     if (updateHistory) {
-      if (content.lastActiveId === contentId && contentName === 'bill' && contents.interactions.activeId) {
-        addMultiplePaths(contentName, contentId, 'interactions', contents.interactions.activeId);
+      if (content.lastActiveId === contentId && contentName === 'bill' && contents.amendments.activeId) {
+        addMultiplePaths(contentName, contentId, 'amendments', contents.amendments.activeId);
       } else {
         addPath(contentName, contentId);
       }
@@ -53,7 +53,7 @@ function drawerModule() {
       $lastActiveContent.addClass('hidden');
 
       // specific to bill and iteractions
-      if (contentName === 'bill' && contents.interactions.activeId) close('interactions');
+      if (contentName === 'bill' && contents.amendments.activeId) close('amendments');
     }
 
     content.wrapperEl.dataset[`${contentName}Open`] = 'true';

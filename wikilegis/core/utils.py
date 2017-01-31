@@ -11,5 +11,6 @@ def references_filename(instance, filename):
 
 def theme_icon_filename(instance, filename):
     path = "bill/themes/"
-    filename = slugify(filename)
+    fname = filename.split('.')
+    filename = slugify(fname[0]) + '.' + fname[-1]
     return os.path.join(path, filename)

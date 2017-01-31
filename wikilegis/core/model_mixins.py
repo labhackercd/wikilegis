@@ -21,6 +21,15 @@ class VoteCountMixin(models.Model):
     downvote_count = models.IntegerField(verbose_name=_("downvotes count"),
                                          default=0)
 
+    def save(self, *args, **kwargs):
+        if self.upvote_count is None:
+            self.upvote_count = 0
+
+        if self.downvote_count is None:
+            self.downvote_count = 0
+
+        return super(VoteCountMixin, self).save(*args, **kwargs)
+
     class Meta:
         abstract = True
 
@@ -30,6 +39,12 @@ class CommentCountMixin(models.Model):
     comments_count = models.IntegerField(verbose_name=_("comments count"),
                                          default=0)
 
+    def save(self, *args, **kwargs):
+        if self.comments_count is None:
+            self.comments_count = 0
+
+        return super(CommentCountMixin, self).save(*args, **kwargs)
+
     class Meta:
         abstract = True
 
@@ -38,6 +53,12 @@ class ParticipationCountMixin(models.Model):
     participation_count = models.IntegerField(
         default=0, verbose_name=_("participations count"))
 
+    def save(self, *args, **kwargs):
+        if self.participation_count is None:
+            self.participation_count = 0
+
+        return super(ParticipationCountMixin, self).save(*args, **kwargs)
+
     class Meta:
         abstract = True
 
@@ -45,6 +66,12 @@ class ParticipationCountMixin(models.Model):
 class AmendmentCountMixin(models.Model):
     amendments_count = models.IntegerField(verbose_name=_("amendments count"),
                                            default=0)
+
+    def save(self, *args, **kwargs):
+        if self.amendments_count is None:
+            self.amendments_count = 0
+
+        return super(AmendmentCountMixin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True
@@ -70,10 +97,6 @@ class SegmentMixin(TimestampedMixin, VoteCountMixin, CommentCountMixin,
     order = models.PositiveIntegerField(_('order'), default=0)
     number = models.CharField(_('number'), null=True,
                               blank=True, max_length=200)
-    parent = models.ForeignKey('self', related_name='children',
-                               verbose_name=_('segment parent'),
-                               null=True, blank=True)
-    content = models.TextField(_('content'))
 
     class Meta:
         abstract = True

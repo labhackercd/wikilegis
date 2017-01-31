@@ -69,6 +69,12 @@ class Bill(TimestampedMixin, ParticipationCountMixin, VoteCountMixin,
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        if self.is_visible is None:
+            self.is_visible = False
+
+        return super(Bill, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = _('Bill')
         verbose_name_plural = _('Bills')
@@ -99,16 +105,34 @@ class BillReference(models.Model):
 
     title = models.CharField(max_length=50, verbose_name=_('title'))
     reference_file = models.FileField(upload_to=references_filename,
-                                      verbose_name=_('reference_file'))
+                                      verbose_name=_('reference file'),
+                                      null=True)
+    url = models.URLField(verbose_name=_('reference url'), null=True)
     bill = models.ForeignKey('Bill', verbose_name=_('bill'))
 
 
 class BillSegment(SegmentMixin, AmendmentCountMixin):
     bill = models.ForeignKey('core.Bill', related_name='segments',
                              verbose_name=_('bill'))
+    parent = models.ForeignKey('self', related_name='children',
+                               verbose_name=_('segment parent'),
+                               null=True, blank=True)
+    content = models.TextField(_('content'))
     additive_amendments_count = models.IntegerField(default=0)
     modifier_amendments_count = models.IntegerField(default=0)
     supress_amendments_count = models.IntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+        if self.additive_amendments_count is None:
+            self.additive_amendments_count = 0
+
+        if self.modifier_amendments_count is None:
+            self.modifier_amendments_count = 0
+
+        if self.supress_amendments_count is None:
+            self.supress_amendments_count = 0
+
+        return super(BillSegment, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ('order',)
@@ -117,6 +141,7 @@ class BillSegment(SegmentMixin, AmendmentCountMixin):
 
 
 class AdditiveAmendment(SegmentMixin):
+    content = models.TextField(_('content'))
     reference = models.ForeignKey('BillSegment', verbose_name=_('reference'),
                                   related_name="additive_amendments")
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -124,6 +149,7 @@ class AdditiveAmendment(SegmentMixin):
 
 
 class ModifierAmendment(SegmentMixin):
+    content = models.TextField(_('content'))
     replaced = models.ForeignKey('BillSegment', verbose_name=_('replaced'),
                                  related_name="modifier_amendments")
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -152,6 +178,10 @@ class SegmentType(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.name = slugify(self.presentation_name)
+        return super(SegmentType, self).save(*args, **kwargs)
 
 
 class UpDownVote(GenericRelationMixin, TimestampedMixin):

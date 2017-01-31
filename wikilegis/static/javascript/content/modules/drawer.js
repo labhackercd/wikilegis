@@ -1,13 +1,16 @@
 import $ from 'jquery';
 import loadModule from './load';
+import historyModule from './history';
 import { contents, requests } from '../config';
 
 const load = loadModule();
+const history = historyModule();
 
 function drawerModule() {
   function close(contentName) {
     const content = contents[contentName];
 
+    history.remove(contentName);
     load.abortRequests();
 
     content.lastActiveId = content.activeId;
@@ -19,6 +22,12 @@ function drawerModule() {
     const contentName = targetEl.dataset.drawerOpen;
     const contentId = targetEl.dataset[contentName];
     const content = contents[contentName];
+
+    if (content.lastActiveId === contentId && contentName === 'bill') {
+      history.addMultiple(contentName, contentId, 'interactions', contents.interactions.activeId);
+    } else {
+      history.add(targetEl, contentName, contentId);
+    }
 
     const $active = $(`[data-content="${contentName}"][data-${contentName}="${contentId}"]`);
     $active.removeClass('hidden');

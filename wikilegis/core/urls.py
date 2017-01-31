@@ -6,6 +6,12 @@ from core import views
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'),
         name='home'),
+    url(r'^bill/(?P<bill_id>\d+)$',
+        TemplateView.as_view(template_name='home.html'),
+        name='bill_index'),
+    url(r'^bill/(?P<bill_id>\d+)/interactions/(?P<segment_id>\d+)$',
+        TemplateView.as_view(template_name='home.html'),
+        name='interactions_index'),
     url(r'^render/bill_info/(?P<bill_id>\d+)/$',
         views.render_bill_info, name='render_bill_info'),
     url(r'^render/bill_content/(?P<bill_id>\d+)/$',

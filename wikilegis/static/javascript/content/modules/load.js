@@ -10,9 +10,9 @@ function loadModule() {
   }
 
   function get(id, request) {
-    const locationPath = window.location.pathname;
+    const locationOrigin = window.location.origin;
     const path = request.path;
-    const url = locationPath + path + id;
+    const url = `${locationOrigin}/${path}${id}`;
 
     $.ajax({
       url,

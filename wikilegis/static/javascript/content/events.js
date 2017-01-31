@@ -69,5 +69,18 @@ function historyChangeEvent() {
   }
 }
 
+function windowLoadEvent() {
+  const hash = window.location.hash;
+
+  changeContent(window.location.pathname, 'open');
+
+  // specific to tab
+  if (hash.indexOf('tab_') > -1) {
+    const navItemEl = document.querySelector(`.nav__item[data-tab][href="${hash}"]`);
+    tabs.setActive(navItemEl);
+  }
+}
+
 document.addEventListener('click', clickEvent);
 window.onpopstate = historyChangeEvent;
+window.onload = windowLoadEvent;

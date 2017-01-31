@@ -23,6 +23,18 @@ class Request {
   }
 }
 
+class Path {
+  constructor(last = '', current = window.location.pathname) {
+    this.last = last;
+    this.current = current;
+  }
+
+  update(current = this.current) {
+    this.last = this.current;
+    this.current = current;
+  }
+}
+
 const contents = {};
 contents.bill = new Content('bill', wikilegisEl);
 contents.interactions = new Content('interactions', billInteractionsWrapperEl);
@@ -34,4 +46,6 @@ requests.content = new Request('bill', 'content', billContentWrapperEl, 'render/
 requests.interactions = new Request('interactions', 'interactions', billInteractionsWrapperEl, 'render/bill_interactions/');
 requests.comments = new Request('comments', 'comments', undefined, 'render/segment_comments/');
 
-export { contents, requests };
+const paths = new Path();
+
+export { contents, requests, paths };

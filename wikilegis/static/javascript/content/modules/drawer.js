@@ -1,16 +1,15 @@
 import $ from 'jquery';
 import loadModule from './load';
-import historyModule from './history';
+import { addMultiplePaths, addPath, removePath } from '../utils/history';
 import { contents, requests } from '../config';
 
 const load = loadModule();
-const history = historyModule();
 
 function drawerModule() {
-  function close(contentName) {
+  function close(contentName, updateHistory = true) {
     const content = contents[contentName];
 
-    history.remove(contentName);
+    if (updateHistory) removePath(contentName);
     load.abortRequests();
 
     content.lastActiveId = content.activeId;
@@ -18,15 +17,32 @@ function drawerModule() {
     content.activeId = 0;
   }
 
-  function open(targetEl) {
-    const contentName = targetEl.dataset.drawerOpen;
-    const contentId = targetEl.dataset[contentName];
+  function open(...args) {
+    let contentName = '';
+    let contentId = 0;
+    let updateHistory = true;
+
+    if (args.length === 1) { // targetEl
+      contentName = args[0].dataset.drawerOpen;
+      contentId = args[0].dataset[contentName];
+    } else if (args.length === 2) { // name, id
+      contentName = args[0];
+      contentId = args[1];
+    } else { // name, id, updateHistory
+      contentName = args[0];
+      contentId = args[1];
+      updateHistory = args[2];
+    }
+
     const content = contents[contentName];
 
-    if (content.lastActiveId === contentId && contentName === 'bill') {
-      history.addMultiple(contentName, contentId, 'interactions', contents.interactions.activeId);
-    } else {
-      history.add(targetEl, contentName, contentId);
+    // specific to bill and iteractions
+    if (updateHistory) {
+      if (content.lastActiveId === contentId && contentName === 'bill' && contents.interactions.activeId) {
+        addMultiplePaths(contentName, contentId, 'interactions', contents.interactions.activeId);
+      } else {
+        addPath(contentName, contentId);
+      }
     }
 
     const $active = $(`[data-content="${contentName}"][data-${contentName}="${contentId}"]`);
@@ -36,7 +52,8 @@ function drawerModule() {
       const $lastActiveContent = $(`[data-content="${contentName}"][data-${contentName}="${content.lastActiveId}"]`);
       $lastActiveContent.addClass('hidden');
 
-      if (contentName === 'bill') close('interactions'); // specific to bill and iteractions
+      // specific to bill and iteractions
+      if (contentName === 'bill' && contents.interactions.activeId) close('interactions');
     }
 
     content.wrapperEl.dataset[`${contentName}Open`] = 'true';

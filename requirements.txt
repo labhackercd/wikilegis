@@ -12,3 +12,4 @@ social-auth-app-django>=0.1.0
 django-crispy-forms>=1.6.1
 requests>=2.12.5
 pillow>=4.0.0
+click>=6.7

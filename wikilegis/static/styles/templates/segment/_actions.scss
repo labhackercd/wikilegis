@@ -40,10 +40,17 @@
     * { pointer-events: none; }
   }
 
+
   .actions__link--comments:hover { background-color: $color-actions-comments; }
   .actions__link--edit:hover { background-color: $color-actions-edit; }
   .actions__link--add:hover { background-color: $color-actions-add; }
   .actions__link--remove:hover { background-color: $color-actions-remove; }
+
+  .actions__link--comments[data-collapsible-open="true"] {
+    background-color: $color-actions-comments;
+    color: $color-white;
+    outline: none;
+  }
 
   .link__icon {
     align-items: center;

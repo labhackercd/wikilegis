@@ -7,6 +7,7 @@ function collapsibleModule() {
   let name = '';
   let isOpen = '';
   let request = {};
+  let triggerEl = {};
   let wrapperEl = {};
   let id = 0;
   let isLoaded = false;
@@ -15,17 +16,18 @@ function collapsibleModule() {
     name = targetEl.dataset.collapsible;
     id = targetEl.dataset[name];
     request = requests[name];
+    triggerEl = targetEl;
     isLoaded = request.loadedIds.indexOf(id) > -1;
 
     const wrapperElQuery = `[data-collapsible-wrapper="${name}"][data-${name}="${id}"]`;
     request.wrapperEl = document.querySelector(wrapperElQuery);
 
     wrapperEl = request.wrapperEl;
-    isOpen = wrapperEl.dataset.collapsibleOpen;
+    isOpen = triggerEl.dataset.collapsibleOpen;
   }
 
   function open() {
-    wrapperEl.dataset.collapsibleOpen = 'true';
+    triggerEl.dataset.collapsibleOpen = 'true';
 
     if (!isLoaded) {
       load.get(id, request);
@@ -40,7 +42,7 @@ function collapsibleModule() {
   }
 
   function close() {
-    wrapperEl.dataset.collapsibleOpen = 'false';
+    triggerEl.dataset.collapsibleOpen = 'false';
     wrapperEl.style.height = '0';
   }
 

@@ -15,10 +15,24 @@
 
   <body>
     <main id="bill-list-search" class="wikilegis" data-bill-open="false">
+      <!-- <input class="banner__search" placeholder="Search" /> -->
       <div class="wikilegis__banner">
-        <h1>Wikilegis</h1>
-        <input class="banner__search" placeholder="Search" />
         <div class="banner__particle-background" id="particles-js"></div>
+        <div class="banner__content">
+          <div class="banner__logo">
+            <img class="logo__image" src="{% static 'images/logo-wikilegis.svg' %}">
+            <img class="logo__text" src="{% static 'images/logo-wikilegis-text.svg' %}">
+          </div>
+          <div class="banner__info">
+            <h1 class="banner__header">Sua ferramenta de edição legislativa</h1>
+            <p class="banner__text">
+              Analise os projetos de lei e contribua com sugestões de nova redação a artigos ou parágrafos. Os deputados relatores das proposições acompanham as participações e podem adotar a sua ideia!
+            </p>
+            <p class="banner__text">
+              Nessa interação, ganha a sociedade, que participa mais ativamente do processo legislativo, e ganha o Parlamento, que aprova leis mais aprimoradas e conectadas às necessidades dos cidadãos.
+            </p>
+          </div>
+        </div>
       </div>
 
       <ul class="wikilegis__bill-list" data-drawer-close="bill">

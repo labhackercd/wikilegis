@@ -18,13 +18,56 @@
   }
 }
 
-
 .wikilegis__banner {
   align-items: center;
-  background-color: red;
+  background-color: $color-background;
   display: flex;
   flex: 0 0 50vw;
   justify-content: center;
+  position: relative;
+
+  .banner__particle-background {
+    bottom: -10%;
+    left: -10%;
+    right: -10%;
+    top: -10%;
+    position: absolute;
+    z-index: 0;
+  }
+
+  .banner__logo {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2em;
+    max-width: 20em;
+    width: 100%;
+  }
+
+  .logo__image {
+    margin-bottom: 2em;
+    width: calc(100% - 4em);
+  }
+
+  .logo__text {
+    width: 100%;
+  }
+
+  .banner__content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2em 4em;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .banner__info {
+    color: white;
+    text-align: center;
+  }
 }
 
 .wikilegis__bill-list {

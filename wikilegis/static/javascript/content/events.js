@@ -1,12 +1,14 @@
 import { paths } from './config';
 import { updatePath, updateHash } from './utils/history';
-import drawerModule from './modules/drawer';
-import tabsModule from './modules/tabs';
 import collapsibleModule from './modules/collapsible';
+import drawerModule from './modules/drawer';
+import hoverModule from './modules/hover';
+import tabsModule from './modules/tabs';
 
-const drawer = drawerModule();
-const tabs = tabsModule();
 const collapsible = collapsibleModule();
+const drawer = drawerModule();
+const hover = hoverModule();
+const tabs = tabsModule();
 
 function clickEvent(event) {
   const dataset = event.target.dataset;
@@ -25,6 +27,18 @@ function clickEvent(event) {
 
   if (dataset.collapsible) {
     collapsible.toggle(event.target);
+  }
+}
+
+function mouseoverEvent(event) {
+  if (event.target.dataset.hover === 'segment-add') {
+    hover.showSegmentAdd(event.target);
+  }
+}
+
+function mouseoutEvent(event) {
+  if (event.target.dataset.hover === 'segment-add') {
+    hover.hideSegmentAdd(event.target);
   }
 }
 
@@ -82,5 +96,8 @@ function windowLoadEvent() {
 }
 
 document.addEventListener('click', clickEvent);
+document.addEventListener('mouseover', mouseoverEvent);
+document.addEventListener('mouseout', mouseoutEvent);
+
 window.onpopstate = historyChangeEvent;
 window.onload = windowLoadEvent;

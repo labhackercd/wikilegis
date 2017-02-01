@@ -1,6 +1,7 @@
 .segment {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   + .segment {
     margin-top: .5em;

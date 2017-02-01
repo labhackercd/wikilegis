@@ -1,0 +1,24 @@
+.segment-add {
+  align-items: center;
+  display: none;
+  margin: 1em 1em .5em;
+
+  &.visible {
+    display: flex;
+  }
+}
+
+.segment-add__line {
+  background-color: rgba($color-actions-add, .5);
+  flex: 1;
+  height: 1px;
+}
+
+.segment-add__icon {
+  background-color: rgba($color-actions-add, .5);
+  border-radius: 50%;
+  color: $color-white;
+  display: flex;
+  margin: 0 .5em;
+  padding: .25em;
+}

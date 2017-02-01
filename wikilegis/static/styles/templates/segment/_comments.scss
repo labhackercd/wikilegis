@@ -6,7 +6,22 @@
 
 .segment__comments {
   list-style-type: none;
-  padding-top: 1em;
+  padding-left: 2em;
+  padding-top: 1.5em;
+  position: relative;
+
+  &::after {
+    border-bottom: .75em solid $color-white;
+    border-left: 1em solid transparent;
+    border-right: 1em solid transparent;
+    content: '';
+    height: 0;
+    left: 4em;
+    position: absolute;
+    top: 1.5em;
+    transform: translateY(-100%);
+    width: 0;
+  }
 }
 
 .comments__item {
@@ -16,7 +31,7 @@
   padding: 1em 1.5em;
 
   + .comments__item {
-    margin-top: .5em;
+    border-top: 1px solid $color-gray-75;
   }
 
   .item__avatar {
@@ -46,5 +61,28 @@
     display: block;
     font-size: .8em;
     text-align: right;
+  }
+}
+
+.comments__form {
+  background-color: $color-white;
+  border-top: 1px solid $color-gray-75;
+  display: flex;
+  height: 3em;
+  padding: 1em;
+
+  .form__input {
+    background-color: $color-gray-95;
+    border: 0;
+    flex: 1;
+    outline: none;
+    padding-left: 1em;
+  }
+
+  .form__btn {
+    background-color: $color-accent;
+    border: 0;
+    color: $color-white;
+    padding: 0 1em;
   }
 }

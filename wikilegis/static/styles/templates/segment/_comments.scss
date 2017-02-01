@@ -20,8 +20,12 @@
   }
 
   .item__avatar {
-    flex: 1;
+    flex: 0;
     margin-right: 1.5em;
+  }
+
+  .item__content {
+    flex: 1;
   }
 
   .avatar__img {

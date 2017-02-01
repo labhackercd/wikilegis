@@ -5,11 +5,17 @@
   will-change: transform;
 
   .content__close {
+    color: $color-gray-55;
     cursor: pointer;
     font-size: 2em;
     left: .5em;
     position: absolute;
     top: .5em;
+    transition: color .2s $swift-out;
+
+    &:hover {
+      color: $color-accent;
+    }
 
     * { pointer-events: none; }
   }

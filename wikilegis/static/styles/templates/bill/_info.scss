@@ -10,7 +10,7 @@
   padding: 1em 2em 4em;
 
   .info__header {
-    border-bottom: 1px solid $color-gray-77;
+    border-bottom: 1px solid $color-gray-75;
     display: flex;
     margin-bottom: .5em;
     padding: 0 .5em .5em;
@@ -18,7 +18,7 @@
 
   .header__link {
     align-items: center;
-    color: $color-gray-77;
+    color: $color-gray-75;
     display: flex;
     font-size: 2em;
     line-height: 1;
@@ -26,7 +26,7 @@
   }
 
   .header__search {
-    border-left: 1px solid $color-gray-77;
+    border-left: 1px solid $color-gray-75;
     display: flex;
     margin-left: .5em;
     padding-left: .5em;
@@ -34,7 +34,7 @@
 
   .search__icon {
     align-self: center;
-    color: $color-gray-77;
+    color: $color-gray-75;
     font-size: 1.5em;
   }
 
@@ -75,7 +75,7 @@
   }
 
   .info__reporting-member {
-    border-top: 1px solid $color-gray-77;
+    border-top: 1px solid $color-gray-75;
     margin-top: 1em;
     padding-top: 1em;
   }

@@ -1,5 +1,53 @@
-[class^="segment__actions"] {
-  .actions__link * {
-    pointer-events: none;
+.segment__actions--primary {
+  .actions__vote {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    + .actions__vote {
+      border-top: 1px solid $color-gray-75;
+      margin-top: .5em;
+      padding-top: .5em;
+    }
+  }
+
+  .vote__icon {
+    color: $color-gray-55;
+  }
+
+  .vote__count {
+    font-size: .7em;
+  }
+}
+
+.segment__actions--secondary {
+  display: flex;
+
+  [class^="actions__link"] {
+    align-items: center;
+    color: $color-gray-55;
+    cursor: pointer;
+    display: flex;
+    font-weight: 700;
+    padding: .5em;
+    text-decoration: none;
+    transition: background-color .3s $swift-out, color .3s $swift-out;
+
+    &:hover {
+      color: $color-white;
+    }
+
+    * { pointer-events: none; }
+  }
+
+  .actions__link--comments:hover { background-color: $color-actions-comments; }
+  .actions__link--edit:hover { background-color: $color-actions-edit; }
+  .actions__link--add:hover { background-color: $color-actions-add; }
+  .actions__link--remove:hover { background-color: $color-actions-remove; }
+
+  .link__icon {
+    align-items: center;
+    display: flex;
+    margin-right: .5em;
   }
 }

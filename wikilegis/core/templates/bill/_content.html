@@ -1,16 +1,17 @@
-<div class="bill__content" data-content="bill" data-bill="{{bill.id}}">
+{% load static %}
+
+<section class="bill__content" data-content="bill" data-bill="{{bill.id}}">
   <div class="content__header">
-    <h1 class="header__title">
-      {{bill.title}}
-    </h1>
+    <div class="header__section-top">
+      <img class="header__logo" src="{% static 'images/brasao.svg' %}" alt="brasão da república" />
 
-    <h2 class="header__epigraph">
-      {{bill.epigraph}}
-    </h2>
+      <div class="header__title">
+        <h1 class="title__name">{{bill.title}}</h1>
+        <h2 class="title__epigraph">{{bill.epigraph}}</h2>
+      </div>
+    </div>
 
-    <p class="header__description">
-      {{bill.description}}
-    </p>
+    <p class="header__description">{{bill.description}}</p>
   </div>
 
   <ol class="content__segments">
@@ -18,4 +19,4 @@
       {% include "segment/_index.html" with segment=segment %}
     {% endfor %}
   </ol>
-</div>
+</section>

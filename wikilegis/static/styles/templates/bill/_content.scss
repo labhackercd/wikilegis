@@ -1,0 +1,52 @@
+.bill__content-wrapper {
+  background-color: $color-gray-95;
+  overflow-y: auto;
+  width: calc(100vw - 400px);
+  will-change: transform;
+
+  .content__close {
+    cursor: pointer;
+    font-size: 2em;
+    left: .5em;
+    position: absolute;
+    top: .5em;
+  }
+}
+
+.bill__content {
+  padding: 4em;
+
+  .content__header {
+    padding: 0 3em;
+  }
+
+  .header__section-top {
+    display: flex;
+  }
+
+  .header__logo {
+    height: 100px;
+    width: 100px;
+  }
+
+  .header__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1em;
+  }
+
+  .title__name {
+    margin: 0 0 .2em;
+  }
+
+  .title__epigraph {
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .content__segments {
+    margin-top: 2em;
+    padding: 0;
+  }
+}

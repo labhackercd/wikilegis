@@ -1,8 +1,32 @@
-<div class="bill__info" data-content="bill" data-bill="{{bill.id}}">
-  <h3 class="info__title">{{bill.title}}</h3>
-  <p class="info__text">{{bill.description}}</p>
-  {{bill.theme.description}}
-  {{bill.title}}
-  {{bill.created}}
-  {{bill.reporting_member}}
-</div>
+{% load static %}
+
+<section class="bill__info" data-content="bill" data-bill="{{bill.id}}">
+  <div class="info__header">
+    <a class="header__link" href="" aria-label="login">
+      <i class="link__icon icon icon-user"></i>
+    </a>
+
+    <label class="header__search">
+      <i class="search__icon icon icon-search"></i>
+      <input id="bill-content-search" class="search__input" type="text" placeholder="PESQUISAR..." />
+    </label>
+  </div>
+
+  <div class="info__logos">
+    <!-- <img class="logo__img" src="{% static 'images/logo-wikilegis.svg' %}" alt="Wikilegis logo icon" /> -->
+    <!-- <img class="logo__text" src="{% static 'images/logo-wikilegis-text.svg' %}" alt="Wikilegis logo text" /> -->
+  </div>
+
+  <h3 class="info__theme--{{bill.theme.slug}}">
+    <i class="theme__icon icon icon-{{bill.theme.slug}}"></i>
+    {{bill.theme.description}}
+  </h3>
+  <h2 class="info__title">{{bill.title}}</h2>
+  <p class="info__description">{{bill.description}}</p>
+  <span class="info__created">Criado em {{bill.created}}</span>
+
+  <div class="info__reporting-member">
+    <span class="reporting-member__title">Apresentado por:</span>
+    <h5 class="reporting-member__name">{{bill.reporting_member}}</h5>
+  </div>
+</section>

@@ -3,6 +3,7 @@
 
 // Ambience
 @import 'ambience/animations';
+@import 'ambience/categories';
 @import 'ambience/colors';
 @import 'ambience/fonts';
 
@@ -13,8 +14,10 @@
 @import 'pages/wikilegis';
 
 // Templates
-@import 'templates/bill/index';
 @import 'templates/bill/amendments';
+@import 'templates/bill/index';
+@import 'templates/bill/info';
+
 @import 'templates/segment/actions';
 @import 'templates/segment/comments';
 @import 'templates/segment/index';

@@ -6,7 +6,46 @@ $color-shadow-1: rgba(0, 0, 0, .1);
 
 // Gray
 $color-gray-95: hsl(0, 0, 95%);
+$color-gray-77: hsl(0, 0, 77%);
 
 // Black & White
 $color-white: #fff;
 $color-black: #000;
+
+// Category theme colors
+$color-category: (
+  documento: #b1b1ba,
+  adm-publica: #5a9ab6,
+  agropecuaria: #1a7c7b,
+  assistencia-social: #5d7f1a,
+  cidades: #657981,
+  ciencia: #6b78dd,
+  comunicacao: #0d80a0,
+  consumidor: #ef4545,
+  cultura: #c05fba,
+  direito-e-justica: #1844a3,
+  direitos-humanos: #a96085,
+  economia: #2a8945,
+  educacao: #3abf56,
+  esportes: #006130,
+  familia: #f39a35,
+  industria: #544e4e,
+  institucional: #22a23d,
+  meio-ambiente: #c5db9b,
+  participacao-e-transparencia: #4f69de,
+  politica: #b0614f,
+  previdencia: #52c0ca,
+  relacoes-exteriores: #12b5c4,
+  saude: #3c864a,
+  seguranca: #e6413d,
+  trabalho: #6a97b3,
+  transporte-e-transito: #71706a,
+  turismo: #707a66,
+);
+
+@function color-category($category) {
+  @if not map-has-key($color-category, $category) {
+    @warn "Key `#{$category}` not found in $color-category map.";
+  }
+  @return map-get($color-category, $category);
+}

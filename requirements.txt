@@ -13,3 +13,4 @@ django-crispy-forms>=1.6.1
 requests>=2.12.5
 pillow>=4.0.0
 click>=6.7
+django-autofixture>=0.12.1

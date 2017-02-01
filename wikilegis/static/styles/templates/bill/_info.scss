@@ -44,6 +44,22 @@
     max-width: calc(300px - 9.5em);
   }
 
+  .info__logos {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: .5em;
+  }
+
+  .logo__img {
+    height: 25px;
+    margin-right: 5px;
+  }
+
+  .logo__text {
+    height: 20px;
+  }
+
   [class^="info__theme"] {
     border-bottom: 1px solid;
     font-size: .8em;

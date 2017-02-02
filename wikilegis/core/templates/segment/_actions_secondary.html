@@ -9,7 +9,7 @@
     tabindex="0"
   >
     <i class="link__icon icon icon-comments"></i>
-    <span class="link__text">COMENTÁRIOS (100)</span>
+    <span class="link__text">COMENTÁRIOS ({{segment.comments_count}})</span>
   </a>
 
   <a
@@ -23,7 +23,7 @@
     tabindex="0"
   >
     <i class="link__icon icon icon-pencil"></i>
-    <span class="link__text">EDIÇÃO (100)</span>
+    <span class="link__text">EDIÇÃO ({{segment.modifier_amendments_count}})</span>
   </a>
 
   <a
@@ -38,7 +38,7 @@
     tabindex="0"
   >
     <i class="link__icon icon icon-plus"></i>
-    <span class="link__text">ADIÇÃO (100)</span>
+    <span class="link__text">ADIÇÃO ({{segment.additive_amendments_count}})</span>
   </a>
 
   <a
@@ -52,6 +52,6 @@
     tabindex="0"
   >
     <i class="link__icon icon icon-trash"></i>
-    <span class="link__text">EXCLUSÃO (100)</span>
+    <span class="link__text">EXCLUSÃO ({{segment.supress_amendments_count}})</span>
   </a>
 </div>

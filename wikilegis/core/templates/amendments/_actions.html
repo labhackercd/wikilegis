@@ -1,12 +1,12 @@
 <div class="amendment__actions">
   <div class="actions__vote" role="button" tabindex="0">
     <i class="vote__icon icon icon-thumbs-up"></i>
-    <span class="vote__count">100</span>
+    <span class="vote__count">{{amendment.upvote_count}}</span>
   </div>
 
   <div class="actions__vote" role="button" tabindex="0">
     <i class="vote__icon icon icon-thumbs-down"></i>
-    <span class="vote__count">100</span>
+    <span class="vote__count">{{amendment.downvote_count}}</span>
   </div>
 
   <div
@@ -19,6 +19,6 @@
     tabindex="0"
   >
     <i class="comments__icon icon icon-comments"></i>
-    <span class="comments__text">COMENTÁRIOS (100)</span>
+    <span class="comments__text">COMENTÁRIOS ({{amendment.comments_count}})</span>
   </div>
 </div>

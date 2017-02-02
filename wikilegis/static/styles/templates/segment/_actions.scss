@@ -29,7 +29,8 @@
     cursor: pointer;
     display: flex;
     font-weight: 700;
-    padding: .5em;
+    outline: none;
+    padding: .5em 1em;
     text-decoration: none;
     transition: background-color .3s $swift-out, color .3s $swift-out;
 

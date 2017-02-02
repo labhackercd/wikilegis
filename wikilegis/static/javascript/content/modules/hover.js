@@ -1,14 +1,14 @@
 function hoverModule() {
-  const segmentAddEL = document.getElementsByClassName('segment-add')[0];
+  const segmentAddEl = document.getElementsByClassName('segment-add')[0];
 
   function showSegmentAdd(targetEl) {
     const segmentEl = targetEl.offsetParent;
-    segmentEl.appendChild(segmentAddEL);
-    segmentAddEL.classList.add('visible');
+    segmentEl.appendChild(segmentAddEl);
+    segmentAddEl.classList.add('visible');
   }
 
   function hideSegmentAdd() {
-    segmentAddEL.classList.remove('visible');
+    segmentAddEl.classList.remove('visible');
   }
 
   return { showSegmentAdd, hideSegmentAdd };

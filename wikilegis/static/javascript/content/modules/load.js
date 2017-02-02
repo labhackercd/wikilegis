@@ -9,10 +9,11 @@ function loadModule() {
     loaderEl.dataset.loading = loading;
   }
 
-  function get(id, request) {
+  function get(id, request, param) {
+    const pathParam = !param ? id : param;
     const locationOrigin = window.location.origin;
     const path = request.path;
-    const url = `${locationOrigin}/${path}${id}`;
+    const url = `${locationOrigin}/${path}${pathParam}`;
 
     $.ajax({
       url,

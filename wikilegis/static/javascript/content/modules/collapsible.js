@@ -5,6 +5,8 @@ const load = loadModule();
 
 function collapsibleModule() {
   let name = '';
+  let nameCamelCase = '';
+  let param = '';
   let isOpen = '';
   let request = {};
   let triggerEl = {};
@@ -12,10 +14,18 @@ function collapsibleModule() {
   let id = 0;
   let isLoaded = false;
 
+  function toCamelCase(string) {
+    return string.replace(/-([a-z])/g, char => char[1].toUpperCase());
+  }
+
   function setConfig(targetEl) {
-    name = targetEl.dataset.collapsible;
-    id = targetEl.dataset[name];
-    request = requests[name];
+    const dataset = targetEl.dataset;
+
+    name = dataset.collapsible;
+    nameCamelCase = toCamelCase(name);
+    param = dataset.param;
+    id = dataset[nameCamelCase];
+    request = requests[nameCamelCase];
     triggerEl = targetEl;
     isLoaded = request.loadedIds.indexOf(id) > -1;
 
@@ -30,7 +40,7 @@ function collapsibleModule() {
     triggerEl.dataset.collapsibleOpen = 'true';
 
     if (!isLoaded) {
-      load.get(id, request);
+      load.get(id, request, param);
       request.xhr.done(() => {
         const contentEl = wrapperEl.querySelector('[data-collapsible-content]');
         wrapperEl.style.height = `${contentEl.offsetHeight}px`;

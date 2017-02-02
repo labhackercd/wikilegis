@@ -46,7 +46,8 @@ const requests = {};
 requests.info = new Request('bill', 'info', billInfoWrapperEl, 'render/bill_info/');
 requests.content = new Request('bill', 'content', billContentWrapperEl, 'render/bill_content/');
 requests.amendments = new Request('amendments', 'amendments', billAmendmentsWrapperEl, 'render/bill_amendments/');
-requests.comments = new Request('comments', 'comments', undefined, 'render/segment_comments/');
+requests.amendmentComments = new Request('comments', 'comments', undefined, 'render/amendment_comments/');
+requests.segmentComments = new Request('comments', 'comments', undefined, 'render/segment_comments/');
 
 const paths = new Path();
 

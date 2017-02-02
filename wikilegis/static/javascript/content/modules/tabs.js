@@ -8,13 +8,16 @@ function tabsModule() {
     const id = targetEl.dataset[name] ? targetEl.dataset[name] : contents[name].activeId;
     const isLoaded = request.loadedIds.indexOf(id) > -1;
     const contentElQuery = `[data-tab][data-content="${name}"][data-${name}="${id}"]`;
+    const targetParentEl = targetEl.parentElement;
 
     if (!isLoaded) {
       request.xhr.done(() => {
         contents[name].wrapperEl.querySelector(contentElQuery).dataset.tab = index;
+        targetParentEl.dataset.tab = index;
       });
     } else {
       contents[name].wrapperEl.querySelector(contentElQuery).dataset.tab = index;
+      targetParentEl.dataset.tab = index;
     }
   }
 

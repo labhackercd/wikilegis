@@ -36,6 +36,10 @@
     border-top: 1px solid $color-gray-75;
   }
 
+  &:last-of-type {
+    border-bottom: 1px solid $color-gray-75;
+  }
+
   .item__avatar {
     flex: 0;
     margin-right: 1.5em;
@@ -68,7 +72,6 @@
 
 .comments__form {
   background-color: $color-white;
-  border-top: 1px solid $color-gray-75;
   display: flex;
   height: 3em;
   padding: 1em;

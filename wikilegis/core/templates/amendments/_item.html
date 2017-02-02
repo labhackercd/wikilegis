@@ -1,0 +1,29 @@
+<li class="amendment">
+  <div class="amendment__content">
+    <div class="content__section-top">
+      <div class="section-top__section-left">
+        <img class="content__avatar" src="https://www.myinstants.com/media/instants_images/chaves.jpg" alt="{{amendment.author}} avatar" />
+      </div>
+
+      <div class="section-top__section-right">
+        <h4 class="content__author">{{amendment.author}}</h4>
+        <p class="content__text">
+          <strong>{{amendment.amendment_type.presentation_name}} {{amendment.number}}</strong>
+          {{amendment.content|safe}}
+        </p>
+      </div>
+    </div>
+
+    <div class="content__section-bottom">
+      {% include "amendments/_actions.html" with amendment_type=amendment_type amendment=amendment %}
+    </div>
+  </div>
+
+  <div
+    class="amendment__comments-wrapper"
+    data-amendment-comments="{{amendment.id}}"
+    data-collapsible-wrapper="amendment-comments"
+  >
+    <div class="loader" data-loading="false"></div>
+  </div>
+</li>

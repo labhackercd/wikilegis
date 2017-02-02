@@ -1,0 +1,99 @@
+.bill__amendments-wrapper {
+  background-color: $color-gray-95;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  right: 0;
+  transform: translateX(100%);
+  transition: transform .5s $swift-out;
+  width: calc(100% - 300px);
+  will-change: transform;
+
+  &[data-amendments-open="true"] {
+    transform: translateX(0);
+  }
+}
+
+.amendments__close {
+  color: $color-gray-55;
+  cursor: pointer;
+  font-size: 2em;
+  left: .5em;
+  position: absolute;
+  top: .5em;
+  transition: color .2s $swift-out;
+
+  &:hover {
+    color: $color-accent;
+  }
+
+  * { pointer-events: none; }
+}
+
+.amendments__nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 4em;
+
+  &[data-tab="1"] [data-tab="1"] {
+    background-color: $color-actions-edit;
+    box-shadow: inset -1px 2px 2px 0 $color-shadow-2;
+    color: $color-white;
+  }
+
+  &[data-tab="2"] [data-tab="2"] {
+    background-color: $color-actions-add;
+    box-shadow: inset -1px 2px 2px 0 $color-shadow-2;
+    color: $color-white;
+  }
+
+  &[data-tab="3"] [data-tab="3"] {
+    background-color: $color-actions-remove;
+    box-shadow: inset -1px 2px 2px 0 $color-shadow-2;
+    color: $color-white;
+  }
+
+  .nav__item {
+    align-items: center;
+    background-color: $color-white;
+    box-shadow: 1px 2px 2px 0 $color-shadow-2;
+    color: $color-gray-55;
+    display: flex;
+    font-weight: 700;
+    margin-right: .5em;
+    padding: .5em 2em;
+    text-decoration: none;
+
+    + .nav__item {
+      margin-left: 1em;
+    }
+
+    &:hover {
+      box-shadow: inset -1px 2px 2px 0 $color-shadow-2;
+      color: $color-white;
+
+      &[data-tab="1"] { background-color: $color-actions-edit; }
+      &[data-tab="2"] { background-color: $color-actions-add; }
+      &[data-tab="3"] { background-color: $color-actions-remove; }
+    }
+  }
+
+  .item__icon {
+    display: flex;
+    font-size: 1.75em;
+    margin-right: .5em;
+  }
+}
+
+.bill__amendments {
+  display: flex;
+  flex: 1;
+  transition: transform .3s $swift-out;
+  width: 300%;
+
+  &[data-tab="2"] { transform: translateX(calc(-100% / 3)); }
+  &[data-tab="3"] { transform: translateX(calc(-100% * 2 / 3)); }
+}

@@ -1,0 +1,12 @@
+<div class="amendments__content--{{amendment_type}}">
+  <p class="content__text">
+    <strong>{{segment.segment_type.presentation_name}} {{segment.number}}</strong>
+    {{segment.content|safe}}
+  </p>
+
+  <ol class="content__amendments">
+    {% for amendment in amendments %}
+      {% include "amendments/_item.html" with amendment_type=amendment_type amendment=amendment %}
+    {% endfor %}
+  </ol>
+</div>

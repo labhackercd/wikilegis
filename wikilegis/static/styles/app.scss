@@ -10,17 +10,23 @@
 // Base
 @import 'base/structure';
 
+// Shared
+@import 'shared/comments';
+
 // Pages
 @import 'pages/wikilegis';
 
 // Templates
-@import 'templates/bill/amendments';
+@import 'templates/amendments/actions';
+@import 'templates/amendments/content';
+@import 'templates/amendments/index';
+@import 'templates/amendments/item';
+
 @import 'templates/bill/content';
 @import 'templates/bill/info';
 
 @import 'templates/segment/actions';
 @import 'templates/segment/add';
-@import 'templates/segment/comments';
 @import 'templates/segment/index';
 
 // Utils

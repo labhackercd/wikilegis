@@ -30,7 +30,22 @@ def render_bill_content(request, bill_id):
 
 def render_bill_amendments(request, segment_id):
     segment = get_object_or_404(models.BillSegment, pk=segment_id)
-    html = render_to_string('bill/_amendments.html', {'segment': segment})
+    html = render_to_string('amendments/_index.html', {'segment': segment})
+    return JsonResponse({'html': html})
+
+
+def render_amendment_comments(request, amendment_type, amendment_id):
+    if amendment_type == 'modifier':
+        amendment = get_object_or_404(models.ModifierAmendment,
+                                      pk=amendment_id)
+    elif amendment_type == 'additive':
+        amendment = get_object_or_404(models.AdditiveAmendment,
+                                      pk=amendment_id)
+    elif amendment_type == 'supress':
+        amendment = get_object_or_404(models.SupressAmendment,
+                                      pk=amendment_id)
+    html = render_to_string('amendments/_comments.html',
+                            {'amendment': amendment})
     return JsonResponse({'html': html})
 
 

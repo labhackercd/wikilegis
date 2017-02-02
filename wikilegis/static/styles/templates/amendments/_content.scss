@@ -1,0 +1,11 @@
+[class^="amendments__content"] {
+  flex: 1;
+  padding: 4em;
+
+  .content__amendments {
+    border-top: 1px solid $color-gray-75;
+    list-style-type: none;
+    margin-top: 2em;
+    padding: 2em 0 0;
+  }
+}

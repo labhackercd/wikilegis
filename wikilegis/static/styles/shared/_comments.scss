@@ -1,10 +1,12 @@
-.segment__comments-wrapper {
+.segment__comments-wrapper,
+.amendment__comments-wrapper {
   height: 0;
   overflow-y: hidden;
   transition: height .5s $swift-out;
 }
 
-.segment__comments {
+.segment__comments,
+.amendment__comments {
   list-style-type: none;
   padding-left: 2em;
   padding-top: 1.5em;

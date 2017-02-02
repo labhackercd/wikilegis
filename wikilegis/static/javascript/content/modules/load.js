@@ -11,9 +11,8 @@ function loadModule() {
 
   function get(id, request, param) {
     const pathParam = !param ? id : param;
-    const locationOrigin = window.location.origin;
     const path = request.path;
-    const url = `${locationOrigin}/${path}${pathParam}`;
+    const url = `/${path}${pathParam}`;
 
     $.ajax({
       url,

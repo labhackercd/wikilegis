@@ -36,7 +36,7 @@ function drawerModule() {
 
     const content = contents[contentName];
 
-    // specific to bill and iteractions
+    // specific to bill and amendments
     if (updateHistory) {
       if (content.lastActiveId === contentId && contentName === 'bill' && contents.amendments.activeId) {
         addMultiplePaths(contentName, contentId, 'amendments', contents.amendments.activeId);
@@ -52,7 +52,7 @@ function drawerModule() {
       const $lastActiveContent = $(`[data-content="${contentName}"][data-${contentName}="${content.lastActiveId}"]`);
       $lastActiveContent.addClass('hidden');
 
-      // specific to bill and iteractions
+      // specific to bill and amendments
       if (contentName === 'bill' && contents.amendments.activeId) close('amendments');
     }
 

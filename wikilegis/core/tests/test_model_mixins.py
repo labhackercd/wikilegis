@@ -1,0 +1,29 @@
+from autofixture import AutoFixture
+from django.test import TestCase
+from core import models
+
+
+class ModelMixinsTestCase(TestCase):
+
+    def setUp(self):
+        theme_fixture = AutoFixture(models.BillTheme)
+        bill_fixture = AutoFixture(models.Bill)
+        theme_fixture.create_one()
+        self.bill = bill_fixture.create_one()
+
+    def test_vote_count_mixin(self):
+        self.bill.upvote_count = None
+        self.bill.downvote_count = None
+        self.bill.save()
+        self.assertEquals(self.bill.upvote_count, 0)
+        self.assertEquals(self.bill.downvote_count, 0)
+
+    def test_comment_count_mixin(self):
+        self.bill.comments_count = None
+        self.bill.save()
+        self.assertEquals(self.bill.comments_count, 0)
+
+    def test_participation_count_mixin(self):
+        self.bill.participation_count = None
+        self.bill.save()
+        self.assertEquals(self.bill.participation_count, 0)

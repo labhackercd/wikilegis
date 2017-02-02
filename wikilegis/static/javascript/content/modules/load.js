@@ -39,9 +39,7 @@ function loadModule() {
   }
 
   function abortRequests() {
-    inProgress.forEach((requestName) => {
-      requests[requestName].xhr.abort();
-    });
+    inProgress.forEach(requestName => requests[requestName].xhr.abort());
     inProgress = [];
   }
 

@@ -9,7 +9,8 @@ class User(AbstractUser):
     username = models.CharField(
         _('username'),
         max_length=150,
-        help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.')
+        help_text=_('Required. 150 characters or fewer. Letters, '
+                    'digits and @/./+/-/_ only.')
     )
     email = models.EmailField(_('email address'), blank=True, unique=True)
 

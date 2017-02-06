@@ -22,16 +22,16 @@
   align-items: center;
   background-color: $color-background;
   display: flex;
-  flex: 0 0 50vw;
+  flex: 0 0 45vw;
   justify-content: center;
   position: relative;
 
   .banner__particle-background {
     bottom: -10%;
     left: -10%;
+    position: absolute;
     right: -10%;
     top: -10%;
-    position: absolute;
     z-index: 0;
   }
 
@@ -70,19 +70,21 @@
   }
 
   .banner__header {
-      font-weight: 800;
+    font-weight: 800;
   }
 
   .banner__text {
-      font-size: 1.2em;
+    font-size: 1.2em;
   }
 }
 
 .wikilegis__bill-list {
-  flex: 0 0 50vw;
+  display: flex;
+  flex: 0 0 55vw;
+  flex-direction: column;
   list-style: none;
   margin: 0;
-  max-width: 50vw;
+  max-width: 55vw;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0;
@@ -102,11 +104,84 @@
   }
 
   .bill-list__item {
-    height: 100px;
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    padding: 1.5em 0;
 
-    &:nth-child(odd) {
-      background-color: gray;
+    + .bill-list__item {
+      border-top: .25em solid hsla(0, 0%, 85%, 1);
     }
+  }
+
+  .item__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  .item__category {
+    align-items: center;
+    display: flex;
+    flex: 0 0 8em;
+    justify-content: center;
+  }
+
+  [class^="item__icon"] {
+    align-items: center;
+    background-color: #2cd27e;
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    font-size: 2.2em;
+    height: 2em;
+    justify-content: center;
+    text-align: center;
+    width: 2em;
+  }
+
+  @each $category in $categories {
+    .item__icon--#{$category} {
+      background-color: color-category($category);
+    }
+  }
+
+  .item__description {
+    font-weight: 300;
+    margin: 0 0 1rem;
+  }
+
+  .item__info {
+    color: hsla(0, 0%, 40%, 1);
+    font-size: .85em;
+  }
+
+  .item__title {
+    color: #264040;
+    font-size: 1.5em;
+    font-weight: 800;
+    margin: 0 0 1rem;
+  }
+
+  .item__suggestions {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 12em;
+    justify-content: center;
+  }
+
+  .suggestions__amount {
+    color: #2cd27e;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .suggestions__label {
+    color: #264040;
+    font-weight: 700;
+    text-transform: uppercase;
   }
 }
 

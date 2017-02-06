@@ -1,4 +1,17 @@
 <li class="bill-list__item" data-drawer-open="bill" data-bill="{{bill.id}}">
-  <h4 class="item__title">{{bill.title}}</h4>
-  <p class="item__description">{{bill.description}}</p>
+  <div class="item__category">
+    <i class="item__icon--{{bill.theme.slug}} icon icon-{{bill.theme.slug}}"></i>
+  </div>
+  <div class="item__main">
+    <h4 class="item__title">{{bill.title}}</h4>
+    <p class="item__description">{{bill.description}}</p>
+    <div class="item__info">
+      Criado em <span class="item__open-date">14/12/2016</span>
+      Encerra em <span class="item__close-date">24/02/2017</span>
+    </div>
+  </div>
+  <div class="item__suggestions">
+    <span class="suggestions__amount">144</span>
+    <span class="suggestions__label">Sugestões</span>
+  </div>
 </li>

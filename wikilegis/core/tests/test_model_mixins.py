@@ -27,3 +27,10 @@ class ModelMixinsTestCase(TestCase):
         self.bill.participation_count = None
         self.bill.save()
         self.assertEquals(self.bill.participation_count, 0)
+
+    def test_amendment_count_mixin(self):
+        segment_fixture = AutoFixture(models.BillSegment)
+        segment = segment_fixture.create_one()
+        segment.amendments_count = None
+        segment.save()
+        self.assertEquals(segment.amendments_count, 0)

@@ -1,29 +1,26 @@
 language: python
-
 python:
-  - "3.4"
-  - "3.5"
-  - "3.5-dev" # 3.5 development branch
-  - "3.6-dev" # 3.6 development branch
-
+- '3.4'
+- '3.5'
+- 3.5-dev
+- 3.6-dev
 matrix:
   allow_failures:
-    - python: "3.5-dev"
-    - python: "3.6-dev"
-
+  - python: 3.5-dev
+  - python: 3.6-dev
 before_install:
-  - nvm install 7.2.0
-  - nvm use 7.2.0
-
+- nvm install 7.2.0
+- nvm use 7.2.0
 install:
-  - pip install -r requirements.txt
-  - pip install -r ci-requirements.txt
-  - npm install
-
+- pip install -r requirements.txt
+- pip install -r ci-requirements.txt
+- npm install
 script:
-  - coverage run wikilegis/manage.py test
-  - flake8 wikilegis
-  - npm run lint
-
+- coverage run wikilegis/manage.py test wikilegis/
+- flake8 wikilegis
+- npm run lint
 after_success:
-  - coveralls
+- coveralls
+notifications:
+  slack:
+    secure: anv6C48Orjp1zcxe568Qn7INrm7o4XJ5+t1d6zdjQlZ5XoG3Ox4bLjIV7bCGhzbQ5oKgPj+EMLxzf5IZ+IoTEv3ia1tFtZWxTCUIgnJGi2EvG42yHzz6Ggc1ACO2yWrV5jVIzGQTc7pEQhYtcg/RnToMaIVIsKePKh5XbZcFu/uP5wigDBY2y+HZI54b1xLFjntATmECCiKr63URN6hh9+8u08VulRG7wSztgvmo/rd39V7sovkRwNGvVrlJ7nAsuKqQh/wmOcBohkqXJiK00QCYrCRcS55K9xsGuEQRsRc7N1J78FobV7kPO4/aLpSjf73aoOp9TAScQ8/IAxYPgiOLY8kJSVoREHG1Q1vp0Uf+5JrosXGzisw/+JYoH5iPFEUmX65bptMevesyHt6rj6Q8gmTQJhZz1aPmYuPvS309o5ByVaf9BgqqFt+Vrx5xaZKceN0078DeiaBYxfZnDSbNsw3AFCuTTI6Y4KYnzWU6MgN26ZoBUaLkQpYvdr20C8jriPHOj7PSYU5mQD7SDtCY/GtKPahAyW17LTmqP6yb318cXTOA35mbDMzsSdQ82+w1F3mESJY3Fy9LIdB9sjTwc+NdAHeImbUrsOgS7mgUrEU6XzlECP+ylBG+hFBJe4iTf1olezghi7/9EhHWa0Y0wypHhy/LUXBWIgRUiB8=

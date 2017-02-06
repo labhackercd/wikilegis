@@ -6,6 +6,10 @@
   &[data-bill-open="true"] {
     transform: translateX(-50vw);
 
+    .wikilegis__bill-list {
+      overflow: hidden;
+    }
+
     .wikilegis__bill-list::after {
       opacity: .5;
       transition: opacity .5s $swift-out, z-index 0s 0s;
@@ -92,11 +96,13 @@
 
   &::after {
     background-color: $color-black;
+    bottom: 0;
     content: '';
     height: 100vh;
     left: 0;
     opacity: 0;
-    position: absolute;
+    position: fixed;
+    right: 0;
     top: 0;
     transition: opacity .5s $swift-out, z-index 0s .5s;
     width: 100vw;

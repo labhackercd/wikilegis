@@ -1,5 +1,6 @@
 from autofixture import AutoFixture
 from django.contrib.auth import get_user_model
+from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 from django.utils.text import slugify
 from core import models
@@ -9,7 +10,6 @@ class ModelsTestCase(TestCase):
 
     def setUp(self):
         self.theme_fixture = AutoFixture(models.BillTheme)
-        self.comment_fixture = AutoFixture(models.Comment)
         self.bill_fixture = AutoFixture(models.Bill)
         self.segment_fixture = AutoFixture(models.BillSegment)
 
@@ -20,7 +20,15 @@ class ModelsTestCase(TestCase):
         self.assertEquals(theme.__str__(), 'theme-description')
 
     def test_comment_str(self):
-        comment = self.comment_fixture.create_one()
+        self.theme_fixture.create_one()
+        ctype = ContentType.objects.get_for_model(models.Bill)
+        bill = self.bill_fixture.create_one()
+        comment_fixture = AutoFixture(models.Comment, field_values={
+            'author': AutoFixture(get_user_model()).create_one(),
+            'content_type': ctype,
+            'object_id': bill.id
+        })
+        comment = comment_fixture.create_one()
         comment.text = 'test comment'
         comment.save()
         self.assertEquals(comment.__str__(), 'test comment')

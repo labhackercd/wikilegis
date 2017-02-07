@@ -28,10 +28,11 @@ class BillTheme(models.Model):
         self.slug = slugify(self.description)
         return super(BillTheme, self).save(*args, **kwargs)
 
-    description = models.CharField(_('description'), max_length=50)
+    description = models.CharField(_('description'),
+                                   max_length=50, unique=True)
     slug = models.SlugField(_('slug'), max_length=50)
     icon = models.ImageField(upload_to=theme_icon_filename,
-                             verbose_name=_('icon'))
+                             verbose_name=_('icon'), null=True)
 
 
 class Comment(TimestampedMixin, GenericRelationMixin):

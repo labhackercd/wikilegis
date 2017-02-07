@@ -1,6 +1,7 @@
 {% extends "bill/_base.html" %}
 
 {% load comments %}
+{% load votes %}
 {% load previous_segments %}
 {% load static %}
 {% load i18n %}
@@ -141,7 +142,8 @@
             <h5>{% trans "Proposed by the society" %}</h5>
         </div>
         {% endif %}
-        {% for amendment in segment.substitutes.all %}
+        {% order_by_score for segment.substitutes.all as ordered_substitutes %}
+        {% for amendment in ordered_substitutes %}
         <div class="row layarticle prop" id="amendment-{{ amendment.pk }}">
             <div class="col s2 m1">
                 <div class="votes">

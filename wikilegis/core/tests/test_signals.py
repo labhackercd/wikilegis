@@ -1,0 +1,65 @@
+from autofixture import AutoFixture
+from django.contrib.auth import get_user_model
+from django.contrib.contenttypes.models import ContentType
+from django.test import TestCase
+from core import models, signals
+
+
+class ModelMixinsTestCase(TestCase):
+
+    def setUp(self):
+        AutoFixture(models.BillTheme).create_one()
+        self.bill = AutoFixture(models.Bill).create_one()
+        self.segment_fixture = AutoFixture(models.BillSegment, field_values={
+            'bill': self.bill
+        })
+        self.bill_ctype = ContentType.objects.get_for_model(models.Bill)
+        self.user = AutoFixture(get_user_model()).create_one()
+
+    def tearDown(self):
+        self.bill.delete()
+
+    def test_update_votes_downvote(self):
+        AutoFixture(models.UpDownVote, field_values={
+            'user': self.user,
+            'content_type': self.bill_ctype,
+            'object_id': self.bill.id
+        }).create_one()
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.downvote_count, 1)
+
+    def test_update_votes_upvote(self):
+        AutoFixture(models.UpDownVote, field_values={
+            'user': self.user,
+            'content_type': self.bill_ctype,
+            'object_id': self.bill.id,
+            'vote': True
+        }).create_one()
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.upvote_count, 1)
+
+    def test_update_votes_change_upvote(self):
+        vote = AutoFixture(models.UpDownVote, field_values={
+            'user': self.user,
+            'content_type': self.bill_ctype,
+            'object_id': self.bill.id,
+            'vote': True
+        }).create_one()
+        vote.vote = False
+        vote.save()
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.upvote_count, 0)
+        self.assertEquals(bill.downvote_count, 1)
+
+    def test_update_votes_change_downvote(self):
+        vote = AutoFixture(models.UpDownVote, field_values={
+            'user': self.user,
+            'content_type': self.bill_ctype,
+            'object_id': self.bill.id,
+            'vote': False
+        }).create_one()
+        vote.vote = True
+        vote.save()
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.upvote_count, 1)
+        self.assertEquals(bill.downvote_count, 0)

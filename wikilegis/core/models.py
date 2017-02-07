@@ -4,7 +4,7 @@ from django.utils.text import slugify
 from django.conf import settings
 from core.model_mixins import (TimestampedMixin, VoteCountMixin, SegmentMixin,
                                GenericRelationMixin, CommentCountMixin,
-                               AmendmentCountMixin, ParticipationCountMixin)
+                               AmendmentCountMixin)
 from core.utils import references_filename, theme_icon_filename
 
 

@@ -49,7 +49,7 @@ class Comment(TimestampedMixin, GenericRelationMixin):
                                verbose_name=_('author'), null=True)
 
 
-class Bill(TimestampedMixin, ParticipationCountMixin, VoteCountMixin,
+class Bill(TimestampedMixin, AmendmentCountMixin, VoteCountMixin,
            CommentCountMixin):
     title = models.CharField(_('subject'), max_length=255)
     epigraph = models.CharField(_('epigraph'), max_length=255, null=True)

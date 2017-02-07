@@ -11,3 +11,9 @@ class CoreConfig(AppConfig):
                           sender=models.UpDownVote)
         post_save.connect(signals.update_comments_count,
                           sender=models.Comment)
+        post_save.connect(signals.update_additive_amendment_count,
+                          sender=models.AdditiveAmendment)
+        post_save.connect(signals.update_modifier_amendment_count,
+                          sender=models.ModifierAmendment)
+        post_save.connect(signals.update_supress_amendment_count,
+                          sender=models.SupressAmendment)

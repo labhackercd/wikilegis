@@ -6,6 +6,7 @@ class BillThemeAdmin(admin.ModelAdmin):
     list_display = ('description', 'slug')
     search_fields = ('description', 'slug')
     ordering = ('description',)
+    readonly_fields = ('slug',)
 
 
 class CommentAdmin(admin.ModelAdmin):

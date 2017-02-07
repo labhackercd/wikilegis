@@ -32,7 +32,7 @@ class BillTheme(models.Model):
                                    max_length=50, unique=True)
     slug = models.SlugField(_('slug'), max_length=50)
     icon = models.ImageField(upload_to=theme_icon_filename,
-                             verbose_name=_('icon'), null=True)
+                             verbose_name=_('icon'), null=True, blank=True)
 
 
 class Comment(TimestampedMixin, GenericRelationMixin):

@@ -16,8 +16,7 @@ THIRD_PARTY = [
     'compressor',
     'compressor_toolkit',
     'debug_toolbar',
-    'rest_framework',
-    'rest_framework.authtoken',
+    'tastypie',
     'corsheaders',
     'djangobower',
     'crispy_forms',
@@ -29,6 +28,7 @@ if config('ENABLE_SOCIAL_AUTH', default=0, cast=bool):
 WIKILEGIS_APPS = [
     'accounts',
     'core',
+    'api',
 ]
 
 if config('CONNECT_TO_LEGACY_WIKILEGIS', default=False, cast=bool):

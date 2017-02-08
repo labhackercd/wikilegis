@@ -45,7 +45,7 @@ class ModelsTestCase(TestCase):
         bill = self.bill_fixture.create_one()
         bill.is_visible = None
         bill.save()
-        self.assertEquals(bill.is_visible, False)
+        self.assertEquals(bill.is_visible, True)
 
     def test_bill_video_str(self):
         self.theme_fixture.create_one()

@@ -57,7 +57,7 @@ class Bill(TimestampedMixin, AmendmentCountMixin, VoteCountMixin,
     closing_date = models.DateField(_('closing date'))
     status = models.CharField(_('status'), max_length=20,
                               choices=BILL_STATUS_CHOICES, default='1')
-    is_visible = models.BooleanField(default=False, verbose_name=_('visible'))
+    is_visible = models.BooleanField(default=True, verbose_name=_('visible'))
     theme = models.ForeignKey('BillTheme', verbose_name=_('theme'))
     allowed_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='allowed_bills',
@@ -71,7 +71,7 @@ class Bill(TimestampedMixin, AmendmentCountMixin, VoteCountMixin,
 
     def save(self, *args, **kwargs):
         if self.is_visible is None:
-            self.is_visible = False
+            self.is_visible = True
 
         return super(Bill, self).save(*args, **kwargs)
 

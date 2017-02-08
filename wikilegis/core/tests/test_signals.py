@@ -2,7 +2,7 @@ from autofixture import AutoFixture
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
-from core import models, signals
+from core import models
 
 
 class ModelMixinsTestCase(TestCase):
@@ -14,6 +14,9 @@ class ModelMixinsTestCase(TestCase):
             'bill': self.bill
         })
         self.bill_ctype = ContentType.objects.get_for_model(models.Bill)
+        self.segment_ctype = ContentType.objects.get_for_model(
+            models.BillSegment
+        )
         self.user = AutoFixture(get_user_model()).create_one()
 
     def tearDown(self):
@@ -63,3 +66,16 @@ class ModelMixinsTestCase(TestCase):
         bill = models.Bill.objects.get(pk=self.bill.id)
         self.assertEquals(bill.upvote_count, 1)
         self.assertEquals(bill.downvote_count, 0)
+
+    def test_update_votes_participation_count(self):
+        segment = self.segment_fixture.create_one()
+        vote = AutoFixture(models.UpDownVote, field_values={
+            'user': self.user,
+            'content_type': self.segment_ctype,
+            'object_id': segment.id,
+            'vote': False
+        }).create_one()
+        vote.vote = True
+        vote.save()
+        segment = models.BillSegment.objects.get(pk=segment.id)
+        self.assertEquals(segment.participation_count, 1)

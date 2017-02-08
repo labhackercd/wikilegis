@@ -95,3 +95,16 @@ class ModelMixinsTestCase(TestCase):
         }).create_one()
         segment = models.BillSegment.objects.get(pk=segment.id)
         self.assertEquals(segment.participation_count, 1)
+
+    def test_update_additive_amendment_count(self):
+        segment = self.segment_fixture.create_one()
+        AutoFixture(models.AdditiveAmendment, field_values={
+            'reference': segment}
+        ).create_one()
+        segment = models.BillSegment.objects.get(pk=segment.id)
+        self.assertEquals(segment.amendments_count, 1)
+        self.assertEquals(segment.participation_count, 1)
+        self.assertEquals(segment.additive_amendments_count, 1)
+
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.amendments_count, 1)

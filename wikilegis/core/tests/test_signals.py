@@ -69,13 +69,29 @@ class ModelMixinsTestCase(TestCase):
 
     def test_update_votes_participation_count(self):
         segment = self.segment_fixture.create_one()
-        vote = AutoFixture(models.UpDownVote, field_values={
+        AutoFixture(models.UpDownVote, field_values={
             'user': self.user,
             'content_type': self.segment_ctype,
             'object_id': segment.id,
-            'vote': False
         }).create_one()
-        vote.vote = True
-        vote.save()
+        segment = models.BillSegment.objects.get(pk=segment.id)
+        self.assertEquals(segment.participation_count, 1)
+
+    def test_update_comments_count(self):
+        AutoFixture(models.Comment, field_values={
+            'author': self.user,
+            'content_type': self.bill_ctype,
+            'object_id': self.bill.id,
+        }).create_one()
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.comments_count, 1)
+
+    def test_update_comments_participation_count(self):
+        segment = self.segment_fixture.create_one()
+        AutoFixture(models.Comment, field_values={
+            'author': self.user,
+            'content_type': self.segment_ctype,
+            'object_id': segment.id,
+        }).create_one()
         segment = models.BillSegment.objects.get(pk=segment.id)
         self.assertEquals(segment.participation_count, 1)

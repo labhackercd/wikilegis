@@ -17,7 +17,7 @@ class Command(BaseCommand):
         users = User.objects.filter(newsletters__isnull=False, newsletters__periodicity='daily').distinct()
         bill_proposals = defaultdict(list)
         for user in users:
-            for newsletter in user.newsletters.all():
+            for newsletter in user.newsletters.filter(bill__status='published'):
                 for segment in newsletter.bill.segments.filter(modified__gte=datetime.now()-timedelta(days=1), original=False):
                     bill_proposals[newsletter.bill].append(segment)
             if bill_proposals:

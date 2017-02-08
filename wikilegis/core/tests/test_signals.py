@@ -121,3 +121,16 @@ class ModelMixinsTestCase(TestCase):
 
         bill = models.Bill.objects.get(pk=self.bill.id)
         self.assertEquals(bill.amendments_count, 1)
+
+    def test_update_supress_amendment_count(self):
+        segment = self.segment_fixture.create_one()
+        AutoFixture(models.SupressAmendment, field_values={
+            'supressed': segment}
+        ).create_one()
+        segment = models.BillSegment.objects.get(pk=segment.id)
+        self.assertEquals(segment.amendments_count, 1)
+        self.assertEquals(segment.participation_count, 1)
+        self.assertEquals(segment.supress_amendments_count, 1)
+
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.amendments_count, 1)

@@ -11,6 +11,11 @@ class ModelMixinsTestCase(TestCase):
         theme_fixture.create_one()
         self.bill = bill_fixture.create_one()
 
+        segment_fixture = AutoFixture(models.BillSegment, field_values={
+            'bill': self.bill
+        })
+        self.segment = segment_fixture.create_one()
+
     def test_vote_count_mixin(self):
         self.bill.upvote_count = None
         self.bill.downvote_count = None
@@ -24,9 +29,9 @@ class ModelMixinsTestCase(TestCase):
         self.assertEquals(self.bill.comments_count, 0)
 
     def test_participation_count_mixin(self):
-        self.bill.participation_count = None
-        self.bill.save()
-        self.assertEquals(self.bill.participation_count, 0)
+        self.segment.participation_count = None
+        self.segment.save()
+        self.assertEquals(self.segment.participation_count, 0)
 
     def test_amendment_count_mixin(self):
         segment_fixture = AutoFixture(models.BillSegment)

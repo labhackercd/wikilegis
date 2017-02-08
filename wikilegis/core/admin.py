@@ -17,8 +17,8 @@ class CommentAdmin(admin.ModelAdmin):
 
 class BillAdmin(admin.ModelAdmin):
     list_display = (
-        'title', 'theme', 'reporting_member', 'status', 'participation_count',
-        'upvote_count', 'downvote_count', 'comments_count')
+        'title', 'theme', 'reporting_member', 'status', 'upvote_count',
+        'downvote_count', 'comments_count')
     list_filter = ('theme', 'is_visible', 'status')
     search_fields = ('title', 'epigraph', 'description')
     ordering = ('created',)

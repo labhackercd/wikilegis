@@ -4,7 +4,7 @@ from django.utils.text import slugify
 from django.conf import settings
 from core.model_mixins import (TimestampedMixin, VoteCountMixin, SegmentMixin,
                                GenericRelationMixin, CommentCountMixin,
-                               AmendmentCountMixin, ParticipationCountMixin)
+                               AmendmentCountMixin)
 from core.utils import references_filename, theme_icon_filename
 
 
@@ -49,7 +49,7 @@ class Comment(TimestampedMixin, GenericRelationMixin):
                                verbose_name=_('author'), null=True)
 
 
-class Bill(TimestampedMixin, ParticipationCountMixin, VoteCountMixin,
+class Bill(TimestampedMixin, AmendmentCountMixin, VoteCountMixin,
            CommentCountMixin):
     title = models.CharField(_('subject'), max_length=255)
     epigraph = models.CharField(_('epigraph'), max_length=255, null=True)

@@ -27,14 +27,13 @@ def update_votes_count(sender, instance, created, **kwargs):
 
 def update_comments_count(sender, instance, created, **kwargs):
     commented_class = instance.content_object.__class__
-    if created:
-        if issubclass(commented_class, mixins.CommentCountMixin):
-            instance.content_object.comments_count += 1
+    if created and issubclass(commented_class, mixins.CommentCountMixin):
+        instance.content_object.comments_count += 1
 
-        if issubclass(commented_class, mixins.ParticipationCountMixin):
-            instance.content_object.participation_count += 1
+    if created and issubclass(commented_class, mixins.ParticipationCountMixin):
+        instance.content_object.participation_count += 1
 
-        instance.content_object.save()
+    instance.content_object.save()
 
 
 def update_additive_amendment_count(sender, instance, created, **kwargs):

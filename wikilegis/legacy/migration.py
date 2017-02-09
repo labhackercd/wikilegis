@@ -155,7 +155,7 @@ class BillSegmentMigration(BaseMigration):
         return models.Bill.objects.get(pk=data.id)
 
     def clean_segment_type(self, data, legacy_instance):
-        return models.SegmentType.objects.get(pk=data.id)
+        return models.SegmentType.objects.get(pk=legacy_instance.type.id)
 
     def clean_parent(self, data, legacy_instance):
         if legacy_instance.parent is not None:

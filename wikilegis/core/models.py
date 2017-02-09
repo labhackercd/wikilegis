@@ -108,7 +108,8 @@ class BillReference(models.Model):
                                       verbose_name=_('reference file'),
                                       null=True)
     url = models.URLField(verbose_name=_('reference url'), null=True)
-    bill = models.ForeignKey('Bill', verbose_name=_('bill'))
+    bill = models.ForeignKey('Bill', verbose_name=_('bill'),
+                             related_name='references')
 
 
 class BillSegment(SegmentMixin, AmendmentCountMixin):
@@ -167,9 +168,9 @@ class SegmentType(models.Model):
     name = models.CharField(_('name'), max_length=200)
     presentation_name = models.CharField(_('presentation name'),
                                          max_length=200, blank=True, null=True)
-    parent = models.ForeignKey('self', related_name='children',
-                               verbose_name=_('parent type'),
-                               null=True, blank=True)
+    parents = models.ManyToManyField('self', related_name='children',
+                                     verbose_name=_('parent type'),
+                                     null=True, blank=True)
     editable = models.BooleanField(_('editable'), default='True')
 
     class Meta:

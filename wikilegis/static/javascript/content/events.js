@@ -12,9 +12,18 @@ const tabs = tabsModule();
 
 function clickEvent(event) {
   const dataset = event.target.dataset;
+  const parent = event.target.closest('[data-drawer-open]');
+
+  let parentDataset = null;
+  if (parent) {
+    parentDataset = parent.dataset;
+  }
+
 
   if (dataset.drawerOpen) {
     drawer.open(event.target);
+  } else if (parentDataset && parentDataset.drawerOpen) {
+    drawer.open(parent);
   } else if (dataset.drawerClose) {
     drawer.close(dataset.drawerClose);
   }

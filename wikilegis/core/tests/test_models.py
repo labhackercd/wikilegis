@@ -63,6 +63,24 @@ class ModelsTestCase(TestCase):
         reference = fixture.create_one()
         self.assertEquals(reference.__str__(), 'test title')
 
+    def test_segment_str_with_number_and_segment_type(self):
+        self.theme_fixture.create_one()
+        self.bill_fixture.create_one()
+        segment_type = AutoFixture(models.SegmentType, field_values={
+            'presentation_name': 'artigo'}).create_one()
+        segment = self.segment_fixture.create_one()
+        segment.number = '1'
+        segment.segment_type = segment_type
+        segment.save()
+        self.assertEquals(segment.__str__(), 'artigo 1')
+
+    def test_segment_str_without_number_and_segment_type(self):
+        self.theme_fixture.create_one()
+        self.bill_fixture.create_one()
+        segment = self.segment_fixture.create_one()
+        segment.save()
+        self.assertEquals(segment.__str__(), 'segment')
+
     def test_segment_save(self):
         self.theme_fixture.create_one()
         self.bill_fixture.create_one()

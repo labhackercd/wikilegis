@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.utils.text import slugify
 from django.conf import settings
 from core.model_mixins import (TimestampedMixin, VoteCountMixin, SegmentMixin,
@@ -121,6 +121,13 @@ class BillSegment(SegmentMixin, AmendmentCountMixin):
     additive_amendments_count = models.IntegerField(default=0)
     modifier_amendments_count = models.IntegerField(default=0)
     supress_amendments_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        if self.number and self.segment_type:
+            return '{kind} {number}'.format(
+                kind=self.segment_type.name, number=self.number)
+        else:
+            return _('segment')
 
     def save(self, *args, **kwargs):
         if self.additive_amendments_count is None:

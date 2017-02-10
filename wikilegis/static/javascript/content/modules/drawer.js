@@ -63,10 +63,10 @@ function drawerModule() {
       const contentRequest = requests[request].content === contentName ? requests[request] : false;
 
       if (contentRequest) {
-        let sections = contentRequest.wrapperEl.querySelectorAll('section');
+        const sections = contentRequest.wrapperEl.querySelectorAll('section');
         sections.forEach((el) => {
           contentRequest.wrapperEl.removeChild(el);
-        })
+        });
         load.get(contentId, contentRequest);
       }
     });

@@ -62,7 +62,11 @@ function drawerModule() {
     Object.keys(requests).forEach((request) => {
       const contentRequest = requests[request].content === contentName ? requests[request] : false;
 
-      if (contentRequest && contentRequest.loadedIds.indexOf(contentId) === -1) {
+      if (contentRequest) {
+        let sections = contentRequest.wrapperEl.querySelectorAll('section');
+        sections.forEach((el) => {
+          contentRequest.wrapperEl.removeChild(el);
+        })
         load.get(contentId, contentRequest);
       }
     });

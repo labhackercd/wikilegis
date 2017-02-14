@@ -56,17 +56,29 @@ def render_segment_comments(request, segment_id):
     return JsonResponse({'html': html})
 
 
+def create_comment(model, segment_id, request):
+    ctype = ContentType.objects.get_for_model(model)
+    segment = get_object_or_404(model, pk=segment_id)
+    comment = models.Comment.objects.create(
+        content_type=ctype,
+        object_id=segment.id,
+        text=request.POST.get('comment'),
+        author=request.user
+    )
+    html = render_to_string('segment/_comment.html',
+                            {'comment': comment})
+    return JsonResponse({'html': html})
+
+
 def render_new_comment(request, segment_id, segment_type):
     if request.user.is_authenticated() and request.method == 'POST':
         if segment_type == 'segment':
-            ctype = ContentType.objects.get_for_model(models.BillSegment)
-            segment = get_object_or_404(models.BillSegment, pk=segment_id)
-            comment = models.Comment.objects.create(
-                content_type=ctype,
-                object_id=segment.id,
-                text=request.POST.get('comment'),
-                author=request.user
-            )
-            html = render_to_string('segment/_comment.html',
-                                    {'comment': comment})
-            return JsonResponse({'html': html})
+            return create_comment(models.BillSegment, segment_id, request)
+        if segment_type == 'modifier':
+            return create_comment(models.ModifierAmendment,
+                                  segment_id, request)
+        if segment_type == 'supress':
+            return create_comment(models.SupressAmendment, segment_id, request)
+        if segment_type == 'additive':
+            return create_comment(models.AdditiveAmendment,
+                                  segment_id, request)

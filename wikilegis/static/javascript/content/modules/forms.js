@@ -7,15 +7,13 @@ const load = loadModule();
 function formsModule() {
   function sendComment(formEl) {
     const comment = formEl.text.value;
-    const data = {comment: comment};
+    const data = { comment };
     if (comment) {
       const $container = $(formEl).closest('[data-collapsible-content]');
       const segmentType = $container.closest('[data-segment-type]')[0].dataset.segmentType;
 
       let dataAttribute = segmentType;
-      if (segmentType != 'segment') {
-        dataAttribute = 'amendment';
-      }
+      if (segmentType !== 'segment') dataAttribute = 'amendment';
 
       const commentWrapperEl = $container.closest('[data-comments-wrapper]')[0];
       const segmentId = commentWrapperEl.getAttribute(`data-${dataAttribute}-comments`);
@@ -24,13 +22,12 @@ function formsModule() {
       requests.newComment.path = `render/new_comment/${segmentId}/${segmentType}/`;
       load.post(segmentId, requests.newComment, data);
 
-      requests.newComment.xhr.done((xhr) => {
+      requests.newComment.xhr.done(() => {
         commentWrapperEl.style.height = `${$container.outerHeight()}px`;
         formEl.reset();
       });
-
     } else {
-      alert('Favor comentar alguma coisa :)')
+      // TODO: alert user to write something on input
     }
   }
 

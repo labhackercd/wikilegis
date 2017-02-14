@@ -37,12 +37,46 @@ function loadModule() {
     });
   }
 
+  function post(id, request, data) {
+    const path = request.path;
+    const url = `/${path}`;
+
+    $.ajax({
+      url,
+      type: 'POST',
+      data,
+      beforeSend(xhr) {
+        if (!this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", getCSRF());
+        }
+        request.xhr = xhr; // eslint-disable-line no-param-reassign
+      },
+      success(xhr) {
+        console.log(xhr);
+
+        request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
+      },
+      error(xhr, status) {
+        console.log(status);
+      },
+      complete() {
+        console.log('completed');
+      }
+    })
+  }
+
+  function getCSRF() {
+    let value = "; " + document.cookie;
+    let parts = value.split("; csrftoken=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+  }
+
   function abortRequests() {
     inProgress.forEach(requestName => requests[requestName].xhr.abort());
     inProgress = [];
   }
 
-  return { get, abortRequests };
+  return { get, post, abortRequests };
 }
 
 export default loadModule;

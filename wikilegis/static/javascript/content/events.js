@@ -4,11 +4,13 @@ import collapsibleModule from './modules/collapsible';
 import drawerModule from './modules/drawer';
 import hoverModule from './modules/hover';
 import tabsModule from './modules/tabs';
+import formsModule from './modules/forms';
 
 const collapsible = collapsibleModule();
 const drawer = drawerModule();
 const hover = hoverModule();
 const tabs = tabsModule();
+const forms = formsModule();
 
 function clickEvent(event) {
   const dataset = event.target.dataset;
@@ -48,6 +50,15 @@ function mouseoverEvent(event) {
 function mouseoutEvent(event) {
   if (event.target.dataset.hover === 'segment-add') {
     hover.hideSegmentAdd(event.target);
+  }
+}
+
+function submitEvent(event) {
+  event.preventDefault();
+  const dataset = event.target.dataset;
+
+  if ('commentsForm' in dataset) {
+    forms.sendComment(event.target);
   }
 }
 
@@ -107,6 +118,7 @@ function windowLoadEvent() {
 document.addEventListener('click', clickEvent);
 document.addEventListener('mouseover', mouseoverEvent);
 document.addEventListener('mouseout', mouseoutEvent);
+document.addEventListener('submit', submitEvent);
 
 window.onpopstate = historyChangeEvent;
 window.onload = windowLoadEvent;

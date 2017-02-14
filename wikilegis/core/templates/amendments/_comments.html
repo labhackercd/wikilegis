@@ -1,20 +1,11 @@
-<ol class="amendment__comments" data-collapsible-content="amendment-comments">
-  {% for comment in amendment.comments.all %}
-    <li class="comments__item">
-      <div class="item__avatar">
-        <img class="avatar__img" src="https://www.myinstants.com/media/instants_images/chaves.jpg" alt="{{comment.author.first_name}} avatar" />
-      </div>
-
-      <div class="item__content">
-        <h4 class="content__author">{{comment.author.first_name}}</h4>
-        <p class="content__text">{{comment.text|safe}}</p>
-        <span class="content__created">{{comment.created}}</span>
-      </div>
-    </li>
-  {% endfor %}
-
-  <div class="comments__form">
-    <input class="form__input" type="text" placeholder="Insira seu comentário" />
+<div class="segment__comments-content" data-collapsible-content="segment-comments">
+  <ol class="amendment__comments" data-collapsible-content="amendment-comments" data-comments-list>
+    {% for comment in amendment.comments.all %}
+      {% include "segment/_comment.html" with comment=comment %}
+    {% endfor %}
+  </ol>
+  <form class="comments__form" action="/test" data-comments-form>
+    <input class="form__input" name="text" type="text" placeholder="Insira seu comentário" />
     <button class="form__btn">Enviar</button>
-  </div>
-</ol>
+  </form>
+</div>

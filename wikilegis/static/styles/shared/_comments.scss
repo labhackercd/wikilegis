@@ -8,6 +8,7 @@
 .segment__comments,
 .amendment__comments {
   list-style-type: none;
+  overflow-x: hidden;
   padding-left: 2em;
   padding-top: 1.5em;
   position: relative;
@@ -27,6 +28,7 @@
 }
 
 .comments__item {
+  animation: slide-in 0.3s $swift-out;
   align-items: center;
   background-color: $color-white;
   display: flex;
@@ -75,6 +77,7 @@
   display: flex;
   height: 3em;
   padding: 1em;
+  margin-left: 2em;
 
   .form__input {
     background-color: $color-gray-95;

@@ -22,4 +22,6 @@ urlpatterns = [
         views.render_amendment_comments, name='render_amendment_comments'),
     url(r'^render/segment_comments/(?P<segment_id>\d+)/$',
         views.render_segment_comments, name='render_segment_comments'),
+    url(r'^render/segment_comments/(?P<segment_id>\d+)/(?P<segment_type>\w+)/$',
+        views.render_new_comment, name='render_new_segment_comments'),
 ]

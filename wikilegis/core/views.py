@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.generic.base import TemplateView
@@ -53,3 +54,19 @@ def render_segment_comments(request, segment_id):
     segment = get_object_or_404(models.BillSegment, pk=segment_id)
     html = render_to_string('segment/_comments.html', {'segment': segment})
     return JsonResponse({'html': html})
+
+
+def render_new_comment(request, segment_id, segment_type):
+    if request.user.is_authenticated() and request.method == 'POST':
+        if segment_type == 'segment':
+            ctype = ContentType.objects.get_for_model(models.BillSegment)
+            segment = get_object_or_404(models.BillSegment, pk=segment_id)
+            comment = models.Comment.objects.create(
+                content_type=ctype,
+                object_id=segment.id,
+                text=request.POST.get('comment'),
+                author=request.user
+            )
+            html = render_to_string('segment/_comment.html',
+                                    {'comment': comment})
+            return JsonResponse({'html': html})

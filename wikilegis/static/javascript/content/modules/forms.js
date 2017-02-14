@@ -10,11 +10,18 @@ function formsModule() {
     const data = {comment: comment};
     if (comment) {
       const $container = $(formEl).closest('[data-collapsible-content]');
-      const commentWrapperEl = $container.closest('[data-segment-comments]')[0];
-      const segmentId = commentWrapperEl.dataset.segmentComments;
+      const segmentType = $container.closest('[data-segment-type]')[0].dataset.segmentType;
+
+      let dataAttribute = segmentType;
+      if (segmentType != 'segment') {
+        dataAttribute = 'amendment';
+      }
+
+      const commentWrapperEl = $container.closest('[data-comments-wrapper]')[0];
+      const segmentId = commentWrapperEl.getAttribute(`data-${dataAttribute}-comments`);
 
       requests.newComment.wrapperEl = $container.find('[data-comments-list]')[0];
-      requests.newComment.path = `render/segment_comments/${segmentId}/segment/`;
+      requests.newComment.path = `render/new_comment/${segmentId}/${segmentType}/`;
       load.post(segmentId, requests.newComment, data);
 
       requests.newComment.xhr.done((xhr) => {

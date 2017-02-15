@@ -37,6 +37,15 @@ function loadModule() {
     });
   }
 
+  function getCSRF() {
+    const value = `; ${document.cookie}`;
+    const parts = value.split('; csrftoken=');
+    if (parts.length === 2) {
+      return parts.pop().split(';').shift();
+    }
+    return null;
+  }
+
   function post(id, request, data) {
     const path = request.path;
     const url = `/${path}`;
@@ -47,28 +56,20 @@ function loadModule() {
       data,
       beforeSend(xhr) {
         if (!this.crossDomain) {
-          xhr.setRequestHeader("X-CSRFToken", getCSRF());
+          xhr.setRequestHeader('X-CSRFToken', getCSRF());
         }
         request.xhr = xhr; // eslint-disable-line no-param-reassign
       },
       success(xhr) {
-        console.log(xhr);
-
         request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
       },
       error(xhr, status) {
-        console.log(status);
+        console.log(status); // eslint-disable-line no-console
       },
       complete() {
-        console.log('completed');
-      }
-    })
-  }
-
-  function getCSRF() {
-    let value = "; " + document.cookie;
-    let parts = value.split("; csrftoken=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
+        request.xhr = {}; // eslint-disable-line no-param-reassign
+      },
+    });
   }
 
   function abortRequests() {

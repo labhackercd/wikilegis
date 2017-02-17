@@ -49,6 +49,7 @@ requests.amendments = new Request('amendments', 'amendments', billAmendmentsWrap
 requests.amendmentComments = new Request('comments', 'comments', undefined, 'render/amendment_comments/');
 requests.segmentComments = new Request('comments', 'comments', undefined, 'render/segment_comments/');
 requests.newComment = new Request('comments', 'comments', undefined, '');
+requests.votes = new Request('votes', 'votes', undefined, '');
 
 const paths = new Path();
 

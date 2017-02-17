@@ -5,16 +5,18 @@ import drawerModule from './modules/drawer';
 import hoverModule from './modules/hover';
 import tabsModule from './modules/tabs';
 import formsModule from './modules/forms';
+import votesModule from './modules/votes';
 
 const collapsible = collapsibleModule();
 const drawer = drawerModule();
 const hover = hoverModule();
 const tabs = tabsModule();
 const forms = formsModule();
+const votes = votesModule();
 
 function clickEvent(event) {
   const dataset = event.target.dataset;
-  const parent = event.target.closest('[data-drawer-open]');
+  const parent = event.target.closest('[data-drawer-open], [data-vote-action]');
 
   let parentDataset = null;
   if (parent) {
@@ -28,6 +30,12 @@ function clickEvent(event) {
     drawer.open(parent);
   } else if (dataset.drawerClose) {
     drawer.close(dataset.drawerClose);
+  }
+
+  if (dataset.voteAction) {
+    votes.sendVote(event.target);
+  } else if (parentDataset && parentDataset.voteAction) {
+    votes.sendVote(parent);
   }
 
   if (dataset.tab && dataset.drawerOpen) {

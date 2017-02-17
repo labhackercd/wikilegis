@@ -10,7 +10,7 @@ function formsModule() {
     const data = { comment };
     if (comment) {
       const $container = $(formEl).closest('[data-collapsible-content]');
-      const segmentType = $container.closest('[data-segment-type]')[0].dataset.segmentType;
+      const segmentType = $container.closest('[data-object-type]')[0].dataset.objectType;
 
       let dataAttribute = segmentType;
       if (segmentType !== 'segment') dataAttribute = 'amendment';
@@ -20,7 +20,7 @@ function formsModule() {
 
       requests.newComment.wrapperEl = $container.find('[data-comments-list]')[0];
       requests.newComment.path = `render/new_comment/${segmentId}/${segmentType}/`;
-      load.post(segmentId, requests.newComment, data);
+      load.sendRequest('post', requests.newComment, data);
 
       requests.newComment.xhr.done(() => {
         commentWrapperEl.style.height = `${$container.outerHeight()}px`;

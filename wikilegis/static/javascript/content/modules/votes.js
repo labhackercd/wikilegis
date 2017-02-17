@@ -9,7 +9,7 @@ const load = loadModule();
 function votesModule() {
   function sendVote(voteActionEl) {
     const vote = JSON.parse(voteActionEl.dataset.voteAction);
-    const data = { vote }
+    const data = { vote };
     const voteWrapperEl = $(voteActionEl).closest('[data-votes-wrapper]')[0];
     const segmentType = $(voteWrapperEl).closest('[data-object-type]')[0].dataset.objectType;
 
@@ -20,7 +20,6 @@ function votesModule() {
     } else {
       load.sendRequest('post', requests.votes, data, 'replace');
     }
-
   }
 
   return { sendVote };

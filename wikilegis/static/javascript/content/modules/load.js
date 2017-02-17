@@ -46,7 +46,7 @@ function loadModule() {
     return null;
   }
 
-  function sendRequest(method, request, data, htmlInsertion='insert') {
+  function sendRequest(method, request, data, htmlInsertion = 'insert') {
     const path = request.path;
     const url = `/${path}`;
 
@@ -64,7 +64,7 @@ function loadModule() {
         if (htmlInsertion === 'insert') {
           request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
         } else if (htmlInsertion === 'replace') {
-          request.wrapperEl.innerHTML = xhr.html;
+          request.wrapperEl.innerHTML = xhr.html; // eslint-disable-line no-param-reassign
         }
       },
       error(xhr, status) {

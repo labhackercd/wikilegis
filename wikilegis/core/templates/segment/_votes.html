@@ -1,0 +1,14 @@
+{% load wikilegis_votes %}
+
+{% voted_by_user segment True as upvote %}
+{% voted_by_user segment False as downvote %}
+
+<div class="actions__vote {{upvote}}" role="button" tabindex="0" data-vote-action="true">
+  <i class="vote__icon icon icon-thumbs-up"></i>
+  <span class="vote__count">{{segment.upvote_count}}</span>
+</div>
+
+<div class="actions__vote {{downvote}}" role="button" tabindex="0" data-vote-action="false">
+  <i class="vote__icon icon icon-thumbs-down"></i>
+  <span class="vote__count">{{segment.downvote_count}}</span>
+</div>

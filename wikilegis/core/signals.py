@@ -1,7 +1,7 @@
 from core import model_mixins as mixins
 
 
-def update_votes_count(sender, instance, created, **kwargs):
+def update_new_votes_count(sender, instance, created, **kwargs):
     voted_class = instance.content_object.__class__
     if issubclass(voted_class, mixins.VoteCountMixin):
         if created:
@@ -23,6 +23,20 @@ def update_votes_count(sender, instance, created, **kwargs):
         if created:
             instance.content_object.participation_count += 1
             instance.content_object.save()
+
+
+def update_deleted_votes_count(sender, instance, **kwargs):
+    voted_class = instance.content_object.__class__
+    if issubclass(voted_class, mixins.VoteCountMixin):
+        if instance.vote:
+            instance.content_object.upvote_count -= 1
+        else:
+            instance.content_object.downvote_count -= 1
+        instance.content_object.save()
+
+    if issubclass(voted_class, mixins.ParticipationCountMixin):
+        instance.content_object.participation_count -= 1
+        instance.content_object.save()
 
 
 def update_comments_count(sender, instance, created, **kwargs):

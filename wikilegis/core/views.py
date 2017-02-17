@@ -3,6 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.generic.base import TemplateView
+from distutils.util import strtobool
 
 from core import models
 
@@ -19,19 +20,22 @@ class HomeView(TemplateView):
 
 def render_bill_info(request, bill_id):
     bill = get_object_or_404(models.Bill, pk=bill_id)
-    html = render_to_string('bill/_info.html', {'bill': bill})
+    html = render_to_string('bill/_info.html', {'request': request,
+                                                'bill': bill})
     return JsonResponse({'html': html})
 
 
 def render_bill_content(request, bill_id):
     bill = get_object_or_404(models.Bill, pk=bill_id)
-    html = render_to_string('bill/_content.html', {'bill': bill})
+    html = render_to_string('bill/_content.html', {'request': request,
+                                                   'bill': bill})
     return JsonResponse({'html': html})
 
 
 def render_bill_amendments(request, segment_id):
     segment = get_object_or_404(models.BillSegment, pk=segment_id)
-    html = render_to_string('amendments/_index.html', {'segment': segment})
+    html = render_to_string('amendments/_index.html', {'request': request,
+                                                       'segment': segment})
     return JsonResponse({'html': html})
 
 
@@ -46,13 +50,14 @@ def render_amendment_comments(request, amendment_type, amendment_id):
         amendment = get_object_or_404(models.SupressAmendment,
                                       pk=amendment_id)
     html = render_to_string('amendments/_comments.html',
-                            {'amendment': amendment})
+                            {'request': request, 'amendment': amendment})
     return JsonResponse({'html': html})
 
 
 def render_segment_comments(request, segment_id):
     segment = get_object_or_404(models.BillSegment, pk=segment_id)
-    html = render_to_string('segment/_comments.html', {'segment': segment})
+    html = render_to_string('segment/_comments.html', {'request': request,
+                                                       'segment': segment})
     return JsonResponse({'html': html})
 
 
@@ -66,12 +71,36 @@ def create_comment(model, segment_id, request):
         author=request.user
     )
     html = render_to_string('segment/_comment.html',
-                            {'comment': comment})
+                            {'request': request, 'comment': comment})
+    return JsonResponse({'html': html})
+
+
+def create_vote(model, segment_id, request):
+    ctype = ContentType.objects.get_for_model(model)
+    segment = get_object_or_404(model, pk=segment_id)
+    new_vote = strtobool(request.POST.get('vote'))
+    vote, created = models.UpDownVote.objects.get_or_create(
+        defaults=dict(vote=new_vote),
+        content_type=ctype,
+        object_id=segment.id,
+        user=request.user
+    )
+    if not created:
+        if vote.vote == new_vote:
+            vote.delete()
+        else:
+            vote.vote = new_vote
+            vote.save()
+
+    segment.refresh_from_db()
+    html = render_to_string('segment/_votes.html', {'request': request,
+                                                    'segment': segment})
     return JsonResponse({'html': html})
 
 
 def render_new_comment(request, segment_id, segment_type):
     if request.user.is_authenticated() and request.method == 'POST':
+        print(segment_type)
         if segment_type == 'segment':
             return create_comment(models.BillSegment, segment_id, request)
         if segment_type == 'modifier':
@@ -82,3 +111,17 @@ def render_new_comment(request, segment_id, segment_type):
         if segment_type == 'additive':
             return create_comment(models.AdditiveAmendment,
                                   segment_id, request)
+
+
+def render_votes(request, segment_id, segment_type):
+    if request.user.is_authenticated() and request.method == 'POST':
+        if segment_type == 'segment':
+            return create_vote(models.BillSegment, segment_id, request)
+        if segment_type == 'modifier':
+            return create_vote(models.ModifierAmendment,
+                               segment_id, request)
+        if segment_type == 'supress':
+            return create_vote(models.SupressAmendment, segment_id, request)
+        if segment_type == 'additive':
+            return create_vote(models.AdditiveAmendment,
+                               segment_id, request)

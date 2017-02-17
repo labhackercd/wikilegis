@@ -125,3 +125,5 @@ def render_votes(request, segment_id, segment_type):
         if segment_type == 'additive':
             return create_vote(models.AdditiveAmendment,
                                segment_id, request)
+        if segment_type == 'bill':
+            return create_vote(models.Bill, segment_id, request)

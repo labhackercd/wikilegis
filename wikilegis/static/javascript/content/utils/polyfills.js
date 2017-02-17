@@ -4,4 +4,4 @@ function hasClass(el, className) {
   return new RegExp(`(^| )${className}( |$)`, 'gi').test(el.className);
 }
 
-export default { hasClass };
+export { hasClass }; // eslint-disable-line import/prefer-default-export

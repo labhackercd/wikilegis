@@ -95,4 +95,29 @@
     margin-top: 1em;
     padding-top: 1em;
   }
+
+  [class^="info__actions"] {
+    display: flex;
+  }
+
+  .info__actions--votes {
+    margin-top: 1em;
+    align-items: center;
+    justify-content: center;
+
+    .actions__vote {
+      align-items: center;
+      display: flex;
+      margin: .5em;
+      font-size: 1.5em;
+      color: $color-gray-55;
+
+      + .actions__vote {
+        border-left: 1px solid $color-gray-75;
+        margin-left: .5em;
+        padding-left: .5em;
+      }
+    }
+
+  }
 }

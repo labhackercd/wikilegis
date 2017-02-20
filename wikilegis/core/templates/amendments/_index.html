@@ -5,7 +5,7 @@
   data-tab="1"
   data-tab-container
 >
-  {% include "amendments/_content.html" with amendment_type='additive' amendments=segment.additive_amendments.all %}
   {% include "amendments/_content.html" with amendment_type='modifier' amendments=segment.modifier_amendments.all %}
+  {% include "amendments/_content.html" with amendment_type='additive' amendments=segment.additive_amendments.all %}
   {% include "amendments/_content.html" with amendment_type='supress' amendments=segment.supress_amendments.all %}
 </div>

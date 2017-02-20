@@ -15,6 +15,9 @@ function drawerModule() {
     content.lastActiveId = content.activeId;
     content.wrapperEl.dataset[`${contentName}Open`] = 'false';
     content.activeId = 0;
+    if (content.wrapperEl.dataset.amendmentsOpen) {
+      requests.amendments.loadedIds = [];
+    }
   }
 
   function open(...args) {

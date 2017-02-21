@@ -90,6 +90,39 @@ class SignalsTestCase(TestCase):
         segment = models.BillSegment.objects.get(pk=segment.id)
         self.assertEquals(segment.participation_count, 1)
 
+    def test_update_deleted_downvote_count(self):
+        vote = AutoFixture(models.UpDownVote, field_values={
+            'user': self.user,
+            'content_type': self.bill_ctype,
+            'object_id': self.bill.id,
+            'vote': False
+        }).create_one()
+        vote.delete()
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.downvote_count, 0)
+
+    def test_update_deleted_upvote_count(self):
+        vote = AutoFixture(models.UpDownVote, field_values={
+            'user': self.user,
+            'content_type': self.bill_ctype,
+            'object_id': self.bill.id,
+            'vote': True
+        }).create_one()
+        vote.delete()
+        bill = models.Bill.objects.get(pk=self.bill.id)
+        self.assertEquals(bill.upvote_count, 0)
+
+    def test_update_deleted_vote_participation_count(self):
+        segment = self.segment_fixture.create_one()
+        vote = AutoFixture(models.UpDownVote, field_values={
+            'user': self.user,
+            'content_type': self.segment_ctype,
+            'object_id': segment.id,
+        }).create_one()
+        vote.delete()
+        segment = models.BillSegment.objects.get(pk=segment.id)
+        self.assertEquals(segment.participation_count, 0)
+
     def test_update_comments_count(self):
         AutoFixture(models.Comment, field_values={
             'author': self.user,

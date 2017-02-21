@@ -126,3 +126,20 @@ def render_votes(request, segment_id, segment_type):
                                segment_id, request)
         if segment_type == 'bill':
             return create_vote(models.Bill, segment_id, request)
+
+
+def render_new_amendment(request, segment_id, amendment_type):
+    if request.user.is_authenticated() and request.method == 'POST':
+        if amendment_type == 'modifier':
+            segment = get_object_or_404(models.BillSegment, pk=segment_id)
+            amendment = models.ModifierAmendment.objects.create(
+                content=request.POST.get('content'),
+                replaced=segment,
+                author=request.user,
+            )
+
+        if 'amendment' in locals():
+            html = render_to_string('amendments/_item.html',
+                                    {'amendment_type': amendment_type,
+                                     'amendment': amendment})
+            return JsonResponse({'html': html})

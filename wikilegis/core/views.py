@@ -100,7 +100,6 @@ def create_vote(model, segment_id, request):
 
 def render_new_comment(request, segment_id, segment_type):
     if request.user.is_authenticated() and request.method == 'POST':
-        print(segment_type)
         if segment_type == 'segment':
             return create_comment(models.BillSegment, segment_id, request)
         if segment_type == 'modifier':

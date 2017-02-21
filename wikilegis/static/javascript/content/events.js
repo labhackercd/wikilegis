@@ -17,7 +17,6 @@ const votes = votesModule();
 function clickEvent(event) {
   const dataset = event.target.dataset;
   const parent = event.target.closest('[data-drawer-open], [data-vote-action]');
-
   let parentDataset = null;
   if (parent) {
     parentDataset = parent.dataset;
@@ -67,6 +66,18 @@ function submitEvent(event) {
 
   if ('commentsForm' in dataset) {
     forms.sendComment(event.target);
+  }
+
+  if ('amendmentsForm' in dataset) {
+    forms.sendAmendment(event.target);
+  }
+}
+
+function focusEvent(event) {
+  const dataset = event.target.dataset;
+
+  if ('amendmentsInput' in dataset) {
+    forms.loadSegmentText(event.target);
   }
 }
 
@@ -127,6 +138,7 @@ document.addEventListener('click', clickEvent);
 document.addEventListener('mouseover', mouseoverEvent);
 document.addEventListener('mouseout', mouseoutEvent);
 document.addEventListener('submit', submitEvent);
+document.addEventListener('focus', focusEvent, true);
 
 window.onpopstate = historyChangeEvent;
 window.onload = windowLoadEvent;

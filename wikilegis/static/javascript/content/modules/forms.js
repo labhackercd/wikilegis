@@ -31,7 +31,42 @@ function formsModule() {
     }
   }
 
-  return { sendComment };
+  function sendAmendment(formEl) {
+    const segmentContent = $(formEl).closest('[data-segment-content]')[0].dataset.segmentContent;
+    const amendmentContent = formEl.text.value;
+    if (amendmentContent.length === 0 || !amendmentContent.trim()) {
+      // TODO: suggest user to do a suppress amendment
+    } else if (segmentContent !== amendmentContent) {
+      const data = {
+        content: amendmentContent
+      }
+      const parentDataset = formEl.parentNode.dataset;
+      const wrapperEl = formEl.parentNode.querySelector('[data-amendments-wrapper]');
+      const segmentType = parentDataset.segmentType;
+
+      requests.newModifierAmendment.wrapperEl = wrapperEl;
+      console.log(parentDataset.segmentId);
+      requests.newModifierAmendment.path = `render/new_amendment/${parentDataset.segmentId}/${segmentType}/`;
+      load.post(parentDataset.segmentId, requests.newModifierAmendment, data);
+
+      requests.newModifierAmendment.xhr.done(() => {
+        wrapperEl.style.height = `${contentEl.offsetHeight}px`;
+        formEl.reset();
+      });
+
+    } else {
+      // TODO: alert user to modify anything on the original text
+    }
+  }
+
+  function loadSegmentText(inputEl) {
+    const segmentContent = $(inputEl).closest('[data-segment-content]')[0];
+    if (!inputEl.value) {
+      inputEl.value = segmentContent.dataset.segmentContent;
+    }
+  }
+
+  return { sendComment, sendAmendment, loadSegmentText };
 }
 
 export default formsModule;

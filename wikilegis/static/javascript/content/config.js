@@ -50,6 +50,7 @@ requests.amendmentComments = new Request('comments', 'comments', undefined, 'ren
 requests.segmentComments = new Request('comments', 'comments', undefined, 'render/segment_comments/');
 requests.newComment = new Request('comments', 'comments', undefined, '');
 requests.votes = new Request('votes', 'votes', undefined, '');
+requests.newModifierAmendment = new Request('modifierAmendments', 'modifierAmendments', undefined, '');
 
 const paths = new Path();
 

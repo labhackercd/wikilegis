@@ -42,15 +42,14 @@ function formsModule() {
       }
       const parentDataset = formEl.parentNode.dataset;
       const wrapperEl = formEl.parentNode.querySelector('[data-amendments-wrapper]');
-      const segmentType = parentDataset.segmentType;
+      const segmentType = parentDataset.objectType;
 
       requests.newModifierAmendment.wrapperEl = wrapperEl;
-      console.log(parentDataset.segmentId);
       requests.newModifierAmendment.path = `render/new_amendment/${parentDataset.segmentId}/${segmentType}/`;
-      load.post(parentDataset.segmentId, requests.newModifierAmendment, data);
+      load.sendRequest('post', requests.newModifierAmendment, data);
 
       requests.newModifierAmendment.xhr.done(() => {
-        wrapperEl.style.height = `${contentEl.offsetHeight}px`;
+        wrapperEl.style.height = `${wrapperEl.offsetHeight}px`;
         formEl.reset();
       });
 

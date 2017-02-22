@@ -141,5 +141,6 @@ def render_new_amendment(request, segment_id, amendment_type):
         if 'amendment' in locals():
             html = render_to_string('amendments/_item.html',
                                     {'amendment_type': amendment_type,
-                                     'amendment': amendment})
+                                     'amendment': amendment,
+                                     'request': request})
             return JsonResponse({'html': html})

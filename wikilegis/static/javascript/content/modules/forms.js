@@ -32,7 +32,8 @@ function formsModule() {
   }
 
   function sendAmendment(formEl) {
-    const segmentContent = $(formEl).closest('[data-segment-content]')[0].dataset.segmentContent;
+    const segmentContainer = $(formEl).closest('[data-segment-content]')[0];
+    const segmentContent = segmentContainer.dataset.segmentContent;
     const amendmentContent = formEl.text.value;
     if (amendmentContent.length === 0 || !amendmentContent.trim()) {
       // TODO: suggest user to do a suppress amendment
@@ -50,6 +51,8 @@ function formsModule() {
 
       requests.newModifierAmendment.xhr.done(() => {
         formEl.reset();
+        const segmentDiffWrapper = segmentContainer.querySelector('[data-diff-wrapper]');
+        segmentDiffWrapper.innerHTML = segmentContent;
       });
     } else {
       // TODO: alert user to modify anything on the original text

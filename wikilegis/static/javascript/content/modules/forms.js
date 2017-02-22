@@ -38,8 +38,8 @@ function formsModule() {
       // TODO: suggest user to do a suppress amendment
     } else if (segmentContent !== amendmentContent) {
       const data = {
-        content: amendmentContent
-      }
+        content: amendmentContent,
+      };
       const parentDataset = formEl.parentNode.dataset;
       const wrapperEl = formEl.parentNode.querySelector('[data-amendments-wrapper]');
       const segmentType = parentDataset.objectType;
@@ -52,7 +52,6 @@ function formsModule() {
         wrapperEl.style.height = `${wrapperEl.offsetHeight}px`;
         formEl.reset();
       });
-
     } else {
       // TODO: alert user to modify anything on the original text
     }
@@ -61,7 +60,8 @@ function formsModule() {
   function loadSegmentText(inputEl) {
     const segmentContent = $(inputEl).closest('[data-segment-content]')[0];
     if (!inputEl.value) {
-      inputEl.value = segmentContent.dataset.segmentContent;
+      const dataset = segmentContent.dataset;
+      inputEl.value = dataset.segmentContent; // eslint-disable-line no-param-reassign
     }
   }
 

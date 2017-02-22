@@ -1,12 +1,6 @@
 <div class="amendment__actions">
-  <div class="actions__vote" role="button" tabindex="0">
-    <i class="vote__icon icon icon-thumbs-up"></i>
-    <span class="vote__count">{{amendment.upvote_count}}</span>
-  </div>
-
-  <div class="actions__vote" role="button" tabindex="0">
-    <i class="vote__icon icon icon-thumbs-down"></i>
-    <span class="vote__count">{{amendment.downvote_count}}</span>
+  <div class="votes-wrapper" data-votes-wrapper data-object-id="{{amendment.id}}">
+    {% include "segment/_votes.html" with segment=amendment %}
   </div>
 
   <a

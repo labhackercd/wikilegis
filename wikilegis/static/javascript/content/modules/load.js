@@ -46,13 +46,13 @@ function loadModule() {
     return null;
   }
 
-  function post(id, request, data) {
+  function sendRequest(method, request, data, htmlInsertion = 'insert') {
     const path = request.path;
     const url = `/${path}`;
 
     $.ajax({
       url,
-      type: 'POST',
+      type: method,
       data,
       beforeSend(xhr) {
         if (!this.crossDomain) {
@@ -61,7 +61,11 @@ function loadModule() {
         request.xhr = xhr; // eslint-disable-line no-param-reassign
       },
       success(xhr) {
-        request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
+        if (htmlInsertion === 'insert') {
+          request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
+        } else if (htmlInsertion === 'replace') {
+          request.wrapperEl.innerHTML = xhr.html; // eslint-disable-line no-param-reassign
+        }
       },
       error(xhr, status) {
         console.log(status); // eslint-disable-line no-console
@@ -77,7 +81,7 @@ function loadModule() {
     inProgress = [];
   }
 
-  return { get, post, abortRequests };
+  return { get, sendRequest, abortRequests };
 }
 
 export default loadModule;

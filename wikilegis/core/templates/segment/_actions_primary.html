@@ -1,11 +1,3 @@
-<div class="segment__actions--primary">
-  <div class="actions__vote" role="button" tabindex="0">
-    <i class="vote__icon icon icon-thumbs-up"></i>
-    <span class="vote__count">{{segment.upvote_count}}</span>
-  </div>
-
-  <div class="actions__vote" role="button" tabindex="0">
-    <i class="vote__icon icon icon-thumbs-down"></i>
-    <span class="vote__count">{{segment.downvote_count}}</span>
-  </div>
+<div class="segment__actions--primary" data-votes-wrapper data-object-id="{{segment.id}}">
+  {% include "segment/_votes.html" with segment=segment %}
 </div>

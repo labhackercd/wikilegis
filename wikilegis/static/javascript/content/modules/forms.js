@@ -49,7 +49,6 @@ function formsModule() {
       load.sendRequest('post', requests.newModifierAmendment, data);
 
       requests.newModifierAmendment.xhr.done(() => {
-        wrapperEl.style.height = `${wrapperEl.offsetHeight}px`;
         formEl.reset();
       });
     } else {

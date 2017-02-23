@@ -3,7 +3,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(BASE_DIR)
 
-API_KEY = config('API_KEY', default='api_key')
 SECRET_KEY = config('SECRET_KEY', default='secret_key')
 
 FORCE_SCRIPT_NAME = config('FORCE_SCRIPT_NAME', default=None)

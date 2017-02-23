@@ -76,7 +76,7 @@ function submitEvent(event) {
 function focusEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('amendmentsInput' in dataset) {
+  if ('modifierAmendmentInput' in dataset) {
     forms.loadSegmentText(event.target);
   }
 }

@@ -86,7 +86,7 @@ function focusEvent(event) {
 function keyUpEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('amendmentsInput' in dataset) {
+  if ('modifierAmendmentInput' in dataset) {
     diff.updateDiff(event.target);
   }
 }

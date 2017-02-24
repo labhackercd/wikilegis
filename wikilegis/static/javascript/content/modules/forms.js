@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import loadModule from './load';
+import amendmentDiffModule from './amendmentDiff';
 import { requests } from '../config';
 
+const amendmentDiff = amendmentDiffModule();
 const load = loadModule();
 
 function formsModule() {
@@ -53,6 +55,7 @@ function formsModule() {
         formEl.reset();
         const segmentDiffWrapper = segmentContainer.querySelector('[data-diff-wrapper]');
         segmentDiffWrapper.innerHTML = segmentContent;
+        amendmentDiff.loadDiff(segmentContainer);
       });
     } else {
       // TODO: alert user to modify anything on the original text

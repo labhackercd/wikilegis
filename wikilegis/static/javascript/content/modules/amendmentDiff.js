@@ -28,7 +28,16 @@ function amendmentDiffModule() {
     diffWrapperEl.appendChild(diffEl);
   }
 
-  return { updateDiff };
+  function loadDiff(amendmentsWrapperEl) {
+    const amendments = amendmentsWrapperEl.querySelectorAll('[data-amendment-content]');
+    amendments.forEach((amendmentEl) => {
+      const diffEl = buildMarkup(amendmentsWrapperEl.dataset.segmentContent, amendmentEl.innerText);
+      amendmentEl.innerHTML = ''; // eslint-disable-line no-param-reassign
+      amendmentEl.appendChild(diffEl);
+    });
+  }
+
+  return { updateDiff, loadDiff };
 }
 
 export default amendmentDiffModule;

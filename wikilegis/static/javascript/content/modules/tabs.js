@@ -1,4 +1,7 @@
 import { contents, requests } from '../config';
+import amendmentDiffModule from './amendmentDiff';
+
+const amendmentDiff = amendmentDiffModule();
 
 function tabsModule() {
   function setActive(targetEl) {
@@ -14,6 +17,8 @@ function tabsModule() {
       request.xhr.done(() => {
         contents[name].wrapperEl.querySelector(contentElQuery).dataset.tab = index;
         targetParentEl.dataset.tab = index;
+        const modifierAmendmentsWrapperEl = contents[name].wrapperEl.querySelector('[data-object-type=modifier]');
+        amendmentDiff.loadDiff(modifierAmendmentsWrapperEl);
       });
     } else {
       contents[name].wrapperEl.querySelector(contentElQuery).dataset.tab = index;

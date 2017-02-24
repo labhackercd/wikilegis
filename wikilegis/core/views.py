@@ -14,7 +14,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['bills'] = models.Bill.objects.exclude(
-            status='draft', is_visible=False).order_by('-created')
+            status='draft').exclude(is_visible=False).order_by('-created')
         return context
 
 

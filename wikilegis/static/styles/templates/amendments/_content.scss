@@ -8,4 +8,26 @@
     margin-top: 2em;
     padding: 2em 0 0;
   }
+
+  .amendments__form {
+    background-color: $color-white;
+    display: flex;
+    height: 3em;
+    padding: 1em;
+
+    .form__input {
+      background-color: $color-gray-95;
+      border: 0;
+      flex: 1;
+      outline: none;
+      padding-left: 1em;
+    }
+
+    .form__btn {
+      background-color: $color-accent;
+      border: 0;
+      color: $color-white;
+      padding: 0 1em;
+    }
+  }
 }

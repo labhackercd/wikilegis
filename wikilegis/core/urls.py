@@ -26,4 +26,6 @@ urlpatterns = [
         views.render_new_comment, name='render_new_segment_comments'),
     url(r'^render/vote/(?P<segment_id>\d+)/(?P<segment_type>\w+)/$',
         views.render_votes, name='render_new_vote'),
+    url(r'^render/new_amendment/(?P<segment_id>\d+)/(?P<amendment_type>\w+)/$',
+        views.render_new_amendment, name='render_new_amendment'),
 ]

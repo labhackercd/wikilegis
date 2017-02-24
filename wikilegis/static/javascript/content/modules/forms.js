@@ -31,7 +31,40 @@ function formsModule() {
     }
   }
 
-  return { sendComment };
+  function sendAmendment(formEl) {
+    const segmentContent = $(formEl).closest('[data-segment-content]')[0].dataset.segmentContent;
+    const amendmentContent = formEl.text.value;
+    if (amendmentContent.length === 0 || !amendmentContent.trim()) {
+      // TODO: suggest user to do a suppress amendment
+    } else if (segmentContent !== amendmentContent) {
+      const data = {
+        content: amendmentContent,
+      };
+      const parentDataset = formEl.parentNode.dataset;
+      const wrapperEl = formEl.parentNode.querySelector('[data-amendments-wrapper]');
+      const segmentType = parentDataset.objectType;
+
+      requests.newModifierAmendment.wrapperEl = wrapperEl;
+      requests.newModifierAmendment.path = `render/new_amendment/${parentDataset.segmentId}/${segmentType}/`;
+      load.sendRequest('post', requests.newModifierAmendment, data);
+
+      requests.newModifierAmendment.xhr.done(() => {
+        formEl.reset();
+      });
+    } else {
+      // TODO: alert user to modify anything on the original text
+    }
+  }
+
+  function loadSegmentText(inputEl) {
+    const segmentContent = $(inputEl).closest('[data-segment-content]')[0];
+    if (!inputEl.value) {
+      const dataset = segmentContent.dataset;
+      inputEl.value = dataset.segmentContent; // eslint-disable-line no-param-reassign
+    }
+  }
+
+  return { sendComment, sendAmendment, loadSegmentText };
 }
 
 export default formsModule;

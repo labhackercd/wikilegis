@@ -31,15 +31,26 @@ function formsModule() {
     }
   }
 
+  function serializeForm(formEl) {
+    let data = {};
+    const formData = formEl.elements;
+    console.log(formData);
+    for (let i = formData.length - 1; i >= 0; i--) {
+      if (!formData[i].disabled && formData[i].name) {
+        console.log(formData[i])
+        data[formData[i].name] = formData[i].value;
+      }
+    }
+    return data;
+  }
+
   function sendAmendment(formEl) {
     const segmentContent = $(formEl).closest('[data-segment-content]')[0].dataset.segmentContent;
-    const amendmentContent = formEl.text.value;
+    const amendmentContent = formEl.content.value;
     if (amendmentContent.length === 0 || !amendmentContent.trim()) {
       // TODO: suggest user to do a suppress amendment
     } else if (segmentContent !== amendmentContent) {
-      const data = {
-        content: amendmentContent,
-      };
+      const data = serializeForm(formEl);
       const parentDataset = formEl.parentNode.dataset;
       const wrapperEl = formEl.parentNode.querySelector('[data-amendments-wrapper]');
       const segmentType = parentDataset.objectType;

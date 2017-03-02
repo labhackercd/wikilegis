@@ -9,6 +9,10 @@
     <strong>{{segment.segment_type.presentation_name}} {{segment.number}}</strong>
     {{segment.content|safe}}
   </p>
+  {% if amendment_type == 'additive' %}
+    <p class="content__text" data-additive-preview>
+    </p>
+  {% endif %}
 
   <ol class="content__amendments" data-amendments-wrapper>
     {% for amendment in amendments %}

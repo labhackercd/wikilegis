@@ -6,6 +6,7 @@ import hoverModule from './modules/hover';
 import tabsModule from './modules/tabs';
 import formsModule from './modules/forms';
 import votesModule from './modules/votes';
+import previewModule from './modules/preview';
 
 const collapsible = collapsibleModule();
 const drawer = drawerModule();
@@ -13,6 +14,7 @@ const hover = hoverModule();
 const tabs = tabsModule();
 const forms = formsModule();
 const votes = votesModule();
+const preview = previewModule();
 
 function clickEvent(event) {
   const dataset = event.target.dataset;
@@ -45,6 +47,14 @@ function clickEvent(event) {
 
   if (dataset.collapsible) {
     collapsible.toggle(event.target);
+  }
+}
+
+function keyUpEvent(event) {
+  const dataset = event.target.dataset;
+
+  if ('additiveAmendmentInput' in dataset) {
+    preview.additiveAmendmentPreview(event.target);
   }
 }
 
@@ -138,6 +148,7 @@ document.addEventListener('click', clickEvent);
 document.addEventListener('mouseover', mouseoverEvent);
 document.addEventListener('mouseout', mouseoutEvent);
 document.addEventListener('submit', submitEvent);
+document.addEventListener('keyup', keyUpEvent);
 document.addEventListener('focus', focusEvent, true);
 
 window.onpopstate = historyChangeEvent;

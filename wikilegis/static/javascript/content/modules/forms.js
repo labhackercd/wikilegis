@@ -61,6 +61,9 @@ function formsModule() {
 
       requests.newModifierAmendment.xhr.done(() => {
         formEl.reset();
+        if (segmentType === 'additive') {
+          wrapperEl.previousElementSibling.innerText = '';
+        }
       });
     } else {
       // TODO: alert user to modify anything on the original text

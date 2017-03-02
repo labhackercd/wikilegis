@@ -165,6 +165,7 @@ class ModifierAmendment(SegmentMixin):
 
 
 class SupressAmendment(SegmentMixin):
+    content = models.TextField(_('content'))
     supressed = models.ForeignKey('BillSegment', verbose_name=_('supressed'),
                                   related_name="supress_amendments")
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -176,8 +177,7 @@ class SegmentType(models.Model):
     presentation_name = models.CharField(_('presentation name'),
                                          max_length=200, blank=True, null=True)
     parents = models.ManyToManyField('self', related_name='children',
-                                     verbose_name=_('parent type'),
-                                     null=True, blank=True)
+                                     verbose_name=_('parent type'))
     editable = models.BooleanField(_('editable'), default='True')
 
     class Meta:

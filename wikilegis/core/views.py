@@ -14,7 +14,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['bills'] = models.Bill.objects.exclude(
-            status='draft', is_visible=False).order_by('-created')
+            status='draft').exclude(is_visible=False).order_by('-created')
         return context
 
 
@@ -130,11 +130,18 @@ def render_votes(request, segment_id, segment_type):
 
 def render_new_amendment(request, segment_id, amendment_type):
     if request.user.is_authenticated() and request.method == 'POST':
+        segment = get_object_or_404(models.BillSegment, pk=segment_id)
         if amendment_type == 'modifier':
-            segment = get_object_or_404(models.BillSegment, pk=segment_id)
             amendment = models.ModifierAmendment.objects.create(
                 content=request.POST.get('content'),
                 replaced=segment,
+                author=request.user,
+            )
+
+        if amendment_type == 'supress':
+            amendment = models.SupressAmendment.objects.create(
+                content=request.POST.get('content'),
+                supressed=segment,
                 author=request.user,
             )
 

@@ -32,12 +32,10 @@ function formsModule() {
   }
 
   function serializeForm(formEl) {
-    let data = {};
+    const data = {};
     const formData = formEl.elements;
-    console.log(formData);
-    for (let i = formData.length - 1; i >= 0; i--) {
+    for (let i = formData.length - 1; i >= 0; i -= 1) {
       if (!formData[i].disabled && formData[i].name) {
-        console.log(formData[i])
         data[formData[i].name] = formData[i].value;
       }
     }

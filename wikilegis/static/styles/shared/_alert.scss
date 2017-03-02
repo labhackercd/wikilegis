@@ -1,0 +1,27 @@
+.wikilegis__alert {
+    animation: slide-in 0.3s $swift-out;
+    background: $color-alert;
+    color: $color-white;
+    margin: 2em 5em 2em 2em;
+    max-width: 35em;
+    min-height: 7em;
+    padding: 0 1em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    .alert__header {
+        font-size: 1.5em;
+    }
+
+    .alert__dismiss {
+        color: $color-white;
+        margin: 0.5em;
+        position: absolute;
+        right: 0;
+        text-decoration: none;
+        top: 0;
+    }
+}

@@ -1,4 +1,4 @@
-{% load staticfiles compress %}
+{% load staticfiles compress i18n %}
 
 <!DOCTYPE html>
 <html>
@@ -79,6 +79,17 @@
         </div>
       </div>
     </main>
+
+    <script>
+      var strings = {
+        emptyCommentTitle: "{% trans 'Oops' %}",
+        emptyCommentText: "{% trans 'You cannot send an empty comment :(' %}",
+        emptyAmendmentTitle: "{% trans 'Oops' %}",
+        emptyAmendmentText: "{% trans 'You cannot send an empty amendment :(' %}",
+        sameAsSegmentTitle: "{% trans 'Oops' %}",
+        sameAsSegmentText: "{% trans 'Your suggestion has the same text of original segment' %}",
+      };
+    </script>
 
     {% compress js %}
     <script type="module" src="{% static 'javascript/app.js' %}"></script>

@@ -26,7 +26,7 @@ function loadModule() {
         request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
         request.loadedIds.push(id);
       },
-      error(xhr, status) {
+      error(xhr) {
         showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
       },
       complete() {
@@ -68,7 +68,7 @@ function loadModule() {
           request.wrapperEl.innerHTML = xhr.html; // eslint-disable-line no-param-reassign
         }
       },
-      error(xhr, status) {
+      error(xhr) {
         showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
       },
       complete() {

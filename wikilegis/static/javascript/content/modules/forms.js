@@ -1,3 +1,4 @@
+/* global strings */
 import $ from 'jquery';
 import loadModule from './load';
 import amendmentDiffModule from './amendmentDiff';

@@ -1,6 +1,6 @@
-const alertEl = document.querySelector('[data-wikilegis-alert]')
+const alertEl = document.querySelector('[data-wikilegis-alert]');
 const headerEl = alertEl.querySelector('[data-alert-header]');
-const textEl = alertEl.querySelector('[data-alert-text]')
+const textEl = alertEl.querySelector('[data-alert-text]');
 let timeoutFunction = null;
 
 function dismissAlert() {
@@ -8,13 +8,13 @@ function dismissAlert() {
   alertEl.classList.add('hidden');
 }
 
-function showAlert(errorTitle, errorMessage, alertType='error') {
+function showAlert(errorTitle, errorMessage, alertType = 'error') {
   if (timeoutFunction) {
     clearTimeout(timeoutFunction);
     dismissAlert();
   }
 
-  if (alertType == 'success') {
+  if (alertType === 'success') {
     alertEl.classList.add('success');
     alertEl.classList.remove('error');
   } else {
@@ -31,4 +31,4 @@ function showAlert(errorTitle, errorMessage, alertType='error') {
 export {
   showAlert,
   dismissAlert,
-}
+};

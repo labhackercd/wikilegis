@@ -8,12 +8,20 @@ function dismissAlert() {
   alertEl.classList.add('hidden');
 }
 
-function showAlert(errorTitle, errorMessage) {
-
+function showAlert(errorTitle, errorMessage, alertType='error') {
   if (timeoutFunction) {
     clearTimeout(timeoutFunction);
     dismissAlert();
   }
+
+  if (alertType == 'success') {
+    alertEl.classList.add('success');
+    alertEl.classList.remove('error');
+  } else {
+    alertEl.classList.remove('success');
+    alertEl.classList.add('error');
+  }
+
   headerEl.innerText = errorTitle;
   textEl.innerText = errorMessage;
   alertEl.classList.remove('hidden');

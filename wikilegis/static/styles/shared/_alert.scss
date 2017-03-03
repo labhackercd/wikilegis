@@ -1,6 +1,5 @@
 .wikilegis__alert {
     animation: slide-in 0.3s $swift-out;
-    background: $color-alert;
     color: $color-white;
     margin: 2em 5em 2em 2em;
     max-width: 35em;
@@ -23,5 +22,13 @@
         right: 0;
         text-decoration: none;
         top: 0;
+    }
+
+    &.success {
+        background: $color-alert-success;
+    }
+
+    &.error {
+        background: $color-alert-error;
     }
 }

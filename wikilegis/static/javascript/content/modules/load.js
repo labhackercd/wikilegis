@@ -27,7 +27,7 @@ function loadModule() {
         request.loadedIds.push(id);
       },
       error(xhr, status) {
-        showAlert(xhr.responseJSON.title, xhr.responseJSON.message);
+        showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
       },
       complete() {
         const requestIndex = inProgress.indexOf(request.name);
@@ -69,7 +69,7 @@ function loadModule() {
         }
       },
       error(xhr, status) {
-        showAlert(xhr.responseJSON.title, xhr.responseJSON.message);
+        showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
       },
       complete() {
         request.xhr = {}; // eslint-disable-line no-param-reassign

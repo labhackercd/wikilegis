@@ -49,7 +49,7 @@ function loadModule() {
 
   function sendRequest(method, request, data, htmlInsertion = 'insert') {
     const path = request.path;
-    let url = `/${path}`;;
+    let url = `/${path}`;
     if (path[0] === '/') url = path;
 
     $.ajax({

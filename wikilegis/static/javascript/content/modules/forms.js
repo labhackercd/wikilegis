@@ -40,9 +40,9 @@ function formsModule() {
     const formData = formEl.elements;
     for (let i = formData.length - 1; i >= 0; i -= 1) {
       if (!formData[i].disabled && formData[i].name) {
-        if(formData[i].type === 'radio' && formData[i].checked){
+        if (formData[i].type === 'radio' && formData[i].checked) {
           data[formData[i].name] = formData[i].value;
-        }else if(formData[i].type !== 'radio'){
+        } else if (formData[i].type !== 'radio') {
           data[formData[i].name] = formData[i].value;
         }
       }

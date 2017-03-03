@@ -32,7 +32,7 @@ class Newsletter(TimestampedMixin):
     periodicity = models.CharField(_('periodicity'), max_length=20,
                                    choices=PERIODICITY_CHOICES,
                                    default='daily')
-    status = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = _('Newsletter')

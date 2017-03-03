@@ -9,6 +9,6 @@ register = Library()
 def subscriber(bill_id, user_id):
     try:
         newsletter = Newsletter.objects.get(bill_id=bill_id, user_id=user_id)
-        return newsletter.status
+        return newsletter.is_active
     except ObjectDoesNotExist:
         return False

@@ -31,4 +31,11 @@
 
   {% block extra_info %}
   {% endblock extra_info %}
+
+  <form data-subscribe-url="{% url 'subscribe_newsletter' bill.id %}" method="post" data-subscribe-form>
+    <div data-subscribe-wrapper>
+      {% include "bill/_newsletter.html" with bill_id=bill.id %}
+    </div>
+  </form>
+
 </section>

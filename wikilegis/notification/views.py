@@ -1,22 +1,23 @@
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 from notification.models import Newsletter
 
 
-def verify_newsletter(request, bill_id=None):
+def render_newsletter_info(request, bill_id=None):
     newsletter, created = Newsletter.objects.get_or_create(user=request.user,
                                                            bill_id=bill_id)
     if created:
-        newsletter.periodicity = request.GET.get('periodicity')
+        newsletter.periodicity = request.POST.get('periodicity')
         newsletter.save()
     else:
-        if newsletter.status:
-            newsletter.status = False
+        if newsletter.is_active:
+            newsletter.is_active = False
         else:
-            newsletter.status = True
-            newsletter.periodicity = request.GET.get('periodicity')
+            newsletter.is_active = True
+            newsletter.periodicity = request.POST.get('periodicity')
         newsletter.save()
 
-    return HttpResponseRedirect(reverse('bill_index',
-                                        kwargs={'bill_id': bill_id}))
+    html = render_to_string('bill/_newsletter.html', {'request': request,
+                                                      'bill_id': bill_id})
+    return JsonResponse({'html': html})

@@ -40,7 +40,11 @@ function formsModule() {
     const formData = formEl.elements;
     for (let i = formData.length - 1; i >= 0; i -= 1) {
       if (!formData[i].disabled && formData[i].name) {
-        data[formData[i].name] = formData[i].value;
+        if(formData[i].type === 'radio' && formData[i].checked){
+          data[formData[i].name] = formData[i].value;
+        }else if(formData[i].type !== 'radio'){
+          data[formData[i].name] = formData[i].value;
+        }
       }
     }
     return data;
@@ -81,6 +85,13 @@ function formsModule() {
     }
   }
 
+  function sendSubscribe(formEl) {
+    requests.subscribe.wrapperEl = formEl.querySelector('[data-subscribe-wrapper]');
+    requests.subscribe.path = formEl.dataset.subscribeUrl;
+    const data = serializeForm(formEl);
+    load.sendRequest('post', requests.subscribe, data, 'replace');
+  }
+
   function loadSegmentText(inputEl) {
     const segmentContent = $(inputEl).closest('[data-segment-content]')[0];
     if (!inputEl.value) {
@@ -89,7 +100,7 @@ function formsModule() {
     }
   }
 
-  return { sendComment, sendAmendment, loadSegmentText };
+  return { sendComment, sendAmendment, loadSegmentText, sendSubscribe };
 }
 
 export default formsModule;

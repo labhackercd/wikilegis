@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
+from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView
 from distutils.util import strtobool
 
@@ -110,6 +111,12 @@ def render_new_comment(request, segment_id, segment_type):
         if segment_type == 'additive':
             return create_comment(models.AdditiveAmendment,
                                   segment_id, request)
+    else:
+        return JsonResponse(
+            {'title': _('Oops'),
+             'message': _('You must be logged to comment :(')},
+            status=403
+        )
 
 
 def render_votes(request, segment_id, segment_type):
@@ -126,6 +133,12 @@ def render_votes(request, segment_id, segment_type):
                                segment_id, request)
         if segment_type == 'bill':
             return create_vote(models.Bill, segment_id, request)
+    else:
+        return JsonResponse(
+            {'title': _('Oops'),
+             'message': _('You must be logged to vote :(')},
+            status=403
+        )
 
 
 def render_new_amendment(request, segment_id, amendment_type):
@@ -151,3 +164,10 @@ def render_new_amendment(request, segment_id, amendment_type):
                                      'amendment': amendment,
                                      'request': request})
             return JsonResponse({'html': html})
+
+    else:
+        return JsonResponse(
+            {'title': _('Oops'),
+             'message': _('You must be logged to suggest new amendment :(')},
+            status=403
+        )

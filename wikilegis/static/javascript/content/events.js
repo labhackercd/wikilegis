@@ -1,5 +1,6 @@
 import { paths } from './config';
 import { updatePath, updateHash } from './utils/history';
+import { dismissAlert } from './utils/alert';
 import collapsibleModule from './modules/collapsible';
 import drawerModule from './modules/drawer';
 import hoverModule from './modules/hover';
@@ -47,6 +48,9 @@ function clickEvent(event) {
 
   if (dataset.collapsible) {
     collapsible.toggle(event.target);
+  }
+  if ('dismissAlert' in dataset) {
+    dismissAlert();
   }
 }
 

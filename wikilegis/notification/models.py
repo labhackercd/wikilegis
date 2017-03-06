@@ -1,22 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext as _
-from datetime import datetime
 from core.model_mixins import TimestampedMixin
-
-
-class HistoryNotification(models.Model):
-    amendment = models.ForeignKey('core.BillSegment',
-                                  verbose_name=_('amendment'))
-    hour = models.DateTimeField(_('hour'), default=datetime.now)
-
-    class Meta:
-        ordering = ('-hour',)
-        verbose_name = _('history notification')
-        verbose_name_plural = _('history notifications')
-
-    def __str__(self):
-        return self.amendment.bill.title
 
 
 class Newsletter(TimestampedMixin):

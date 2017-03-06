@@ -23,7 +23,7 @@
   <form class="amendments__form" action="/test" data-amendments-form>
     {% if amendment_type == 'additive' %}
       {% get_segment_types as segment_types %}
-      <select name="segment_type" id="segment_type" required>
+      <select name="segment_type" id="segment_type" required data-{{amendment_type}}-amendment-select>
         <option value="{{segment.segment_type.id}}">{{segment.segment_type.presentation_name}}</option>
         {% for segment_type in segment_types %}
           <option value="{{segment_type.id}}">{{segment_type.presentation_name}}</option>

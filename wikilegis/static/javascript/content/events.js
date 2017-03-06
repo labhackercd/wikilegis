@@ -91,6 +91,14 @@ function focusEvent(event) {
   }
 }
 
+function changeEvent(event) {
+  const dataset = event.target.dataset;
+
+  if ('additiveAmendmentSelect' in dataset) {
+    preview.additiveAmendmentPreview(event.target.nextElementSibling);
+  }
+}
+
 function changeContent(pathsDiff, action) {
   const pathsDiffArray = pathsDiff.split('/').filter(value => value.trim() !== '');
 
@@ -150,6 +158,7 @@ document.addEventListener('mouseout', mouseoutEvent);
 document.addEventListener('submit', submitEvent);
 document.addEventListener('keyup', keyUpEvent);
 document.addEventListener('focus', focusEvent, true);
+document.addEventListener('change', changeEvent);
 
 window.onpopstate = historyChangeEvent;
 window.onload = windowLoadEvent;

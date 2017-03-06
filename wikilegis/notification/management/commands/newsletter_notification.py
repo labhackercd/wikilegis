@@ -25,7 +25,8 @@ class Command(BaseCommand):
             newsletters__periodicity=options['periodicity']).distinct()
         bill_proposals = defaultdict(list)
         for user in users:
-            for newsletter in user.newsletters.filter(bill__status='published'):
+            newsletters = user.newsletters.filter(bill__status='published')
+            for newsletter in newsletters:
                 for segment in newsletter.bill.segments.all():
                     additive_amendments = segment.additive_amendments.filter(
                         modified__gte=datetime.now() - timedelta(days=1))

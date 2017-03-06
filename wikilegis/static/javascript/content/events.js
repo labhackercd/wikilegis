@@ -6,6 +6,7 @@ import hoverModule from './modules/hover';
 import tabsModule from './modules/tabs';
 import formsModule from './modules/forms';
 import votesModule from './modules/votes';
+import amendmentDiffModule from './modules/amendmentDiff';
 
 const collapsible = collapsibleModule();
 const drawer = drawerModule();
@@ -13,6 +14,7 @@ const hover = hoverModule();
 const tabs = tabsModule();
 const forms = formsModule();
 const votes = votesModule();
+const diff = amendmentDiffModule();
 
 function clickEvent(event) {
   const dataset = event.target.dataset;
@@ -81,6 +83,14 @@ function focusEvent(event) {
   }
 }
 
+function keyUpEvent(event) {
+  const dataset = event.target.dataset;
+
+  if ('modifierAmendmentInput' in dataset) {
+    diff.updateDiff(event.target);
+  }
+}
+
 function changeContent(pathsDiff, action) {
   const pathsDiffArray = pathsDiff.split('/').filter(value => value.trim() !== '');
 
@@ -138,6 +148,7 @@ document.addEventListener('click', clickEvent);
 document.addEventListener('mouseover', mouseoverEvent);
 document.addEventListener('mouseout', mouseoutEvent);
 document.addEventListener('submit', submitEvent);
+document.addEventListener('keyup', keyUpEvent);
 document.addEventListener('focus', focusEvent, true);
 
 window.onpopstate = historyChangeEvent;

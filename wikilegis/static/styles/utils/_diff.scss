@@ -1,0 +1,9 @@
+.diff-added {
+    background-color: rgba($color-actions-add, 0.5);
+    font-weight: bold;
+}
+
+.diff-removed {
+    background-color: rgba($color-actions-remove, 0.5);
+    text-decoration: line-through;
+}

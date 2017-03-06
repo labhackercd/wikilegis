@@ -31,6 +31,7 @@
   "dependencies": {
     "jquery": "^3.1.1",
     "list.js": "^1.4.1",
+    "diff": "^3.2.0",
     "particles.js": "^2.0.0"
   }
 }

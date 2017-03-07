@@ -1,7 +1,11 @@
+/* global strings */
 import $ from 'jquery';
 import loadModule from './load';
+import amendmentDiffModule from './amendmentDiff';
+import { showAlert } from '../utils/alert';
 import { requests } from '../config';
 
+const amendmentDiff = amendmentDiffModule();
 const load = loadModule();
 
 function formsModule() {
@@ -27,7 +31,7 @@ function formsModule() {
         formEl.reset();
       });
     } else {
-      // TODO: alert user to write something on input
+      showAlert(strings.emptyCommentTitle, strings.emptyCommentText, 'error');
     }
   }
 
@@ -43,10 +47,12 @@ function formsModule() {
   }
 
   function sendAmendment(formEl) {
-    const segmentContent = $(formEl).closest('[data-segment-content]')[0].dataset.segmentContent;
+    const segmentContainer = $(formEl).closest('[data-segment-content]')[0];
+    const segmentContent = segmentContainer.dataset.segmentContent;
     const amendmentContent = formEl.content.value;
+
     if (amendmentContent.length === 0 || !amendmentContent.trim()) {
-      // TODO: suggest user to do a suppress amendment
+      showAlert(strings.emptyAmendmentTitle, strings.emptyAmendmentText, 'error');
     } else if (segmentContent !== amendmentContent) {
       const data = serializeForm(formEl);
       const parentDataset = formEl.parentNode.dataset;
@@ -59,12 +65,19 @@ function formsModule() {
 
       requests.newModifierAmendment.xhr.done(() => {
         formEl.reset();
+
         if (segmentType === 'additive') {
           wrapperEl.previousElementSibling.innerText = '';
         }
+
+        if (segmentType === 'modifier') {
+          const segmentDiffWrapper = segmentContainer.querySelector('[data-diff-wrapper]');
+          segmentDiffWrapper.innerHTML = segmentContent;
+          amendmentDiff.loadDiff(segmentContainer);
+        }
       });
     } else {
-      // TODO: alert user to modify anything on the original text
+      showAlert(strings.sameAsSegmentTitle, strings.sameAsSegmentText, 'error');
     }
   }
 

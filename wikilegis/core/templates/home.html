@@ -1,4 +1,4 @@
-{% load staticfiles compress %}
+{% load staticfiles compress i18n %}
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,12 @@
   </head>
 
   <body>
+    <div class="wikilegis__alert hidden" data-wikilegis-alert>
+      <i class="alert__dismiss icon icon-times" data-dismiss-alert></i>
+      <h1 class="alert__header" data-alert-header></h1>
+      <p class="alert__text" data-alert-text></p>
+    </div>
+
     <main id="bill-list-search" class="wikilegis" data-bill-open="false">
       <!-- <input class="banner__search" placeholder="Search" /> -->
       <div class="wikilegis__banner">
@@ -73,6 +79,17 @@
         </div>
       </div>
     </main>
+
+    <script>
+      var strings = {
+        emptyCommentTitle: "{% trans 'Oops' %}",
+        emptyCommentText: "{% trans 'You cannot send an empty comment :(' %}",
+        emptyAmendmentTitle: "{% trans 'Oops' %}",
+        emptyAmendmentText: "{% trans 'You cannot send an empty amendment :(' %}",
+        sameAsSegmentTitle: "{% trans 'Oops' %}",
+        sameAsSegmentText: "{% trans 'Your suggestion has the same text of original segment' %}",
+      };
+    </script>
 
     {% compress js %}
     <script type="module" src="{% static 'javascript/app.js' %}"></script>

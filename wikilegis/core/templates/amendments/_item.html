@@ -12,7 +12,7 @@
         {% if amendment|is_instance:"core.models.AdditiveAmendment" %}
           <p class="amendment__type">Novo {{amendment.segment_type.presentation_name}}</p>
         {% endif %}
-        <p class="content__text">
+        <p class="content__text" data-amendment-content>
           {{amendment.content|safe}}
         </p>
       </div>

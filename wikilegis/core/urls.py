@@ -1,15 +1,16 @@
 from django.conf.urls import url
+from django.views.decorators.csrf import ensure_csrf_cookie
 from core import views
 
 
 urlpatterns = [
-    url(r'^$', views.HomeView.as_view(),
+    url(r'^$', ensure_csrf_cookie(views.HomeView.as_view()),
         name='home'),
     url(r'^bill/(?P<bill_id>\d+)$',
-        views.HomeView.as_view(),
+        ensure_csrf_cookie(views.HomeView.as_view()),
         name='bill_index'),
     url(r'^bill/(?P<bill_id>\d+)/amendments/(?P<segment_id>\d+)$',
-        views.HomeView.as_view(),
+        ensure_csrf_cookie(views.HomeView.as_view()),
         name='amendments_index'),
     url(r'^render/bill_info/(?P<bill_id>\d+)/$',
         views.render_bill_info, name='render_bill_info'),

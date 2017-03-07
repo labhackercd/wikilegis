@@ -5,9 +5,11 @@
     data-object-type="{{amendment_type}}"
     data-segment-content="{{segment.content|safe}}"
     data-tab-container >
-  <p class="content__text">
+  <p class="content__text" >
     <strong>{{segment.segment_type.presentation_name}} {{segment.number}}</strong>
-    {{segment.content|safe}}
+    <span data-diff-wrapper>
+      {{segment.content|safe}}
+    </span>
   </p>
   {% if amendment_type == 'additive' %}
     <p class="content__text" data-additive-preview>

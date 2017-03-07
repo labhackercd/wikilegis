@@ -1,5 +1,6 @@
 import { paths } from './config';
 import { updatePath, updateHash } from './utils/history';
+import { dismissAlert } from './utils/alert';
 import collapsibleModule from './modules/collapsible';
 import drawerModule from './modules/drawer';
 import hoverModule from './modules/hover';
@@ -7,6 +8,7 @@ import tabsModule from './modules/tabs';
 import formsModule from './modules/forms';
 import votesModule from './modules/votes';
 import previewModule from './modules/preview';
+import amendmentDiffModule from './modules/amendmentDiff';
 
 const collapsible = collapsibleModule();
 const drawer = drawerModule();
@@ -15,6 +17,7 @@ const tabs = tabsModule();
 const forms = formsModule();
 const votes = votesModule();
 const preview = previewModule();
+const diff = amendmentDiffModule();
 
 function clickEvent(event) {
   const dataset = event.target.dataset;
@@ -47,6 +50,9 @@ function clickEvent(event) {
 
   if (dataset.collapsible) {
     collapsible.toggle(event.target);
+  }
+  if ('dismissAlert' in dataset) {
+    dismissAlert();
   }
 }
 
@@ -91,11 +97,20 @@ function focusEvent(event) {
   }
 }
 
+
 function changeEvent(event) {
   const dataset = event.target.dataset;
 
   if ('additiveAmendmentSelect' in dataset) {
     preview.additiveAmendmentPreview(event.target.nextElementSibling);
+  }
+}
+
+function keyUpEvent(event) {
+  const dataset = event.target.dataset;
+
+  if ('modifierAmendmentInput' in dataset) {
+    diff.updateDiff(event.target);
   }
 }
 

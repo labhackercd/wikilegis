@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { requests } from '../config';
+import { showAlert } from '../utils/alert';
 
 function loadModule() {
   let inProgress = [];
@@ -25,8 +26,8 @@ function loadModule() {
         request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
         request.loadedIds.push(id);
       },
-      error(xhr, status) {
-        console.log(status); // eslint-disable-line no-console
+      error(xhr) {
+        showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
       },
       complete() {
         const requestIndex = inProgress.indexOf(request.name);
@@ -67,8 +68,8 @@ function loadModule() {
           request.wrapperEl.innerHTML = xhr.html; // eslint-disable-line no-param-reassign
         }
       },
-      error(xhr, status) {
-        console.log(status); // eslint-disable-line no-console
+      error(xhr) {
+        showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
       },
       complete() {
         request.xhr = {}; // eslint-disable-line no-param-reassign

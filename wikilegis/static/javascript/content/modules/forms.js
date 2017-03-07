@@ -1,6 +1,8 @@
+/* global strings */
 import $ from 'jquery';
 import loadModule from './load';
 import amendmentDiffModule from './amendmentDiff';
+import { showAlert } from '../utils/alert';
 import { requests } from '../config';
 
 const amendmentDiff = amendmentDiffModule();
@@ -29,7 +31,7 @@ function formsModule() {
         formEl.reset();
       });
     } else {
-      // TODO: alert user to write something on input
+      showAlert(strings.emptyCommentTitle, strings.emptyCommentText, 'error');
     }
   }
 
@@ -38,7 +40,7 @@ function formsModule() {
     const segmentContent = segmentContainer.dataset.segmentContent;
     const amendmentContent = formEl.text.value;
     if (amendmentContent.length === 0 || !amendmentContent.trim()) {
-      // TODO: suggest user to do a suppress amendment
+      showAlert(strings.emptyAmendmentTitle, strings.emptyAmendmentText, 'error');
     } else if (segmentContent !== amendmentContent) {
       const data = {
         content: amendmentContent,
@@ -58,7 +60,7 @@ function formsModule() {
         amendmentDiff.loadDiff(segmentContainer);
       });
     } else {
-      // TODO: alert user to modify anything on the original text
+      showAlert(strings.sameAsSegmentTitle, strings.sameAsSegmentText, 'error');
     }
   }
 

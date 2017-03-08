@@ -1,4 +1,5 @@
 from django.conf import settings
+import pkgutil
 import json
 import os
 
@@ -8,6 +9,8 @@ PLUGINS_CONFIG_FILE = settings.BASE_DIR + '/.plugins'
 def create_config_file():
     if not os.path.exists(PLUGINS_CONFIG_FILE):
         os.mknod(PLUGINS_CONFIG_FILE)
+        for _, name, _ in pkgutil.iter_modules(['plugins']):
+            remove_plugin(name)
         return True
     else:
         return False

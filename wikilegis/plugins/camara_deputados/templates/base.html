@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load compress staticfiles %}
+
+{% block extra_styles %}
+  {% compress css %}
+  <link type="text/x-scss" rel="stylesheet" href="{% static 'styles/camara_deputados.scss' %}"/>
+  {% endcompress %}
+{% endblock extra_styles %}

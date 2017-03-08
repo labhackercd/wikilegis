@@ -1,4 +1,5 @@
 from decouple import config
+from core import plugins
 
 
 DJANGO_APPS = [
@@ -30,6 +31,12 @@ WIKILEGIS_APPS = [
     'core',
     'api',
 ]
+
+plugins = plugins.load_current_plugins()
+
+for name, is_active in plugins.items():
+    if is_active:
+        WIKILEGIS_APPS.insert(0, 'plugins.' + name)
 
 if config('CONNECT_TO_LEGACY_WIKILEGIS', default=False, cast=bool):
     WIKILEGIS_APPS.append('legacy')

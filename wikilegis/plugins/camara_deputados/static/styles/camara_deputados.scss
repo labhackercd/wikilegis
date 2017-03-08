@@ -1,0 +1,13 @@
+$segment-type-padding: (
+  artigo: 0,
+  paragrafo: 1,
+  inciso: 2,
+  alinea: 3,
+  item: 4,
+);
+
+@each $type, $ratio in $segment-type-padding {
+  .segment--#{$type} {
+    padding-left: #{1 * $ratio}em;
+  }
+}

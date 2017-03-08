@@ -99,8 +99,7 @@ class SegmentMixin(TimestampedMixin, VoteCountMixin, CommentCountMixin,
                                      null=True, blank=True,
                                      on_delete=models.SET_NULL)
     order = models.PositiveIntegerField(_('order'), default=0)
-    number = models.CharField(_('number'), null=True,
-                              blank=True, max_length=200)
+    number = models.IntegerField(_('number'), null=True, blank=True)
 
     class Meta:
         abstract = True

@@ -20,8 +20,6 @@ class Command(BaseCommand):
                 click.secho('Plugin "{}" activated successfully!'.format(
                     options['name']
                 ), fg='green')
-            else:
-                plugins.remove_plugin(name)
 
         if not actived:
             click.secho('Plugin "{}" not found! The availables plugins '

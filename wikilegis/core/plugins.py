@@ -1,7 +1,12 @@
-from django.conf import settings
-import pkgutil
 import json
 import os
+import pkgutil
+
+import click
+from django.conf import settings
+import importlib
+import pip
+
 
 PLUGINS_CONFIG_FILE = settings.BASE_DIR + '/.plugins'
 
@@ -41,7 +46,18 @@ def add_plugin(plugin_name):
     plugins_dict = load_current_plugins()
     plugins_dict[plugin_name] = True
 
+    plugin_settings = get_settings(plugin_name)
+    click.secho('Installing dependencies', bold=True)
+
+    for dependency in plugin_settings.DEPENDENCIES:
+        pip.main(['install', dependency])
+
     write_config_file(plugins_dict)
+
+
+def get_settings(plugin_name):
+    settings_path = 'plugins.{}.settings'.format(plugin_name)
+    return importlib.import_module(settings_path)
 
 
 def remove_plugin(plugin_name):

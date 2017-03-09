@@ -13,3 +13,13 @@ for module_loader, name, ispkg in pkgutil.iter_modules([pkgpath]):
     module = import_module('..' + name, package=__name__)
     for var in dir(module):
         variables[var] = module.__dict__[var]
+
+from core import plugins # noqa
+
+plugins_dict = plugins.load_current_plugins()
+
+for name, is_active in plugins_dict.items():
+    if is_active:
+        plugin_settings = plugins.get_settings(name)
+        for key, value in plugin_settings.SETTINGS_VARIABLES.items():
+            variables[key] = value

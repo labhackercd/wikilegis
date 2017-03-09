@@ -1,0 +1,22 @@
+{% extends "segment/_index.html" %}
+{% load convert_numbers i18n %}
+
+{% block segment_type %}
+  <span class="segment__text--number">{% segment_numbering segment %}</span>
+{% endblock segment_type %}
+
+{% block segment_content %}
+  {% if segment.segment_type.editable %}
+    {{block.super}}
+  {% else %}
+    <div class="segment__section-top--uneditable">
+      <h3 class="segment__text">
+        <span class="segment__text--type">{{segment.segment_type.presentation_name}} </span>
+        <span class="segment__text--number">{% segment_numbering segment %} </span>
+      </h3>
+      <h3 class="segment__text">
+        <span class="segment__text--content">{{ segment.content }}</span>
+      </h3>
+    </div>
+  {% endif %}
+{% endblock segment_content %}

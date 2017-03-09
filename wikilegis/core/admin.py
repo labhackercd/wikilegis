@@ -95,7 +95,7 @@ class BillSegmentInline(admin.TabularInline):
 class BillAdmin(admin.ModelAdmin):
     inlines = (BillVideoInline, BillReferenceInline, BillSegmentInline)
     list_display = (
-        'title', 'theme', 'reporting_member', 'status', 'upvote_count',
+        'title', 'theme', 'status', 'upvote_count',
         'downvote_count', 'comments_count')
     list_filter = ('theme', 'is_visible', 'status')
     search_fields = ('title', 'epigraph', 'description')
@@ -104,7 +104,7 @@ class BillAdmin(admin.ModelAdmin):
         'upvote_count', 'downvote_count', 'comments_count', 'amendments_count')
     fieldsets = [
         (None, {'fields': [
-            'title', 'epigraph', 'description', 'theme', 'reporting_member',
+            'title', 'epigraph', 'description', 'theme',
             'closing_date', 'status', 'is_visible', 'allowed_users']}),
         (_('Counters'), {'fields': [
             'upvote_count', 'downvote_count', 'comments_count',

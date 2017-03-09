@@ -62,9 +62,6 @@ class Bill(TimestampedMixin, AmendmentCountMixin, VoteCountMixin,
     allowed_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='allowed_bills',
         verbose_name=_('allowed users'), blank=True)
-    reporting_member = models.ForeignKey(
-        settings.AUTH_USER_MODEL, verbose_name=_('reporting member'),
-        null=True, blank=True)
 
     def __str__(self):
         return self.title

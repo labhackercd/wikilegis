@@ -11,3 +11,53 @@ $segment-type-padding: (
     padding-left: #{1 * $ratio}em;
   }
 }
+
+.segment__text--number {
+  font-weight: bold;
+}
+
+.segment__section-top--uneditable {
+  text-align: center;
+  margin-top: 1em;
+
+  &:last-of-type {
+    margin-bottom: 1em;
+  }
+
+  .segment__text {
+    font-weight: normal;
+  }
+
+  .segment__text--type {
+    text-transform: uppercase;
+  }
+
+  .segment__text--content {
+    text-transform: uppercase;
+  }
+
+  .segment__text--number {
+    font-weight: normal;
+  }
+}
+
+.segment--secao,
+.segment--subsecao {
+  .segment__text--type {
+    text-transform: none;
+  }
+
+  .segment__text--content {
+    text-transform: none;
+  }
+}
+
+.segment--subsecao {
+  .segment__text--type {
+    text-transform: none;
+  }
+
+  .segment__text--content {
+    text-transform: none;
+  }
+}

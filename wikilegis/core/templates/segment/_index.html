@@ -1,27 +1,29 @@
 <li class="segment segment--{{segment.segment_type.name}}" data-object-type="segment">
-  <div class="segment__section-top">
-    <div class="section-top__section-left">
-      {% include "segment/_actions_primary.html" with segment=segment %}
+  {% block segment_content %}
+    <div class="segment__section-top">
+      <div class="section-top__section-left">
+        {% include "segment/_actions_primary.html" with segment=segment %}
+      </div>
+
+      <div class="section-top__section-right">
+        <p class="segment__text">
+          {% block segment_type %}{% endblock segment_type %}
+          {{segment.content|safe}}
+        </p>
+
+        {% include "segment/_actions_secondary.html" with segment=segment %}
+      </div>
     </div>
 
-    <div class="section-top__section-right">
-      <p class="segment__text">
-        <strong>{{segment.segment_type.presentation_name}} {{segment.number}}</strong>
-        {{segment.content|safe}}
-      </p>
-
-      {% include "segment/_actions_secondary.html" with segment=segment %}
+    <div class="segment__section-bottom">
+      <div
+        class="segment__comments-wrapper"
+        data-segment-comments="{{segment.id}}"
+        data-collapsible-wrapper="segment-comments"
+        data-comments-wrapper
+      >
+        <div class="loader" data-loading="false"></div>
+      </div>
     </div>
-  </div>
-
-  <div class="segment__section-bottom">
-    <div
-      class="segment__comments-wrapper"
-      data-segment-comments="{{segment.id}}"
-      data-collapsible-wrapper="segment-comments"
-      data-comments-wrapper
-    >
-      <div class="loader" data-loading="false"></div>
-    </div>
-  </div>
+  {% endblock segment_content %}
 </li>

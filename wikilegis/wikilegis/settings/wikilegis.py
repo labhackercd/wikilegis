@@ -21,5 +21,6 @@ plugins_dict = plugins.load_current_plugins()
 for name, is_active in plugins_dict.items():
     if is_active:
         plugin_settings = plugins.get_settings(name)
-        for key, value in plugin_settings.SETTINGS_VARIABLES.items():
+        settings_variables = getattr(plugin_settings, 'SETTINGS_VARIABLES', {})
+        for key, value in settings_variables.items():
             variables[key] = value

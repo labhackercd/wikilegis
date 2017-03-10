@@ -29,7 +29,8 @@ plugins_dict = plugins.load_current_plugins()
 for name, is_active in plugins_dict.items():
     if is_active:
         plugin_settings = plugins.get_settings(name)
-        WIKILEGIS_MIDDLEWARES += plugin_settings.MIDDLEWARE_CLASSES
+        pluging_middleware = getattr(plugin_settings, 'MIDDLEWARE_CLASSES', [])
+        WIKILEGIS_MIDDLEWARES += pluging_middleware
 
 if config('ENABLE_REMOTE_USER', default=0, cast=bool):
     WIKILEGIS_MIDDLEWARES += [

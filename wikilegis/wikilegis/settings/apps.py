@@ -37,7 +37,8 @@ plugins_dict = plugins.load_current_plugins()
 for name, is_active in plugins_dict.items():
     if is_active:
         plugin_settings = plugins.get_settings(name)
-        THIRD_PARTY += plugin_settings.INSTALLED_APPS
+        plugin_apps = getattr(plugin_settings, 'INSTALLED_APPS', [])
+        THIRD_PARTY += plugin_apps
         WIKILEGIS_APPS.insert(0, 'plugins.' + name)
 
 if config('CONNECT_TO_LEGACY_WIKILEGIS', default=False, cast=bool):

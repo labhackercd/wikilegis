@@ -9,17 +9,32 @@ class BillInfo(models.Model):
         verbose_name_plural = "Bill Infos"
 
     def __str__(self):
-        pass
+        return self.bill.title
 
     bill = models.OneToOneField('core.Bill', verbose_name=_('Bill'))
+    author = models.ForeignKey('BillAuthor', verbose_name=_('Author'),
+                               null=True, blank=True)
     reporting_member = models.ForeignKey('ReportingMember',
                                          verbose_name=_('Reporting Member'))
-    proposal_type = models.CharField(max_length=50,
-                                     verbose_name=_('Proposal Type'))
+    proposal_type = models.ForeignKey('ProposalType',
+                                      verbose_name=_('Proposal Type'))
     proposal_number = models.IntegerField(verbose_name=_('Proposal Number'))
     proposal_year = models.IntegerField(verbose_name=_('Proposal Year'))
     situation = models.CharField(max_length=400, blank=True, null=True,
                                  verbose_name=_('Situation'))
+
+
+class ProposalType(models.Model):
+
+    initials = models.CharField(max_length=50)
+    description = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = "Proposal Type"
+        verbose_name_plural = "Proposal Types"
+
+    def __str__(self):
+        return '{} - {}'.format(self.initials, self.description)
 
 
 class ReportingMember(models.Model):

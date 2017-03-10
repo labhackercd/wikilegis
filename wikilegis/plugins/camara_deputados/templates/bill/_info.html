@@ -1,0 +1,32 @@
+{% extends "bill/_info.html" %}
+
+{% block extra_info %}
+  <div class="info__reporting-member">
+    {% with bill.infos.reporting_member as reporting_member %}
+      <span class="reporting-member__title">Apresentado por:</span>
+      <div>
+        <img class="reporting-member__image" src="http://www.camara.gov.br/internet/deputado/bandep/{{reporting_member.id}}.jpg" alt="">
+        <h5 class="reporting-member__name">{{reporting_member.name}}</h5>
+        <p class="reporting-member__name">{{reporting_member.party}} - {{reporting_member.region}}</p>
+      </div>
+    {% endwith %}
+  </div>
+
+  <div class="info__author">
+    {% with bill.infos.author as author %}
+      <span class="reporting-member__title">Autor:</span>
+      {% if author.register_id %}
+        <div>
+          <img class="reporting-member__image" src="http://www.camara.gov.br/internet/deputado/bandep/{{author.register_id}}.jpg" alt="">
+          <h5 class="reporting-member__name">{{author.name}}</h5>
+          <p class="reporting-member__name">{{author.party}} - {{author.region}}</p>
+        </div>
+      {% else %}
+        <div class="">
+          <h5 class="reporting-member__name">{{author.name}}</h5>
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+{% endblock extra_info %}

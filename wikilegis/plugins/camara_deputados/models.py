@@ -12,7 +12,8 @@ class BillInfo(models.Model):
     def __str__(self):
         return self.bill.title
 
-    bill = models.OneToOneField('core.Bill', verbose_name=_('Bill'))
+    bill = models.OneToOneField('core.Bill', verbose_name=_('Bill'),
+                                related_name='infos')
     author = models.ForeignKey('BillAuthor', verbose_name=_('Author'),
                                null=True, blank=True)
     reporting_member = models.ForeignKey('ReportingMember',

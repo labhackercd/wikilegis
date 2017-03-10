@@ -5,7 +5,7 @@ from plugins.camara_deputados import models
 class BillInfoAdmin(admin.ModelAdmin):
     list_display = ('bill', 'proposal_type', 'proposal_number',
                     'proposal_year', 'situation')
-    readonly_fields = ('author',)
+    readonly_fields = ('author', 'situation')
 
 
 class ProposalTypeAdmin(admin.ModelAdmin):

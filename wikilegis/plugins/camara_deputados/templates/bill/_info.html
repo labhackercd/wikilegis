@@ -1,6 +1,10 @@
 {% extends "bill/_info.html" %}
 
 {% block extra_info %}
+  <div class="info__bill-status">
+    <p>{{bill.infos.situation}}</p>
+  </div>
+
   <div class="info__reporting-member">
     {% with bill.infos.reporting_member as reporting_member %}
       <span class="reporting-member__title">Apresentado por:</span>

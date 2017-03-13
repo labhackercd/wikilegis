@@ -2,7 +2,6 @@ import json
 import os
 import pkgutil
 
-import click
 from django.conf import settings
 import importlib
 import pip
@@ -47,10 +46,11 @@ def add_plugin(plugin_name):
     plugins_dict[plugin_name] = True
 
     plugin_settings = get_settings(plugin_name)
-    click.secho('Installing dependencies', bold=True)
+    plugin_deps = getattr(plugin_settings, 'DEPENDENCIES', None)
 
-    for dependency in plugin_settings.DEPENDENCIES:
-        pip.main(['install', dependency])
+    if plugin_deps:
+        for dependency in plugin_deps:
+            pip.main(['install', dependency])
 
     write_config_file(plugins_dict)
 

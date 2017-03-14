@@ -74,8 +74,8 @@ class BillAuthor(models.Model):
     def __str__(self):
         details = ''
         if self.register_id:
-            details = '- {}({})'.format(self.party, self.region)
-        return '{} {}'.format(self.name, details)
+            details = ' - {}({})'.format(self.party, self.region)
+        return '{}{}'.format(self.name, details)
 
 
 models.signals.pre_save.connect(signals.get_proposal_situation,

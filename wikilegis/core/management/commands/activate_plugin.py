@@ -7,7 +7,7 @@ import click
 class Command(BaseCommand):
 
     def add_arguments(self, parser):
-        parser.add_argument('--name', type=str, help="Plugin name")
+        parser.add_argument('name', type=str, help="Plugin name")
 
     def handle(self, *args, **options):
         availables_plugins = []

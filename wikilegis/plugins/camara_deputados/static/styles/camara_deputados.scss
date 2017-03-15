@@ -65,39 +65,46 @@ $segment-type-padding: (
 }
 
 .info__bill-members-wrapper {
-    padding: 1em 0 0 0;
-    border-top: 1px solid #bfbfbf;
+  padding: 1em 0 0 0;
+  border-top: 1px solid $color-gray-55;
 }
 
 .info__bill-member {
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
-    margin: 0 0 1em 0;
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 1em 0;
 }
 
 .bill-member__title {
-    font-weight: 800;
-    margin: 0;
-    text-transform: uppercase;
+  font-weight: 800;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .bill-member__name {
-    font-size: 1.25em;
-    font-weight: 300;
+  color: black;
+  font-weight: 300;
+  text-decoration: none;
+  font-size: 1.25em;
+  transition: 0.3s $swift-out;
+
+  &:hover {
+    color: $color-gray-75;
+  }
 }
 
 .bill-member__image-wrapper {
-    align-items: flex-start;
-    border-radius: 50%;
-    border: 0.25em solid #2cd27e;
-    display: flex;
-    flex: 0 0 4em;
-    height: 4em;
-    justify-content: center;
-    margin: 0 0.5em 0 0;
-    overflow: hidden;
-    width: 4em;
+  align-items: flex-start;
+  border-radius: 50%;
+  border: 0.25em solid $color-accent;
+  display: flex;
+  flex: 0 0 4em;
+  height: 4em;
+  justify-content: center;
+  margin: 0 0.5em 0 0;
+  overflow: hidden;
+  width: 4em;
 }
 
 .bill-member__image {
@@ -105,12 +112,12 @@ $segment-type-padding: (
 }
 
 .bill-member__content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .bill-member__party {
-    color: #8c8c8c;
-    font-size: 0.9em;
-    font-weight: 600;
+  color: $color-gray-75;
+  font-size: 0.9em;
+  font-weight: 600;
 }

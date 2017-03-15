@@ -1,7 +1,7 @@
 from autofixture import AutoFixture
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.utils.text import slugify
 from core import models
 
@@ -39,6 +39,16 @@ class ModelsTestCase(TestCase):
         bill.title = 'test bill'
         bill.save()
         self.assertEquals(bill.__str__(), 'test bill')
+
+    def test_bill_get_absolute_url(self):
+        client = Client()
+        self.theme_fixture.create_one()
+        bill = self.bill_fixture.create_one()
+        bill.title = 'test bill'
+        bill.save()
+        response = client.get(bill.get_absolute_url())
+        response.status_code
+        self.assertEquals(response.status_code, 200)
 
     def test_bill_save(self):
         self.theme_fixture.create_one()

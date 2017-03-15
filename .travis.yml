@@ -18,7 +18,7 @@ install:
 script:
 - python wikilegis/manage.py makemigrations
 - python wikilegis/manage.py migrate
-- coverage run wikilegis/manage.py test wikilegis/
+- coverage run wikilegis/manage.py test_apps
 - flake8 wikilegis
 - npm run lint
 after_success:

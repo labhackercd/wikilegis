@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import permalink
 from django.utils.translation import ugettext as _
 from django.utils.text import slugify
 from django.conf import settings
@@ -71,6 +72,10 @@ class Bill(TimestampedMixin, AmendmentCountMixin, VoteCountMixin,
             self.is_visible = True
 
         return super(Bill, self).save(*args, **kwargs)
+
+    @permalink
+    def get_absolute_url(self):
+        return 'bill_index', [self.pk], {}
 
     class Meta:
         verbose_name = _('Bill')

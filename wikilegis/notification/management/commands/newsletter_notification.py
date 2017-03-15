@@ -1,5 +1,6 @@
 from collections import defaultdict
 from datetime import datetime, timedelta
+from itertools import chain
 
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
@@ -28,18 +29,27 @@ class Command(BaseCommand):
             newsletters = user.newsletters.filter(bill__status='published')
             for newsletter in newsletters:
                 for segment in newsletter.bill.segments.all():
-                    additive_amendments = segment.additive_amendments.filter(
-                        modified__gte=datetime.now() - timedelta(days=1))
-                    modifier_amendments = segment.modifier_amendments.filter(
-                        modified__gte=datetime.now() - timedelta(days=1))
-                    supress_amendments = segment.supress_amendments.filter(
-                        modified__gte=datetime.now() - timedelta(days=1))
-                    if (additive_amendments or modifier_amendments or
-                            supress_amendments):
-                        bill_proposals[newsletter.bill].append(segment)
-            # Need html to newsletter
+                    if options['periodicity'] == 'daily':
+                        additives = segment.additive_amendments.filter(
+                            modified__gte=datetime.now() - timedelta(days=1))
+                        modified = segment.modifier_amendments.filter(
+                            modified__gte=datetime.now() - timedelta(days=1))
+                        supressed = segment.supress_amendments.filter(
+                            modified__gte=datetime.now() - timedelta(days=1))
+                    elif options['periodicity'] == 'weekly':
+                        additives = segment.additive_amendments.filter(
+                            modified__gte=datetime.now() - timedelta(days=7))
+                        modified = segment.modifier_amendments.filter(
+                            modified__gte=datetime.now() - timedelta(days=7))
+                        supressed = segment.supress_amendments.filter(
+                            modified__gte=datetime.now() - timedelta(days=7))
+                    amendments = list(chain(additives, modified, supressed))
+                    if len(amendments) > 0:
+                        bill_proposals[newsletter.bill].append(
+                            {segment: amendments})
+
             if bill_proposals:
-                html = render_to_string('',  # Add template directory here
+                html = render_to_string('email/newsletter.html',
                                         {'domain': domain,
                                          'proposals': dict(bill_proposals)})
                 subject = u'[Wikilegis] Notificação '

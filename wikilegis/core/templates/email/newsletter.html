@@ -1,0 +1,32 @@
+{% load counters %}
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+         <div>
+            {% for bill, segments in proposals.items %}
+            {% if not forloop.first %}
+            <hr>
+            {% endif %}
+            <h3>Projeto de lei: {{ bill }}</h3>
+            <h5>Votos a favor: {{ bill.upvote_count }} | Votos contra: {{ bill.downvote_count }} | Propostas: {{ bill.amendments_count }}</h5>
+            <a href="https://{{ domain }}{{ bill.get_absolute_url }}">Acesse clicando aqui</a>
+            {% for dispositives in segments %}
+                {% for segment, amendments in dispositives.items %}
+                <h4><b>Trecho original:</b></h4>
+                <div>
+                    <p>
+                        <span>{{ segment.segment_type }}</span>
+                        {{ segment.content }}
+                    </p>
+                </div>
+                <div>
+                    <h5>Novas adições: {{ amendments|amendments_count:"AdditiveAmendment" }} | Novas modificações: {{ amendments|amendments_count:"ModifierAmendment" }} | Novas exclusões: {{ amendments|amendments_count:"SupressAmendment" }}</h5>
+                </div>
+                {% endfor %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </body>
+</html>

@@ -3,6 +3,7 @@ import os
 import pkgutil
 
 from django.conf import settings
+from django.core import management
 import importlib
 import pip
 
@@ -41,6 +42,12 @@ def write_config_file(plugins_dict):
     config_file.close()
 
 
+def get_installed_packages():
+    installed = pip.get_installed_distributions()
+    installed_packages = [package.project_name for package in installed]
+    return installed_packages
+
+
 def add_plugin(plugin_name):
     plugins_dict = load_current_plugins()
     plugins_dict[plugin_name] = True
@@ -50,7 +57,8 @@ def add_plugin(plugin_name):
 
     if plugin_deps:
         for dependency in plugin_deps:
-            pip.main(['install', dependency])
+            if dependency not in get_installed_packages():
+                pip.main(['install', dependency])
 
     write_config_file(plugins_dict)
 

@@ -10,10 +10,11 @@
     {% endblock %}
 
     <title>{% block title %}Wikilegis{% endblock %}</title>
-
-    {% compress css %}
-    <link type="text/x-scss" rel="stylesheet" href="{% static 'styles/app.scss' %}"/>
-    {% endcompress %}
+    {% block styles %}
+      {% compress css %}
+      <link type="text/x-scss" rel="stylesheet" href="{% static 'styles/app.scss' %}"/>
+      {% endcompress %}
+    {% endblock styles %}
 
     {% block extra_styles %}{% endblock extra_styles %}
   </head>

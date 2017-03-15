@@ -106,7 +106,7 @@ $ ./manage.py deactivate_plugin plugin_name
 
 Note that plugin dependencies will remain installed on your system.
 
-tr# Database and superuser setup
+# Database and superuser setup
 
 ```bash
 $ ./manage.py migrate

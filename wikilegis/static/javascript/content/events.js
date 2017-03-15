@@ -62,6 +62,10 @@ function keyUpEvent(event) {
   if ('additiveAmendmentInput' in dataset) {
     preview.additiveAmendmentPreview(event.target);
   }
+
+  if ('modifierAmendmentInput' in dataset) {
+    diff.updateDiff(event.target);
+  }
 }
 
 function mouseoverEvent(event) {
@@ -103,14 +107,6 @@ function changeEvent(event) {
 
   if ('additiveAmendmentSelect' in dataset) {
     preview.additiveAmendmentPreview(event.target.nextElementSibling);
-  }
-}
-
-function keyUpEvent(event) {
-  const dataset = event.target.dataset;
-
-  if ('modifierAmendmentInput' in dataset) {
-    diff.updateDiff(event.target);
   }
 }
 

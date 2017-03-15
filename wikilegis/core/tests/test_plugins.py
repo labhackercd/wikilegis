@@ -66,12 +66,15 @@ class PluginsTestCase(TestCase):
         mock_open.assert_called()
         mock_settings.assert_called_with('plugin_test')
 
+    @mock.patch('core.plugins.get_installed_packages')
     @mock.patch('pip.main')
     @mock.patch('core.plugins.get_settings')
     @mock.patch('builtins.open', create=True)
-    def test_add_plugin_with_deps(self, mock_open, mock_settings, mock_pip):
+    def test_add_plugin_with_deps(self, mock_open, mock_settings,
+                                  mock_pip, mock_packages):
         settings = mock.MagicMock()
         settings.DEPENDENCIES = ['dep1']
+        mock_packages.return_value = []
         mock_settings.return_value = settings
         mock_open.return_value = mock.mock_open(
             read_data='{"plugin_test": false}'
@@ -80,3 +83,28 @@ class PluginsTestCase(TestCase):
         mock_open.assert_called()
         mock_settings.assert_called_with('plugin_test')
         mock_pip.assert_called_with(['install', 'dep1'])
+
+    @mock.patch('core.plugins.get_installed_packages')
+    @mock.patch('pip.main')
+    @mock.patch('core.plugins.get_settings')
+    @mock.patch('builtins.open', create=True)
+    def test_add_plugin_dep_already_installed(self, mock_open, mock_settings,
+                                              mock_pip, mock_packages):
+        settings = mock.MagicMock()
+        settings.DEPENDENCIES = ['dep1']
+        mock_packages.return_value = ['dep1']
+        mock_settings.return_value = settings
+        mock_open.return_value = mock.mock_open(
+            read_data='{"plugin_test": false}'
+        ).return_value
+        plugins.add_plugin('plugin_test')
+        mock_open.assert_called()
+        mock_settings.assert_called_with('plugin_test')
+        self.assertFalse(mock_pip.called)
+
+    @mock.patch('pip.get_installed_distributions')
+    def test_get_installed_packages(self, mock_pip):
+        package = mock.MagicMock()
+        package.project_name = 'project_name'
+        mock_pip.return_value = [package]
+        self.assertEquals(plugins.get_installed_packages(), ['project_name'])

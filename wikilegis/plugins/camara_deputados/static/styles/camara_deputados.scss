@@ -1,0 +1,136 @@
+@import '../../static/styles/app';
+
+$segment-type-padding: (
+  artigo: 0,
+  paragrafo: 1,
+  inciso: 2,
+  alinea: 3,
+  item: 4,
+);
+
+@each $type, $ratio in $segment-type-padding {
+  .segment--#{$type} {
+    padding-left: #{1 * $ratio}em;
+  }
+}
+
+.segment__text--number {
+  font-weight: bold;
+}
+
+.segment__section-top--uneditable {
+  text-align: center;
+  margin-top: 1em;
+
+  &:last-of-type {
+    margin-bottom: 1em;
+  }
+
+  .segment__text {
+    font-weight: normal;
+  }
+
+  .segment__text--type {
+    text-transform: uppercase;
+  }
+
+  .segment__text--content {
+    text-transform: uppercase;
+  }
+
+  .segment__text--number {
+    font-weight: normal;
+  }
+}
+
+.segment--secao,
+.segment--subsecao {
+  .segment__text--type {
+    text-transform: none;
+  }
+
+  .segment__text--content {
+    text-transform: none;
+  }
+}
+
+.segment--subsecao {
+  .segment__text--type {
+    text-transform: none;
+  }
+
+  .segment__text--content {
+    text-transform: none;
+  }
+}
+
+.info__bill-members-wrapper {
+  padding: 1em 0 0 0;
+  border-top: 1px solid $color-gray-55;
+}
+
+.info__bill-member {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 1em 0;
+}
+
+.bill-member__title {
+  font-weight: 800;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.bill-member__name {
+  color: black;
+  font-weight: 300;
+  text-decoration: none;
+  font-size: 1.25em;
+  transition: 0.3s $swift-out;
+
+  &:hover {
+    color: $color-gray-75;
+  }
+}
+
+.bill-member__image-wrapper {
+  align-items: flex-start;
+  border-radius: 50%;
+  border: 0.25em solid $color-accent;
+  display: flex;
+  flex: 0 0 4em;
+  height: 4em;
+  justify-content: center;
+  margin: 0 0.5em 0 0;
+  overflow: hidden;
+  width: 4em;
+}
+
+.bill-member__image {
+  width: 4em;
+}
+
+.bill-member__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.bill-member__party {
+  color: $color-gray-75;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.info__bill-status {
+  .bill-status__title {
+      font-weight: 800;
+      text-transform: uppercase;
+  }
+
+  .bill-status__text {
+      margin: 0;
+      font-weight: 300;
+      font-size: 1em;
+  }
+}

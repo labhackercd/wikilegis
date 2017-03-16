@@ -1,0 +1,49 @@
+{% load staticfiles compress i18n %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block extrameta %}
+    {% endblock %}
+
+    <title>{% block title %}Wikilegis{% endblock %}</title>
+    {% block styles %}
+      {% compress css %}
+      <link type="text/x-scss" rel="stylesheet" href="{% static 'styles/app.scss' %}"/>
+      {% endcompress %}
+    {% endblock styles %}
+
+    {% block extra_styles %}{% endblock extra_styles %}
+  </head>
+
+  <body>
+    <div class="wikilegis__alert hidden" data-wikilegis-alert>
+      <i class="alert__dismiss icon icon-times" data-dismiss-alert></i>
+      <h1 class="alert__header" data-alert-header></h1>
+      <p class="alert__text" data-alert-text></p>
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+
+    <script>
+      var strings = {
+        emptyCommentTitle: "{% trans 'Oops' %}",
+        emptyCommentText: "{% trans 'You cannot send an empty comment :(' %}",
+        emptyAmendmentTitle: "{% trans 'Oops' %}",
+        emptyAmendmentText: "{% trans 'You cannot send an empty amendment :(' %}",
+        sameAsSegmentTitle: "{% trans 'Oops' %}",
+        sameAsSegmentText: "{% trans 'Your suggestion has the same text of original segment' %}",
+      };
+    </script>
+
+    {% compress js %}
+    <script type="module" src="{% static 'javascript/app.js' %}"></script>
+    {% endcompress %}
+
+    {% block extra_js %}{% endblock extra_js %}
+  </body>
+</html>

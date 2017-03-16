@@ -1,98 +1,64 @@
-{% load staticfiles compress i18n %}
+{% extends "base.html" %}
+{% load staticfiles %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block extrameta %}
-    {% endblock %}
-    <title>{% block title %}Wikilegis{% endblock %}</title>
-    {% compress css %}
-    <link type="text/x-scss" rel="stylesheet" href="{% static 'styles/app.scss' %}"/>
-    {% endcompress %}
-  </head>
+{% block content %}
+<main id="bill-list-search" class="wikilegis" data-bill-open="false">
+  <!-- <input class="banner__search" placeholder="Search" /> -->
+  <div class="wikilegis__banner">
+    <div class="banner__particle-background" id="particles-js"></div>
+    <div class="banner__content">
+      <div class="banner__logo">
+        <img class="logo__image" src="{% static 'images/logo-wikilegis.svg' %}">
+        <img class="logo__text" src="{% static 'images/logo-wikilegis-text.svg' %}">
+      </div>
+      <div class="banner__info">
+        <h1 class="banner__header">Sua ferramenta de edição legislativa</h1>
+        <p class="banner__text">
+          Analise os projetos de lei e contribua com sugestões de nova redação a artigos ou parágrafos. Os deputados relatores das proposições acompanham as participações e podem adotar a sua ideia!
+        </p>
+        <p class="banner__text">
+          Nessa interação, ganha a sociedade, que participa mais ativamente do processo legislativo, e ganha o Parlamento, que aprova leis mais aprimoradas e conectadas às necessidades dos cidadãos.
+        </p>
+      </div>
+    </div>
+  </div>
 
-  <body>
-    <div class="wikilegis__alert hidden" data-wikilegis-alert>
-      <i class="alert__dismiss icon icon-times" data-dismiss-alert></i>
-      <h1 class="alert__header" data-alert-header></h1>
-      <p class="alert__text" data-alert-text></p>
+  <ul class="wikilegis__bill-list" data-drawer-close="bill">
+    {% for bill in bills %}
+      {% include "bill/_list-item.html" with bill=bill %}
+    {% endfor %}
+  </ul>
+
+  <div class="wikilegis__bill">
+    <div class="bill__info-wrapper">
+      <div class="loader" data-loading="false"></div>
     </div>
 
-    <main id="bill-list-search" class="wikilegis" data-bill-open="false">
-      <!-- <input class="banner__search" placeholder="Search" /> -->
-      <div class="wikilegis__banner">
-        <div class="banner__particle-background" id="particles-js"></div>
-        <div class="banner__content">
-          <div class="banner__logo">
-            <img class="logo__image" src="{% static 'images/logo-wikilegis.svg' %}">
-            <img class="logo__text" src="{% static 'images/logo-wikilegis-text.svg' %}">
-          </div>
-          <div class="banner__info">
-            <h1 class="banner__header">Sua ferramenta de edição legislativa</h1>
-            <p class="banner__text">
-              Analise os projetos de lei e contribua com sugestões de nova redação a artigos ou parágrafos. Os deputados relatores das proposições acompanham as participações e podem adotar a sua ideia!
-            </p>
-            <p class="banner__text">
-              Nessa interação, ganha a sociedade, que participa mais ativamente do processo legislativo, e ganha o Parlamento, que aprova leis mais aprimoradas e conectadas às necessidades dos cidadãos.
-            </p>
-          </div>
-        </div>
+    <div class="bill__content-wrapper">
+      <a class="content__close" data-drawer-close="bill" role="button" title="voltar" tabindex="0">
+        <i class="close__icon icon icon-arrow-left"></i>
+      </a>
+      <div class="loader" data-loading="false"></div>
+
+      <div class="segment-add">
+        <span class="segment-add__line"></span>
+        <i class="segment-add__icon icon icon-plus"></i>
+        <span class="segment-add__line"></span>
       </div>
+    </div>
 
-      <ul class="wikilegis__bill-list" data-drawer-close="bill">
-        {% for bill in bills %}
-          {% include "bill/_list-item.html" with bill=bill %}
-        {% endfor %}
-      </ul>
+    <div class="bill__amendments-wrapper">
+      <nav class="amendments__nav">
+        <a href="#tab_edit" class="nav__item" data-tab-content="amendments" data-tab="1">EDIÇÃO</a>
+        <a href="#tab_add" class="nav__item" data-tab-content="amendments" data-tab="2">ADIÇÃO</a>
+        <a href="#tab_remove" class="nav__item" data-tab-content="amendments" data-tab="3">EXCLUSÃO</a>
+      </nav>
 
-      <div class="wikilegis__bill">
-        <div class="bill__info-wrapper">
-          <div class="loader" data-loading="false"></div>
-        </div>
-
-        <div class="bill__content-wrapper">
-          <a class="content__close" data-drawer-close="bill" role="button" title="voltar" tabindex="0">
-            <i class="close__icon icon icon-arrow-left"></i>
-          </a>
-          <div class="loader" data-loading="false"></div>
-
-          <div class="segment-add">
-            <span class="segment-add__line"></span>
-            <i class="segment-add__icon icon icon-plus"></i>
-            <span class="segment-add__line"></span>
-          </div>
-        </div>
-
-        <div class="bill__amendments-wrapper">
-          <nav class="amendments__nav">
-            <a href="#tab_edit" class="nav__item" data-tab-content="amendments" data-tab="1">EDIÇÃO</a>
-            <a href="#tab_add" class="nav__item" data-tab-content="amendments" data-tab="2">ADIÇÃO</a>
-            <a href="#tab_remove" class="nav__item" data-tab-content="amendments" data-tab="3">EXCLUSÃO</a>
-          </nav>
-
-          <a class="amendments__close" data-drawer-close="amendments" role="button" title="voltar" tabindex="0">
-            <i class="close__icon icon icon-arrow-left"></i>
-          </a>
-          <div class="loader" data-loading="false"></div>
-        </div>
-      </div>
-    </main>
-
-    <script>
-      var strings = {
-        emptyCommentTitle: "{% trans 'Oops' %}",
-        emptyCommentText: "{% trans 'You cannot send an empty comment :(' %}",
-        emptyAmendmentTitle: "{% trans 'Oops' %}",
-        emptyAmendmentText: "{% trans 'You cannot send an empty amendment :(' %}",
-        sameAsSegmentTitle: "{% trans 'Oops' %}",
-        sameAsSegmentText: "{% trans 'Your suggestion has the same text of original segment' %}",
-      };
-    </script>
-
-    {% compress js %}
-    <script type="module" src="{% static 'javascript/app.js' %}"></script>
-    {% endcompress %}
-  </body>
-</html>
+      <a class="amendments__close" data-drawer-close="amendments" role="button" title="voltar" tabindex="0">
+        <i class="close__icon icon icon-arrow-left"></i>
+      </a>
+      <div class="loader" data-loading="false"></div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

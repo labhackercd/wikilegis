@@ -73,6 +73,39 @@ LEGACY_DATABASE_PORT
 
 ```
 
+# Plugins
+
+You can list all available plugins with:
+
+```bash
+$ ./manage.py list_plugins
+
+Availables plugins:
+[ ] camara_deputados
+```
+
+If the listed plugin is active, the "checkbox" will be filled with "X". Otherwise, will be empty.
+
+## Activating plugins
+
+Once you have listed all available plugins, you can activate one of them. To do this you have to execute the following django command:
+
+```bash
+$ ./manage.py activate_plugin plugin_name
+```
+
+After run this command, all plugin dependencies will be installed using `pip`. If you're using `virtualenv`, problably you'll not have problems. But if you're not using, you must run this command with `root` previlleges.
+
+## Deactivating plugins
+
+To deactivate one plugin:
+
+```bash
+$ ./manage.py deactivate_plugin plugin_name
+```
+
+Note that plugin dependencies will remain installed on your system.
+
 # Database and superuser setup
 
 ```bash

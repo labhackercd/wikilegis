@@ -29,8 +29,6 @@
     {% include "segment/_votes.html" with segment=bill %}
   </div>
 
-  <div class="info__reporting-member">
-    <span class="reporting-member__title">Apresentado por:</span>
-    <h5 class="reporting-member__name">{{bill.reporting_member}}</h5>
-  </div>
+  {% block extra_info %}
+  {% endblock extra_info %}
 </section>

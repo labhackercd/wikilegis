@@ -1,0 +1,49 @@
+{% extends "bill/_info.html" %}
+
+{% block extra_info %}
+  {% if bill.infos %}
+    <div class="info__bill-members-wrapper">
+      <div class="info__bill-member">
+        {% with bill.infos.reporting_member as reporting_member %}
+
+          <div class="bill-member__image-wrapper">
+            <img class="bill-member__image" src="http://www.camara.gov.br/internet/deputado/bandep/{{reporting_member.id}}.jpg">
+          </div>
+
+          <div class="bill-member__content">
+            <h4 class="bill-member__title">Relator</h4>
+            <a href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{reporting_member.id}}" class="bill-member__name">{{ reporting_member.name|title }}</a href="">
+            <span class="bill-member__party">({{reporting_member.party}}-{{reporting_member.region}})</span>
+          </div>
+
+        {% endwith %}
+      </div>
+
+      <div class="info__bill-member">
+        {% with bill.infos.author as author %}
+
+          {% if author.register_id %}
+            <div class="bill-member__image-wrapper">
+              <img class="bill-member__image" src="http://www.camara.gov.br/internet/deputado/bandep/{{author.register_id}}.jpg">
+            </div>
+          {% endif %}
+
+          <div class="bill-member__content">
+            <h4 class="bill-member__title">Autor</h4>
+            {% if not author.register_id %}
+              <span class="bill-member__name">{{ author.name|title }}</span>
+            {% else %}
+              <a href="http://www.camara.leg.br/Internet/Deputado/dep_Detalhe.asp?id={{author.register_id}}" class="bill-member__name">{{ author.name|title }}</a>
+              <span class="bill-member__party">({{author.party}}-{{author.region}})</span>
+            {% endif %}
+          </div>
+
+        {% endwith %}
+      </div>
+    </div>
+    <div class="info__bill-status">
+      <span class="bill-status__title">Situação</span>
+      <p class="bill-status__text">{{bill.infos.situation}}</p>
+    </div>
+  {% endif %}
+{% endblock extra_info %}

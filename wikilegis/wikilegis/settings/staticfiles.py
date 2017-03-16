@@ -10,10 +10,10 @@ NODE_MODULES = os.path.join(os.path.dirname(BASE_DIR), 'node_modules')
 STATIC_URL = config('STATIC_URL', default='/static/')
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'static'))
 
-STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
+STATICFILES_FINDERS = [
     'djangobower.finders.BowerFinder',
     'compressor.finders.CompressorFinder',
-]
+] + default.STATICFILES_FINDERS
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
 BOWER_PATH = os.path.join(NODE_MODULES, '.bin/bower')

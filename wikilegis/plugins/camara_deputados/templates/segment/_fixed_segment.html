@@ -1,0 +1,13 @@
+{% load i18n convert_numbers %}
+
+{% if segment.segment_type.name|slugify == 'titulo' %}
+  <h5 class="heading livro" id="title-{{segment.id}}">{% trans "TITLE" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+{% elif segment.segment_type.name|slugify == 'livro' %}
+  <h5 class="heading livro" id="book-{{segment.id}}">{% trans "BOOK" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+{% elif segment.segment_type.name|slugify == 'capitulo' %}
+  <h5 class="heading capitulo" id="chapter-{{segment.id}}">{% trans "CHAPTER" %}  <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+{% elif segment.segment_type.name|slugify == 'secao' %}
+  <h5 class="heading secao" id="section-{{segment.id}}">{% trans "Section" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+{% elif segment.segment_type.name|slugify == 'subsecao' %}
+  <h5 class="heading subsecao" id="subsection-{{segment.id}}">{% trans "Subsection" %} <span class="heading-number">{% segment_numbering segment %}</span> <span class="heading-title">{{ segment.content }}</span></h5>
+{% endif %}

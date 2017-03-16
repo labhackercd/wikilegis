@@ -108,3 +108,8 @@ class PluginsTestCase(TestCase):
         package.project_name = 'project_name'
         mock_pip.return_value = [package]
         self.assertEquals(plugins.get_installed_packages(), ['project_name'])
+
+    @mock.patch('importlib.import_module')
+    def test_get_settings(self, mock_importlib):
+        plugins.get_settings('plugin_name')
+        mock_importlib.assert_called_with('plugins.plugin_name.settings')

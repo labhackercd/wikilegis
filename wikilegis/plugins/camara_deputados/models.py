@@ -9,8 +9,8 @@ class BillAuthor(models.Model):
                               verbose_name=_('Region'))
     party = models.CharField(max_length=255, blank=True, null=True,
                              verbose_name=_('Party'))
-    register_id = models.IntegerField(blank=True, null=True,
-                                      verbose_name=_('Register ID'))
+    register_id = models.CharField(max_length=255, blank=True, null=True,
+                                   verbose_name=_('Register ID'))
 
     class Meta:
         verbose_name = "Bill Author"

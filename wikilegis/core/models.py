@@ -186,7 +186,8 @@ class SegmentType(models.Model):
     presentation_name = models.CharField(_('presentation name'),
                                          max_length=200, blank=True, null=True)
     parents = models.ManyToManyField('self', related_name='children',
-                                     verbose_name=_('parent type'))
+                                     verbose_name=_('parent type'),
+                                     symmetrical=False)
     editable = models.BooleanField(_('editable'), default='True')
 
     class Meta:

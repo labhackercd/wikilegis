@@ -7,6 +7,7 @@ import hoverModule from './modules/hover';
 import tabsModule from './modules/tabs';
 import formsModule from './modules/forms';
 import votesModule from './modules/votes';
+import previewModule from './modules/preview';
 import amendmentDiffModule from './modules/amendmentDiff';
 
 const collapsible = collapsibleModule();
@@ -15,6 +16,7 @@ const hover = hoverModule();
 const tabs = tabsModule();
 const forms = formsModule();
 const votes = votesModule();
+const preview = previewModule();
 const diff = amendmentDiffModule();
 
 function clickEvent(event) {
@@ -54,6 +56,18 @@ function clickEvent(event) {
   }
 }
 
+function keyUpEvent(event) {
+  const dataset = event.target.dataset;
+
+  if ('additiveAmendmentInput' in dataset) {
+    preview.additiveAmendmentPreview(event.target);
+  }
+
+  if ('modifierAmendmentInput' in dataset) {
+    diff.updateDiff(event.target);
+  }
+}
+
 function mouseoverEvent(event) {
   if (event.target.dataset.hover === 'segment-add') {
     hover.showSegmentAdd(event.target);
@@ -87,11 +101,12 @@ function focusEvent(event) {
   }
 }
 
-function keyUpEvent(event) {
+
+function changeEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('modifierAmendmentInput' in dataset) {
-    diff.updateDiff(event.target);
+  if ('additiveAmendmentSelect' in dataset) {
+    preview.additiveAmendmentPreview(event.target.nextElementSibling);
   }
 }
 
@@ -154,6 +169,7 @@ document.addEventListener('mouseout', mouseoutEvent);
 document.addEventListener('submit', submitEvent);
 document.addEventListener('keyup', keyUpEvent);
 document.addEventListener('focus', focusEvent, true);
+document.addEventListener('change', changeEvent);
 
 window.onpopstate = historyChangeEvent;
 window.onload = windowLoadEvent;

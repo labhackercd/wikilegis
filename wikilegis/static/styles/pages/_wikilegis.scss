@@ -121,32 +121,28 @@
   }
 
   .bill-list__item--closed {
-    background-color: $color-gray-75;
+    background-color: $color-gray-90;
 
     & [class^="item__icon"] {
       background-color: white;
-      color: $color-gray-75;
+      color: $color-gray-90;
     }
 
     & .item__title {
-      color: $color-gray-55;
+      color: $color-gray-75;
     }
 
     & .item__description {
-      color: $color-gray-55;
+      color: $color-gray-75;
       font-weight: 400;
     }
 
-    & .item__info-closed {
-      color: $color-gray-55;
-    }
-
     & .suggestions__amount {
-      color: $color-gray-55;
+      color: $color-gray-75;
     }
 
     & .suggestions__label {
-      color: $color-gray-55;
+      color: $color-gray-75;
     }
   }
 
@@ -186,12 +182,13 @@
 
   .item__description {
     font-weight: 300;
-    margin: 0 0 1rem;
+    margin: 0;
   }
 
   .item__info {
     color: hsla(0, 0%, 40%, 1);
     font-size: .85em;
+    margin: 1em 0 0;
   }
 
   [class^="item__info-status"] {
@@ -209,8 +206,9 @@
   }
 
   .item__info-closed {
-    font-weight: 600;
+    font-weight: 800;
     text-transform: uppercase;
+    color: $color-gray-75;
   }
 
   .item__title {

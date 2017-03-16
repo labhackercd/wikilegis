@@ -3,14 +3,18 @@
     <i class="item__icon--{{bill.theme.slug}} icon icon-{{bill.theme.slug}}"></i>
   </div>
   <div class="item__main">
+
+    {% if bill.status == 'closed' %}
+      <span class="item__info-closed">
+        Participações Encerradas em <span class="item__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
+      </span>
+    {% endif %}
+
     <h4 class="item__title">{{bill.title}}</h4>
     <p class="item__description">{{bill.description}}</p>
-    <div class="item__info">
-      {% if bill.status == 'closed' %}
-        <span class="item__info-closed">
-          Participações encerradas
-        </span>
-      {% else %}
+
+    {% if not bill.status == "closed" %}
+      <div class="item__info">
         <div class="item__info-status--open">
           Criado em <span class="item__open-date">{{bill.created|date:'d/m/Y'}}</span>
         </div>
@@ -18,8 +22,9 @@
         <div class="item__info-status--close">
           Encerra em <span class="item__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
         </div>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
+
   </div>
   <div class="item__suggestions">
     <span class="suggestions__amount">{{bill.amendments_count}}</span>

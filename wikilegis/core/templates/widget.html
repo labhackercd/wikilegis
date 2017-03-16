@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles compress %}
+
+{% block content %}
+<main id="bill-list-search" class="wikilegis" data-widget-open="false">
+  <div class="wikilegis__bill wikilegis__widget">
+
+    <div class="bill__content-wrapper">
+      <div class="loader" data-loading="false"></div>
+
+      <div class="segment-add">
+        <span class="segment-add__line"></span>
+        <i class="segment-add__icon icon icon-plus"></i>
+        <span class="segment-add__line"></span>
+      </div>
+
+      {% include "bill/_content.html" with bill=object %}
+    </div>
+
+    {% include "bill/_amendment_wrapper.html" %}
+  </div>
+</main>
+{% endblock content %}
+
+{% block javascript %}
+  {% compress js %}
+    <script type="module" src="{% static 'javascript/widget.js' %}"></script>
+  {% endcompress %}
+{% endblock javascript %}

@@ -1,6 +1,26 @@
 from django.db import models
 from django.utils.translation import ugettext as _
-from plugins.camara_deputados import signals
+from pygov_br.camara_deputados import cd
+
+
+class BillAuthor(models.Model):
+    name = models.CharField(max_length=255, verbose_name=_('Author Name'))
+    region = models.CharField(max_length=255, blank=True, null=True,
+                              verbose_name=_('Region'))
+    party = models.CharField(max_length=255, blank=True, null=True,
+                             verbose_name=_('Party'))
+    register_id = models.IntegerField(blank=True, null=True,
+                                      verbose_name=_('Register ID'))
+
+    class Meta:
+        verbose_name = "Bill Author"
+        verbose_name_plural = "Bill Authors"
+
+    def __str__(self):
+        details = ''
+        if self.register_id:
+            details = ' - {}({})'.format(self.party, self.region)
+        return '{}{}'.format(self.name, details)
 
 
 class BillInfo(models.Model):
@@ -11,6 +31,27 @@ class BillInfo(models.Model):
 
     def __str__(self):
         return self.bill.title
+
+    def save(self, *args, **kwargs):
+        try:
+            proposal = cd.proposals.get(
+                self.proposal_type.initials,
+                self.proposal_number,
+                self.proposal_year,
+            )
+        except KeyError:
+            raise Exception('Invalid proposal_type, proposal_number or '
+                            'proposal_year')
+        author = BillAuthor.objects.update_or_create(
+            name=proposal['Autor'],
+            region=proposal['ufAutor'],
+            party=proposal['partidoAutor'],
+            register_id=proposal['ideCadastro'],
+        )[0]
+        self.situation = proposal['Situacao']
+        self.author = author
+
+        return super(BillInfo, self).save(args, kwargs)
 
     bill = models.OneToOneField('core.Bill', verbose_name=_('Bill'),
                                 related_name='infos')
@@ -56,27 +97,3 @@ class ReportingMember(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class BillAuthor(models.Model):
-    name = models.CharField(max_length=255, verbose_name=_('Author Name'))
-    region = models.CharField(max_length=255, blank=True, null=True,
-                              verbose_name=_('Region'))
-    party = models.CharField(max_length=255, blank=True, null=True,
-                             verbose_name=_('Party'))
-    register_id = models.IntegerField(blank=True, null=True,
-                                      verbose_name=_('Register ID'))
-
-    class Meta:
-        verbose_name = "Bill Author"
-        verbose_name_plural = "Bill Authors"
-
-    def __str__(self):
-        details = ''
-        if self.register_id:
-            details = ' - {}({})'.format(self.party, self.region)
-        return '{}{}'.format(self.name, details)
-
-
-models.signals.pre_save.connect(signals.get_proposal_situation,
-                                sender=BillInfo)

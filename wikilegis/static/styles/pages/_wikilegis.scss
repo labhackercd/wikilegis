@@ -109,16 +109,48 @@
     z-index: -1;
   }
 
-  .bill-list__item {
+  [class^="bill-list__item"] {
     align-items: center;
     display: flex;
     flex: 0 0 auto;
     padding: 1.5em 0;
 
-    + .bill-list__item {
+    + [class^="bill-list__item"] {
       border-top: .25em solid hsla(0, 0%, 85%, 1);
     }
   }
+
+  .bill-list__item--closed {
+    background-color: $color-gray-75;
+
+    & [class^="item__icon"] {
+      background-color: white;
+      color: $color-gray-75;
+    }
+
+    & .item__title {
+      color: $color-gray-55;
+    }
+
+    & .item__description {
+      color: $color-gray-55;
+      font-weight: 400;
+    }
+
+    & .item__info-closed {
+      color: $color-gray-55;
+    }
+
+    & .suggestions__amount {
+      color: $color-gray-55;
+    }
+
+    & .suggestions__label {
+      color: $color-gray-55;
+    }
+  }
+
+
 
   .item__main {
     display: flex;
@@ -160,6 +192,25 @@
   .item__info {
     color: hsla(0, 0%, 40%, 1);
     font-size: .85em;
+  }
+
+  [class^="item__info-status"] {
+    border-left: .25em solid;
+    margin: 0 0 .25em;
+    padding: 0 0 0 .25em;
+  }
+
+  .item__info-status--open {
+    border-color: $color-accent;
+  }
+
+  .item__info-status--close {
+    border-color: $color-actions-remove;
+  }
+
+  .item__info-closed {
+    font-weight: 600;
+    text-transform: uppercase;
   }
 
   .item__title {

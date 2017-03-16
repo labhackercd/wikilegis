@@ -1,4 +1,4 @@
-<li class="bill-list__item" data-drawer-open="bill" data-bill="{{bill.id}}">
+<li class="bill-list__item{% if bill.status == 'closed' %}--closed{% endif %}" data-drawer-open="bill" data-bill="{{bill.id}}">
   <div class="item__category">
     <i class="item__icon--{{bill.theme.slug}} icon icon-{{bill.theme.slug}}"></i>
   </div>
@@ -6,8 +6,19 @@
     <h4 class="item__title">{{bill.title}}</h4>
     <p class="item__description">{{bill.description}}</p>
     <div class="item__info">
-      Criado em <span class="item__open-date">{{bill.created|date:'d/m/Y'}}</span>
-      Encerra em <span class="item__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
+      {% if bill.status == 'closed' %}
+        <span class="item__info-closed">
+          Participações encerradas
+        </span>
+      {% else %}
+        <div class="item__info-status--open">
+          Criado em <span class="item__open-date">{{bill.created|date:'d/m/Y'}}</span>
+        </div>
+
+        <div class="item__info-status--close">
+          Encerra em <span class="item__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
+        </div>
+      {% endif %}
     </div>
   </div>
   <div class="item__suggestions">

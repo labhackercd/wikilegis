@@ -1,4 +1,6 @@
 #!/bin/bash
+python wikilegis/manage.py makemigrations
+python wikilegis/manage.py migrate
 coverage run wikilegis/manage.py test wikilegis/
 coverage report
 echo $'\nRunning flake8...\n'

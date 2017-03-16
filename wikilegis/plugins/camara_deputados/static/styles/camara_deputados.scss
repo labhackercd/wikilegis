@@ -121,3 +121,16 @@ $segment-type-padding: (
   font-size: 0.9em;
   font-weight: 600;
 }
+
+.info__bill-status {
+  .bill-status__title {
+      font-weight: 800;
+      text-transform: uppercase;
+  }
+
+  .bill-status__text {
+      margin: 0;
+      font-weight: 300;
+      font-size: 1em;
+  }
+}

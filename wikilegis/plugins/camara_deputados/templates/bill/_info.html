@@ -41,5 +41,9 @@
         {% endwith %}
       </div>
     </div>
+    <div class="info__bill-status">
+      <span class="bill-status__title">Situação</span>
+      <p class="bill-status__text">{{bill.infos.situation}}</p>
+    </div>
   {% endif %}
 {% endblock extra_info %}

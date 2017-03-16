@@ -158,6 +158,17 @@ def render_new_amendment(request, segment_id, amendment_type):
                 author=request.user,
             )
 
+        if amendment_type == 'additive':
+            segment_type = models.SegmentType.objects.get(
+                pk=request.POST.get('segment_type')
+            )
+            amendment = models.AdditiveAmendment.objects.create(
+                content=request.POST.get('content'),
+                segment_type=segment_type,
+                reference=segment,
+                author=request.user,
+            )
+
         if 'amendment' in locals():
             html = render_to_string('amendments/_item.html',
                                     {'amendment_type': amendment_type,

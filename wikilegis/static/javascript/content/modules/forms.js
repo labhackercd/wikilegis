@@ -35,16 +35,26 @@ function formsModule() {
     }
   }
 
+  function serializeForm(formEl) {
+    const data = {};
+    const formData = formEl.elements;
+    for (let i = formData.length - 1; i >= 0; i -= 1) {
+      if (!formData[i].disabled && formData[i].name) {
+        data[formData[i].name] = formData[i].value;
+      }
+    }
+    return data;
+  }
+
   function sendAmendment(formEl) {
     const segmentContainer = $(formEl).closest('[data-segment-content]')[0];
     const segmentContent = segmentContainer.dataset.segmentContent;
-    const amendmentContent = formEl.text.value;
+    const amendmentContent = formEl.content.value;
+
     if (amendmentContent.length === 0 || !amendmentContent.trim()) {
       showAlert(strings.emptyAmendmentTitle, strings.emptyAmendmentText, 'error');
     } else if (segmentContent !== amendmentContent) {
-      const data = {
-        content: amendmentContent,
-      };
+      const data = serializeForm(formEl);
       const parentDataset = formEl.parentNode.dataset;
       const wrapperEl = formEl.parentNode.querySelector('[data-amendments-wrapper]');
       const segmentType = parentDataset.objectType;
@@ -55,9 +65,16 @@ function formsModule() {
 
       requests.newModifierAmendment.xhr.done(() => {
         formEl.reset();
-        const segmentDiffWrapper = segmentContainer.querySelector('[data-diff-wrapper]');
-        segmentDiffWrapper.innerHTML = segmentContent;
-        amendmentDiff.loadDiff(segmentContainer);
+
+        if (segmentType === 'additive') {
+          wrapperEl.previousElementSibling.innerText = '';
+        }
+
+        if (segmentType === 'modifier') {
+          const segmentDiffWrapper = segmentContainer.querySelector('[data-diff-wrapper]');
+          segmentDiffWrapper.innerHTML = segmentContent;
+          amendmentDiff.loadDiff(segmentContainer);
+        }
       });
     } else {
       showAlert(strings.sameAsSegmentTitle, strings.sameAsSegmentText, 'error');

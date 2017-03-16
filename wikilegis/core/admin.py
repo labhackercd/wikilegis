@@ -138,7 +138,7 @@ class BillSegmentAdmin(admin.ModelAdmin):
 
 class AdditiveAmendmentAdmin(admin.ModelAdmin):
     list_display = ('content', 'reference', 'author')
-    search_fields = ('content', 'reference__content', 'bill__title')
+    search_fields = ('content', 'reference__content', 'reference__bill__title')
     readonly_fields = (
         'upvote_count', 'downvote_count', 'comments_count',
         'participation_count', 'order')
@@ -146,7 +146,7 @@ class AdditiveAmendmentAdmin(admin.ModelAdmin):
 
 class ModifierAmendmentAdmin(admin.ModelAdmin):
     list_display = ('content', 'replaced', 'author')
-    search_fields = ('content', 'replaced__content', 'bill__title')
+    search_fields = ('content', 'replaced__content', 'replaced__bill__title')
     readonly_fields = (
         'upvote_count', 'downvote_count', 'comments_count',
         'participation_count', 'order')
@@ -154,7 +154,7 @@ class ModifierAmendmentAdmin(admin.ModelAdmin):
 
 class SupressAmendmentAdmin(admin.ModelAdmin):
     list_display = ('supressed', 'author')
-    search_fields = ('supressed__content', 'bill__title')
+    search_fields = ('supressed__content', 'supressed__bill__title')
     readonly_fields = (
         'upvote_count', 'downvote_count', 'comments_count',
         'participation_count', 'order')

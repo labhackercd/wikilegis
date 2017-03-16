@@ -20,6 +20,8 @@ class VoteCountMixin(models.Model):
                                        default=0)
     downvote_count = models.IntegerField(verbose_name=_("downvotes count"),
                                          default=0)
+    votes_count = models.IntegerField(verbose_name=_("votes count"),
+                                      default=0)
 
     def save(self, *args, **kwargs):
         if self.upvote_count is None:
@@ -27,6 +29,8 @@ class VoteCountMixin(models.Model):
 
         if self.downvote_count is None:
             self.downvote_count = 0
+
+        self.votes_count = self.upvote_count + self.downvote_count
 
         return super(VoteCountMixin, self).save(*args, **kwargs)
 

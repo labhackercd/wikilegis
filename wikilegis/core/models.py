@@ -155,6 +155,9 @@ class AdditiveAmendment(SegmentMixin):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                verbose_name=_('author'))
 
+    class Meta:
+        ordering = ('-votes_count',)
+
 
 class ModifierAmendment(SegmentMixin):
     content = models.TextField(_('content'))
@@ -163,6 +166,9 @@ class ModifierAmendment(SegmentMixin):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                verbose_name=_('author'))
 
+    class Meta:
+        ordering = ('-votes_count',)
+
 
 class SupressAmendment(SegmentMixin):
     content = models.TextField(_('content'))
@@ -170,6 +176,9 @@ class SupressAmendment(SegmentMixin):
                                   related_name="supress_amendments")
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                verbose_name=_('author'))
+
+    class Meta:
+        ordering = ('-votes_count',)
 
 
 class SegmentType(models.Model):

@@ -4,8 +4,14 @@
       {% include "segment/_comment.html" with comment=comment %}
     {% endfor %}
   </ol>
-  <form class="comments__form" action="/test" data-comments-form>
-    <input class="form__input" name="text" type="text" placeholder="Insira seu comentário" />
-    <button class="form__btn">Enviar</button>
-  </form>
+  {% if request.user.is_authenticated %}
+    <form class="comments__form" action="/test" data-comments-form>
+      <input class="form__input" name="text" type="text" placeholder="Insira seu comentário" />
+      <button class="form__btn">Enviar</button>
+    </form>
+  {% else %}
+    <div class="comments__form">
+      <p>Você precisa estar logado para comentar. Clique <a href="">aqui</a> para fazer login.</p>
+    </div>
+  {% endif %}
 </div>

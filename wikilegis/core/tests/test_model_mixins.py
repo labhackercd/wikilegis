@@ -7,7 +7,9 @@ class ModelMixinsTestCase(TestCase):
 
     def setUp(self):
         theme_fixture = AutoFixture(models.BillTheme)
-        bill_fixture = AutoFixture(models.Bill)
+        bill_fixture = AutoFixture(models.Bill, field_values={
+            'status': 'closed'
+        })
         theme_fixture.create_one()
         self.bill = bill_fixture.create_one()
 
@@ -39,3 +41,6 @@ class ModelMixinsTestCase(TestCase):
         segment.amendments_count = None
         segment.save()
         self.assertEquals(segment.amendments_count, 0)
+
+    def test_segment_bill_is_closed(self):
+        self.assertTrue(self.segment.bill_is_closed())

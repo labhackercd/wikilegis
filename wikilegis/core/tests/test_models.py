@@ -10,7 +10,7 @@ class ModelsTestCase(TestCase):
 
     def setUp(self):
         self.theme_fixture = AutoFixture(models.BillTheme)
-        self.bill_fixture = AutoFixture(models.Bill)
+        self.bill_fixture = AutoFixture(models.Bill, generate_fk=True)
         self.segment_fixture = AutoFixture(models.BillSegment)
 
     def test_bill_theme_str(self):
@@ -116,3 +116,39 @@ class ModelsTestCase(TestCase):
         vote.user = user
         vote.save()
         self.assertEquals(vote.__str__(), 'first last')
+
+    def test_modifier_amendment_bill_is_closed(self):
+        bill = AutoFixture(models.Bill, field_values={
+            'status': 'closed'
+        }, generate_fk=True).create_one()
+        segment = AutoFixture(models.BillSegment, field_values={
+            'bill': bill
+        }, generate_fk=True).create_one()
+        amendment = AutoFixture(models.ModifierAmendment, field_values={
+            'replaced': segment
+        }, generate_fk=True).create_one()
+        self.assertTrue(amendment.bill_is_closed())
+
+    def test_supress_amendment_bill_is_closed(self):
+        bill = AutoFixture(models.Bill, field_values={
+            'status': 'closed'
+        }, generate_fk=True).create_one()
+        segment = AutoFixture(models.BillSegment, field_values={
+            'bill': bill
+        }, generate_fk=True).create_one()
+        amendment = AutoFixture(models.SupressAmendment, field_values={
+            'supressed': segment
+        }, generate_fk=True).create_one()
+        self.assertTrue(amendment.bill_is_closed())
+
+    def test_additive_amendment_bill_is_closed(self):
+        bill = AutoFixture(models.Bill, field_values={
+            'status': 'closed'
+        }, generate_fk=True).create_one()
+        segment = AutoFixture(models.BillSegment, field_values={
+            'bill': bill
+        }, generate_fk=True).create_one()
+        amendment = AutoFixture(models.AdditiveAmendment, field_values={
+            'reference': segment
+        }, generate_fk=True).create_one()
+        self.assertTrue(amendment.bill_is_closed())

@@ -22,20 +22,32 @@
     {% endfor %}
   </ol>
 
-  <form class="amendments__form" action="/test" data-amendments-form>
-    {% if amendment_type == 'additive' %}
-      {% get_segment_types as segment_types %}
-      <select name="segment_type" id="segment_type" required data-{{amendment_type}}-amendment-select>
-        <option value="{{segment.segment_type.id}}">{{segment.segment_type.presentation_name}}</option>
-        {% for segment_type in segment_types %}
-          <option value="{{segment_type.id}}">{{segment_type.presentation_name}}</option>
-        {% endfor %}
-      </select>
-    {% endif %}
-    <input class="form__input" name="content"
-      type="text"
-      placeholder="Insira sua emenda"
-      data-{{amendment_type}}-amendment-input />
-    <button class="form__btn">Enviar</button>
-  </form>
+  {% if request.user.is_authenticated and segment.bill.status != 'closed' %}
+    <form class="amendments__form" action="/test" data-amendments-form>
+      {% if amendment_type == 'additive' %}
+        {% get_segment_types as segment_types %}
+        <select name="segment_type" id="segment_type" required data-{{amendment_type}}-amendment-select>
+          <option value="{{segment.segment_type.id}}">{{segment.segment_type.presentation_name}}</option>
+          {% for segment_type in segment_types %}
+            <option value="{{segment_type.id}}">{{segment_type.presentation_name}}</option>
+          {% endfor %}
+        </select>
+      {% endif %}
+      <input class="form__input" name="content"
+        type="text"
+        placeholder="Insira sua emenda"
+        data-{{amendment_type}}-amendment-input />
+      <button class="form__btn">Enviar</button>
+    </form>
+  {% elif segment.bill.status == 'closed' %}
+    <div class="amendments__form">
+      <p>{% trans "This project is closed for participations." %}</p>
+    </div>
+  {% else %}
+    <div class="amendments__form">
+      {% blocktrans %}
+        <p>You must be logged to comment. Click <a href="">here</a> to login.</p>
+      {% endblocktrans %}
+    </div>
+  {% endif %}
 </div>

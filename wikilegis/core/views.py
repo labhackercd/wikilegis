@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView
 from distutils.util import strtobool
 
-from core import models
+from core import models, model_mixins
 
 
 class HomeView(TemplateView):
@@ -83,24 +83,37 @@ def create_comment(model, segment_id, request):
 def create_vote(model, segment_id, request):
     ctype = ContentType.objects.get_for_model(model)
     segment = get_object_or_404(model, pk=segment_id)
-    new_vote = strtobool(request.POST.get('vote'))
-    vote, created = models.UpDownVote.objects.get_or_create(
-        defaults=dict(vote=new_vote),
-        content_type=ctype,
-        object_id=segment.id,
-        user=request.user
-    )
-    if not created:
-        if vote.vote == new_vote:
-            vote.delete()
-        else:
-            vote.vote = new_vote
-            vote.save()
 
-    segment.refresh_from_db()
-    html = render_to_string('segment/_votes.html', {'request': request,
-                                                    'segment': segment})
-    return JsonResponse({'html': html})
+    if issubclass(model, model_mixins.SegmentMixin):
+        bill_is_closed = segment.bill_is_closed()
+    else:
+        bill_is_closed = segment.status == 'closed'
+
+    if not bill_is_closed:
+        new_vote = strtobool(request.POST.get('vote'))
+        vote, created = models.UpDownVote.objects.get_or_create(
+            defaults=dict(vote=new_vote),
+            content_type=ctype,
+            object_id=segment.id,
+            user=request.user
+        )
+        if not created:
+            if vote.vote == new_vote:
+                vote.delete()
+            else:
+                vote.vote = new_vote
+                vote.save()
+
+        segment.refresh_from_db()
+        html = render_to_string('segment/_votes.html', {'request': request,
+                                                        'segment': segment})
+        return JsonResponse({'html': html})
+    else:
+        return JsonResponse(
+            {'title': _('Oops'),
+             'message': _('This bill is closed for participation :(')},
+            status=403
+        )
 
 
 def render_new_comment(request, segment_id, segment_type):

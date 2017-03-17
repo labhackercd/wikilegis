@@ -144,6 +144,9 @@ class BillSegment(SegmentMixin, AmendmentCountMixin):
 
         return super(BillSegment, self).save(*args, **kwargs)
 
+    def bill_is_closed(self):
+        return super(BillSegment, self).bill_is_closed('bill')
+
     class Meta:
         ordering = ('order',)
         verbose_name = _('segment')
@@ -161,7 +164,7 @@ class AdditiveAmendment(SegmentMixin):
         ordering = ('-votes_count',)
 
     def bill_is_closed(self):
-        return super(ModifierAmendment, self).bill_is_closed('reference')
+        return super(AdditiveAmendment, self).bill_is_closed('reference')
 
 
 class ModifierAmendment(SegmentMixin):
@@ -189,7 +192,7 @@ class SupressAmendment(SegmentMixin):
         ordering = ('-votes_count',)
 
     def bill_is_closed(self):
-        return super(ModifierAmendment, self).bill_is_closed('supressed')
+        return super(SupressAmendment, self).bill_is_closed('supressed')
 
 
 class SegmentType(models.Model):

@@ -107,4 +107,6 @@ class SegmentMixin(TimestampedMixin, VoteCountMixin, CommentCountMixin,
 
     def bill_is_closed(self, segment_reference_field):
         segment = getattr(self, segment_reference_field)
+        if segment_reference_field == 'bill':
+            return segment.status == 'closed'
         return segment.bill.status == 'closed'

@@ -30,6 +30,7 @@ WIKILEGIS_APPS = [
     'accounts',
     'core',
     'api',
+    'notification',
 ]
 
 plugins_dict = plugins.load_current_plugins()

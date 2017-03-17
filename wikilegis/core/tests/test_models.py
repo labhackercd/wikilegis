@@ -40,6 +40,13 @@ class ModelsTestCase(TestCase):
         bill.save()
         self.assertEquals(bill.__str__(), 'test bill')
 
+    def test_bill_get_absolute_url(self):
+        self.theme_fixture.create_one()
+        bill = self.bill_fixture.create_one()
+        bill.title = 'test bill'
+        bill.save()
+        self.assertEquals(bill.get_absolute_url(), '/bill/%d' % bill.id)
+
     def test_bill_save(self):
         self.theme_fixture.create_one()
         bill = self.bill_fixture.create_one()

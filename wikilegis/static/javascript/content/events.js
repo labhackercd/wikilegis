@@ -91,6 +91,10 @@ function submitEvent(event) {
   if ('amendmentsForm' in dataset) {
     forms.sendAmendment(event.target);
   }
+
+  if ('subscribeForm' in dataset) {
+    forms.sendSubscribe(event.target);
+  }
 }
 
 function focusEvent(event) {

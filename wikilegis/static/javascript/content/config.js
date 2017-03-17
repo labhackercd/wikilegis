@@ -51,6 +51,7 @@ requests.segmentComments = new Request('comments', 'comments', undefined, 'rende
 requests.newComment = new Request('comments', 'comments', undefined, '');
 requests.votes = new Request('votes', 'votes', undefined, '');
 requests.newModifierAmendment = new Request('modifierAmendments', 'modifierAmendments', undefined, '');
+requests.subscribe = new Request('subscribe', 'subscribe', undefined, '');
 
 const paths = new Path();
 

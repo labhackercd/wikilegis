@@ -1,0 +1,20 @@
+[class^="vote__icon"] {
+  color: $color-gray-55;
+  transition: color 0.3s $swift-out;
+}
+
+.actions__vote {
+  cursor: pointer;
+  outline: none;
+
+  &:hover, &:focus {
+    .vote__icon--thumbs-up {
+      color: $color-accent;
+    }
+
+    .vote__icon--thumbs-down {
+      color: $color-alert-error;
+    }
+  }
+}
+

@@ -1,10 +1,6 @@
 <li class="comments__item">
-  <div class="item__avatar">
-    <img class="avatar__img" src="https://www.myinstants.com/media/instants_images/chaves.jpg" alt="{{comment.author.first_name}} avatar" />
-  </div>
-
   <div class="item__content">
-    <h4 class="content__author">{{comment.author.first_name}}</h4>
+    <h4 class="content__author">{{comment.author}}</h4>
     <p class="content__text">{{comment.text|safe}}</p>
     <span class="content__created">{{comment.created}}</span>
   </div>

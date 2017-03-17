@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-17 14:28-0300\n"
+"POT-Creation-Date: 2017-03-17 16:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,6 +68,7 @@ msgid "videos"
 msgstr "vídeos"
 
 #: core/admin.py:46 core/models.py:133 core/models.py:152
+#: core/tests/test_models.py:90
 msgid "segment"
 msgstr "trecho"
 
@@ -322,7 +323,7 @@ msgstr ""
 msgid "Type your amendment"
 msgstr "Insira sua proposta"
 
-#: core/templates/amendments/_item.html:13
+#: core/templates/amendments/_item.html:9
 msgid "New"
 msgstr "Novo"
 
@@ -352,16 +353,16 @@ msgstr "brasão da república"
 msgid "SEARCH"
 msgstr "PESQUISAR"
 
-#: core/templates/bill/_info.html:32 core/templates/bill/_list-item.html:21
-msgid "Created at"
-msgstr "Criado em"
-
-#: core/templates/bill/_list-item.html:11
-msgid "Participations closed at"
+#: core/templates/bill/_info.html:33 core/templates/bill/_list-item.html:11
+msgid "Participations closed on"
 msgstr "Participações encerradas em"
 
-#: core/templates/bill/_list-item.html:25
-msgid "Closes at"
+#: core/templates/bill/_info.html:43 core/templates/bill/_list-item.html:21
+msgid "Created on"
+msgstr "Criado em"
+
+#: core/templates/bill/_info.html:47 core/templates/bill/_list-item.html:25
+msgid "Closes on"
 msgstr "Encerra em"
 
 #: core/templates/bill/_list-item.html:33

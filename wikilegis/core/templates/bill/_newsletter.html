@@ -1,22 +1,22 @@
-{% load subscribers %}
+{% load subscribers i18n %}
 {% subscriber bill_id request.user.id as newsletter_status %}
 {% if newsletter_status %}
     <button type="submit">
-      <span class="header-text valign">Desassinar</span>
+      <span class="header-text valign">{% trans 'Unsubscribe' %}</span>
     </button>
 {% else %}
     <div>
-      <span class="header-text valign">Assinar este projeto de lei</span>
+      <span class="header-text valign">{% trans 'Subscribe to this bill' %}</span>
     </div>
 
     <div>
       <input class="with-gap" value="daily" name="periodicity" type="radio" id="periodicity_daily">
-      <label for="periodicity_daily">Diário</label>
+      <label for="periodicity_daily">{% trans 'Daily' %}</label>
     </div>
     <div>
       <input class="with-gap" value="weekly" name="periodicity" type="radio" id="periodicity_weekly">
-      <label for="periodicity_weekly">Semanal</label>
+      <label for="periodicity_weekly">{% trans 'Weekly' %}</label>
     </div>
-    <button type="submit">Assinar</button>
+    <button type="submit">{% trans 'Subscribe' %}</button>
 
 {% endif %}

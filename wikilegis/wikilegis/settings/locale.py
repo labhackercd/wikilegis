@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(BASE_DIR)
 
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'wikilegis/locale'),
+    os.path.join(BASE_DIR, 'locale'),
 ]
 
 LANGUAGES = (

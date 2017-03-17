@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^', include('core.urls')),
     url(r'^', include('notification.urls')),
     url(r'^', include('api.urls')),
+    url(r'^', include('accounts.urls')),
 ]

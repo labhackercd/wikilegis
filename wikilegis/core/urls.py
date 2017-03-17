@@ -1,18 +1,11 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.generic.edit import CreateView
-from accounts.forms import UserCreationForm
 from core import views
 
 
 urlpatterns = [
     url(r'^$', ensure_csrf_cookie(views.HomeView.as_view()),
         name='home'),
-    url('^register/', CreateView.as_view(
-        template_name='registration/register.html',
-        form_class=UserCreationForm,
-        success_url='/')),
-    url('^accounts/', include('django.contrib.auth.urls')),
     url(r'^bill/(?P<bill_id>\d+)$',
         ensure_csrf_cookie(views.HomeView.as_view()),
         name='bill_index'),

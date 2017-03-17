@@ -1,6 +1,6 @@
 {% load static i18n %}
 
-<aside class="bill__info" data-content="bill" data-bill="{{bill.id}}">
+<section class="bill__info" data-content="bill" data-bill="{{bill.id}}">
   <div class="info__header">
     {% if request.user.is_authenticated %}
       <a class="header__link" href="" aria-label="login">
@@ -36,7 +36,6 @@
   <h2 class="info__title">{{bill.title}}</h2>
 
   <p class="info__description">{{bill.description}}</p>
-  <span class="info__created">{% trans 'Created on' %} {{bill.created|date:'d/m/Y'}}</span>
 
   {% if not bill.status == "closed" %}
     <div class="bill__state">
@@ -65,4 +64,4 @@
   </form>
   {% endif %}
 
-</aside>
+</section>

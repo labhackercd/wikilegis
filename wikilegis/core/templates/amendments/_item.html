@@ -1,4 +1,4 @@
-{% load wikilegis_utils %}
+{% load wikilegis_utils i18n %}
 
 <li class="amendment">
   <div class="amendment__content">
@@ -10,7 +10,7 @@
       <div class="section-top__section-right">
         <h4 class="content__author">{{amendment.author}}</h4>
         {% if amendment|is_instance:"core.models.AdditiveAmendment" %}
-          <p class="amendment__type">Novo {{amendment.segment_type.presentation_name}}</p>
+          <p class="amendment__type">{% trans 'New' %} {{amendment.segment_type.presentation_name}}</p>
         {% endif %}
         <p class="content__text" data-amendment-content>
           {{amendment.content|safe}}

@@ -2,9 +2,15 @@
 {% load staticfiles compress %}
 
 {% block content %}
+<!-- Begin authentication without stylesheet -->
+{% if request.user.is_authenticated %}
+  <a href="{% url 'logout' %}?next={% url 'widget_index' object.id %}">Encerrar Sessão</a>
+{% else %}
+  <a href="{% url 'widget_login' %}?next={% url 'widget_index' object.id %}">Fazer Login</a>
+{% endif %}
+<!-- End authentication -->
 <main id="bill-list-search" class="wikilegis" data-widget-open="false">
   <div class="wikilegis__bill wikilegis__widget">
-
     <div class="bill__content-wrapper">
       <div class="loader" data-loading="false"></div>
 

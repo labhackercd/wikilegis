@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="segment__comments-content" data-collapsible-content="segment-comments">
   <ol class="segment__comments" data-comments-list>
     {% for comment in segment.comments.all %}
@@ -11,11 +13,13 @@
     </form>
   {% elif segment.bill.status == 'closed' %}
     <div class="comments__form">
-      <p>Esse projeto já está encerrado para participações.</p>
+        <p>{% trans "Esse projeto já está encerrado para participações." %}</p>
     </div>
   {% else %}
     <div class="comments__form">
-      <p>Você precisa estar logado para comentar. Clique <a href="">aqui</a> para fazer login.</p>
+      {% blocktrans %}
+        <p>Você precisa estar logado para comentar. Clique <a href="">aqui</a> para fazer login.</p>
+      {% endblocktrans %}
     </div>
   {% endif %}
 </div>

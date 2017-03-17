@@ -4,11 +4,15 @@
       {% include "segment/_comment.html" with comment=comment %}
     {% endfor %}
   </ol>
-  {% if request.user.is_authenticated %}
+  {% if request.user.is_authenticated and segment.bill.status != 'closed' %}
     <form class="comments__form" action="/test" data-comments-form>
       <input class="form__input" name="text" type="text" placeholder="Insira seu comentário" />
       <button class="form__btn">Enviar</button>
     </form>
+  {% elif segment.bill.status == 'closed' %}
+    <div class="comments__form">
+      <p>Esse projeto já está encerrado para participações.</p>
+    </div>
   {% else %}
     <div class="comments__form">
       <p>Você precisa estar logado para comentar. Clique <a href="">aqui</a> para fazer login.</p>

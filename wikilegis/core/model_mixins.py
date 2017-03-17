@@ -104,3 +104,7 @@ class SegmentMixin(TimestampedMixin, VoteCountMixin, CommentCountMixin,
     class Meta:
         abstract = True
         ordering = ('order', )
+
+    def bill_is_closed(self, segment_reference_field):
+        segment = getattr(self, segment_reference_field)
+        return segment.bill.status == 'closed'

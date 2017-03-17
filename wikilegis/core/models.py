@@ -160,6 +160,9 @@ class AdditiveAmendment(SegmentMixin):
     class Meta:
         ordering = ('-votes_count',)
 
+    def bill_is_closed(self):
+        return super(ModifierAmendment, self).bill_is_closed('reference')
+
 
 class ModifierAmendment(SegmentMixin):
     content = models.TextField(_('content'))
@@ -171,6 +174,9 @@ class ModifierAmendment(SegmentMixin):
     class Meta:
         ordering = ('-votes_count',)
 
+    def bill_is_closed(self):
+        return super(ModifierAmendment, self).bill_is_closed('replaced')
+
 
 class SupressAmendment(SegmentMixin):
     content = models.TextField(_('content'))
@@ -181,6 +187,9 @@ class SupressAmendment(SegmentMixin):
 
     class Meta:
         ordering = ('-votes_count',)
+
+    def bill_is_closed(self):
+        return super(ModifierAmendment, self).bill_is_closed('supressed')
 
 
 class SegmentType(models.Model):

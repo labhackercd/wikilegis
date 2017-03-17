@@ -185,32 +185,6 @@
     margin: 0;
   }
 
-  .item__info {
-    color: hsla(0, 0%, 40%, 1);
-    font-size: .85em;
-    margin: 1em 0 0;
-  }
-
-  [class^="item__info-status"] {
-    border-left: .25em solid;
-    margin: 0 0 .25em;
-    padding: 0 0 0 .25em;
-  }
-
-  .item__info-status--open {
-    border-color: $color-accent;
-  }
-
-  .item__info-status--close {
-    border-color: $color-actions-remove;
-  }
-
-  .item__info-closed {
-    font-weight: 800;
-    text-transform: uppercase;
-    color: $color-gray-75;
-  }
-
   .item__title {
     color: #264040;
     font-size: 1.5em;
@@ -238,6 +212,32 @@
     font-weight: 700;
     text-transform: uppercase;
   }
+}
+
+.bill__state {
+  color: hsla(0, 0%, 40%, 1);
+  font-size: .85em;
+  margin: 1em 0 0;
+}
+
+[class^="state__status"] {
+  border-left: .25em solid;
+  margin: 0 0 .25em;
+  padding: 0 0 0 .25em;
+}
+
+.state__status--open {
+  border-color: $color-accent;
+}
+
+.state__status--close {
+  border-color: $color-alert-error;
+}
+
+.bill__state-closed {
+  color: $color-alert-error;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .wikilegis__bill {

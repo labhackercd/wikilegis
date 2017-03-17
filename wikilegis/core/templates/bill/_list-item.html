@@ -7,8 +7,8 @@
   <div class="item__main">
 
     {% if bill.status == 'closed' %}
-      <span class="item__info-closed">
-        {% trans 'Participations closed at' %} <span class="item__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
+      <span class="bill__state-closed">
+        {% trans "Participations closed on" %} <span class="item__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
       </span>
     {% endif %}
 
@@ -16,13 +16,13 @@
     <p class="item__description">{{bill.description}}</p>
 
     {% if not bill.status == "closed" %}
-      <div class="item__info">
-        <div class="item__info-status--open">
-          {% trans 'Created at' %} <span class="item__open-date">{{bill.created|date:'d/m/Y'}}</span>
+      <div class="bill__state">
+        <div class="state__status--open">
+          {% trans "Created on" %} <span class="state__open-date">{{bill.created|date:'d/m/Y'}}</span>
         </div>
 
-        <div class="item__info-status--close">
-          {% trans 'Closes at' %} <span class="item__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
+        <div class="state__status--close">
+          {% trans "Closes on" %} <span class="state__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
         </div>
       </div>
     {% endif %}

@@ -1,6 +1,6 @@
 {% load static i18n %}
 
-<section class="bill__info" data-content="bill" data-bill="{{bill.id}}">
+<aside class="bill__info" data-content="bill" data-bill="{{bill.id}}">
   <div class="info__header">
     {% if request.user.is_authenticated %}
       <a class="header__link" href="" aria-label="login">
@@ -27,9 +27,28 @@
     <i class="theme__icon icon icon-{{bill.theme.slug}}"></i>
     {{bill.theme.description}}
   </h3>
+
+  {% if bill.status == 'closed' %}
+    <span class="bill__state-closed">
+      {% trans "Participations closed on" %} <span class="item__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
+    </span>
+  {% endif %}
   <h2 class="info__title">{{bill.title}}</h2>
+
   <p class="info__description">{{bill.description}}</p>
-  <span class="info__created">{% trans 'Created at' %} {{bill.created}}</span>
+  <span class="info__created">{% trans 'Created on' %} {{bill.created|date:'d/m/Y'}}</span>
+
+  {% if not bill.status == "closed" %}
+    <div class="bill__state">
+      <div class="state__status--open">
+        {% trans "Created on" %} <span class="state__open-date">{{bill.created|date:'d/m/Y'}}</span>
+      </div>
+
+      <div class="state__status--close">
+        {% trans "Closes on" %} <span class="state__close-date">{{bill.closing_date|date:'d/m/Y'}}</span>
+      </div>
+    </div>
+  {% endif %}
 
   <div class="info__actions--votes" data-votes-wrapper data-object-type="bill" data-object-id="{{bill.id}}">
     {% include "segment/_votes.html" with segment=bill %}
@@ -46,4 +65,4 @@
   </form>
   {% endif %}
 
-</section>
+</aside>

@@ -100,16 +100,26 @@
   }
 
   .info__actions--votes {
-    margin-top: 1em;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    margin-top: 1em;
+
+    .actions__vote-title {
+      margin: 0 0 1em;
+    }
+
+    .actions__votes-wrapper {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+    }
 
     .actions__vote {
       align-items: center;
-      display: flex;
-      margin: .5em;
-      font-size: 1.5em;
       color: $color-gray-55;
+      display: flex;
+      flex-direction: column;
+      font-size: 1.5em;
 
       + .actions__vote {
         border-left: 1px solid $color-gray-75;

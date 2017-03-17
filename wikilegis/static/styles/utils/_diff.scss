@@ -1,9 +1,11 @@
 .diff-added {
-    background-color: rgba($color-actions-add, 0.5);
-    font-weight: bold;
+  background-color: hsla(150, 65%, 80%, 1);
+  color: hsla(0, 0%, 0%, .75);
+  font-weight: 700;
 }
 
 .diff-removed {
-    background-color: rgba($color-actions-remove, 0.5);
-    text-decoration: line-through;
+  color: $color-actions-remove;
+  font-weight: 600;
+  text-decoration: line-through;
 }

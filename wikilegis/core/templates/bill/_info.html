@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <section class="bill__info" data-content="bill" data-bill="{{bill.id}}">
   <div class="info__header">
@@ -14,7 +14,7 @@
 
     <label class="header__search">
       <i class="search__icon icon icon-search"></i>
-      <input id="bill-content-search" class="search__input" type="text" placeholder="PESQUISAR..." />
+      <input id="bill-content-search" class="search__input" type="text" placeholder="{% trans 'SEARCH' %}..." />
     </label>
   </div>
 
@@ -29,7 +29,7 @@
   </h3>
   <h2 class="info__title">{{bill.title}}</h2>
   <p class="info__description">{{bill.description}}</p>
-  <span class="info__created">Criado em {{bill.created}}</span>
+  <span class="info__created">{% trans 'Created at' %} {{bill.created}}</span>
 
   <div class="info__actions--votes" data-votes-wrapper data-object-type="bill" data-object-id="{{bill.id}}">
     {% include "segment/_votes.html" with segment=bill %}

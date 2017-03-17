@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="amendment__actions">
   <div class="votes-wrapper" data-votes-wrapper data-object-id="{{amendment.id}}">
     {% include "segment/_votes.html" with segment=amendment %}
@@ -13,6 +15,6 @@
     tabindex="0"
   >
     <i class="comments__icon icon icon-comments"></i>
-    <span class="comments__text">COMENTÁRIOS ({{amendment.comments_count}})</span>
+    <span class="comments__text">{% trans 'COMMENTS' %} ({{amendment.comments_count}})</span>
   </a>
 </div>

@@ -1,0 +1,544 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-17 14:28-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: accounts/admin.py:10
+msgid "Personal info"
+msgstr "Informação pessoal"
+
+#: accounts/admin.py:13
+msgid "Permissions"
+msgstr "Permissões"
+
+#: accounts/admin.py:19
+msgid "Important dates"
+msgstr "Datas importantes"
+
+#: accounts/models.py:10
+msgid "username"
+msgstr "nome de usuário"
+
+#: accounts/models.py:14
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+"Obrigatório. Máximo de 150 caracteres. Somente letras, digitos e @/./+/-/_"
+
+#: accounts/models.py:17
+msgid "email address"
+msgstr "endereço de email"
+
+#: accounts/models.py:25
+msgid "User"
+msgstr "Usuário"
+
+#: accounts/models.py:26
+msgid "Users"
+msgstr "Usuários"
+
+#: core/admin.py:23 core/models.py:158
+msgid "reference"
+msgstr "referência"
+
+#: core/admin.py:24
+msgid "references"
+msgstr "referências"
+
+#: core/admin.py:30
+msgid "video"
+msgstr "vídeo"
+
+#: core/admin.py:31
+msgid "videos"
+msgstr "vídeos"
+
+#: core/admin.py:46 core/models.py:133 core/models.py:152
+msgid "segment"
+msgstr "trecho"
+
+#: core/admin.py:46 core/models.py:153
+msgid "segments"
+msgstr "trechos"
+
+#: core/admin.py:109
+msgid "Counters"
+msgstr "Contadores"
+
+#: core/model_mixins.py:8
+msgid "created"
+msgstr "criado"
+
+#: core/model_mixins.py:10
+msgid "modified"
+msgstr "modificado"
+
+#: core/model_mixins.py:19
+msgid "upvotes count"
+msgstr "contador de votos a favor"
+
+#: core/model_mixins.py:21
+msgid "downvotes count"
+msgstr "contador de votos contra"
+
+#: core/model_mixins.py:23
+msgid "votes count"
+msgstr "contador de votos"
+
+#: core/model_mixins.py:43
+msgid "comments count"
+msgstr "contador de comentários"
+
+#: core/model_mixins.py:58
+msgid "participations count"
+msgstr "contador de participações"
+
+#: core/model_mixins.py:71
+msgid "amendments count"
+msgstr "contador de propostas"
+
+#: core/model_mixins.py:98
+msgid "segment type"
+msgstr "tipo de trecho"
+
+#: core/model_mixins.py:101
+msgid "order"
+msgstr "ordem"
+
+#: core/model_mixins.py:102
+msgid "number"
+msgstr "número"
+
+#: core/models.py:13
+msgid "Draft"
+msgstr "Rascunho"
+
+#: core/models.py:14
+msgid "Published"
+msgstr "Publicado"
+
+#: core/models.py:15
+msgid "Closed"
+msgstr "Fechado"
+
+#: core/models.py:22
+msgid "Bill Theme"
+msgstr "Tema de projeto de lei"
+
+#: core/models.py:23
+msgid "Bill Themes"
+msgstr "Temas de projeto de lei"
+
+#: core/models.py:32 core/models.py:57
+msgid "description"
+msgstr "descrição"
+
+#: core/models.py:34
+msgid "slug"
+msgstr "slug"
+
+#: core/models.py:36
+msgid "icon"
+msgstr "ícone"
+
+#: core/models.py:48
+msgid "text"
+msgstr "texto"
+
+#: core/models.py:50 core/models.py:161 core/models.py:175 core/models.py:189
+msgid "author"
+msgstr "autor"
+
+#: core/models.py:55
+msgid "subject"
+msgstr "assunto"
+
+#: core/models.py:56
+msgid "epigraph"
+msgstr "epígrafe"
+
+#: core/models.py:58
+msgid "closing date"
+msgstr "data de encerramento"
+
+#: core/models.py:59
+msgid "status"
+msgstr "estado"
+
+#: core/models.py:61
+msgid "visible"
+msgstr "visível"
+
+#: core/models.py:62
+msgid "theme"
+msgstr "tema"
+
+#: core/models.py:65
+msgid "allowed users"
+msgstr "usuários permitidos"
+
+#: core/models.py:81 plugins/camara_deputados/models.py:56
+msgid "Bill"
+msgstr "Projeto de lei"
+
+#: core/models.py:82
+msgid "Bills"
+msgstr "Projetos de lei"
+
+#: core/models.py:94
+msgid "URL"
+msgstr "URL"
+
+#: core/models.py:96 core/models.py:113 core/models.py:119
+#: notification/models.py:13
+msgid "bill"
+msgstr "projeto de lei"
+
+#: core/models.py:108
+msgid "title"
+msgstr "título"
+
+#: core/models.py:110
+msgid "reference file"
+msgstr "arquivo de referência"
+
+#: core/models.py:112
+msgid "reference url"
+msgstr "url de referência"
+
+#: core/models.py:121
+msgid "segment parent"
+msgstr "trecho ancestral"
+
+#: core/models.py:123 core/models.py:157 core/models.py:171 core/models.py:185
+msgid "content"
+msgstr "conteúdo"
+
+#: core/models.py:172
+msgid "replaced"
+msgstr "substituído"
+
+#: core/models.py:186
+msgid "supressed"
+msgstr "suprimido"
+
+#: core/models.py:199
+msgid "name"
+msgstr "nome"
+
+#: core/models.py:200
+msgid "presentation name"
+msgstr "nome de apresentação"
+
+#: core/models.py:203
+msgid "parent type"
+msgstr "tipo ancestral"
+
+#: core/models.py:205
+msgid "editable"
+msgstr "editável"
+
+#: core/models.py:208
+msgid "Segment Type"
+msgstr "Tipo de Trecho"
+
+#: core/models.py:209
+msgid "Segment Types"
+msgstr "Tipos de Trecho"
+
+#: core/models.py:220 notification/models.py:16
+msgid "user"
+msgstr "usuário"
+
+#: core/models.py:221
+msgid "vote"
+msgstr "voto"
+
+#: core/models.py:222
+msgid "Up Vote"
+msgstr "Voto a favor"
+
+#: core/models.py:223
+msgid "Down Vote"
+msgstr "Voto contra"
+
+#: core/templates/admin/segments/edit_inline/tabular.html:21
+msgid "Delete?"
+msgstr "Deletar?"
+
+#: core/templates/admin/segments/edit_inline/tabular.html:35
+msgid "Change"
+msgstr "Mudar"
+
+#: core/templates/admin/segments/edit_inline/tabular.html:37
+msgid "View on site"
+msgstr "Ver no site"
+
+#: core/templates/amendments/_actions.html:18
+#: core/templates/segment/_actions_secondary.html:14
+msgid "COMMENTS"
+msgstr "COMENTÁRIOS"
+
+#: core/templates/amendments/_comments.html:11
+#: core/templates/segment/_comments.html:11
+msgid "Type your comment"
+msgstr "Insira seu comentário"
+
+#: core/templates/amendments/_comments.html:12
+#: core/templates/amendments/_content.html:40
+#: core/templates/segment/_comments.html:12
+msgid "Send"
+msgstr "Enviar"
+
+#: core/templates/amendments/_comments.html:16
+#: core/templates/amendments/_content.html:44
+#: core/templates/segment/_comments.html:16
+msgid "This project is closed for participations."
+msgstr "Este projeto está fechado para participação."
+
+#: core/templates/amendments/_comments.html:20
+#: core/templates/amendments/_content.html:48
+#: core/templates/segment/_comments.html:20
+msgid "You must be logged to comment. Click <a href=\"\">here</a> to login."
+msgstr ""
+"Você deve estar logado para comentar. Clique <a href=\"\">aqui</a> para "
+"entrar."
+
+#: core/templates/amendments/_content.html:38
+msgid "Type your amendment"
+msgstr "Insira sua proposta"
+
+#: core/templates/amendments/_item.html:13
+msgid "New"
+msgstr "Novo"
+
+#: core/templates/base.html:34 core/templates/base.html:36
+#: core/templates/base.html:38 core/views.py:113 core/views.py:133
+#: core/views.py:155 core/views.py:198
+msgid "Oops"
+msgstr "Oops"
+
+#: core/templates/base.html:35
+msgid "You cannot send an empty comment :("
+msgstr "Você não pode enviar um comentário vazio :("
+
+#: core/templates/base.html:37
+msgid "You cannot send an empty amendment :("
+msgstr "Você não pode enviar uma proposta vazia :("
+
+#: core/templates/base.html:39
+msgid "Your suggestion has the same text of original segment"
+msgstr "Sua sugestão possui o mesmo texto do trecho original"
+
+#: core/templates/bill/_content.html:6
+msgid "Coat of arms of the republic"
+msgstr "brasão da república"
+
+#: core/templates/bill/_info.html:17
+msgid "SEARCH"
+msgstr "PESQUISAR"
+
+#: core/templates/bill/_info.html:32 core/templates/bill/_list-item.html:21
+msgid "Created at"
+msgstr "Criado em"
+
+#: core/templates/bill/_list-item.html:11
+msgid "Participations closed at"
+msgstr "Participações encerradas em"
+
+#: core/templates/bill/_list-item.html:25
+msgid "Closes at"
+msgstr "Encerra em"
+
+#: core/templates/bill/_list-item.html:33
+msgid "Suggestions"
+msgstr "Sugestões"
+
+#: core/templates/bill/_newsletter.html:5
+msgid "Unsubscribe"
+msgstr "Cancelar assinatura"
+
+#: core/templates/bill/_newsletter.html:9
+msgid "Subscribe to this bill"
+msgstr "Assinar este projeto de lei"
+
+#: core/templates/bill/_newsletter.html:14 notification/models.py:9
+msgid "Daily"
+msgstr "Diário"
+
+#: core/templates/bill/_newsletter.html:18 notification/models.py:10
+msgid "Weekly"
+msgstr "Semanal"
+
+#: core/templates/bill/_newsletter.html:20
+msgid "Subscribe"
+msgstr "Assinar"
+
+#: core/templates/home.html:15
+msgid "Your legislative editing tool"
+msgstr "Sua ferramenta de edição legislativa"
+
+#: core/templates/home.html:17
+msgid ""
+"Check the bills and contribute suggestions of new wordings to articles or "
+"paragraphs. The rapporteurs of the bills track the participation and can "
+"take up your idea!"
+msgstr ""
+"Analise os projetos de lei e contribua com sugestões de nova redação a "
+"artigos ou parágrafos. Os deputados relatores das proposições acompanham as "
+"participações e podem adotar a sua ideia!"
+
+#: core/templates/home.html:20
+msgid ""
+"With this interaction, society profits by participating more actively in the "
+"legislative process, and the Parliament profits by approving improved laws "
+"that are better attuned to citizens needs."
+msgstr ""
+"Nessa interação, ganha a sociedade, que participa mais ativamente do "
+"processo legislativo, e ganha o Parlamento, que aprova leis mais aprimoradas "
+"e conectadas às necessidades dos cidadãos."
+
+#: core/templates/home.html:41 core/templates/home.html:60
+msgid "back"
+msgstr "voltar"
+
+#: core/templates/home.html:55
+#: core/templates/segment/_actions_secondary.html:28
+msgid "EDITION"
+msgstr "EDIÇÃO"
+
+#: core/templates/home.html:56
+#: core/templates/segment/_actions_secondary.html:43
+msgid "ADDITION"
+msgstr "ADIÇÃO"
+
+#: core/templates/home.html:57
+#: core/templates/segment/_actions_secondary.html:57
+msgid "EXCLUSION"
+msgstr "EXCLUSÃO"
+
+#: core/views.py:114
+msgid "This bill is closed for participation :("
+msgstr "Este projeto de lei está fechado para participação :("
+
+#: core/views.py:134
+msgid "You must be logged to comment :("
+msgstr "Você deve estar logado para comentar :("
+
+#: core/views.py:156
+msgid "You must be logged to vote :("
+msgstr "Você deve estar logado para votar :("
+
+#: core/views.py:199
+msgid "You must be logged to suggest new amendment :("
+msgstr "Você deve estar logado para sugerir uma nova proposta :("
+
+#: notification/models.py:17
+msgid "periodicity"
+msgstr "periodicidade"
+
+#: notification/models.py:23
+msgid "Newsletter"
+msgstr "Assinatura"
+
+#: notification/models.py:24
+msgid "Newsletters"
+msgstr "Assinaturas"
+
+#: plugins/camara_deputados/models.py:7
+msgid "Author Name"
+msgstr "Nome do autor"
+
+#: plugins/camara_deputados/models.py:9 plugins/camara_deputados/models.py:91
+msgid "Region"
+msgstr "Região"
+
+#: plugins/camara_deputados/models.py:11 plugins/camara_deputados/models.py:89
+msgid "Party"
+msgstr "Partido"
+
+#: plugins/camara_deputados/models.py:13
+msgid "Register ID"
+msgstr "Id de registro"
+
+#: plugins/camara_deputados/models.py:58
+msgid "Author"
+msgstr "Autor"
+
+#: plugins/camara_deputados/models.py:61
+msgid "Reporting Member"
+msgstr "Relator"
+
+#: plugins/camara_deputados/models.py:63
+msgid "Proposal Type"
+msgstr "Tipo da Proposição"
+
+#: plugins/camara_deputados/models.py:64
+msgid "Proposal Number"
+msgstr "Número da Proposição"
+
+#: plugins/camara_deputados/models.py:65
+msgid "Proposal Year"
+msgstr "Ano da Proposição"
+
+#: plugins/camara_deputados/models.py:67
+msgid "Situation"
+msgstr "Situação"
+
+#: plugins/camara_deputados/models.py:85
+msgid "Reporting Member ID"
+msgstr "Id do Relator"
+
+#: plugins/camara_deputados/models.py:87
+msgid "Parliamentary Name"
+msgstr "Nome Parlamentar"
+
+#: plugins/camara_deputados/models.py:92
+msgid "Email"
+msgstr "Email"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:4
+msgid "TITLE"
+msgstr "TÍTULO"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:6
+msgid "BOOK"
+msgstr "LIVRO"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:8
+msgid "CHAPTER"
+msgstr "CAPÍTULO"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:10
+msgid "Section"
+msgstr "Seção"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:12
+msgid "Subsection"
+msgstr "Subseção"
+
+#: plugins/camara_deputados/templatetags/convert_numbers.py:63
+msgid "Sole paragraph"
+msgstr "Parágrafo único"
+
+#: wikilegis/settings/social.py:39
+msgid "Google"
+msgstr "Google"
+
+#: wikilegis/settings/social.py:43
+msgid "Facebook"
+msgstr "Facebook"

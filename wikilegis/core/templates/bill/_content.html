@@ -1,9 +1,9 @@
-{% load static %}
+{% load static i18n %}
 
 <section class="bill__content" data-content="bill" data-bill="{{bill.id}}">
   <div class="content__header">
     <div class="header__section-top">
-      <img class="header__logo" src="{% static 'images/brasao.svg' %}" alt="brasão da república" />
+      <img class="header__logo" src="{% static 'images/brasao.svg' %}" alt="{% trans 'Coat of arms of the republic' %}" />
 
       <div class="header__title">
         <h1 class="title__name">{{bill.title}}</h1>

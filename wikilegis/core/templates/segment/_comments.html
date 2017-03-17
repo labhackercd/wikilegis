@@ -7,19 +7,17 @@
     {% endfor %}
   </ol>
   {% if request.user.is_authenticated and segment.bill.status != 'closed' %}
-    <form class="comments__form" action="/test" data-comments-form>
-      <input class="form__input" name="text" type="text" placeholder="Insira seu comentário" />
-      <button class="form__btn">Enviar</button>
-    </form>
+  <form class="comments__form" action="/test" data-comments-form>
+    <input class="form__input" name="text" type="text" placeholder="{% trans 'Type your comment' %}" />
+    <button class="form__btn">{% trans 'Send' %}</button>
+  </form>
   {% elif segment.bill.status == 'closed' %}
     <div class="comments__form">
         <p>{% trans "This project is closed for participations." %}</p>
     </div>
   {% else %}
     <div class="comments__form">
-      {% blocktrans %}
-        <p>You must be logged to comment. Click <a href="">here</a> to login.</p>
-      {% endblocktrans %}
+        <p>{% blocktrans %}You must be logged to comment. Click <a href="">here</a> to login.{% endblocktrans %}</p>
     </div>
   {% endif %}
 </div>

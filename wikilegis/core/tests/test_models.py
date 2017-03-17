@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 from django.utils.text import slugify
+from django.utils.translation import ugettext as _
 from core import models
 
 
@@ -86,7 +87,7 @@ class ModelsTestCase(TestCase):
         self.bill_fixture.create_one()
         segment = self.segment_fixture.create_one()
         segment.save()
-        self.assertEquals(segment.__str__(), 'segment')
+        self.assertEquals(segment.__str__(), _('segment'))
 
     def test_segment_save(self):
         self.theme_fixture.create_one()

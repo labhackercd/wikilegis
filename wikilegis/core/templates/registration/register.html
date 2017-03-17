@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+{% load i18n %}
+
+<form method="post" action=".">
+  {% csrf_token %} 
+  {{ form.as_p }}
+
+  <input type="submit" value="{% trans 'Register' %}" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+</body>
+</html>

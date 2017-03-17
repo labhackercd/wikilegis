@@ -2,6 +2,7 @@
   background-color: $color-white;
   flex: 1 0 300px;
   max-width: 300px;
+  overflow-y: auto;
 }
 
 .bill__info {

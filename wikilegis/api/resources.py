@@ -30,7 +30,6 @@ class UserResource(ModelResource):
 class BillThemeResource(ModelResource):
     class Meta:
         queryset = core_models.BillTheme.objects.all()
-        resource_name = 'bill/theme'
         allowed_methods = ['get']
         filtering = {
             'slug': ALL,
@@ -42,7 +41,6 @@ class BillVideoResource(ModelResource):
 
     class Meta:
         queryset = core_models.BillVideo.objects.all()
-        resource_name = 'bill/video'
         allowed_methods = ['get']
 
 
@@ -50,7 +48,6 @@ class BillReferenceResource(ModelResource):
 
     class Meta:
         queryset = core_models.BillReference.objects.all()
-        resource_name = 'bill/reference'
         allowed_methods = ['get']
 
 
@@ -98,7 +95,6 @@ class BillSegmentResource(ModelResource):
         queryset = core_models.BillSegment.objects.exclude(
             bill__status='draft'
         ).exclude(bill__is_visible=False)
-        resource_name = 'bill/segment'
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {
@@ -116,7 +112,6 @@ class AdditiveAmendmentResource(ModelResource):
         queryset = core_models.AdditiveAmendment.objects.exclude(
             reference__bill__status='draft'
         ).exclude(reference__bill__is_visible=False)
-        resource_name = 'amendment/additive'
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {
@@ -134,7 +129,6 @@ class ModifierAmendmentResource(ModelResource):
         queryset = core_models.ModifierAmendment.objects.exclude(
             replaced__bill__status='draft'
         ).exclude(replaced__bill__is_visible=False)
-        resource_name = 'amendment/modifier'
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {
@@ -152,7 +146,6 @@ class SupressAmendmentResource(ModelResource):
         queryset = core_models.SupressAmendment.objects.exclude(
             supressed__bill__status='draft'
         ).exclude(supressed__bill__is_visible=False)
-        resource_name = 'amendment/supress'
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {

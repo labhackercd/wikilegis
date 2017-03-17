@@ -41,12 +41,12 @@
     </form>
   {% elif segment.bill.status == 'closed' %}
     <div class="amendments__form">
-      <p>{% trans "Esse projeto já está encerrado para participações." %}</p>
+      <p>{% trans "This project is closed for participations." %}</p>
     </div>
   {% else %}
     <div class="amendments__form">
       {% blocktrans %}
-        <p>Você precisa estar logado para comentar. Clique <a href="">aqui</a> para fazer login.</p>
+        <p>You must be logged to comment. Click <a href="">here</a> to login.</p>
       {% endblocktrans %}
     </div>
   {% endif %}

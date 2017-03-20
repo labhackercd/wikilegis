@@ -132,4 +132,22 @@
   .info__videos {
     margin: 1em 0;
   }
+
+  .info__extra-infos {
+    color: $color-gray-55;
+
+    .extra-infos__text {
+      font-weight: 600;
+    }
+
+    .stats__icon {
+      font-size: 1.5em;
+      vertical-align: middle;
+    }
+
+    .extra-infos__highlight {
+      font-weight: 700;
+      color: $color-accent;
+    }
+  }
 }

@@ -48,6 +48,16 @@
     </div>
   {% endif %}
 
+  <div class="info__extra-infos">
+    <div class="extra-infos__stats">
+      <h4 class="extra-infos__text">
+        <i class="stats__icon icon icon-lightbulb-o"></i>
+        <span class="extra-infos__highlight">{{bill.amendments_count}}</span>
+        {% trans "Amendments suggestions" %}
+      </h4>
+    </div>
+  </div>
+
   <div class="info__actions--votes">
     <h4 class="actions__vote-title">{% trans "Do you support this bill?" %}</h4>
     <div class="actions__votes-wrapper" data-votes-wrapper data-object-type="bill" data-object-id="{{bill.id}}">

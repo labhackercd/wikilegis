@@ -94,6 +94,7 @@ class ReportingMember(models.Model):
     class Meta:
         verbose_name = "ReportingMember"
         verbose_name_plural = "ReportingMembers"
+        ordering = ('name', )
 
     def __str__(self):
         return self.name

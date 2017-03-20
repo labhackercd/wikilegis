@@ -55,8 +55,6 @@ class BillResource(ModelResource):
     theme = fields.ForeignKey(BillThemeResource, 'theme', full=True)
     allowed_users = fields.ToManyField(UserResource, 'allowed_users',
                                        full=True)
-    reporting_member = fields.ForeignKey(UserResource, 'reporting_member',
-                                         full=True, null=True)
     videos = fields.ToManyField(BillVideoResource, 'videos', full=True,
                                 null=True)
     references = fields.ToManyField(BillReferenceResource, 'references',

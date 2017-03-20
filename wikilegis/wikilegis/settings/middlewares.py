@@ -34,7 +34,7 @@ for name, is_active in plugins_dict.items():
 
 if config('ENABLE_REMOTE_USER', default=0, cast=bool):
     WIKILEGIS_MIDDLEWARES += [
-        'wikilegis.auth2.middlewares.WikilegisRemoteUser'
+        'wikilegis.accounts.middlewares.WikilegisRemoteUser'
     ]
     DJANGO_MIDDLEWARES.remove(
         'django.contrib.auth.middleware.SessionAuthenticationMiddleware'

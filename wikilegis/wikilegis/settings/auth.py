@@ -28,7 +28,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 if config('ENABLE_REMOTE_USER', default=0, cast=bool):
     AUTHENTICATION_BACKENDS = (
-        'wikilegis.auth2.backends.WikielgisAuthBackend',
+        'wikilegis.accounts.backends.WikilegisAuthBackend',
     )
 elif config('ENABLE_SOCIAL_AUTH', default=0, cast=bool):
     AUTHENTICATION_BACKENDS = (

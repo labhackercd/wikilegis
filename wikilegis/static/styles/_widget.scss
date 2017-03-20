@@ -1,12 +1,45 @@
-.wikilegis__widget {
-    transform: translateX(0);
-    left: 0;
-    width: 100%;
+.wikilegis-widget {
 
-    .bill__content-wrapper {
-        width: 100%;
-    }
-    .bill__amendments-wrapper {
-        width: 100%;
-    }
+  .wikilegis__bill {
+    left: 0;
+    transform: translateX(0);
+    width: 100%;
+    padding-top: 3em; // To compensate the widget-bar height
+  }
+
+  .bill__content-wrapper {width: 100%;}
+
+  .bill__amendments-wrapper {width: 100%;}
+
+  .widget-bar {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: .15em solid #2cd27e;
+    display: flex;
+    height: 3em;
+    justify-content: center;
+    padding: 0 5em 0 4em;
+    position: relative;
+    width: 100%;
+    z-index: 5;
+  }
+
+  .widget-logos {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+  }
+
+  .logo__img {
+    height: 25px;
+    margin-right: 5px;
+  }
+
+  .logo__text {
+    height: 20px;
+  }
 }
+
+
+

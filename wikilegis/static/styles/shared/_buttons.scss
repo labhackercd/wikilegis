@@ -1,0 +1,18 @@
+[class^="button"] {
+  background-color: $color-accent;
+  border: .1em solid $color-accent;
+  color: white;
+  display: inline-flex;
+  font-size: .9em;
+  font-weight: 400;
+  padding: .5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s $swift-out;
+
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: $color-accent;
+  }
+}

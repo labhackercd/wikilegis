@@ -15,3 +15,4 @@ click>=6.7
 django-autofixture>=0.12.1
 django-tastypie>=0.13.3
 mock>=2.0.0
+django-embed-video>=1.1.0

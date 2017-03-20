@@ -21,6 +21,7 @@ THIRD_PARTY = [
     'corsheaders',
     'djangobower',
     'crispy_forms',
+    'embed_video',
 ]
 
 if config('ENABLE_SOCIAL_AUTH', default=0, cast=bool):

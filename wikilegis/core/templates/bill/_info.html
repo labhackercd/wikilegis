@@ -1,4 +1,5 @@
 {% load static i18n %}
+{% load video from embed_video_tags %}
 
 <section class="bill__info" data-content="bill" data-bill="{{bill.id}}">
   <div class="info__header">
@@ -35,8 +36,6 @@
   {% endif %}
   <h2 class="info__title">{{bill.title}}</h2>
 
-  <p class="info__description">{{bill.description}}</p>
-
   {% if not bill.status == "closed" %}
     <div class="bill__state">
       <div class="state__status--open">
@@ -49,15 +48,25 @@
     </div>
   {% endif %}
 
-  <div class="info__actions--votes" data-votes-wrapper data-object-type="bill" data-object-id="{{bill.id}}">
+  <div class="info__actions--votes">
     <h4 class="actions__vote-title">{% trans "Do you support this bill?" %}</h4>
-    <div class="actions__votes-wrapper">
+    <div class="actions__votes-wrapper" data-votes-wrapper data-object-type="bill" data-object-id="{{bill.id}}">
       {% include "segment/_votes.html" with segment=bill %}
     </div>
   </div>
 
   {% block extra_info %}
   {% endblock extra_info %}
+
+  <div class="info__videos">
+    {% for item in bill.videos.all %}
+      {% video item.url as video_obj %}
+        {% if video_obj.backend == 'YoutubeBackend' %}
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ video_obj.code }}" frameborder="0" allowfullscreen=""></iframe>
+        {% endif %}
+      {% endvideo %}
+    {% endfor %}
+  </div>
 
   {% if request.user.is_authenticated %}
   <form data-subscribe-url="{% url 'subscribe_newsletter' bill.id %}" method="post" data-subscribe-form>

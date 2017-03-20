@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-17 16:50-0300\n"
+"POT-Creation-Date: 2017-03-20 15:21-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,22 @@ msgstr ""
 
 #: accounts/admin.py:19
 msgid "Important dates"
+msgstr ""
+
+#: accounts/forms.py:16
+msgid "The two password fields didn't match."
+msgstr ""
+
+#: accounts/forms.py:19
+msgid "Password"
+msgstr ""
+
+#: accounts/forms.py:24
+msgid "Password confirmation"
+msgstr ""
+
+#: accounts/forms.py:27
+msgid "Enter the same password as before, for verification."
 msgstr ""
 
 #: accounts/models.py:10
@@ -346,20 +362,28 @@ msgstr ""
 msgid "Coat of arms of the republic"
 msgstr ""
 
-#: core/templates/bill/_info.html:17
+#: core/templates/bill/_info.html:18
 msgid "SEARCH"
 msgstr ""
 
-#: core/templates/bill/_info.html:33 core/templates/bill/_list-item.html:11
+#: core/templates/bill/_info.html:34 core/templates/bill/_list-item.html:11
 msgid "Participations closed on"
 msgstr ""
 
-#: core/templates/bill/_info.html:43 core/templates/bill/_list-item.html:21
+#: core/templates/bill/_info.html:42 core/templates/bill/_list-item.html:21
 msgid "Created on"
 msgstr ""
 
-#: core/templates/bill/_info.html:47 core/templates/bill/_list-item.html:25
+#: core/templates/bill/_info.html:46 core/templates/bill/_list-item.html:25
 msgid "Closes on"
+msgstr ""
+
+#: core/templates/bill/_info.html:56
+msgid "Amendments suggestions"
+msgstr ""
+
+#: core/templates/bill/_info.html:62
+msgid "Do you support this bill?"
 msgstr ""
 
 #: core/templates/bill/_list-item.html:33
@@ -421,6 +445,22 @@ msgstr ""
 #: core/templates/home.html:57
 #: core/templates/segment/_actions_secondary.html:57
 msgid "EXCLUSION"
+msgstr ""
+
+#: core/templates/registration/login.html:13
+msgid "Log in"
+msgstr ""
+
+#: core/templates/registration/login.html:17
+msgid "Forgot password"
+msgstr ""
+
+#: core/templates/registration/login.html:17
+msgid "Reset it"
+msgstr ""
+
+#: core/templates/registration/register.html:13
+msgid "Register"
 msgstr ""
 
 #: core/views.py:114

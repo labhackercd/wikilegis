@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-17 16:50-0300\n"
+"POT-Creation-Date: 2017-03-20 15:21-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,22 @@ msgstr "Permissões"
 #: accounts/admin.py:19
 msgid "Important dates"
 msgstr "Datas importantes"
+
+#: accounts/forms.py:16
+msgid "The two password fields didn't match."
+msgstr "Os campos de senha não correspondem."
+
+#: accounts/forms.py:19
+msgid "Password"
+msgstr "Senha"
+
+#: accounts/forms.py:24
+msgid "Password confirmation"
+msgstr "Confirmação de senha"
+
+#: accounts/forms.py:27
+msgid "Enter the same password as before, for verification."
+msgstr "Digite a mesma senha que a anterior, para verificação."
 
 #: accounts/models.py:10
 msgid "username"
@@ -349,21 +365,29 @@ msgstr "Sua sugestão possui o mesmo texto do trecho original"
 msgid "Coat of arms of the republic"
 msgstr "brasão da república"
 
-#: core/templates/bill/_info.html:17
+#: core/templates/bill/_info.html:18
 msgid "SEARCH"
 msgstr "PESQUISAR"
 
-#: core/templates/bill/_info.html:33 core/templates/bill/_list-item.html:11
+#: core/templates/bill/_info.html:34 core/templates/bill/_list-item.html:11
 msgid "Participations closed on"
 msgstr "Participações encerradas em"
 
-#: core/templates/bill/_info.html:43 core/templates/bill/_list-item.html:21
+#: core/templates/bill/_info.html:42 core/templates/bill/_list-item.html:21
 msgid "Created on"
 msgstr "Criado em"
 
-#: core/templates/bill/_info.html:47 core/templates/bill/_list-item.html:25
+#: core/templates/bill/_info.html:46 core/templates/bill/_list-item.html:25
 msgid "Closes on"
 msgstr "Encerra em"
+
+#: core/templates/bill/_info.html:56
+msgid "Amendments suggestions"
+msgstr "Sugestões de emendas"
+
+#: core/templates/bill/_info.html:62
+msgid "Do you support this bill?"
+msgstr "Vovê apoia esse projeto de lei?"
 
 #: core/templates/bill/_list-item.html:33
 msgid "Suggestions"
@@ -431,6 +455,22 @@ msgstr "ADIÇÃO"
 #: core/templates/segment/_actions_secondary.html:57
 msgid "EXCLUSION"
 msgstr "EXCLUSÃO"
+
+#: core/templates/registration/login.html:13
+msgid "Log in"
+msgstr "Entrar"
+
+#: core/templates/registration/login.html:17
+msgid "Forgot password"
+msgstr "Esqueci minha senha"
+
+#: core/templates/registration/login.html:17
+msgid "Reset it"
+msgstr "Resetar"
+
+#: core/templates/registration/register.html:13
+msgid "Register"
+msgstr "Registrar"
 
 #: core/views.py:114
 msgid "This bill is closed for participation :("

@@ -11,6 +11,7 @@ DJANGO_MIDDLEWARES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'core.middleware.force_default_language_middleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -21,7 +22,6 @@ THIRD_PARTY = [
 ]
 
 WIKILEGIS_MIDDLEWARES = [
-    # 'wikilegis.core.middleware.ForceLangMiddleware',
 ]
 
 plugins_dict = plugins.load_current_plugins()

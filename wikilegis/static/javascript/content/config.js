@@ -41,6 +41,7 @@ const contents = {};
 contents.bill = new Content('bill', wikilegisEl);
 contents.amendments = new Content('amendments', billAmendmentsWrapperEl);
 contents.comments = new Content('comments');
+contents.widget = new Content('widget', billContentWrapperEl);
 
 const requests = {};
 requests.info = new Request('bill', 'info', billInfoWrapperEl, 'render/bill_info/');

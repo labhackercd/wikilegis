@@ -3,7 +3,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
+from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
+from django.views.generic import DetailView
+from django.views.decorators.clickjacking import xframe_options_exempt
 from distutils.util import strtobool
 
 from core import models, model_mixins
@@ -21,6 +24,12 @@ class HomeView(TemplateView):
             status='draft').exclude(status='published').exclude(
             is_visible=False).order_by('-created')
         return context
+
+
+@method_decorator(xframe_options_exempt, name='dispatch')
+class WidgetView(DetailView):
+    model = models.Bill
+    template_name = 'widget.html'
 
 
 def render_bill_info(request, bill_id):

@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<div class="bill__amendments-wrapper">
+  <nav class="amendments__nav">
+    <a href="#tab_edit" class="nav__item" data-tab-content="amendments" data-tab="1">{% trans 'EDITION' %}</a>
+    <a href="#tab_add" class="nav__item" data-tab-content="amendments" data-tab="2">{% trans 'ADDITION' %}</a>
+    <a href="#tab_remove" class="nav__item" data-tab-content="amendments" data-tab="3">{% trans 'EXCLUSION' %}</a>
+  </nav>
+
+  <a class="amendments__close" data-drawer-close="amendments" role="button" title="{% trans 'back' %}" tabindex="0">
+    <i class="close__icon icon icon-arrow-left"></i>
+  </a>
+  <div class="loader" data-loading="false"></div>
+</div>

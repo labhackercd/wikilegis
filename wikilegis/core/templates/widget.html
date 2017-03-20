@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles compress %}
+
+{% block content %}
+<main id="bill-list-search" class="wikilegis wikilegis-widget" data-widget-open="false">
+
+  <div class="widget-bar">
+    <a href="{% url 'home' %}" class="widget-logos">
+      <img class="logo__img" src="{% static 'images/logo-wikilegis.svg' %}" alt="Wikilegis logo icon" />
+      <img class="logo__text" src="{% static 'images/logo-wikilegis-text.svg' %}" alt="Wikilegis logo text" />
+    </a>
+
+    <!-- Begin authentication without stylesheet -->
+    {% if request.user.is_authenticated %}
+      <a class="button" role="button" href="{% url 'logout' %}?next={% url 'widget_index' object.id %}">Encerrar Sessão</a>
+    {% else %}
+      <a class="button" role="button" href="{% url 'widget_login' %}?next={% url 'widget_index' object.id %}">Fazer Login</a>
+    {% endif %}
+    <!-- End authentication -->
+  </div>
+
+  <div class="wikilegis__bill">
+    <div class="bill__content-wrapper">
+      <div class="loader" data-loading="false"></div>
+
+      <div class="segment-add">
+        <span class="segment-add__line"></span>
+        <i class="segment-add__icon icon icon-plus"></i>
+        <span class="segment-add__line"></span>
+      </div>
+
+      {% include "bill/_content.html" with bill=object %}
+    </div>
+
+    {% include "bill/_amendment_wrapper.html" %}
+  </div>
+</main>
+{% endblock content %}
+
+{% block javascript %}
+  {% compress js %}
+    <script type="module" src="{% static 'javascript/widget.js' %}"></script>
+  {% endcompress %}
+{% endblock javascript %}

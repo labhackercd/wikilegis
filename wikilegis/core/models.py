@@ -105,7 +105,7 @@ class BillReference(models.Model):
     def __str__(self):
         return self.title
 
-    title = models.CharField(max_length=50, verbose_name=_('title'))
+    title = models.CharField(max_length=255, verbose_name=_('title'))
     reference_file = models.FileField(upload_to=references_filename,
                                       verbose_name=_('reference file'),
                                       null=True)

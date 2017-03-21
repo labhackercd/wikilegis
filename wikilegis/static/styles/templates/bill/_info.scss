@@ -1,7 +1,7 @@
 .bill__info-wrapper {
   background-color: $color-white;
-  flex: 1 0 300px;
-  max-width: 300px;
+  flex: 1 0 350px;
+  max-width: 350px;
   overflow-y: auto;
 }
 
@@ -42,7 +42,7 @@
   .search__input {
     border: 0;
     margin-left: .5em;
-    max-width: calc(300px - 9.5em);
+    max-width: calc(350px - 10.5em);
   }
 
   .info__logos {

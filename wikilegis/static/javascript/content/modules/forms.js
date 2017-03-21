@@ -59,8 +59,9 @@ function formsModule() {
       showAlert(strings.emptyAmendmentTitle, strings.emptyAmendmentText, 'error');
     } else if (segmentContent !== amendmentContent) {
       const data = serializeForm(formEl);
-      const parentDataset = formEl.parentNode.dataset;
-      const wrapperEl = formEl.parentNode.querySelector('[data-amendments-wrapper]');
+      const parent = $(formEl).closest('[data-segment-id]')[0]
+      const parentDataset = parent.dataset;
+      const wrapperEl = parent.querySelector('[data-amendments-wrapper]');
       const segmentType = parentDataset.objectType;
 
       requests.newModifierAmendment.wrapperEl = wrapperEl;

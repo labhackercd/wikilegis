@@ -3,8 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;;
   position: absolute;
   right: 0;
   transform: translateX(100%);
@@ -36,7 +35,7 @@
 .amendments__nav {
   display: flex;
   justify-content: center;
-  margin-top: 4em;
+  margin-top: 1em;
 
   &[data-tab="1"] [data-tab="1"] {
     background-color: $color-actions-edit;

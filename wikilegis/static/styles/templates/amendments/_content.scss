@@ -1,12 +1,25 @@
 [class^="amendments__content"] {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  padding: 4em;
+  padding: 0;
 
   .content__amendments {
     border-top: 1px solid $color-gray-75;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 2em 4em;
+  }
+
+  .content__amendments-list {
     list-style-type: none;
-    margin-top: 2em;
-    padding: 2em 0 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .amendments__form-wrapper {
+    background-color: white;
+    padding: 0 4em;
   }
 
   .amendments__form {

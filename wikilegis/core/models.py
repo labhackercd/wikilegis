@@ -45,7 +45,7 @@ class Comment(TimestampedMixin, GenericRelationMixin):
     def __str__(self):
         return self.text
 
-    text = models.CharField(_("text"), max_length=500)
+    text = models.TextField(_("text"))
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                verbose_name=_('author'), null=True)
 

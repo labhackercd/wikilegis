@@ -5,15 +5,23 @@
     <div class="amendment__text-wrapper">
       <div class="loader" data-loading="false"></div>
     </div>
+
     <nav class="amendments__nav">
-      <a href="#tab_edit" class="nav__item" data-tab-content="amendments" data-tab="1">{% trans 'EDITION' %}</a>
-      <a href="#tab_add" class="nav__item" data-tab-content="amendments" data-tab="2">{% trans 'ADDITION' %}</a>
-      <a href="#tab_remove" class="nav__item" data-tab-content="amendments" data-tab="3">{% trans 'EXCLUSION' %}</a>
+      <a class="nav__item" data-tab-content="amendments" data-tab="1" href="#tab_edit">
+        <i class="item__icon icon icon-pencil"></i>{% trans 'EDITION' %}
+      </a>
+      <a class="nav__item" data-tab-content="amendments" data-tab="2" href="#tab_add">
+        <i class="item__icon icon icon-plus"></i>{% trans 'ADDITION' %}
+      </a>
+      <a class="nav__item" data-tab-content="amendments" data-tab="3" href="#tab_remove">
+        <i class="item__icon icon icon-trash"></i>{% trans 'EXCLUSION' %}
+      </a>
     </nav>
   </div>
 
   <a class="amendments__close" data-drawer-close="amendments" role="button" title="{% trans 'back' %}" tabindex="0">
     <i class="close__icon icon icon-arrow-left"></i>
   </a>
+
   <div class="loader" data-loading="false"></div>
 </div>

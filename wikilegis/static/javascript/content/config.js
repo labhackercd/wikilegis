@@ -2,6 +2,7 @@ const wikilegisEl = document.getElementsByClassName('wikilegis')[0];
 const billInfoWrapperEl = document.getElementsByClassName('bill__info-wrapper')[0];
 const billContentWrapperEl = document.getElementsByClassName('bill__content-wrapper')[0];
 const billAmendmentsWrapperEl = document.getElementsByClassName('bill__amendments-wrapper')[0];
+const billAmendmentSegmentWrapperEl = document.getElementsByClassName('amendment__text-wrapper')[0];
 
 class Content {
   constructor(name = '', wrapperEl = {}, activeId = 0, lastActiveId = 0) {
@@ -47,6 +48,7 @@ const requests = {};
 requests.info = new Request('bill', 'info', billInfoWrapperEl, 'render/bill_info/');
 requests.content = new Request('bill', 'content', billContentWrapperEl, 'render/bill_content/');
 requests.amendments = new Request('amendments', 'amendments', billAmendmentsWrapperEl, 'render/bill_amendments/');
+requests.amendmentSegment = new Request('amendments', 'amendmentSegment', billAmendmentSegmentWrapperEl, 'render/bill_amendment_segment/');
 requests.amendmentComments = new Request('comments', 'comments', undefined, 'render/amendment_comments/');
 requests.segmentComments = new Request('comments', 'comments', undefined, 'render/segment_comments/');
 requests.newComment = new Request('comments', 'comments', undefined, '');

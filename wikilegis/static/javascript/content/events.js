@@ -28,7 +28,6 @@ function clickEvent(event) {
     parentDataset = parent.dataset;
   }
 
-
   if (dataset.drawerOpen) {
     drawer.open(event.target);
   } else if (parentDataset && parentDataset.drawerOpen) {

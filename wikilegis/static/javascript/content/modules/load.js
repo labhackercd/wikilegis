@@ -1,3 +1,4 @@
+/* global prefix_url */
 import $ from 'jquery';
 import { requests } from '../config';
 import { showAlert } from '../utils/alert';
@@ -13,7 +14,7 @@ function loadModule() {
   function get(id, request, param) {
     const pathParam = !param ? id : param;
     const path = request.path;
-    const url = `/${path}${pathParam}`;
+    const url = `${prefix_url}/${path}${pathParam}`;
 
     $.ajax({
       url,
@@ -49,7 +50,7 @@ function loadModule() {
 
   function sendRequest(method, request, data, htmlInsertion = 'insert') {
     const path = request.path;
-    let url = `/${path}`;
+    let url = `${prefix_url}/${path}`;
     if (path[0] === '/') url = path;
 
     $.ajax({

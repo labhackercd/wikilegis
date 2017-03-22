@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.contrib.contenttypes.models import ContentType
+from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
@@ -23,6 +24,7 @@ class HomeView(TemplateView):
         context['closed_bills'] = models.Bill.objects.exclude(
             status='draft').exclude(status='published').exclude(
             is_visible=False).order_by('-created')
+        context['prefix_url'] = settings.FORCE_SCRIPT_NAME
         return context
 
 

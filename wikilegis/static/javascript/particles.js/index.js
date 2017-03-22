@@ -1,4 +1,4 @@
-/* global prefix_url */
+/* global prefixURL */
 import 'particles.js';
 
-particlesJS.load('particles-js', `${prefix_url}/static/javascript/particles.js/settings.json`); // eslint-disable-line no-undef
+particlesJS.load('particles-js', `${prefixURL}/static/javascript/particles.js/settings.json`); // eslint-disable-line no-undef

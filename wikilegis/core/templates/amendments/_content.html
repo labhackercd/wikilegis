@@ -4,13 +4,10 @@
     data-segment-id="{{segment.id}}"
     data-object-type="{{amendment_type}}"
     data-segment-content="{{segment.content|safe}}"
-    data-tab-container >
+    data-tab-container
+    data-remove-content >
 
   <div class="content__amendments">
-    <p class="content__text" >
-      <strong>{{segment.segment_type.presentation_name}} {{segment.number}}</strong>
-        {{segment.content|safe}}
-    </p>
     <ol class="content__amendments-list" data-amendments-wrapper>
       {% for amendment in amendments %}
         {% include "amendments/_item.html" with amendment_type=amendment_type amendment=amendment %}

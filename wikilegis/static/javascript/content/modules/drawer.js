@@ -67,7 +67,7 @@ function drawerModule() {
     Object.keys(requests).forEach((request) => {
       const contentRequest = requests[request].content === contentName ? requests[request] : false;
       if (contentRequest) {
-        const sections = contentRequest.wrapperEl.querySelectorAll('section, [data-tab-container]');
+        const sections = contentRequest.wrapperEl.querySelectorAll('[data-remove-content]');
         sections.forEach((el) => {
           el.parentNode.removeChild(el);
         });

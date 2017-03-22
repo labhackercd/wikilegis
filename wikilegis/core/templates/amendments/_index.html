@@ -4,6 +4,7 @@
   data-amendments="{{segment.id}}"
   data-tab="1"
   data-tab-container
+  data-remove-content
 >
   {% include "amendments/_content.html" with amendment_type='modifier' amendments=segment.modifier_amendments.all %}
   {% include "amendments/_content.html" with amendment_type='additive' amendments=segment.additive_amendments.all %}

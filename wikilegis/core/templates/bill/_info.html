@@ -1,7 +1,7 @@
 {% load static i18n %}
 {% load video from embed_video_tags %}
 
-<section class="bill__info" data-content="bill" data-bill="{{bill.id}}">
+<section class="bill__info" data-content="bill" data-bill="{{bill.id}}" data-remove-content>
   <div class="info__header">
     {% if request.user.is_authenticated %}
       <a class="header__link" href="" aria-label="login">

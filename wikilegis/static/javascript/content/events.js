@@ -1,3 +1,4 @@
+/* global prefix_url */
 import { paths } from './config';
 import { updatePath, updateHash } from './utils/history';
 import { dismissAlert } from './utils/alert';
@@ -158,7 +159,9 @@ function historyChangeEvent() {
 function windowLoadEvent() {
   const hash = window.location.hash;
 
-  changeContent(window.location.pathname, 'open');
+  if (window.location.pathname !== prefix_url) {
+    changeContent(window.location.pathname, 'open');
+  }
 
   // specific to tab
   if (hash.indexOf('tab_') > -1) {

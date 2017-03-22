@@ -55,6 +55,13 @@ def render_bill_amendments(request, segment_id):
     return JsonResponse({'html': html})
 
 
+def render_amendment_segment(request, segment_id):
+    segment = get_object_or_404(models.BillSegment, pk=segment_id)
+    html = render_to_string('amendments/_segment.html', {'request': request,
+                                                         'segment': segment})
+    return JsonResponse({'html': html})
+
+
 def render_amendment_comments(request, amendment_type, amendment_id):
     if amendment_type == 'modifier':
         amendment = get_object_or_404(models.ModifierAmendment,

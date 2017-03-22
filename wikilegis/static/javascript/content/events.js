@@ -158,10 +158,11 @@ function historyChangeEvent() {
 
 function windowLoadEvent() {
   const hash = window.location.hash;
-
-  if (window.location.pathname !== prefixURL) {
-    changeContent(window.location.pathname, 'open');
+  let path = window.location.pathname;
+  if (prefixURL !== '') {
+    path = path.replace(prefixURL, '');
   }
+  changeContent(path, 'open');
 
   // specific to tab
   if (hash.indexOf('tab_') > -1) {

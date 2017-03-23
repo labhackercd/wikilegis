@@ -15,46 +15,51 @@
     </ol>
   </div>
 
+  <a class="button--{{amendment_type}}-amendment amendments__suggest-button" data-form-open>{{button_text}}</a>
+
   {% if request.user.is_authenticated and segment.bill.status != 'closed' %}
-  <div class="amendments__form-wrapper">
-    <form class="amendments__form" action="/test" data-amendments-form>
+    <div class="amendments__form-wrapper" data-form-visible>
+      <a class="amendments__form-close" data-form-close><i class="form-close__icon icon icon-chevron-down"></i></a>
+
+      <p class="content__text" >
+        {% block segment_type %}{% endblock segment_type %}
+        <span data-diff-wrapper>
+          {{segment.content|safe}}
+        </span>
+      </p>
+
       {% if amendment_type == 'additive' %}
-        {% get_segment_types as segment_types %}
-        <select name="segment_type" id="segment_type" required data-{{amendment_type}}-amendment-select>
-          <option value="{{segment.segment_type.id}}">{{segment.segment_type.presentation_name}}</option>
-          {% for segment_type in segment_types %}
-            <option value="{{segment_type.id}}">{{segment_type.presentation_name}}</option>
-          {% endfor %}
-        </select>
+        <p class="content__text" data-additive-preview>
+        </p>
       {% endif %}
 
-      <input class="form__input" name="content"
-        type="text"
-        placeholder="{% trans 'Type your amendment' %}"
-        data-{{amendment_type}}-amendment-input />
-      <button class="form__btn">{% trans 'Send' %}</button>
-    </form>
 
-    <p class="content__text" >
-      {% block segment_type %}{% endblock segment_type %}
-      <span data-diff-wrapper>
-        {{segment.content|safe}}
-      </span>
-    </p>
+      <form class="amendments__form" action="/test" data-amendments-form>
+        {% if amendment_type == 'additive' %}
+          {% get_segment_types as segment_types %}
+          <select name="segment_type" id="segment_type" required data-{{amendment_type}}-amendment-select>
+            <option value="{{segment.segment_type.id}}">{{segment.segment_type.presentation_name}}</option>
+            {% for segment_type in segment_types %}
+              <option value="{{segment_type.id}}">{{segment_type.presentation_name}}</option>
+            {% endfor %}
+          </select>
+        {% endif %}
 
-    {% if amendment_type == 'additive' %}
-      <p class="content__text" data-additive-preview>
-      </p>
+        <input class="form__input" name="content"
+          type="text"
+          placeholder="{% trans 'Type your amendment' %}"
+          data-{{amendment_type}}-amendment-input />
+        <button class="form__btn">{% trans 'Send' %}</button>
+      </form>
+    </div>
+
+    {% elif segment.bill.status == 'closed' %}
+      <div class="amendments__form">
+        <p>{% trans "This project is closed for participations." %}</p>
+      </div>
+    {% else %}
+      <div class="amendments__form">
+        <p>{% blocktrans %}You must be logged to comment.{% endblocktrans %}</p>
+      </div>
     {% endif %}
-  </div>
-
-  {% elif segment.bill.status == 'closed' %}
-    <div class="amendments__form">
-      <p>{% trans "This project is closed for participations." %}</p>
-    </div>
-  {% else %}
-    <div class="amendments__form">
-      <p>{% blocktrans %}You must be logged to comment.{% endblocktrans %}</p>
-    </div>
-  {% endif %}
 </div>

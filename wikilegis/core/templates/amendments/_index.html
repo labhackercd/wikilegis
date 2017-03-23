@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div
   class="bill__amendments"
   data-content="amendments"
@@ -6,7 +8,7 @@
   data-tab-container
   data-remove-content
 >
-  {% include "amendments/_content.html" with amendment_type='modifier' amendments=segment.modifier_amendments.all %}
-  {% include "amendments/_content.html" with amendment_type='additive' amendments=segment.additive_amendments.all %}
-  {% include "amendments/_content.html" with amendment_type='supress' amendments=segment.supress_amendments.all %}
+  {% include "amendments/_content.html" with button_text='Suggest a modification' amendment_type='modifier' amendments=segment.modifier_amendments.all %}
+  {% include "amendments/_content.html" with button_text='Suggest an appendment' amendment_type='additive' amendments=segment.additive_amendments.all %}
+  {% include "amendments/_content.html" with button_text='Suggest to exclude' amendment_type='supress' amendments=segment.supress_amendments.all %}
 </div>

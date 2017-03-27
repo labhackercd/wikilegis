@@ -1,0 +1,6 @@
+{% extends "amendments/_content.html" %}
+{% load convert_numbers %}
+
+{% block segment_type %}
+  <span class="segment__text--number">{% segment_numbering segment %}</span>
+{% endblock segment_type %}

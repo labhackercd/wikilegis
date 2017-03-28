@@ -8,8 +8,8 @@
   .content__amendments {
     flex: 1 1 auto;
     overflow-y: auto;
-    overflow-y: overlay; //Prefer 'overlay' in the cascade for supported browsers
-    padding: 2em 4em;
+    overflow-y: overlay; // Favor 'overlay' in the cascade for supported browsers
+    padding: 2em 4em 8em;
   }
 
   .content__amendments-list {
@@ -17,76 +17,104 @@
     margin: 0;
     padding: 0;
   }
+}
 
-  .amendments__suggest-button {
-    bottom: 2em;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+.amendments__suggest-button {
+  bottom: 2em;
+  box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: 600;
+  left: 50%;
+  padding: .7em 2em;
+  position: absolute;
+  transform: translate(-50%, 0);
+  z-index: 5;
+
+  &.animate {
+    animation: slide-in-form-button .75s $swift-out;
+  }
+}
+
+.amendments__form-wrapper {
+  background-color: white;
+  border-left: .3em solid;
+  border-right: .3em solid;
+  border-top: .3em solid;
+  bottom: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, .2), 0 -5px 15px rgba(0, 0, 0, .05);
+  display: flex;
+  flex-direction: column;
+  left: 5.5em;
+  max-height: calc(100% - 3em);
+  padding: 1.5em;
+  position: absolute;
+  transform: translateY(110%);
+  transition: transform .3s $swift-out;
+  width: calc(100% - 14em);
+  z-index: 10;
+
+  .amendments__content--modifier & {
+    border-color: $color-actions-edit;
+  }
+
+  .amendments__content--additive & {
+    border-color: $color-actions-add;
+  }
+
+  .amendments__content--supress & {
+    border-color: $color-actions-remove;
+  }
+
+  .bill__amendments-wrapper:not([data-form-visible="false"]) & {
+    transform: translateY(0);
+  }
+
+  .content__text {
+    overflow-y: auto;
+    line-height: 1.4;
+    margin: 0 0 1.5em 0;
+  }
+}
+
+.amendments__form-close {
+  align-items: center;
+  align-self: flex-end;
+  background-color: hsla(0, 0%, 90%, 1);
+  cursor: pointer;
+  display: flex;
+  font-size: 1em;
+  height: 1.5em;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1.5em;
+
+  .form-close__icon {
+    pointer-events: none;
+  }
+}
+
+.amendments__form {
+  background-color: $color-white;
+  display: flex;
+  flex: 0 0 auto;
+  height: 3em;
+
+  .form__input {
+    background-color: $color-gray-95;
+    border: 0;
+    flex: 1;
+    outline: none;
+    padding-left: 1em;
+  }
+
+  .form__btn {
+    background-color: $color-accent;
+    border: 0;
+    color: $color-white;
     cursor: pointer;
-    font-size: 1.2em;
-    font-weight: 600;
-    left: 50%;
-    padding: 0.7em 2em;
-    position: absolute;
-    transform: translate(-50%, calc(110% + 2em));
-    transition: transform 0.3s $swift-out;
-    z-index: 5;
-  }
-
-  .amendments__form-wrapper {
-    background-color: white;
-    bottom: 0;
-    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.15), 0 0px 15px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    left: 5.5em;
-    max-height: calc(100% - 3em);
-    padding: 1.5em;
-    position: absolute;
-    width: calc(100% - 14em);
-    z-index: 10;
-
-    .content__text {
-      overflow-y: auto;
-      line-height: 1.4;
-      margin: 0 0 1.5em 0;
-    }
-  }
-
-  .amendments__form-close {
-    align-items: center;
-    align-self: flex-end;
-    background-color: hsla(0, 0%, 90%, 1);
-    cursor: pointer;
-    display: flex;
-    font-size: 1em;
-    height: 1.5em;
-    justify-content: center;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 1.5em;
-  }
-
-  .amendments__form {
-    background-color: $color-white;
-    display: flex;
-    flex: 0 0 auto;
-    height: 3em;
-
-    .form__input {
-      background-color: $color-gray-95;
-      border: 0;
-      flex: 1;
-      outline: none;
-      padding-left: 1em;
-    }
-
-    .form__btn {
-      background-color: $color-accent;
-      border: 0;
-      color: $color-white;
-      cursor: pointer;
-      padding: 0 1em;
-    }
+    padding: 0 1em;
   }
 }

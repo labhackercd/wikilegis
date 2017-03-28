@@ -7,12 +7,24 @@
   position: absolute;
   right: 0;
   transform: translateX(100%);
-  transition: transform .5s $swift-out;
+  transition: transform .5s $swift-out, background-color .5s $swift-out;
   width: calc(100% - 350px);
   will-change: transform;
 
   &[data-amendments-open="true"] {
     transform: translateX(0);
+  }
+
+  &[data-current-tab="modifier"] {
+    background-color: #e7f7fd;
+  }
+
+  &[data-current-tab="additive"] {
+    background-color: #eafbf2;
+  }
+
+  &[data-current-tab="supress"] {
+    background-color: #fdf2f2;
   }
 }
 
@@ -34,13 +46,18 @@
 
 .amendments__nav-wrapper {
   background-color: white;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15), 0 10px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .15), 0 10px 15px rgba(0, 0, 0, .05);
   margin: 0 4em;
   z-index: 1;
+  transition: margin-top .3s $swift-out;
+
+  .content__text {
+    margin: 0;
+  }
 }
 
 .amendment__text-wrapper {
-  padding: 0 1.5em;
+  padding: 1em 1.5em;
 }
 
 .amendments__nav {
@@ -76,7 +93,7 @@
     justify-content: center;
     padding: .5em 2em;
     text-decoration: none;
-    transition: all 0.3s $swift-out;
+    transition: all .3s $swift-out;
 
     &:hover {
       box-shadow: inset -1px 2px 2px 0 $color-shadow-2;

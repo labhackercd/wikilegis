@@ -1,4 +1,4 @@
-/* global strings */
+/* global strings segmentsList */
 import $ from 'jquery';
 import loadModule from './load';
 import amendmentDiffModule from './amendmentDiff';

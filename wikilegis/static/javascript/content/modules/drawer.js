@@ -1,3 +1,4 @@
+/* global segmentsList */
 import List from 'list.js';
 import $ from 'jquery';
 import loadModule from './load';
@@ -76,12 +77,11 @@ function drawerModule() {
             const segmentsOptions = {
               searchClass: 'search__input',
               listClass: 'content__segments',
-              valueNames: ['segment__text', ]
+              valueNames: ['segment__text'],
             };
             const billsListSearch = new List('segment-list-search', segmentsOptions);
-            console.log(billsListSearch)
-            segmentsList = billsListSearch;
-          }
+            segmentsList = billsListSearch; // eslint-disable-line no-global-assign
+          };
         }
         load.get(contentId, contentRequest, null, callback);
       }

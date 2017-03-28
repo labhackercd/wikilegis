@@ -1,7 +1,9 @@
 /* global prefixURL */
 import $ from 'jquery';
-import { requests } from '../config';
+import { requests, contents } from '../config';
 import { showAlert } from '../utils/alert';
+import { removePath } from '../utils/history';
+
 
 function loadModule() {
   let inProgress = [];
@@ -28,7 +30,14 @@ function loadModule() {
         request.loadedIds.push(id);
       },
       error(xhr) {
-        showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
+        if (xhr.status === 404) {
+          const content = contents[request.content];
+          content.wrapperEl.dataset[`${content.name}Open`] = 'false';
+          removePath(content.name)
+          showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error', false);
+        } else {
+          showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
+        }
       },
       complete() {
         const requestIndex = inProgress.indexOf(request.name);

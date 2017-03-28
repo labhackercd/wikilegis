@@ -36,6 +36,14 @@ function clickEvent(event) {
     drawer.close(dataset.drawerClose);
   }
 
+  if (dataset.formOpen) {
+    forms.toggle(dataset.formOpen);
+  }
+
+  if ('formClose' in dataset) {
+    forms.toggle(false);
+  }
+
   if (dataset.voteAction) {
     votes.sendVote(event.target);
   } else if (parentDataset && parentDataset.voteAction) {
@@ -46,6 +54,7 @@ function clickEvent(event) {
     updatePath(event.target.href);
   } else if (dataset.tab) {
     updateHash(event.target.href, event.target.hash);
+    forms.toggle(false);
   }
 
   if (dataset.collapsible) {

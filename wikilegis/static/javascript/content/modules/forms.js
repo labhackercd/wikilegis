@@ -107,7 +107,20 @@ function formsModule() {
     }
   }
 
-  return { sendComment, sendAmendment, loadSegmentText, sendSubscribe, segmentSearch };
+  function toggle(form) {
+    const wrapperEl = document.querySelector('[data-form-visible]')
+    wrapperEl.dataset['formVisible'] = form;
+
+    const navWrapper = document.querySelector('[data-nav-wrapper]');
+    if (form) {
+      const textHeight = document.querySelector('[data-nav-text]').offsetHeight;
+      navWrapper.style.marginTop = `-${textHeight + 1}px`;
+    } else {
+      navWrapper.removeAttribute('style');
+    }
+  }
+
+  return { sendComment, sendAmendment, loadSegmentText, sendSubscribe, segmentSearch, toggle };
 }
 
 export default formsModule;

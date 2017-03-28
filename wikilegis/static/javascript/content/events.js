@@ -34,6 +34,7 @@ function clickEvent(event) {
     drawer.open(parent);
   } else if (dataset.drawerClose) {
     drawer.close(dataset.drawerClose);
+    forms.toggle(false);
   }
 
   if (dataset.formOpen) {

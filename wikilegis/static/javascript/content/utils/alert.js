@@ -8,7 +8,7 @@ function dismissAlert() {
   alertEl.classList.add('hidden');
 }
 
-function showAlert(errorTitle, errorMessage, alertType = 'error') {
+function showAlert(errorTitle, errorMessage, alertType = 'error', autoDismiss = true) {
   if (timeoutFunction) {
     clearTimeout(timeoutFunction);
     dismissAlert();
@@ -23,9 +23,9 @@ function showAlert(errorTitle, errorMessage, alertType = 'error') {
   }
 
   headerEl.innerText = errorTitle;
-  textEl.innerText = errorMessage;
+  textEl.innerHTML = errorMessage;
   alertEl.classList.remove('hidden');
-  timeoutFunction = setTimeout(dismissAlert, 5000);
+  if (autoDismiss) timeoutFunction = setTimeout(dismissAlert, 5000);
 }
 
 export {

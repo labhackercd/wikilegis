@@ -80,6 +80,15 @@
   .banner__text {
     font-size: 1.2em;
   }
+
+  .banner__search {
+    pointer-events: all;
+    padding: 0.5em 1em;
+    border-radius: 5em;
+    border: 1px solid $color-accent;
+    background: transparent;
+    color: $color-gray-95;
+  }
 }
 
 .wikilegis__bill-list {

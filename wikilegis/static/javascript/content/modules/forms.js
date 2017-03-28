@@ -100,7 +100,13 @@ function formsModule() {
     }
   }
 
-  return { sendComment, sendAmendment, loadSegmentText, sendSubscribe };
+  function segmentSearch(inputEl) {
+    if (segmentsList) {
+      segmentsList.search(inputEl.value);
+    }
+  }
+
+  return { sendComment, sendAmendment, loadSegmentText, sendSubscribe, segmentSearch };
 }
 
 export default formsModule;

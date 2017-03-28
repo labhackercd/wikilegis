@@ -38,7 +38,8 @@
         sameAsSegmentTitle: "{% trans 'Oops' %}",
         sameAsSegmentText: "{% trans 'Your suggestion has the same text of original segment' %}",
       };
-      var prefixURL = '{{prefix_url|default_if_none:""}}'
+      var prefixURL = '{{prefix_url|default_if_none:""}}';
+      var segmentsList = null;
     </script>
 
     {% block javascript %}

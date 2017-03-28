@@ -67,6 +67,10 @@ function keyUpEvent(event) {
   if ('modifierAmendmentInput' in dataset) {
     diff.updateDiff(event.target);
   }
+
+  if ('segmentsSearch' in dataset) {
+    forms.segmentSearch(event.target);
+  }
 }
 
 function mouseoverEvent(event) {

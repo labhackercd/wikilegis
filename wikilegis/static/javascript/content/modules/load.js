@@ -11,7 +11,7 @@ function loadModule() {
     loaderEl.dataset.loading = loading;
   }
 
-  function get(id, request, param) {
+  function get(id, request, param, callbackFunction = null) {
     const pathParam = !param ? id : param;
     const path = request.path;
     const url = `${prefixURL}/${path}${pathParam}/`;
@@ -35,6 +35,7 @@ function loadModule() {
         if (requestIndex > -1) inProgress.splice(requestIndex, 1);
         request.xhr = {}; // eslint-disable-line no-param-reassign
         setLoader(request.wrapperEl, false);
+        if (callbackFunction) callbackFunction();
       },
     });
   }

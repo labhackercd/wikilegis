@@ -1,3 +1,4 @@
+import List from 'list.js';
 import $ from 'jquery';
 import loadModule from './load';
 import { addMultiplePaths, addPath, removePath } from '../utils/history';
@@ -69,7 +70,20 @@ function drawerModule() {
         sections.forEach((el) => {
           el.parentNode.removeChild(el);
         });
-        load.get(contentId, contentRequest);
+        let callback = null;
+        if (contentName === 'bill' && requests[request].name === 'content') {
+          callback = () => {
+            const segmentsOptions = {
+              searchClass: 'search__input',
+              listClass: 'content__segments',
+              valueNames: ['segment__text', ]
+            };
+            const billsListSearch = new List('segment-list-search', segmentsOptions);
+            console.log(billsListSearch)
+            segmentsList = billsListSearch;
+          }
+        }
+        load.get(contentId, contentRequest, null, callback);
       }
     });
   }

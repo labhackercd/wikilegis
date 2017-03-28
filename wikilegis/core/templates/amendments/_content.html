@@ -15,11 +15,11 @@
     </ol>
   </div>
 
-  <a class="button--{{amendment_type}}-amendment amendments__suggest-button" data-form-open>{{button_text}}</a>
+  <a class="button--{{amendment_type}}-amendment amendments__suggest-button animate" data-form-open="{{amendment_type}}">{{button_text}}</a>
 
   {% if request.user.is_authenticated and segment.bill.status != 'closed' %}
-    <div class="amendments__form-wrapper" data-form-visible>
-      <a class="amendments__form-close" data-form-close><i class="form-close__icon icon icon-chevron-down"></i></a>
+    <div class="amendments__form-wrapper">
+      <a class="amendments__form-close" data-form-close title="{% trans 'Close form' %}"><i class="form-close__icon icon icon-chevron-down"></i></a>
 
       <p class="content__text" >
         {% block segment_type %}{% endblock segment_type %}

@@ -1,19 +1,19 @@
 {% load i18n %}
 
-<div class="bill__amendments-wrapper">
-  <div class="amendments__nav-wrapper">
-    <div class="amendment__text-wrapper">
+<div class="bill__amendments-wrapper" data-form-visible="false" data-current-tab="false" data-amendments-container>
+  <div class="amendments__nav-wrapper" data-nav-wrapper>
+    <div class="amendment__text-wrapper" data-nav-text>
       <div class="loader" data-loading="false"></div>
     </div>
 
     <nav class="amendments__nav">
-      <a class="nav__item" data-tab-content="amendments" data-tab="1" href="#tab_edit">
+      <a class="nav__item" data-tab-content="amendments" data-tab="1" data-tab-content-type="modifier" href="#tab_edit">
         <i class="item__icon icon icon-pencil"></i>{% trans 'EDITION' %}
       </a>
-      <a class="nav__item" data-tab-content="amendments" data-tab="2" href="#tab_add">
+      <a class="nav__item" data-tab-content="amendments" data-tab="2" data-tab-content-type="additive" href="#tab_add">
         <i class="item__icon icon icon-plus"></i>{% trans 'ADDITION' %}
       </a>
-      <a class="nav__item" data-tab-content="amendments" data-tab="3" href="#tab_remove">
+      <a class="nav__item" data-tab-content="amendments" data-tab="3" data-tab-content-type="supress" href="#tab_remove">
         <i class="item__icon icon icon-trash"></i>{% trans 'EXCLUSION' %}
       </a>
     </nav>

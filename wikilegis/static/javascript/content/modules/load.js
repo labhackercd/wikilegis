@@ -33,7 +33,7 @@ function loadModule() {
         if (xhr.status === 404) {
           const content = contents[request.content];
           content.wrapperEl.dataset[`${content.name}Open`] = 'false';
-          removePath(content.name)
+          removePath(content.name);
           showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error', false);
         } else {
           showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
@@ -62,7 +62,7 @@ function loadModule() {
     const path = request.path;
     let url = `${prefixURL}/${path}/`;
     if (path[0] === '/') url = path;
-    if (path[path.length - 1] === '/') url = url.slice(0, url.length - 1)
+    if (path[path.length - 1] === '/') url = url.slice(0, url.length - 1);
 
     $.ajax({
       url,

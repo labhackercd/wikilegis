@@ -50,8 +50,8 @@ def render_bill_info(request, bill_id):
                                                     'bill': bill})
         return JsonResponse({'html': html})
     except ObjectDoesNotExist:
-        message = 'The following URL has returned no known bill: ' \
-                  '<br> <strong>{}/bill/{}</strong>'
+        message = _('The following URL has returned no known bill: '
+                    '<br> <strong>{}/bill/{}</strong>')
         return render_404(_(message.format(request.get_host(), bill_id)))
 
 
@@ -62,8 +62,8 @@ def render_bill_content(request, bill_id):
                                                        'bill': bill})
         return JsonResponse({'html': html})
     except ObjectDoesNotExist:
-        message = 'The following URL has returned no known bill: ' \
-                  '<br> <strong>{}/bill/{}</strong>'
+        message = _('The following URL has returned no known bill: '
+                    '<br> <strong>{}/bill/{}</strong>')
         return render_404(_(message.format(request.get_host(), bill_id)))
 
 
@@ -74,7 +74,7 @@ def render_bill_amendments(request, segment_id):
                                                            'segment': segment})
         return JsonResponse({'html': html})
     except ObjectDoesNotExist:
-        message = 'The following URL has returned no known segment.'
+        message = _('The following URL has returned no known segment.')
         path = request.path.replace('render/', '')
         return render_404(_(message.format(request.get_host(), path)))
 

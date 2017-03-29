@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-20 15:21-0300\n"
+"POT-Creation-Date: 2017-03-29 15:32-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,8 @@ msgstr "Datas importantes"
 msgid "The two password fields didn't match."
 msgstr "Os campos de senha não correspondem."
 
-#: accounts/forms.py:19
+#: accounts/forms.py:19 core/templates/widget/login.html:34
+#: core/templates/widget/login.html:50
 msgid "Password"
 msgstr "Senha"
 
@@ -330,10 +331,10 @@ msgstr "Este projeto está fechado para participação."
 #: core/templates/amendments/_comments.html:20
 #: core/templates/amendments/_content.html:48
 #: core/templates/segment/_comments.html:20
-msgid "You must be logged to comment. Click <a href=\"\">here</a> to login."
-msgstr ""
-"Você deve estar logado para comentar. Clique <a href=\"\">aqui</a> para "
-"entrar."
+#, fuzzy
+#| msgid "You must be logged to comment :("
+msgid "You must be logged to comment."
+msgstr "Você deve estar logado para comentar :("
 
 #: core/templates/amendments/_content.html:38
 msgid "Type your amendment"
@@ -344,8 +345,8 @@ msgid "New"
 msgstr "Novo"
 
 #: core/templates/base.html:34 core/templates/base.html:36
-#: core/templates/base.html:38 core/views.py:113 core/views.py:133
-#: core/views.py:155 core/views.py:198
+#: core/templates/base.html:38 core/views.py:148 core/views.py:168
+#: core/views.py:190 core/views.py:233
 msgid "Oops"
 msgstr "Oops"
 
@@ -360,6 +361,26 @@ msgstr "Você não pode enviar uma proposta vazia :("
 #: core/templates/base.html:39
 msgid "Your suggestion has the same text of original segment"
 msgstr "Sua sugestão possui o mesmo texto do trecho original"
+
+#: core/templates/bill/_amendment_wrapper.html:5
+#: core/templates/segment/_actions_secondary.html:28
+msgid "EDITION"
+msgstr "EDIÇÃO"
+
+#: core/templates/bill/_amendment_wrapper.html:6
+#: core/templates/segment/_actions_secondary.html:43
+msgid "ADDITION"
+msgstr "ADIÇÃO"
+
+#: core/templates/bill/_amendment_wrapper.html:7
+#: core/templates/segment/_actions_secondary.html:57
+msgid "EXCLUSION"
+msgstr "EXCLUSÃO"
+
+#: core/templates/bill/_amendment_wrapper.html:10 core/templates/home.html:41
+#: core/templates/widget/login.html:10
+msgid "back"
+msgstr "voltar"
 
 #: core/templates/bill/_content.html:6
 msgid "Coat of arms of the republic"
@@ -413,11 +434,11 @@ msgstr "Semanal"
 msgid "Subscribe"
 msgstr "Assinar"
 
-#: core/templates/home.html:15
+#: core/templates/home.html:14
 msgid "Your legislative editing tool"
 msgstr "Sua ferramenta de edição legislativa"
 
-#: core/templates/home.html:17
+#: core/templates/home.html:16
 msgid ""
 "Check the bills and contribute suggestions of new wordings to articles or "
 "paragraphs. The rapporteurs of the bills track the participation and can "
@@ -427,7 +448,7 @@ msgstr ""
 "artigos ou parágrafos. Os deputados relatores das proposições acompanham as "
 "participações e podem adotar a sua ideia!"
 
-#: core/templates/home.html:20
+#: core/templates/home.html:19
 msgid ""
 "With this interaction, society profits by participating more actively in the "
 "legislative process, and the Parliament profits by approving improved laws "
@@ -437,26 +458,12 @@ msgstr ""
 "processo legislativo, e ganha o Parlamento, que aprova leis mais aprimoradas "
 "e conectadas às necessidades dos cidadãos."
 
-#: core/templates/home.html:41 core/templates/home.html:60
-msgid "back"
-msgstr "voltar"
-
-#: core/templates/home.html:55
-#: core/templates/segment/_actions_secondary.html:28
-msgid "EDITION"
-msgstr "EDIÇÃO"
-
-#: core/templates/home.html:56
-#: core/templates/segment/_actions_secondary.html:43
-msgid "ADDITION"
-msgstr "ADIÇÃO"
-
-#: core/templates/home.html:57
-#: core/templates/segment/_actions_secondary.html:57
-msgid "EXCLUSION"
-msgstr "EXCLUSÃO"
+#: core/templates/home.html:21
+msgid "Search"
+msgstr "Buscar"
 
 #: core/templates/registration/login.html:13
+#: core/templates/widget/login.html:36
 msgid "Log in"
 msgstr "Entrar"
 
@@ -472,19 +479,76 @@ msgstr "Resetar"
 msgid "Register"
 msgstr "Registrar"
 
-#: core/views.py:114
+#: core/templates/widget/login.html:21
+msgid "Re-send activation email"
+msgstr "Reenviar email de ativação"
+
+#: core/templates/widget/login.html:28 core/templates/widget/login.html:44
+msgid "Email is a necessary field"
+msgstr "Campo email é obrigatório"
+
+#: core/templates/widget/login.html:30 core/templates/widget/login.html:46
+#: plugins/camara_deputados/models.py:92
+msgid "Email"
+msgstr "Email"
+
+#: core/templates/widget/login.html:32 core/templates/widget/login.html:48
+msgid "Password is a necessary field"
+msgstr "Campo senha é obrigatório"
+
+#: core/templates/widget/login.html:41
+msgid "First name"
+msgstr "Primeiro nome"
+
+#: core/templates/widget/login.html:42
+#, fuzzy
+#| msgid "name"
+msgid "Last name"
+msgstr "nome"
+
+#: core/templates/widget/login.html:52
+msgid "Confirm Password is a necessary field"
+msgstr ""
+
+#: core/templates/widget/login.html:54
+#, fuzzy
+#| msgid "Forgot password"
+msgid "Confirm your password"
+msgstr "Esqueci minha senha"
+
+#: core/templates/widget/login.html:55
+msgid "Sign Up"
+msgstr "Cadastre-se"
+
+#: core/views.py:40
+msgid "404 Error"
+msgstr "Erro 404"
+
+#: core/views.py:53 core/views.py:65
+msgid ""
+"The following URL has returned no known bill: <br> <strong>{}/bill/{}</"
+"strong>"
+msgstr ""
+"A seguinte URL não retornou um projeto de lei conhecido: <br> <strong>{}/bill/{}</"
+"strong>"
+
+#: core/views.py:77
+msgid "The following URL has returned no known segment."
+msgstr "A seguinte URL não retornou um trecho conhecido."
+
+#: core/views.py:149
 msgid "This bill is closed for participation :("
 msgstr "Este projeto de lei está fechado para participação :("
 
-#: core/views.py:134
+#: core/views.py:169
 msgid "You must be logged to comment :("
 msgstr "Você deve estar logado para comentar :("
 
-#: core/views.py:156
+#: core/views.py:191
 msgid "You must be logged to vote :("
 msgstr "Você deve estar logado para votar :("
 
-#: core/views.py:199
+#: core/views.py:234
 msgid "You must be logged to suggest new amendment :("
 msgstr "Você deve estar logado para sugerir uma nova proposta :("
 
@@ -548,10 +612,6 @@ msgstr "Id do Relator"
 msgid "Parliamentary Name"
 msgstr "Nome Parlamentar"
 
-#: plugins/camara_deputados/models.py:92
-msgid "Email"
-msgstr "Email"
-
 #: plugins/camara_deputados/templates/segment/_fixed_segment.html:4
 msgid "TITLE"
 msgstr "TÍTULO"
@@ -583,3 +643,8 @@ msgstr "Google"
 #: wikilegis/settings/social.py:43
 msgid "Facebook"
 msgstr "Facebook"
+
+#~ msgid "You must be logged to comment. Click <a href=\"\">here</a> to login."
+#~ msgstr ""
+#~ "Você deve estar logado para comentar. Clique <a href=\"\">aqui</a> para "
+#~ "entrar."

@@ -59,7 +59,7 @@ function formsModule() {
       showAlert(strings.emptyAmendmentTitle, strings.emptyAmendmentText, 'error');
     } else if (segmentContent !== amendmentContent) {
       const data = serializeForm(formEl);
-      const parent = $(formEl).closest('[data-segment-id]')[0]
+      const parent = $(formEl).closest('[data-segment-id]')[0];
       const parentDataset = parent.dataset;
       const wrapperEl = parent.querySelector('[data-amendments-wrapper]');
       const segmentType = parentDataset.objectType;
@@ -108,8 +108,8 @@ function formsModule() {
   }
 
   function toggle(form) {
-    const wrapperEl = document.querySelector('[data-form-visible]')
-    wrapperEl.dataset['formVisible'] = form;
+    const wrapperEl = document.querySelector('[data-form-visible]');
+    wrapperEl.dataset.formVisible = form;
 
     const navWrapper = document.querySelector('[data-nav-wrapper]');
     if (form) {

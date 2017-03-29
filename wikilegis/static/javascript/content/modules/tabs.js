@@ -13,7 +13,6 @@ function tabsModule() {
     const id = targetEl.dataset[name] ? targetEl.dataset[name] : contents[name].activeId;
     const isLoaded = request.loadedIds.indexOf(id) > -1;
     const contentElQuery = `[data-tab][data-content="${name}"][data-${name}="${id}"]`;
-    const contentEl = contents[name].wrapperEl.querySelector(contentElQuery);
     const targetParentEl = targetEl.parentElement;
 
     if (!isLoaded) {
@@ -28,21 +27,22 @@ function tabsModule() {
       targetParentEl.dataset.tab = index;
     }
 
-    const amendmentsWrapperEl = document.querySelector('[data-amendments-container]')
+    const amendmentsWrapperEl = document.querySelector('[data-amendments-container]');
 
     amendmentsWrapperEl.dataset.formVisible = 'false';
     amendmentsWrapperEl.dataset.currentTab = tabContentType;
     document.querySelectorAll('[data-form-open]').forEach((buttonEl) => {
       $(buttonEl).removeClass('animate');
-      // setTimeout needed for the button animation to re-fire on the first tab change. Pls don't judge.
+
+      // setTimeout needed for the button animation to re-fire on the first tab change.
+      // Pls don't judge.
       setTimeout(() => {
         if (tabContentType === buttonEl.dataset.formOpen) {
           $(buttonEl).addClass('animate');
           amendmentsWrapperEl.dataset.currentTab = tabContentType;
         }
-      }, 100)
-    })
-
+      }, 100);
+    });
   }
 
   return { setActive };

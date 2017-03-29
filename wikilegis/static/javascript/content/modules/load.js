@@ -53,6 +53,7 @@ function loadModule() {
     const path = request.path;
     let url = `${prefixURL}/${path}/`;
     if (path[0] === '/') url = path;
+    if (path[path.length - 1] === '/') url = url.slice(0, url.length - 1)
 
     $.ajax({
       url,

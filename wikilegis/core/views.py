@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
@@ -34,25 +35,48 @@ class WidgetView(DetailView):
     template_name = 'widget.html'
 
 
+def render_404(message):
+    return JsonResponse(
+        {'title': _('404 Error'),
+         'message': message},
+        status=404
+    )
+
+
 def render_bill_info(request, bill_id):
-    bill = get_object_or_404(models.Bill, pk=bill_id)
-    html = render_to_string('bill/_info.html', {'request': request,
-                                                'bill': bill})
-    return JsonResponse({'html': html})
+    try:
+        bill = models.Bill.objects.get(pk=bill_id)
+        html = render_to_string('bill/_info.html', {'request': request,
+                                                    'bill': bill})
+        return JsonResponse({'html': html})
+    except ObjectDoesNotExist:
+        message = _('The following URL has returned no known bill: '
+                    '<br> <strong>{}/bill/{}</strong>')
+        return render_404(_(message.format(request.get_host(), bill_id)))
 
 
 def render_bill_content(request, bill_id):
-    bill = get_object_or_404(models.Bill, pk=bill_id)
-    html = render_to_string('bill/_content.html', {'request': request,
-                                                   'bill': bill})
-    return JsonResponse({'html': html})
+    try:
+        bill = models.Bill.objects.get(pk=bill_id)
+        html = render_to_string('bill/_content.html', {'request': request,
+                                                       'bill': bill})
+        return JsonResponse({'html': html})
+    except ObjectDoesNotExist:
+        message = _('The following URL has returned no known bill: '
+                    '<br> <strong>{}/bill/{}</strong>')
+        return render_404(_(message.format(request.get_host(), bill_id)))
 
 
 def render_bill_amendments(request, segment_id):
-    segment = get_object_or_404(models.BillSegment, pk=segment_id)
-    html = render_to_string('amendments/_index.html', {'request': request,
-                                                       'segment': segment})
-    return JsonResponse({'html': html})
+    try:
+        segment = models.BillSegment.objects.get(pk=segment_id)
+        html = render_to_string('amendments/_index.html', {'request': request,
+                                                           'segment': segment})
+        return JsonResponse({'html': html})
+    except ObjectDoesNotExist:
+        message = _('The following URL has returned no known segment.')
+        path = request.path.replace('render/', '')
+        return render_404(_(message.format(request.get_host(), path)))
 
 
 def render_amendment_segment(request, segment_id):

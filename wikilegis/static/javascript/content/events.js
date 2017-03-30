@@ -1,4 +1,4 @@
-/* global prefixURL */
+/* global prefixURL strings */
 import { paths } from './config';
 import { updatePath, updateHash } from './utils/history';
 import { dismissAlert, showAlert } from './utils/alert';
@@ -37,8 +37,6 @@ function clickEvent(event) {
     forms.toggle(false);
   }
 
-
-
   if ('formClose' in dataset) {
     forms.toggle(false);
   }
@@ -64,7 +62,7 @@ function clickEvent(event) {
   }
 
   if ('notAuthenticated' in dataset) {
-    showAlert(strings.userNotLoggedInTitle, strings.userNotLoggedInText, 'error');
+    showAlert(strings.userNotLoggedInTitle, strings.userNotLoggedInText, 'error'); //
   } else if (dataset.formOpen) {
     forms.toggle(dataset.formOpen);
   }

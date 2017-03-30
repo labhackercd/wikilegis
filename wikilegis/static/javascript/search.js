@@ -7,6 +7,5 @@ const options = {
 };
 
 const billsListSearch = new List('bill-list-search', options);
-console.log(billsListSearch)
 
 export default billsListSearch;

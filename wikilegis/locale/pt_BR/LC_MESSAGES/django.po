@@ -434,7 +434,7 @@ msgstr "Sugestões de emendas"
 
 #: core/templates/bill/_info.html:62
 msgid "Do you support this bill?"
-msgstr "Vovê apoia esse projeto de lei?"
+msgstr "Você apoia esse projeto de lei?"
 
 #: core/templates/bill/_list-item.html:33
 msgid "Suggestions"

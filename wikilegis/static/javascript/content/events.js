@@ -28,13 +28,21 @@ function clickEvent(event) {
     parentDataset = parent.dataset;
   }
 
-
   if (dataset.drawerOpen) {
     drawer.open(event.target);
   } else if (parentDataset && parentDataset.drawerOpen) {
     drawer.open(parent);
   } else if (dataset.drawerClose) {
     drawer.close(dataset.drawerClose);
+    forms.toggle(false);
+  }
+
+  if (dataset.formOpen) {
+    forms.toggle(dataset.formOpen);
+  }
+
+  if ('formClose' in dataset) {
+    forms.toggle(false);
   }
 
   if (dataset.voteAction) {
@@ -47,6 +55,7 @@ function clickEvent(event) {
     updatePath(event.target.href);
   } else if (dataset.tab) {
     updateHash(event.target.href, event.target.hash);
+    forms.toggle(false);
   }
 
   if (dataset.collapsible) {

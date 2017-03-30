@@ -3,17 +3,28 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;;
   position: absolute;
   right: 0;
   transform: translateX(100%);
-  transition: transform .5s $swift-out;
+  transition: transform .5s $swift-out, background-color .5s $swift-out;
   width: calc(100% - 350px);
   will-change: transform;
 
   &[data-amendments-open="true"] {
     transform: translateX(0);
+  }
+
+  &[data-current-tab="modifier"] {
+    background-color: #e7f7fd;
+  }
+
+  &[data-current-tab="additive"] {
+    background-color: #eafbf2;
+  }
+
+  &[data-current-tab="supress"] {
+    background-color: #fdf2f2;
   }
 }
 
@@ -33,10 +44,26 @@
   * { pointer-events: none; }
 }
 
+.amendments__nav-wrapper {
+  background-color: white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .15), 0 10px 15px rgba(0, 0, 0, .05);
+  margin: 0 4em;
+  z-index: 1;
+  transition: margin-top .3s $swift-out;
+
+  .content__text {
+    margin: 0;
+  }
+}
+
+.amendment__text-wrapper {
+  padding: 1em 1.5em;
+}
+
 .amendments__nav {
+  border-top: 1px solid #f1f1f1;
   display: flex;
   justify-content: center;
-  margin-top: 4em;
 
   &[data-tab="1"] [data-tab="1"] {
     background-color: $color-actions-edit;
@@ -59,17 +86,14 @@
   .nav__item {
     align-items: center;
     background-color: $color-white;
-    box-shadow: 1px 2px 2px 0 $color-shadow-2;
     color: $color-gray-55;
     display: flex;
+    flex: 1 1 auto;
     font-weight: 700;
-    margin-right: .5em;
+    justify-content: center;
     padding: .5em 2em;
     text-decoration: none;
-
-    + .nav__item {
-      margin-left: 1em;
-    }
+    transition: all .3s $swift-out;
 
     &:hover {
       box-shadow: inset -1px 2px 2px 0 $color-shadow-2;
@@ -83,7 +107,7 @@
 
   .item__icon {
     display: flex;
-    font-size: 1.75em;
+    font-size: 1.25em;
     margin-right: .5em;
   }
 }

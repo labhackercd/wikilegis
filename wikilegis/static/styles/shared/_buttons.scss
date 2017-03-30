@@ -8,11 +8,44 @@
   padding: .5em;
   text-decoration: none;
   text-transform: uppercase;
-  transition: all 0.3s $swift-out;
+  transition: all 0.3s $swift-out !important;
 
   &:hover,
   &:focus {
     background-color: white;
     color: $color-accent;
+  }
+}
+
+.button--modifier-amendment {
+  background-color: $color-actions-edit;
+  border-color: $color-actions-edit;
+
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: $color-actions-edit;
+  }
+}
+
+.button--additive-amendment {
+  background-color: $color-actions-add;
+  border-color: $color-actions-add;
+
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: $color-actions-add;
+  }
+}
+
+.button--supress-amendment {
+  background-color: $color-actions-remove;
+  border-color: $color-actions-remove;
+
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: $color-actions-remove;
   }
 }

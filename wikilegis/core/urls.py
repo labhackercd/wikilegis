@@ -21,6 +21,8 @@ urlpatterns = [
         views.render_bill_content, name='render_bill_content'),
     url(r'^render/bill_amendments/(?P<segment_id>\d+)/$',
         views.render_bill_amendments, name='render_bill_amendments'),
+    url(r'^render/bill_amendment_segment/(?P<segment_id>\d+)/$',
+        views.render_amendment_segment, name='render_bill_amendment_segment'),
     url(r'^render/amendment_comments/(?P<amendment_type>\w+)/'
         r'(?P<amendment_id>\d+)/$',
         views.render_amendment_comments, name='render_amendment_comments'),

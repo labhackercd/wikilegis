@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-29 15:32-0300\n"
+"POT-Creation-Date: 2017-03-30 16:13-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -317,36 +317,62 @@ msgid "Type your comment"
 msgstr "Insira seu comentário"
 
 #: core/templates/amendments/_comments.html:12
-#: core/templates/amendments/_content.html:40
+#: core/templates/amendments/_content.html:52
 #: core/templates/segment/_comments.html:12
 msgid "Send"
 msgstr "Enviar"
 
 #: core/templates/amendments/_comments.html:16
-#: core/templates/amendments/_content.html:44
+#: core/templates/amendments/_content.html:58
 #: core/templates/segment/_comments.html:16
 msgid "This project is closed for participations."
 msgstr "Este projeto está fechado para participação."
 
 #: core/templates/amendments/_comments.html:20
-#: core/templates/amendments/_content.html:48
+#: core/templates/amendments/_content.html:62
 #: core/templates/segment/_comments.html:20
 #, fuzzy
 #| msgid "You must be logged to comment :("
 msgid "You must be logged to comment."
 msgstr "Você deve estar logado para comentar :("
 
-#: core/templates/amendments/_content.html:38
-msgid "Type your amendment"
-msgstr "Insira sua proposta"
+#: core/templates/amendments/_content.html:22
+#, fuzzy
+#| msgid "Closes on"
+msgid "Close form"
+msgstr "Encerra em"
+
+#: core/templates/amendments/_index.html:11
+msgid "Suggest a modification"
+msgstr "Sugerir modificação"
+
+#: core/templates/amendments/_index.html:12
+msgid "Suggest an appendment"
+msgstr "Sugerir novo segmento"
+
+#: core/templates/amendments/_index.html:13
+msgid "Suggest to exclude"
+msgstr "Sugerir exclusão"
+
+#: core/templates/amendments/_index.html:15
+msgid "Insert your modification suggestion"
+msgstr "Insira sua sugestão de modificação"
+
+#: core/templates/amendments/_index.html:16
+msgid "Insert your appendment suggestion"
+msgstr "Insira sua sugestão de novo segmento após este"
+
+#: core/templates/amendments/_index.html:17
+msgid "Please justify the need to exclude this segment"
+msgstr "Por favor, justifique a exclusão deste segmento"
 
 #: core/templates/amendments/_item.html:9
 msgid "New"
 msgstr "Novo"
 
 #: core/templates/base.html:34 core/templates/base.html:36
-#: core/templates/base.html:38 core/views.py:148 core/views.py:168
-#: core/views.py:190 core/views.py:233
+#: core/templates/base.html:38 core/views.py:155 core/views.py:175
+#: core/views.py:197 core/views.py:240
 msgid "Oops"
 msgstr "Oops"
 
@@ -362,22 +388,22 @@ msgstr "Você não pode enviar uma proposta vazia :("
 msgid "Your suggestion has the same text of original segment"
 msgstr "Sua sugestão possui o mesmo texto do trecho original"
 
-#: core/templates/bill/_amendment_wrapper.html:5
+#: core/templates/bill/_amendment_wrapper.html:11
 #: core/templates/segment/_actions_secondary.html:28
 msgid "EDITION"
 msgstr "EDIÇÃO"
 
-#: core/templates/bill/_amendment_wrapper.html:6
+#: core/templates/bill/_amendment_wrapper.html:14
 #: core/templates/segment/_actions_secondary.html:43
 msgid "ADDITION"
 msgstr "ADIÇÃO"
 
-#: core/templates/bill/_amendment_wrapper.html:7
+#: core/templates/bill/_amendment_wrapper.html:17
 #: core/templates/segment/_actions_secondary.html:57
 msgid "EXCLUSION"
 msgstr "EXCLUSÃO"
 
-#: core/templates/bill/_amendment_wrapper.html:10 core/templates/home.html:41
+#: core/templates/bill/_amendment_wrapper.html:22 core/templates/home.html:41
 #: core/templates/widget/login.html:10
 msgid "back"
 msgstr "voltar"
@@ -529,26 +555,26 @@ msgid ""
 "The following URL has returned no known bill: <br> <strong>{}/bill/{}</"
 "strong>"
 msgstr ""
-"A seguinte URL não retornou um projeto de lei conhecido: <br> <strong>{}/bill/{}</"
-"strong>"
+"A seguinte URL não retornou um projeto de lei conhecido: <br> <strong>{}/"
+"bill/{}</strong>"
 
 #: core/views.py:77
 msgid "The following URL has returned no known segment."
 msgstr "A seguinte URL não retornou um trecho conhecido."
 
-#: core/views.py:149
+#: core/views.py:156
 msgid "This bill is closed for participation :("
 msgstr "Este projeto de lei está fechado para participação :("
 
-#: core/views.py:169
+#: core/views.py:176
 msgid "You must be logged to comment :("
 msgstr "Você deve estar logado para comentar :("
 
-#: core/views.py:191
+#: core/views.py:198
 msgid "You must be logged to vote :("
 msgstr "Você deve estar logado para votar :("
 
-#: core/views.py:234
+#: core/views.py:241
 msgid "You must be logged to suggest new amendment :("
 msgstr "Você deve estar logado para sugerir uma nova proposta :("
 
@@ -643,6 +669,9 @@ msgstr "Google"
 #: wikilegis/settings/social.py:43
 msgid "Facebook"
 msgstr "Facebook"
+
+#~ msgid "Type your amendment"
+#~ msgstr "Insira sua proposta"
 
 #~ msgid "You must be logged to comment. Click <a href=\"\">here</a> to login."
 #~ msgstr ""

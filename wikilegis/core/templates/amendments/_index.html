@@ -8,7 +8,15 @@
   data-tab-container
   data-remove-content
 >
-  {% include "amendments/_content.html" with button_text='Suggest a modification' amendment_type='modifier' amendments=segment.modifier_amendments.all %}
-  {% include "amendments/_content.html" with button_text='Suggest an appendment' amendment_type='additive' amendments=segment.additive_amendments.all %}
-  {% include "amendments/_content.html" with button_text='Suggest to exclude' amendment_type='supress' amendments=segment.supress_amendments.all %}
+  {% trans "Suggest a modification" as modifier_text %}
+  {% trans "Suggest an appendment" as additive_text %}
+  {% trans "Suggest to exclude" as supress_text %}
+
+  {% trans "Insert your modification suggestion" as modifier_placeholder %}
+  {% trans "Insert your appendment suggestion" as additive_placeholder %}
+  {% trans "Please justify the need to exclude this segment" as supress_placeholder %}
+
+  {% include "amendments/_content.html" with button_text=modifier_text form_placeholder=modifier_placeholder amendment_type='modifier' amendments=segment.modifier_amendments.all %}
+  {% include "amendments/_content.html" with button_text=additive_text form_placeholder=additive_placeholder amendment_type='additive' amendments=segment.additive_amendments.all %}
+  {% include "amendments/_content.html" with button_text=supress_text form_placeholder=supress_placeholder amendment_type='supress' amendments=segment.supress_amendments.all %}
 </div>

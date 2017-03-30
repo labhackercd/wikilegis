@@ -1,4 +1,6 @@
-<p class="content__text" data-remove-content>
-  <strong>{{segment.segment_type.presentation_name}} {{segment.number}}</strong>
-    {{segment.content|safe}}
-</p>
+{% block segment %}
+  <p class="content__text" data-remove-content>
+      {% block segment_type %}{% endblock segment_type %}
+      {{segment.content|safe}}
+  </p>
+{% endblock segment %}

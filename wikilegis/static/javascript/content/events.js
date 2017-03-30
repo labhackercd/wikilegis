@@ -1,7 +1,7 @@
 /* global prefixURL */
 import { paths } from './config';
 import { updatePath, updateHash } from './utils/history';
-import { dismissAlert } from './utils/alert';
+import { dismissAlert, showAlert } from './utils/alert';
 import collapsibleModule from './modules/collapsible';
 import drawerModule from './modules/drawer';
 import hoverModule from './modules/hover';
@@ -37,9 +37,7 @@ function clickEvent(event) {
     forms.toggle(false);
   }
 
-  if (dataset.formOpen) {
-    forms.toggle(dataset.formOpen);
-  }
+
 
   if ('formClose' in dataset) {
     forms.toggle(false);
@@ -63,6 +61,12 @@ function clickEvent(event) {
   }
   if ('dismissAlert' in dataset) {
     dismissAlert();
+  }
+
+  if ('notAuthenticated' in dataset) {
+    showAlert(strings.userNotLoggedInTitle, strings.userNotLoggedInText, 'error');
+  } else if (dataset.formOpen) {
+    forms.toggle(dataset.formOpen);
   }
 }
 

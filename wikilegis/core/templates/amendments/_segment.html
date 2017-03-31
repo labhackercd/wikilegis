@@ -1,6 +1,6 @@
 {% block segment %}
   <p class="content__text" data-remove-content>
       {% block segment_type %}{% endblock segment_type %}
-      {{segment.content|safe}}
+      <span data-diff-wrapper>{{segment.content|safe}}</span>
   </p>
 {% endblock segment %}

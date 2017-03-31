@@ -8,7 +8,7 @@
         <i class="link__icon icon icon-user"></i>
       </a>
     {% else %}
-      <a href="" class="header__link" aria-label="login">
+      <a class="header__link" href="{% url 'login' %}" aria-label="login">
         <i class="link__icon icon icon-sign-in"></i>
       </a>
     {% endif %}

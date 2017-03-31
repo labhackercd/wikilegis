@@ -38,7 +38,7 @@
         sameAsSegmentTitle: "{% trans 'Oops' %}",
         sameAsSegmentText: "{% trans 'Your suggestion has the same text of original segment' %}",
         userNotLoggedInTitle: "{% trans 'User not logged in' %}",
-        userNotLoggedInText: "{% trans 'You need to log in order to participate!' %}",
+        userNotLoggedInText: "<a href=\"{% url 'login' %}\">{% trans 'Click here' %}</a> {% trans 'to log in' %}",
       };
       var prefixURL = '{{prefix_url|default_if_none:""}}';
       var segmentsList = null;

@@ -31,7 +31,7 @@
     <div class="amendments__form-wrapper">
       <a class="amendments__form-close" data-form-close title="{% trans 'Close form' %}"><i class="form-close__icon icon icon-chevron-down"></i></a>
 
-      {% include "amendments/_segment.html" %}
+      {% include "amendments/_segment.html" with amendment_type=amendment_type %}
 
       {% if amendment_type == 'additive' %}
         <p class="content__text" data-additive-preview>

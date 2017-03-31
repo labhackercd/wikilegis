@@ -1,5 +1,5 @@
 {% block segment %}
-  <p class="content__text" data-remove-content>
+  <p class="content__text {% if amendment_type == 'supress' %}diff-removed{% endif %}" data-remove-content>
       {% block segment_type %}{% endblock segment_type %}
       <span data-diff-wrapper>{{segment.content|safe}}</span>
   </p>

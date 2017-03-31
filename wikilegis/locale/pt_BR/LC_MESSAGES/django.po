@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-31 11:16-0300\n"
+"POT-Creation-Date: 2017-03-31 11:45-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -388,8 +388,12 @@ msgid "User not logged in"
 msgstr "Usuário não logado"
 
 #: core/templates/base.html:41
-msgid "You need to log in order to participate!"
-msgstr "Você necessita logar para poder participar!"
+msgid "Click here"
+msgstr "Clique aqui"
+
+#: core/templates/base.html:41
+msgid "to log in"
+msgstr "para fazer login"
 
 #: core/templates/bill/_amendment_wrapper.html:11
 #: core/templates/segment/_actions_secondary.html:28
@@ -535,7 +539,7 @@ msgstr "Sobrenome"
 
 #: core/templates/widget/login.html:52
 msgid "Confirm Password is a necessary field"
-msgstr ""
+msgstr "Confirmar Senha é obrigatório"
 
 #: core/templates/widget/login.html:54
 msgid "Confirm your password"
@@ -668,6 +672,9 @@ msgstr "Google"
 #: wikilegis/settings/social.py:43
 msgid "Facebook"
 msgstr "Facebook"
+
+#~ msgid "You need to log in order to participate!"
+#~ msgstr "Você necessita logar para poder participar!"
 
 #~ msgid "Type your amendment"
 #~ msgstr "Insira sua proposta"

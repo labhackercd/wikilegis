@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-31 11:16-0300\n"
+"POT-Creation-Date: 2017-03-31 11:45-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -386,7 +386,11 @@ msgid "User not logged in"
 msgstr ""
 
 #: core/templates/base.html:41
-msgid "You need to log in order to participate!"
+msgid "Click here"
+msgstr ""
+
+#: core/templates/base.html:41
+msgid "to log in"
 msgstr ""
 
 #: core/templates/bill/_amendment_wrapper.html:11

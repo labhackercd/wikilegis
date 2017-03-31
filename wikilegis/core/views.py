@@ -46,6 +46,9 @@ def render_404(message):
 def render_bill_info(request, bill_id):
     try:
         bill = models.Bill.objects.get(pk=bill_id)
+        if bill.status == 'draft':
+            raise ObjectDoesNotExist
+
         html = render_to_string('bill/_info.html', {'request': request,
                                                     'bill': bill})
         return JsonResponse({'html': html})
@@ -58,6 +61,9 @@ def render_bill_info(request, bill_id):
 def render_bill_content(request, bill_id):
     try:
         bill = models.Bill.objects.get(pk=bill_id)
+        if bill.status == 'draft':
+            raise ObjectDoesNotExist
+
         html = render_to_string('bill/_content.html', {'request': request,
                                                        'bill': bill})
         return JsonResponse({'html': html})
@@ -70,6 +76,9 @@ def render_bill_content(request, bill_id):
 def render_bill_amendments(request, segment_id):
     try:
         segment = models.BillSegment.objects.get(pk=segment_id)
+        if segment.bill.status == 'draft':
+            raise ObjectDoesNotExist
+
         html = render_to_string('amendments/_index.html', {'request': request,
                                                            'segment': segment})
         return JsonResponse({'html': html})

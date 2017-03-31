@@ -15,11 +15,17 @@
     </ol>
   </div>
 
-  <a class="button--{{amendment_type}}-amendment amendments__suggest-button animate"
-    data-form-open="{{amendment_type}}"
-    {% if not request.user.is_authenticated %}data-not-authenticated{% endif %} >
-    {{button_text}}
-  </a>
+  {% if segment.bill.status == 'published' %}
+    <a class="button--{{amendment_type}}-amendment amendments__suggest-button animate"
+      data-form-open="{{amendment_type}}"
+      {% if not request.user.is_authenticated %}data-not-authenticated{% endif %} >
+      {{button_text}}
+    </a>
+  {% elif segment.bill.status == 'closed' %}
+    <div class="amendments__closed-message">
+      <p class="amendments__closed-text">{% trans "This project is closed for participations." %}</p>
+    </div>
+  {% endif %}
 
   {% if request.user.is_authenticated and segment.bill.status != 'closed' %}
     <div class="amendments__form-wrapper">
@@ -51,10 +57,5 @@
         <button class="form__btn">{% trans 'Send' %}</button>
       </form>
     </div>
-
-    {% elif segment.bill.status == 'closed' %}
-      <div class="amendments__form">
-        <p>{% trans "This project is closed for participations." %}</p>
-      </div>
     {% endif %}
 </div>

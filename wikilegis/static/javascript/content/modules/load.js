@@ -35,7 +35,7 @@ function loadModule() {
           content.wrapperEl.dataset[`${content.name}Open`] = 'false';
           removePath(content.name);
           showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error', false);
-        } else {
+        } else if (xhr.status !== 0 && xhr.statusText !== 'abort') {
           showAlert(xhr.responseJSON.title, xhr.responseJSON.message, 'error');
         }
       },

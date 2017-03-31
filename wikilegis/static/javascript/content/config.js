@@ -10,6 +10,7 @@ class Content {
     this.wrapperEl = wrapperEl;
     this.activeId = activeId;
     this.lastActiveId = lastActiveId;
+    this.animating = false;
   }
 }
 

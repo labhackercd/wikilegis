@@ -20,7 +20,10 @@ function addPath(name, id) {
 function removePath(name) {
   const path = window.location.pathname;
   const nameIndex = path.indexOf(`/${name}`);
-  const newPath = path.slice(0, nameIndex) === '' ? '/' : path.slice(0, nameIndex);
+  let newPath = path;
+  if (nameIndex !== -1) {
+    newPath = path.slice(0, nameIndex) === '' ? '/' : path.slice(0, nameIndex);
+  }
 
   paths.update(newPath);
   window.history.pushState(null, null, newPath);

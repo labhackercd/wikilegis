@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-31 11:45-0300\n"
+"POT-Creation-Date: 2017-04-03 15:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -364,8 +364,8 @@ msgid "New"
 msgstr ""
 
 #: core/templates/base.html:34 core/templates/base.html:36
-#: core/templates/base.html:38 core/views.py:155 core/views.py:175
-#: core/views.py:197 core/views.py:240
+#: core/templates/base.html:38 core/views.py:164 core/views.py:184
+#: core/views.py:206 core/views.py:249
 msgid "Oops"
 msgstr ""
 
@@ -408,7 +408,7 @@ msgstr ""
 msgid "EXCLUSION"
 msgstr ""
 
-#: core/templates/bill/_amendment_wrapper.html:22 core/templates/home.html:41
+#: core/templates/bill/_amendment_wrapper.html:22 core/templates/home.html:44
 #: core/templates/widget/login.html:10
 msgid "back"
 msgstr ""
@@ -465,25 +465,47 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-#: core/templates/home.html:14
+#: core/templates/errors/_no-mobile.html:6
+msgid ""
+"Hey! We're still working on a view for Wikilegis under small screen devices."
+msgstr ""
+
+#: core/templates/errors/_no-mobile.html:7
+msgid ""
+"While we work on delivering that soon, you may enjoy the full experience "
+"heading over to your desktop computer. Thank you"
+msgstr ""
+
+#: core/templates/errors/_no-mobile.html:11
+msgid ""
+"Hey! We're still working on a view for Wikilegis under small screen sizes."
+msgstr ""
+
+#: core/templates/errors/_no-mobile.html:12
+msgid ""
+"While we work on delivering that soon, you may enjoy the full experience by "
+"resizing your window. Thank you"
+msgstr ""
+
+#: core/templates/home.html:17
 msgid "Your legislative editing tool"
 msgstr ""
 
-#: core/templates/home.html:16
+#: core/templates/home.html:19
 msgid ""
 "Check the bills and contribute suggestions of new wordings to articles or "
 "paragraphs. The rapporteurs of the bills track the participation and can "
 "take up your idea!"
 msgstr ""
 
-#: core/templates/home.html:19
+#: core/templates/home.html:22
 msgid ""
 "With this interaction, society profits by participating more actively in the "
 "legislative process, and the Parliament profits by approving improved laws "
 "that are better attuned to citizens needs."
 msgstr ""
 
-#: core/templates/home.html:21
+#: core/templates/home.html:24
 msgid "Search"
 msgstr ""
 
@@ -545,29 +567,29 @@ msgstr ""
 msgid "404 Error"
 msgstr ""
 
-#: core/views.py:53 core/views.py:65
+#: core/views.py:56 core/views.py:71
 msgid ""
 "The following URL has returned no known bill: <br> <strong>{}/bill/{}</"
 "strong>"
 msgstr ""
 
-#: core/views.py:77
+#: core/views.py:86
 msgid "The following URL has returned no known segment."
 msgstr ""
 
-#: core/views.py:156
+#: core/views.py:165
 msgid "This bill is closed for participation :("
 msgstr ""
 
-#: core/views.py:176
+#: core/views.py:185
 msgid "You must be logged to comment :("
 msgstr ""
 
-#: core/views.py:198
+#: core/views.py:207
 msgid "You must be logged to vote :("
 msgstr ""
 
-#: core/views.py:241
+#: core/views.py:250
 msgid "You must be logged to suggest new amendment :("
 msgstr ""
 

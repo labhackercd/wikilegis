@@ -1,10 +1,10 @@
 .wikilegis {
   display: flex;
-  height: 100vh;
+  height: 100%;
   transition: transform .5s $swift-out;
 
   &[data-bill-open="true"] {
-    transform: translateX(-50vw);
+    transform: translateX(-50%);
 
     .wikilegis__bill-list {
       overflow: hidden;
@@ -17,7 +17,7 @@
     }
 
     .wikilegis__bill {
-      transform: translateX(50vw);
+      transform: translateX(50%);
     }
   }
 }
@@ -26,7 +26,7 @@
   align-items: center;
   background-color: $color-background;
   display: flex;
-  flex: 0 0 45vw;
+  flex: 0 0 45%;
   justify-content: center;
   position: relative;
 
@@ -93,11 +93,11 @@
 
 .wikilegis__bill-list {
   display: flex;
-  flex: 0 0 55vw;
+  flex: 0 0 55%;
   flex-direction: column;
   list-style: none;
   margin: 0;
-  max-width: 55vw;
+  max-width: 55%;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0;
@@ -252,10 +252,10 @@
 
 .wikilegis__bill {
   display: flex;
-  height: 100vh;
-  left: 100px;
+  height: 100%;
+  left: 150px;
   position: absolute;
   transform: translateX(100%);
   transition: transform .5s linear;
-  width: calc(100vw - 100px);
+  width: calc(100% - 100px);
 }

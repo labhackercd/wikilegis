@@ -35,7 +35,7 @@ class WidgetView(DetailView):
     template_name = 'widget.html'
 
     def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
+        context = super(WidgetView, self).get_context_data(**kwargs)
         context['prefix_url'] = settings.FORCE_SCRIPT_NAME
         return context
 

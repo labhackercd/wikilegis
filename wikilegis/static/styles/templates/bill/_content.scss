@@ -1,5 +1,6 @@
 .bill__content-wrapper {
   background-color: $color-gray-95;
+  flex: 1 1 auto;
   overflow-y: auto;
   will-change: transform;
 

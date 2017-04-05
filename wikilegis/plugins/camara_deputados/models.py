@@ -58,6 +58,7 @@ class BillInfo(models.Model):
     author = models.ForeignKey('BillAuthor', verbose_name=_('Author'),
                                null=True, blank=True)
     reporting_member = models.ForeignKey('ReportingMember',
+                                         null=True, blank=True,
                                          verbose_name=_('Reporting Member'))
     proposal_type = models.ForeignKey('ProposalType',
                                       verbose_name=_('Proposal Type'))

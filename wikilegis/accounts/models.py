@@ -24,3 +24,11 @@ class User(AbstractUser):
     class Meta:
         verbose_name = _('User')
         verbose_name_plural = _('Users')
+
+    def __str__(self):
+        if self.first_name and self.last_name:
+            return ' '.join([self.first_name, self.last_name]).strip()
+        elif self.first_name:
+            return self.first_name
+        else:
+            return self.email.split('@')[0]

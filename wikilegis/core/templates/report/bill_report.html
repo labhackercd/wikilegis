@@ -1,0 +1,168 @@
+{% load staticfiles compress %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Relatório - {{ object.title }}</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+    {% compress css %}
+    <link type="text/x-scss" rel="stylesheet" href="{% static "styles/bill_report.scss" %}" media="screen, print" />
+  {% endcompress %}
+</head>
+<body>
+  <div class="bill-report-container">
+    <div class="header">
+      <img class="logo" src="{% static "images/logo-wikilegis.svg" %}" alt="Wikilegis" />
+      <div class="title">
+        <h2 class="bill-title">{{ object.title }}</h2>
+        <p class="emission-date">Relatório emitido em {% now 'F, Y' %}</p>
+      </div>
+    </div>
+    <div class="bill-summary">
+      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number"> {{object.votes_count}} </span><span class="bill-stats-text">Votos do Projeto</span></span>
+      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number"> {{votes}} </span><span class="bill-stats-text">Votos em Dispositivos</span></span>
+      <span class="bill-stats"><i class="material-icons">forum</i><span class="bill-stats-number">{{comments}} </span><span class="bill-stats-text">Comentários</span></span>
+      <span class="bill-stats"><i class="material-icons">people</i><span class="bill-stats-number">{{ attendees }}</span><span class="bill-stats-text">Participantes</span></span>
+      <span class="bill-stats"><i class="material-icons">note_add</i><span class="bill-stats-number">{{object.amendments_count}}</span><span class="bill-stats-text">Propostas</span></span>
+    </div>
+    <div class="segments">
+      {% for segment in bill.segments.all %}
+        <!--if segment|previous_article
+        <h2>segment_numbering segment|previous_article  ...</h2>
+        endif -->
+        <div class="original {% if segment.segment_type != 'artigo' %}in-article{% endif %}" data-raw-content="{{ segment.content }}">
+        <h3>{{ segment.content }}</h3>
+        <div class="segment-summary">
+          <span><i class="material-icons">thumb_up</i> {{segment.upvote_count}}</span>
+          <span><i class="material-icons">thumb_down</i> {{segment.downvote_count}}</span>
+          <span><i class="material-icons">forum</i> {{segment.comments_count}}</span>
+          <span><i class="material-icons">note_add</i> {{segment.additive_amendments_count}}</span>
+          <span><i class="material-icons">edit</i> {{segment.modifier_amendments_count}}</span>
+          <span><i class="material-icons">delete</i> {{segment.supress_amendments_count}}</span>
+        </div>
+        {% for comment in segment.comments.all %}
+          {% if forloop.first %}
+            <h4>Comentários</h4>
+          {% endif %}
+          <div class="segment-comment">
+            <p class="comment"> {{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
+          </div>
+        {% endfor %}
+        {% for modifier in segment.modifier_amendments.all %}
+          <h4>Proposta de alteração {{ forloop.counter }}</h4>
+          <div class="proposal">
+            <div class="content" data-raw-content="{{ modifier.content|escape }}">
+              <p class="pp">{{ modifier.content|safe }}</p><span>{{ modifier.author }}</span>
+            </div>
+            <div class="segment-summary">
+              <span><i class="material-icons">thumb_up</i> {{modifier.upvote_count}}</span>
+              <span><i class="material-icons">thumb_down</i> {{modifier.downvote_count}}</span>
+              <span><i class="material-icons">forum</i> {{modifier.comments_count}}</span>
+            </div>
+            {% for comment in modifier.comments.all %}
+              <div class="proposal-comment">
+                {% if forloop.first %}
+                <h4>Comentários</h4>
+                {% endif %}
+                <p class="comment">{{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        {% for additive in segment.additive_amendments.all %}
+          <h4>Proposta de adição {{ forloop.counter }}</h4>
+          <div class="proposal">
+            <div class="content">
+              <p class="pp">{{ additive.content|safe }}</p><span>{{ additive.author }}</span>
+            </div>
+            <div class="segment-summary">
+              <span><i class="material-icons">thumb_up</i> {{additive.upvote_count}}</span>
+              <span><i class="material-icons">thumb_down</i> {{additive.downvote_count}}</span>
+              <span><i class="material-icons">forum</i> {{additive.comments_count}}</span>
+            </div>
+            {% for comment in additive.comments.all %}
+              <div class="proposal-comment">
+                {% if forloop.first %}
+                <h4>Comentários</h4>
+                {% endif %}
+                <p class="comment">{{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        {% for supress in segment.supress_amendments.all %}
+          <h4>Proposta de remoção {{ forloop.counter }}</h4>
+          <div class="proposal">
+            <div class="content">
+              <p class="pp">{{ supress.content|safe }}</p><span>{{ supress.author }}</span>
+            </div>
+            <div class="segment-summary">
+              <span><i class="material-icons">thumb_up</i> {{supress.upvote_count}}</span>
+              <span><i class="material-icons">thumb_down</i> {{supress.downvote_count}}</span>
+              <span><i class="material-icons">forum</i> {{supress.comments_count}}</span>
+            </div>
+            {% for comment in supress.comments.all %}
+              <div class="proposal-comment">
+                {% if forloop.first %}
+                <h4>Comentários</h4>
+                {% endif %}
+                <p class="comment">{{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    {% compress js %}
+        <script type="module" src="{% static 'javascript/app.js' %}"></script>
+    {% endcompress %}
+    <script type="text/javascript">
+        function wlDiff(a, b) {
+          return JsDiff.diffWordsWithSpace(a, b);
+        }
+
+        function changeToMarkup(change) {
+            var value = change.value;
+            if (change.added) {
+                value = '<span class="added">' + value + '</span>';
+            } else if (change.removed) {
+                value = '<span class="removed">' + value + '</span>';
+            }
+            return value;
+        }
+
+        function linebreaks(text) {
+            var linePattern = /(?:\r\n|\r|\n)/g;
+            var paragraphPattern = /(?:\r\n|\r|\n){2}/g;
+            return _.map(text.split(paragraphPattern), function (p) {
+                return '<p>' + p.replace(linePattern, '<br />') + '</p>';
+            }).join('\n\n');
+        }
+
+        function changesToMarkup(changes) {
+            changes = _.map(changes, changeToMarkup);
+            return linebreaks(changes.join(''));
+        }
+
+    </script>
+    <script type="text/javascript">
+    window.print();
+    </script>
+    <script type="text/javascript">
+        $(function() {
+              $('.original').each(function(){
+                  var div_original = this;
+                  var original = $(div_original).attr('data-raw-content');
+                  $(div_original).children('.proposal').children('.content').each(function(i, cur) {
+                      var $cur = $(cur);
+                      var current = $cur.attr('data-raw-content');
+                      $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
+                  });
+                  $('.pp').next('p').remove();
+              });
+        });
+      </script>
+    </body>
+  </div>
+</html>

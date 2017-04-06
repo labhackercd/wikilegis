@@ -28,4 +28,4 @@ class ModelsTestCase(TestCase):
         })
         newsletter = newsletter_fixture.create_one()
         newsletter.save()
-        self.assertEquals(newsletter.__str__(), 'email@test.com - test')
+        self.assertEquals(newsletter.__str__(), 'first last - test')

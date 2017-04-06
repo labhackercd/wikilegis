@@ -15,6 +15,10 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ] + default.STATICFILES_FINDERS
 
+STATICFILES_DIRS = [
+    NODE_MODULES
+]
+
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
 BOWER_PATH = os.path.join(NODE_MODULES, '.bin/bower')
 BOWER_INSTALLED_APPS = [

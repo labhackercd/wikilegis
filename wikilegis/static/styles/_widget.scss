@@ -1,6 +1,10 @@
 .wikilegis-widget {
   display: flex;
 
+  .wikilegis__alert {
+    margin-top: 5em; // To compensate the widget-bar height
+  }
+
   .wikilegis__bill {
     left: 0;
     transform: translateX(0);
@@ -39,6 +43,10 @@
 
   .logo__text {
     height: 20px;
+  }
+
+  .amendments__suggest-button {
+    bottom: 7em; // To compensate the widget-bar height
   }
 }
 

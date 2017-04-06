@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-03 15:53-0300\n"
+"POT-Creation-Date: 2017-04-06 15:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -364,8 +364,8 @@ msgid "New"
 msgstr ""
 
 #: core/templates/base.html:34 core/templates/base.html:36
-#: core/templates/base.html:38 core/views.py:164 core/views.py:184
-#: core/views.py:206 core/views.py:249
+#: core/templates/base.html:38 core/views.py:171 core/views.py:191
+#: core/views.py:213 core/views.py:256
 msgid "Oops"
 msgstr ""
 
@@ -437,7 +437,11 @@ msgstr ""
 msgid "Amendments suggestions"
 msgstr ""
 
-#: core/templates/bill/_info.html:62
+#: core/templates/bill/_info.html:60
+msgid "Access Report"
+msgstr ""
+
+#: core/templates/bill/_info.html:66
 msgid "Do you support this bill?"
 msgstr ""
 
@@ -535,7 +539,7 @@ msgid "Email is a necessary field"
 msgstr ""
 
 #: core/templates/widget/login.html:30 core/templates/widget/login.html:46
-#: plugins/camara_deputados/models.py:92
+#: plugins/camara_deputados/models.py:93
 msgid "Email"
 msgstr ""
 
@@ -563,33 +567,33 @@ msgstr ""
 msgid "Sign Up"
 msgstr ""
 
-#: core/views.py:40
+#: core/views.py:47
 msgid "404 Error"
 msgstr ""
 
-#: core/views.py:56 core/views.py:71
+#: core/views.py:63 core/views.py:78
 msgid ""
 "The following URL has returned no known bill: <br> <strong>{}/bill/{}</"
 "strong>"
 msgstr ""
 
-#: core/views.py:86
+#: core/views.py:93
 msgid "The following URL has returned no known segment."
 msgstr ""
 
-#: core/views.py:165
+#: core/views.py:172
 msgid "This bill is closed for participation :("
 msgstr ""
 
-#: core/views.py:185
+#: core/views.py:192
 msgid "You must be logged to comment :("
 msgstr ""
 
-#: core/views.py:207
+#: core/views.py:214
 msgid "You must be logged to vote :("
 msgstr ""
 
-#: core/views.py:250
+#: core/views.py:257
 msgid "You must be logged to suggest new amendment :("
 msgstr ""
 
@@ -609,11 +613,11 @@ msgstr ""
 msgid "Author Name"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:9 plugins/camara_deputados/models.py:91
+#: plugins/camara_deputados/models.py:9 plugins/camara_deputados/models.py:92
 msgid "Region"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:11 plugins/camara_deputados/models.py:89
+#: plugins/camara_deputados/models.py:11 plugins/camara_deputados/models.py:90
 msgid "Party"
 msgstr ""
 
@@ -625,31 +629,31 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:61
+#: plugins/camara_deputados/models.py:62
 msgid "Reporting Member"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:63
+#: plugins/camara_deputados/models.py:64
 msgid "Proposal Type"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:64
+#: plugins/camara_deputados/models.py:65
 msgid "Proposal Number"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:65
+#: plugins/camara_deputados/models.py:66
 msgid "Proposal Year"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:67
+#: plugins/camara_deputados/models.py:68
 msgid "Situation"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:85
+#: plugins/camara_deputados/models.py:86
 msgid "Reporting Member ID"
 msgstr ""
 
-#: plugins/camara_deputados/models.py:87
+#: plugins/camara_deputados/models.py:88
 msgid "Parliamentary Name"
 msgstr ""
 
@@ -673,7 +677,7 @@ msgstr ""
 msgid "Subsection"
 msgstr ""
 
-#: plugins/camara_deputados/templatetags/convert_numbers.py:63
+#: plugins/camara_deputados/templatetags/camara_deputados_utils.py:63
 msgid "Sole paragraph"
 msgstr ""
 

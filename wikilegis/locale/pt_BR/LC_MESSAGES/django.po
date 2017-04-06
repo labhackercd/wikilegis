@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-03 15:53-0300\n"
+"POT-Creation-Date: 2017-04-06 15:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -366,8 +366,8 @@ msgid "New"
 msgstr "Novo"
 
 #: core/templates/base.html:34 core/templates/base.html:36
-#: core/templates/base.html:38 core/views.py:164 core/views.py:184
-#: core/views.py:206 core/views.py:249
+#: core/templates/base.html:38 core/views.py:171 core/views.py:191
+#: core/views.py:213 core/views.py:256
 msgid "Oops"
 msgstr "Oops"
 
@@ -439,7 +439,11 @@ msgstr "Encerra em"
 msgid "Amendments suggestions"
 msgstr "Sugestões de emendas"
 
-#: core/templates/bill/_info.html:62
+#: core/templates/bill/_info.html:60
+msgid "Access Report"
+msgstr "Visualizar Relatório"
+
+#: core/templates/bill/_info.html:66
 msgid "Do you support this bill?"
 msgstr "Você apoia esse projeto de lei?"
 
@@ -471,16 +475,16 @@ msgstr "Assinar"
 msgid ""
 "Hey! We're still working on a view for Wikilegis under small screen devices."
 msgstr ""
-"Olá! Ainda estamos trabalhando na versão para dispositivos móveis do"
-" Wikilegis"
+"Olá! Ainda estamos trabalhando na versão para dispositivos móveis do "
+"Wikilegis"
 
 #: core/templates/errors/_no-mobile.html:7
 msgid ""
 "While we work on delivering that soon, you may enjoy the full experience "
 "heading over to your desktop computer. Thank you"
 msgstr ""
-"Enquanto trabalhamos para entregar esta versão o quanto antes,"
-" você pode aproveitar a experiência ideal em um computador. Obrigado"
+"Enquanto trabalhamos para entregar esta versão o quanto antes, você pode "
+"aproveitar a experiência ideal em um computador. Obrigado"
 
 #: core/templates/errors/_no-mobile.html:11
 msgid ""
@@ -490,12 +494,12 @@ msgstr ""
 
 #: core/templates/errors/_no-mobile.html:12
 msgid ""
-"While we work on delivering that soon, you may enjoy the full experience by"
-" resizing your window. Thank you"
+"While we work on delivering that soon, you may enjoy the full experience by "
+"resizing your window. Thank you"
 msgstr ""
-"Enquanto trabalhamos para entregar esta versão o quanto antes, você pode"
-" aproveitar a experiência ideal redimensionando esta janela ou alternando"
-" para um computador de tela maior. Obrigado"
+"Enquanto trabalhamos para entregar esta versão o quanto antes, você pode "
+"aproveitar a experiência ideal redimensionando esta janela ou alternando "
+"para um computador de tela maior. Obrigado"
 
 #: core/templates/home.html:17
 msgid "Your legislative editing tool"
@@ -551,7 +555,7 @@ msgid "Email is a necessary field"
 msgstr "Campo email é obrigatório"
 
 #: core/templates/widget/login.html:30 core/templates/widget/login.html:46
-#: plugins/camara_deputados/models.py:92
+#: plugins/camara_deputados/models.py:93
 msgid "Email"
 msgstr "Email"
 
@@ -579,11 +583,11 @@ msgstr "Confirme sua senha"
 msgid "Sign Up"
 msgstr "Cadastre-se"
 
-#: core/views.py:40
+#: core/views.py:47
 msgid "404 Error"
 msgstr "Erro 404"
 
-#: core/views.py:56 core/views.py:71
+#: core/views.py:63 core/views.py:78
 msgid ""
 "The following URL has returned no known bill: <br> <strong>{}/bill/{}</"
 "strong>"
@@ -591,23 +595,23 @@ msgstr ""
 "A seguinte URL não retornou um projeto de lei conhecido: <br> <strong>{}/"
 "bill/{}</strong>"
 
-#: core/views.py:86
+#: core/views.py:93
 msgid "The following URL has returned no known segment."
 msgstr "A seguinte URL não retornou um trecho conhecido."
 
-#: core/views.py:165
+#: core/views.py:172
 msgid "This bill is closed for participation :("
 msgstr "Este projeto de lei está fechado para participação :("
 
-#: core/views.py:185
+#: core/views.py:192
 msgid "You must be logged to comment :("
 msgstr "Você deve estar logado para comentar :("
 
-#: core/views.py:207
+#: core/views.py:214
 msgid "You must be logged to vote :("
 msgstr "Você deve estar logado para votar :("
 
-#: core/views.py:250
+#: core/views.py:257
 msgid "You must be logged to suggest new amendment :("
 msgstr "Você deve estar logado para sugerir uma nova proposta :("
 
@@ -627,11 +631,11 @@ msgstr "Assinaturas"
 msgid "Author Name"
 msgstr "Nome do autor"
 
-#: plugins/camara_deputados/models.py:9 plugins/camara_deputados/models.py:91
+#: plugins/camara_deputados/models.py:9 plugins/camara_deputados/models.py:92
 msgid "Region"
 msgstr "Região"
 
-#: plugins/camara_deputados/models.py:11 plugins/camara_deputados/models.py:89
+#: plugins/camara_deputados/models.py:11 plugins/camara_deputados/models.py:90
 msgid "Party"
 msgstr "Partido"
 
@@ -643,31 +647,31 @@ msgstr "Id de registro"
 msgid "Author"
 msgstr "Autor"
 
-#: plugins/camara_deputados/models.py:61
+#: plugins/camara_deputados/models.py:62
 msgid "Reporting Member"
 msgstr "Relator"
 
-#: plugins/camara_deputados/models.py:63
+#: plugins/camara_deputados/models.py:64
 msgid "Proposal Type"
 msgstr "Tipo da Proposição"
 
-#: plugins/camara_deputados/models.py:64
+#: plugins/camara_deputados/models.py:65
 msgid "Proposal Number"
 msgstr "Número da Proposição"
 
-#: plugins/camara_deputados/models.py:65
+#: plugins/camara_deputados/models.py:66
 msgid "Proposal Year"
 msgstr "Ano da Proposição"
 
-#: plugins/camara_deputados/models.py:67
+#: plugins/camara_deputados/models.py:68
 msgid "Situation"
 msgstr "Situação"
 
-#: plugins/camara_deputados/models.py:85
+#: plugins/camara_deputados/models.py:86
 msgid "Reporting Member ID"
 msgstr "Id do Relator"
 
-#: plugins/camara_deputados/models.py:87
+#: plugins/camara_deputados/models.py:88
 msgid "Parliamentary Name"
 msgstr "Nome Parlamentar"
 
@@ -691,7 +695,7 @@ msgstr "Seção"
 msgid "Subsection"
 msgstr "Subseção"
 
-#: plugins/camara_deputados/templatetags/convert_numbers.py:63
+#: plugins/camara_deputados/templatetags/camara_deputados_utils.py:63
 msgid "Sole paragraph"
 msgstr "Parágrafo único"
 

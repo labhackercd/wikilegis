@@ -32,6 +32,18 @@ COMPRESS_NODE_SASS_BIN = os.path.join(NODE_MODULES, '.bin/node-sass')
 COMPRESS_POSTCSS_BIN = os.path.join(NODE_MODULES, '.bin/postcss')
 COMPRESS_BROWSERIFY_BIN = os.path.join(NODE_MODULES, '.bin/browserify')
 COMPRESS_ROOT = os.path.join(BASE_DIR, 'static')
+COMPRESS_SCSS_COMPILER_CMD = '{node_sass_bin}' \
+                             ' --source-map true' \
+                             ' --source-map-embed true' \
+                             ' --source-map-contents true' \
+                             ' --output-style expanded' \
+                             ' {paths} "{infile}" "{outfile}"' \
+                             ' &&' \
+                             ' {postcss_bin}' \
+                             ' --use "{node_modules}/autoprefixer"' \
+                             ' --autoprefixer.browsers' \
+                             ' "{autoprefixer_browsers}"' \
+                             ' -r "{outfile}"'
 
 MEDIA_URL = config('MEDIA_URL', default='/media/')
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))

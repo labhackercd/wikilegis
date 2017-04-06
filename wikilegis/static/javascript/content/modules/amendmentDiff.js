@@ -28,18 +28,19 @@ function amendmentDiffModule() {
     diffWrapperEl.appendChild(diffEl);
   }
 
-  function loadDiff(amendmentsWrapperEl) {
-    const amendments = amendmentsWrapperEl.querySelectorAll('[data-amendment-content]');
-    amendments.forEach((amendmentEl) => {
-      addDiff(amendmentEl, amendmentsWrapperEl.dataset.segmentContent)
-    });
-  }
-
   function addDiff(amendmentEl, segmentText) {
     const diffEl = buildMarkup(segmentText, amendmentEl.innerText);
     amendmentEl.innerHTML = ''; // eslint-disable-line no-param-reassign
     amendmentEl.appendChild(diffEl);
   }
+
+  function loadDiff(amendmentsWrapperEl) {
+    const amendments = amendmentsWrapperEl.querySelectorAll('[data-amendment-content]');
+    amendments.forEach((amendmentEl) => {
+      addDiff(amendmentEl, amendmentsWrapperEl.dataset.segmentContent);
+    });
+  }
+
 
   return { updateDiff, loadDiff, addDiff };
 }

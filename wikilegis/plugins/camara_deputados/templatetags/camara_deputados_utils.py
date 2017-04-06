@@ -81,3 +81,16 @@ def segment_numbering(segment):
             return "%s" % int_to_roman(segment.number)
     else:
         return ''
+
+
+@register.filter
+def previous_article(segment):
+    try:
+        if segment.segment_type.name != "artigo":
+            article = BillSegment.objects.filter(bill_id=segment.bill_id,
+                                                 id__lt=segment.id,
+                                                 segment_type__name='artigo'
+                                                 ).order_by('-id')[0]
+            return article
+    except:
+        return {}

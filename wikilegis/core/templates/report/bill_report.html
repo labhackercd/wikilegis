@@ -1,4 +1,4 @@
-{% load staticfiles compress %}
+{% load staticfiles compress wikilegis_votes %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,12 +26,11 @@
       <span class="bill-stats"><i class="material-icons">note_add</i><span class="bill-stats-number">{{object.amendments_count}}</span><span class="bill-stats-text">Propostas</span></span>
     </div>
     <div class="segments">
-      {% for segment in bill.segments.all %}
-        <!--if segment|previous_article
-        <h2>segment_numbering segment|previous_article  ...</h2>
-        endif -->
-        <div class="original {% if segment.segment_type != 'artigo' %}in-article{% endif %}" data-raw-content="{{ segment.content }}">
-        <h3>{{ segment.content }}</h3>
+      {% for segment in segments_with_participation %}
+        {% block segment_align %}
+        <div class="original" data-raw-content="{{ segment.content }}">  
+        {% endblock segment_align %}
+        <h3>{% block segment_type %}{% endblock segment_type %}{{ segment.content }}</h3>
         <div class="segment-summary">
           <span><i class="material-icons">thumb_up</i> {{segment.upvote_count}}</span>
           <span><i class="material-icons">thumb_down</i> {{segment.downvote_count}}</span>
@@ -48,7 +47,8 @@
             <p class="comment"> {{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
           </div>
         {% endfor %}
-        {% for modifier in segment.modifier_amendments.all %}
+        {% order_by_score segment.modifier_amendments.all as modifiers_ordered %}
+        {% for modifier in modifiers_ordered %}
           <h4>Proposta de alteração {{ forloop.counter }}</h4>
           <div class="proposal">
             <div class="content">
@@ -69,7 +69,8 @@
             {% endfor %}
           </div>
         {% endfor %}
-        {% for additive in segment.additive_amendments.all %}
+        {% order_by_score segment.additive_amendments.all as additives_ordered %}
+        {% for additive in additives_ordered %}
           <h4>Proposta de adição {{ forloop.counter }}</h4>
           <div class="proposal">
             <div class="content">
@@ -90,7 +91,8 @@
             {% endfor %}
           </div>
         {% endfor %}
-        {% for supress in segment.supress_amendments.all %}
+        {% order_by_score segment.supress_amendments.all as supress_ordered %}
+        {% for supress in supress_ordered %}
           <h4>Proposta de remoção {{ forloop.counter }}</h4>
           <div class="proposal">
             <div class="content">

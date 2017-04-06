@@ -1,0 +1,13 @@
+{% extends "report/bill_report.html" %}
+{% load camara_deputados_utils i18n %}
+
+{% block segment_align %}
+  {% if segment|previous_article %}
+    <h2>{% segment_numbering segment|previous_article %} ...</h2>
+  {% endif %}
+  <div class="original {% if segment|previous_article %}in-article{% endif %}" data-raw-content="{{ segment.content }}">
+{% endblock segment_align %}
+
+{% block segment_type %}
+  {% segment_numbering segment %}
+{% endblock segment_type %}

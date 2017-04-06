@@ -55,6 +55,10 @@
         <span class="extra-infos__highlight">{{bill.amendments_count}}</span>
         {% trans "Amendments suggestions" %}
       </h4>
+      <a href="{% url 'bill_report' bill.id %}" class="extra-infos__text">
+        <i class="stats__icon icon icon-file-text-o"></i>
+        {% trans "Access Report" %}
+      </a>
     </div>
   </div>
 

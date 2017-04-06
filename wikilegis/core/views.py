@@ -11,6 +11,7 @@ from django.views.generic import DetailView
 from django.views.decorators.clickjacking import xframe_options_exempt
 from distutils.util import strtobool
 from django.contrib.sites.models import Site
+from django.db.models import Q
 
 from core import models, model_mixins
 
@@ -337,6 +338,8 @@ class BillDetailView(DetailView):
             list(modifiers_comments.values_list('author__id', flat=True)) +
             list(additives_comments.values_list('author__id', flat=True)) +
             list(supressed_comments.values_list('author__id', flat=True))))
+        context['segments_with_participation'] = self.object.segments.filter(
+            ~Q(participation_count=0))
         return context
 
     def get_queryset(self):

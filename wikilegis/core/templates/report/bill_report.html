@@ -12,7 +12,7 @@
 <body>
   <div class="bill-report-container">
     <div class="header">
-      <img class="logo" src="{% static "images/logo-wikilegis.svg" %}" alt="Wikilegis" />
+      <img class="logo" src="{% static "images/logo.svg" %}" alt="Wikilegis" />
       <div class="title">
         <h2 class="bill-title">{{ object.title }}</h2>
         <p class="emission-date">Relatório emitido em {% now 'F, Y' %}</p>
@@ -51,8 +51,8 @@
         {% for modifier in segment.modifier_amendments.all %}
           <h4>Proposta de alteração {{ forloop.counter }}</h4>
           <div class="proposal">
-            <div class="content" data-raw-content="{{ modifier.content|escape }}">
-              <p class="pp">{{ modifier.content|safe }}</p><span>{{ modifier.author }}</span>
+            <div class="content">
+              <p class="pp"><span data-modifier-amendment>{{ modifier.content|safe }}</span></p><span>{{ modifier.author }}</span>
             </div>
             <div class="segment-summary">
               <span><i class="material-icons">thumb_up</i> {{modifier.upvote_count}}</span>
@@ -115,54 +115,8 @@
       {% endfor %}
     </div>
     {% compress js %}
-        <script type="module" src="{% static 'javascript/app.js' %}"></script>
+        <script type="module" src="{% static 'javascript/report.js' %}"></script>
     {% endcompress %}
-    <script type="text/javascript">
-        function wlDiff(a, b) {
-          return JsDiff.diffWordsWithSpace(a, b);
-        }
-
-        function changeToMarkup(change) {
-            var value = change.value;
-            if (change.added) {
-                value = '<span class="added">' + value + '</span>';
-            } else if (change.removed) {
-                value = '<span class="removed">' + value + '</span>';
-            }
-            return value;
-        }
-
-        function linebreaks(text) {
-            var linePattern = /(?:\r\n|\r|\n)/g;
-            var paragraphPattern = /(?:\r\n|\r|\n){2}/g;
-            return _.map(text.split(paragraphPattern), function (p) {
-                return '<p>' + p.replace(linePattern, '<br />') + '</p>';
-            }).join('\n\n');
-        }
-
-        function changesToMarkup(changes) {
-            changes = _.map(changes, changeToMarkup);
-            return linebreaks(changes.join(''));
-        }
-
-    </script>
-    <script type="text/javascript">
-    window.print();
-    </script>
-    <script type="text/javascript">
-        $(function() {
-              $('.original').each(function(){
-                  var div_original = this;
-                  var original = $(div_original).attr('data-raw-content');
-                  $(div_original).children('.proposal').children('.content').each(function(i, cur) {
-                      var $cur = $(cur);
-                      var current = $cur.attr('data-raw-content');
-                      $cur.find('.pp').html(changesToMarkup(wlDiff(original, current)));
-                  });
-                  $('.pp').next('p').remove();
-              });
-        });
-      </script>
     </body>
   </div>
 </html>

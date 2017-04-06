@@ -31,13 +31,17 @@ function amendmentDiffModule() {
   function loadDiff(amendmentsWrapperEl) {
     const amendments = amendmentsWrapperEl.querySelectorAll('[data-amendment-content]');
     amendments.forEach((amendmentEl) => {
-      const diffEl = buildMarkup(amendmentsWrapperEl.dataset.segmentContent, amendmentEl.innerText);
-      amendmentEl.innerHTML = ''; // eslint-disable-line no-param-reassign
-      amendmentEl.appendChild(diffEl);
+      addDiff(amendmentEl, amendmentsWrapperEl.dataset.segmentContent)
     });
   }
 
-  return { updateDiff, loadDiff };
+  function addDiff(amendmentEl, segmentText) {
+    const diffEl = buildMarkup(segmentText, amendmentEl.innerText);
+    amendmentEl.innerHTML = ''; // eslint-disable-line no-param-reassign
+    amendmentEl.appendChild(diffEl);
+  }
+
+  return { updateDiff, loadDiff, addDiff };
 }
 
 export default amendmentDiffModule;

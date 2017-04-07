@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^bill/(?P<bill_id>\d+)/?$',
         ensure_csrf_cookie(views.HomeView.as_view()),
         name='bill_index'),
-    url(r'^bill/(?P<pk>\d+)/report/$', views.BillDetailView.as_view(),
+    url(r'^bill/(?P<pk>\d+)/report/$', views.BillReportView.as_view(),
         name='bill_report'),
     url(r'^bill/(?P<bill_id>\d+)/amendments/(?P<segment_id>\d+)/?$',
         ensure_csrf_cookie(views.HomeView.as_view()),

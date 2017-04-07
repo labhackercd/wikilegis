@@ -259,18 +259,18 @@ def render_new_amendment(request, segment_id, amendment_type):
         )
 
 
-class BillDetailView(DetailView):
+class BillReportView(DetailView):
     model = models.Bill
     template_name = 'report/bill_report.html'
 
     def get_object(self, queryset=None):
-        obj = super(BillDetailView, self).get_object(queryset)
+        obj = super(BillReportView, self).get_object(queryset)
         if obj.status == 'draft':
             raise Http404
         return obj
 
     def get_context_data(self, **kwargs):
-        context = super(BillDetailView, self).get_context_data(**kwargs)
+        context = super(BillReportView, self).get_context_data(**kwargs)
         domain = Site.objects.get_current().domain
         if settings.FORCE_SCRIPT_NAME:
             context['domain'] = domain + settings.FORCE_SCRIPT_NAME

@@ -9,6 +9,7 @@
     flex: 1 1 auto;
     overflow-y: auto;
     overflow-y: overlay; // Favor 'overlay' in the cascade for supported browsers
+    overflow-x: hidden;
     padding: 2em 4em 8em;
   }
 

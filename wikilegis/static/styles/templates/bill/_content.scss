@@ -24,18 +24,33 @@
 .bill__content {
   padding: 4em;
 
+  @include breakpoint($medium-down) {
+    padding: 1em;
+  }
+
   .content__header {
+    display: flex;
+    flex-direction: column;
     padding: 0 3em;
+
+    @include breakpoint($small-only) {
+      padding: 0;
+      align-items: center;
+    }
   }
 
   .header__section-top {
     display: flex;
-    margin-left: -.3em;
+    flex-wrap: wrap;
+
+    @include breakpoint($small-only) {
+      padding: 0;
+      justify-content: center;
+    }
   }
 
   .header__logo {
-    height: 100px;
-    width: 100px;
+    height: 6em;
   }
 
   .header__title {

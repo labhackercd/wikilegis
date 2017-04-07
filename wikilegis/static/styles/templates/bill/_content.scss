@@ -2,6 +2,8 @@
   background-color: $color-gray-95;
   flex: 1 1 auto;
   overflow-y: auto;
+  overflow-y: overlay; // Favor 'overlay' in the cascade for supported browsers
+  overflow-x: hidden;
   will-change: transform;
 
   .content__close {

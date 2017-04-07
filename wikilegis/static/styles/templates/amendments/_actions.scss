@@ -1,5 +1,6 @@
 .amendment__actions {
   display: flex;
+  flex-wrap: wrap;
 
   .actions__vote {
     align-items: center;

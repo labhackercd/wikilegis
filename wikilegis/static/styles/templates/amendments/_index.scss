@@ -91,7 +91,7 @@
     flex: 1 1 auto;
     font-weight: 700;
     justify-content: center;
-    padding: .5em 2em;
+    padding: .5em 0;
     text-decoration: none;
     transition: all .3s $swift-out;
 
@@ -108,7 +108,14 @@
   .item__icon {
     display: flex;
     font-size: 1.25em;
-    margin-right: .5em;
+  }
+
+  .item__text {
+    margin-left: .5em;
+
+    @include breakpoint($small-only) {
+      display: none;
+    }
   }
 }
 

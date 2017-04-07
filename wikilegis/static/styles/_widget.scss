@@ -9,12 +9,17 @@
     left: 0;
     transform: translateX(0);
     width: 100%;
-    padding-top: 3em; // To compensate the widget-bar height
   }
 
-  .bill__content-wrapper {width: 100%;}
+  .bill__content-wrapper {
+    margin-top: 3em; // To compensate the widget-bar height
+    width: 100%;
+  }
 
-  .bill__amendments-wrapper {width: 100%;}
+  .bill__amendments-wrapper {
+    margin-top: 3em; // To compensate the widget-bar height
+    width: 100%;
+  }
 
   .widget-bar {
     align-items: center;
@@ -54,7 +59,7 @@
   }
 
   .amendments__suggest-button {
-    bottom: 7em; // To compensate the widget-bar height
+    bottom: 4em; // To compensate the widget-bar height
   }
 }
 

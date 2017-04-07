@@ -22,10 +22,11 @@
 
   [class^="actions__link"] {
     align-items: center;
-    color: $color-gray-55;
+    color: $color-gray-75;
     cursor: pointer;
     display: flex;
     font-weight: 700;
+    font-size: 0.9em;
     outline: none;
     padding: .5em 1em;
     text-decoration: none;

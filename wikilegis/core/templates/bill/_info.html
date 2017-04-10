@@ -50,15 +50,19 @@
 
   <div class="info__extra-infos">
     <div class="extra-infos__stats">
-      <h4 class="extra-infos__text">
-        <i class="stats__icon icon icon-lightbulb-o"></i>
-        <span class="extra-infos__highlight">{{bill.amendments_count}}</span>
-        {% trans "Amendments suggestions" %}
-      </h4>
-      <a href="{% url 'bill_report' bill.id %}" class="extra-infos__text">
-        <i class="stats__icon icon icon-file-text-o"></i>
-        {% trans "Access Report" %}
-      </a>
+      <div class="extra-infos__item">
+        <span class="extra-infos__text">
+          <i class="stats__icon icon icon-lightbulb-o"></i>
+          <span class="extra-infos__highlight">{{bill.amendments_count}}</span>
+          {% trans "Amendments suggestions" %}
+        </span>
+      </div>
+      <div class="extra-infos__item">
+        <a class="extra-infos__link" href="{% url 'bill_report' bill.id %}">
+          <i class="stats__icon icon icon-file-text-o"></i>
+          {% trans "Access Report" %}
+        </a>
+      </div>
     </div>
   </div>
 

@@ -7,7 +7,6 @@ import string
 
 
 def create_segment(type_id, order, bill_pk, number, content):
-    import ipdb; ipdb.set_trace()
     segments = BillSegment.objects.filter(bill_id=bill_pk)
     segment = BillSegment()
     segment.order = order
@@ -42,7 +41,6 @@ def create_segment(type_id, order, bill_pk, number, content):
 
 
 def import_txt(bill_txt, bill_pk):
-    import ipdb; ipdb.set_trace()
     response = bill_txt.read()
     lines = response.splitlines()
     order = 1

@@ -12,7 +12,6 @@ class BillInfoAdmin(admin.ModelAdmin):
     def save_form(self, request, form, change):
         bill_info = form.save(commit=False)
         try:
-            import ipdb; ipdb.set_trace()
             import_txt(form.files['file_txt'], bill_info.bill.id)
         except:
             pass

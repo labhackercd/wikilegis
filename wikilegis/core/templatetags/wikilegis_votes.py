@@ -25,3 +25,16 @@ def voted_by_user(context, instance, vote):
             return ''
     else:
         return ''
+
+
+@register.assignment_tag(takes_context=True)
+def order_by_score(context, queryset):
+    list_score_id = []
+    for proposal in queryset:
+        score = proposal.upvote_count - proposal.downvote_count
+        list_score_id.append((proposal.id, score))
+    list_score_id = sorted(list_score_id, key=lambda x: x[1], reverse=True)
+    ids = [int(i[0]) for i in list_score_id]
+    proposals = list(queryset)
+    proposals.sort(key=lambda obj: ids.index(obj.pk))
+    return proposals

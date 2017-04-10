@@ -1,0 +1,124 @@
+{% load staticfiles compress wikilegis_votes %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Relatório - {{ object.title }}</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+    {% compress css %}
+    <link type="text/x-scss" rel="stylesheet" href="{% static "styles/bill_report.scss" %}" media="screen, print" />
+  {% endcompress %}
+</head>
+<body>
+  <div class="bill-report-container">
+    <div class="header">
+      <img class="logo" src="{% static "images/logo.svg" %}" alt="Wikilegis" />
+      <div class="title">
+        <h2 class="bill-title">{{ object.title }}</h2>
+        <p class="emission-date">Relatório emitido em {% now 'F, Y' %}</p>
+      </div>
+    </div>
+    <div class="bill-summary">
+      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number"> {{object.votes_count}} </span><span class="bill-stats-text">Votos do Projeto</span></span>
+      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number"> {{votes}} </span><span class="bill-stats-text">Votos em Dispositivos</span></span>
+      <span class="bill-stats"><i class="material-icons">forum</i><span class="bill-stats-number">{{comments}} </span><span class="bill-stats-text">Comentários</span></span>
+      <span class="bill-stats"><i class="material-icons">people</i><span class="bill-stats-number">{{ attendees }}</span><span class="bill-stats-text">Participantes</span></span>
+      <span class="bill-stats"><i class="material-icons">note_add</i><span class="bill-stats-number">{{object.amendments_count}}</span><span class="bill-stats-text">Propostas</span></span>
+    </div>
+    <div class="segments">
+      {% for segment in segments_with_participation %}
+        {% block segment_align %}
+        <div class="original" data-raw-content="{{ segment.content }}">  
+        {% endblock segment_align %}
+        <h3>{% block segment_type %}{% endblock segment_type %}{{ segment.content }}</h3>
+        <div class="segment-summary">
+          <span><i class="material-icons">thumb_up</i> {{segment.upvote_count}}</span>
+          <span><i class="material-icons">thumb_down</i> {{segment.downvote_count}}</span>
+          <span><i class="material-icons">forum</i> {{segment.comments_count}}</span>
+          <span><i class="material-icons">note_add</i> {{segment.additive_amendments_count}}</span>
+          <span><i class="material-icons">edit</i> {{segment.modifier_amendments_count}}</span>
+          <span><i class="material-icons">delete</i> {{segment.supress_amendments_count}}</span>
+        </div>
+        {% for comment in segment.comments.all %}
+          {% if forloop.first %}
+            <h4>Comentários</h4>
+          {% endif %}
+          <div class="segment-comment">
+            <p class="comment"> {{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
+          </div>
+        {% endfor %}
+        {% order_by_score segment.modifier_amendments.all as modifiers_ordered %}
+        {% for modifier in modifiers_ordered %}
+          <h4>Proposta de alteração {{ forloop.counter }}</h4>
+          <div class="proposal">
+            <div class="content">
+              <p class="pp"><span data-modifier-amendment>{{ modifier.content|safe }}</span></p><span>{{ modifier.author }}</span>
+            </div>
+            <div class="segment-summary">
+              <span><i class="material-icons">thumb_up</i> {{modifier.upvote_count}}</span>
+              <span><i class="material-icons">thumb_down</i> {{modifier.downvote_count}}</span>
+              <span><i class="material-icons">forum</i> {{modifier.comments_count}}</span>
+            </div>
+            {% for comment in modifier.comments.all %}
+              <div class="proposal-comment">
+                {% if forloop.first %}
+                <h4>Comentários</h4>
+                {% endif %}
+                <p class="comment">{{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        {% order_by_score segment.additive_amendments.all as additives_ordered %}
+        {% for additive in additives_ordered %}
+          <h4>Proposta de adição {{ forloop.counter }}</h4>
+          <div class="proposal">
+            <div class="content">
+              <p class="pp">{{ additive.content|safe }}</p><span>{{ additive.author }}</span>
+            </div>
+            <div class="segment-summary">
+              <span><i class="material-icons">thumb_up</i> {{additive.upvote_count}}</span>
+              <span><i class="material-icons">thumb_down</i> {{additive.downvote_count}}</span>
+              <span><i class="material-icons">forum</i> {{additive.comments_count}}</span>
+            </div>
+            {% for comment in additive.comments.all %}
+              <div class="proposal-comment">
+                {% if forloop.first %}
+                <h4>Comentários</h4>
+                {% endif %}
+                <p class="comment">{{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        {% order_by_score segment.supress_amendments.all as supress_ordered %}
+        {% for supress in supress_ordered %}
+          <h4>Proposta de remoção {{ forloop.counter }}</h4>
+          <div class="proposal">
+            <div class="content">
+              <p class="pp">{{ supress.content|safe }}</p><span>{{ supress.author }}</span>
+            </div>
+            <div class="segment-summary">
+              <span><i class="material-icons">thumb_up</i> {{supress.upvote_count}}</span>
+              <span><i class="material-icons">thumb_down</i> {{supress.downvote_count}}</span>
+              <span><i class="material-icons">forum</i> {{supress.comments_count}}</span>
+            </div>
+            {% for comment in supress.comments.all %}
+              <div class="proposal-comment">
+                {% if forloop.first %}
+                <h4>Comentários</h4>
+                {% endif %}
+                <p class="comment">{{ comment.text }} - <span class="author">{{ comment.author }}</span></p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    {% compress js %}
+        <script type="module" src="{% static 'javascript/report.js' %}"></script>
+    {% endcompress %}
+    </body>
+  </div>
+</html>

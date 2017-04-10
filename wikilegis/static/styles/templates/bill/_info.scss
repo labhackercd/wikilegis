@@ -134,10 +134,22 @@
   }
 
   .info__extra-infos {
-    color: $color-gray-55;
+    margin-top: 1em;
 
     .extra-infos__text {
+      color: $color-gray-55;
       font-weight: 600;
+    }
+
+    .extra-infos__link {
+      color: $color-gray-55;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s $swift-out;
+
+      &:hover {
+        color: $color-gray-75;
+      }
     }
 
     .stats__icon {

@@ -54,12 +54,17 @@ def add_plugin(plugin_name):
     plugin_settings = get_settings(plugin_name)
     plugin_deps = getattr(plugin_settings, 'DEPENDENCIES', None)
 
+    exit_code = 0
     if plugin_deps:
         for dependency in plugin_deps:
             if dependency not in get_installed_packages():
-                pip.main(['install', dependency])
+                exit_code = pip.main(['install', dependency])
 
-    write_config_file(plugins_dict)
+    if exit_code == 0:
+        write_config_file(plugins_dict)
+        return True
+    else:
+        return False
 
 
 def get_settings(plugin_name):

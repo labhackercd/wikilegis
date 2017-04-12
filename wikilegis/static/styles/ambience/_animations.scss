@@ -11,7 +11,7 @@ $swift-out: cubic-bezier(.55, 0, .1, 1);
 }
 
 @keyframes slide-in-form-button {
-  0% { transform: translate(-50%, calc(110% + 2em)); }
-  25% { transform: translate(-50%, calc(110% + 2em)); }
-  100% { transform: translate(-50%, 0); }
+  0% { transform: translateY(calc(110% + 2em)); }
+  25% { transform: translateY(calc(110% + 2em)); }
+  100% { transform: translateY(-50%, 0); }
 }

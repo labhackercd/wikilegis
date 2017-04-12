@@ -1,0 +1,21 @@
+// These are called using the breakpoint-sass plugin (http://breakpoint-sass.com/)
+// Basically: @include breakpoint(variable){}
+
+// Defining our breakpoints
+$tablet-breakpoint:  640px;
+$desktop-breakpoint: 1280px;
+$hd-breakpoint: 1600px;
+
+// Defining our media queries variables
+$small-only: max-width $tablet-breakpoint;
+$small-up: $tablet-breakpoint;
+
+$medium-only: $tablet-breakpoint $desktop-breakpoint;
+$medium-up: $tablet-breakpoint;
+$medium-down: max-width $desktop-breakpoint;
+
+$large-only: $desktop-breakpoint $hd-breakpoint;
+$large-up: $desktop-breakpoint;
+$large-down: max-width $hd-breakpoint;
+
+$xlarge-up: $hd-breakpoint;

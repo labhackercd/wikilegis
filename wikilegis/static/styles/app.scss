@@ -1,8 +1,12 @@
 // Normalize.css
 @import 'bower_components/normalize-css/normalize';
 
+// Breakpoint Sass
+@import 'breakpoint-sass/stylesheets/breakpoint';
+
 // Ambience
 @import 'ambience/animations';
+@import 'ambience/breakpoints';
 @import 'ambience/categories';
 @import 'ambience/colors';
 @import 'ambience/fonts';

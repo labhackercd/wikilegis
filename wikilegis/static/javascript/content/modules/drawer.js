@@ -19,6 +19,8 @@ function drawerModule() {
       content.lastActiveId = content.activeId;
       content.wrapperEl.dataset[`${contentName}Open`] = 'false';
       content.activeId = 0;
+
+      if (contentName === 'bill') close('amendments');
       if (content.wrapperEl.dataset.amendmentsOpen) {
         requests.amendments.loadedIds = [];
       }

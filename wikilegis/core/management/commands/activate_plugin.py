@@ -16,10 +16,15 @@ class Command(BaseCommand):
             availables_plugins.append(name)
             if options['name'] == name:
                 actived = True
-                plugins.add_plugin(name)
-                click.secho('Plugin "{}" activated successfully!'.format(
-                    options['name']
-                ), fg='green')
+                success = plugins.add_plugin(name)
+                if success:
+                    click.secho('Plugin "{}" activated successfully!'.format(
+                        options['name']
+                    ), fg='green')
+                else:
+                    click.secho(
+                        'Sorry! An error ocurred when installing plugin '
+                        'dependencies.'.format(options['name']), fg='red')
 
         if not actived:
             click.secho('Plugin "{}" not found! The availables plugins '

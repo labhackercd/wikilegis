@@ -59,7 +59,11 @@
   }
 
   .amendments__suggest-button {
-    bottom: 4em; // To compensate the widget-bar height
+    bottom: 3.5em; // To compensate the widget-bar height
+  }
+
+  .amendments__form-wrapper {
+    bottom: 3em; // To compensate the widget-bar height
   }
 }
 

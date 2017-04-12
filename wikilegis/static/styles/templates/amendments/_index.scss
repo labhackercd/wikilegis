@@ -36,6 +36,13 @@
   position: absolute;
   top: .5em;
   transition: color .2s $swift-out;
+  z-index: 1;
+
+  @include breakpoint($small-only) {
+    font-size: 1.5em;
+    left: 0.75em;
+    top: 0.25em;
+  }
 
   &:hover {
     color: $color-accent;
@@ -51,6 +58,11 @@
   z-index: 1;
   transition: margin-top .3s $swift-out;
 
+  @include breakpoint($small-only) {
+    margin: 0;
+    padding-left: 4em;
+  }
+
   .content__text {
     margin: 0;
   }
@@ -58,6 +70,10 @@
 
 .amendment__text-wrapper {
   padding: 1em 1.5em;
+
+  @include breakpoint($small-only) {
+    display: none;
+  }
 }
 
 .amendments__nav {

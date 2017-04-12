@@ -11,6 +11,10 @@
     overflow-y: overlay; // Favor 'overlay' in the cascade for supported browsers
     overflow-x: hidden;
     padding: 2em 4em 8em;
+
+    @include breakpoint($small-only) {
+      padding: 2em 1em 8em;
+    }
   }
 
   .content__amendments-list {
@@ -53,6 +57,11 @@
   transition: transform .3s $swift-out;
   width: calc(100% - 14em);
   z-index: 10;
+
+  @include breakpoint($small-only) {
+    left: 0;
+    width: calc(100% - 3.5em);
+  }
 
   .amendments__content--modifier & {
     border-color: $color-actions-edit;

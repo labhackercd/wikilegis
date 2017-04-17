@@ -31,8 +31,10 @@
     display: flex;
     font-size: 0.9em;
     font-weight: 700;
+    justify-content: center;
     outline: none;
     padding: .5em 1em;
+    position: relative;
     text-decoration: none;
     transition: background-color .3s $swift-out, color .3s $swift-out;
 
@@ -43,16 +45,45 @@
     * { pointer-events: none; }
   }
 
-  .actions__link--comments:hover { background-color: $color-actions-comments; }
+  .actions__link--comments {
+
+    &:hover {
+      background-color: $color-actions-comments;
+    }
+
+    &[data-collapsible-open="true"] {
+      background-color: $color-actions-comments;
+      color: $color-white;
+      outline: none;
+    }
+
+    &::after {
+      border-bottom: 1em solid transparent;
+      border-left: 1em solid transparent;
+      border-right: 1em solid transparent;
+      bottom: -0.8em;
+      content: '';
+      height: 0;
+      pointer-events: none;
+      position: absolute;
+      transform: translateY(200%);
+      width: 0;
+      transition: all .3s 0s $swift-out;
+      z-index: 0;
+    }
+
+    &[data-collapsible-open="true"]::after {
+      border-bottom: 1em solid $color-actions-comments;
+      transform: translateY(100%);
+      transition: all .3s .3s $swift-out;
+    }
+  }
+
   .actions__link--edit:hover { background-color: $color-actions-edit; }
   .actions__link--add:hover { background-color: $color-actions-add; }
   .actions__link--remove:hover { background-color: $color-actions-remove; }
 
-  .actions__link--comments[data-collapsible-open="true"] {
-    background-color: $color-actions-comments;
-    color: $color-white;
-    outline: none;
-  }
+
 
   .link__icon {
     align-items: center;

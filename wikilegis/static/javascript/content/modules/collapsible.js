@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import loadModule from './load';
 import { requests } from '../config';
 
@@ -43,17 +44,20 @@ function collapsibleModule() {
       load.get(id, request, param);
       request.xhr.done(() => {
         const contentEl = wrapperEl.querySelector('[data-collapsible-content]');
-        wrapperEl.style.height = `${contentEl.offsetHeight}px`;
+        wrapperEl.style.height = `${$(contentEl).outerHeight(true)}px`;
+        wrapperEl.dataset.collapsibleOpen = true;
       });
     } else {
       const contentEl = wrapperEl.querySelector('[data-collapsible-content]');
-      wrapperEl.style.height = `${contentEl.offsetHeight}px`;
+      wrapperEl.style.height = `${$(contentEl).outerHeight(true)}px`;
+      wrapperEl.dataset.collapsibleOpen = true;
     }
   }
 
   function close() {
     triggerEl.dataset.collapsibleOpen = 'false';
     wrapperEl.style.height = '0';
+    wrapperEl.dataset.collapsibleOpen = false;
   }
 
   function toggle(targetEl) {

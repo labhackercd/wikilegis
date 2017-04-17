@@ -1,20 +1,26 @@
-[class^="vote__icon"] {
+[class^="actions__vote"] {
   color: $color-gray-55;
+  cursor: pointer;
+  outline: none;
   transition: color 0.3s $swift-out;
 }
 
-.actions__vote {
-  cursor: pointer;
-  outline: none;
+.actions__vote--thumbs-up {
 
-  &:hover, &:focus {
-    .vote__icon--thumbs-up {
-      color: $color-accent;
-    }
-
-    .vote__icon--thumbs-down {
-      color: $color-alert-error;
-    }
+  &:hover,
+  &:focus,
+  &.voted {
+    color: $color-accent;
   }
+
 }
 
+.actions__vote--thumbs-down {
+
+  &:hover,
+  &:focus,
+  &.voted {
+    color: $color-alert-error;
+  }
+
+}

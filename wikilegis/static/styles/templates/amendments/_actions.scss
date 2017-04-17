@@ -2,13 +2,12 @@
   display: flex;
   flex-wrap: wrap;
 
-  .actions__vote {
+  [class^="actions__vote"] {
     align-items: center;
     display: flex;
     margin: .5em;
 
-    + .actions__vote {
-      border-left: 1px solid $color-gray-75;
+    + [class^="actions__vote"] {
       margin-left: .5em;
       padding-left: .5em;
     }

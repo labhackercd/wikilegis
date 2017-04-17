@@ -1,11 +1,10 @@
 .segment__actions--primary {
-  .actions__vote {
+  [class^="actions__vote"] {
     align-items: center;
     display: flex;
     flex-direction: column;
 
-    + .actions__vote {
-      border-top: 1px solid $color-gray-75;
+    + [class^="actions__vote"] {
       margin-top: .5em;
       padding-top: .5em;
     }

@@ -3,6 +3,13 @@
   flex: 1 0 350px;
   max-width: 350px;
   overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform .5s .0s $swift-out;
+
+  .wikilegis[data-bill-open="true"] & {
+    transform: translateY(0);
+    transition: transform .5s .3s $swift-out;
+  }
 }
 
 .bill__info {

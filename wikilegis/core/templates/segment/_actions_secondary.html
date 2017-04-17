@@ -2,19 +2,6 @@
 
 <div class="segment__actions--secondary">
   <a
-    class="actions__link--comments"
-    data-collapsible="segment-comments"
-    data-collapsible-open="false"
-    data-param="{{segment.id}}"
-    data-segment-comments="{{segment.id}}"
-    role="button"
-    tabindex="0"
-  >
-    <i class="link__icon icon icon-comments"></i>
-    <span class="link__text">{% trans 'COMMENTS' %} ({{segment.comments_count}})</span>
-  </a>
-
-  <a
     class="actions__link--edit"
     href="#tab_edit"
     data-drawer-open="amendments"
@@ -55,5 +42,18 @@
   >
     <i class="link__icon icon icon-trash"></i>
     <span class="link__text">{% trans 'EXCLUSION' %} ({{segment.supress_amendments_count}})</span>
+  </a>
+
+  <a
+    class="actions__link--comments"
+    data-collapsible="segment-comments"
+    data-collapsible-open="false"
+    data-param="{{segment.id}}"
+    data-segment-comments="{{segment.id}}"
+    role="button"
+    tabindex="0"
+  >
+    <i class="link__icon icon icon-comments"></i>
+    <span class="link__text">{% trans 'COMMENTS' %} ({{segment.comments_count}})</span>
   </a>
 </div>

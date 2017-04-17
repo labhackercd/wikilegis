@@ -1,13 +1,18 @@
 .segment__actions--primary {
+  align-items: center;
+  display: flex;
+  flex: 1 auto;
+  justify-content: space-between;
+  min-width: 3em;
+
   [class^="actions__vote"] {
     align-items: center;
     display: flex;
     flex-direction: column;
+  }
 
-    + [class^="actions__vote"] {
-      margin-top: .5em;
-      padding-top: .5em;
-    }
+  .actions__vote--thumbs-up {
+    margin-right: 0.25em;
   }
 
   .vote__count {
@@ -24,8 +29,8 @@
     color: $color-gray-75;
     cursor: pointer;
     display: flex;
-    font-weight: 700;
     font-size: 0.9em;
+    font-weight: 700;
     outline: none;
     padding: .5em 1em;
     text-decoration: none;

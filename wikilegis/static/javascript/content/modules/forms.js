@@ -27,7 +27,7 @@ function formsModule() {
       load.sendRequest('post', requests.newComment, data);
 
       requests.newComment.xhr.done(() => {
-        commentWrapperEl.style.height = `${$container.outerHeight()}px`;
+        commentWrapperEl.style.height = `${$container.outerHeight(true)}px`;
         formEl.reset();
       });
     } else {

@@ -3,6 +3,13 @@
   flex: 1 0 350px;
   max-width: 350px;
   overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform .5s .0s $swift-out;
+
+  .wikilegis[data-bill-open="true"] & {
+    transform: translateY(0);
+    transition: transform .5s .3s $swift-out;
+  }
 }
 
 .bill__info {
@@ -104,25 +111,23 @@
     justify-content: center;
     margin-top: 1em;
 
-    .actions__vote-title {
+    .actions__title {
       margin: 0 0 1em;
     }
 
-    .actions__votes-wrapper {
+    .votes-wrapper {
       align-items: center;
       display: flex;
       flex-wrap: wrap;
     }
 
-    .actions__vote {
+    [class^="actions__vote"] {
       align-items: center;
-      color: $color-gray-55;
       display: flex;
       flex-direction: column;
       font-size: 1.5em;
 
-      + .actions__vote {
-        border-left: 1px solid $color-gray-75;
+      + [class^="actions__vote"] {
         margin-left: .5em;
         padding-left: .5em;
       }

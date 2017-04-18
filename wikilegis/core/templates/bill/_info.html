@@ -67,8 +67,8 @@
   </div>
 
   <div class="info__actions--votes">
-    <h4 class="actions__vote-title">{% trans "Do you support this bill?" %}</h4>
-    <div class="actions__votes-wrapper" data-votes-wrapper data-object-type="bill" data-object-id="{{bill.id}}">
+    <h4 class="actions__title">{% trans "Do you support this bill?" %}</h4>
+    <div class="votes-wrapper" data-votes-wrapper data-object-type="bill" data-object-id="{{bill.id}}">
       {% include "segment/_votes.html" with segment=bill %}
     </div>
   </div>

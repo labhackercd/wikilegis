@@ -1,14 +1,14 @@
-{% load wikilegis_votes %}
+{% load wikilegis_votes i18n %}
 
 {% voted_by_user segment True as upvote %}
 {% voted_by_user segment False as downvote %}
 
-<div class="actions__vote {{upvote}}" role="button" tabindex="0" data-vote-action="true">
-  <i class="vote__icon--thumbs-up icon icon-thumbs-up"></i>
+<div class="actions__vote--thumbs-up {{upvote}}" role="button" title="{% trans 'I support' %}" tabindex="0" data-vote-action="true">
+  <i class="vote__icon icon icon-thumbs-up"></i>
   <span class="vote__count">{{segment.upvote_count}}</span>
 </div>
 
-<div class="actions__vote {{downvote}}" role="button" tabindex="0" data-vote-action="false">
-  <i class="vote__icon--thumbs-down icon icon-thumbs-down"></i>
+<div class="actions__vote--thumbs-down {{downvote}}" role="button" title="{% trans 'I do not support' %}" tabindex="0" data-vote-action="false">
+  <i class="vote__icon icon icon-thumbs-down"></i>
   <span class="vote__count">{{segment.downvote_count}}</span>
 </div>

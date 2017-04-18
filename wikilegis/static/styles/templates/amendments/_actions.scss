@@ -25,12 +25,34 @@
     font-weight: 700;
     outline: none;
     padding: .5em 1em;
+    position: relative;
     transition: background-color .3s $swift-out, color .3s $swift-out;
 
     &:hover,
     &[data-collapsible-open="true"] {
       background-color: $color-actions-comments;
       color: $color-white;
+    }
+
+    &::after {
+      border-bottom: 1em solid transparent;
+      border-left: 1em solid transparent;
+      border-right: 1em solid transparent;
+      bottom: -0.8em;
+      content: '';
+      height: 0;
+      pointer-events: none;
+      position: absolute;
+      transform: translateY(200%);
+      width: 0;
+      transition: all .3s 0s $swift-out;
+      z-index: 0;
+    }
+
+    &[data-collapsible-open="true"]::after {
+      border-bottom: 1em solid $color-actions-comments;
+      transform: translateY(100%);
+      transition: all .3s .3s $swift-out;
     }
 
     * { pointer-events: none; }

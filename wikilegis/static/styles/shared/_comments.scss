@@ -20,7 +20,8 @@
   z-index: 1;
   transition: border-color .3s 0s $swift-out;
 
-  .segment__comments-wrapper[data-collapsible-open="true"] & {
+  .segment__comments-wrapper[data-collapsible-open="true"] &,
+  .amendment__comments-wrapper[data-collapsible-open="true"] & {
     border-color: $color-actions-comments;
     transition: border-color .3s .3s $swift-out;
   }

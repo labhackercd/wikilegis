@@ -49,30 +49,38 @@ def import_txt(bill_txt, bill_pk):
         type_id = None
         if slugify(line).startswith('livro') and not is_quote:
             type_id = SegmentType.objects.get(name="livro").id
-            number = roman.fromRoman(re.sub(b"^Livro ", '', line))
+            number = roman.fromRoman(
+                re.sub(b"^Livro ", b'', line).decode('utf-8')
+            )
             content = lines[order].decode('utf-8')
         elif slugify(line).startswith('titulo') and not is_quote:
             type_id = SegmentType.objects.get(name="titulo").id
-            number = roman.fromRoman(re.sub(b"^T\xc3\xadtulo ", '', line))
+            number = roman.fromRoman(
+                re.sub(b"^T\xc3\xadtulo ", b'', line).decode('utf-8')
+            )
             content = lines[order].decode('utf-8')
         elif slugify(line).startswith('capitulo') and not is_quote:
             type_id = SegmentType.objects.get(name="capitulo").id
-            number = roman.fromRoman(re.sub(b"^CAP\xc3\x8dTULO ", '', line))
+            number = roman.fromRoman(
+                re.sub(b"^CAP\xc3\x8dTULO ", b'', line).decode('utf-8')
+            )
             content = lines[order].decode('utf-8')
         elif slugify(line).startswith('secao') and not is_quote:
             type_id = SegmentType.objects.get(name="secao").id
             number = roman.fromRoman(
-                re.sub(b"^Se\xc3\xa7\xc3\xa3o ", '', line))
+                re.sub(b"^Se\xc3\xa7\xc3\xa3o ", b'', line).decode('utf-8')
+            )
             content = lines[order].decode('utf-8')
         elif slugify(line).startswith('subsecao') and not is_quote:
             type_id = SegmentType.objects.get(name="subsecao").id
             number = roman.fromRoman(
-                re.sub(b"^Subse\xc3\xa7\xc3\xa3o ", '', line))
+                re.sub(b"^Subse\xc3\xa7\xc3\xa3o ", b'', line).decode('utf-8')
+            )
             content = lines[order].decode('utf-8')
         elif (re.match(b"^Art. \d+ \W+", line) or
               re.match(b"^Art. \d+\.", line) and not is_quote):
             try:
-                label = re.match(b"^Art. \d+ \W+", line).group(0)
+                label = re.match(b"^Art. \d+ \W{2}\s", line).group(0)
             except:
                 label = re.match(b"^Art. \d+\.", line).group(0)
             type_id = SegmentType.objects.get(name="artigo").id
@@ -91,13 +99,15 @@ def import_txt(bill_txt, bill_pk):
         elif re.match(b"^[A-Z\d]+ \W+ ", line) and not is_quote:
             label = re.match(b"^[A-Z\d]+ \W+ ", line).group(0)
             type_id = SegmentType.objects.get(name="inciso").id
-            number = roman.fromRoman(re.search(b"^[A-Z\d]+", line).group(0))
+            number = roman.fromRoman(
+                re.search(b"^[A-Z\d]+", line).group(0).decode('utf-8')
+            )
             content = line.decode('utf-8').replace(label.decode('utf-8'), '')
         elif re.match(b"^[a-z]\W ", line) and not is_quote:
             label = re.match(b"^[a-z]\W ", line).group(0)
             type_id = SegmentType.objects.get(name="alinea").id
-            number = string.lowercase.index(
-                re.search(b"^[a-z]", line).group(0)) + 1
+            number = string.ascii_lowercase.index(
+                re.search(b"^[a-z]", line).group(0).decode('utf-8')) + 1
             content = line.decode('utf-8').replace(label.decode('utf-8'), '')
         elif re.match(b"^\d+\. ", line) and not is_quote:
             label = re.match(b"^\d+\. ", line).group(0)

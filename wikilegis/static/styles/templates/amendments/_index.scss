@@ -55,7 +55,7 @@
   background-color: white;
   box-shadow: 0 3px 5px rgba(0, 0, 0, .15), 0 10px 15px rgba(0, 0, 0, .05);
   margin: 0 4em;
-  z-index: 1;
+  z-index: 2;
   transition: margin-top .3s $swift-out;
 
   @include breakpoint($small-only) {

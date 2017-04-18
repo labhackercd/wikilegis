@@ -1,6 +1,7 @@
 .amendment__actions {
   display: flex;
   flex-wrap: wrap;
+  font-size: .9em;
 
   [class^="actions__vote"] {
     align-items: center;
@@ -25,6 +26,7 @@
     font-weight: 700;
     outline: none;
     padding: .5em 1em;
+    justify-content: center;
     position: relative;
     transition: background-color .3s $swift-out, color .3s $swift-out;
 

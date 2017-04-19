@@ -13,6 +13,10 @@
     transform: translateX(-50%);
     transition: transform .5s .0s $swift-out;
 
+    @include breakpoint($medium-down) {
+      transform: initial;
+    }
+
     .wikilegis__bill-list {
       overflow: hidden;
     }

@@ -122,8 +122,7 @@ def import_txt(bill_txt, bill_pk):
             type_id = SegmentType.objects.get(name="citacao").id
             content = line.decode('utf-8')
             number = None
-            if (line.decode('utf-8').endswith("(NR)") or
-               line.decode('utf-8').endswith('"')):
+            if line.decode('utf-8').endswith('"'):
                 is_quote = False
             else:
                 is_quote = True

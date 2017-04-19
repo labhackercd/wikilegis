@@ -30,6 +30,10 @@
     .wikilegis__bill {
       transform: translateX(50%);
       transition: transform .75s .0s $swift-out;
+
+      @include breakpoint($medium-down) {
+        transform: translateX(0%);
+      }
     }
   }
 }

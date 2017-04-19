@@ -127,7 +127,7 @@ def import_txt(bill_txt, bill_pk):
             else:
                 is_quote = True
         else:
-            if not (slugify(lines[order - 2]).startswith('livro') and not
+            if (not slugify(lines[order - 2]).startswith('livro') and not
                     slugify(lines[order - 2]).startswith('titulo') and not
                     slugify(lines[order - 2]).startswith('capitulo') and not
                     slugify(lines[order - 2]).startswith('secao') and not

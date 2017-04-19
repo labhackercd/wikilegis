@@ -26,7 +26,7 @@
 .bill__content {
   padding: 4em;
 
-  @include breakpoint($medium-down) {
+  @include breakpoint($small-only) {
     padding: 1em;
   }
 

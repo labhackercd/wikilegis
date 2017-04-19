@@ -3,6 +3,12 @@
   height: 100%;
   transition: transform .5s .2s $swift-out;
 
+  @include breakpoint($medium-down) {
+    flex-wrap: wrap;
+    overflow: auto;
+    overflow: overlay;
+  }
+
   &[data-bill-open="true"] {
     transform: translateX(-50%);
     transition: transform .5s .0s $swift-out;
@@ -31,6 +37,11 @@
   flex: 0 0 45%;
   justify-content: center;
   position: relative;
+
+
+  @include breakpoint($medium-down) {
+    flex: 1 auto;
+  }
 
   .banner__particle-background {
     bottom: -10%;
@@ -105,6 +116,11 @@
   overflow-y: overlay;
   padding: 0;
   position: relative;
+
+  @include breakpoint($medium-down) {
+    flex: 1 auto;
+    overflow: hidden;
+  }
 
   &::after {
     background-color: $color-black;

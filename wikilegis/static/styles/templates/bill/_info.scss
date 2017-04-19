@@ -6,9 +6,22 @@
   transform: translateY(100%);
   transition: transform .5s .0s $swift-out;
 
+  @include breakpoint($medium-down) {
+    height: 100%;
+    max-width: 90%;
+    position: absolute;
+    right: 100%;
+    width: 90%;
+    transition: transform 0s 0s $swift-out;
+  }
+
   .wikilegis[data-bill-open="true"] & {
     transform: translateY(0);
     transition: transform .5s .3s $swift-out;
+
+    @include breakpoint($medium-down) {
+      transition: transform 0s .75s $swift-out;
+    }
   }
 }
 

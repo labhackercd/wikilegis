@@ -286,4 +286,12 @@
   transform: translateX(100%);
   transition: transform .75s .2s $swift-out;
   width: calc(100% - 100px);
+
+  @include breakpoint($medium-down) {
+    left: 0;
+    overflow: visible;
+    position: fixed;
+    transform: translateX(190%);
+    width: 100%;
+  }
 }

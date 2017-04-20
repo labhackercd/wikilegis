@@ -1,15 +1,22 @@
 .wikilegis__alert {
   animation: slide-in 0.3s $swift-out;
+  box-sizing: border-box;
   color: $color-white;
   margin: 2em 5em 2em 2em;
-  max-width: 35em;
+  max-width: 100%;
   min-height: 7em;
   padding: 0 1em;
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
-  width: 100%;
+  width: 35em;
   z-index: 10;
+
+  @include breakpoint($medium-down) {
+    max-width: initial;
+    width: calc(100% - 2em);
+    margin: 1em;
+  }
 
   .alert__header {
     font-size: 1.5em;
@@ -17,7 +24,8 @@
 
   .alert__dismiss {
     color: $color-white;
-    margin: 0.5em;
+    cursor: pointer;
+    padding: 0.5em;
     position: absolute;
     right: 0;
     text-decoration: none;

@@ -11,6 +11,10 @@
   width: calc(100% - 350px);
   will-change: transform;
 
+  @include breakpoint($medium-down) {
+    width: 100%;
+  }
+
   &[data-amendments-open="true"] {
     transform: translateX(0);
   }
@@ -36,7 +40,7 @@
   position: absolute;
   top: .5em;
   transition: color .2s $swift-out;
-  z-index: 1;
+  z-index: 2;
 
   @include breakpoint($small-only) {
     font-size: 1.5em;

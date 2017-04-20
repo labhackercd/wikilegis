@@ -24,7 +24,8 @@
 
   .alert__dismiss {
     color: $color-white;
-    margin: 0.5em;
+    cursor: pointer;
+    padding: 0.5em;
     position: absolute;
     right: 0;
     text-decoration: none;

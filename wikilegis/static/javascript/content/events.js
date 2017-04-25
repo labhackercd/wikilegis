@@ -47,11 +47,15 @@ function clickEvent(event) {
     votes.sendVote(parent);
   }
 
-  if (dataset.tab && dataset.drawerOpen) {
-    updatePath(event.target.href);
-  } else if (dataset.tab) {
-    updateHash(event.target.href, event.target.hash);
-    forms.toggle(false);
+  if (dataset.tab) {
+    if (dataset.drawerOpen) {
+      updatePath(event.target.href);
+    } else {
+      updateHash(event.target.href, event.target.hash);
+      forms.toggle(false);
+    }
+    const navItemEl = document.querySelector(`.nav__item[data-tab][href="${window.location.hash}"]`);
+    tabs.setActive(navItemEl);
   }
 
   if (dataset.collapsible) {
@@ -162,12 +166,6 @@ function historyChangeEvent() {
   } else if (pathsCurrent < pathsLast) {
     pathsDiff = pathsLast.replace(pathsCurrent, '');
     changeContent(pathsDiff, 'close');
-  }
-
-  // specific to tab
-  if (hash.indexOf('tab_') > -1) {
-    const navItemEl = document.querySelector(`.nav__item[data-tab][href="${hash}"]`);
-    tabs.setActive(navItemEl);
   }
 }
 

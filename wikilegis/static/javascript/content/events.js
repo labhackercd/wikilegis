@@ -149,7 +149,6 @@ function changeContent(pathsDiff, action) {
 function historyChangeEvent() {
   paths.update(window.location.pathname);
 
-  const hash = window.location.hash;
   const pathsLast = paths.last;
   const pathsCurrent = paths.current;
   let pathsDiff = '';

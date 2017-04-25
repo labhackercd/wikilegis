@@ -37,7 +37,7 @@ function clickEvent(event) {
     forms.toggle(false);
   }
 
-  if ('formClose' in dataset) {
+  if (dataset.formClose) {
     forms.toggle(false);
   }
 
@@ -61,11 +61,11 @@ function clickEvent(event) {
   if (dataset.collapsible) {
     collapsible.toggle(event.target);
   }
-  if ('dismissAlert' in dataset) {
+  if (dataset.dismissAlert) {
     dismissAlert();
   }
 
-  if ('notAuthenticated' in dataset) {
+  if (dataset.notAuthenticated) {
     showAlert(strings.userNotLoggedInTitle, strings.userNotLoggedInText, 'error'); //
   } else if (dataset.formOpen) {
     forms.toggle(dataset.formOpen);
@@ -75,15 +75,15 @@ function clickEvent(event) {
 function keyUpEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('additiveAmendmentInput' in dataset) {
+  if (dataset.additiveAmendmentInput) {
     preview.additiveAmendmentPreview(event.target);
   }
 
-  if ('modifierAmendmentInput' in dataset) {
+  if (dataset.modifierAmendmentInput) {
     diff.updateDiff(event.target);
   }
 
-  if ('segmentsSearch' in dataset) {
+  if (dataset.segmentsSearch) {
     forms.segmentSearch(event.target);
   }
 }
@@ -104,15 +104,15 @@ function submitEvent(event) {
   event.preventDefault();
   const dataset = event.target.dataset;
 
-  if ('commentsForm' in dataset) {
+  if (dataset.commentsForm) {
     forms.sendComment(event.target);
   }
 
-  if ('amendmentsForm' in dataset) {
+  if (dataset.amendmentsForm) {
     forms.sendAmendment(event.target);
   }
 
-  if ('subscribeForm' in dataset) {
+  if (dataset.subscribeForm) {
     forms.sendSubscribe(event.target);
   }
 }
@@ -120,7 +120,7 @@ function submitEvent(event) {
 function focusEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('modifierAmendmentInput' in dataset) {
+  if (dataset.modifierAmendmentInput) {
     forms.loadSegmentText(event.target);
   }
 }
@@ -129,7 +129,7 @@ function focusEvent(event) {
 function changeEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('additiveAmendmentSelect' in dataset) {
+  if (dataset.additiveAmendmentSelect) {
     preview.additiveAmendmentPreview(event.target.nextElementSibling);
   }
 }

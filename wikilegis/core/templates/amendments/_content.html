@@ -18,7 +18,7 @@
   {% if segment.bill.status == 'published' %}
     <a class="button--{{amendment_type}}-amendment amendments__suggest-button animate"
       data-form-open="{{amendment_type}}"
-      {% if not request.user.is_authenticated %}data-not-authenticated{% endif %} >
+      {% if not request.user.is_authenticated %}data-not-authenticated="true"{% endif %} >
       {{button_text}}
     </a>
   {% elif segment.bill.status == 'closed' %}
@@ -29,7 +29,7 @@
 
   {% if request.user.is_authenticated and segment.bill.status != 'closed' %}
     <div class="amendments__form-wrapper">
-      <a class="amendments__form-close" data-form-close title="{% trans 'Close form' %}"><i class="form-close__icon icon icon-chevron-down"></i></a>
+      <a class="amendments__form-close" data-form-close="true" title="{% trans 'Close form' %}"><i class="form-close__icon icon icon-chevron-down"></i></a>
 
       {% include "amendments/_segment.html" with amendment_type=amendment_type %}
 
@@ -39,10 +39,10 @@
       {% endif %}
 
 
-      <form class="amendments__form" action="/test" data-amendments-form>
+      <form class="amendments__form" action="/test" data-amendments-form="true">
         {% if amendment_type == 'additive' %}
           {% get_segment_types as segment_types %}
-          <select name="segment_type" id="segment_type" required data-{{amendment_type}}-amendment-select>
+          <select name="segment_type" id="segment_type" required data-{{amendment_type}}-amendment-select="true">
             <option value="{{segment.segment_type.id}}">{{segment.segment_type.presentation_name}}</option>
             {% for segment_type in segment_types %}
               <option value="{{segment_type.id}}">{{segment_type.presentation_name}}</option>
@@ -53,7 +53,7 @@
         <input class="form__input" name="content"
           type="text"
           placeholder="{{form_placeholder}}"
-          data-{{amendment_type}}-amendment-input />
+          data-{{amendment_type}}-amendment-input="true" />
         <button class="form__btn">{% trans 'Send' %}</button>
       </form>
     </div>

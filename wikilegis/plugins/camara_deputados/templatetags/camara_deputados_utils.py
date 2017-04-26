@@ -79,6 +79,10 @@ def segment_numbering(segment):
             return "%s" % int_to_roman(segment.number)
         elif type_name == 'subsecao':
             return "%s" % int_to_roman(segment.number)
+        elif type_name == 'item':
+            return "%s." % segment.number
+        else:
+            return ''
     else:
         return ''
 

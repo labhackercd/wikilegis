@@ -10,6 +10,7 @@
 ```bash
 $ git clone https://github.com/labhackercd/wikilegis.git
 $ cd wikilegis
+$ npm install
 $ pip install -r requirements.txt
 ```
 

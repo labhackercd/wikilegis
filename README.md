@@ -1,6 +1,6 @@
 # Requirements
 
-* Python 2.7.x
+* Python 3.x
 * Probably a working C compiler and `make` (to build libsass)
 * Pillow install dependencies [1]
 * libjpeg-dev, zlib1g-dev and build-essential (for debian like distributions)

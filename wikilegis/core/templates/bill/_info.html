@@ -15,7 +15,7 @@
 
     <label class="header__search">
       <i class="search__icon icon icon-search"></i>
-      <input class="search__input" placeholder="{% trans 'SEARCH' %}..." data-segments-search />
+      <input class="search__input" placeholder="{% trans 'SEARCH' %}..." data-segments-search="true" />
     </label>
   </div>
 
@@ -87,7 +87,7 @@
   </div>
 
   {% if request.user.is_authenticated %}
-  <form data-subscribe-url="{% url 'subscribe_newsletter' bill.id %}" method="post" data-subscribe-form>
+  <form data-subscribe-url="{% url 'subscribe_newsletter' bill.id %}" method="post" data-subscribe-form="true">
     <div data-subscribe-wrapper>
       {% include "bill/_newsletter.html" with bill_id=bill.id %}
     </div>

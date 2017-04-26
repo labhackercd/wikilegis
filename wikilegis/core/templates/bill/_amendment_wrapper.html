@@ -8,13 +8,19 @@
 
     <nav class="amendments__nav">
       <a class="nav__item" data-tab-content="amendments" data-tab="1" data-tab-content-type="modifier" href="#tab_edit">
-        <i class="item__icon icon icon-pencil"></i><span class="item__text">{% trans 'EDITION' %}</span>
+        <div class="item__text">
+          <i class="item__icon icon icon-pencil"></i><span class="item__text">{% trans 'EDITION' %}</span>
+        </div>
       </a>
       <a class="nav__item" data-tab-content="amendments" data-tab="2" data-tab-content-type="additive" href="#tab_add">
-        <i class="item__icon icon icon-plus"></i><span class="item__text">{% trans 'ADDITION' %}</span>
+        <div class="item__text">
+          <i class="item__icon icon icon-plus"></i><span class="item__text">{% trans 'ADDITION' %}</span>
+        </div>
       </a>
       <a class="nav__item" data-tab-content="amendments" data-tab="3" data-tab-content-type="supress" href="#tab_remove">
-        <i class="item__icon icon icon-trash"></i><span class="item__text">{% trans 'EXCLUSION' %}</span>
+        <div class="item__text">
+          <i class="item__icon icon icon-trash"></i><span class="item__text">{% trans 'EXCLUSION' %}</span>
+        </div>
       </a>
     </nav>
   </div>

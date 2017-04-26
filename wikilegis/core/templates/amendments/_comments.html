@@ -7,7 +7,7 @@
     {% endfor %}
   </ol>
   {% if request.user.is_authenticated and not amendment.bill_is_closed %}
-    <form class="comments__form" action="/test" data-comments-form>
+    <form class="comments__form" action="/test" data-comments-form="true">
       <input class="form__input" name="text" type="text" placeholder="{% trans 'Type your comment' %}" />
       <button class="form__btn">{% trans 'Send' %}</button>
     </form>

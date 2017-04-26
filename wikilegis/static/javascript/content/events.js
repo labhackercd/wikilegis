@@ -37,7 +37,7 @@ function clickEvent(event) {
     forms.toggle(false);
   }
 
-  if ('formClose' in dataset) {
+  if (dataset.formClose) {
     forms.toggle(false);
   }
 
@@ -47,21 +47,25 @@ function clickEvent(event) {
     votes.sendVote(parent);
   }
 
-  if (dataset.tab && dataset.drawerOpen) {
-    updatePath(event.target.href);
-  } else if (dataset.tab) {
-    updateHash(event.target.href, event.target.hash);
-    forms.toggle(false);
+  if (dataset.tab) {
+    if (dataset.drawerOpen) {
+      updatePath(event.target.href);
+    } else {
+      updateHash(event.target.href, event.target.hash);
+      forms.toggle(false);
+    }
+    const navItemEl = document.querySelector(`.nav__item[data-tab][href="${window.location.hash}"]`);
+    tabs.setActive(navItemEl);
   }
 
   if (dataset.collapsible) {
     collapsible.toggle(event.target);
   }
-  if ('dismissAlert' in dataset) {
+  if (dataset.dismissAlert) {
     dismissAlert();
   }
 
-  if ('notAuthenticated' in dataset) {
+  if (dataset.notAuthenticated) {
     showAlert(strings.userNotLoggedInTitle, strings.userNotLoggedInText, 'error'); //
   } else if (dataset.formOpen) {
     forms.toggle(dataset.formOpen);
@@ -71,15 +75,15 @@ function clickEvent(event) {
 function keyUpEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('additiveAmendmentInput' in dataset) {
+  if (dataset.additiveAmendmentInput) {
     preview.additiveAmendmentPreview(event.target);
   }
 
-  if ('modifierAmendmentInput' in dataset) {
+  if (dataset.modifierAmendmentInput) {
     diff.updateDiff(event.target);
   }
 
-  if ('segmentsSearch' in dataset) {
+  if (dataset.segmentsSearch) {
     forms.segmentSearch(event.target);
   }
 }
@@ -100,15 +104,15 @@ function submitEvent(event) {
   event.preventDefault();
   const dataset = event.target.dataset;
 
-  if ('commentsForm' in dataset) {
+  if (dataset.commentsForm) {
     forms.sendComment(event.target);
   }
 
-  if ('amendmentsForm' in dataset) {
+  if (dataset.amendmentsForm) {
     forms.sendAmendment(event.target);
   }
 
-  if ('subscribeForm' in dataset) {
+  if (dataset.subscribeForm) {
     forms.sendSubscribe(event.target);
   }
 }
@@ -116,7 +120,7 @@ function submitEvent(event) {
 function focusEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('modifierAmendmentInput' in dataset) {
+  if (dataset.modifierAmendmentInput) {
     forms.loadSegmentText(event.target);
   }
 }
@@ -125,7 +129,7 @@ function focusEvent(event) {
 function changeEvent(event) {
   const dataset = event.target.dataset;
 
-  if ('additiveAmendmentSelect' in dataset) {
+  if (dataset.additiveAmendmentSelect) {
     preview.additiveAmendmentPreview(event.target.nextElementSibling);
   }
 }
@@ -145,7 +149,6 @@ function changeContent(pathsDiff, action) {
 function historyChangeEvent() {
   paths.update(window.location.pathname);
 
-  const hash = window.location.hash;
   const pathsLast = paths.last;
   const pathsCurrent = paths.current;
   let pathsDiff = '';
@@ -162,12 +165,6 @@ function historyChangeEvent() {
   } else if (pathsCurrent < pathsLast) {
     pathsDiff = pathsLast.replace(pathsCurrent, '');
     changeContent(pathsDiff, 'close');
-  }
-
-  // specific to tab
-  if (hash.indexOf('tab_') > -1) {
-    const navItemEl = document.querySelector(`.nav__item[data-tab][href="${hash}"]`);
-    tabs.setActive(navItemEl);
   }
 }
 

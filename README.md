@@ -134,3 +134,9 @@ TODO: Instructions to use Transifex to translate this.
 
 
 [1]: https://pillow.readthedocs.org/en/latest/installation.html
+
+# Complementary Info
+## Supporters
+[<img src="http://i.imgur.com/uBFwgtd.png" />](https://www.browserstack.com/)
+
+We do our best to make sure Wikilegis's user interface works properly on as many platforms as possible. BrowserStack help us making this possible with their support to open source projects like ours.

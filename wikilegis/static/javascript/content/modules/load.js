@@ -27,7 +27,9 @@ function loadModule() {
       },
       success(xhr) {
         request.wrapperEl.insertAdjacentHTML('beforeend', xhr.html);
-        request.loadedIds.push(id);
+        if (request.name !== 'comments') {
+          request.loadedIds.push(id);
+        }
       },
       error(xhr) {
         if (xhr.status === 404) {

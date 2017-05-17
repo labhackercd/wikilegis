@@ -4,9 +4,12 @@ services:
     image: postgres
   web:
     build: .
-    command: python wikilegis/manage.py runserver 0.0.0.0:8000
+    command: bash -c "python config.py && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
+    environment:
+      - ADMIN_PASSWORD=123
+      - ADMIN_EMAIL=admin@admin.com
     ports:
       - "8000:8000"
     depends_on:

@@ -37,5 +37,6 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
 ADD . /code/
 RUN npm install
-RUN python wikilegis/manage.py bower install -- --allow-root
-RUN python wikilegis/manage.py migrate
+WORKDIR /code/wikilegis
+RUN python manage.py bower install -- --allow-root
+RUN python manage.py migrate

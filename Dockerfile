@@ -1,11 +1,12 @@
 FROM python:3
-RUN mkdir /code
-WORKDIR /code
-ADD requirements.txt /code/
+RUN mkdir -p /var/labhacker/wikilegis
+WORKDIR /var/labhacker/wikilegis
+ADD requirements.txt /var/labhacker/wikilegis
 RUN apt-get update
-RUN apt-get install -y bash g++ make python3 python3-dev python3-pip zlib1g-dev libjpeg-dev libgdal-dev
+RUN apt-get install -y bash g++ make python3-dev python3-pip zlib1g-dev libjpeg-dev libgdal-dev libpq-dev libpq5 gettext
 RUN pip3 install -U pip
 RUN pip3 install -r requirements.txt
+RUN pip3 install psycopg2 gunicorn
 
 # Install nodejs
 RUN groupadd --gid 1000 node \
@@ -25,7 +26,7 @@ RUN set -ex \
     gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$key" ; \
   done
-ENV NPM_CONFIG_LOGLEVEL info
+ENV NPM_CONFIG_LOGLEVEL error
 ENV NODE_VERSION 6.10.3
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
   && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
@@ -35,8 +36,6 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-ADD . /code/
+ADD . /var/labhacker/wikilegis
 RUN npm install
-WORKDIR /code/wikilegis
-RUN python manage.py bower install -- --allow-root
-RUN python manage.py migrate
+WORKDIR /var/labhacker/wikilegis/wikilegis

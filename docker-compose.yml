@@ -13,7 +13,7 @@ services:
     image: postgres
   web:
     build: .
-    command: bash -c "python config.py && ./start.sh"
+    command: ./start.sh
     volumes:
       - .:/var/labhacker/wikilegis
     environment:

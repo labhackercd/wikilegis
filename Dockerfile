@@ -12,3 +12,5 @@ RUN pip3 install psycopg2 gunicorn
 ADD . /var/labhacker/wikilegis
 RUN npm install
 WORKDIR /var/labhacker/wikilegis/wikilegis
+EXPOSE 8000
+CMD ./start.sh

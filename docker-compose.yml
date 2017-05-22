@@ -12,7 +12,7 @@ services:
   db:
     image: postgres
   web:
-    build: .
+    image: labhackercd/wikilegis
     command: ./start.sh
     volumes:
       - .:/var/labhacker/wikilegis

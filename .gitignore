@@ -85,3 +85,5 @@ bower_components/
 CACHE/
 TODO
 .plugins
+api.key
+secret.key

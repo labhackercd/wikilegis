@@ -71,6 +71,7 @@ class BillResource(ModelResource):
             'theme': ALL_WITH_RELATIONS,
             'title': ALL,
             'status': ALL,
+            'id': ALL,
         }
 
 
@@ -96,7 +97,8 @@ class BillSegmentResource(ModelResource):
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {
-            'bill': ALL_WITH_RELATIONS
+            'bill': ALL_WITH_RELATIONS,
+            'id': ALL,
         }
 
 
@@ -113,7 +115,9 @@ class AdditiveAmendmentResource(ModelResource):
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {
-            'author': ALL_WITH_RELATIONS
+            'author': ALL_WITH_RELATIONS,
+            'reference': ALL_WITH_RELATIONS,
+            'id': ALL,
         }
 
 
@@ -130,7 +134,9 @@ class ModifierAmendmentResource(ModelResource):
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {
-            'author': ALL_WITH_RELATIONS
+            'author': ALL_WITH_RELATIONS,
+            'replaced': ALL_WITH_RELATIONS,
+            'id': ALL,
         }
 
 
@@ -147,7 +153,9 @@ class SupressAmendmentResource(ModelResource):
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {
-            'author': ALL_WITH_RELATIONS
+            'author': ALL_WITH_RELATIONS,
+            'supressed': ALL_WITH_RELATIONS,
+            'id': ALL,
         }
 
 
@@ -170,7 +178,8 @@ class UpDownVoteResource(ModelResource):
         allowed_methods = ['get']
         filtering = {
             'author': ALL_WITH_RELATIONS,
-            'vote': ALL
+            'vote': ALL,
+            'id': ALL,
         }
 
 
@@ -185,5 +194,6 @@ class CommentResource(ModelResource):
         queryset = core_models.Comment.objects.all()
         allowed_methods = ['get']
         filtering = {
-            'author': ALL_WITH_RELATIONS
+            'author': ALL_WITH_RELATIONS,
+            'id': ALL,
         }

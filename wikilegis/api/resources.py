@@ -15,6 +15,9 @@ class UserResource(ModelResource):
             del bundle.data['email']
         return bundle
 
+    def dehydrate_username(self, bundle):
+        return bundle.obj.__str__()
+
     class Meta:
         queryset = get_user_model().objects.all()
         allowed_methods = ['get']
@@ -61,6 +64,8 @@ class BillResource(ModelResource):
                                     full=True, null=True)
     comments = fields.ToManyField('api.resources.CommentResource',
                                   'comments', full=True)
+    votes = fields.ToManyField('api.resources.UpDownVoteResource',
+                               'votes', full=True)
 
     class Meta:
         queryset = core_models.Bill.objects.exclude(
@@ -93,6 +98,8 @@ class BillSegmentResource(ModelResource):
     bill = fields.ForeignKey(BillResource, 'bill', full=True)
     comments = fields.ToManyField('api.resources.CommentResource',
                                   'comments', full=True)
+    votes = fields.ToManyField('api.resources.UpDownVoteResource',
+                               'votes', full=True)
 
     class Meta:
         queryset = core_models.BillSegment.objects.exclude(
@@ -113,6 +120,8 @@ class AdditiveAmendmentResource(ModelResource):
                                      full=True, null=True)
     comments = fields.ToManyField('api.resources.CommentResource',
                                   'comments', full=True)
+    votes = fields.ToManyField('api.resources.UpDownVoteResource',
+                               'votes', full=True)
 
     class Meta:
         queryset = core_models.AdditiveAmendment.objects.exclude(
@@ -134,6 +143,8 @@ class ModifierAmendmentResource(ModelResource):
                                      full=True, null=True)
     comments = fields.ToManyField('api.resources.CommentResource',
                                   'comments', full=True)
+    votes = fields.ToManyField('api.resources.UpDownVoteResource',
+                               'votes', full=True)
 
     class Meta:
         queryset = core_models.ModifierAmendment.objects.exclude(
@@ -155,6 +166,8 @@ class SupressAmendmentResource(ModelResource):
                                      full=True, null=True)
     comments = fields.ToManyField('api.resources.CommentResource',
                                   'comments', full=True)
+    votes = fields.ToManyField('api.resources.UpDownVoteResource',
+                               'votes', full=True)
 
     class Meta:
         queryset = core_models.SupressAmendment.objects.exclude(

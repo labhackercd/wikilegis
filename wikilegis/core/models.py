@@ -3,6 +3,7 @@ from django.db.models import permalink
 from django.utils.translation import ugettext as _
 from django.utils.text import slugify
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 from core.model_mixins import (TimestampedMixin, VoteCountMixin, SegmentMixin,
                                GenericRelationMixin, CommentCountMixin,
                                AmendmentCountMixin)
@@ -63,6 +64,7 @@ class Bill(TimestampedMixin, AmendmentCountMixin, VoteCountMixin,
     allowed_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='allowed_bills',
         verbose_name=_('allowed users'), blank=True)
+    comments = GenericRelation(Comment, verbose_name=_('comments'))
 
     def __str__(self):
         return self.title

@@ -100,6 +100,7 @@ class SegmentMixin(TimestampedMixin, VoteCountMixin, CommentCountMixin,
                                      on_delete=models.SET_NULL)
     order = models.PositiveIntegerField(_('order'), default=0)
     number = models.IntegerField(_('number'), null=True, blank=True)
+    comments = GenericRelation('core.Comment', verbose_name=_('comments'))
 
     class Meta:
         abstract = True

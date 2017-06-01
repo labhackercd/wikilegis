@@ -59,6 +59,8 @@ class BillResource(ModelResource):
                                 null=True)
     references = fields.ToManyField(BillReferenceResource, 'references',
                                     full=True, null=True)
+    comments = fields.ToManyField('api.resources.CommentResource',
+                                  'comments', full=True)
 
     class Meta:
         queryset = core_models.Bill.objects.exclude(
@@ -89,6 +91,8 @@ class BillSegmentResource(ModelResource):
                                      full=True, null=True)
     parent = fields.ForeignKey('self', 'parent', full=True, null=True)
     bill = fields.ForeignKey(BillResource, 'bill', full=True)
+    comments = fields.ToManyField('api.resources.CommentResource',
+                                  'comments', full=True)
 
     class Meta:
         queryset = core_models.BillSegment.objects.exclude(
@@ -107,6 +111,8 @@ class AdditiveAmendmentResource(ModelResource):
     reference = fields.ForeignKey(BillSegmentResource, 'reference', full=True)
     segment_type = fields.ForeignKey(SegmentTypeResource, 'segment_type',
                                      full=True, null=True)
+    comments = fields.ToManyField('api.resources.CommentResource',
+                                  'comments', full=True)
 
     class Meta:
         queryset = core_models.AdditiveAmendment.objects.exclude(
@@ -126,6 +132,8 @@ class ModifierAmendmentResource(ModelResource):
     replaced = fields.ForeignKey(BillSegmentResource, 'replaced', full=True)
     segment_type = fields.ForeignKey(SegmentTypeResource, 'segment_type',
                                      full=True, null=True)
+    comments = fields.ToManyField('api.resources.CommentResource',
+                                  'comments', full=True)
 
     class Meta:
         queryset = core_models.ModifierAmendment.objects.exclude(
@@ -145,6 +153,8 @@ class SupressAmendmentResource(ModelResource):
     supressed = fields.ForeignKey(BillSegmentResource, 'supressed', full=True)
     segment_type = fields.ForeignKey(SegmentTypeResource, 'segment_type',
                                      full=True, null=True)
+    comments = fields.ToManyField('api.resources.CommentResource',
+                                  'comments', full=True)
 
     class Meta:
         queryset = core_models.SupressAmendment.objects.exclude(

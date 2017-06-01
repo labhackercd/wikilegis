@@ -1,4 +1,4 @@
-/* global segmentsList */
+/* global segmentsList */ // eslint-disable-line no-unused-vars
 import List from 'list.js';
 import $ from 'jquery';
 import loadModule from './load';

@@ -66,7 +66,11 @@ def render_bill_info(request, bill_id):
 
         if bill.allowed_users.all():
             if request.user not in bill.allowed_users.all():
-                raise ObjectDoesNotExist
+                return JsonResponse(
+                    {'title': _('Top secret, you need permission to access.'),
+                     'message': _("How'd you get here?")},
+                    status=404
+                )
 
         html = render_to_string('bill/_info.html', {'request': request,
                                                     'bill': bill})
@@ -85,7 +89,11 @@ def render_bill_content(request, bill_id):
 
         if bill.allowed_users.all():
             if request.user not in bill.allowed_users.all():
-                raise ObjectDoesNotExist
+                return JsonResponse(
+                    {'title': _('Top secret, you need permission to access.'),
+                     'message': _("How'd you get here?")},
+                    status=404
+                )
 
         html = render_to_string('bill/_content.html', {'request': request,
                                                        'bill': bill})
@@ -104,7 +112,11 @@ def render_bill_amendments(request, segment_id):
 
         if segment.bill.allowed_users.all():
             if request.user not in segment.bill.allowed_users.all():
-                raise ObjectDoesNotExist
+                return JsonResponse(
+                    {'title': _('Top secret, you need permission to access.'),
+                     'message': _("How'd you get here?")},
+                    status=404
+                )
 
         html = render_to_string('amendments/_index.html', {'request': request,
                                                            'segment': segment})

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-06 15:53-0300\n"
+"POT-Creation-Date: 2017-06-05 18:11-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr "Usuário"
 msgid "Users"
 msgstr "Usuários"
 
-#: core/admin.py:23 core/models.py:158
+#: core/admin.py:23 core/models.py:160
 msgid "reference"
 msgstr "referência"
 
@@ -84,16 +84,16 @@ msgstr "vídeo"
 msgid "videos"
 msgstr "vídeos"
 
-#: core/admin.py:46 core/models.py:133 core/models.py:152
+#: core/admin.py:46 core/models.py:135 core/models.py:154
 #: core/tests/test_models.py:90
 msgid "segment"
 msgstr "trecho"
 
-#: core/admin.py:46 core/models.py:153
+#: core/admin.py:46 core/models.py:155
 msgid "segments"
 msgstr "trechos"
 
-#: core/admin.py:109
+#: core/admin.py:110
 msgid "Counters"
 msgstr "Contadores"
 
@@ -141,156 +141,160 @@ msgstr "ordem"
 msgid "number"
 msgstr "número"
 
-#: core/models.py:13
+#: core/model_mixins.py:103 core/models.py:67
+msgid "comments"
+msgstr "comentários"
+
+#: core/models.py:14
 msgid "Draft"
 msgstr "Rascunho"
 
-#: core/models.py:14
+#: core/models.py:15
 msgid "Published"
 msgstr "Publicado"
 
-#: core/models.py:15
+#: core/models.py:16
 msgid "Closed"
 msgstr "Fechado"
 
-#: core/models.py:22
+#: core/models.py:23
 msgid "Bill Theme"
 msgstr "Tema de projeto de lei"
 
-#: core/models.py:23
+#: core/models.py:24
 msgid "Bill Themes"
 msgstr "Temas de projeto de lei"
 
-#: core/models.py:32 core/models.py:57
+#: core/models.py:33 core/models.py:58
 msgid "description"
 msgstr "descrição"
 
-#: core/models.py:34
+#: core/models.py:35
 msgid "slug"
 msgstr "slug"
 
-#: core/models.py:36
+#: core/models.py:37
 msgid "icon"
 msgstr "ícone"
 
-#: core/models.py:48
+#: core/models.py:49
 msgid "text"
 msgstr "texto"
 
-#: core/models.py:50 core/models.py:161 core/models.py:175 core/models.py:189
+#: core/models.py:51 core/models.py:163 core/models.py:177 core/models.py:191
 msgid "author"
 msgstr "autor"
 
-#: core/models.py:55
+#: core/models.py:56
 msgid "subject"
 msgstr "assunto"
 
-#: core/models.py:56
+#: core/models.py:57
 msgid "epigraph"
 msgstr "epígrafe"
 
-#: core/models.py:58
+#: core/models.py:59
 msgid "closing date"
 msgstr "data de encerramento"
 
-#: core/models.py:59
+#: core/models.py:60
 msgid "status"
 msgstr "estado"
 
-#: core/models.py:61
+#: core/models.py:62
 msgid "visible"
 msgstr "visível"
 
-#: core/models.py:62
+#: core/models.py:63
 msgid "theme"
 msgstr "tema"
 
-#: core/models.py:65
+#: core/models.py:66
 msgid "allowed users"
 msgstr "usuários permitidos"
 
-#: core/models.py:81 plugins/camara_deputados/models.py:56
+#: core/models.py:83 plugins/camara_deputados/models.py:56
 msgid "Bill"
 msgstr "Projeto de lei"
 
-#: core/models.py:82
+#: core/models.py:84
 msgid "Bills"
 msgstr "Projetos de lei"
 
-#: core/models.py:94
+#: core/models.py:96
 msgid "URL"
 msgstr "URL"
 
-#: core/models.py:96 core/models.py:113 core/models.py:119
+#: core/models.py:98 core/models.py:115 core/models.py:121
 #: notification/models.py:13
 msgid "bill"
 msgstr "projeto de lei"
 
-#: core/models.py:108
+#: core/models.py:110
 msgid "title"
 msgstr "título"
 
-#: core/models.py:110
+#: core/models.py:112
 msgid "reference file"
 msgstr "arquivo de referência"
 
-#: core/models.py:112
+#: core/models.py:114
 msgid "reference url"
 msgstr "url de referência"
 
-#: core/models.py:121
+#: core/models.py:123
 msgid "segment parent"
 msgstr "trecho ancestral"
 
-#: core/models.py:123 core/models.py:157 core/models.py:171 core/models.py:185
+#: core/models.py:125 core/models.py:159 core/models.py:173 core/models.py:187
 msgid "content"
 msgstr "conteúdo"
 
-#: core/models.py:172
+#: core/models.py:174
 msgid "replaced"
 msgstr "substituído"
 
-#: core/models.py:186
+#: core/models.py:188
 msgid "supressed"
 msgstr "suprimido"
 
-#: core/models.py:199
+#: core/models.py:201
 msgid "name"
 msgstr "nome"
 
-#: core/models.py:200
+#: core/models.py:202
 msgid "presentation name"
 msgstr "nome de apresentação"
 
-#: core/models.py:203
+#: core/models.py:205
 msgid "parent type"
 msgstr "tipo ancestral"
 
-#: core/models.py:205
+#: core/models.py:207
 msgid "editable"
 msgstr "editável"
 
-#: core/models.py:208
+#: core/models.py:210
 msgid "Segment Type"
 msgstr "Tipo de Trecho"
 
-#: core/models.py:209
+#: core/models.py:211
 msgid "Segment Types"
 msgstr "Tipos de Trecho"
 
-#: core/models.py:220 notification/models.py:16
+#: core/models.py:222 notification/models.py:16
 msgid "user"
 msgstr "usuário"
 
-#: core/models.py:221
+#: core/models.py:223
 msgid "vote"
 msgstr "voto"
 
-#: core/models.py:222
+#: core/models.py:224
 msgid "Up Vote"
 msgstr "Voto a favor"
 
-#: core/models.py:223
+#: core/models.py:225
 msgid "Down Vote"
 msgstr "Voto contra"
 
@@ -307,7 +311,7 @@ msgid "View on site"
 msgstr "Ver no site"
 
 #: core/templates/amendments/_actions.html:18
-#: core/templates/segment/_actions_secondary.html:14
+#: core/templates/segment/_actions_secondary.html:57
 msgid "COMMENTS"
 msgstr "COMENTÁRIOS"
 
@@ -366,8 +370,8 @@ msgid "New"
 msgstr "Novo"
 
 #: core/templates/base.html:34 core/templates/base.html:36
-#: core/templates/base.html:38 core/views.py:171 core/views.py:191
-#: core/views.py:213 core/views.py:256
+#: core/templates/base.html:38 core/views.py:203 core/views.py:223
+#: core/views.py:245 core/views.py:288
 msgid "Oops"
 msgstr "Oops"
 
@@ -395,22 +399,22 @@ msgstr "Clique aqui"
 msgid "to log in"
 msgstr "para fazer login"
 
-#: core/templates/bill/_amendment_wrapper.html:11
-#: core/templates/segment/_actions_secondary.html:28
+#: core/templates/bill/_amendment_wrapper.html:12
+#: core/templates/segment/_actions_secondary.html:15
 msgid "EDITION"
 msgstr "EDIÇÃO"
 
-#: core/templates/bill/_amendment_wrapper.html:14
-#: core/templates/segment/_actions_secondary.html:43
+#: core/templates/bill/_amendment_wrapper.html:17
+#: core/templates/segment/_actions_secondary.html:30
 msgid "ADDITION"
 msgstr "ADIÇÃO"
 
-#: core/templates/bill/_amendment_wrapper.html:17
-#: core/templates/segment/_actions_secondary.html:57
+#: core/templates/bill/_amendment_wrapper.html:22
+#: core/templates/segment/_actions_secondary.html:44
 msgid "EXCLUSION"
 msgstr "EXCLUSÃO"
 
-#: core/templates/bill/_amendment_wrapper.html:22 core/templates/home.html:44
+#: core/templates/bill/_amendment_wrapper.html:28 core/templates/home.html:48
 #: core/templates/widget/login.html:10
 msgid "back"
 msgstr "voltar"
@@ -435,15 +439,15 @@ msgstr "Criado em"
 msgid "Closes on"
 msgstr "Encerra em"
 
-#: core/templates/bill/_info.html:56
+#: core/templates/bill/_info.html:57
 msgid "Amendments suggestions"
 msgstr "Sugestões de emendas"
 
-#: core/templates/bill/_info.html:60
+#: core/templates/bill/_info.html:63
 msgid "Access Report"
 msgstr "Visualizar Relatório"
 
-#: core/templates/bill/_info.html:66
+#: core/templates/bill/_info.html:70
 msgid "Do you support this bill?"
 msgstr "Você apoia esse projeto de lei?"
 
@@ -471,41 +475,11 @@ msgstr "Semanal"
 msgid "Subscribe"
 msgstr "Assinar"
 
-#: core/templates/errors/_no-mobile.html:6
-msgid ""
-"Hey! We're still working on a view for Wikilegis under small screen devices."
-msgstr ""
-"Olá! Ainda estamos trabalhando na versão para dispositivos móveis do "
-"Wikilegis"
-
-#: core/templates/errors/_no-mobile.html:7
-msgid ""
-"While we work on delivering that soon, you may enjoy the full experience "
-"heading over to your desktop computer. Thank you"
-msgstr ""
-"Enquanto trabalhamos para entregar esta versão o quanto antes, você pode "
-"aproveitar a experiência ideal em um computador. Obrigado"
-
-#: core/templates/errors/_no-mobile.html:11
-msgid ""
-"Hey! We're still working on a view for Wikilegis under small screen sizes."
-msgstr ""
-"Olá! Ainda estamos trabalhando em uma versão do Wikilegis para telas menores"
-
-#: core/templates/errors/_no-mobile.html:12
-msgid ""
-"While we work on delivering that soon, you may enjoy the full experience by "
-"resizing your window. Thank you"
-msgstr ""
-"Enquanto trabalhamos para entregar esta versão o quanto antes, você pode "
-"aproveitar a experiência ideal redimensionando esta janela ou alternando "
-"para um computador de tela maior. Obrigado"
-
-#: core/templates/home.html:17
+#: core/templates/home.html:15
 msgid "Your legislative editing tool"
 msgstr "Sua ferramenta de edição legislativa"
 
-#: core/templates/home.html:19
+#: core/templates/home.html:17
 msgid ""
 "Check the bills and contribute suggestions of new wordings to articles or "
 "paragraphs. The rapporteurs of the bills track the participation and can "
@@ -515,7 +489,7 @@ msgstr ""
 "artigos ou parágrafos. Os deputados relatores das proposições acompanham as "
 "participações e podem adotar a sua ideia!"
 
-#: core/templates/home.html:22
+#: core/templates/home.html:20
 msgid ""
 "With this interaction, society profits by participating more actively in the "
 "legislative process, and the Parliament profits by approving improved laws "
@@ -525,7 +499,7 @@ msgstr ""
 "processo legislativo, e ganha o Parlamento, que aprova leis mais aprimoradas "
 "e conectadas às necessidades dos cidadãos."
 
-#: core/templates/home.html:24
+#: core/templates/home.html:22
 msgid "Search"
 msgstr "Buscar"
 
@@ -545,6 +519,14 @@ msgstr "Resetar"
 #: core/templates/registration/register.html:13
 msgid "Register"
 msgstr "Registrar"
+
+#: core/templates/segment/_votes.html:6
+msgid "I support"
+msgstr "Eu apoio"
+
+#: core/templates/segment/_votes.html:11
+msgid "I do not support"
+msgstr "Eu não apoio"
 
 #: core/templates/widget/login.html:21
 msgid "Re-send activation email"
@@ -583,11 +565,19 @@ msgstr "Confirme sua senha"
 msgid "Sign Up"
 msgstr "Cadastre-se"
 
-#: core/views.py:47
+#: core/views.py:55
 msgid "404 Error"
 msgstr "Erro 404"
 
-#: core/views.py:63 core/views.py:78
+#: core/views.py:70 core/views.py:93 core/views.py:116
+msgid "Top secret, you need permission to access."
+msgstr "Projeto secreto, necessita de permissões."
+
+#: core/views.py:71 core/views.py:94 core/views.py:117
+msgid "How'd you get here?"
+msgstr "Como você chegou aqui?"
+
+#: core/views.py:79 core/views.py:102
 msgid ""
 "The following URL has returned no known bill: <br> <strong>{}/bill/{}</"
 "strong>"
@@ -595,23 +585,23 @@ msgstr ""
 "A seguinte URL não retornou um projeto de lei conhecido: <br> <strong>{}/"
 "bill/{}</strong>"
 
-#: core/views.py:93
+#: core/views.py:125
 msgid "The following URL has returned no known segment."
 msgstr "A seguinte URL não retornou um trecho conhecido."
 
-#: core/views.py:172
+#: core/views.py:204
 msgid "This bill is closed for participation :("
 msgstr "Este projeto de lei está fechado para participação :("
 
-#: core/views.py:192
+#: core/views.py:224
 msgid "You must be logged to comment :("
 msgstr "Você deve estar logado para comentar :("
 
-#: core/views.py:214
+#: core/views.py:246
 msgid "You must be logged to vote :("
 msgstr "Você deve estar logado para votar :("
 
-#: core/views.py:257
+#: core/views.py:289
 msgid "You must be logged to suggest new amendment :("
 msgstr "Você deve estar logado para sugerir uma nova proposta :("
 
@@ -626,6 +616,10 @@ msgstr "Assinatura"
 #: notification/models.py:24
 msgid "Newsletters"
 msgstr "Assinaturas"
+
+#: plugins/camara_deputados/forms.py:7
+msgid "File in txt format"
+msgstr "Arquivo no formato .txt"
 
 #: plugins/camara_deputados/models.py:7
 msgid "Author Name"
@@ -706,14 +700,3 @@ msgstr "Google"
 #: wikilegis/settings/social.py:43
 msgid "Facebook"
 msgstr "Facebook"
-
-#~ msgid "You need to log in order to participate!"
-#~ msgstr "Você necessita logar para poder participar!"
-
-#~ msgid "Type your amendment"
-#~ msgstr "Insira sua proposta"
-
-#~ msgid "You must be logged to comment. Click <a href=\"\">here</a> to login."
-#~ msgstr ""
-#~ "Você deve estar logado para comentar. Clique <a href=\"\">aqui</a> para "
-#~ "entrar."

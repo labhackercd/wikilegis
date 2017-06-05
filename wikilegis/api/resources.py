@@ -68,9 +68,9 @@ class BillResource(ModelResource):
                                'votes', full=True)
 
     class Meta:
-        queryset = core_models.Bill.objects.exclude(
-            status='draft'
-        ).exclude(is_visible=False)
+        queryset = core_models.Bill.objects.filter(
+            allowed_users__isnull=True,
+            is_visible=True).exclude(status='draft')
         resource_name = 'bill'
         excludes = ['is_visible']
         allowed_methods = ['get']

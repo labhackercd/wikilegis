@@ -21,12 +21,19 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['open_bills'] = models.Bill.objects.exclude(
-            status='draft').exclude(status='closed').exclude(
-            is_visible=False).order_by('-created')
-        context['closed_bills'] = models.Bill.objects.exclude(
-            status='draft').exclude(status='published').exclude(
-            is_visible=False).order_by('-created')
+        context['open_private_bills'] = models.Bill.objects.none()
+        context['closed_private_bills'] = models.Bill.objects.none()
+        if self.request.user.is_authenticated():
+            context['open_private_bills'] = self.request.user.allowed_bills.filter(
+                status='published', is_visible=True).order_by('-created')
+            context['closed_private_bills'] = self.request.user.allowed_bills.filter(
+                status='closed', is_visible=True).order_by('-created')
+        context['open_bills'] = models.Bill.objects.filter(
+            status='published', is_visible=True,
+            allowed_users__isnull=True).order_by('-created')
+        context['closed_bills'] = models.Bill.objects.filter(
+            status='closed', is_visible=True,
+            allowed_users__isnull=True).order_by('-created')
         context['prefix_url'] = settings.FORCE_SCRIPT_NAME
         return context
 
@@ -56,6 +63,10 @@ def render_bill_info(request, bill_id):
         if bill.status == 'draft':
             raise ObjectDoesNotExist
 
+        if bill.allowed_users.all():
+            if request.user not in bill.allowed_users.all():
+                raise ObjectDoesNotExist
+
         html = render_to_string('bill/_info.html', {'request': request,
                                                     'bill': bill})
         return JsonResponse({'html': html})
@@ -71,6 +82,10 @@ def render_bill_content(request, bill_id):
         if bill.status == 'draft':
             raise ObjectDoesNotExist
 
+        if bill.allowed_users.all():
+            if request.user not in bill.allowed_users.all():
+                raise ObjectDoesNotExist
+
         html = render_to_string('bill/_content.html', {'request': request,
                                                        'bill': bill})
         return JsonResponse({'html': html})
@@ -85,6 +100,10 @@ def render_bill_amendments(request, segment_id):
         segment = models.BillSegment.objects.get(pk=segment_id)
         if segment.bill.status == 'draft':
             raise ObjectDoesNotExist
+
+        if segment.bill.allowed_users.all():
+            if request.user not in segment.bill.allowed_users.all():
+                raise ObjectDoesNotExist
 
         html = render_to_string('amendments/_index.html', {'request': request,
                                                            'segment': segment})

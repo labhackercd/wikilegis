@@ -24,9 +24,10 @@ class HomeView(TemplateView):
         context['open_private_bills'] = models.Bill.objects.none()
         context['closed_private_bills'] = models.Bill.objects.none()
         if self.request.user.is_authenticated():
-            context['open_private_bills'] = self.request.user.allowed_bills.filter(
+            allowed_bills = self.request.user.allowed_bills.all()
+            context['open_private_bills'] = allowed_bills.filter(
                 status='published', is_visible=True).order_by('-created')
-            context['closed_private_bills'] = self.request.user.allowed_bills.filter(
+            context['closed_private_bills'] = allowed_bills.filter(
                 status='closed', is_visible=True).order_by('-created')
         context['open_bills'] = models.Bill.objects.filter(
             status='published', is_visible=True,

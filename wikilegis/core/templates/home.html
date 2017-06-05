@@ -25,7 +25,13 @@
   </div>
 
   <ul class="wikilegis__bill-list" data-drawer-close="bill">
+    {% for bill in open_private_bills %}
+      {% include "bill/_list-item.html" with bill=bill %}
+    {% endfor %}
     {% for bill in open_bills %}
+      {% include "bill/_list-item.html" with bill=bill %}
+    {% endfor %}
+    {% for bill in closed_private_bills %}
       {% include "bill/_list-item.html" with bill=bill %}
     {% endfor %}
     {% for bill in closed_bills %}

@@ -100,6 +100,7 @@ class BillAdmin(admin.ModelAdmin):
     list_filter = ('theme', 'is_visible', 'status')
     search_fields = ('title', 'epigraph', 'description')
     ordering = ('created',)
+    filter_horizontal = ('allowed_users',)
     readonly_fields = (
         'upvote_count', 'downvote_count', 'comments_count', 'amendments_count')
     fieldsets = [

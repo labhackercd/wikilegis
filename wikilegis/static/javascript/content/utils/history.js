@@ -9,7 +9,8 @@ function addMultiplePaths(...args) {
 
 function addPath(name, id) {
   if (window.location.pathname.indexOf(name) === -1) {
-    const path = window.location.pathname;
+    let path = window.location.pathname;
+    if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
     const newPath = path === '/' ? `/${name}/${id}` : `${path}/${name}/${id}`;
 
     paths.update(newPath);

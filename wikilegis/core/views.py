@@ -70,11 +70,13 @@ def is_private_bill(request, bill):
     if bill.allowed_users.all():
         if not request.user.is_authenticated():
             message = _("Access control. Please log in and try again.")
+            message = render_403(message)
         elif request.user not in bill.allowed_users.all():
             message = _("Access denied. Please contact the project author.")
+            message = render_403(message)
         else:
             message = None
-        return(True, render_403(message))
+        return(True, message)
     else:
         return (False, None)
 

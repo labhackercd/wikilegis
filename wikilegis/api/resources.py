@@ -89,7 +89,6 @@ class SegmentTypeResource(ModelResource):
 
 
 class BillSegmentResource(ModelResource):
-    bill = fields.ForeignKey(BillResource, 'bill')
     segment_type = fields.ForeignKey(SegmentTypeResource, 'segment_type',
                                      full=True, null=True)
     parent = fields.ForeignKey('self', 'parent', full=True, null=True)
@@ -100,7 +99,8 @@ class BillSegmentResource(ModelResource):
     class Meta:
         queryset = core_models.BillSegment.objects.exclude(
             bill__status='draft'
-        ).exclude(bill__is_visible=False)
+        ).exclude(
+            bill__is_visible=False).exclude(bill__allowed_users__isnull=False)
         allowed_methods = ['get']
         excludes = ['modified']
         filtering = {

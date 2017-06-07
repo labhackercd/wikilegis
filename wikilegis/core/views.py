@@ -58,19 +58,36 @@ def render_404(message):
     )
 
 
+def render_403(message):
+    return JsonResponse(
+        {'title': _('403 Error'),
+         'message': message},
+        status=404
+    )
+
+
+def is_private_bill(request, bill):
+    if bill.allowed_users.all():
+        if not request.user.is_authenticated():
+            message = _("Access control. Please log in and try again.")
+        elif request.user not in bill.allowed_users.all():
+            message = _("Access denied. Please contact the project author.")
+        else:
+            message = None
+        return(True, render_403(message))
+    else:
+        return (False, None)
+
+
 def render_bill_info(request, bill_id):
     try:
         bill = models.Bill.objects.get(pk=bill_id)
         if bill.status == 'draft':
             raise ObjectDoesNotExist
 
-        if bill.allowed_users.all():
-            if request.user not in bill.allowed_users.all():
-                return JsonResponse(
-                    {'title': _('Top secret, you need permission to access.'),
-                     'message': _("How'd you get here?")},
-                    status=404
-                )
+        is_private, error = is_private_bill(request, bill)
+        if is_private and error is not None:
+            return error
 
         html = render_to_string('bill/_info.html', {'request': request,
                                                     'bill': bill})
@@ -87,13 +104,9 @@ def render_bill_content(request, bill_id):
         if bill.status == 'draft':
             raise ObjectDoesNotExist
 
-        if bill.allowed_users.all():
-            if request.user not in bill.allowed_users.all():
-                return JsonResponse(
-                    {'title': _('Top secret, you need permission to access.'),
-                     'message': _("How'd you get here?")},
-                    status=404
-                )
+        is_private, error = is_private_bill(request, bill)
+        if is_private and error is not None:
+            return error
 
         html = render_to_string('bill/_content.html', {'request': request,
                                                        'bill': bill})
@@ -110,13 +123,9 @@ def render_bill_amendments(request, segment_id):
         if segment.bill.status == 'draft':
             raise ObjectDoesNotExist
 
-        if segment.bill.allowed_users.all():
-            if request.user not in segment.bill.allowed_users.all():
-                return JsonResponse(
-                    {'title': _('Top secret, you need permission to access.'),
-                     'message': _("How'd you get here?")},
-                    status=404
-                )
+        is_private, error = is_private_bill(request, segment.bill)
+        if is_private and error is not None:
+            return error
 
         html = render_to_string('amendments/_index.html', {'request': request,
                                                            'segment': segment})

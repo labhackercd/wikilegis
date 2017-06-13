@@ -101,19 +101,21 @@ function mouseoutEvent(event) {
 }
 
 function submitEvent(event) {
-  event.preventDefault();
   const dataset = event.target.dataset;
+  if (!dataset.defaultBehavior) {
+    event.preventDefault();
 
-  if (dataset.commentsForm) {
-    forms.sendComment(event.target);
-  }
+    if (dataset.commentsForm) {
+      forms.sendComment(event.target);
+    }
 
-  if (dataset.amendmentsForm) {
-    forms.sendAmendment(event.target);
-  }
+    if (dataset.amendmentsForm) {
+      forms.sendAmendment(event.target);
+    }
 
-  if (dataset.subscribeForm) {
-    forms.sendSubscribe(event.target);
+    if (dataset.subscribeForm) {
+      forms.sendSubscribe(event.target);
+    }
   }
 }
 

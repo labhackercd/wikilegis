@@ -2,6 +2,11 @@
 {% load staticfiles compress %}
 
 {% block content %}
+<div class="widget-loader">
+  <div class="loader__content">
+    <span class="content__spinner"></span>
+  </div>
+</div>
 <main id="bill-list-search" class="wikilegis wikilegis-widget" data-widget-open="false">
 
   <div class="widget-bar">
@@ -14,7 +19,7 @@
     {% if request.user.is_authenticated %}
       <a class="button" role="button" href="{% url 'logout' %}?next={% url 'widget_index' object.id %}">Encerrar Sessão</a>
     {% else %}
-      <a class="button" role="button" href="{% url 'widget_login' %}?next={% url 'widget_index' object.id %}">Fazer Login</a>
+      <a class="button js-login-button" role="button" href="{% url 'widget_login' %}?next={% url 'widget_index' object.id %}">Fazer Login</a>
     {% endif %}
     <!-- End authentication -->
   </div>

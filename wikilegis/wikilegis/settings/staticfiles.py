@@ -23,7 +23,7 @@ STATICFILES_DIRS = [
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
 BOWER_PATH = os.path.join(NODE_MODULES, '.bin/bower')
 BOWER_INSTALLED_APPS = [
-    'normalize.css#^5.0.0',
+    'normalize.css#5.0.0',
     'https://github.com/labhackercd/fontastic-labhacker.git',
 ]
 

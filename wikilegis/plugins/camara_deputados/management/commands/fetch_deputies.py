@@ -15,8 +15,10 @@ class Command(BaseCommand):
             for deputy_data in data:
                 models.ReportingMember.objects.update_or_create(
                     id=deputy_data['ideCadastro'],
-                    name=deputy_data['nomeParlamentar'],
-                    party=deputy_data['partido'],
-                    region=deputy_data['uf'],
-                    email=deputy_data['email'],
+                    defaults={
+                        "name": deputy_data['nomeParlamentar'],
+                        "party": deputy_data['partido'],
+                        "region": deputy_data['uf'],
+                        "email": deputy_data['email'],
+                    }
                 )

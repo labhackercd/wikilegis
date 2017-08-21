@@ -47,7 +47,17 @@ def import_txt(bill_txt, bill_pk):
     is_quote = False
     for line in lines:
         type_id = None
-        if slugify(line).startswith('livro') and not is_quote:
+        if re.match(b"^\"", line) or is_quote:
+            type_id = SegmentType.objects.get(name="citacao").id
+            content = line.decode('utf-8')
+            number = None
+            if line.decode('utf-8').endswith('"'):
+                is_quote = False
+            elif line.decode('utf-8').endswith('(NR)'):
+                is_quote = False
+            else:
+                is_quote = True
+        elif slugify(line).startswith('livro') and not is_quote:
             type_id = SegmentType.objects.get(name="livro").id
             number = roman.fromRoman(
                 re.sub(b"^Livro ", b'', line).decode('utf-8')
@@ -118,14 +128,6 @@ def import_txt(bill_txt, bill_pk):
             type_id = SegmentType.objects.get(name="citacao").id
             content = line.decode('utf-8')
             number = None
-        elif re.match(b"^\"", line) or is_quote:
-            type_id = SegmentType.objects.get(name="citacao").id
-            content = line.decode('utf-8')
-            number = None
-            if line.decode('utf-8').endswith('"'):
-                is_quote = False
-            else:
-                is_quote = True
         else:
             if (not slugify(lines[order - 2]).startswith('livro') and not
                     slugify(lines[order - 2]).startswith('titulo') and not

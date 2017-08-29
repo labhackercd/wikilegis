@@ -48,6 +48,7 @@ COMPRESS_SCSS_COMPILER_CMD = '{node_sass_bin}' \
                              ' --autoprefixer.browsers' \
                              ' "{autoprefixer_browsers}"' \
                              ' -r "{outfile}"'
+COMPRESS_OFFLINE = config('COMPRESS_OFFLINE', default=False)
 
 MEDIA_URL = config('MEDIA_URL', default='/media/')
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))

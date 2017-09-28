@@ -1,6 +1,7 @@
 FROM labhackercd/alpine-python3-nodejs
 
-ENV BUILD_PACKAGES postgresql-dev postgresql-client jpeg-dev zlib-dev gettext
+ENV BUILD_PACKAGES postgresql-dev postgresql-client jpeg-dev \
+    zlib-dev gettext
 
 RUN apk add --update --no-cache $BUILD_PACKAGES
 RUN mkdir -p /var/labhacker/wikilegis

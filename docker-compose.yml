@@ -1,21 +1,24 @@
 version: '2'
 services:
+  db:
+    image: postgres      
   nginx:
     image: nginx
-    ports:
-      - "8000:80"
     depends_on:
       - web
+    volumes_from:
+      - web
     volumes:
-      - .:/var/labhacker/wikilegis
-      - ./config/nginx:/etc/nginx/conf.d
-  db:
-    image: postgres
+      - ./config/etc/nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - "8000:80"
   web:
-    image: labhackercd/wikilegis
+    build: .
     command: ./start.sh
+    links:
+      - db
     volumes:
-      - .:/var/labhacker/wikilegis
+      - data:/var/labhacker/wikilegis
     environment:
       - ADMIN_PASSWORD=123
       - ADMIN_EMAIL=admin@admin.com
@@ -29,3 +32,7 @@ services:
       - "8000"
     depends_on:
       - db
+
+volumes:
+  data:
+    driver: local

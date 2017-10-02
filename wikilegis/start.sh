@@ -1,8 +1,7 @@
 #!/bin/bash
-cd /var/labhacker/wikilegis/wikilegis
 
 python3 manage.py migrate
-python3 create_superuser.py
+python3 create_admin.py
 
 NAME="Wikilegis"
 [[ -z "${WORKERS}" ]] && NUM_WORKERS=2 || NUM_WORKERS="${WORKERS}"

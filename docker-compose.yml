@@ -1,37 +1,50 @@
-version: '2'
+version: '2.3'
 services:
   db:
-    image: postgres      
+    image: postgres
+    healthcheck:
+      test: runuser postgres -c "pg_isready"
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: wikilegis
+      POSTGRES_DB: wikilegis
+
   nginx:
     image: nginx
     depends_on:
       - web
-    volumes_from:
-      - web
     volumes:
+      - data:/var/labhacker/wikilegis
       - ./config/etc/nginx/conf.d/:/etc/nginx/conf.d/
     ports:
       - "8000:80"
+
   web:
-    build: .
+    image: labhackercd/wikilegis
     command: ./start.sh
+    restart: on-failure
     links:
       - db
     volumes:
       - data:/var/labhacker/wikilegis
     environment:
-      - ADMIN_PASSWORD=123
-      - ADMIN_EMAIL=admin@admin.com
-      - DATABASE_ENGINE=postgresql_psycopg2
-      - DATABASE_NAME=postgres
-      - DATABASE_USER=postgres
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - DEBUG=False
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: admin@admin.com
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: wikilegis
+      DATABASE_PASSWORD: wikilegis
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DEBUG: 'False'
     expose:
       - "8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   data:

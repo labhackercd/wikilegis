@@ -1,0 +1,2 @@
+30 5 * * * python3 /var/labhacker/wikilegis/wikilegis/manage.py newsletter_notification --periodicity daily
+0 6 * * 6 python3 /var/labhacker/wikilegis/wikilegis/manage.py newsletter_notification --periodicity weekly

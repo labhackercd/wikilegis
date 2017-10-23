@@ -3,6 +3,9 @@
 python3 manage.py migrate
 python3 create_admin.py
 
+crontab /etc/cron.d/wikilegis
+crond
+
 NAME="Wikilegis"
 [[ -z "${WORKERS}" ]] && NUM_WORKERS=2 || NUM_WORKERS="${WORKERS}"
 DJANGO_WSGI_MODULE=wikilegis.wsgi

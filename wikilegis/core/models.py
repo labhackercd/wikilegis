@@ -203,7 +203,7 @@ class SegmentType(models.Model):
                                          max_length=200, blank=True, null=True)
     parents = models.ManyToManyField('self', related_name='children',
                                      verbose_name=_('parent type'),
-                                     symmetrical=False)
+                                     symmetrical=False, blank=True, null=True)
     editable = models.BooleanField(_('editable'), default='True')
 
     class Meta:

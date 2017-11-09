@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PGPASSWORD=$DATABASE_PASSWORD psql -U $DATABASE_USER -w -h $DATABASE_HOST -c "CREATE DATABASE ${DATABASE_NAME} OWNER ${DATABASE_USER}"
+
 python3 manage.py migrate
 python3 create_admin.py
 

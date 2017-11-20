@@ -1,4 +1,4 @@
-Django>=1.10.5
+Django==1.11.5
 python-decouple>=3.0
 django-debug-toolbar>=1.6
 dj-database-url>=0.4.2

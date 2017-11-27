@@ -1,5 +1,14 @@
 #!/bin/bash
 
+while true; do
+    PG_STATUS=`PGPASSWORD=$DATABASE_PASSWORD psql -U $DATABASE_USER  -w -h $DATABASE_HOST -c '\l \q' | grep postgres | wc -l`
+    if ! [ "$PG_STATUS" -eq "0" ]; then
+       break
+    fi
+    echo "Waiting Database Setup"
+    sleep 10
+done
+
 PGPASSWORD=$DATABASE_PASSWORD psql -U $DATABASE_USER -w -h $DATABASE_HOST -c "CREATE DATABASE ${DATABASE_NAME} OWNER ${DATABASE_USER}"
 
 python3 manage.py migrate

@@ -1,12 +1,7 @@
-version: '2.3'
+version: '2'
 services:
   db:
     image: postgres
-    healthcheck:
-      test: runuser postgres -c "pg_isready"
-      interval: 10s
-      timeout: 10s
-      retries: 5
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: wikilegis
@@ -43,8 +38,7 @@ services:
     expose:
       - "8000"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
 volumes:
   data:

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
+from api.authorization import UpdateUserAuthorization
 from tastypie.resources import ModelResource, ALL_WITH_RELATIONS, ALL
 from tastypie import fields
 
@@ -10,6 +11,10 @@ from core import models as core_models
 class UserResource(ModelResource):
 
     def dehydrate(self, bundle):
+        bundle.data.pop('is_active', None)
+        bundle.data.pop('is_staff', None)
+        bundle.data.pop('is_superuser', None)
+
         key = bundle.request.GET.get('api_key', None)
         if key != settings.API_KEY:
             del bundle.data['email']
@@ -20,13 +25,13 @@ class UserResource(ModelResource):
 
     class Meta:
         queryset = get_user_model().objects.all()
-        allowed_methods = ['get']
-        excludes = ['is_active', 'is_staff', 'is_superuser', 'last_login',
-                    'password', 'date_joined']
+        allowed_methods = ['get', 'put']
+        excludes = ['last_login', 'password', 'date_joined']
+        authorization = UpdateUserAuthorization()
         filtering = {
             'first_name': ALL,
             'last_name': ALL,
-            'username': ALL
+            'username': ALL,
         }
 
 

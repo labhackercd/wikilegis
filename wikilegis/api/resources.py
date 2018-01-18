@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.conf.urls import url
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from api.authorization import UpdateUserAuthorization
@@ -20,14 +21,21 @@ class UserResource(ModelResource):
             del bundle.data['email']
         return bundle
 
-    def dehydrate_username(self, bundle):
-        return bundle.obj.__str__()
+    def prepend_urls(self):
+        re_url = r"^(?P<resource_name>%s)/(?P<username>[\w\d_.-]+)/$".format(
+            self._meta.resource_name
+        )
+        return [
+            url(re_url, self.wrap_view('dispatch_detail'),
+                name="api_dispatch_detail"),
+        ]
 
     class Meta:
         queryset = get_user_model().objects.all()
-        allowed_methods = ['get', 'put']
+        allowed_methods = ['get', 'put', 'delete']
         excludes = ['last_login', 'password', 'date_joined']
         authorization = UpdateUserAuthorization()
+        detail_uri_name = 'username'
         filtering = {
             'first_name': ALL,
             'last_name': ALL,

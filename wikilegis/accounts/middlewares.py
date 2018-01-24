@@ -10,7 +10,6 @@ User = get_user_model()
 
 class WikilegisRemoteUser(RemoteUserMiddleware):
     header = "HTTP_AUTH_USER"
-    logout_if_no_header = False
 
     # Override process request to pass the request to authentication method
     def process_request(self, request):
@@ -25,18 +24,6 @@ class WikilegisRemoteUser(RemoteUserMiddleware):
         try:
             username = request.META[self.header]
         except KeyError:
-            # If specified header doesn't exist then remove any existing
-            # authenticated remote-user, or return (leaving request.user set to
-            # AnonymousUser by the AuthenticationMiddleware).
-            if self.logout_if_no_header and request.user.is_authenticated():
-                try:
-                    stored_backend = load_backend(request.session.get(
-                        auth.BACKEND_SESSION_KEY, ''))
-                    if isinstance(stored_backend, RemoteUserBackend):
-                        auth.logout(request)
-                except ImproperlyConfigured:
-                    # backend failed to load
-                    auth.logout(request)
             return
         # If the user is already authenticated and that user is the user we are
         # getting passed in the headers, then the correct user is already

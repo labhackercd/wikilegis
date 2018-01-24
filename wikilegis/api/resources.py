@@ -1,6 +1,8 @@
 from django.conf import settings
+from django.conf.urls import url
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
+from api.authorization import UpdateUserAuthorization
 from tastypie.resources import ModelResource, ALL_WITH_RELATIONS, ALL
 from tastypie import fields
 
@@ -10,23 +12,34 @@ from core import models as core_models
 class UserResource(ModelResource):
 
     def dehydrate(self, bundle):
+        bundle.data.pop('is_active', None)
+        bundle.data.pop('is_staff', None)
+        bundle.data.pop('is_superuser', None)
+
         key = bundle.request.GET.get('api_key', None)
         if key != settings.API_KEY:
             del bundle.data['email']
         return bundle
 
-    def dehydrate_username(self, bundle):
-        return bundle.obj.__str__()
+    def prepend_urls(self):
+        re_url = r"^(?P<resource_name>%s)/(?P<username>[\w\d_.-]+)/$".format(
+            self._meta.resource_name
+        )
+        return [
+            url(re_url, self.wrap_view('dispatch_detail'),
+                name="api_dispatch_detail"),
+        ]
 
     class Meta:
         queryset = get_user_model().objects.all()
-        allowed_methods = ['get']
-        excludes = ['is_active', 'is_staff', 'is_superuser', 'last_login',
-                    'password', 'date_joined']
+        allowed_methods = ['get', 'put', 'delete']
+        excludes = ['last_login', 'password', 'date_joined']
+        authorization = UpdateUserAuthorization()
+        detail_uri_name = 'username'
         filtering = {
             'first_name': ALL,
             'last_name': ALL,
-            'username': ALL
+            'username': ALL,
         }
 
 

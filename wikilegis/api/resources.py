@@ -90,7 +90,9 @@ class BillResource(ModelResource):
             'title': ALL,
             'status': ALL,
             'id': ALL,
+            'closing_date': ALL,
         }
+        ordering = ['closing_date']
 
 
 class SegmentTypeResource(ModelResource):

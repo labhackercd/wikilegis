@@ -81,7 +81,8 @@ class BillResource(ModelResource):
     class Meta:
         queryset = core_models.Bill.objects.filter(
             allowed_users__isnull=True,
-            is_visible=True).exclude(status='draft')
+            is_visible=True).exclude(status='draft').order_by(
+            '-status', '-modified')
         resource_name = 'bill'
         excludes = ['is_visible']
         allowed_methods = ['get']
@@ -92,7 +93,7 @@ class BillResource(ModelResource):
             'id': ALL,
             'closing_date': ALL,
         }
-        ordering = ['closing_date']
+        ordering = ['closing_date', 'status', 'modified']
 
 
 class SegmentTypeResource(ModelResource):

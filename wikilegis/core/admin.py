@@ -54,8 +54,8 @@ class BillSegmentInline(admin.TabularInline):
     exclude = [
         'author', 'additive_amendments_count', 'modifier_amendments_count',
         'supress_amendments_count', 'amendments_count', 'upvote_count',
-        'downvote_count', 'comments_count', 'participation_count', 'order']
-    fields = ['id', 'parent', 'segment_type', 'number', 'content']
+        'downvote_count', 'comments_count', 'participation_count']
+    fields = ['id', 'order', 'parent', 'segment_type', 'number', 'content']
     per_page = 20
     readonly_fields = ('id',)
     raw_id_fields = ("parent",)

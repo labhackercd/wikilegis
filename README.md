@@ -1,3 +1,7 @@
+# wikilegis
+
+Collaborative editing of legislative texts. See https://edemocracia.camara.leg.br/wikilegis/ for a live instance used by Brazil's Chamber of Deputies.
+
 # Requirements
 
 * Python 3.x

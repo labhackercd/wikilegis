@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 13:18-0300\n"
+"POT-Creation-Date: 2018-01-24 11:17-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,6 +67,14 @@ msgstr "Usuário"
 #: accounts/models.py:26
 msgid "Users"
 msgstr "Usuários"
+
+#: api/authorization.py:14
+msgid "Missing api key"
+msgstr "Chave da api não encontrada"
+
+#: api/authorization.py:17 api/authorization.py:23
+msgid "You cannot perform this action"
+msgstr "Você não pode realizar essa ação"
 
 #: core/admin.py:23 core/models.py:160
 msgid "reference"
@@ -370,8 +378,8 @@ msgid "New"
 msgstr "Novo"
 
 #: core/templates/base.html:34 core/templates/base.html:36
-#: core/templates/base.html:38 core/views.py:213 core/views.py:233
-#: core/views.py:255 core/views.py:298
+#: core/templates/base.html:38 core/views.py:214 core/views.py:234
+#: core/views.py:256 core/views.py:299
 msgid "Oops"
 msgstr "Oops"
 
@@ -577,11 +585,11 @@ msgstr "Erro 403"
 msgid "Access control. Please log in and try again."
 msgstr "Acesso controlado. Faça o login e tente novamente."
 
-#: core/views.py:74
+#: core/views.py:75
 msgid "Access denied. Please contact the project author."
 msgstr "Acesso negado. Favor contatar o autor do projeto."
 
-#: core/views.py:97 core/views.py:116
+#: core/views.py:98 core/views.py:117
 msgid ""
 "The following URL has returned no known bill: <br> <strong>{}/bill/{}</"
 "strong>"
@@ -589,23 +597,23 @@ msgstr ""
 "A seguinte URL não retornou um projeto de lei conhecido: <br> <strong>{}/"
 "bill/{}</strong>"
 
-#: core/views.py:135
+#: core/views.py:136
 msgid "The following URL has returned no known segment."
 msgstr "A seguinte URL não retornou um trecho conhecido."
 
-#: core/views.py:214
+#: core/views.py:215
 msgid "This bill is closed for participation :("
 msgstr "Este projeto de lei está fechado para participação :("
 
-#: core/views.py:234
+#: core/views.py:235
 msgid "You must be logged to comment :("
 msgstr "Você deve estar logado para comentar :("
 
-#: core/views.py:256
+#: core/views.py:257
 msgid "You must be logged to vote :("
 msgstr "Você deve estar logado para votar :("
 
-#: core/views.py:299
+#: core/views.py:300
 msgid "You must be logged to suggest new amendment :("
 msgstr "Você deve estar logado para sugerir uma nova proposta :("
 

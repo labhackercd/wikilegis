@@ -4,15 +4,20 @@ Collaborative editing of legislative texts. See https://edemocracia.camara.leg.b
 
 # Requirements
 
-* Python 3.x
+* Python 3.x see http://docs.python-guide.org/en/latest/starting/install3/win/
 * Probably a working C compiler and `make` (to build libsass)
 * Pillow install dependencies [1]
 * libjpeg-dev, zlib1g-dev and build-essential (for debian like distributions)
 
 # Installation
 
+Make a new Directory then within the directory. 
+
 ```bash
+$ git init 
+$ python -m pip install -U pip
 $ git clone https://github.com/labhackercd/wikilegis.git
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 $ cd wikilegis
 $ npm install
 $ pip install -r requirements.txt

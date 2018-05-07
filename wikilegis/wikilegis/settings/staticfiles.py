@@ -62,6 +62,7 @@ DJANGO_CONTEXT_PROCESSORS = [
 ]
 
 THIRD_PARTY_CONTEXT_PROCESSORS = [
+    'constance.context_processors.config',
     'social_django.context_processors.backends',
     'social_django.context_processors.login_redirect',
 ]

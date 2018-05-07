@@ -14,6 +14,8 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY = [
+    'constance',
+    'constance.backends.database',
     'compressor',
     'compressor_toolkit',
     'debug_toolbar',

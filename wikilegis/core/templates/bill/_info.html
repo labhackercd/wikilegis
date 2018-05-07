@@ -54,7 +54,7 @@
         <span class="extra-infos__text">
           <i class="stats__icon icon icon-lightbulb-o"></i>
           <span class="extra-infos__highlight">{{bill.amendments_count}}</span>
-          {% trans "Amendments suggestions" %}
+          {{ config.SUGGESTION_TEXT }}
         </span>
       </div>
       <div class="extra-infos__item">
@@ -67,7 +67,7 @@
   </div>
 
   <div class="info__actions--votes">
-    <h4 class="actions__title">{% trans "Do you support this bill?" %}</h4>
+    <h4 class="actions__title">{{ config.VOTE_TEXT }}</h4>
     <div class="votes-wrapper" data-votes-wrapper data-object-type="bill" data-object-id="{{bill.id}}">
       {% include "segment/_votes.html" with segment=bill %}
     </div>

@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^', include('accounts.urls')),
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 if settings.FORCE_SCRIPT_NAME and settings.DEBUG:
     urlpatterns += static('/static/', document_root=settings.STATIC_ROOT)

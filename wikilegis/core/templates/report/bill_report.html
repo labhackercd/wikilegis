@@ -19,8 +19,8 @@
       </div>
     </div>
     <div class="bill-summary">
-      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number"> {{object.votes_count}} </span><span class="bill-stats-text">Votos do Projeto</span></span>
-      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number"> {{votes}} </span><span class="bill-stats-text">Votos em Dispositivos</span></span>
+      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number"> {{object.votes_count}} </span><span class="bill-stats-text">{{ config.BILL_VOTES }}</span></span>
+      <span class="bill-stats"><i class="material-icons">thumbs_up_down</i><span class="bill-stats-number"> {{votes}} </span><span class="bill-stats-text">{{ config.SEGMENT_VOTES }}</span></span>
       <span class="bill-stats"><i class="material-icons">forum</i><span class="bill-stats-number">{{comments}} </span><span class="bill-stats-text">Comentários</span></span>
       <span class="bill-stats"><i class="material-icons">people</i><span class="bill-stats-number">{{ attendees }}</span><span class="bill-stats-text">Participantes</span></span>
       <span class="bill-stats"><i class="material-icons">note_add</i><span class="bill-stats-number">{{object.amendments_count}}</span><span class="bill-stats-text">Propostas</span></span>

@@ -3,7 +3,8 @@
 <section id="segment-list-search" class="bill__content" data-content="bill" data-bill="{{bill.id}}" data-remove-content>
   <div class="content__header">
     <div class="header__section-top">
-      <img class="header__logo" src="{% static 'images/brasao.svg' %}" alt="{% trans 'Coat of arms of the republic' %}" />
+      {% get_media_prefix as MEDIA_URL %}
+      <img class="header__logo" src="{{ MEDIA_URL }}{{ config.COAT_OF_ARMS_IMAGE }}" alt="{% trans 'Coat of arms of the republic' %}" />
 
       <div class="header__title">
         <h1 class="title__name">{{bill.title}}</h1>

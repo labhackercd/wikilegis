@@ -12,6 +12,7 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 from distutils.util import strtobool
 from django.contrib.sites.models import Site
 from django.db.models import Q
+from constance import config
 
 from core import models, model_mixins
 
@@ -92,7 +93,8 @@ def render_bill_info(request, bill_id):
             return error
 
         html = render_to_string('bill/_info.html', {'request': request,
-                                                    'bill': bill})
+                                                    'bill': bill,
+                                                    'config': config})
         return JsonResponse({'html': html})
     except ObjectDoesNotExist:
         message = _('The following URL has returned no known bill: '
@@ -111,7 +113,8 @@ def render_bill_content(request, bill_id):
             return error
 
         html = render_to_string('bill/_content.html', {'request': request,
-                                                       'bill': bill})
+                                                       'bill': bill,
+                                                       'config': config})
         return JsonResponse({'html': html})
     except ObjectDoesNotExist:
         message = _('The following URL has returned no known bill: '
@@ -130,7 +133,8 @@ def render_bill_amendments(request, segment_id):
             return error
 
         html = render_to_string('amendments/_index.html', {'request': request,
-                                                           'segment': segment})
+                                                           'segment': segment,
+                                                           'config': config})
         return JsonResponse({'html': html})
     except ObjectDoesNotExist:
         message = _('The following URL has returned no known segment.')
@@ -212,7 +216,7 @@ def create_vote(model, segment_id, request):
     else:
         return JsonResponse(
             {'title': _('Oops'),
-             'message': _('This bill is closed for participation :(')},
+             'message': config.CLOSED_TEXT},
             status=403
         )
 

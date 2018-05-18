@@ -23,7 +23,7 @@
     </a>
   {% elif segment.bill.status == 'closed' %}
     <div class="amendments__closed-message">
-      <p class="amendments__closed-text">{% trans "This project is closed for participations." %}</p>
+      <p class="amendments__closed-text">{{ config.CLOSED_TEXT }}</p>
     </div>
   {% endif %}
 

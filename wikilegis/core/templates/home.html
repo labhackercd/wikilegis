@@ -12,12 +12,12 @@
         <img class="logo__text" src="{% static 'images/logo-wikilegis-text.svg' %}">
       </div>
       <div class="banner__info">
-        <h1 class="banner__header">{% trans "Your legislative editing tool" %}</h1>
+        <h1 class="banner__header">{{ config.SUBTITLE }}</h1>
         <p class="banner__text">
-          {% trans "Check the bills and contribute suggestions of new wordings to articles or paragraphs. The rapporteurs of the bills track the participation and can take up your idea!" %}
+          {{ config.DESCRIPTION_P1 }}
         </p>
         <p class="banner__text">
-          {% trans "With this interaction, society profits by participating more actively in the legislative process, and the Parliament profits by approving improved laws that are better attuned to citizens needs." %}
+          {{ config.DESCRIPTION_P2 }}
         </p>
         <input class="banner__search" placeholder="{% trans 'Search' %}" />
       </div>

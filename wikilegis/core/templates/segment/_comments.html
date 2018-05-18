@@ -13,7 +13,7 @@
   </form>
   {% elif segment.bill.status == 'closed' %}
     <div class="comments__form">
-        <p>{% trans "This project is closed for participations." %}</p>
+        <p>{{ config.CLOSED_TEXT }}</p>
     </div>
   {% else %}
     <div class="comments__form">

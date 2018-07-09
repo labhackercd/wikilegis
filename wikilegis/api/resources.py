@@ -138,11 +138,12 @@ class AdditiveAmendmentResource(ModelResource):
             reference__bill__status='draft'
         ).exclude(reference__bill__is_visible=False)
         allowed_methods = ['get']
-        excludes = ['modified']
         filtering = {
             'author': ALL_WITH_RELATIONS,
             'reference': ALL_WITH_RELATIONS,
             'id': ALL,
+            'created': ['exact', 'lt', 'lte', 'gte', 'gt'],
+            'modified': ['exact', 'lt', 'lte', 'gte', 'gt'],
         }
 
 
@@ -159,11 +160,12 @@ class ModifierAmendmentResource(ModelResource):
             replaced__bill__status='draft'
         ).exclude(replaced__bill__is_visible=False)
         allowed_methods = ['get']
-        excludes = ['modified']
         filtering = {
             'author': ALL_WITH_RELATIONS,
             'replaced': ALL_WITH_RELATIONS,
             'id': ALL,
+            'created': ['exact', 'lt', 'lte', 'gte', 'gt'],
+            'modified': ['exact', 'lt', 'lte', 'gte', 'gt'],
         }
 
 
@@ -180,11 +182,12 @@ class SupressAmendmentResource(ModelResource):
             supressed__bill__status='draft'
         ).exclude(supressed__bill__is_visible=False)
         allowed_methods = ['get']
-        excludes = ['modified']
         filtering = {
             'author': ALL_WITH_RELATIONS,
             'supressed': ALL_WITH_RELATIONS,
             'id': ALL,
+            'created': ['exact', 'lt', 'lte', 'gte', 'gt'],
+            'modified': ['exact', 'lt', 'lte', 'gte', 'gt'],
         }
 
 
@@ -209,6 +212,8 @@ class UpDownVoteResource(ModelResource):
             'author': ALL_WITH_RELATIONS,
             'vote': ALL,
             'id': ALL,
+            'created': ['exact', 'lt', 'lte', 'gte', 'gt'],
+            'modified': ['exact', 'lt', 'lte', 'gte', 'gt'],
         }
 
 
@@ -225,4 +230,6 @@ class CommentResource(ModelResource):
         filtering = {
             'author': ALL_WITH_RELATIONS,
             'id': ALL,
+            'created': ['exact', 'lt', 'lte', 'gte', 'gt'],
+            'modified': ['exact', 'lt', 'lte', 'gte', 'gt'],
         }

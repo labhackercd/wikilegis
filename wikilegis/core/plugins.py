@@ -4,7 +4,7 @@ import pkgutil
 
 from django.conf import settings
 import importlib
-import pip
+from pip import _internal as pip
 
 
 PLUGINS_CONFIG_FILE = settings.BASE_DIR + '/.plugins'

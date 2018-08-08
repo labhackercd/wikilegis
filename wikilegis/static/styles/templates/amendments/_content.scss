@@ -35,6 +35,10 @@
   position: absolute;
   z-index: 5;
 
+  @include breakpoint($medium-down) {
+    bottom: 5em;
+  }
+
   &.animate {
     animation: slide-in-form-button .75s $swift-out;
   }

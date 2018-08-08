@@ -69,10 +69,6 @@
     margin-bottom: 2em;
     max-width: 20em;
     width: 100%;
-
-    @include breakpoint($small-only) {
-      max-width: 15em;
-    }
   }
 
   .logo__image {
@@ -155,12 +151,6 @@
     display: flex;
     flex: 0 0 auto;
     padding: 1.5em 0;
-
-    @include breakpoint($small-only) {
-      flex-direction: column;
-      padding: 2em;
-      text-align: center;
-    }
 
     + [class^="bill-list__item"] {
       border-top: .25em solid hsla(0, 0%, 85%, 1);

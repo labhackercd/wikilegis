@@ -28,7 +28,6 @@
 
   @include breakpoint($small-only) {
     padding: 1em;
-    padding-bottom: 5rem;
   }
 
   .content__header {
@@ -75,11 +74,5 @@
   .content__segments {
     margin-top: 2em;
     padding: 0;
-
-    & li:last-child {
-      @include breakpoint($small-only) {
-        margin-bottom: 5rem;
-      }
-    }
   }
 }

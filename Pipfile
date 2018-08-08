@@ -1,0 +1,31 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+python-decouple = ">=3.0"
+django-debug-toolbar = ">=1.6"
+dj-database-url = ">=0.4.2"
+django-compressor-toolkit = ">=0.6.0"
+django-constance = ">=2.2.0"
+django-picklefield = ">=1.0.0"
+django-bower = ">=5.2.0"
+django-cors-headers = ">=2.0.0"
+"python3-openid" = ">=3.0.10"
+social-auth-app-django = ">=0.1.0"
+django-crispy-forms = ">=1.6.1"
+requests = ">=2.12.5"
+click = ">=6.7"
+django-autofixture = ">=0.12.1"
+django-tastypie = ">=0.13.3"
+mock = ">=2.0.0"
+django-embed-video = ">=1.1.0"
+Django = "==1.11.5"
+django_compressor = ">=2.1"
+Pillow = ">=4.0.0"
+
+[requires]
+python_version = "2.7"

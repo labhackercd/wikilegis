@@ -35,7 +35,7 @@
   position: absolute;
   z-index: 5;
 
-  @include breakpoint($medium-down) {
+  @include breakpoint($medium-down){
     bottom: 5em;
   }
 

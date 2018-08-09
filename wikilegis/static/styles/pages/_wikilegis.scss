@@ -158,8 +158,8 @@
 
     @include breakpoint($small-only) {
       flex-direction: column;
-      padding: 2em;
       text-align: center;
+      
     }
 
     + [class^="bill-list__item"] {

@@ -35,7 +35,7 @@
   position: absolute;
   z-index: 5;
 
-  @include breakpoint($medium-down) {
+  @include breakpoint($medium-down){
     bottom: 5em;
   }
 
@@ -65,6 +65,7 @@
   @include breakpoint($small-only) {
     left: 0;
     width: calc(100% - 3.5em);
+    padding-bottom: 5rem;
   }
 
   .amendments__content--modifier & {

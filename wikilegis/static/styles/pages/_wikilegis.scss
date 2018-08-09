@@ -19,6 +19,12 @@
 
     .wikilegis__bill-list {
       overflow: hidden;
+
+      & li:last-child {
+        @include breakpoint($small-only) {
+          padding-bottom: 5rem;
+        }
+      }
     }
 
     .wikilegis__bill-list::after {
@@ -159,7 +165,6 @@
     @include breakpoint($small-only) {
       flex-direction: column;
       text-align: center;
-      
     }
 
     + [class^="bill-list__item"] {

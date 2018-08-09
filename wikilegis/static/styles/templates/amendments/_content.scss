@@ -65,6 +65,7 @@
   @include breakpoint($small-only) {
     left: 0;
     width: calc(100% - 3.5em);
+    padding-bottom: 5rem;
   }
 
   .amendments__content--modifier & {

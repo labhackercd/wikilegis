@@ -35,6 +35,10 @@
   position: absolute;
   z-index: 5;
 
+  @include breakpoint($medium-down){
+    bottom: 5em;
+  }
+
   &.animate {
     animation: slide-in-form-button .75s $swift-out;
   }
@@ -61,6 +65,10 @@
   @include breakpoint($small-only) {
     left: 0;
     width: calc(100% - 3.5em);
+  }
+
+  @include breakpoint($medium-down) {
+    padding-bottom: 6rem;
   }
 
   .amendments__content--modifier & {

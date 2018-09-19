@@ -19,6 +19,12 @@
 
     .wikilegis__bill-list {
       overflow: hidden;
+
+      & li:last-child {
+        @include breakpoint($small-only) {
+          padding-bottom: 5rem;
+        }
+      }
     }
 
     .wikilegis__bill-list::after {
@@ -69,6 +75,10 @@
     margin-bottom: 2em;
     max-width: 20em;
     width: 100%;
+
+    @include breakpoint($small-only) {
+      max-width: 15em;
+    }
   }
 
   .logo__image {
@@ -151,6 +161,12 @@
     display: flex;
     flex: 0 0 auto;
     padding: 1.5em 0;
+
+    @include breakpoint($small-only) {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.5em 2.5em;
+    }
 
     + [class^="bill-list__item"] {
       border-top: .25em solid hsla(0, 0%, 85%, 1);

@@ -13,6 +13,8 @@ done
 PGPASSWORD=$DATABASE_PASSWORD psql -U $DATABASE_USER -w -h $DATABASE_HOST -c "CREATE DATABASE ${DATABASE_NAME} OWNER ${DATABASE_USER}"
 
 python3 manage.py migrate
+python3 manage.py compress --force
+python3 manage.py collectstatic --noinput
 python3 create_admin.py
 
 crontab /etc/cron.d/wikilegis

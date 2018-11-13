@@ -12,15 +12,17 @@ RUN chmod 0644 /etc/cron.d/wikilegis
 ADD . /var/labhacker/wikilegis
 WORKDIR /var/labhacker/wikilegis
 
+ADD ./config/plugins.json /var/labhacker/wikilegis/wikilegis/.plugins
+
 RUN pip3 install -U pip && \
     pip3 install -r requirements.txt psycopg2 gunicorn && \
+    pip3 install git+https://github.com/tenhodito/pygov-br.git roman==2.0.0 && \
     rm -r /root/.cache
 
 RUN npm install
 
 WORKDIR /var/labhacker/wikilegis/wikilegis
-RUN python3 manage.py activate_plugin camara_deputados && \
-    python3 manage.py bower_install --allow-root && \
+RUN python3 manage.py bower_install --allow-root && \
     python3 manage.py compilemessages
 
 EXPOSE 8000

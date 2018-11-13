@@ -12,7 +12,7 @@ RUN chmod 0644 /etc/cron.d/wikilegis
 ADD . /var/labhacker/wikilegis
 WORKDIR /var/labhacker/wikilegis
 
-ADD ./config/plugins.json /var/labhacker/wikilegis/wikilegis/.plugins.json
+ADD ./config/plugins.json /var/labhacker/wikilegis/wikilegis/.plugins
 
 RUN pip3 install -U pip && \
     pip3 install -r requirements.txt psycopg2 gunicorn && \

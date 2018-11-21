@@ -10,6 +10,7 @@ class BillThemeAdmin(admin.ModelAdmin):
     search_fields = ('description', 'slug')
     ordering = ('description',)
     readonly_fields = ('slug',)
+    exclude = ['icon']
 
 
 class CommentAdmin(admin.ModelAdmin):
@@ -93,7 +94,7 @@ class BillSegmentInline(admin.TabularInline):
 
 
 class BillAdmin(admin.ModelAdmin):
-    inlines = (BillVideoInline, BillReferenceInline, BillSegmentInline)
+    inlines = (BillVideoInline, BillSegmentInline)
     list_display = (
         'title', 'theme', 'status', 'upvote_count',
         'downvote_count', 'comments_count')
@@ -171,7 +172,7 @@ admin.site.register(models.BillTheme, BillThemeAdmin)
 admin.site.register(models.Comment, CommentAdmin)
 admin.site.register(models.Bill, BillAdmin)
 admin.site.register(models.BillVideo, BillVideoAdmin)
-admin.site.register(models.BillReference, BillReferenceAdmin)
+# admin.site.register(models.BillReference, BillReferenceAdmin)
 admin.site.register(models.BillSegment, BillSegmentAdmin)
 admin.site.register(models.AdditiveAmendment, AdditiveAmendmentAdmin)
 admin.site.register(models.ModifierAmendment, ModifierAmendmentAdmin)

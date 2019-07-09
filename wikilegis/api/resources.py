@@ -78,6 +78,47 @@ class BillResource(ModelResource):
     comments = fields.ToManyField('api.resources.CommentResource', 'comments')
     votes = fields.ToManyField('api.resources.UpDownVoteResource', 'votes')
 
+    def dehydrate(self, bundle):
+        segment_upvotes = 0
+        segment_downvotes = 0
+        segment_votes = 0
+        additive_count = 0
+        supress_count = 0
+        modifier_count = 0
+        ids = []
+
+        for segment in bundle.obj.segments.all():
+            additive_count += segment.additive_amendments_count
+            supress_count += segment.supress_amendments_count
+            modifier_count += segment.modifier_amendments_count
+
+            ids += list(segment.modifier_amendments.values_list(
+                'author__id', flat=True
+            ))
+            ids += list(segment.additive_amendments.values_list(
+                'author__id', flat=True
+            ))
+            ids += list(segment.supress_amendments.values_list(
+                'author__id', flat=True
+            ))
+
+            for vote in segment.votes.all():
+                ids.append(vote.user.id)
+                if vote.vote:
+                    segment_upvotes += 1
+                else:
+                    segment_downvotes += 1
+                segment_votes += 1
+
+        bundle.data['segment_upvotes'] = segment_upvotes
+        bundle.data['segment_downvotes'] = segment_downvotes
+        bundle.data['segment_votes'] = segment_votes
+        bundle.data['additive_amendments_count'] = additive_count
+        bundle.data['supress_amendments_count'] = supress_count
+        bundle.data['modifier_amendments_count'] = modifier_count
+        bundle.data['participants_count'] = len(set(ids))
+        return bundle
+
     class Meta:
         queryset = core_models.Bill.objects.filter(
             allowed_users__isnull=True,

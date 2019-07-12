@@ -7,6 +7,7 @@ from tastypie.resources import ModelResource, ALL_WITH_RELATIONS, ALL
 from tastypie import fields
 
 from core import models as core_models
+from api import statistics
 
 
 class UserResource(ModelResource):
@@ -78,45 +79,50 @@ class BillResource(ModelResource):
     comments = fields.ToManyField('api.resources.CommentResource', 'comments')
     votes = fields.ToManyField('api.resources.UpDownVoteResource', 'votes')
 
-    def dehydrate(self, bundle):
-        segment_upvotes = 0
-        segment_downvotes = 0
+    def alter_list_data_to_serialize(self, request, data):
         segment_votes = 0
+        amendment_votes = 0
+        bill_votes = 0
         additive_count = 0
         supress_count = 0
         modifier_count = 0
-        ids = []
+        comments_count = 0
+        participants_count = 0
 
-        for segment in bundle.obj.segments.all():
-            additive_count += segment.additive_amendments_count
-            supress_count += segment.supress_amendments_count
-            modifier_count += segment.modifier_amendments_count
+        for bill in self.get_object_list(request):
+            stats = statistics.bill_stats(bill)
+            bill_votes += stats['bill_votes']
+            additive_count += stats['additive_count']
+            supress_count += stats['supress_count']
+            modifier_count += stats['modifier_count']
+            comments_count += stats['comments_count']
+            segment_votes += stats['segment_votes']
+            amendment_votes += stats['amendment_votes']
+            participants_count += stats['participants_count']
 
-            ids += list(segment.modifier_amendments.values_list(
-                'author__id', flat=True
-            ))
-            ids += list(segment.additive_amendments.values_list(
-                'author__id', flat=True
-            ))
-            ids += list(segment.supress_amendments.values_list(
-                'author__id', flat=True
-            ))
+        data['meta']['segment_votes'] = segment_votes
+        data['meta']['amendment_votes'] = amendment_votes
+        data['meta']['comments_count'] = comments_count
+        data['meta']['bill_votes'] = bill_votes
+        data['meta']['additive_count'] = additive_count
+        data['meta']['supress_count'] = supress_count
+        data['meta']['modifier_count'] = modifier_count
+        data['meta']['amendments_count'] = (
+            additive_count + supress_count + modifier_count
+        )
+        data['meta']['participants_count'] = participants_count
+        return data
 
-            for vote in segment.votes.all():
-                ids.append(vote.user.id)
-                if vote.vote:
-                    segment_upvotes += 1
-                else:
-                    segment_downvotes += 1
-                segment_votes += 1
+    def dehydrate(self, bundle):
+        stats = statistics.bill_stats(bundle.obj)
 
-        bundle.data['segment_upvotes'] = segment_upvotes
-        bundle.data['segment_downvotes'] = segment_downvotes
-        bundle.data['segment_votes'] = segment_votes
-        bundle.data['additive_amendments_count'] = additive_count
-        bundle.data['supress_amendments_count'] = supress_count
-        bundle.data['modifier_amendments_count'] = modifier_count
-        bundle.data['participants_count'] = len(set(ids))
+        bundle.data['amendment_votes'] = stats['amendment_votes']
+        bundle.data['segment_votes'] = stats['segment_votes']
+        bundle.data['comments_count'] = stats['comments_count']
+        bundle.data['additive_amendments_count'] = stats['additive_count']
+        bundle.data['supress_amendments_count'] = stats['supress_count']
+        bundle.data['modifier_amendments_count'] = stats['modifier_count']
+        bundle.data['participants_count'] = stats['participants_count']
         return bundle
 
     class Meta:
@@ -133,6 +139,7 @@ class BillResource(ModelResource):
             'status': ALL,
             'id': ALL,
             'closing_date': ALL,
+            'created': ALL,
         }
         ordering = ['closing_date', 'status', 'modified']
 

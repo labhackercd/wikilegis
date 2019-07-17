@@ -17,6 +17,80 @@ class UserResource(ModelResource):
         bundle.data.pop('is_staff', None)
         bundle.data.pop('is_superuser', None)
 
+        bundle.data['votes_count'] = bundle.obj.updownvote_set.count()
+        bundle.data['comments_count'] = bundle.obj.comment_set.count()
+        bundle.data['additive_count'] = bundle.obj.additiveamendment_set.count()
+        bundle.data['modifier_count'] = bundle.obj.modifieramendment_set.count()
+        bundle.data['supress_count'] = bundle.obj.supressamendment_set.count()
+
+        bill_count = 0
+        for bill in core_models.Bill.objects.all():
+            if bill.votes.filter(user=bundle.obj).count() > 0:
+                bill_count += 1
+                continue
+
+            for segment in bill.segments.all():
+                if segment.votes.filter(user=bundle.obj).count() > 0:
+                    bill_count += 1
+                    break
+
+                if segment.comments.filter(author=bundle.obj).count() > 0:
+                    bill_count += 1
+                    break
+
+                has_participation = False
+                for amendment in segment.additive_amendments.all():
+                    if amendment.author == bundle.obj:
+                        has_participation = True
+                        break
+                    else:
+                        if amendment.votes.filter(user=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                        if amendment.comments.filter(author=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                if has_participation:
+                    bill_count += 1
+                    break
+
+                for amendment in segment.modifier_amendments.all():
+                    if amendment.author == bundle.obj:
+                        has_participation = True
+                        break
+                    else:
+                        if amendment.votes.filter(user=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                        if amendment.comments.filter(author=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                if has_participation:
+                    bill_count += 1
+                    break
+
+                for amendment in segment.supress_amendments.all():
+                    if amendment.author == bundle.obj:
+                        has_participation = True
+                        break
+                    else:
+                        if amendment.votes.filter(user=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                        if amendment.comments.filter(author=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                if has_participation:
+                    bill_count += 1
+                    break
+        bundle.data['bill_participations'] = bill_count
+
         key = bundle.request.GET.get('api_key', None)
         if key != settings.API_KEY:
             del bundle.data['email']

@@ -7,6 +7,7 @@ from tastypie.resources import ModelResource, ALL_WITH_RELATIONS, ALL
 from tastypie import fields
 
 from core import models as core_models
+from api import statistics
 
 
 class UserResource(ModelResource):
@@ -15,6 +16,80 @@ class UserResource(ModelResource):
         bundle.data.pop('is_active', None)
         bundle.data.pop('is_staff', None)
         bundle.data.pop('is_superuser', None)
+
+        bundle.data['votes_count'] = bundle.obj.updownvote_set.count()
+        bundle.data['comments_count'] = bundle.obj.comment_set.count()
+        bundle.data['additive_count'] = bundle.obj.additiveamendment_set.count()
+        bundle.data['modifier_count'] = bundle.obj.modifieramendment_set.count()
+        bundle.data['supress_count'] = bundle.obj.supressamendment_set.count()
+
+        bill_count = 0
+        for bill in core_models.Bill.objects.all():
+            if bill.votes.filter(user=bundle.obj).count() > 0:
+                bill_count += 1
+                continue
+
+            for segment in bill.segments.all():
+                if segment.votes.filter(user=bundle.obj).count() > 0:
+                    bill_count += 1
+                    break
+
+                if segment.comments.filter(author=bundle.obj).count() > 0:
+                    bill_count += 1
+                    break
+
+                has_participation = False
+                for amendment in segment.additive_amendments.all():
+                    if amendment.author == bundle.obj:
+                        has_participation = True
+                        break
+                    else:
+                        if amendment.votes.filter(user=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                        if amendment.comments.filter(author=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                if has_participation:
+                    bill_count += 1
+                    break
+
+                for amendment in segment.modifier_amendments.all():
+                    if amendment.author == bundle.obj:
+                        has_participation = True
+                        break
+                    else:
+                        if amendment.votes.filter(user=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                        if amendment.comments.filter(author=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                if has_participation:
+                    bill_count += 1
+                    break
+
+                for amendment in segment.supress_amendments.all():
+                    if amendment.author == bundle.obj:
+                        has_participation = True
+                        break
+                    else:
+                        if amendment.votes.filter(user=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                        if amendment.comments.filter(author=bundle.obj).count() > 0:
+                            has_participation = True
+                            break
+
+                if has_participation:
+                    bill_count += 1
+                    break
+        bundle.data['bill_participations'] = bill_count
 
         key = bundle.request.GET.get('api_key', None)
         if key != settings.API_KEY:
@@ -78,6 +153,52 @@ class BillResource(ModelResource):
     comments = fields.ToManyField('api.resources.CommentResource', 'comments')
     votes = fields.ToManyField('api.resources.UpDownVoteResource', 'votes')
 
+    def alter_list_data_to_serialize(self, request, data):
+        segment_votes = 0
+        amendment_votes = 0
+        bill_votes = 0
+        additive_count = 0
+        supress_count = 0
+        modifier_count = 0
+        comments_count = 0
+        participants_count = 0
+
+        for bill in self.get_object_list(request):
+            stats = statistics.bill_stats(bill)
+            bill_votes += stats['bill_votes']
+            additive_count += stats['additive_count']
+            supress_count += stats['supress_count']
+            modifier_count += stats['modifier_count']
+            comments_count += stats['comments_count']
+            segment_votes += stats['segment_votes']
+            amendment_votes += stats['amendment_votes']
+            participants_count += stats['participants_count']
+
+        data['meta']['segment_votes'] = segment_votes
+        data['meta']['amendment_votes'] = amendment_votes
+        data['meta']['comments_count'] = comments_count
+        data['meta']['bill_votes'] = bill_votes
+        data['meta']['additive_count'] = additive_count
+        data['meta']['supress_count'] = supress_count
+        data['meta']['modifier_count'] = modifier_count
+        data['meta']['amendments_count'] = (
+            additive_count + supress_count + modifier_count
+        )
+        data['meta']['participants_count'] = participants_count
+        return data
+
+    def dehydrate(self, bundle):
+        stats = statistics.bill_stats(bundle.obj)
+
+        bundle.data['amendment_votes'] = stats['amendment_votes']
+        bundle.data['segment_votes'] = stats['segment_votes']
+        bundle.data['comments_count'] = stats['comments_count']
+        bundle.data['additive_amendments_count'] = stats['additive_count']
+        bundle.data['supress_amendments_count'] = stats['supress_count']
+        bundle.data['modifier_amendments_count'] = stats['modifier_count']
+        bundle.data['participants_count'] = stats['participants_count']
+        return bundle
+
     class Meta:
         queryset = core_models.Bill.objects.filter(
             allowed_users__isnull=True,
@@ -92,6 +213,7 @@ class BillResource(ModelResource):
             'status': ALL,
             'id': ALL,
             'closing_date': ALL,
+            'created': ALL,
         }
         ordering = ['closing_date', 'status', 'modified']
 

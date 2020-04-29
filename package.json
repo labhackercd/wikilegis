@@ -31,7 +31,7 @@
     "postcss-cli": "^2.6.0"
   },
   "dependencies": {
-    "jquery": "^3.1.1",
+    "jquery": "^3.5.0",
     "list.js": "^1.4.1",
     "diff": "^3.2.0",
     "particles.js": "^2.0.0"

@@ -1,7 +1,7 @@
-FROM labhackercd/alpine-python3-nodejs
+FROM dockerhub-pub.camara.leg.br/labhacker/alpine-python3-nodejs:1.0.0
 
 ENV BUILD_PACKAGES postgresql-dev postgresql-client jpeg-dev \
-    zlib-dev gettext
+    zlib-dev gettext libffi-dev
 
 RUN apk add --update --no-cache $BUILD_PACKAGES
 RUN mkdir -p /var/labhacker/wikilegis

@@ -504,7 +504,7 @@ msgid ""
 msgstr ""
 "Con esta interacción, la sociedad se beneficia participando más activamente en el"
 "Proceso legislativo, y el Parlamento se beneficia al aprobar leyes mejoradas"
-"que estén mejor en sintonía con las necesidades de los ciudadanos".
+"que estén mejor en sintonía con las necesidades de los ciudadanos."
 
 #: core/templates/home.html:22
 msgid "Search"

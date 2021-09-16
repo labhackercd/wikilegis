@@ -15,7 +15,7 @@ WORKDIR /var/labhacker/wikilegis
 ADD ./config/plugins.json /var/labhacker/wikilegis/wikilegis/.plugins
 
 RUN pip3 install -U pip && \
-    pip3 install -r requirements.txt psycopg2 gunicorn && \
+    pip3 install -r requirements.txt psycopg2==2.8.6 gunicorn && \
     pip3 install git+https://github.com/tenhodito/pygov-br.git roman==2.0.0 && \
     rm -r /root/.cache
 

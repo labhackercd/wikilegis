@@ -1,1 +1,713 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-24 11:17-0200\n"
+"PO-Revision-Date: 2021-12-15 22:43+0100\n"
+"Last-Translator: Jiří Podhorecký <j.podhorecky@volny.cz>\n"
+"Language-Team: Jiří Podhorecký\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
 
+#: accounts/admin.py:10
+msgid "Personal info"
+msgstr "Osobní informace"
+
+#: accounts/admin.py:13
+msgid "Permissions"
+msgstr "Oprávnění"
+
+#: accounts/admin.py:19
+msgid "Important dates"
+msgstr "Důležitá data"
+
+#: accounts/forms.py:16
+msgid "The two password fields didn't match."
+msgstr "Obě pole hesla se neshodovala."
+
+#: accounts/forms.py:19 core/templates/widget/login.html:34
+#: core/templates/widget/login.html:50
+msgid "Password"
+msgstr "Heslo"
+
+#: accounts/forms.py:24
+msgid "Password confirmation"
+msgstr "Potvrzení hesla"
+
+#: accounts/forms.py:27
+msgid "Enter the same password as before, for verification."
+msgstr "Pro ověření zadejte stejné heslo jako dříve."
+
+#: accounts/models.py:10
+msgid "username"
+msgstr "uživatelské jméno"
+
+#: accounts/models.py:14
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr "Požadováno. Nejvýše 150 znaků. Pouze písmena, číslice a @/./+/-/_."
+
+#: accounts/models.py:17
+msgid "email address"
+msgstr "e-mailová adresa"
+
+#: accounts/models.py:25
+msgid "User"
+msgstr "Uživatel"
+
+#: accounts/models.py:26
+msgid "Users"
+msgstr "Uživatelé"
+
+#: api/authorization.py:14
+msgid "Missing api key"
+msgstr "Chybí api klíč"
+
+#: api/authorization.py:17 api/authorization.py:23
+msgid "You cannot perform this action"
+msgstr "Tuto akci nelze provést"
+
+#: core/admin.py:23 core/models.py:160
+msgid "reference"
+msgstr "reference"
+
+#: core/admin.py:24
+msgid "references"
+msgstr "reference"
+
+#: core/admin.py:30
+msgid "video"
+msgstr "video"
+
+#: core/admin.py:31
+msgid "videos"
+msgstr "videa"
+
+#: core/admin.py:46 core/models.py:135 core/models.py:154
+#: core/tests/test_models.py:90
+msgid "segment"
+msgstr "segment"
+
+#: core/admin.py:46 core/models.py:155
+msgid "segments"
+msgstr "segmenty"
+
+#: core/admin.py:110
+msgid "Counters"
+msgstr "Čítače"
+
+#: core/model_mixins.py:8
+msgid "created"
+msgstr "vytvořeno"
+
+#: core/model_mixins.py:10
+msgid "modified"
+msgstr "změněno"
+
+#: core/model_mixins.py:19
+msgid "upvotes count"
+msgstr "počet hlasů nahoru"
+
+#: core/model_mixins.py:21
+msgid "downvotes count"
+msgstr "počet hlasů dolů"
+
+#: core/model_mixins.py:23
+msgid "votes count"
+msgstr "počet hlasů"
+
+#: core/model_mixins.py:43
+msgid "comments count"
+msgstr "počet komentářů"
+
+#: core/model_mixins.py:58
+msgid "participations count"
+msgstr "počet participací"
+
+#: core/model_mixins.py:71
+msgid "amendments count"
+msgstr "počet dodatků"
+
+#: core/model_mixins.py:98
+msgid "segment type"
+msgstr "typ segmentu"
+
+#: core/model_mixins.py:101
+msgid "order"
+msgstr "řazení"
+
+#: core/model_mixins.py:102
+msgid "number"
+msgstr "číslo"
+
+#: core/model_mixins.py:103 core/models.py:67
+msgid "comments"
+msgstr "komentáře"
+
+#: core/models.py:14
+msgid "Draft"
+msgstr "Návrh"
+
+#: core/models.py:15
+msgid "Published"
+msgstr "Publikováno"
+
+#: core/models.py:16
+msgid "Closed"
+msgstr "Uzavřeno"
+
+#: core/models.py:23
+msgid "Bill Theme"
+msgstr "Téma návrhu zákona"
+
+#: core/models.py:24
+msgid "Bill Themes"
+msgstr "Témata návrhl zákona"
+
+#: core/models.py:33 core/models.py:58
+msgid "description"
+msgstr "popis"
+
+#: core/models.py:35
+msgid "slug"
+msgstr "slug"
+
+#: core/models.py:37
+msgid "icon"
+msgstr "ikona"
+
+#: core/models.py:49
+msgid "text"
+msgstr "text"
+
+#: core/models.py:51 core/models.py:163 core/models.py:177 core/models.py:191
+msgid "author"
+msgstr "autor"
+
+#: core/models.py:56
+msgid "subject"
+msgstr "předmět"
+
+#: core/models.py:57
+msgid "epigraph"
+msgstr "epigraf"
+
+#: core/models.py:59
+msgid "closing date"
+msgstr "datum uzavření"
+
+#: core/models.py:60
+msgid "status"
+msgstr "stav"
+
+#: core/models.py:62
+msgid "visible"
+msgstr "viditelné"
+
+#: core/models.py:63
+msgid "theme"
+msgstr "téma"
+
+#: core/models.py:66
+msgid "allowed users"
+msgstr "povolení uživatelé"
+
+#: core/models.py:83 plugins/camara_deputados/models.py:56
+msgid "Bill"
+msgstr "Návrh zákona"
+
+#: core/models.py:84
+msgid "Bills"
+msgstr "Návrhy zákonů"
+
+#: core/models.py:96
+msgid "URL"
+msgstr "URL"
+
+#: core/models.py:98 core/models.py:115 core/models.py:121
+#: notification/models.py:13
+msgid "bill"
+msgstr "návrh zákona"
+
+#: core/models.py:110
+msgid "title"
+msgstr "nadpis"
+
+#: core/models.py:112
+msgid "reference file"
+msgstr "referenční soubor"
+
+#: core/models.py:114
+msgid "reference url"
+msgstr "referenční url"
+
+#: core/models.py:123
+msgid "segment parent"
+msgstr "nadřazený segment"
+
+#: core/models.py:125 core/models.py:159 core/models.py:173 core/models.py:187
+msgid "content"
+msgstr "obsah"
+
+#: core/models.py:174
+msgid "replaced"
+msgstr "nahrazeno"
+
+#: core/models.py:188
+msgid "supressed"
+msgstr "potlačeno"
+
+#: core/models.py:201
+msgid "name"
+msgstr "název"
+
+#: core/models.py:202
+msgid "presentation name"
+msgstr "název prezentace"
+
+#: core/models.py:205
+msgid "parent type"
+msgstr "nadřazený typ"
+
+#: core/models.py:207
+msgid "editable"
+msgstr "upravitelné"
+
+#: core/models.py:210
+msgid "Segment Type"
+msgstr "Typ segmentu"
+
+#: core/models.py:211
+msgid "Segment Types"
+msgstr "Typy segmentu"
+
+#: core/models.py:222 notification/models.py:16
+msgid "user"
+msgstr "uživatel"
+
+#: core/models.py:223
+msgid "vote"
+msgstr "hlas"
+
+#: core/models.py:224
+msgid "Up Vote"
+msgstr "přidat hlas"
+
+#: core/models.py:225
+msgid "Down Vote"
+msgstr "ponížit hlas"
+
+#: core/templates/admin/segments/edit_inline/tabular.html:21
+msgid "Delete?"
+msgstr "Smazat?"
+
+#: core/templates/admin/segments/edit_inline/tabular.html:35
+msgid "Change"
+msgstr "Změnit"
+
+#: core/templates/admin/segments/edit_inline/tabular.html:37
+msgid "View on site"
+msgstr "Zobrazit na webu"
+
+#: core/templates/amendments/_actions.html:18
+#: core/templates/segment/_actions_secondary.html:57
+msgid "COMMENTS"
+msgstr "KOMENTÁŘE"
+
+#: core/templates/amendments/_comments.html:11
+#: core/templates/segment/_comments.html:11
+msgid "Type your comment"
+msgstr "Napište komentář"
+
+#: core/templates/amendments/_comments.html:12
+#: core/templates/amendments/_content.html:57
+#: core/templates/segment/_comments.html:12
+msgid "Send"
+msgstr "Odeslat"
+
+#: core/templates/amendments/_comments.html:16
+#: core/templates/amendments/_content.html:26
+#: core/templates/segment/_comments.html:16
+msgid "This project is closed for participations."
+msgstr "Tento projekt je pro participace uzavřen."
+
+#: core/templates/amendments/_comments.html:20
+#: core/templates/segment/_comments.html:20
+msgid "You must be logged to comment."
+msgstr "Abyste mohli komentovat, musíte být přihlášeni."
+
+#: core/templates/amendments/_content.html:32
+msgid "Close form"
+msgstr "Zavřít formulář"
+
+#: core/templates/amendments/_index.html:11
+msgid "Suggest a modification"
+msgstr "Navrhnout úpravu"
+
+#: core/templates/amendments/_index.html:12
+msgid "Suggest an appendment"
+msgstr "Navrhnout pozměňovací návrh"
+
+#: core/templates/amendments/_index.html:13
+msgid "Suggest to exclude"
+msgstr "Navrhnout vyloučení"
+
+#: core/templates/amendments/_index.html:15
+msgid "Insert your modification suggestion"
+msgstr "Vložte svůj návrh úpravy"
+
+#: core/templates/amendments/_index.html:16
+msgid "Insert your appendment suggestion"
+msgstr "Vložte svůj pozměňovací návrh"
+
+#: core/templates/amendments/_index.html:17
+msgid "Please justify the need to exclude this segment"
+msgstr "Odůvodněte, prosím, potřebu vyloučení tohoto segmentu."
+
+#: core/templates/amendments/_item.html:9
+msgid "New"
+msgstr "Nový"
+
+#: core/templates/base.html:34 core/templates/base.html:36
+#: core/templates/base.html:38 core/views.py:214 core/views.py:234
+#: core/views.py:256 core/views.py:299
+msgid "Oops"
+msgstr "Uff"
+
+#: core/templates/base.html:35
+msgid "You cannot send an empty comment :("
+msgstr "Nelze odeslat prázdný komentář :("
+
+#: core/templates/base.html:37
+msgid "You cannot send an empty amendment :("
+msgstr "Nelze poslat prázdný pozměňovací návrh :("
+
+#: core/templates/base.html:39
+msgid "Your suggestion has the same text of original segment"
+msgstr "Váš návrh má stejný text jako původní segment"
+
+#: core/templates/base.html:40
+msgid "User not logged in"
+msgstr "Uživatel není přihlášen"
+
+#: core/templates/base.html:41
+msgid "Click here"
+msgstr "Klikněte zde"
+
+#: core/templates/base.html:41
+msgid "to log in"
+msgstr "pro přihlášení"
+
+#: core/templates/bill/_amendment_wrapper.html:12
+#: core/templates/segment/_actions_secondary.html:15
+msgid "EDITION"
+msgstr "ÚPRAVA"
+
+#: core/templates/bill/_amendment_wrapper.html:17
+#: core/templates/segment/_actions_secondary.html:30
+msgid "ADDITION"
+msgstr "PŘÍDAVEK"
+
+#: core/templates/bill/_amendment_wrapper.html:22
+#: core/templates/segment/_actions_secondary.html:44
+msgid "EXCLUSION"
+msgstr "VYJÍMKA"
+
+#: core/templates/bill/_amendment_wrapper.html:28 core/templates/home.html:48
+#: core/templates/widget/login.html:10
+msgid "back"
+msgstr "zpět"
+
+#: core/templates/bill/_content.html:6
+msgid "Coat of arms of the republic"
+msgstr "Státní znak republiky"
+
+#: core/templates/bill/_info.html:18
+msgid "SEARCH"
+msgstr "HLEDAT"
+
+#: core/templates/bill/_info.html:34 core/templates/bill/_list-item.html:11
+msgid "Participations closed on"
+msgstr "Uzavření participací v"
+
+#: core/templates/bill/_info.html:42 core/templates/bill/_list-item.html:21
+msgid "Created on"
+msgstr "Vytvořeno na"
+
+#: core/templates/bill/_info.html:46 core/templates/bill/_list-item.html:25
+msgid "Closes on"
+msgstr "Uzavřeno na"
+
+#: core/templates/bill/_info.html:57
+msgid "Amendments suggestions"
+msgstr "Pozměňovací návrhy"
+
+#: core/templates/bill/_info.html:63
+msgid "Access Report"
+msgstr "Přístupová zpráva"
+
+#: core/templates/bill/_info.html:70
+msgid "Do you support this bill?"
+msgstr "Podporujete tento návrh zákona?"
+
+#: core/templates/bill/_list-item.html:33
+msgid "Suggestions"
+msgstr "Návrhy"
+
+#: core/templates/bill/_newsletter.html:5
+msgid "Unsubscribe"
+msgstr "Odhlásit se z odběru"
+
+#: core/templates/bill/_newsletter.html:9
+msgid "Subscribe to this bill"
+msgstr "Přihlásit se k odběru tohoto návrhu zákona"
+
+#: core/templates/bill/_newsletter.html:14 notification/models.py:9
+msgid "Daily"
+msgstr "Denně"
+
+#: core/templates/bill/_newsletter.html:18 notification/models.py:10
+msgid "Weekly"
+msgstr "Týdně"
+
+#: core/templates/bill/_newsletter.html:20
+msgid "Subscribe"
+msgstr "Odebírat"
+
+#: core/templates/home.html:15
+msgid "Your legislative editing tool"
+msgstr "Váš nástroj pro úpravu legislativy"
+
+#: core/templates/home.html:17
+msgid ""
+"Check the bills and contribute suggestions of new wordings to articles or "
+"paragraphs. The rapporteurs of the bills track the participation and can "
+"take up your idea!"
+msgstr ""
+"Zkontrolujte návrhy zákonů a přispějte návrhy nových formulací článků nebo "
+"odstavců. Zpravodajové návrhů zákonů sledují účast a mohou se vaším nápadem "
+"zabývat!"
+
+#: core/templates/home.html:20
+msgid ""
+"With this interaction, society profits by participating more actively in the "
+"legislative process, and the Parliament profits by approving improved laws "
+"that are better attuned to citizens needs."
+msgstr ""
+"Z této interakce profituje společnost tím, že se aktivněji zapojuje do "
+"legislativního procesu, a Parlament tím, že schvaluje lepší zákony, které "
+"lépe odpovídají potřebám občanů."
+
+#: core/templates/home.html:22
+msgid "Search"
+msgstr "Hkedat"
+
+#: core/templates/registration/login.html:13
+#: core/templates/widget/login.html:36
+msgid "Log in"
+msgstr "Přihlášení"
+
+#: core/templates/registration/login.html:17
+msgid "Forgot password"
+msgstr "Zapomenuté heslo"
+
+#: core/templates/registration/login.html:17
+msgid "Reset it"
+msgstr "Obnovit"
+
+#: core/templates/registration/register.html:13
+msgid "Register"
+msgstr "Registrovat"
+
+#: core/templates/segment/_votes.html:6
+msgid "I support"
+msgstr "Podporuji"
+
+#: core/templates/segment/_votes.html:11
+msgid "I do not support"
+msgstr "Nepodporuji"
+
+#: core/templates/widget/login.html:21
+msgid "Re-send activation email"
+msgstr "Znovu odeslat aktivační e-mail"
+
+#: core/templates/widget/login.html:28 core/templates/widget/login.html:44
+msgid "Email is a necessary field"
+msgstr "E-mail je povinné pole"
+
+#: core/templates/widget/login.html:30 core/templates/widget/login.html:46
+#: plugins/camara_deputados/models.py:93
+msgid "Email"
+msgstr "E-mail"
+
+#: core/templates/widget/login.html:32 core/templates/widget/login.html:48
+msgid "Password is a necessary field"
+msgstr "Heslo je povinné pole"
+
+#: core/templates/widget/login.html:41
+msgid "First name"
+msgstr "Jméno"
+
+#: core/templates/widget/login.html:42
+msgid "Last name"
+msgstr "Příjmení"
+
+#: core/templates/widget/login.html:52
+msgid "Confirm Password is a necessary field"
+msgstr "Potvrzení hesla je povinné pole"
+
+#: core/templates/widget/login.html:54
+msgid "Confirm your password"
+msgstr "Potvrzení hesla"
+
+#: core/templates/widget/login.html:55
+msgid "Sign Up"
+msgstr "Zaregistrujte se"
+
+#: core/views.py:55
+msgid "404 Error"
+msgstr "Chyba 404"
+
+#: core/views.py:63
+msgid "403 Error"
+msgstr "Chyba 403"
+
+#: core/views.py:72
+msgid "Access control. Please log in and try again."
+msgstr "Kontrola přístupu. Přihlaste se a zkuste to znovu."
+
+#: core/views.py:75
+msgid "Access denied. Please contact the project author."
+msgstr "Přístup odepřen. Kontaktujte prosím autora projektu."
+
+#: core/views.py:98 core/views.py:117
+msgid ""
+"The following URL has returned no known bill: <br> <strong>{}/bill/{}</"
+"strong>"
+msgstr ""
+"Následující adresa URL nevrátila žádný známý návrh zákona: <br> <strong>{}/"
+"bill/{}</strong>"
+
+#: core/views.py:136
+msgid "The following URL has returned no known segment."
+msgstr "Následující adresa URL nevrátila žádný známý segment."
+
+#: core/views.py:215
+msgid "This bill is closed for participation :("
+msgstr "Tento návrh zákona je uzavřen pro účast :("
+
+#: core/views.py:235
+msgid "You must be logged to comment :("
+msgstr "Musíte být přihlášeni, abyste mohli komentovat :("
+
+#: core/views.py:257
+msgid "You must be logged to vote :("
+msgstr "Pro hlasování musíte být přihlášeni :("
+
+#: core/views.py:300
+msgid "You must be logged to suggest new amendment :("
+msgstr "Pro navrhování nových změn musíte být přihlášeni :("
+
+#: notification/models.py:17
+msgid "periodicity"
+msgstr "periodicita"
+
+#: notification/models.py:23
+msgid "Newsletter"
+msgstr "Zpravodaj"
+
+#: notification/models.py:24
+msgid "Newsletters"
+msgstr "Zpravodaje"
+
+#: plugins/camara_deputados/forms.py:7
+msgid "File in txt format"
+msgstr "Soubor v txt formátu"
+
+#: plugins/camara_deputados/models.py:7
+msgid "Author Name"
+msgstr "Jméno autora"
+
+#: plugins/camara_deputados/models.py:9 plugins/camara_deputados/models.py:92
+msgid "Region"
+msgstr "Region"
+
+#: plugins/camara_deputados/models.py:11 plugins/camara_deputados/models.py:90
+msgid "Party"
+msgstr "Politická strana"
+
+#: plugins/camara_deputados/models.py:13
+msgid "Register ID"
+msgstr "Registrační ID"
+
+#: plugins/camara_deputados/models.py:58
+msgid "Author"
+msgstr "Autor"
+
+#: plugins/camara_deputados/models.py:62
+msgid "Reporting Member"
+msgstr "Člen podávající zprávy"
+
+#: plugins/camara_deputados/models.py:64
+msgid "Proposal Type"
+msgstr "Typ návrhu"
+
+#: plugins/camara_deputados/models.py:65
+msgid "Proposal Number"
+msgstr "Číslo návrhu"
+
+#: plugins/camara_deputados/models.py:66
+msgid "Proposal Year"
+msgstr "Rok návrhu"
+
+#: plugins/camara_deputados/models.py:68
+msgid "Situation"
+msgstr "Situace"
+
+#: plugins/camara_deputados/models.py:86
+msgid "Reporting Member ID"
+msgstr "ID člena podávajícího zprávu"
+
+#: plugins/camara_deputados/models.py:88
+msgid "Parliamentary Name"
+msgstr "Název parlamentu"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:4
+msgid "TITLE"
+msgstr "NADPIS"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:6
+msgid "BOOK"
+msgstr "SVAZEK"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:8
+msgid "CHAPTER"
+msgstr "KAPITOLA"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:10
+msgid "Section"
+msgstr "Sekce"
+
+#: plugins/camara_deputados/templates/segment/_fixed_segment.html:12
+msgid "Subsection"
+msgstr "Podsekce"
+
+#: plugins/camara_deputados/templatetags/camara_deputados_utils.py:63
+msgid "Sole paragraph"
+msgstr "Jediný paragraf"
+
+#: wikilegis/settings/social.py:39
+msgid "Google"
+msgstr "Google"
+
+#: wikilegis/settings/social.py:43
+msgid "Facebook"
+msgstr "Facebook"

@@ -22,7 +22,7 @@ mock==2.0.0
 oauthlib==2.1.0
 pbr==5.1.1
 Pillow==5.3.0
-PyJWT==1.6.4
+PyJWT==2.4.0
 python-dateutil==2.7.5
 python-decouple==3.1
 python-mimeparse==1.6.0
